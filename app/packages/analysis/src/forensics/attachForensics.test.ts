@@ -205,7 +205,7 @@ describe('aggregateNodeForensics', () => {
     });
   });
 
-  it('rolls up complexity peaks, line churn, and coupled files from children', () => {
+  it('rolls up complexity peaks, line churn and coupled files from children', () => {
     const children: SystemNode[] = [
       {
         entityRef: 'a/b/c1',

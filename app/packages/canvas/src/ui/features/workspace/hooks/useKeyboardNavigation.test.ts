@@ -162,7 +162,7 @@ describe('useKeyboardNavigation Hook', () => {
     expect(onUndo).toHaveBeenCalledTimes(2);
   });
 
-  it('should call onRedo when ⌘Shift+Z, Ctrl+Shift+Z, ⌘Y, or Ctrl+Y is pressed (not typing)', () => {
+  it('should call onRedo when ⌘Shift+Z, Ctrl+Shift+Z, ⌘Y or Ctrl+Y is pressed (not typing)', () => {
     const onRedo = vi.fn();
     renderHook(() => useKeyboardNavigation({ onRedo }));
 

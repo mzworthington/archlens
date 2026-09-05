@@ -115,7 +115,7 @@ export const TraceLensPanel: React.FC = () => {
                   </p>
                   <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                     {searchQuery.trim()
-                      ? 'Try another name, entity ref, parent, or type.'
+                      ? 'Try another name, entity ref, parent or type.'
                       : scopeEntityRef
                         ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
                         : hasScope && !hasForensicsData

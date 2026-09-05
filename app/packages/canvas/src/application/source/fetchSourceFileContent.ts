@@ -158,7 +158,7 @@ export async function fetchSourceFileContent(
     const message = rawError instanceof Error ? rawError.message : String(rawError);
     return {
       ok: false,
-      error: `Remote source rendering is supported for public repositories (${message}). For private repositories, enter a Personal Access Token (PAT), open the workspace folder locally, or view directly in your repository browser.`,
+      error: `Remote source rendering is supported for public repositories (${message}). For private repositories, enter a Personal Access Token (PAT), open the workspace folder locally or view directly in your repository browser.`,
       viewerUrl,
       rawUrl,
     };

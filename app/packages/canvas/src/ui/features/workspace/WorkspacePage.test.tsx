@@ -107,7 +107,7 @@ describe('WorkspacePage Component', () => {
     });
   });
 
-  it('should render Explorer, Canvas, and PropertyPanel', () => {
+  it('should render Explorer, Canvas and PropertyPanel', () => {
     useBlueprintStore.setState({ leftCollapsed: false, rightCollapsed: false });
     render(<WorkspacePage />);
 

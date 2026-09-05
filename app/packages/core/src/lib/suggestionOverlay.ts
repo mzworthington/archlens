@@ -70,7 +70,7 @@ function assertEntityRef(value: unknown, field: string): asserts value is string
   assertNonEmptyString(value, field);
   if (!isEntityRef(value)) {
     throw new Error(
-      `Invalid suggestion overlay: ${field} must be an entityRef (alphanumeric, dashes, or underscores segments separated by slashes)`
+      `Invalid suggestion overlay: ${field} must be an entityRef (alphanumeric, dashes or underscores segments separated by slashes)`
     );
   }
 }

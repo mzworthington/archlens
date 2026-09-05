@@ -8,7 +8,7 @@ Results are **illustrative**: statistical availability bands from simplified pro
 
 ## Turning it on
 
-1. Open **`/workspace`** and load a diagram (sandbox, folder, or deep link).
+1. Open **`/workspace`** and load a diagram (sandbox, folder or deep link).
 2. In the **bottom toolbar**, click **Resilience** (shield icon) to open ChaosLens.
 3. The header badge switches to **CHAOSLENS** and the right panel shows fault controls + telemetry instead of property editing.
 
@@ -18,7 +18,7 @@ Click **Resilience** again to exit ChaosLens. Simulation state and safeguard tog
 
 1. **Select a node** on the canvas (single click - use the **Zoom** button or double-click to drill into child diagrams).
 2. In the right panel, choose:
-   - **Fault type** - high latency, 5xx error rate, packet loss, or region outage
+   - **Fault type** - high latency, 5xx error rate, packet loss or region outage
    - **Severity** - 0-100% slider
    - **Safeguards** - circuit breaker, bulkhead, retry, local cache (session toggles on the selected node)
 3. Click **Simulate** in the bottom toolbar.
@@ -27,7 +27,7 @@ The right panel opens if it was collapsed. Re-run after changing fault or safegu
 
 When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95** SLA bands from jittered trials (typically 1,000 runs). Without WASM, the TypeScript fallback runs the same propagation rules (including group boundaries) and reports a single overall SLA.
 
-With a **workspace** loaded, Simulate also builds a **simulation closure**: missing external neighbors are materialized, upstream callers stay in scope, and edges from an external proxy’s **home diagram** are pulled in so blast radius can cross diagram boundaries (for example Auth Session DB → Auth → Storefront API).
+With a **workspace** loaded, Simulate also builds a **simulation closure**: missing external neighbors are materialized, upstream callers stay in scope and edges from an external proxy’s **home diagram** are pulled in so blast radius can cross diagram boundaries (for example Auth Session DB → Auth → Storefront API).
 
 ## What the simulation models
 
@@ -69,7 +69,7 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 | **Telemetry view**           | **SRE** (entity refs, Monte Carlo, SPOFs) or **Executive** (plain-English continuity summary) |
 | **SLA / SLO**                | Overall and per-entry-point availability after the fault (SRE view)                           |
 | **Data integrity**           | Correctness / staleness on async streams (independent of SLA)                                 |
-| **Monte Carlo**              | When available - mean, P5, and P95 SLA across jittered trials                                 |
+| **Monte Carlo**              | When available - mean, P5 and P95 SLA across jittered trials                                  |
 | **Single points of failure** | Shared dependencies lacking circuit breakers (structural, not fault-specific)                 |
 | **Impacted domains**         | Parent diagram or top-level ref prefix for impacted nodes (availability)                      |
 | **Resilience advice**        | Rule-generated suggestions (SPOFs, blast radius, integrity / staleness)                       |
@@ -95,11 +95,11 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 
 Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Browse the catalog from **Open → Browse ChaosSpecs** (or ChaosLens **Browse**) to jump to the target diagram and load the scenario. Paste/upload and export remain under **Load ChaosSpec** / **Export ChaosSpec**.
 
-Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md)**.
+Contract, public schema URLs and field reference: **[ChaosSpec](./chaos-spec.md)**.
 
 ## Limitations (today)
 
-- Multi-fault scenarios via the scenario list, **Browse ChaosSpecs** catalog, or paste/upload import
+- Multi-fault scenarios via the scenario list, **Browse ChaosSpecs** catalog or paste/upload import
 - Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs); catalog picker navigates by `diagramRef`
 - WASM Monte Carlo when the resilience engine is deployed; TypeScript fallback uses the same propagation rules without trial bands
 - Headless estate sweep and CI SLA gates ship via **[AdviceLens](./advicelens.md)** (`archlens resilience`, `.github/actions/advicelens-gate`) - not a separate ChaosLens-only binary

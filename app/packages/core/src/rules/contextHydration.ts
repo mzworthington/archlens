@@ -64,7 +64,7 @@ function withOwnership(node: SystemNode, ownership: string): SystemNode {
 }
 
 /**
- * Author-owned: human actors, third-parties, explicit author stamp, or sparse
+ * Author-owned: human actors, third-parties, explicit author stamp or sparse
  * unmarked system anchors (no rootPath yet).
  */
 export function isAuthorOwnedContextNode(node: SystemNode): boolean {
@@ -248,7 +248,7 @@ function emptySchema(
 
 /**
  * Hydrate a system context: upsert scan systems, preserve author-owned personas /
- * third-parties / system anchors, prune in-scope scan orphans, and apply
+ * third-parties / system anchors, prune in-scope scan orphans and apply
  * persona-aware fallback actor policy.
  */
 export function hydrateContextSchema(input: ContextHydrationInput): ContextHydrationResult {

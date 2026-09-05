@@ -1,6 +1,6 @@
 # ChaosLens engine
 
-This page is for **contributors** building or extending ChaosLens - the Go Monte Carlo core, WASM bridge, and TypeScript fallback in `@archlens/core/resilience`.
+This page is for **contributors** building or extending ChaosLens - the Go Monte Carlo core, WASM bridge and TypeScript fallback in `@archlens/core/resilience`.
 
 For using ChaosLens in ArchLens Canvas, see the [product guide](./guide/chaoslens.md).
 

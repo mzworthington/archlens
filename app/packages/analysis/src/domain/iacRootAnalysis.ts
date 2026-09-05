@@ -111,7 +111,7 @@ async function maybeCodeScanFallback(
 }
 
 /**
- * Parse one IaC root, write containers.yaml, and return a context subsystem ref.
+ * Parse one IaC root, write containers.yaml and return a context subsystem ref.
  */
 export async function analyzeAndWriteIacRoot(input: {
   root: IacRoot;

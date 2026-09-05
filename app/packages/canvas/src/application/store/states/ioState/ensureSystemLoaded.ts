@@ -28,7 +28,7 @@ export type EnsureSystemLoadedDeps = {
 const inflightLoads = new Map<string, Promise<boolean>>();
 
 /**
- * Parse, resolve, and draft-reconcile a single workspace file into `loadedSystems`.
+ * Parse, resolve and draft-reconcile a single workspace file into `loadedSystems`.
  * No-ops when already cached. Returns false if the file cannot be loaded.
  */
 export async function ensureSystemLoaded(

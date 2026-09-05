@@ -37,7 +37,7 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
         entityRef: 'domain-logic',
         name: 'Domain Logic Layer',
         type: 'background-worker',
-        description: 'Core domain logic, schema validation rules, and graph parsing.',
+        description: 'Core domain logic, schema validation rules and graph parsing.',
         technology: langPrefix,
       };
     }
@@ -71,7 +71,7 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
           entityRef: 'frontend-ui',
           name: 'Frontend React UI',
           type: 'gateway-api',
-          description: 'React Flow canvas, sidebar configuration panel, and navigation UI.',
+          description: 'React Flow canvas, sidebar configuration panel and navigation UI.',
           technology: 'React + TailwindCSS',
         };
       }
@@ -89,7 +89,7 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
         entityRef: 'frontend-ui',
         name: 'Frontend React UI',
         type: 'gateway-api',
-        description: 'React Flow canvas, sidebar configuration panel, and navigation UI.',
+        description: 'React Flow canvas, sidebar configuration panel and navigation UI.',
         technology: 'React + TailwindCSS',
       };
     }

@@ -166,7 +166,7 @@ export function assessArchitectureHealth(
           entityRef: node.entityRef,
           title: `Knowledge silo: ${node.name}`,
           action:
-            'Share ownership - pair, document boundaries, or reduce complexity so more people can change it safely.',
+            'Share ownership - pair, document boundaries or reduce complexity so more people can change it safely.',
           evidence: {
             complexity: forensics.complexity,
           },
@@ -182,7 +182,7 @@ export function assessArchitectureHealth(
           entityRef: node.entityRef,
           title: `Heating: ${node.name}`,
           action:
-            'Stabilize change rate - batch related edits, finish the refactor, or pause drive-by churn in this module.',
+            'Stabilize change rate - batch related edits, finish the refactor or pause drive-by churn in this module.',
           evidence: {
             accelerationRatio: ratio,
             churn30: forensics.churn30,

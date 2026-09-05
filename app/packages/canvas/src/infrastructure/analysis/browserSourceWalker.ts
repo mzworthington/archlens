@@ -81,7 +81,7 @@ function candidateKind(
 
 /**
  * Recursively walk a directory handle for supported sources and IaC inputs
- * (browser File System Access). Sources, manifests, and total bytes are budgeted
+ * (browser File System Access). Sources, manifests and total bytes are budgeted
  * separately; source roots are preferred when the file cap is hit so peripheral
  * scripts do not starve `src/`.
  */

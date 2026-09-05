@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest';
 import { ForensicsTrendPanel } from './ForensicsTrendPanel';
 
 describe('ForensicsTrendPanel', () => {
-  it('renders churn, author, and complexity micro charts for rollups', () => {
+  it('renders churn, author and complexity micro charts for rollups', () => {
     render(
       <ForensicsTrendPanel
         dashboard={{

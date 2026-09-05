@@ -23,7 +23,7 @@ On component nodes (joined by `properties.filepath`):
 | `coupledFiles`                     | Temporally coupled peers (scores + shared commits) |
 | `sinceDays`                        | Lookback window used for this run                  |
 
-Containers and context systems get **rollups** (`fileCount`, `hotspotCount`, `knowledgeSiloCount`, max/sum metrics, and the same `sinceDays`).
+Containers and context systems get **rollups** (`fileCount`, `hotspotCount`, `knowledgeSiloCount`, max/sum metrics and the same `sinceDays`).
 
 Example YAML fragment:
 
@@ -49,7 +49,7 @@ forensics:
 Open the **Explorer** panel on the left (chevron rail on desktop, **Explorer** chip on mobile). Select the **TraceLens** tab for architecture signal tools:
 
 - **Workspace display** - test components, externals, dependency focus, risk heatmap, coupling lens
-- **Node details** - select a canvas node for git metrics, schema dependencies, coupled/import peers, and mini-graph
+- **Node details** - select a canvas node for git metrics, schema dependencies, coupled/import peers and mini-graph
 - **View worst offenders** - opens the full **TraceLens** estate page
 
 The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active diagram (Mermaid is export-only).
@@ -66,7 +66,7 @@ The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**.
 
 `hotspotScore` is one number for the whole `--git-since` window: this file is currently high relative to the rest of the scan. That does not tell you whether the file is heating up.
 
-When git history is present, TraceLens also stores `hotspotScoreByWeek` (oldest week on the left). Each week is the same relative score, using **today's** complexity and that week's churn. It is not a stash of previous CLI scans, and it does not reconstruct old AST complexity.
+When git history is present, TraceLens also stores `hotspotScoreByWeek` (oldest week on the left). Each week is the same relative score, using **today's** complexity and that week's churn. It is not a stash of previous CLI scans and it does not reconstruct old AST complexity.
 
 On the estate list and in Explorer → TraceLens, the sparkline next to a hotspot uses that series. The label **getting worse** / **easing** / **steady** compares the last four weeks with the four before them. Dual-window `churn30` vs `churn365` still shows raw commit acceleration.
 

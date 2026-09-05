@@ -1,6 +1,6 @@
 # Code of Conduct
 
-ArchLens is a small open-source project. Please keep things friendly and constructive in issues, PRs, and discussions.
+ArchLens is a small open-source project. Please keep things friendly and constructive in issues, PRs and discussions.
 
 **The basics:**
 

@@ -27,7 +27,7 @@ The script will:
 4. Sync hosting + `R2_BLUEPRINT_CATALOG_*` secrets to **GitHub Actions**
 5. Configure the **Pulumi** stack (does not run `preview` / `up`)
 
-If automatic R2 token mint fails, create an R2 Object Read & Write token for the catalog bucket, put the three `R2_BLUEPRINT_CATALOG_*` values in bws, and re-run.
+If automatic R2 token mint fails, create an R2 Object Read & Write token for the catalog bucket, put the three `R2_BLUEPRINT_CATALOG_*` values in bws and re-run.
 
 After bootstrap: `cd infra/cloudflare && pulumi up`, or merge to `main` (preview → **pulumi-prod** approval → `up`).
 
@@ -66,7 +66,7 @@ Publish uses the shared storage port. Configure via env (all providers) or CLI f
 
 | Key                                                     | Used by                                                                                 |
 | ------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `OBJECT_STORAGE_PROVIDER`                               | `r2` (default), `s3`, or `azure`                                                        |
+| `OBJECT_STORAGE_PROVIDER`                               | `r2` (default), `s3` or `azure`                                                         |
 | `OBJECT_STORAGE_BUCKET` / `R2_BUCKET` / `AWS_S3_BUCKET` | Bucket or container name                                                                |
 | `OBJECT_STORAGE_KEY_PREFIX`                             | Optional key prefix inside the bucket (samples estate: `estates/samples`; see ADR-0014) |
 | `R2_ACCOUNT_ID` / `CLOUDFLARE_ACCOUNT_ID`               | R2 S3 endpoint account id                                                               |
@@ -92,7 +92,7 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 ## Deploy
 
-Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab run deploy`), and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
+Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab run deploy`) and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
 
 Custom domains need a deployed Worker version first. If the first Pulumi apply fails on `WorkersCustomDomain`, wait for **deploy-collab** to finish and re-run Pulumi.
 

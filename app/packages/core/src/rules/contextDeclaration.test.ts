@@ -13,7 +13,7 @@ import { parseSchemaFromYaml } from './graphParse';
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../../');
 
 describe('assembleContextDeclaration', () => {
-  it('builds personas, system anchors, and third-party externals with synthesized edges', () => {
+  it('builds personas, system anchors and third-party externals with synthesized edges', () => {
     const schema = assembleContextDeclaration({
       entityRef: 'archlens',
       name: 'ArchLens',

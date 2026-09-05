@@ -102,7 +102,7 @@ export const ResilienceSection: React.FC<Props> = props => {
         ) : (
           <div className="flex items-center justify-between gap-2">
             <p className="text-xs text-slate-500 leading-relaxed">
-              Browse the ChaosSpec catalog, paste YAML, or build a multi-fault run below.
+              Browse the ChaosSpec catalog, paste YAML or build a multi-fault run below.
             </p>
             <div className="flex items-center gap-3 shrink-0">
               {props.faults.length > 0 ? (

@@ -272,7 +272,7 @@ export function applyCouplingHighlights(
 }
 
 /**
- * When coupling focus is on, keep only the selected node, its on-canvas coupled peers, and ghosts.
+ * When coupling focus is on, keep only the selected node, its on-canvas coupled peers and ghosts.
  * Resolution still uses the full incoming node list so peers are found before filtering.
  */
 export function filterCouplingFocusNodes(

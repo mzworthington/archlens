@@ -68,7 +68,7 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ## Resilience advice eligibility
 
-Advice targets are **owned application software** - not human actors, third-party vendors, shared data stores, brokers, or IaC-imported resources.
+Advice targets are **owned application software** - not human actors, third-party vendors, shared data stores, brokers or IaC-imported resources.
 
 | Function                                        | Purpose                                                                                                |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |

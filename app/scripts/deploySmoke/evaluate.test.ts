@@ -53,7 +53,7 @@ describe('extractAppBuildId', () => {
 });
 
 describe('evaluateCanvasSmoke', () => {
-  it('passes when origin SHA, user path, and build id match the promoted commit', () => {
+  it('passes when origin SHA, user path and build id match the promoted commit', () => {
     expect(
       evaluateCanvasSmoke({
         expectedSha: SHA,

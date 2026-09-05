@@ -1,5 +1,5 @@
 /**
- * Shared analysis options used by parsers, grouping, and the CLI.
+ * Shared analysis options used by parsers, grouping and the CLI.
  * Product-specific noise belongs in `blueprint.config.*` or CLI flags - not hardcoded.
  */
 export type AnalysisOptions = {

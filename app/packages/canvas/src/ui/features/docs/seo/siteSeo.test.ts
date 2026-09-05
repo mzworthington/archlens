@@ -14,6 +14,7 @@ describe('siteSeo catalog', () => {
   it('resolves distinctive homepage metadata with social share image', () => {
     const seo = resolvePageSeo('/');
     expect(seo.title.toLowerCase()).toContain('archlens');
+    expect(seo.title.toLowerCase()).toContain('architecture risk');
     expect(seo.description.toLowerCase()).toMatch(/canvas|tracelens|outage|blueprint/);
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}/`);
     expect(seo.ogImageUrl).toBe(SITE_SOCIAL_IMAGE);
@@ -98,7 +99,7 @@ describe('siteSeo catalog', () => {
     expect(xml).not.toContain('/workspace');
   });
 
-  it('builds JSON-LD graph with Organization, WebSite, and SoftwareApplication nodes', () => {
+  it('builds JSON-LD graph with Organization, WebSite and SoftwareApplication nodes', () => {
     const home = buildJsonLdGraph('/');
     expect(home['@context']).toBe('https://schema.org');
     const graph = home['@graph'] as Array<Record<string, unknown>>;

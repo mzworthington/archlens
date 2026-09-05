@@ -1,6 +1,6 @@
 # Technology stack
 
-Contributor reference: languages, frameworks, and infrastructure used to build, host, and ship ArchLens.
+Contributor reference: languages, frameworks and infrastructure used to build, host and ship ArchLens.
 
 For module boundaries and hexagonal layout, see [Architecture & security](./architecture.md). For hosting decisions, see [ADR-0009: Cloudflare Pages](./ADRs/0009-cloudflare-pages-static-hosting.md).
 
@@ -29,13 +29,13 @@ For module boundaries and hexagonal layout, see [Architecture & security](./arch
 ArchLens Canvas is a **single-page app** served from `app/packages/canvas/`:
 
 - **React 19** for UI; **Wouter** for client-side routing (`/`, `/guide/*`, `/workspace/*`, lens URLs).
-- **Vite** for dev server, production bundle, and syncing repo assets into `public/` at build time:
+- **Vite** for dev server, production bundle and syncing repo assets into `public/` at build time:
   - `blueprints/` → `/bundled-blueprints/*` (sandbox demo workspace)
   - `schemas/` → `/schemas/*` (public JSON Schema for BlueprintSpec and ChaosSpec)
   - `docs/screenshots/` → `/docs-assets/*`
 - **Tailwind CSS 4** (`@tailwindcss/vite`) for styling.
-- **Zustand** store split into `uiState`, `diagramState`, `ioState`, and `resilienceState`.
-- **React Flow** for the interactive canvas; **dagre**, **ELK**, and **d3-hierarchy** for layout.
+- **Zustand** store split into `uiState`, `diagramState`, `ioState` and `resilienceState`.
+- **React Flow** for the interactive canvas; **dagre**, **ELK** and **d3-hierarchy** for layout.
 - **Mermaid** for import/export; **tree-sitter** WASM for syntax highlighting in the code viewer.
 - **vite-plugin-pwa** + Workbox for offline shell caching and bundled-blueprint `CacheFirst` runtime rules.
 - **Playwright** + axe for e2e and accessibility tests in CI.
@@ -60,8 +60,8 @@ Docs and the live product share one build - Markdown under `docs/` is imported a
 ## ArchLens CLI
 
 - Entry: `app/packages/cli/src/cli/archlens.ts`
-- **Bun** compiles a standalone binary (`bun build --compile`) for macOS, Linux, and Windows in release CI.
-- Parses TypeScript/JavaScript (ts-morph), HCL, and other languages via tree-sitter adapters.
+- **Bun** compiles a standalone binary (`bun build --compile`) for macOS, Linux and Windows in release CI.
+- Parses TypeScript/JavaScript (ts-morph), HCL and other languages via tree-sitter adapters.
 - Writes `blueprints/*.yaml` using the same `@archlens/core` types ArchLens Canvas loads.
 
 ---

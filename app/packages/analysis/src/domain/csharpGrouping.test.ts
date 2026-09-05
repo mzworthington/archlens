@@ -10,7 +10,7 @@ import {
 
 describe('csharpGrouping', () => {
   describe('shouldSkipCSharpFile', () => {
-    it('skips GlobalUsings, Migrations, Designer, and ModelSnapshot files', () => {
+    it('skips GlobalUsings, Migrations, Designer and ModelSnapshot files', () => {
       expect(shouldSkipCSharpFile('src/Catalog.API/GlobalUsings.cs', 'GlobalUsings')).toBe(true);
       expect(
         shouldSkipCSharpFile(

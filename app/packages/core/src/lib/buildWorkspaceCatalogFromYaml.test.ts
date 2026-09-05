@@ -7,7 +7,7 @@ import {
 const v4 = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 
 describe('buildWorkspaceCatalogFromYamlFiles', () => {
-  it('parses YAML, resolves refs, and emits navigation catalog entries', () => {
+  it('parses YAML, resolves refs and emits navigation catalog entries', () => {
     const catalog = buildWorkspaceCatalogFromYamlFiles(
       [
         {

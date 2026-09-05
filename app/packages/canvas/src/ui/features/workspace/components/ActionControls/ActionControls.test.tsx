@@ -161,7 +161,7 @@ describe('ActionControls Component', () => {
     await new Promise(resolve => setTimeout(resolve, 50));
 
     expect(confirmSpy).toHaveBeenCalledWith(
-      'Clear the workspace, purge all IndexedDB drafts, and create a blank canvas?'
+      'Clear the workspace, purge all IndexedDB drafts and create a blank canvas?'
     );
     expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
     expect(initSchemaMock).toHaveBeenCalledWith({

@@ -1,8 +1,8 @@
 /** Shared outcome copy. Product names first. BlueprintSpec is the architecture contract, not a YAML pitch. */
 
 export const PRODUCT_HERO = {
-  headline: 'Git hotspots and blast radius on the same map',
-  documentTitle: 'ArchLens - Git hotspots and blast radius on the same map',
+  headline: 'Catch architecture risk before it becomes an outage',
+  documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
   lede: 'Canvas is the map you work on. The CLI builds it from the repo. TraceLens and ChaosLens run on that map. AdviceLens ranks what to change.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.',

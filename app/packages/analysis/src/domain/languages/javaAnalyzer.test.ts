@@ -14,7 +14,7 @@ const baseFile = {
 describe('JavaAnalyzer Strategy', () => {
   const analyzer = new JavaAnalyzer();
 
-  it('supports java, kt, and kts', () => {
+  it('supports java, kt and kts', () => {
     expect(analyzer.supports('java')).toBe(true);
     expect(analyzer.supports('kt')).toBe(true);
     expect(analyzer.supports('kts')).toBe(true);

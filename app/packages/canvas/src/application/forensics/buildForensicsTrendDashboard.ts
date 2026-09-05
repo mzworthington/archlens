@@ -84,7 +84,7 @@ function hasTrendData(dashboard: ForensicsTrendDashboard): boolean {
 }
 
 /**
- * Build micro-chart series for churn, author activity, and complexity spread.
+ * Build micro-chart series for churn, author activity and complexity spread.
  */
 export function buildForensicsTrendDashboard(
   forensics: NodeForensics,

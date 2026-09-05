@@ -35,7 +35,7 @@ const sampleSchema = (): SystemSchema => ({
 });
 
 describe('collabDependencyKey', () => {
-  it('keys a dependency by from, to, and type', () => {
+  it('keys a dependency by from, to and type', () => {
     expect(collabDependencyKey('shop/api', 'shop/db', 'read-write')).toBe(
       'shop/api|shop/db|read-write'
     );

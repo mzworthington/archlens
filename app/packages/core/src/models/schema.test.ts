@@ -21,7 +21,7 @@ describe('EntityRef Utilities with Unified Parsing', () => {
       expect(EntityRef.parse('My Context')).toBe('my-context');
     });
 
-    it('should correctly parse, slugify, and nest under parent reference when parent is provided', () => {
+    it('should correctly parse, slugify and nest under parent reference when parent is provided', () => {
       const parent = EntityRef.parse('My Context');
       const containerRef = EntityRef.parse('Core API', parent);
       expect(containerRef).toBe('my-context/core-api');

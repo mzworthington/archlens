@@ -1,4 +1,4 @@
-# ArchLens - git hotspots and blast radius on the same map
+# ArchLens - catch architecture risk before it becomes an outage
 
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
@@ -6,7 +6,7 @@
 ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on the same map.
 
 **Local authoring:** open a folder in ArchLens Canvas, edit the map, commit when ready - drafts stay on your machine.  
-**Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
+**Published estate:** scan in CI, publish to object storage and open a shared read-only catalog without redeploying the app.
 
 ---
 
@@ -54,7 +54,7 @@ Tree-sitter (default) and the C# language strategy resolve:
 - **`.csproj` `<ProjectReference>`** edges across projects in the scan root
 - **Cross-namespace `using`** dependencies when types resolve inside the scanned tree
 
-Roadmap (not shipped): Aspire resource graphs, integration-event wiring, and HTTP/gRPC client detection beyond import/reference evidence.
+Roadmap (not shipped): Aspire resource graphs, integration-event wiring and HTTP/gRPC client detection beyond import/reference evidence.
 
 ---
 
@@ -91,7 +91,7 @@ pnpm test:cli
 
 ## Deep-dive documentation
 
-Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
+Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git and on the site):
 
 - **[Product guide](./docs/guide/index.md)** - overview, Canvas, CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**

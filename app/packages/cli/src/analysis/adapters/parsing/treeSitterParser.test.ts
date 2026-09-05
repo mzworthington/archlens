@@ -21,7 +21,7 @@ describe('TreeSitterParserAdapter', () => {
     }
   });
 
-  it('should parse imports, instantiations, and calls from TypeScript files', async () => {
+  it('should parse imports, instantiations and calls from TypeScript files', async () => {
     const tsContent = `
       import { useState } from 'react';
       import { Graph } from '@archlens/core';
@@ -50,7 +50,7 @@ describe('TreeSitterParserAdapter', () => {
     expect(file.callExpressions).toContain('axios.get');
   });
 
-  it('should parse imports, instantiations, and calls from Python files', async () => {
+  it('should parse imports, instantiations and calls from Python files', async () => {
     const pyContent = `
 import os
 from datetime import datetime
@@ -76,7 +76,7 @@ fetch("https://api.com")
     expect(file.callExpressions).toContain('fetch');
   });
 
-  it('should parse imports, instantiations, and calls from C# files', async () => {
+  it('should parse imports, instantiations and calls from C# files', async () => {
     const csContent = `
 using System;
 using System.Threading.Tasks;
@@ -115,7 +115,7 @@ namespace TestProject.Controllers
     expect(file.namespaces).toContain('TestProject.Controllers');
   });
 
-  it('should parse imports, package, and calls from Java files', async () => {
+  it('should parse imports, package and calls from Java files', async () => {
     const javaContent = `
 package com.acme.orders;
 
@@ -153,7 +153,7 @@ public class OrderService {
     expect(file.namespaces).toContain('com.acme.orders');
   });
 
-  it('should parse imports, package clause, and calls from Go files', async () => {
+  it('should parse imports, package clause and calls from Go files', async () => {
     const goContent = `
 package orders
 

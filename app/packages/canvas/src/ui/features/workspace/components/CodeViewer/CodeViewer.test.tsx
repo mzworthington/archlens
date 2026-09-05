@@ -169,7 +169,7 @@ nodes:
     expect(useBlueprintStore.getState().isImportMermaidOpen).toBe(true);
   });
 
-  it('should filter test components from YAML, JSON, and Mermaid views based on showTests state', () => {
+  it('should filter test components from YAML, JSON and Mermaid views based on showTests state', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Filtered Project',

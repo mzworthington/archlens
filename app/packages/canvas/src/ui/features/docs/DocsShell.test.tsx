@@ -27,7 +27,7 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
-  it('shows mobile section scrollers for Start, Surfaces, and Tech', () => {
+  it('shows mobile section scrollers for Start, Surfaces and Tech', () => {
     render(
       <DocsShell>
         <p>content</p>
@@ -76,7 +76,7 @@ describe('DocsShell', () => {
     expect(screen.queryByTestId('docs-mobile-guide-nav')).not.toBeInTheDocument();
   });
 
-  it('shows header hubs for Start, Surfaces, and Tech', () => {
+  it('shows header hubs for Start, Surfaces and Tech', () => {
     render(
       <DocsShell>
         <p>content</p>

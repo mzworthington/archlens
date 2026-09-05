@@ -104,7 +104,7 @@ export function isTestProjectSegment(segment: string): boolean {
  * Whether a relative source path should be tagged as test code.
  *
  * Covers JS/TS (`*.test.ts`, `__tests__`), .NET (`*.UnitTests`, `FooTests.cs`),
- * Go (`*_test.go`), Java (`*Test.java`, `src/test`), and Python (`test_*.py`).
+ * Go (`*_test.go`), Java (`*Test.java`, `src/test`) and Python (`test_*.py`).
  */
 export function isTestSourcePath(relativePath: string): boolean {
   const normalized = relativePath.replace(/\\/g, '/');

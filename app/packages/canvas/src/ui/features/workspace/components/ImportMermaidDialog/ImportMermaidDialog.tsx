@@ -244,8 +244,8 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
                     )}
 
                   <p className="text-[10px] text-slate-600">
-                    Overwrite keeps canvas position, forensics, and merges properties. Import is
-                    still limited to flowchart/C4 topology. Changes stay in your draft until you
+                    Overwrite keeps canvas position and forensics. It also merges properties. Import
+                    is still limited to flowchart/C4 topology. Changes stay in your draft until you
                     commit via Pending Changes.
                   </p>
                 </div>

@@ -13,7 +13,7 @@ function createExecMock(responses: Record<string, string>): GitExecFn {
 }
 
 describe('collectGitProvenance', () => {
-  it('collects remote, branch, commit, and scanRoot offset', async () => {
+  it('collects remote, branch, commit and scanRoot offset', async () => {
     const exec = createExecMock({
       'rev-parse --show-toplevel': '/repo\n',
       'remote get-url origin': 'git@github.com:org/repo.git\n',

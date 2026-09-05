@@ -8,11 +8,11 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-External Mermaid and IaC must enter ArchLens without corrupting the canonical YAML `SystemSchema` (BlueprintSpec) or the user's working copy. We need a lasting rule for how parsed imports relate to the active diagram: merge with conflict preview, wholesale replace, bidirectional Mermaid edit, or separate unlinked diagrams.
+External Mermaid and IaC must enter ArchLens without corrupting the canonical YAML `SystemSchema` (BlueprintSpec) or the user's working copy. We need a lasting rule for how parsed imports relate to the active diagram: merge with conflict preview, wholesale replace, bidirectional Mermaid edit or separate unlinked diagrams.
 
 ## Decision Drivers
 
-- Hard to reverse: import UX and merge semantics couple core parsers, canvas wizards, and draft/commit flow
+- Hard to reverse: import UX and merge semantics couple core parsers, canvas wizards and draft/commit flow
 - Cross-cutting: `@archlens/core` merge plan + canvas import adapters + canvas commit path
 - Preserve populated workspaces: do not clobber hand-edited topology or enrichment
 - Canonical format stays YAML `SystemSchema`; Mermaid remains a derived export ([AGENTS.md](../../AGENTS.md))
@@ -26,7 +26,7 @@ External Mermaid and IaC must enter ArchLens without corrupting the canonical YA
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because parsers and merge logic stay in core (`mermaidImport`, `schemaMerge`), the Canvas package only previews conflicts and applies user resolutions into the working copy, and disk writes still go through DiffMenu commit. Wholesale replace (B) loses populated-workspace work; bidirectional Mermaid (C) fights the YAML canonical model and lossy Mermaid export; unlinked diagrams (D) break `entityRef`-linked navigation.
+Chosen option: "**Option A**", because parsers and merge logic stay in core (`mermaidImport`, `schemaMerge`), the Canvas package only previews conflicts and applies user resolutions into the working copy and disk writes still go through DiffMenu commit. Wholesale replace (B) loses populated-workspace work; bidirectional Mermaid (C) fights the YAML canonical model and lossy Mermaid export; unlinked diagrams (D) break `entityRef`-linked navigation.
 
 ### Consequences
 

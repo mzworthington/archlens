@@ -21,7 +21,7 @@ const shop: WorkspaceCatalogEntry = {
 };
 
 describe('openChaosSpecOnCanvas', () => {
-  it('navigates to the target diagram, selects it, and applies the ChaosSpec', async () => {
+  it('navigates to the target diagram, selects it and applies the ChaosSpec', async () => {
     const setLocation = vi.fn();
     const selectSystem = vi.fn(async () => undefined);
     const applyChaosSpecYaml = vi.fn(() => null);

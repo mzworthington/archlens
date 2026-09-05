@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ArchLens production (docs + Canvas SPA, JSON Schema hosting, PWA) was deployed to GitHub Pages at `archlens.dev`. We need a code-first hosting stack with better CDN control, simpler SPA routing, and infrastructure defined in the repository rather than dashboard clicks.
+ArchLens production (docs + Canvas SPA, JSON Schema hosting, PWA) was deployed to GitHub Pages at `archlens.dev`. We need a code-first hosting stack with better CDN control, simpler SPA routing and infrastructure defined in the repository rather than dashboard clicks.
 
 ## Decision Drivers
 

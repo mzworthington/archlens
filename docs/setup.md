@@ -1,6 +1,6 @@
 # Setup & Local Development
 
-Contributor reference: local toolchain, package install, dev server, builds, and quality commands.
+Contributor reference: local toolchain, package install, dev server, builds and quality commands.
 
 For an overview of frameworks and infrastructure (React, Pulumi, Cloudflare, etc.), see [Technology stack](./tech-stack.md).
 
@@ -10,7 +10,7 @@ For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product
 
 ## Environment & Tooling Setup
 
-We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **Bun is required** for `@archlens/cli` builds. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
+We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **Bun is required** for `@archlens/cli` builds. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
 
 1. **Install Mise:** Refer to the [Mise Installation Guide](https://mise.jdx.dev/getting-started.html) (e.g., `brew install mise`).
 2. **Activate Mise:** e.g. add `eval "$(mise activate zsh)"` to your `~/.zshrc`.
@@ -88,7 +88,7 @@ pnpm --filter @archlens/collab dev
 VITE_COLLAB_WS_URL=ws://127.0.0.1:8787 pnpm dev
 ```
 
-Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check. A visible tab checks immediately, every 60 seconds, and again when you return to the tab (`index.html` with `cache: no-store`, plus `registration.update()`).
+Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check. A visible tab checks immediately, every 60 seconds and again when you return to the tab (`index.html` with `cache: no-store`, plus `registration.update()`).
 
 ### Bundled demo blueprints
 
@@ -127,13 +127,13 @@ pnpm knip
 
 Canvas E2E (`app/packages/canvas`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Refresh docs & media](../.github/workflows/refresh-docs-media.yml).
 
-On every push to `main`, production builds regenerate schema and features-unit inline so deploys stay fresh. You can also redeploy without a new commit via **Actions → CI & Deployment Pipeline → Run workflow** (branch: `main`). Committed copies of `CHANGELOG.md`, `docs/features-unit.md`, `schemas/`, and product-guide screenshots are refreshed by the **Refresh docs & media** workflow (weekly on Sunday 06:00 UTC, or manually via **Actions → Refresh docs & media → Run workflow**).
+On every push to `main`, production builds regenerate schema and features-unit inline so deploys stay fresh. You can also redeploy without a new commit via **Actions → CI & Deployment Pipeline → Run workflow** (branch: `main`). Committed copies of `CHANGELOG.md`, `docs/features-unit.md`, `schemas/` and product-guide screenshots are refreshed by the **Refresh docs & media** workflow (weekly on Sunday 06:00 UTC or manually via **Actions → Refresh docs & media → Run workflow**).
 
 ---
 
 ## Git Commit Hooks
 
-Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `resilience-engine/`:
+Husky + lint-staged validate commits for changes under `app/`, `docs/` and `resilience-engine/`:
 
 ### Pre-commit (staged files)
 
@@ -142,7 +142,7 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 - TypeScript typecheck (`tsc -b`, matching the build step) - includes `src/**/*.test.ts` in Canvas
 - Knip and `vitest run --changed` on staged `app/` paths
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
-- When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
+- When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet` and `go test`
 - ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git - CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
@@ -202,4 +202,4 @@ In any blueprint or chaos-spec YAML file outside this repo, either set `version`
 
 Bump `SYSTEM_SCHEMA_MAJOR_VERSION` / `CHAOS_SCHEMA_MAJOR_VERSION` in `/core` only when the corresponding contract breaks; `latest` always tracks main.
 
-ChaosLens WASM build, Go layout, and TypeScript API: [ChaosLens engine](./chaoslens-engine.md).
+ChaosLens WASM build, Go layout and TypeScript API: [ChaosLens engine](./chaoslens-engine.md).

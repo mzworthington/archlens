@@ -10,7 +10,7 @@ Please include:
 
 - A clear description of the issue and its impact
 - Steps to reproduce, or a minimal proof of concept
-- Affected component (Canvas, CLI, or `@archlens/core`)
+- Affected component (Canvas, CLI or `@archlens/core`)
 - ArchLens version or commit, if known
 
 We will acknowledge your report as soon as we can and keep you updated on progress. Please do not disclose the issue publicly until we have had a chance to address it.

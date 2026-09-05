@@ -1,4 +1,4 @@
-# ArchLens CLI: install, self-update, and watch mode
+# ArchLens CLI: install, self-update and watch mode
 
 **Status:** Complete.
 

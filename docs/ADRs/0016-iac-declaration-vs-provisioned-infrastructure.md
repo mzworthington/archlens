@@ -25,7 +25,7 @@ Meaningful IaC projection collapsed Pulumi/Terraform resource addresses into a s
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because declaration and resource need different canvas, advice, and resilience rules, and a non-runtime edge type keeps ChaosLens blast radius honest.
+Chosen option: "**Option A**", because declaration and resource need different canvas, advice and resilience rules, and a non-runtime edge type keeps ChaosLens blast radius honest.
 
 ### Consequences
 

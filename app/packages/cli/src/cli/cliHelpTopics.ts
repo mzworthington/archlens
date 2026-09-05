@@ -240,7 +240,7 @@ export function printPublishHelp(): void {
   line(
     `  ${pc.dim('Validate a blueprint tree and plan or upload an immutable remote catalog snapshot (ADR-0010).')}`
   );
-  line(`  ${pc.dim('Upload uses @archlens/storage (R2, S3, or Azure Blob adapters).')}`);
+  line(`  ${pc.dim('Upload uses @archlens/storage (R2, S3 or Azure Blob adapters).')}`);
   line('');
 
   heading('USAGE');

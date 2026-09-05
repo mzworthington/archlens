@@ -41,7 +41,7 @@ export interface DiagramState {
   isSampleWorkspace: boolean;
   /**
    * Workspace came from in-browser structural scan (no git TraceLens / CLI forensics).
-   * Cleared when opening a folder, sample, or empty workspace.
+   * Cleared when opening a folder, sample or empty workspace.
    */
   isBrowserLiteWorkspace: boolean;
   workspaceName: string;

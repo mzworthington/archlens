@@ -69,7 +69,7 @@ export const TraceLensSidePanelContent: React.FC = () => {
           View worst offenders
         </button>
         <p className="text-[10px] leading-snug text-slate-500 text-center">
-          Estate-wide ranked risk signals, dependency paths, and AdviceLens recommendations.
+          Estate-wide ranked risk signals, dependency paths and AdviceLens recommendations.
         </p>
       </div>
 
@@ -118,7 +118,7 @@ export const TraceLensSidePanelContent: React.FC = () => {
       ) : (
         <div className="border-t border-slate-900 pt-4" data-testid="tracelens-empty-selection">
           <p className="text-xs text-slate-400 leading-relaxed">
-            Select a node on the canvas to see git metrics, schema dependencies, coupling peers, and
+            Select a node on the canvas to see git metrics, schema dependencies, coupling peers and
             connection details.
           </p>
         </div>

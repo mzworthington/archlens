@@ -47,7 +47,7 @@ References are built from **short, URL-safe segments** joined by `/`:
 
 **Diagram files** carry their scope in `metadata.entityRef` (and a friendly `metadata.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
 
-When ArchLens scans a monorepo, it proposes references from product IDs, package names, and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** - renaming a display label should not require renaming refs unless you intentionally reorganise the map.
+When ArchLens scans a monorepo, it proposes references from product IDs, package names and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** - renaming a display label should not require renaming refs unless you intentionally reorganise the map.
 
 ### Linking parent and child diagrams
 
@@ -84,7 +84,7 @@ Locally (and on this docs site), the same paths are available under the app orig
 - `/schemas/v4/blueprint.schema.json`
 - `/schemas/latest/blueprint.schema.json`
 
-Contributors: regenerating checked-in schema files, pre-commit checks, and major version bumps - [Setup & local development](../setup.md#blueprintspec-json-schema).
+Contributors: regenerating checked-in schema files, pre-commit checks and major version bumps - [Setup & local development](../setup.md#blueprintspec-json-schema).
 
 ---
 
@@ -121,7 +121,7 @@ latest
 
 ## Declared system context
 
-A **system context** diagram (`level: context`) can be **authored** as well as generated. Declare personas, software-system anchors, and third-party dependencies up front; ArchLens scan **hydrates** discoveries into that seed instead of replacing human intent ([ADR-0015](../ADRs/0015-declared-context-hydration.md)).
+A **system context** diagram (`level: context`) can be **authored** as well as generated. Declare personas, software-system anchors and third-party dependencies up front; ArchLens scan **hydrates** discoveries into that seed instead of replacing human intent ([ADR-0015](../ADRs/0015-declared-context-hydration.md)).
 
 There is no separate BlueprintSpec `kind` - use `level: context`.
 
@@ -191,7 +191,7 @@ Seed files live under the scan output directory: `blueprints/context.yaml` or `b
 
 ## Catalog staging vs BlueprintSpec
 
-**BlueprintSpec is unchanged** by estate fragments and compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)). Diagram YAML in local folders, fragments, and published snapshots is still the same BlueprintSpec / `SystemSchema` contract on this page.
+**BlueprintSpec is unchanged** by estate fragments and compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)). Diagram YAML in local folders, fragments and published snapshots is still the same BlueprintSpec / `SystemSchema` contract on this page.
 
 What is **not** BlueprintSpec:
 

@@ -41,7 +41,7 @@ describe('diagramState Actions & State Management', () => {
     });
   });
 
-  it('should initialize with correct default nodes, edges, and schemas', () => {
+  it('should initialize with correct default nodes, edges and schemas', () => {
     const state = useBlueprintStore.getState();
     expect(state.schema.name).toBe('Test Workspace');
     expect(state.nodes).toHaveLength(2);

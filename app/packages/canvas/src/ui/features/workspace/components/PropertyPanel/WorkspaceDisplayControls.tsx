@@ -23,7 +23,7 @@ interface WorkspaceDisplayControlsProps {
   contextLevelAlwaysShowExternals?: boolean;
   className?: string;
   showHeader?: boolean;
-  /** When false, hides coupling, heatmap, and dependency-focus toggles (TraceLens panel owns those). */
+  /** When false, hides coupling, heatmap and dependency-focus toggles (TraceLens panel owns those). */
   includeTraceLensToggles?: boolean;
 }
 

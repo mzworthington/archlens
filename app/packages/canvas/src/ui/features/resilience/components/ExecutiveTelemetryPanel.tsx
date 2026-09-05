@@ -63,7 +63,7 @@ export const ExecutiveTelemetryPanel: React.FC<Props> = ({ result }) => {
         data-testid="executive-journey-deferred"
       >
         Revenue impact and user-journey mapping are planned for a later iteration. Switch to SRE
-        view for entity refs, per-entry-point SLAs, and Monte Carlo bands.
+        view for entity refs, per-entry-point SLAs and Monte Carlo bands.
       </div>
     </div>
   );

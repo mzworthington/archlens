@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-Organisations scan **many pipelines** that may each own only a slice of architecture: one repo can contain many products, and one product can span many repos (or path subsets). ADR-0010 publishes a **whole tree** as an immutable snapshot and flips `latest`. That is correct for consumers, but concurrent whole-tree publishes **clobber** each other, and there is no remote merge path for shared `context.yaml` or accepted suggestion overlays.
+Organisations scan **many pipelines** that may each own only a slice of architecture: one repo can contain many products, and one product can span many repos (or path subsets). ADR-0010 publishes a **whole tree** as an immutable snapshot and flips `latest`. That is correct for consumers, but concurrent whole-tree publishes **clobber** each other and there is no remote merge path for shared `context.yaml` or accepted suggestion overlays.
 
 We need a composition model that keeps immutable snapshots while allowing independent producers to contribute fragments keyed by **product** (not by git repo alone).
 
@@ -102,7 +102,7 @@ Overlay document fields: `overlayId`, `estateId`, `status` (`accepted`|`rejected
 - Good, because Phase 0 isolation stopped races; the hosted catalog now uses one shared estate with per-product fragments
 - Good, because content-addressed no-op compose keeps the hourly safety-net from rewriting thousands of identical R2 objects
 - Bad, because compose + CAS is new CLI surface and needs conflict / transient retry
-- Good, because production Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens, and batch demos via fragments
+- Good, because production Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens and batch demos via fragments
 - Follow-up: optional fragment “latest pointer” index to avoid listing every historical run’s objects keys; Canvas remote accept UI wiring; ADR-0013 remains reserved for connection-profile auth; optional estate index if customers need multi-catalog browsing; storage-event / Worker compose triggers
 
 ## Architecture sketch

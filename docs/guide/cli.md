@@ -14,7 +14,7 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 
 Windows: `irm https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.ps1 | iex`
 
-Then verify with `archlens --version`. Full options, manual downloads, and the scan → canvas flow: [Getting started](./getting-started.md).
+Then verify with `archlens --version`. Full options, manual downloads and the scan → canvas flow: [Getting started](./getting-started.md).
 
 ## Modes
 
@@ -94,7 +94,7 @@ Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets
 | `--key-prefix=<path>`              | Object key prefix inside the bucket                                       |
 | `--estate=<id>` / `--product=<id>` | Catalog compose / fragment identity                                       |
 
-With the default `tree-sitter` parser, language coverage includes TypeScript/JavaScript, C#, Python, Go, and Java (WASM grammars ship with the release binary; default glob is `**/*.{ts,tsx,cs,java,go,py,tf}`). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
+With the default `tree-sitter` parser, language coverage includes TypeScript/JavaScript, C#, Python, Go and Java (WASM grammars ship with the release binary; default glob is `**/*.{ts,tsx,cs,java,go,py,tf}`). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
 
 Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found - no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
 
@@ -120,13 +120,13 @@ archlens scan --headless --output=blueprints --context=acme
 
 ### What scan does to a declared seed
 
-| Situation                                       | Result                                                                                              |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Seed missing                                    | Create context + systems + fallback `User` (today’s path)                                           |
-| Seed present                                    | Upsert discovered systems onto matching `entityRef`s; keep personas, third-parties, and their edges |
-| ≥1 product persona                              | Do **not** inject the fallback `User`                                                               |
-| System disappeared from this scan’s `rootPath`s | Prune that **scan-owned** orphan only (other repos’ systems stay)                                   |
-| Unreadable seed                                 | Warn, then create a fresh context                                                                   |
+| Situation                                       | Result                                                                                             |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Seed missing                                    | Create context + systems + fallback `User` (today’s path)                                          |
+| Seed present                                    | Upsert discovered systems onto matching `entityRef`s; keep personas, third-parties and their edges |
+| ≥1 product persona                              | Do **not** inject the fallback `User`                                                              |
+| System disappeared from this scan’s `rootPath`s | Prune that **scan-owned** orphan only (other repos’ systems stay)                                  |
+| Unreadable seed                                 | Warn, then create a fresh context                                                                  |
 
 **Display names:** omit `name` on declared nodes to derive a label from the `entityRef` leaf. Author-owned labels win over scan defaults; estate compose prefers curated names over derived ones.
 
@@ -248,10 +248,10 @@ Unknown providers (for example Datadog) pass through unchanged until a pack exis
 
 A project that provisions Cloudflare Pages **and** AWS Lambda + S3 yields:
 
-- **Containers** under the infra spoke: IaC declarations for every classified resource, provisioned product nodes for primaries only (Pages, Lambda, S3), and `provisions` edges from those primaries
+- **Containers** under the infra spoke: IaC declarations for every classified resource, provisioned product nodes for primaries only (Pages, Lambda, S3) and `provisions` edges from those primaries
 - **Context** third-parties: Cloudflare and AWS, each with a dependency from systems listed in `serves`
 
-IAM roles, DNS records, and bucket policies remain as IaC declaration nodes; they are not projected as third-party products.
+IAM roles, DNS records and bucket policies remain as IaC declaration nodes; they are not projected as third-party products.
 
 #### Infra membership
 

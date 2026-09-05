@@ -128,7 +128,7 @@ function runtimeForKind(kind: Exclude<IacSourceKind, 'auto'>): PulumiRuntime | u
   }
 }
 
-/** Infer Pulumi runtime from project metadata, forced kind, or homogeneous file kinds. */
+/** Infer Pulumi runtime from project metadata, forced kind or homogeneous file kinds. */
 export function inferPulumiRuntime(
   files: IacSourceFile[],
   options: IacImportOptions

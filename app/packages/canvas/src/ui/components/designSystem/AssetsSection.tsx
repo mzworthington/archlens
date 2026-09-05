@@ -84,7 +84,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
             </div>
           </div>
           <p className="text-xs text-slate-400 mt-2 font-sans">
-            Core brand mark for favicons, app icons, and product chrome.
+            Core brand mark for favicons, app icons and product chrome.
           </p>
         </div>
         <div className="flex gap-2">

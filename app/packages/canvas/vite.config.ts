@@ -95,7 +95,7 @@ export default defineConfig({
         // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
         navigateFallback: '/',
         additionalManifestEntries: [{ url: '/', revision: appBuildId }],
-        // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/*, and /assets/* as real assets.
+        // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/* and /assets/* as real assets.
         navigateFallbackDenylist: [
           /^\/schemas\//,
           /^\/bundled-blueprints\//,

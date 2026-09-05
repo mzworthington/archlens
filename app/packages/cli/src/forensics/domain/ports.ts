@@ -11,7 +11,7 @@ export interface SourceFileListerPort {
 export interface ComplexityAnalyzerPort {
   /**
    * Extract structural metrics for the given repo-relative paths.
-   * Must catch per-file failures, log warnings via injected logger, and continue.
+   * Must catch per-file failures, log warnings via injected logger and continue.
    */
   analyze(
     paths: string[],

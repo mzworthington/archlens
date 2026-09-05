@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-Onboarding needs instant feedback from **Scan my repo in the browser**, but the full ArchLens CLI includes capabilities that do not map cleanly to a browser tab: git history, publish workflows, local watcher mode, and the complete filesystem/runtime surface. We need the browser path to share domain analysis without pretending it has CLI parity.
+Onboarding needs instant feedback from **Scan my repo in the browser**, but the full ArchLens CLI includes capabilities that do not map cleanly to a browser tab: git history, publish workflows, local watcher mode and the complete filesystem/runtime surface. We need the browser path to share domain analysis without pretending it has CLI parity.
 
 ## Decision Drivers
 
@@ -19,13 +19,13 @@ Onboarding needs instant feedback from **Scan my repo in the browser**, but the 
 
 ## Considered Options
 
-- Option A - Browser structural scan using shared `@archlens/analysis`, memory filesystem, and tree-sitter WASM where available
+- Option A - Browser structural scan using shared `@archlens/analysis`, memory filesystem and tree-sitter WASM where available
 - Option B - Compile/run the Bun CLI in the browser with WebContainer/OPFS
 - Option C - Keep browser scan as a separate lightweight regex-only implementation
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because it gives instant feedback while preserving the CLI as the source of git forensics, watch mode, and publish workflows. The browser adapter runs shared analyzer logic off the UI thread - tree-sitter WASM for application languages (TypeScript/JavaScript, Python, Go, Java, C#) and the shared `IacAnalyzer` for Terraform/Pulumi - with a lightweight TypeScript/JavaScript import fallback for unsupported runtimes and tests.
+Chosen option: "**Option A**", because it gives instant feedback while preserving the CLI as the source of git forensics, watch mode and publish workflows. The browser adapter runs shared analyzer logic off the UI thread - tree-sitter WASM for application languages (TypeScript/JavaScript, Python, Go, Java, C#) and the shared `IacAnalyzer` for Terraform/Pulumi - with a lightweight TypeScript/JavaScript import fallback for unsupported runtimes and tests.
 
 ### Consequences
 

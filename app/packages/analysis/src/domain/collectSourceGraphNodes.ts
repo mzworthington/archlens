@@ -132,7 +132,7 @@ function upsertContainerNode(
 }
 
 /**
- * First extractGraph pass: component, file-level, and container nodes from sources.
+ * First extractGraph pass: component, file-level and container nodes from sources.
  */
 export function collectSourceGraphNodes(
   parentRef: string,

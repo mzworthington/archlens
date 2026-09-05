@@ -105,7 +105,7 @@ Keep R2 as catalog/snapshot storage. Durable Objects hold live room state. `@arc
 
 ## Exploration: canvas today
 
-**Bottom line:** ArchLens Canvas is **local-first**. Folder workspaces still draft to IndexedDB and commit via DiffMenu. **Opt-in share-link rooms** sync the active diagram through Yjs (BroadcastChannel locally; WebSocket + Durable Object in production) with presence (display name, cursors, connected count including you). Unauthenticated rooms are not a catalog, not disk, and not a substitute for CLI publish. The remote catalog PRD remains about pipeline → object storage → Canvas, not about collab rooms.
+**Bottom line:** ArchLens Canvas is **local-first**. Folder workspaces still draft to IndexedDB and commit via DiffMenu. **Opt-in share-link rooms** sync the active diagram through Yjs (BroadcastChannel locally; WebSocket + Durable Object in production) with presence (display name, cursors, connected count including you). Unauthenticated rooms are not a catalog, not disk and not a substitute for CLI publish. The remote catalog PRD remains about pipeline → object storage → Canvas, not about collab rooms.
 
 ### Rendering and state
 
@@ -318,7 +318,7 @@ Pages stays a static SPA. Share-link rooms are a separate Worker + Durable Objec
 
 ### Auth
 
-None for product users. No Clerk, Cloudflare Access, OAuth, or Zero Trust on the app. Hosted catalog is public-read. The only auth-like surface is an optional **GitHub PAT** in Canvas for private-repo features (client-side), not site login.
+None for product users. No Clerk, Cloudflare Access, OAuth or Zero Trust on the app. Hosted catalog is public-read. The only auth-like surface is an optional **GitHub PAT** in Canvas for private-repo features (client-side), not site login.
 
 [ADR-0013](../ADRs/0013-practitioner-connection-profiles.md) (connection profiles / private buckets) is **Deferred**. [ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md) mentions deferred Worker compose triggers for catalog ops, not collab.
 
@@ -339,7 +339,7 @@ Share-link rooms are unauthenticated in slice B. Auth (Access or accounts) waits
 | [0010](../ADRs/0010-remote-blueprint-catalog-contract.md)–[0012](../ADRs/0012-remote-read-only-workspace-port.md) | Remote **read-only** catalog; not co-edit                                                                  |
 | [0013](../ADRs/0013-practitioner-connection-profiles.md)                                                          | Deferred edge broker — closest existing “future server” hook; not this design                              |
 
-No ADR currently records CRDTs, OT, or multiplayer sessions.
+No ADR currently records CRDTs, OT or multiplayer sessions.
 
 ---
 

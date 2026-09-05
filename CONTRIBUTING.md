@@ -11,7 +11,7 @@ Thanks for your interest in contributing. ArchLens is Canvas, a CLI and lenses o
 
 ## Local setup
 
-See [Setup & Local Development](docs/setup.md) for tooling (Mise, Node, pnpm, Bun), install steps, and quality commands.
+See [Setup & Local Development](docs/setup.md) for tooling (Mise, Node, pnpm, Bun), install steps and quality commands.
 
 Quick start:
 
@@ -30,7 +30,7 @@ Cursor Cloud agents use `.cursor/environment.json` → `bin/setup-dev-env.sh`, w
 1. Fork the repository and create a branch from `main`.
 2. Make focused changes - one logical change per pull request when possible.
 3. Keep domain logic in `@archlens/core`, UI and adapters in `@archlens/canvas`, CLI code in `@archlens/cli`.
-4. For parsers, merge plans, and other pure domain logic in core, prefer **tests first** (red → green → refactor).
+4. For parsers, merge plans and other pure domain logic in core, prefer **tests first** (red → green → refactor).
 5. If you change Zod schemas in `app/packages/core/`, regenerate JSON Schema artifacts:
 
    ```bash
@@ -49,9 +49,9 @@ pnpm typecheck
 pnpm test
 ```
 
-Pre-commit hooks (Husky + lint-staged) run formatting, lint, typecheck, and related checks when you commit changes under `app/` or `docs/`. Go changes under `resilience-engine/` run `gofmt`, `go vet`, and tests (see [setup](docs/setup.md#git-commit-hooks)).
+Pre-commit hooks (Husky + lint-staged) run formatting, lint, typecheck and related checks when you commit changes under `app/` or `docs/`. Go changes under `resilience-engine/` run `gofmt`, `go vet` and tests (see [setup](docs/setup.md#git-commit-hooks)).
 
-CI also runs E2E tests, coverage, and a production build. Run `pnpm test:e2e` locally if your change affects the Canvas UI.
+CI also runs E2E tests, coverage and a production build. Run `pnpm test:e2e` locally if your change affects the Canvas UI.
 
 ## Pull requests
 
@@ -66,7 +66,7 @@ We may ask for revisions or additional tests before merging. Small, well-tested 
 ## Project conventions
 
 - **Canonical format:** BlueprintSpec (`SystemSchema`) linked by `entityRef` - not Mermaid. On disk that is YAML. Mermaid is a derived export.
-- **Imports:** External diagrams enter via import wizards that parse into `SystemSchema`, preview merge conflicts, and apply only user-approved changes.
+- **Imports:** External diagrams enter via import wizards that parse into `SystemSchema`, preview merge conflicts and apply only user-approved changes.
 - **Workspace edits:** Prefer merge-into-active-diagram with conflict preview over wholesale file replacement.
 
 More detail: [Architecture & security](docs/architecture.md).

@@ -8,11 +8,11 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-BlueprintSpec keeps one YAML schema per C4 view (context / container / component). Cross-diagram and unresolved dependency endpoints still need a canvas presence for wiring, enrichment, rollup, and ChaosLens. We must decide how those foreign endpoints appear without collapsing the multi-file workspace model.
+BlueprintSpec keeps one YAML schema per C4 view (context / container / component). Cross-diagram and unresolved dependency endpoints still need a canvas presence for wiring, enrichment, rollup and ChaosLens. We must decide how those foreign endpoints appear without collapsing the multi-file workspace model.
 
 ## Decision Drivers
 
-- Hard to reverse: `SystemNode.external` and persisted proxy nodes shape YAML, CLI enrich, and canvas
+- Hard to reverse: `SystemNode.external` and persisted proxy nodes shape YAML, CLI enrich and canvas
 - Cross-cutting: `workspaceExternals`, CLI externals pass, canvas merge/display, container rollup
 - Preserve per-diagram ownership via `entityRef` (ADR-0001 / ADR-0002) without inlining foreign graphs
 - Operability: idempotent enrich, dashed-border proxies, Show Externals, container rollup
@@ -26,11 +26,11 @@ BlueprintSpec keeps one YAML schema per C4 view (context / container / component
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because each schema stays the source of truth for its level while cross-diagram endpoints materialize as lightweight `external: true` proxies sharing canonical `entityRef`s. CLI `enrich` / Canvass’ workspaceExternals pass and container rollup keep couplings visible without copying foreign graphs (B), dropping canvas endpoints (C), or abandoning multi-file C4 files (D).
+Chosen option: "**Option A**", because each schema stays the source of truth for its level while cross-diagram endpoints materialize as lightweight `external: true` proxies sharing canonical `entityRef`s. CLI `enrich` / Canvass’ workspaceExternals pass and container rollup keep couplings visible without copying foreign graphs (B), dropping canvas endpoints (C) or abandoning multi-file C4 files (D).
 
 ### Consequences
 
-- Good, because diagrams stay small, proxies are idempotent, and rollup synthesizes container-level edges from component evidence
+- Good, because diagrams stay small, proxies are idempotent and rollup synthesizes container-level edges from component evidence
 - Good, because canvas/ChaosLens can wire to unresolved or foreign endpoints with dashed-border proxies
 - Bad, because proxies can drift if enrich is skipped after hand edits; callers must re-run the externals pass
 - Follow-up: keep enrichment in `@archlens/core` (`workspaceExternals/`); UI only surfaces candidates and display toggles

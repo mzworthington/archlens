@@ -98,7 +98,7 @@ describe('containerGrouping', () => {
 });
 
 describe('ModelExtractor', () => {
-  it('assigns package containers, marks tests, and hydrates node types from markers', () => {
+  it('assigns package containers, marks tests and hydrates node types from markers', () => {
     const extractor = new ModelExtractor('ctx/sys');
     const { componentNodesMap, containerNodesMap, componentDependencies } = extractor.extractGraph([
       {
@@ -201,7 +201,7 @@ describe('ModelExtractor', () => {
     expect(containerNodesMap.get('ordering-unittests')?.isTest).toBe(true);
   });
 
-  it('rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies', () => {
+  it('rolls up C# files by layer, skips boilerplate, types API containers and links dependencies', () => {
     const extractor = new ModelExtractor('eshop');
     const { componentNodesMap, containerNodesMap, componentDependencies, containerDependencies } =
       extractor.extractGraph(

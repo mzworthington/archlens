@@ -10,9 +10,9 @@ ChaosSpec does **not** duplicate topology. It references an existing BlueprintSp
 
 Every chaos-spec file describes one named failure scenario: which diagram it targets, which nodes fault, and (optionally) safeguard overrides and Monte Carlo settings. ChaosSpec ensures that:
 
-- The same file loads in ArchLens Canvas (ChaosSpec dialog), validates against public JSON Schema, and runs in headless AdviceLens sweeps.
+- The same file loads in ArchLens Canvas (ChaosSpec dialog), validates against public JSON Schema and runs in headless AdviceLens sweeps.
 - External tools can validate ChaosSpec without running ArchLens - by pointing at a public schema URL.
-- Topology stays in BlueprintSpec; scenarios stay small, reviewable, and version-controlled under `chaos-specs/`.
+- Topology stays in BlueprintSpec; scenarios stay small, reviewable and version-controlled under `chaos-specs/`.
 - Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
 
 Under the hood, rules are defined once in `@archlens/core` (`chaosSpecDocument`) and published as JSON Schema for editors and integrators.
@@ -29,7 +29,7 @@ We use it to:
 
 - **Anchor the scenario** to the diagram whose nodes and dependencies the simulation will read.
 - **Reject mismatched loads** - Canvas and estate runners refuse a spec when the active (or scanned) diagram’s `entityRef` does not equal `diagramRef`.
-- **Keep scenarios portable** - the same YAML works in Canvas import, repo fixtures, and `archlens resilience --chaos-specs=…` without embedding a copy of the graph.
+- **Keep scenarios portable** - the same YAML works in Canvas import, repo fixtures and `archlens resilience --chaos-specs=…` without embedding a copy of the graph.
 
 `diagramRef` must equal the target diagram’s `metadata.entityRef` (same rules as BlueprintSpec entity references).
 
@@ -92,7 +92,7 @@ Locally (and on this docs site), the same paths are available under the app orig
 - `/schemas/v1/chaos.schema.json`
 - `/schemas/latest/chaos.schema.json`
 
-Contributors: regenerating checked-in schema files, pre-commit checks, and major version bumps - [Setup & local development](../setup.md#chaosspec-json-schema).
+Contributors: regenerating checked-in schema files, pre-commit checks and major version bumps - [Setup & local development](../setup.md#chaosspec-json-schema).
 
 ---
 
@@ -135,12 +135,12 @@ chaos latest
 
 ## Using ChaosSpec in products
 
-| Surface             | How                                                                                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **ArchLens Canvas** | **Open → Browse ChaosSpecs** (catalog → navigate + load), **Load ChaosSpec** (paste/upload), Export, or the ChaosLens panel **Browse** / **Paste YAML** |
-| **ChaosLens**       | Load a scenario onto the active diagram; export the current multi-fault setup as YAML                                                                   |
-| **AdviceLens CLI**  | `archlens resilience ./blueprints --chaos-specs=./chaos-specs`                                                                                          |
-| **Library**         | `parseChaosSpecFromYaml` → `chaosSpecDocumentToRuntime` → `runResilienceSimulation` from `@archlens/core/resilience`                                    |
+| Surface             | How                                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **ArchLens Canvas** | **Open → Browse ChaosSpecs** (catalog → navigate + load), **Load ChaosSpec** (paste/upload), Export or the ChaosLens panel **Browse** / **Paste YAML** |
+| **ChaosLens**       | Load a scenario onto the active diagram; export the current multi-fault setup as YAML                                                                  |
+| **AdviceLens CLI**  | `archlens resilience ./blueprints --chaos-specs=./chaos-specs`                                                                                         |
+| **Library**         | `parseChaosSpecFromYaml` → `chaosSpecDocumentToRuntime` → `runResilienceSimulation` from `@archlens/core/resilience`                                   |
 
 Validation against the active diagram: `validateChaosSpecForDiagram(doc, schema, diagramRef)`.
 

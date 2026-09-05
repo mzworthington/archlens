@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { computeRefactorScore } from './refactorScore';
 
 describe('computeRefactorScore', () => {
-  it('weights complexity, churn, and distributed ownership', () => {
+  it('weights complexity, churn and distributed ownership', () => {
     expect(computeRefactorScore({ complexity: 20, churn: 10, topAuthorPercent: 0.5 })).toBe(100);
     expect(computeRefactorScore({ complexity: 20, churn: 10, topAuthorPercent: 1 })).toBe(0);
     expect(computeRefactorScore({ complexity: 0, churn: 10, topAuthorPercent: 0 })).toBe(0);

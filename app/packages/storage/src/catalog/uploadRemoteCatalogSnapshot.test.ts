@@ -16,7 +16,7 @@ dependencies: []
 `;
 
 describe('Feature: Publish remote catalog snapshot', () => {
-  it('uploads catalog, YAML, and manifests through the storage port', async () => {
+  it('uploads catalog, YAML and manifests through the storage port', async () => {
     const storage = new InMemoryObjectStorage('r2');
     const plan = buildRemoteCatalogSnapshotPlan({
       revisionId: 'rev1',

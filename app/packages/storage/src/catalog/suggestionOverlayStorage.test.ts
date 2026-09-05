@@ -42,7 +42,7 @@ const overlay: SuggestionOverlay = {
 };
 
 describe('Feature: suggestion overlay staging in object storage', () => {
-  it('uploads, loads, and tombstones overlays', async () => {
+  it('uploads, loads and tombstones overlays', async () => {
     const storage = new InMemoryObjectStorage();
     await uploadSuggestionOverlay(overlay, storage);
 

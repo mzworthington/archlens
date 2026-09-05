@@ -33,7 +33,7 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
           </div>
           <p className="leading-relaxed text-amber-100/90">
             This map has no TraceLens git hotspots or CI publish. Install the ArchLens CLI for
-            in-depth forensics, watch mode, and catalog workflows.
+            in-depth forensics, watch mode and catalog workflows.
           </p>
           <Link
             href={CLI_GETTING_STARTED_PATH}

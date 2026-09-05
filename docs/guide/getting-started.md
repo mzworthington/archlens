@@ -26,7 +26,7 @@ Use this path for fast first feedback without installing anything. For in-depth 
 curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
 ```
 
-This downloads the latest release for your platform, installs `archlens` to `~/.local/bin`, and copies tree-sitter WASM parsers alongside the binary.
+This downloads the latest release for your platform, installs `archlens` to `~/.local/bin` and copies tree-sitter WASM parsers alongside the binary.
 
 Options (pass to `bash -s --` when piping):
 
@@ -92,7 +92,7 @@ cd /path/to/your/repo
 archlens
 ```
 
-Interactive mode prompts for parser, glob, output directory, and TraceLens (git signals, on by default).
+Interactive mode prompts for parser, glob, output directory and TraceLens (git signals, on by default).
 
 Headless / CI example:
 
@@ -102,7 +102,7 @@ archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 
 Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens CLI](./cli.md).
 
-The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
+The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers and components.
 
 Each file uses the [v4 BlueprintSpec format](./schema.md) - `version` is the public schema URL, identity lives under `metadata`. For IDE autocomplete in other repos, prefer the **latest** BlueprintSpec:
 
@@ -125,7 +125,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
-6. Optionally **Import Mermaid** from Ideate, **Import Infrastructure** from Investigate, or either from the toolbar **Open** menu - see [ArchLens Canvas](./canvas.md#import-mermaid).
+6. Optionally **Import Mermaid** from Ideate, **Import Infrastructure** from Investigate or either from the toolbar **Open** menu - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and bootstrap the demo so the matching diagram resolves.
 

@@ -10,7 +10,7 @@ deciders: ['ArchLens maintainers']
 
 ADR-0010 defines the remote catalog contract. ADR-0011/0012 cover the **hosted** sandbox (public-read or edge-proxied R2). Slice 2 of the [remote blueprint catalog PRD](../remote-blueprint-catalog-prd.md) asks for **practitioner connection profiles**: Canvas (or a thin broker) connecting to a **customer-owned** S3-compatible bucket with the same consume protocol, without baking secrets into the SPA bundle.
 
-This number was reserved in ADR-0010 / ADR-0014 follow-ups. Slice 2 is not started; auth and credential transport remain an open product decision. This record holds the reserved ADR id, drivers, and options so references stay honest until a choice is accepted.
+This number was reserved in ADR-0010 / ADR-0014 follow-ups. Slice 2 is not started; auth and credential transport remain an open product decision. This record holds the reserved ADR id, drivers and options so references stay honest until a choice is accepted.
 
 ## Decision Drivers
 
@@ -38,7 +38,7 @@ No browser connection-profile UI or customer-bucket adapter ships yet. When Slic
 - Good, because ADR-0010/0014 references to “ADR-0013” resolve instead of pointing at a missing file
 - Good, because hosted sandbox (ADR-0011/0012) can ship without pretending org auth is designed
 - Bad, because customers cannot yet point Canvas at a private bucket from the UI
-- Follow-up: when accepting A/B/C, update status to Accepted, lock the credential port in `@archlens/storage`, and add Canvas composition wiring behind a connection-profile adapter
+- Follow-up: when accepting A/B/C, update status to Accepted, lock the credential port in `@archlens/storage` and add Canvas composition wiring behind a connection-profile adapter
 
 ## Architecture sketch
 

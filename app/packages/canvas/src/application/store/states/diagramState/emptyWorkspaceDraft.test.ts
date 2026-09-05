@@ -13,7 +13,7 @@ describe('emptyWorkspaceDraft', () => {
     resetEmptyWorkspaceDraftSessionForTests();
   });
 
-  it('restores only when the in-memory canvas is empty, no folder is open, and the draft has nodes', () => {
+  it('restores only when the in-memory canvas is empty, no folder is open and the draft has nodes', () => {
     expect(
       shouldRestoreEmptyWorkspaceDraft({
         isWorkspaceOpen: false,

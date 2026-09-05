@@ -412,7 +412,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
           title: 'Browser lite scan ready',
           message: `Loaded ${walked.sourceFileCount} source file(s)${
             walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
-          } - structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode, and CI publish.`,
+          } - structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
         });
         return true;
       }

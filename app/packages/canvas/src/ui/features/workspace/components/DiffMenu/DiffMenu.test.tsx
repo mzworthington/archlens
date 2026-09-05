@@ -68,7 +68,7 @@ describe('DiffMenu Component', () => {
     });
   });
 
-  it('displays added, modified, and deleted component nodes and connections', async () => {
+  it('displays added, modified and deleted component nodes and connections', async () => {
     computeSchemaDiff.mockResolvedValueOnce({
       nodes: {
         added: [

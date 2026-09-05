@@ -20,7 +20,7 @@ describe('compareSystemSchemas', () => {
     expect(schemaDiffHasChanges(diff)).toBe(false);
   });
 
-  it('detects added, modified, and deleted nodes', () => {
+  it('detects added, modified and deleted nodes', () => {
     const other: SystemSchema = {
       ...base,
       nodes: [

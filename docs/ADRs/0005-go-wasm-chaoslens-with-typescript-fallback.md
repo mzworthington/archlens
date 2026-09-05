@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and as a headless CLI, while the kit norm is TypeScript-first domain logic. Pure TypeScript hits event-loop and GC limits on large graphs; a second language needs a lasting boundary. Which engine is primary, and how do Canvas and core stay decoupled from the implementation language?
+ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and as a headless CLI, while the kit norm is TypeScript-first domain logic. Pure TypeScript hits event-loop and GC limits on large graphs; a second language needs a lasting boundary. Which engine is primary and how do Canvas and core stay decoupled from the implementation language?
 
 ## Decision Drivers
 
@@ -26,7 +26,7 @@ ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and 
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because the Go engine already ships as WASM (`chaoslens.wasm`) and CLI from `resilience-engine/`, matching PLAN performance and CI portability goals, while `@archlens/core/resilience` keeps the shared `WasmSimulationRequest` / result contract and a deterministic TypeScript path when WASM is unavailable. Option B forgoes Monte Carlo scale and shared CLI reuse. Option C would redo a working Go stack without a clear win. Option D adds network, auth, and latency coupling for a local studio feature.
+Chosen option: "**Option A**", because the Go engine already ships as WASM (`chaoslens.wasm`) and CLI from `resilience-engine/`, matching PLAN performance and CI portability goals, while `@archlens/core/resilience` keeps the shared `WasmSimulationRequest` / result contract and a deterministic TypeScript path when WASM is unavailable. Option B forgoes Monte Carlo scale and shared CLI reuse. Option C would redo a working Go stack without a clear win. Option D adds network, auth and latency coupling for a local studio feature.
 
 ### Consequences
 

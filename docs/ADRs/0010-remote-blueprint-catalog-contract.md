@@ -8,14 +8,14 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-Organisations want **living architecture** diagrams: CI runs ArchLens on a schedule, publishes YAML to object storage, and Canvas opens diagrams from that remote corpus without redeploying the SPA. CLI and Canvas are separate processes with no shared database. We need a **stable, versioned integration contract** that publish pipelines and read adapters can implement independently.
+Organisations want **living architecture** diagrams: CI runs ArchLens on a schedule, publishes YAML to object storage and Canvas opens diagrams from that remote corpus without redeploying the SPA. CLI and Canvas are separate processes with no shared database. We need a **stable, versioned integration contract** that publish pipelines and read adapters can implement independently.
 
 Today the hosted sandbox uses build-time bundled YAML under `/bundled-blueprints/` plus a generated `catalog.json`. Remote publish must preserve the same navigation semantics (`WorkspaceCatalogEntry[]`, lazy YAML fetch by path) while supporting immutable snapshots and safe partial-failure handling during upload.
 
 ## Decision Drivers
 
 - Hard to reverse: public object layout and manifest fields become the customer integration surface
-- Cross-cutting: CLI publish, core catalog builder, and Canvas `WorkspacePort` adapters all depend on the same shape
+- Cross-cutting: CLI publish, core catalog builder and Canvas `WorkspacePort` adapters all depend on the same shape
 - Reliability: a failed or partial upload must not leave consumers pointing at missing objects
 - Compatibility: reuse `buildWorkspaceCatalogFromYamlFiles` / `parseWorkspaceCatalogJson` from `@archlens/core`
 - Security (read path): contract assumes **read-only** consumption in Canvas; credentials stay in CI (slice 1) or connection profiles (slice 2, ADR-0013)
@@ -93,7 +93,7 @@ Steps 3-4 must finish before step 5 so `latest` never references a partial snaps
 ### Consequences
 
 - Good, because CLI and Canvas integrate through a documented, testable contract without shared state
-- Good, because immutable snapshots support rollback, forensics, and "pin to revision" for audits
+- Good, because immutable snapshots support rollback, forensics and "pin to revision" for audits
 - Good, because `catalog.json` and `WorkspaceCatalogEntry` reuse avoids a second navigation model
 - Bad, because storage hosts must serve static JSON/YAML with correct `Content-Type` and CORS (adapter concern, ADR-0011)
 - Bad, because `latest/` overwrite is eventually consistent on some stores - consumers should retry on 404 immediately after publish

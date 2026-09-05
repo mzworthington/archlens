@@ -12,7 +12,7 @@ const reading: LiteScanProgress = {
 };
 
 describe('BrowserLiteScanProgress', () => {
-  it('shows files versus cap, binding byte budget, and a named cancel control', () => {
+  it('shows files versus cap, binding byte budget and a named cancel control', () => {
     const onCancel = vi.fn();
     render(<BrowserLiteScanProgress progress={reading} onCancel={onCancel} />);
 

@@ -2,9 +2,9 @@
 
 Standards and lifecycle agents live in `~/.agents` ([Waykit](https://github.com/mzworthington/waykit)).
 
-Start from `~/.agents/AGENTS.md` (thin index). **Do not** bulk-read philosophy, SOPs, or skills up front.
+Start from `~/.agents/AGENTS.md` (thin index). **Do not** bulk-read philosophy, SOPs or skills up front.
 
-If `~/.agents` is missing: sibling `../waykit` (or `../agent-lifecycle-kit`), Cursor Cloud `/agent/repos/waykit`, or `bin/setup-dev-env.sh` (set `SKIP_LIFECYCLE_KIT=1` to skip). Prefer `./install.sh` in that clone so `~/.agents` points at it.
+If `~/.agents` is missing: sibling `../waykit` (or `../agent-lifecycle-kit`), Cursor Cloud `/agent/repos/waykit` or `bin/setup-dev-env.sh` (set `SKIP_LIFECYCLE_KIT=1` to skip). Prefer `./install.sh` in that clone so `~/.agents` points at it.
 
 | Situation                          | Load                                                                     |
 | ---------------------------------- | ------------------------------------------------------------------------ |

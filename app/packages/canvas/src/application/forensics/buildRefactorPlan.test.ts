@@ -44,7 +44,7 @@ describe('buildRefactorPlan', () => {
     });
   });
 
-  it('builds boundary, ownership, and suggestions for an offender', () => {
+  it('builds boundary, ownership and suggestions for an offender', () => {
     const systems = [
       {
         path: 'components.yaml',

@@ -10,7 +10,7 @@ describe('initBrowserPostHog', () => {
     expect(startExceptionAutocapture).not.toHaveBeenCalled();
   });
 
-  it('initialises the client for SPA navigation, replay, and error tracking', () => {
+  it('initialises the client for SPA navigation, replay and error tracking', () => {
     const init = vi.fn();
     const startExceptionAutocapture = vi.fn();
     expect(

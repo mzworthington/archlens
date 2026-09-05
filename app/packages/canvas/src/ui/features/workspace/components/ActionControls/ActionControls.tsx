@@ -54,7 +54,7 @@ function useClearAction() {
   const controlsDisabled = useControlsDisabled();
 
   const handleClear = useCallback(async () => {
-    if (confirm('Clear the workspace, purge all IndexedDB drafts, and create a blank canvas?')) {
+    if (confirm('Clear the workspace, purge all IndexedDB drafts and create a blank canvas?')) {
       setIsLoading('Cleaning workspace...');
       try {
         await clearWorkspaceDrafts();

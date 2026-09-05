@@ -24,7 +24,7 @@ Use this guide for the product, not the internals.
 4. Return to Canvas and choose **Open existing blueprints folder**, or keep exploring the demo. Import Mermaid/IaC from the toolbar **Open** menu once a diagram is active.
 5. Explore hierarchy (context → container → component), open Explorer → **TraceLens** for display filters and forensics, inspect signals on selected nodes.
 6. Toggle **ChaosLens** in the bottom toolbar to simulate failures on the active diagram.
-7. Review **AdviceLens** at [`/workspace?lens=advicelens`](/workspace?lens=advicelens), in TraceLens (AdviceLens tab), or the ChaosLens telemetry panel.
+7. Review **AdviceLens** at [`/workspace?lens=advicelens`](/workspace?lens=advicelens), in TraceLens (AdviceLens tab) or the ChaosLens telemetry panel.
 8. Commit drafts via Pending Changes (folder workspaces) - **BlueprintSpec** is the architecture contract.
 
 ## Guide chapters
@@ -47,8 +47,8 @@ For building ArchLens or extending the engine - still Markdown in this repo.
 
 - [Design system](../design-system.md) - visual assets & identity sandbox
 - [Setup & local development](../setup.md)
-- [GitHub Actions workflows](./ci-workflows.md) - every workflow, purpose, and trigger
-- [Technology stack](../tech-stack.md) - React, Pulumi, Cloudflare, CI, and toolchain
+- [GitHub Actions workflows](./ci-workflows.md) - every workflow, purpose and trigger
+- [Technology stack](../tech-stack.md) - React, Pulumi, Cloudflare, CI and toolchain
 - [Architecture & security](../architecture.md)
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM core, local build, contributor API
 - [AdviceLens engine](../advicelens-engine.md) - recommendation pipeline, estate runner, narration contract

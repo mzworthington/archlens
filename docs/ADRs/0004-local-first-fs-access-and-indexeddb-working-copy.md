@@ -8,13 +8,13 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ArchLens Canvas must open and edit BlueprintSpec YAML without a backend workspace service. Edits need a durable draft layer, a clear path to disk, and boundaries that stay hexagonal. How should persistence work: browser FS Access + local drafts, a sync server, in-place disk edits, or ZIP round-trips?
+ArchLens Canvas must open and edit BlueprintSpec YAML without a backend workspace service. Edits need a durable draft layer, a clear path to disk and boundaries that stay hexagonal. How should persistence work: browser FS Access + local drafts, a sync server, in-place disk edits or ZIP round-trips?
 
 ## Decision Drivers
 
-- Hard to reverse: persistence shape and commit semantics couple IO, UI, and ports
+- Hard to reverse: persistence shape and commit semantics couple IO, UI and ports
 - Off-norm: no app server / SaaS workspace sync (deliberate vs typical hosted products)
-- Cross-cutting: WorkspacePort, WorkingCopyPort, DiffMenu, and store IO share one model
+- Cross-cutting: WorkspacePort, WorkingCopyPort, DiffMenu and store IO share one model
 - Offline / privacy: blueprints stay on the user's machine unless they commit to a folder
 
 ## Considered Options
@@ -26,11 +26,11 @@ ArchLens Canvas must open and edit BlueprintSpec YAML without a backend workspac
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because it matches the status-quo local-first Canvas: open a folder or sandbox, persist drafts/baselines via `WorkingCopyPort` (IndexedDB), and write disk YAML only through DiffMenu commit (revert restores baseline). No server workspace.
+Chosen option: "**Option A**", because it matches the status-quo local-first Canvas: open a folder or sandbox, persist drafts/baselines via `WorkingCopyPort` (IndexedDB) and write disk YAML only through DiffMenu commit (revert restores baseline). No server workspace.
 
 ### Consequences
 
-- Good, because drafts are explicit, commit is user-gated, and demos work without a folder
+- Good, because drafts are explicit, commit is user-gated and demos work without a folder
 - Bad, because this deliberately differs from typical SaaS persistence (no multi-device sync, no server ACL)
 - Mitigation: outbound ports (`WorkingCopyPort`, `FileSystemPort` / `WorkspacePort`) keep adapters swappable if sync or other backends are added later
 - Bad, because browser FS Access support and permission UX constrain the open-folder path

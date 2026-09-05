@@ -11,7 +11,7 @@ const schema = (partial: Partial<SystemSchema> & Pick<SystemSchema, 'nodes'>): S
 });
 
 describe('countSchemaForensicsMetrics', () => {
-  it('counts diagram-wide externals, tests, and dependencies when nothing is selected', () => {
+  it('counts diagram-wide externals, tests and dependencies when nothing is selected', () => {
     const s = schema({
       nodes: [
         { entityRef: 'a/core', name: 'Core', type: 'component' },

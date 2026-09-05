@@ -63,7 +63,7 @@ describe('filterFeatureMarkdown', () => {
     const withFalsePositive = `${SAMPLE}
 ## CLI
 ### csharpGrouping
- - ✅ skips GlobalUsings, Migrations, Designer, and ModelSnapshot files
+ - ✅ skips GlobalUsings, Migrations, Designer and ModelSnapshot files
 `;
     const textMode = filterFeatureMarkdown(withFalsePositive, 'Designer', 'text');
     expect(textMode).toContain('## CLI');

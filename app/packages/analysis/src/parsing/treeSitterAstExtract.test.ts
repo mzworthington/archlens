@@ -30,7 +30,7 @@ describe('extractParsedSourceFileFromTree', () => {
     });
   });
 
-  it('extracts TypeScript imports, re-exports, constructors, and calls', async () => {
+  it('extracts TypeScript imports, re-exports, constructors and calls', async () => {
     const parsed = await parse(
       'src/domain/orderService.ts',
       `import { Repo } from './repo';
@@ -82,7 +82,7 @@ def build():
     expect(parsed.newExpressions.map(n => n.className)).toContain('Repo');
   });
 
-  it('extracts Go package clause, imports, and exported constructors', async () => {
+  it('extracts Go package clause, imports and exported constructors', async () => {
     const parsed = await parse(
       'internal/server/server.go',
       `package server
@@ -103,7 +103,7 @@ func New() *http.ServeMux {
     expect(parsed.newExpressions.map(n => n.className)).toContain('http.NewServeMux');
   });
 
-  it('extracts Java package, imports, and object creation', async () => {
+  it('extracts Java package, imports and object creation', async () => {
     const parsed = await parse(
       'src/main/java/com/acme/OrderService.java',
       `package com.acme.orders;
@@ -122,7 +122,7 @@ public class OrderService {
     expect(parsed.newExpressions.map(n => n.className)).toContain('OrderRepository');
   });
 
-  it('extracts C# namespace, usings, and base types', async () => {
+  it('extracts C# namespace, usings and base types', async () => {
     const parsed = await parse(
       'src/Orders/OrderService.cs',
       `using Acme.Repositories;

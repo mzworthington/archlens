@@ -13,7 +13,7 @@ ArchLens products (CLI, Canvas, CI) must share one editable architecture contrac
 ## Decision Drivers
 
 - Hard to reverse: persistence shape and public BlueprintSpec / JSON Schema contract
-- Cross-cutting: CLI writers, canvas IO, CI schema checks, and external integrators
+- Cross-cutting: CLI writers, canvas IO, CI schema checks and external integrators
 - Boundary clarity: pure domain in `@archlens/core`; Mermaid as derive/import only
 - Diffability and hand-editability in git
 
@@ -26,11 +26,11 @@ ArchLens products (CLI, Canvas, CI) must share one editable architecture contrac
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared Zod contract in `@archlens/core`, is human-diffable, and carries identity and product fields Mermaid cannot round-trip. Mermaid export (`serializeSchemaToMermaid`) and import wizards that parse into `SystemSchema` remain adapters - not peer editors of the persisted model.
+Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared Zod contract in `@archlens/core`, is human-diffable and carries identity and product fields Mermaid cannot round-trip. Mermaid export (`serializeSchemaToMermaid`) and import wizards that parse into `SystemSchema` remain adapters - not peer editors of the persisted model.
 
 ### Consequences
 
-- Good, because CLI, Canvas, and CI share one YAML/`SystemSchema` contract and public JSON Schema URLs
+- Good, because CLI, Canvas and CI share one YAML/`SystemSchema` contract and public JSON Schema URLs
 - Good, because export-only views (e.g. Code Viewer Mermaid) stay non-editable; imports merge via conflict preview
 - Bad, because Mermaid-first users must go through an import wizard rather than editing Mermaid in place
 - Follow-up: see ADR-0002 (entityRef), ADR-0006 (import merge), ADR-0007 (shared core)

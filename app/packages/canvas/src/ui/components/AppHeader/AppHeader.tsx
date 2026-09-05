@@ -53,7 +53,7 @@ const navLinkClass = (active: boolean, mobile = false) => {
 };
 
 /**
- * Shared top chrome - brand, optional mid content, and site nav.
+ * Shared top chrome - brand, optional mid content and site nav.
  * Desktop: inline links. Mobile: burger opens an accordion nav panel.
  */
 export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky = false }) => {

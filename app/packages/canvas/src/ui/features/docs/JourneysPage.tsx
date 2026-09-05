@@ -61,7 +61,7 @@ export const JourneysPage: React.FC = () => {
             <Link href="/setup" className="text-[#00f0ff] hover:text-white">
               Setup
             </Link>{' '}
-            for ffmpeg, vhs, and E2E details.
+            for ffmpeg, vhs and E2E details.
           </p>
         </section>
       </div>

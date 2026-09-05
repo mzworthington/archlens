@@ -52,7 +52,7 @@ describe('classifyIacResource', () => {
     });
   });
 
-  it('classifies DNS, Pages domains, CORS, and custom domains as supporting', () => {
+  it('classifies DNS, Pages domains, CORS and custom domains as supporting', () => {
     for (const providerType of [
       'cloudflare_index_dnsrecord',
       'cloudflare_dns_record',
@@ -74,7 +74,7 @@ describe('classifyIacResource', () => {
     expect(classifyIacResource(node('cloudflare_zone', 'data')).significance).toBe('noise');
   });
 
-  it('classifies AWS Lambda, S3, and RDS as primary products', () => {
+  it('classifies AWS Lambda, S3 and RDS as primary products', () => {
     expect(classifyIacResource(node('aws_lambda_function'))).toMatchObject({
       vendorSlug: 'aws',
       productSlug: 'lambda',

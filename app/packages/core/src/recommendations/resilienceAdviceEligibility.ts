@@ -43,7 +43,7 @@ function findNode(schema: SystemSchema, entityRef: EntityRef): SystemNode | unde
  * Whether a node is an appropriate target for outbound resilience safeguards
  * (circuit breakers, timeouts, staleness handling). Targets calling application
  * services and workers - not human actors, third-party vendors, shared data
- * stores, brokers, structural C4 nodes, or provisioned IaC resources.
+ * stores, brokers, structural C4 nodes or provisioned IaC resources.
  */
 export function isResilienceAdviceTarget(schema: SystemSchema, entityRef: EntityRef): boolean {
   const node = findNode(schema, entityRef);

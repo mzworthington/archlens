@@ -40,7 +40,7 @@ dependencies: []
 
 describe('Feature: Remote catalog snapshot contract (ADR-0010)', () => {
   describe('Scenario: Successful publish builds an immutable snapshot', () => {
-    it('builds snapshot manifest, latest pointer, and upload object keys', () => {
+    it('builds snapshot manifest, latest pointer and upload object keys', () => {
       const plan = buildRemoteCatalogSnapshotPlan({
         revisionId: 'abc123def456',
         workspaceName: 'blueprints',

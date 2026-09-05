@@ -10,7 +10,7 @@ describe('normalizeCollabDisplayName', () => {
     expect(normalizeCollabDisplayName('  Ada   Lovelace  ')).toBe('Ada Lovelace');
   });
 
-  it('rejects empty, oversized, and control characters', () => {
+  it('rejects empty, oversized and control characters', () => {
     expect(normalizeCollabDisplayName('   ')).toBeNull();
     expect(normalizeCollabDisplayName('a'.repeat(41))).toBeNull();
     expect(normalizeCollabDisplayName('Ada\u0007')).toBeNull();

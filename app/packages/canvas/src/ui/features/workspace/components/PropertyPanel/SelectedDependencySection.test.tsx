@@ -11,7 +11,7 @@ describe('SelectedDependencySection', () => {
     data: { type: 'direct-call', description: 'Calls module / service' },
   };
 
-  it('shows from/to refs, description, and dangling warning when endpoints missing', () => {
+  it('shows from/to refs, description and dangling warning when endpoints missing', () => {
     const onUpdate = vi.fn();
     const onDelete = vi.fn();
     const onSelect = vi.fn();

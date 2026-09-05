@@ -21,7 +21,7 @@ describe('TsMorphParserAdapter', () => {
     }
   });
 
-  it('should parse imports, instantiations, and calls from TypeScript files', async () => {
+  it('should parse imports, instantiations and calls from TypeScript files', async () => {
     const tsContent = `
       import React from 'react';
       import { SystemNode } from '@archlens/core';

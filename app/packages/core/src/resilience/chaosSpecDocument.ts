@@ -15,7 +15,7 @@ const entityRefStringSchema = z
   .min(1)
   .regex(
     ENTITY_REF_PATTERN,
-    'entityRef must be alphanumeric, dashes, or underscores segments separated by slashes'
+    'entityRef must be alphanumeric, dashes or underscores segments separated by slashes'
   );
 
 const faultTypeSchema = z.enum(['latency', 'error-rate', 'packet-loss', 'region-outage']);
@@ -85,7 +85,7 @@ export function toChaosSpecJsonSchema(): Record<string, unknown> {
     $id: versionedId,
     title: 'ChaosSpec',
     description:
-      'Declarative ChaosLens scenario: faults, safeguard overrides, and Monte Carlo config. ' +
+      'Declarative ChaosLens scenario: faults, safeguard overrides and Monte Carlo config. ' +
       'References a BlueprintSpec diagram by metadata.diagramRef - does not duplicate topology. ' +
       'Generated from Zod - do not edit by hand.',
   };

@@ -19,7 +19,7 @@ describe('NodeFileSystemAdapter', () => {
     }
   });
 
-  it('should verify file exists, write to files, and delete files', async () => {
+  it('should verify file exists, write to files and delete files', async () => {
     const file = path.join(tempDir, 'test.yaml');
     expect(adapter.exists(file)).toBe(false);
 

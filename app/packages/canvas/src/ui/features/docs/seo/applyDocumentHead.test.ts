@@ -10,7 +10,7 @@ describe('applyDocumentHead', () => {
     document.head.querySelector('link[rel="canonical"]')?.remove();
   });
 
-  it('updates title, description, canonical, robots, and social tags', () => {
+  it('updates title, description, canonical, robots and social tags', () => {
     applyDocumentHead(resolvePageSeo('/guide/chaoslens'));
 
     expect(document.title.toLowerCase()).toContain('chaoslens');

@@ -8,12 +8,12 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-down, cross-file dependencies, merges, and TraceLens rollups stay meaningful across tools. We must decide how parent/child C4 diagrams link and what serves as the integration ID - without inventing a separate parent-pointer mechanism or coupling identity to filesystem layout.
+BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-down, cross-file dependencies, merges and TraceLens rollups stay meaningful across tools. We must decide how parent/child C4 diagrams link and what serves as the integration ID - without inventing a separate parent-pointer mechanism or coupling identity to filesystem layout.
 
 ## Decision Drivers
 
-- Hard to reverse: identity is a public integration contract for YAML, CLI, Canvas, and consumers
-- Cross-cutting: same refs drive hierarchy, dependencies, breadcrumbs, and merge conflict keys
+- Hard to reverse: identity is a public integration contract for YAML, CLI, Canvas and consumers
+- Cross-cutting: same refs drive hierarchy, dependencies, breadcrumbs and merge conflict keys
 - Boundary clarity: domain FQNs live in `@archlens/core`, not file paths or adapter-local IDs
 - Operability: hand-authored and generated blueprints must link without a workspace manifest
 
@@ -26,11 +26,11 @@ BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because it is already the documented BlueprintSpec contract and core resolution model: `entityRef` is the integration ID; hierarchy is equality of child diagram ref to parent node ref; C4 depth is encoded in segment count. Options B-D add schema surface, path coupling, or indirection without improving merge or drill-down clarity.
+Chosen option: "**Option A**", because it is already the documented BlueprintSpec contract and core resolution model: `entityRef` is the integration ID; hierarchy is equality of child diagram ref to parent node ref; C4 depth is encoded in segment count. Options B-D add schema surface, path coupling or indirection without improving merge or drill-down clarity.
 
 ### Consequences
 
-- Good, because drill-down, FQN resolution, and breadcrumbs share one hierarchical string model in core
+- Good, because drill-down, FQN resolution and breadcrumbs share one hierarchical string model in core
 - Good, because integrators need no parent-pointer file or link registry
 - Bad, because renaming a ref is a breaking identity change across files and tools
 - Bad, because segment-count → C4 level is conventional; misuse of depth confuses level inference

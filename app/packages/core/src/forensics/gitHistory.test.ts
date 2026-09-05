@@ -57,7 +57,7 @@ describe('filterCommitsInWindow', () => {
 });
 
 describe('aggregateFileHistory', () => {
-  it('computes churn, authorCount, and topAuthorPercent', () => {
+  it('computes churn, authorCount and topAuthorPercent', () => {
     const commits: GitCommit[] = [
       {
         hash: '1',

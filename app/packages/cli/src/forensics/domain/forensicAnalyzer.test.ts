@@ -47,7 +47,7 @@ class FakeImportGraph implements ImportGraphPort {
 }
 
 describe('ForensicAnalyzer', () => {
-  it('correlates structure + history, classifies, and reports', async () => {
+  it('correlates structure + history, classifies and reports', async () => {
     const lister = new FakeLister(['hot.ts', 'silo.ts']);
     const complexity = new FakeComplexity([
       { path: 'hot.ts', complexity: 20, loc: 100, sloc: 80 },

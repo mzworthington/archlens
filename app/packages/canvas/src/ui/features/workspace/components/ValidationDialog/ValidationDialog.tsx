@@ -67,7 +67,7 @@ export const ValidationDialog: React.FC = () => {
                   <h3 className="font-semibold text-sm">Architecture Valid</h3>
                 </div>
                 <p className="text-xs text-emerald-500/80 leading-relaxed pl-7">
-                  No cyclic loops, broken references, or invalid boundaries detected in the graph
+                  No cyclic loops, broken references or invalid boundaries detected in the graph
                   structure.
                 </p>
               </div>

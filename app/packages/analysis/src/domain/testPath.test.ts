@@ -12,7 +12,7 @@ describe('testPath', () => {
     expect(isTestSourcePath('src/domain/graph.ts')).toBe(false);
   });
 
-  it('marks .NET, Go, Java, and Python test conventions', () => {
+  it('marks .NET, Go, Java and Python test conventions', () => {
     expect(isTestSourcePath('tests/Ordering.UnitTests/Domain/ValueObjectTests.cs')).toBe(true);
     expect(isTestSourcePath('src/Catalog.FunctionalTests/CatalogApiTests.cs')).toBe(true);
     expect(isTestSourcePath('Services/Basket.UnitTests/BasketServiceTests.cs')).toBe(true);

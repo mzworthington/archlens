@@ -2,9 +2,9 @@
 
 ![ArchLens CLI Interactive Prompts](../../docs/screenshots/cli.gif)
 
-Scans a local codebase, extracts modules and dependencies via static analysis, and writes BlueprintSpec under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
+Scans a local codebase, extracts modules and dependencies via static analysis and writes BlueprintSpec under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 
-Supports **multi-system** / monorepo discovery, **product hubs** on the context diagram, **type hydration**, **gitignore + structural filters**, **optional Git forensics**, and **cancelable** runs (Ctrl+C).
+Supports **multi-system** / monorepo discovery, **product hubs** on the context diagram, **type hydration**, **gitignore + structural filters**, **optional Git forensics** and **cancelable** runs (Ctrl+C).
 
 ---
 
@@ -20,7 +20,7 @@ pnpm dev:cli
 
 1. **Quick scan:** `archlens scan` or `archlens --scan` - headless run using `blueprint.config.json` / defaults (context `blueprint`, output `blueprints`, default glob). Add flags as needed (`--no-git`, `--output=…`).
 2. **Enrich existing YAML:** `archlens enrich` - re-run the externals pass on blueprint files already on disk (adds missing dependency edges and `external: true` proxy nodes; no AST re-scan). Use after upgrading ArchLens CLI or when hand-authored YAML is missing couplings.
-3. **Interactive (default):** step-by-step prompts for context, glob, output, and whether to enrich with Git forensics.
+3. **Interactive (default):** step-by-step prompts for context, glob, output and whether to enrich with Git forensics.
 4. **Headless / CI:** non-TTY, or when flags are supplied:
 
 ```bash
@@ -102,7 +102,7 @@ GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github
 | `blueprints/<tf-root>/containers.yaml`  | Meaningful IaC **products** per provider pack (e.g. Pages, Lambda) under the infra spoke; noise filtered                  |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                                                            |
 
-After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, adds **service-level coupling edges** on container diagrams when component evidence exists (for example `api → auth-service` rather than only container-to-container rollup), and materializes unresolved dependency endpoints as `external: true` proxy nodes on component and container diagrams.
+After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, adds **service-level coupling edges** on container diagrams when component evidence exists (for example `api → auth-service` rather than only container-to-container rollup) and materializes unresolved dependency endpoints as `external: true` proxy nodes on component and container diagrams.
 
 Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path), or under a declared **infra spoke** (`role: infrastructure`, `serves: …`) for dedicated infra packages/repos. IaC scan classifies resources by provider pack (Cloudflare, AWS, Azure, GCP): **container** diagrams keep primary products; **context** receives one proposed third-party per vendor (`proposedThirdParties`). Product guide: [Meaningful external dependencies](../../../docs/guide/cli.md#meaningful-external-dependencies).
 
@@ -118,7 +118,7 @@ A **product hub** node is added when multiple subsystems share a product, so Blu
 
 For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs hydrate into the same context seed (`blueprints/<ctx>/context.yaml` or root `blueprints/context.yaml` when the folder is omitted).
 
-**Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef`, optional `name`), optional `product-persona` persons, and optional `external: true` third-parties. Omit `name` to derive a label from the `entityRef` leaf; merges prefer an explicit name over a derived one. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist, and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
+**Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef`, optional `name`), optional `product-persona` persons and optional `external: true` third-parties. Omit `name` to derive a label from the `entityRef` leaf; merges prefer an explicit name over a derived one. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
 
 This repository commits its ArchLens seed at `blueprints/archlens/context.yaml`. Demo catalog jobs assemble seeds for external sample repos from `contextDeclaration` entries in `scripts/blueprint-sample-repos.json` via `scripts/assemble-context-seed.mjs`.
 
@@ -133,13 +133,13 @@ Files are included only if they pass **all** of:
 5. Optional config `include` allow-list
 
 Test paths stay in the model and are tagged `isTest` (ArchLens Canvas can hide them). Detection covers
-JS/TS (`*.test.ts`, `__tests__`), .NET (`*.UnitTests`, `FooTests.cs`), Go, Java, and Python
+JS/TS (`*.test.ts`, `__tests__`), .NET (`*.UnitTests`, `FooTests.cs`), Go, Java and Python
 conventions. Pure test projects are also tagged at the **container** level so they hide with
 “Show test components” off.
 
 ### Type hydration
 
-After extraction, nodes/edges are classified from imports, constructors, and path cues (e.g. gateway, relational DB, event broker, REST) and connected with suitable dependency types (`read-write`, `publish-subscribe`, …).
+After extraction, nodes/edges are classified from imports, constructors and path cues (e.g. gateway, relational DB, event broker, REST) and connected with suitable dependency types (`read-write`, `publish-subscribe`, …).
 
 ### Dependency resolution (TypeScript / JavaScript)
 
@@ -148,7 +148,7 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 - **Node.js built-ins** (`path`, `fs`, `node:path`, …) - ignored; they no longer fuzzy-match local files with the same basename.
 - **npm dependencies** (`react`, `lodash`, …) - not linked to in-repo containers unless they appear as workspace packages.
 
-After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints, and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, canvas → core package usage surfaces as external nodes on the canvas component diagram, and cross-container calls appear on container-level storefront diagrams for ChaosLens.
+After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, canvas → core package usage surfaces as external nodes on the canvas component diagram and cross-container calls appear on container-level storefront diagrams for ChaosLens.
 
 For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See [C# and .NET analysis](../../README.md#c-and-net-analysis) for current coverage and roadmap items (Aspire, integration events, HTTP/gRPC clients).
 
@@ -218,7 +218,7 @@ pnpm test:cli
 ### VHS terminal demo
 
 Records the interactive CLI against this repo into `docs/screenshots/cli.gif`
-(requires `vhs`, `ttyd`, `ffmpeg`, and `bun` - `ffmpeg` and `vhs` from `mise.toml`; on macOS `brew install ttyd`):
+(requires `vhs`, `ttyd`, `ffmpeg` and `bun` - `ffmpeg` and `vhs` from `mise.toml`; on macOS `brew install ttyd`):
 
 ```bash
 mise install

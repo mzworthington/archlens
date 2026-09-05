@@ -14,7 +14,7 @@ function redirectLines(): string[] {
 }
 
 describe('_redirects (Cloudflare Pages)', () => {
-  it('canonicalises www, 404s real asset prefixes, and serves /index.html without a pretty-URL 308', () => {
+  it('canonicalises www, 404s real asset prefixes and serves /index.html without a pretty-URL 308', () => {
     const lines = redirectLines();
 
     expect(lines).toEqual([

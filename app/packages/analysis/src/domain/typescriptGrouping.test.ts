@@ -9,7 +9,7 @@ import {
 
 describe('typescriptGrouping', () => {
   describe('shouldSkipTypeScriptFile', () => {
-    it('skips config, declaration, and setup boilerplate', () => {
+    it('skips config, declaration and setup boilerplate', () => {
       expect(shouldSkipTypeScriptFile('app/vitest.config.ts', 'vitest.config')).toBe(true);
       expect(shouldSkipTypeScriptFile('app/vite.config.ts', 'vite.config')).toBe(true);
       expect(shouldSkipTypeScriptFile('app/src/vite-env.d.ts', 'vite-env.d')).toBe(true);

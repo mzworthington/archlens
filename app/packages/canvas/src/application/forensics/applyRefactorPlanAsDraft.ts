@@ -12,7 +12,7 @@ export type ApplyRefactorPlanAsDraftActions = {
 export type ApplyRefactorPlanAsDraftResult = { ok: true } | { ok: false; reason: string };
 
 /**
- * Load the offender diagram, materialize the refactor boundary on canvas, and open Pending Changes.
+ * Load the offender diagram, materialize the refactor boundary on canvas and open Pending Changes.
  */
 export async function applyRefactorPlanAsDraft(
   boundary: RefactorBoundary,

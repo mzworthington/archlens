@@ -41,7 +41,7 @@ Documented under **UI Components** in the showcase:
 
 ## Interactive sandbox
 
-Experiment with node archetypes (web-app, database, microservice, person), status levels, and export YAML fragments.
+Experiment with node archetypes (web-app, database, microservice, person), status levels and export YAML fragments.
 
 ---
 

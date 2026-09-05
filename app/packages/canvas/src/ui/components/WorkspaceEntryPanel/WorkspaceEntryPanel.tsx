@@ -235,7 +235,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                   </span>
                 </span>
                 <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
-                  TraceLens git hotspots, watch mode, and CI catalog publish.
+                  TraceLens git hotspots, watch mode and CI catalog publish.
                 </span>
               </span>
               <ArrowRight

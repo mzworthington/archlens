@@ -8,13 +8,13 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-Canvas and CLI must agree on BlueprintSpec (`SystemSchema`), Zod validation, merge/import rules, resilience types, and forensics helpers without drifting. We need a durable shared contract: where does that published language live, and what stays out of it (I/O, UI, FS, AST parsers)?
+Canvas and CLI must agree on BlueprintSpec (`SystemSchema`), Zod validation, merge/import rules, resilience types and forensics helpers without drifting. We need a durable shared contract: where does that published language live and what stays out of it (I/O, UI, FS, AST parsers)?
 
 ## Decision Drivers
 
 - Hard-to-reverse package API boundary (cross-cutting across Canvas and CLI)
 - Hexagonal + DDD: pure domain inward; adapters at edges
-- One Zod/YAML contract for validate, import, and canvas (operability)
+- One Zod/YAML contract for validate, import and canvas (operability)
 - Avoid model duplication and independent version skew
 
 ## Considered Options

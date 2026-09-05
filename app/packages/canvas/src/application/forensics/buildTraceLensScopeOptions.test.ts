@@ -73,7 +73,7 @@ describe('buildTraceLensScopeOptions', () => {
     expect(options.map(option => option.entityRef)).toContain('app/canvas/db');
   });
 
-  it('filters options by name, entity ref, or level', () => {
+  it('filters options by name, entity ref or level', () => {
     const options = [
       {
         entityRef: 'app/canvas',

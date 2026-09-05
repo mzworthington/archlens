@@ -1,6 +1,6 @@
 # Cloudflare infrastructure (Pulumi)
 
-Pages project, custom domains, catalog R2, and the collab Worker hostname for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`. The collab script ships with `wrangler deploy` from `@archlens/collab`.
+Pages project, custom domains, catalog R2 and the collab Worker hostname for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`. The collab script ships with `wrangler deploy` from `@archlens/collab`.
 
 ## Resources
 
@@ -25,7 +25,7 @@ pulumi import 'cloudflare:index/webAnalyticsSite:WebAnalyticsSite' web-analytics
 pulumi import 'cloudflare:index/observatoryScheduledTest:ObservatoryScheduledTest' observatory-apex '<zone_id>/<url>'
 ```
 
-Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan, and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
+Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
 ## Quick setup
 
@@ -61,7 +61,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit), and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit) and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 

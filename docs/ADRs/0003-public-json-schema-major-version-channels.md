@@ -8,12 +8,12 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-BlueprintSpec and ChaosSpec YAML are shared contracts for Canvas, CLI, IDEs, and external CI. Consumers need a stable, fetchable validation surface without running ArchLens. We must decide how schema identity is published and what the in-file `version` field carries so pins and upgrades stay predictable.
+BlueprintSpec and ChaosSpec YAML are shared contracts for Canvas, CLI, IDEs and external CI. Consumers need a stable, fetchable validation surface without running ArchLens. We must decide how schema identity is published and what the in-file `version` field carries so pins and upgrades stay predictable.
 
 ## Decision Drivers
 
 - Hard to reverse: published URLs and YAML `version` values become external contracts
-- Cross-cutting: core Zod, checked-in `schemas/`, GitHub Pages, IDE directives, and integrators
+- Cross-cutting: core Zod, checked-in `schemas/`, GitHub Pages, IDE directives and integrators
 - Single source of truth in `@archlens/core` (hexagonal domain; no parallel IDL)
 - Operability: pin vs track-latest without semver churn for additive changes
 

@@ -6,11 +6,11 @@ AdviceLens **Core** is deterministic. Priority and evidence come from simulation
 
 ## The lens family
 
-| Lens       | Question                                       |
-| ---------- | ---------------------------------------------- |
-| TraceLens  | Where is the code fragile, coupled, or siloed? |
-| ChaosLens  | What fails and how far does damage spread?     |
-| AdviceLens | What should we fix first, and why?             |
+| Lens       | Question                                      |
+| ---------- | --------------------------------------------- |
+| TraceLens  | Where is the code fragile, coupled or siloed? |
+| ChaosLens  | What fails and how far does damage spread?    |
+| AdviceLens | What should we fix first, and why?            |
 
 TraceLens and ChaosLens **observe**. AdviceLens **prescribes** - it turns their signals into comparable recommendations with evidence.
 
@@ -71,7 +71,7 @@ archlens resilience ./blueprints --format=yaml --output=advicelens-report.yaml
 archlens resilience ./blueprints --chaos-specs=./chaos-specs
 ```
 
-Output header: **AdviceLens estate report** - diagram count, worst SLA, SPOF totals, and top ranked recommendations with evidence.
+Output header: **AdviceLens estate report** - diagram count, worst SLA, SPOF totals and top ranked recommendations with evidence.
 
 Structured output is a versioned artifact (`kind: advicelens-estate-report`) with plain-object heat maps. **CI uses JSON**; the studio **Copy YAML** / **Download** defaults to YAML (same fields).
 
@@ -98,14 +98,14 @@ On **TraceLens → AdviceLens**, use **Copy YAML** or **Download** (`advicelens-
 
 AdviceLens distinguishes **where signals are observed** from **where actions belong**. Resilience safeguards are **application-runtime** concerns (outbound clients, consumer logic, retries) - not IaC or shared infrastructure provisioning.
 
-**Who can receive advice:** owned services, apps, and workers - never C4 persons/product personas, and never third-party vendors (safeguards apply on **your** outbound clients instead).
+**Who can receive advice:** owned services, apps and workers - never C4 persons/product personas, and never third-party vendors (safeguards apply on **your** outbound clients instead).
 
 **External nodes:** `external: true` means a workspace proxy (another diagram in your estate). Add `properties.classification: third-party` for vendors/SaaS outside your control. Canvas shows `(Workspace)` vs `(Third-party)` badges.
 
 | Diagram level | Estate chaos simulation | Resilience safeguards (`add-circuit-breaker`, timeouts, staleness) | TraceLens composite risk |
 | ------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------ |
-| `context`     | Yes                     | On **calling** services, APIs, and workers (not on brokers/DBs)    | Yes                      |
-| `container`   | Yes                     | On **calling** services, APIs, and workers                         | Yes                      |
+| `context`     | Yes                     | On **calling** services, APIs and workers (not on brokers/DBs)     | Yes                      |
+| `container`   | Yes                     | On **calling** services, APIs and workers                          | Yes                      |
 | `component`   | No                      | No - forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 | `code`        | No                      | No - forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 

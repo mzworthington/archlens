@@ -56,7 +56,7 @@ function validationIssueSignature(result: ValidationResult): string {
 
 /**
  * Rebuild schema from canvas nodes/edges, resolve entityRefs across the
- * workspace, validate, refresh YAML, and persist the working copy.
+ * workspace, validate, refresh YAML and persist the working copy.
  */
 export function applyStateUpdates(
   set: BlueprintStoreSet,

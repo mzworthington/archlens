@@ -94,7 +94,7 @@ export function assessSchemaVersion(
       title: 'Legacy schema format',
       message: `This diagram uses a legacy schema version (${loadedVersion}). ArchLens expects v${expectedMajor}.`,
       migrationHint:
-        'Commit pending changes from ArchLens Canvas or re-run the CLI - saves rewrite YAML with the v4 wire format (`metadata` root, `position` on nodes, and a public schema URL in `version`). See docs/setup.md.',
+        'Commit pending changes from ArchLens Canvas or re-run the CLI - saves rewrite YAML with the v4 wire format (`metadata` root, `position` on nodes and a public schema URL in `version`). See docs/setup.md.',
     };
   }
 

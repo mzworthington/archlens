@@ -188,7 +188,7 @@ function labelFor(type: NodeType, baseName: string): string {
 
 /**
  * Classify a parsed source file into a NodeType using language-agnostic markers
- * (imports, constructed types, and path/name cues).
+ * (imports, constructed types and path/name cues).
  */
 export function classifyParsedSource(file: ParsedSourceFile): NodeHydration {
   const pathName = pathAndNameHaystack(file);

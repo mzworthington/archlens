@@ -14,11 +14,11 @@ Share-link collaboration talks to a Worker we host (`collab.archlens.dev`). That
 
 ## Product analytics (PostHog)
 
-The public site uses [PostHog](https://posthog.com) **Cloud EU** (servers in the EU) so we can see which pages people open, how the app is used, errors, and session replay of the UI.
+The public site uses [PostHog](https://posthog.com) **Cloud EU** (servers in the EU) so we can see which pages people open, how the app is used, errors and session replay of the UI.
 
 We configure PostHog with **cookieless tracking**: it does not write PostHog cookies or use local/session storage for identity, and we do not call `identify()`. Counts use a privacy-preserving hash on PostHog’s servers.
 
-That is why this site does not show a cookie banner for PostHog. Cloudflare or the browser may still use their own cookies for hosting, security, or the installable app (service worker).
+That is why this site does not show a cookie banner for PostHog. Cloudflare or the browser may still use their own cookies for hosting, security or the installable app (service worker).
 
 We do not use PostHog to store your name or email. Session replay can still show whatever is on screen in Canvas, so treat diagrams with secrets the way you would a screen share.
 

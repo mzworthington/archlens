@@ -61,7 +61,7 @@ function pushScenario(
 
 /**
  * Build the default headless scenario set for a diagram:
- * region-outage sweep, high fan-in latency probes, and publisher outages.
+ * region-outage sweep, high fan-in latency probes and publisher outages.
  */
 export function buildDefaultEstateScenarios(
   schema: SystemSchema,

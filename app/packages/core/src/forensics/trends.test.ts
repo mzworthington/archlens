@@ -42,7 +42,7 @@ describe('bucketComplexityCounts', () => {
 });
 
 describe('bucketAuthorActivity', () => {
-  it('groups author counts into solo, pair, and team bands', () => {
+  it('groups author counts into solo, pair and team bands', () => {
     expect(bucketAuthorActivity([1, 1, 2, 3, 5, 0])).toEqual([2, 2, 1]);
   });
 });

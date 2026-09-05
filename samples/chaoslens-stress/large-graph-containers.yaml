@@ -5,12 +5,12 @@ metadata:
   entityRef: chaoslens-stress/large-graph
   name: ChaosLens - Large Graph (Monte Carlo)
   description: >
-    ~45 nodes across edge, BFF, domain, and data tiers with cross-cutting
+    ~45 nodes across edge, BFF, domain and data tiers with cross-cutting
     shared services. Preset resilience YAML on BFFs (bulkhead), shared-auth
-    (circuitBreaker+bulkhead), catalog (localCache), and recommendations
+    (circuitBreaker+bulkhead), catalog (localCache) and recommendations
     (retry+localCache). Retail BFF also has circuitBreaker - fault domain-orders
     to see containment at the BFF. Stress-tests WASM Monte Carlo throughput,
-    canvas heat-map rendering, safeguard badges, and telemetry at scale.
+    canvas heat-map rendering, safeguard badges and telemetry at scale.
 nodes:
   - entityRef: chaoslens-stress/large-graph/edge-web-01
     type: web-app

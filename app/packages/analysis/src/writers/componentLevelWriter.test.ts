@@ -14,7 +14,7 @@ describe('ComponentLevelWriter', () => {
     writer = new ComponentLevelWriter(fileSystem, logger);
   });
 
-  it('writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes', async () => {
+  it('writes one component schema per container with expected path, entityRef, slugified ids and filtered nodes', async () => {
     const componentNodesMap = new Map<string, SystemNode>([
       [
         'component-a',

@@ -12,7 +12,7 @@ const IDENTITY_GUIDELINES = [
   {
     title: 'Electric cyan glow',
     details:
-      'Active links, endpoints, and databases emit neon cyan glow (filter blur) to show operational flow.',
+      'Active links, endpoints and databases emit neon cyan glow (filter blur) to show operational flow.',
   },
   {
     title: 'Monochrome contrast',

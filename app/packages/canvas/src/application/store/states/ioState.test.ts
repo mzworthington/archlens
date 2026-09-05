@@ -79,7 +79,7 @@ dependencies: []
     });
   });
 
-  it('should open workspace, read blueprint.yaml, and mark workspace as open', async () => {
+  it('should open workspace, read blueprint.yaml and mark workspace as open', async () => {
     const store = useBlueprintStore.getState();
     const success = await store.openWorkspaceDirectory();
 

@@ -29,7 +29,7 @@ export const IMPORTED_FILES_HELP =
   'Files this module directly imports (static import graph). These links may exist even when files never co-commit.';
 
 export const FORENSICS_SECTION_HELP =
-  'Readonly signals from AST complexity and recent git history. Used to spot hotspots, silos, and change coupling.';
+  'Readonly signals from AST complexity and recent git history. Used to spot hotspots, silos and change coupling.';
 
 export function concernBadgeClasses(level: ConcernLevel): string {
   switch (level) {

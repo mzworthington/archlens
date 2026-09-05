@@ -17,7 +17,7 @@ function loadFixture(relativePath: string) {
 }
 
 describe('golden-journey estate fixture', () => {
-  it('loads estate, platform, and component YAML', () => {
+  it('loads estate, platform and component YAML', () => {
     expect(() => loadFixture('containers.yaml')).not.toThrow();
     expect(() => loadFixture('web-components.yaml')).not.toThrow();
     expect(() => loadFixture('mobile-components.yaml')).not.toThrow();

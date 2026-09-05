@@ -124,7 +124,7 @@ describe('parseMermaidToSchema - flowchart', () => {
 });
 
 describe('parseMermaidToSchema - C4', () => {
-  it('parses C4Context with Person, System, and Rel', () => {
+  it('parses C4Context with Person, System and Rel', () => {
     const mermaid = `C4Context
     title System Context
     Person(user, "Banking Customer")
