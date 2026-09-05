@@ -11,21 +11,34 @@ import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDial
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
+import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { markFolderWorkspacePreferred } from '../../../../application/store/workspaceOpenSession';
-import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
+import {
+  EMPTY_WORKSPACE_ENTITY_REF,
+  EMPTY_WORKSPACE_PATH,
+} from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
+import { persistBlankCanvasSessionFromSchema } from '../../../../application/store/states/ioState/blankCanvasSession';
+import { shouldPromptSaveBeforeShare } from '../../../../application/store/states/ioState/blankWorkspacePlacement';
+import { collabShareAudience } from '../../../../application/collab/collabShareAudience';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
 import { useCollabShareSession } from './useCollabShareSession';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useLocation } from 'wouter';
+
+function folderPickerAvailable(): boolean {
+  return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
+}
 
 export function useWorkspaceDialogs(): React.ReactNode {
   const [, setLocation] = useLocation();
   const collabShare = useCollabShareSession();
+  const [nameBlankOpen, setNameBlankOpen] = useState(false);
+  const [shareAfterNamed, setShareAfterNamed] = useState(false);
   const {
     isDiffOpen,
     setIsDiffOpen,
@@ -56,6 +69,10 @@ export function useWorkspaceDialogs(): React.ReactNode {
     cancelBrowserLiteScan,
     resetToEmptyWorkspace,
     loadSchema,
+    updateSchemaName,
+    saveSchema,
+    saveBlankCanvasToFolder,
+    setNotification,
   } = useBlueprintStore();
 
   const handleOpenSample = useCallback(async () => {
@@ -105,21 +122,65 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsImportIacOpen(true);
   }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportIacOpen, setLocation]);
 
+  const openNamedBlankCanvas = useCallback(
+    async (name: string, placement: 'file' | 'folder' | 'unsaved') => {
+      markFolderWorkspacePreferred();
+      resetToEmptyWorkspace();
+      updateSchemaName(name);
+      setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
+
+      if (placement === 'file') {
+        const saved = await saveSchema();
+        if (!saved) return false;
+      } else if (placement === 'folder') {
+        const saved = await saveBlankCanvasToFolder();
+        if (!saved) return false;
+      } else {
+        persistBlankCanvasSessionFromSchema(
+          EMPTY_WORKSPACE_PATH,
+          useBlueprintStore.getState().schema,
+          'unsaved'
+        );
+      }
+
+      setNameBlankOpen(false);
+      setIsStartupOpen(false);
+      if (shareAfterNamed) {
+        setShareAfterNamed(false);
+        if (shouldPromptSaveBeforeShare(placement)) {
+          setNotification({
+            type: 'warning',
+            title: 'Save before you share',
+            message: 'Download or save the diagram first so you have a copy you can keep.',
+          });
+        } else {
+          collabShare.openShareDialog();
+        }
+      }
+      return true;
+    },
+    [
+      collabShare,
+      resetToEmptyWorkspace,
+      saveBlankCanvasToFolder,
+      saveSchema,
+      setIsStartupOpen,
+      setLocation,
+      setNotification,
+      shareAfterNamed,
+      updateSchemaName,
+    ]
+  );
+
   const handleStartBlankCanvas = useCallback(() => {
-    // Treat as an explicit non-demo choice so deep-link bootstrap does not force the sample.
-    markFolderWorkspacePreferred();
-    resetToEmptyWorkspace();
-    setIsStartupOpen(false);
-    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
-  }, [resetToEmptyWorkspace, setIsStartupOpen, setLocation]);
+    setShareAfterNamed(false);
+    setNameBlankOpen(true);
+  }, []);
 
   const handleShareBlankCanvas = useCallback(() => {
-    markFolderWorkspacePreferred();
-    resetToEmptyWorkspace();
-    setIsStartupOpen(false);
-    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
-    collabShare.openShareDialog();
-  }, [collabShare, resetToEmptyWorkspace, setIsStartupOpen, setLocation]);
+    setShareAfterNamed(true);
+    setNameBlankOpen(true);
+  }, []);
 
   const handleShareDirectory = useCallback(async () => {
     try {
@@ -188,11 +249,30 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onCancelScan={cancelBrowserLiteScan}
         />
       ) : null}
+      <NameBlankWorkspaceDialog
+        isOpen={nameBlankOpen}
+        folderSaveAvailable={folderPickerAvailable()}
+        busy={Boolean(isLoading)}
+        onSaveFile={name => {
+          void openNamedBlankCanvas(name, 'file');
+        }}
+        onSaveFolder={name => {
+          void openNamedBlankCanvas(name, 'folder');
+        }}
+        onContinueUnsaved={name => {
+          void openNamedBlankCanvas(name, 'unsaved');
+        }}
+        onCancel={() => {
+          setNameBlankOpen(false);
+          setShareAfterNamed(false);
+        }}
+      />
       <CollabShareDialog
         isOpen={collabShare.shareOpen}
         initialName={collabShare.initialName}
         participants={collabShare.participants}
         canEndRoom={collabShare.canEndRoom}
+        audience={collabShareAudience(import.meta.env.VITE_COLLAB_WS_URL)}
         onCopyLink={collabShare.handleCopyLink}
         onSaveName={collabShare.onSaveName}
         onEndRoom={collabShare.handleEndRoom}

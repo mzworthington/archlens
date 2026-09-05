@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GitCompare, Check } from 'lucide-react';
 import { useDiffMenu } from './useDiffMenu';
 import { DiffNodesSection } from './DiffNodesSection';
@@ -10,7 +10,17 @@ interface DiffMenuProps {
 }
 
 export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
-  const { diff, loading, hasChanges, handleRevert, handleCommit } = useDiffMenu(isOpen, onClose);
+  const { diff, loading, hasChanges, handleRevert, handleCommit, previewCollabVsDisk } =
+    useDiffMenu(isOpen, onClose);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen, onClose]);
 
   return (
     <div
@@ -30,13 +40,19 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
               className={`flex h-full flex-col bg-slate-950/80 glass-panel backdrop-blur-md border-l border-slate-900 shadow-2xl transition-all duration-300 ease-in-out transform ${
                 isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
               }`}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="diff-menu-title"
               data-testid="diff-menu"
             >
               <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40 sticky top-0 z-10 shrink-0">
                 <div className="flex items-center gap-2">
                   <GitCompare className="w-4 h-4 text-[#00f0ff] filter drop-shadow-[0_0_4px_rgba(0,240,255,0.4)]" />
-                  <h2 className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs">
-                    Pending Draft Changes
+                  <h2
+                    id="diff-menu-title"
+                    className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs"
+                  >
+                    {previewCollabVsDisk ? 'Live room vs disk' : 'Pending Draft Changes'}
                   </h2>
                 </div>
               </div>
@@ -75,20 +91,22 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
                   {hasChanges && (
                     <div className="flex gap-2">
                       <button
+                        type="button"
                         onClick={handleRevert}
                         disabled={loading}
                         data-testid="diff-revert"
                         className="flex items-center gap-1.5 bg-rose-950/15 hover:bg-rose-950/30 text-rose-400 hover:text-rose-250 border border-rose-900/30 hover:border-rose-900/60 px-4.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer"
                       >
-                        Revert Changes
+                        {previewCollabVsDisk ? 'Keep disk' : 'Revert Changes'}
                       </button>
                       <button
+                        type="button"
                         onClick={handleCommit}
                         disabled={loading}
                         data-testid="diff-commit"
                         className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 hover:text-white border border-emerald-500/30 text-slate-100 px-4.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer"
                       >
-                        Commit Changes
+                        {previewCollabVsDisk ? 'Keep live and commit' : 'Commit Changes'}
                       </button>
                     </div>
                   )}

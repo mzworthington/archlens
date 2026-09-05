@@ -21,12 +21,26 @@ describe('blankCanvasSession', () => {
       filePath: 'super_amazing.yaml',
       entityRef: 'super-amazing',
       name: 'Super amazing',
+      placement: 'file',
     });
     expect(readBlankCanvasSession()).toEqual({
       filePath: 'super_amazing.yaml',
       entityRef: 'super-amazing',
       name: 'Super amazing',
+      placement: 'file',
     });
+  });
+
+  it('treats a legacy session without placement as unsaved when it is still the starter file', () => {
+    localStorage.setItem(
+      'archlens.blankCanvas.session',
+      JSON.stringify({
+        filePath: 'blueprint.yaml',
+        entityRef: 'empty-workspace',
+        name: 'Empty Workspace',
+      })
+    );
+    expect(readBlankCanvasSession()?.placement).toBe('unsaved');
   });
 
   it('restores empty-workspace and the persisted named URL, not unrelated deep links', () => {
@@ -34,6 +48,7 @@ describe('blankCanvasSession', () => {
       filePath: 'super_amazing.yaml',
       entityRef: 'super-amazing',
       name: 'Super amazing',
+      placement: 'file' as const,
     };
     expect(shouldRestoreBlankCanvasForUrl({ urlEntityRef: 'empty-workspace', session: null })).toBe(
       true

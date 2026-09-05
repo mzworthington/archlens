@@ -20,6 +20,7 @@ describe('ToolbarShareButton', () => {
     localStorage.removeItem('archlens.collab.displayName');
     useBlueprintStore.setState({
       isLoading: false,
+      isWorkspaceOpen: true,
       setNotification: vi.fn(),
       collabSessionPort: { ...noopCollabSession, isActive: () => true, setDisplayName: vi.fn() },
       collabPresence: {

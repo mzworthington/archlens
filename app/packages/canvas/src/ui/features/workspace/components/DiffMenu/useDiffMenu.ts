@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { SchemaDiff } from '../../../../../core';
+import {
+  keepDiskRequiresRoomPush,
+  shouldPreviewCollabVsDisk,
+} from '../../../../../application/workspace/collabVsDisk';
 
 export function useDiffMenu(isOpen: boolean, onClose: () => void) {
   const {
@@ -12,6 +16,8 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
     saveActiveDiagram,
     setNotification,
     workingCopyPort,
+    collabSessionPort,
+    isWorkspaceOpen,
   } = useBlueprintStore();
   const [diff, setDiff] = useState<SchemaDiff | null>(null);
   const [loading, setLoading] = useState(false);
@@ -50,6 +56,9 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       });
 
       initSchema(originalSchema);
+      if (keepDiskRequiresRoomPush(Boolean(collabSessionPort?.isActive()))) {
+        collabSessionPort.pushSchema(originalSchema);
+      }
       await checkPendingChanges?.();
       logger.info('Reverted active diagram changes to baseline version');
       onClose();
@@ -90,5 +99,10 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       diff.dependencies.added.length > 0 ||
       diff.dependencies.deleted.length > 0);
 
-  return { diff, loading, hasChanges, handleRevert, handleCommit };
+  const previewCollabVsDisk = shouldPreviewCollabVsDisk({
+    collabActive: Boolean(collabSessionPort?.isActive()),
+    isWorkspaceOpen: Boolean(isWorkspaceOpen),
+  });
+
+  return { diff, loading, hasChanges, handleRevert, handleCommit, previewCollabVsDisk };
 }

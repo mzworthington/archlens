@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DiffMenu } from './DiffMenu';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { LoggerPort, WorkingCopyPort } from '../../../../../core';
+import { noopCollabSession } from '../../../../../core';
 
 const computeSchemaDiff = vi.fn();
 const revertWorkingSchema = vi.fn();
@@ -46,6 +47,8 @@ describe('DiffMenu Component', () => {
         error: vi.fn(),
         warn: vi.fn(),
       } satisfies LoggerPort,
+      isWorkspaceOpen: false,
+      collabSessionPort: noopCollabSession,
     });
   });
 
@@ -199,6 +202,56 @@ describe('DiffMenu Component', () => {
       expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
 
+    confirmSpy.mockRestore();
+  });
+
+  it('names live room vs disk and pushes disk back into the room', async () => {
+    computeSchemaDiff.mockResolvedValueOnce({
+      nodes: {
+        added: [
+          {
+            entityRef: 'cli/new-service',
+            id: 'new-service',
+            systemId: 'cli',
+            type: 'microservice',
+            name: 'New Service',
+            properties: {},
+            filePath: 'blueprints/cli.yaml',
+          },
+        ],
+        modified: [],
+        deleted: [],
+      },
+      dependencies: { added: [], deleted: [] },
+    });
+    const pushSchema = vi.fn();
+    const mockInitSchema = vi.fn();
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      initSchema: mockInitSchema,
+      checkPendingChanges: vi.fn().mockResolvedValue(undefined),
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        isActive: () => true,
+        pushSchema,
+      },
+    });
+    revertWorkingSchema.mockResolvedValueOnce({
+      name: 'CLI System',
+      version: '1.0.0',
+      level: 'container' as const,
+      nodes: [],
+      dependencies: [],
+    });
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
+    render(<DiffMenu isOpen={true} onClose={mockOnClose} />);
+    await waitFor(() => {
+      expect(screen.getByRole('dialog', { name: 'Live room vs disk' })).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Keep disk' }));
+    await waitFor(() => {
+      expect(pushSchema).toHaveBeenCalled();
+    });
     confirmSpy.mockRestore();
   });
 

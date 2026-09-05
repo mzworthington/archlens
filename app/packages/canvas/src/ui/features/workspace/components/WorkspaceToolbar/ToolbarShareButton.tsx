@@ -2,6 +2,9 @@ import React, { useCallback, useState } from 'react';
 import { Share2 } from 'lucide-react';
 import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { readBlankCanvasSession } from '../../../../../application/store/states/ioState/blankCanvasSession';
+import { shouldPromptSaveBeforeShare } from '../../../../../application/store/states/ioState/blankWorkspacePlacement';
+import { collabShareAudience } from '../../../../../application/collab/collabShareAudience';
 import {
   createCollabRoomId,
   parseCollabRoomId,
@@ -31,6 +34,7 @@ export const ToolbarShareButton: React.FC = () => {
   const updateCollabDisplayName = useBlueprintStore(s => s.updateCollabDisplayName);
   const endCollabRoom = useBlueprintStore(s => s.endCollabRoom);
   const roomFromUrl = parseCollabRoomId(search);
+  const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
   const [shareOpen, setShareOpen] = useState(false);
 
   const copyShareLink = useCallback(
@@ -76,7 +80,18 @@ export const ToolbarShareButton: React.FC = () => {
       <span className="relative inline-flex">
         <button
           type="button"
-          onClick={() => setShareOpen(true)}
+          onClick={() => {
+            const placement = readBlankCanvasSession()?.placement ?? 'unsaved';
+            if (!isWorkspaceOpen && shouldPromptSaveBeforeShare(placement)) {
+              setNotification({
+                type: 'warning',
+                title: 'Save before you share',
+                message: 'Save or download the diagram first so you have a copy you can keep.',
+              });
+              return;
+            }
+            setShareOpen(true);
+          }}
           disabled={Boolean(isLoading)}
           className={`${iconBtnClass} ${isActive || roomFromUrl ? 'text-sky-300 hover:text-sky-200 border-sky-900/40' : ''}`}
           title={
@@ -107,6 +122,7 @@ export const ToolbarShareButton: React.FC = () => {
         initialName={getCollabPrefillDisplayName()}
         participants={participants}
         canEndRoom={Boolean(roomFromUrl && readCollabHostToken(roomFromUrl))}
+        audience={collabShareAudience(import.meta.env.VITE_COLLAB_WS_URL)}
         onCopyLink={handleCopyLink}
         onSaveName={updateCollabDisplayName}
         onEndRoom={() => {

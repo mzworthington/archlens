@@ -77,4 +77,19 @@ describe('CollabShareDialog', () => {
       'You will be the first person in this session.'
     );
   });
+
+  it('says the room is only other tabs on this machine when there is no Worker', () => {
+    render(
+      <CollabShareDialog
+        isOpen
+        audience="same-browser"
+        initialName="Ada"
+        participants={[]}
+        onCopyLink={vi.fn()}
+        onSaveName={vi.fn()}
+        onCancel={() => undefined}
+      />
+    );
+    expect(screen.getByText(/tabs on this machine/i)).toBeInTheDocument();
+  });
 });

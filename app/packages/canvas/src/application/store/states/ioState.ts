@@ -90,6 +90,7 @@ export interface IoState {
   ) => void;
 
   saveSchema: () => Promise<boolean>;
+  saveBlankCanvasToFolder: () => Promise<boolean>;
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
@@ -161,7 +162,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
           const reloaded = importYaml(saved.content);
           if (reloaded) {
             set({ currentFilePath: saved.fileName });
-            persistBlankCanvasSessionFromSchema(saved.fileName, get().schema);
+            persistBlankCanvasSessionFromSchema(saved.fileName, get().schema, 'file');
           }
         }
         setNotification?.({
@@ -183,6 +184,61 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         message: (err as Error).message || 'Error occurred while saving schema.',
       });
       return false;
+    }
+  },
+
+  saveBlankCanvasToFolder: async () => {
+    const {
+      yamlCode,
+      schema,
+      workspacePort,
+      workingCopyPort,
+      logger,
+      setNotification,
+      initSchema,
+      setIsLoading,
+    } = get();
+    const fileName = yamlFileNameFromDiagramName(schema.name);
+    setIsLoading(true);
+    try {
+      const selected = await workspacePort.selectDirectory();
+      if (!selected) return false;
+      const written = await workspacePort.writeFile(fileName, yamlCode);
+      if (!written) {
+        setNotification?.({
+          type: 'error',
+          title: 'Save failed',
+          message: 'Could not write the diagram into that folder.',
+        });
+        return false;
+      }
+      const files = await workspacePort.readDirectoryFiles();
+      const opened = await loadWorkspaceFromYamlFiles({
+        files,
+        workspaceName: workspacePort.getDirectoryName(),
+        workingCopy: workingCopyPort,
+        logger,
+        setNotification,
+        initSchema,
+        set,
+        isSampleWorkspace: false,
+        preferredEntryPath: fileName,
+        committedPorts: { workspacePort },
+      });
+      if (opened) {
+        persistBlankCanvasSessionFromSchema(fileName, get().schema, 'folder');
+      }
+      return opened;
+    } catch (err) {
+      logger.error('Failed to save blank canvas into a folder', err);
+      setNotification?.({
+        type: 'error',
+        title: 'Save failed',
+        message: (err as Error).message || 'Could not save the diagram into a folder.',
+      });
+      return false;
+    } finally {
+      setIsLoading(false);
     }
   },
 

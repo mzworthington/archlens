@@ -276,9 +276,57 @@ nodes: []`,
         expect.objectContaining({
           filePath: 'checkout.yaml',
           name: 'Checkout',
+          placement: 'file',
         })
       );
       spySave.mockRestore();
+    });
+
+    it('writes a named blank canvas into a picked folder', async () => {
+      useBlueprintStore.setState({
+        isWorkspaceOpen: false,
+        yamlCode: `version: ${v3Version}
+level: container
+metadata:
+  name: Checkout
+nodes: []`,
+        schema: {
+          name: 'Checkout',
+          version: v3Version,
+          level: 'container',
+          nodes: [],
+          dependencies: [],
+        },
+      });
+      const store = useBlueprintStore.getState();
+      const writeFile = vi.spyOn(store.workspacePort, 'writeFile').mockResolvedValue(true);
+      const getDirectoryName = vi
+        .spyOn(store.workspacePort, 'getDirectoryName')
+        .mockReturnValue('blueprints');
+      const readDirectoryFiles = vi
+        .spyOn(store.workspacePort, 'readDirectoryFiles')
+        .mockResolvedValue([
+          {
+            name: 'checkout.yaml',
+            content: `version: ${v3Version}
+level: container
+metadata:
+  name: Checkout
+nodes: []`,
+          },
+        ]);
+      const selectDirectory = vi
+        .spyOn(store.workspacePort, 'selectDirectory')
+        .mockResolvedValue(true);
+
+      const success = await store.saveBlankCanvasToFolder();
+      expect(success).toBe(true);
+      expect(writeFile).toHaveBeenCalled();
+      expect(readBlankCanvasSession()?.placement).toBe('folder');
+      selectDirectory.mockRestore();
+      writeFile.mockRestore();
+      getDirectoryName.mockRestore();
+      readDirectoryFiles.mockRestore();
     });
   });
 

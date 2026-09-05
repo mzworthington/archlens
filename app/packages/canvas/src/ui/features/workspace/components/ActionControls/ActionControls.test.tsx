@@ -10,6 +10,7 @@ import {
 } from './ActionControls';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { SystemSchema } from '@archlens/core';
+import { noopCollabSession } from '../../../../../core';
 
 const emptyHistorySchema: SystemSchema = {
   name: 'History',
@@ -63,6 +64,7 @@ describe('ActionControls Component', () => {
       layoutEngine: null,
       setLayoutEngine: vi.fn(),
       loadedSystems: [],
+      collabSessionPort: noopCollabSession,
     });
   });
 
@@ -227,6 +229,20 @@ describe('ActionControls Component', () => {
 
     fireEvent.click(undoBtn);
     expect(undoMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('disables undo with an explanation while a live room is active', () => {
+    useBlueprintStore.setState({
+      past: [{ nodes: [], edges: [], schema: emptyHistorySchema }],
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        isActive: () => true,
+      },
+    });
+    renderToolbarActions();
+    expect(
+      screen.getByRole('button', { name: 'Undo is unavailable while sharing' })
+    ).toBeDisabled();
   });
 
   it('disables redo button when future history is empty, enables and triggers action when filled', () => {

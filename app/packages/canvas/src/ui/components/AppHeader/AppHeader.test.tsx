@@ -20,6 +20,14 @@ function mobileNav() {
 }
 
 describe('AppHeader', () => {
+  it('shows a Beta stage chip on the right of the header', () => {
+    renderHeader();
+
+    const badge = screen.getByTestId('product-stage-badge');
+    expect(badge).toHaveTextContent('Beta');
+    expect(badge).not.toHaveAttribute('href');
+  });
+
   it('shows a burger menu on mobile and reveals navigation links', () => {
     renderHeader();
 

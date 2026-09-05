@@ -117,5 +117,6 @@ describe('useCollabRoomSync', () => {
       result.current.cancelJoin();
     });
     expect(mockSetLocation).toHaveBeenCalledWith('/workspace');
+    expect(useBlueprintStore.getState().leaveCollabRoom).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useState } from 'react';
 import { Users, X } from 'lucide-react';
 import { normalizeCollabDisplayName, type CollabParticipant } from '../../../../../core';
+import { collabShareAudienceCopy } from '../../../../../application/collab/collabShareAudience';
 import { CollabDialogPortal } from '../CollabNameDialog/CollabDialogPortal';
 
 export type CollabShareCopyOptions = {
@@ -14,6 +15,7 @@ interface CollabShareDialogProps {
   initialName?: string;
   participants: CollabParticipant[];
   canEndRoom?: boolean;
+  audience?: 'same-browser' | 'joinable-link';
   onCopyLink: (name: string, options: CollabShareCopyOptions) => void;
   onSaveName: (name: string) => boolean;
   onEndRoom?: () => void;
@@ -25,6 +27,7 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   initialName = '',
   participants,
   canEndRoom = false,
+  audience = 'joinable-link',
   onCopyLink,
   onSaveName,
   onEndRoom,
@@ -107,7 +110,7 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
 
             <div className="p-4 space-y-4">
               <p className="text-sm text-slate-400 leading-relaxed">
-                Change the name on your cursor, see who is here, then copy the link.
+                {collabShareAudienceCopy(audience)}
               </p>
 
               <form

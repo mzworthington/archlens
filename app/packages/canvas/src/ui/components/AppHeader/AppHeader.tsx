@@ -87,27 +87,36 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
           ) : null}
         </div>
 
-        <nav className="hidden sm:flex items-center gap-1 shrink-0" aria-label="Site navigation">
-          {NAV_ITEMS.map(item => {
-            const active = item.isActive(location);
-            return (
-              <Link key={item.href} href={item.href} className={navLinkClass(active)}>
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <nav className="hidden sm:flex items-center gap-1" aria-label="Site navigation">
+            {NAV_ITEMS.map(item => {
+              const active = item.isActive(location);
+              return (
+                <Link key={item.href} href={item.href} className={navLinkClass(active)}>
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <button
-          type="button"
-          className="sm:hidden shrink-0 flex items-center justify-center w-9 h-9 rounded-lg border border-[#00f0ff]/20 bg-cyan-950/20 text-[#00f0ff] hover:bg-cyan-950/40 transition-colors cursor-pointer"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={menuOpen}
-          aria-controls="app-header-mobile-nav"
-          onClick={() => setMenuOpen(open => !open)}
-        >
-          {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+          <span
+            data-testid="product-stage-badge"
+            className="text-amber-300 font-mono text-[10px] tracking-wider border border-amber-400/35 px-2 py-0.5 rounded bg-amber-950/40"
+          >
+            Beta
+          </span>
+
+          <button
+            type="button"
+            className="sm:hidden shrink-0 flex items-center justify-center w-9 h-9 rounded-lg border border-[#00f0ff]/20 bg-cyan-950/20 text-[#00f0ff] hover:bg-cyan-950/40 transition-colors cursor-pointer"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            aria-controls="app-header-mobile-nav"
+            onClick={() => setMenuOpen(open => !open)}
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {menuOpen ? (

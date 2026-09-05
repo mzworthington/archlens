@@ -123,6 +123,7 @@ describe('useBundledWorkspaceBootstrap', () => {
       filePath: 'super_amazing.yaml',
       entityRef: 'super-amazing',
       name: 'Super amazing',
+      placement: 'file',
     });
     mockLocation = '/workspace/super-amazing';
     mockParams = { '*': 'super-amazing' };

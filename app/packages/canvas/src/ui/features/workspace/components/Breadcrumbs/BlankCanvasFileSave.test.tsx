@@ -27,7 +27,7 @@ describe('BlankCanvasFileSave', () => {
 
     render(<BlankCanvasFileSave onSaved={onSaved} />);
 
-    const input = screen.getByLabelText('Diagram file name');
+    const input = screen.getByLabelText('Workspace name');
     fireEvent.change(input, { target: { value: 'Checkout' } });
     fireEvent.click(screen.getByRole('button', { name: 'Save YAML' }));
 
@@ -44,13 +44,44 @@ describe('BlankCanvasFileSave', () => {
 
     render(<BlankCanvasFileSave />);
 
-    fireEvent.change(screen.getByLabelText('Diagram file name'), {
+    fireEvent.change(screen.getByLabelText('Workspace name'), {
       target: { value: 'Billing' },
     });
-    fireEvent.submit(screen.getByLabelText('Diagram file name').closest('form')!);
+    fireEvent.submit(screen.getByLabelText('Workspace name').closest('form')!);
 
     await vi.waitFor(() => {
       expect(saveSchema).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it('says when the diagram is still unsaved', () => {
+    render(<BlankCanvasFileSave />);
+    expect(screen.getByText('Unsaved — not on disk yet')).toBeInTheDocument();
+  });
+
+  it('replaces the boot placeholder and follows schema name updates', () => {
+    useBlueprintStore.setState({
+      schema: {
+        name: 'Loading',
+        version: '1.0.0',
+        level: 'container',
+        nodes: [],
+        dependencies: [],
+      },
+    });
+    const { rerender } = render(<BlankCanvasFileSave />);
+    expect(screen.getByLabelText('Workspace name')).toHaveValue('Empty Workspace');
+
+    useBlueprintStore.setState({
+      schema: {
+        name: 'Billing',
+        version: '1.0.0',
+        level: 'container',
+        nodes: [],
+        dependencies: [],
+      },
+    });
+    rerender(<BlankCanvasFileSave />);
+    expect(screen.getByLabelText('Workspace name')).toHaveValue('Billing');
   });
 });

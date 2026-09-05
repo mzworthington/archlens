@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { initBrowserPostHog } from './initBrowserPostHog';
+import { initBrowserPostHog, type PostHogInitClient } from './initBrowserPostHog';
 
 describe('initBrowserPostHog', () => {
   it('does not call the client when analytics is disabled', () => {
@@ -11,7 +11,7 @@ describe('initBrowserPostHog', () => {
   });
 
   it('initialises the client for SPA navigation, replay and error tracking', () => {
-    const init = vi.fn();
+    const init = vi.fn<PostHogInitClient['init']>();
     const startExceptionAutocapture = vi.fn();
     expect(
       initBrowserPostHog(
@@ -30,7 +30,18 @@ describe('initBrowserPostHog', () => {
       capture_pageview: 'history_change',
       cookieless_mode: 'always',
       person_profiles: 'never',
+      before_send: expect.any(Function),
     });
     expect(startExceptionAutocapture).toHaveBeenCalledOnce();
+    const beforeSend = init.mock.calls[0]?.[1]?.before_send;
+    expect(beforeSend).toBeDefined();
+    expect(
+      beforeSend?.({
+        event: '$exception',
+        properties: {
+          $exception_message: 'ResizeObserver loop completed with undelivered notifications.',
+        },
+      })
+    ).toBeNull();
   });
 });

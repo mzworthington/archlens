@@ -83,8 +83,9 @@ export function useCollabRoomSync(): CollabRoomSync {
   );
 
   const cancelJoin = useCallback(() => {
+    leaveCollabRoom();
     setLocation(withoutCollabRoom(pathname, search));
-  }, [pathname, search, setLocation]);
+  }, [leaveCollabRoom, pathname, search, setLocation]);
 
   return {
     needsDisplayName: needsDisplayName || Boolean(roomId && joinError),

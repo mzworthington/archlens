@@ -85,6 +85,7 @@ describe('restoreEmptyWorkspaceDraft', () => {
       filePath: 'super_amazing.yaml',
       entityRef: 'super-amazing',
       name: 'Super amazing',
+      placement: 'file',
     });
     const loadWorkingSchema = vi.fn().mockResolvedValue({
       name: 'Super amazing',
