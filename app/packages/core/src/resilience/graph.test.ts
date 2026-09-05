@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '../models/schema';
-import { buildDependents, expandEndpoints, resolveFaultTargets } from './graph';
+import { buildDependents, expandEndpoints, resolveFaultTargets, type GraphKernel } from './graph';
 import { runResilienceSimulation } from './simulation';
 
 const groupSchema: SystemSchema = {
@@ -27,6 +27,22 @@ const groupSchema: SystemSchema = {
 };
 
 describe('resilience graph', () => {
+  it('walks group edges from topology without schema metadata', () => {
+    const kernel: GraphKernel = {
+      nodes: [
+        { entityRef: 'demo/user', type: 'person' },
+        { entityRef: 'demo/hub', type: 'group' },
+        { entityRef: 'demo/api', type: 'microservice', parentEntityRef: 'demo/hub' },
+        { entityRef: 'demo/db', type: 'database', parentEntityRef: 'demo/hub' },
+      ],
+      dependencies: [{ from: 'demo/user', to: 'demo/hub', type: 'direct-call' }],
+    };
+
+    expect(expandEndpoints('demo/hub', kernel)).toEqual(['demo/api', 'demo/db']);
+    expect(buildDependents(kernel).get('demo/api')).toContain('demo/user');
+    expect(resolveFaultTargets('demo/hub', kernel)).toEqual(['demo/api', 'demo/db']);
+  });
+
   it('expands group targets on dependency edges', () => {
     expect(expandEndpoints('demo/hub', groupSchema)).toEqual(['demo/api', 'demo/db']);
     expect(expandEndpoints('demo/user', groupSchema)).toEqual(['demo/user']);
