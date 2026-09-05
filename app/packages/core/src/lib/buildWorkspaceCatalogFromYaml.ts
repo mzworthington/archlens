@@ -1,5 +1,5 @@
 import type { C4Level } from '../models/schema.ts';
-import { parseSchemaFromYaml } from '../rules/graphParse.ts';
+import { parseSchemaFromYaml } from '../rules/graph';
 import { resolveWorkspaceEntityRefs } from './entityRef.ts';
 import { buildWorkspaceCatalog, type WorkspaceCatalogEntry } from './workspaceCatalog.ts';
 

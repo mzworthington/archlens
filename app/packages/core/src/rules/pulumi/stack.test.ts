@@ -1,9 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  filterPulumiStackFiles,
-  isPulumiProjectContent,
-  parsePulumiStackToSchema,
-} from './pulumiStack';
+import { filterPulumiStackFiles, isPulumiProjectContent, parsePulumiStackToSchema } from './stack';
 
 describe('pulumiStack', () => {
   it('accepts real Pulumi project metadata and rejects marketplace docs named pulumi.yaml', () => {

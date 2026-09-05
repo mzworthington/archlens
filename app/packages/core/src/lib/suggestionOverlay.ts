@@ -5,8 +5,7 @@ import {
   normalizeRemoteCatalogObjectPath,
   type RemoteCatalogYamlObject,
 } from './remoteCatalogSnapshot';
-import { serializeSchemaToYaml } from '../rules/graphSerialize';
-import { parseSchemaFromYaml } from '../rules/graphParse';
+import { parseSchemaFromYaml, serializeSchemaToYaml } from '../rules/graph';
 import { isEntityRef } from './entityRef';
 
 export const SUGGESTION_OVERLAY_VERSION = 1 as const;

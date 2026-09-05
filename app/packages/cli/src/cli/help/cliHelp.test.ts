@@ -6,7 +6,7 @@ import {
   resolveHelpRequest,
   suggestSubcommand,
   wantsHelpFlag,
-} from './cliHelp.ts';
+} from './index.ts';
 
 describe('cliHelp', () => {
   it('detects help flags', () => {

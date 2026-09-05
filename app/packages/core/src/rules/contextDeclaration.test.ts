@@ -8,7 +8,7 @@ import {
   serializeContextDeclarationToYaml,
 } from './contextDeclaration';
 import { hydrateContextSchema } from './contextHydration';
-import { parseSchemaFromYaml } from './graphParse';
+import { parseSchemaFromYaml } from './graph';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../../');
 

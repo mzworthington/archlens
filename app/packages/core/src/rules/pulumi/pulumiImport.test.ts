@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  parsePulumiToSchema,
-  parsePulumiBatchToSchema,
-  extractPulumiFromMarkdown,
-} from './pulumiImport';
+import { parsePulumiToSchema, parsePulumiBatchToSchema, extractPulumiFromMarkdown } from './index';
 
 describe('parsePulumiToSchema - YAML', () => {
   it('maps a single lambda resource to a scoped node', () => {

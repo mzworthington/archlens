@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { helpRowsFor } from './cliFlagCatalog.ts';
+import { helpRowsFor } from './flagCatalog.ts';
 
 function heading(text: string): void {
   console.log(pc.bold(pc.cyan(`\n${text}`)));

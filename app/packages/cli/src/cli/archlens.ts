@@ -1,8 +1,8 @@
 import { parseArchlensArgv, isUpdateSubcommand } from './parseArchlensArgv.ts';
 import { getArchlensVersion, wantsVersionFlag } from './version.ts';
 import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
-import { assertKnownFlags } from './cliFlagCatalog.ts';
-import { assertKnownSubcommand, printCliHelp, resolveHelpRequest } from './cliHelp.ts';
+import { assertKnownFlags } from './help/flagCatalog.ts';
+import { assertKnownSubcommand, printCliHelp, resolveHelpRequest } from './help/index.ts';
 import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
 import { executeEnrichRun } from './enrichRun.ts';
 import { executePublishRun } from './publishRun.ts';

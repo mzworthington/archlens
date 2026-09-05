@@ -8,7 +8,7 @@ import {
   resolvePublishSkipValidation,
   type ResilienceOutputFormat,
 } from './argvFlags.ts';
-import { FLAG } from './cliFlagCatalog.ts';
+import { FLAG } from './help/flagCatalog.ts';
 import {
   parseCatalogAcceptOverlayArgv,
   parseCatalogComposeArgv,

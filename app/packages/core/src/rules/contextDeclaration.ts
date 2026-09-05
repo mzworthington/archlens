@@ -14,7 +14,7 @@ import {
 import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import { THIRD_PARTY_CLASSIFICATION } from '../taxonomy/nodeOwnership';
 import { CONTEXT_OWNERSHIP_AUTHOR, CONTEXT_OWNERSHIP_PROPERTY } from './contextHydration';
-import { serializeSchemaToYaml } from './graphSerialize';
+import { serializeSchemaToYaml } from './graph';
 
 export type DeclaredPersona = {
   /** Leaf id under the landscape (e.g. `architect`). */

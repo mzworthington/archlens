@@ -1,5 +1,5 @@
-import { normalizeIacSourceFilePath, type InfraEdge, type InfraNode } from './infraIr';
-import { pulumiTypeToProviderType } from './pulumiTypeMap';
+import { normalizeIacSourceFilePath, type InfraEdge, type InfraNode } from '../infraIr';
+import { pulumiTypeToProviderType } from './typeMap';
 
 interface PulumiYamlResource {
   type?: string;

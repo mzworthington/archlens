@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { systemSchemaPublicUrl } from '../models/schemaVersion';
-import { parseMermaidToSchema, extractMermaidFromMarkdown } from './mermaidImport';
+import { systemSchemaPublicUrl } from '../../models/schemaVersion';
+import { parseMermaidToSchema, extractMermaidFromMarkdown } from './index';
 
 describe('parseMermaidToSchema - flowchart', () => {
   it('parses a simple graph TD with nodes and edges', () => {

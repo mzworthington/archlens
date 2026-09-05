@@ -1,11 +1,11 @@
 import { load as parseYaml } from 'js-yaml';
-import type { InfraEdge, InfraIR, InfraNode } from './infraIr';
-import { buildYamlEdges, pushNode, yamlResourcesToNodes } from './pulumiResourceMap';
+import type { InfraEdge, InfraIR, InfraNode } from '../infraIr';
+import { buildYamlEdges, pushNode, yamlResourcesToNodes } from './resourceMap';
 import {
   pulumiTypeToProviderType,
   pythonQualifiedToPulumiType,
   tsQualifiedNameToPulumiType,
-} from './pulumiTypeMap';
+} from './typeMap';
 
 export type PulumiFormat = 'yaml' | 'typescript' | 'python';
 

@@ -1,9 +1,9 @@
-import type { InfraImportOptions } from './infraSchemaMap';
+import type { InfraImportOptions } from '../infraSchemaMap';
 import {
   parsePulumiBatchToSchema,
   type PulumiParseResult,
   type PulumiSourceFile,
-} from './pulumiImport';
+} from './graphEmit';
 
 export type PulumiRuntime = 'yaml' | 'nodejs' | 'python' | 'go' | 'dotnet' | (string & {});
 

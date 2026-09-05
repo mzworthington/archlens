@@ -1,7 +1,7 @@
-import type { SystemSchema } from '../models/schema';
-import { infraIrToSchema, type InfraImportOptions } from './infraSchemaMap';
-import type { InfraEdge, InfraIR, InfraNode } from './infraIr';
-import { buildYamlEdges, yamlResourcesToNodes } from './pulumiResourceMap';
+import type { SystemSchema } from '../../models/schema';
+import { infraIrToSchema, type InfraImportOptions } from '../infraSchemaMap';
+import type { InfraEdge, InfraIR, InfraNode } from '../infraIr';
+import { buildYamlEdges, yamlResourcesToNodes } from './resourceMap';
 import {
   detectFormat,
   parseYamlDocument,
@@ -9,7 +9,7 @@ import {
   typescriptSourceToInfraIR,
   yamlDocumentToInfraIR,
   type PulumiFormat,
-} from './pulumiStackParse';
+} from './stackParse';
 
 export type { PulumiFormat };
 

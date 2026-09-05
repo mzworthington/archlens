@@ -167,7 +167,7 @@ DiffMenu ([`DiffMenu/`](../../app/packages/canvas/src/ui/features/workspace/comp
 
 CompareDialog diffs two **loaded** systems. It is not multi-user OT.
 
-Other core files: [`entityRef.ts`](../../app/packages/core/src/lib/entityRef.ts), [`graph.ts`](../../app/packages/core/src/rules/graph.ts), [`mermaidImport.ts`](../../app/packages/core/src/rules/mermaidImport.ts), [`layoutMerge.ts`](../../app/packages/core/src/rules/layoutMerge.ts).
+Other core files: [`entityRef.ts`](../../app/packages/core/src/lib/entityRef.ts), [`graph/`](../../app/packages/core/src/rules/graph/), [`mermaidImport/`](../../app/packages/core/src/rules/mermaidImport/), [`layoutMerge.ts`](../../app/packages/core/src/rules/layoutMerge.ts).
 
 ### What exists that looks like sharing (and is not)
 

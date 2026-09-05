@@ -1,4 +1,4 @@
-import type { SystemSchema } from '../models/schema';
+import type { SystemSchema } from '../../models/schema';
 
 /**
  * Serializes a SystemSchema model to a Mermaid diagram string.

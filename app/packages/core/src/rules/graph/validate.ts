@@ -3,7 +3,7 @@ import type {
   SystemDependency,
   ValidationResult,
   ValidationIssue,
-} from '../models/schema';
+} from '../../models/schema';
 
 /** Keep first edge per from→to pair (duplicate ids break React Flow / canvas perf). */
 export function dedupeDependencies(deps: SystemDependency[]): SystemDependency[] {

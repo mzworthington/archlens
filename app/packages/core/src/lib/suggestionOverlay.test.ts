@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseSchemaFromYaml } from '../rules/graphParse';
+import { parseSchemaFromYaml } from '../rules/graph';
 import {
   applySuggestionOverlays,
   defaultOverlayId,

@@ -1,7 +1,7 @@
 import * as yaml from 'js-yaml';
 import { z } from 'zod';
-import type { SystemSchema } from '../models/schema.ts';
-import { formatZodError, parseWireDocument } from './graphSchema.ts';
+import type { SystemSchema } from '../../models/schema.ts';
+import { formatZodError, parseWireDocument } from './schema.ts';
 
 export function parseSchemaFromYaml(yamlContent: string): SystemSchema {
   let parsed: unknown;

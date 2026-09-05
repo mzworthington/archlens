@@ -6,8 +6,8 @@ import {
   serializeSchemaToMermaid,
   toSystemSchemaJsonSchema,
   dedupeDependencies,
-} from './graph';
-import type { SystemSchema } from '../models/schema';
+} from './index';
+import type { SystemSchema } from '../../models/schema';
 
 describe('dedupeDependencies', () => {
   it('keeps the first edge for each from→to pair', () => {

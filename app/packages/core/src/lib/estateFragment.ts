@@ -1,5 +1,4 @@
-import { parseSchemaFromYaml } from '../rules/graphParse';
-import { serializeSchemaToYaml } from '../rules/graphSerialize';
+import { parseSchemaFromYaml, serializeSchemaToYaml } from '../rules/graph';
 import type { SystemSchema } from '../models/schema';
 import { preferDisplayName, preferNodeDisplayName } from './displayName';
 import {

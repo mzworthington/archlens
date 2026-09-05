@@ -1,6 +1,6 @@
 import pc from 'picocolors';
-import { FLAG } from './cliFlagCatalog.ts';
-import { getArchlensVersion } from './version.ts';
+import { FLAG } from './flagCatalog.ts';
+import { getArchlensVersion } from '../version.ts';
 import {
   printCatalogHelp,
   printDiffHelp,
@@ -11,7 +11,7 @@ import {
   printScanHelp,
   printUpdateHelp,
   printValidateHelp,
-} from './cliHelpTopics.ts';
+} from './topics.ts';
 
 export type HelpTopic =
   | 'overview'

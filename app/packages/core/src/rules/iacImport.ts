@@ -1,11 +1,12 @@
 import type { SystemSchema } from '../models/schema';
 import type { InfraImportOptions as InfraSchemaImportOptions } from './infraSchemaMap';
-import { parsePulumiBatchToSchema, type PulumiSourceFile } from './pulumiImport';
 import {
+  parsePulumiBatchToSchema,
   parsePulumiStackToSchema,
   readPulumiProjectRuntime,
   type PulumiRuntime,
-} from './pulumiStack';
+  type PulumiSourceFile,
+} from './pulumi';
 import { parseTerraformBatchToSchema, type TerraformSourceFile } from './terraformImport';
 
 export type IacImportOptions = InfraSchemaImportOptions & {

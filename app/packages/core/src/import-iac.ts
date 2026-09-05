@@ -23,4 +23,4 @@ export {
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,
   type PulumiRuntime,
-} from './rules/pulumiStack';
+} from './rules/pulumi';
