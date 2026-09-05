@@ -1,15 +1,83 @@
 import { describe, it, expect } from 'vitest';
+import type { SystemSchema } from '../models/schema';
 import { systemSchemaPublicUrl } from '../models/schemaVersion';
+import { computeImportMergePlan } from './schemaMerge';
 import { parseMermaidToSchema, extractMermaidFromMarkdown } from './mermaidImport';
+
+const FLOWCHART_GATEWAY_DB = `graph TD
+    Gateway["Gateway Node"]
+    DB[("DB Node")]
+    Gateway --> DB`;
+
+const FLOWCHART_LABELED_EDGE = `graph TD
+    A["Service A"] --> |"Query"| B[("Database")]`;
+
+const FLOWCHART_PUBSUB = `graph TD
+    Pub["Publisher"] -.-> Sub["Subscriber"]`;
+
+const FLOWCHART_DIAMOND = `graph TD
+    Q{"Event Queue"}`;
+
+const FLOWCHART_SUBGRAPH = `graph TD
+    subgraph Driving [Driving UI]
+      Canvas[Canvas.tsx]
+    end
+    Canvas --> Store[Store]`;
+
+const FLOWCHART_COMPONENT = `flowchart LR
+    Widget["Widget"]`;
+
+const FLOWCHART_LABEL_DECORATIONS = `graph TD
+    User["👤 Alice"]
+    Ext["Payment API (External)"]`;
+
+const C4_CONTEXT = `C4Context
+    title System Context
+    Person(user, "Banking Customer")
+    System(banking, "Internet Banking System")
+    Rel(user, banking, "Uses")`;
+
+const C4_CONTAINER = `C4Container
+    Person(customer, "Customer")
+    System_Ext(payment, "Payment Gateway")
+    Container(web, "Web App", "React")
+    ContainerDb(db, "Database", "PostgreSQL")
+    Rel(customer, web, "Uses")
+    Rel(web, db, "Reads/Writes")
+    Rel(web, payment, "Pays via")`;
+
+const C4_COMPONENT = `C4Component
+    Container(api, "API")
+    Component(controller, "Controller", "REST")
+    Rel(api, controller, "Delegates")`;
+
+const UNSUPPORTED_SEQUENCE = 'sequenceDiagram\n  A->>B: hello';
+
+const baseWorkspace: SystemSchema = {
+  name: 'Existing',
+  version: '1.0.0',
+  level: 'container',
+  entityRef: 'billing',
+  nodes: [
+    {
+      entityRef: 'billing/gateway',
+      type: 'rest-api',
+      name: 'Gateway',
+      position: { x: 10, y: 20 },
+    },
+    {
+      entityRef: 'billing/auth',
+      type: 'grpc-service',
+      name: 'Auth Service',
+      position: { x: 100, y: 200 },
+    },
+  ],
+  dependencies: [{ from: 'billing/gateway', to: 'billing/auth', type: 'direct-call' }],
+};
 
 describe('parseMermaidToSchema - flowchart', () => {
   it('parses a simple graph TD with nodes and edges', () => {
-    const mermaid = `graph TD
-    Gateway["Gateway Node"]
-  DB[("DB Node")]
-  Gateway --> DB`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(FLOWCHART_GATEWAY_DB, { targetLevel: 'container' });
 
     expect(result.format).toBe('flowchart');
     expect(result.schema.version).toBe(systemSchemaPublicUrl());
@@ -32,10 +100,7 @@ describe('parseMermaidToSchema - flowchart', () => {
   });
 
   it('parses labeled edges with descriptions', () => {
-    const mermaid = `graph TD
-    A["Service A"] --> |"Query"| B[("Database")]`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(FLOWCHART_LABELED_EDGE, { targetLevel: 'container' });
 
     expect(result.schema.dependencies[0]).toMatchObject({
       from: 'a',
@@ -46,19 +111,13 @@ describe('parseMermaidToSchema - flowchart', () => {
   });
 
   it('parses publish-subscribe edges from dotted arrows', () => {
-    const mermaid = `graph TD
-    Pub["Publisher"] -.-> Sub["Subscriber"]`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(FLOWCHART_PUBSUB, { targetLevel: 'container' });
 
     expect(result.schema.dependencies[0].type).toBe('publish-subscribe');
   });
 
   it('infers event-broker from diamond shape', () => {
-    const mermaid = `graph TD
-    Q{"Event Queue"}`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(FLOWCHART_DIAMOND, { targetLevel: 'container' });
 
     expect(result.schema.nodes[0]).toMatchObject({
       entityRef: 'q',
@@ -68,13 +127,7 @@ describe('parseMermaidToSchema - flowchart', () => {
   });
 
   it('parses subgraph blocks into group nodes with parentEntityRef', () => {
-    const mermaid = `graph TD
-    subgraph Driving [Driving UI]
-      Canvas[Canvas.tsx]
-    end
-    Canvas --> Store[Store]`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(FLOWCHART_SUBGRAPH, { targetLevel: 'container' });
 
     expect(result.warnings.some(w => w.toLowerCase().includes('flattened'))).toBe(false);
     expect(result.schema.nodes.find(n => n.entityRef === 'driving')).toMatchObject({
@@ -92,20 +145,13 @@ describe('parseMermaidToSchema - flowchart', () => {
   });
 
   it('defaults component type at component level', () => {
-    const mermaid = `flowchart LR
-    Widget["Widget"]`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'component' });
+    const result = parseMermaidToSchema(FLOWCHART_COMPONENT, { targetLevel: 'component' });
 
     expect(result.schema.nodes[0].type).toBe('component');
   });
 
   it('strips person emoji and (External) suffix from flowchart labels', () => {
-    const mermaid = `graph TD
-    User["👤 Alice"]
-    Ext["Payment API (External)"]`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'context' });
+    const result = parseMermaidToSchema(FLOWCHART_LABEL_DECORATIONS, { targetLevel: 'context' });
 
     expect(result.schema.nodes.find(n => n.entityRef === 'user')).toMatchObject({
       name: 'Alice',
@@ -117,21 +163,21 @@ describe('parseMermaidToSchema - flowchart', () => {
   });
 
   it('throws on unrecognised diagram type', () => {
-    expect(() =>
-      parseMermaidToSchema('sequenceDiagram\n  A->>B: hello', { targetLevel: 'container' })
-    ).toThrow(/unrecognised|unsupported/i);
+    expect(() => parseMermaidToSchema(UNSUPPORTED_SEQUENCE, { targetLevel: 'container' })).toThrow(
+      /unrecognised|unsupported/i
+    );
+  });
+
+  it('throws when mermaid input is empty', () => {
+    expect(() => parseMermaidToSchema('   \n  ', { targetLevel: 'container' })).toThrow(
+      /mermaid input is empty/i
+    );
   });
 });
 
 describe('parseMermaidToSchema - C4', () => {
   it('parses C4Context with Person, System and Rel', () => {
-    const mermaid = `C4Context
-    title System Context
-    Person(user, "Banking Customer")
-    System(banking, "Internet Banking System")
-    Rel(user, banking, "Uses")`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'context' });
+    const result = parseMermaidToSchema(C4_CONTEXT, { targetLevel: 'context' });
 
     expect(result.format).toBe('c4-context');
     expect(result.schema.version).toBe(systemSchemaPublicUrl());
@@ -153,16 +199,7 @@ describe('parseMermaidToSchema - C4', () => {
   });
 
   it('parses C4Container with ContainerDb and external systems', () => {
-    const mermaid = `C4Container
-    Person(customer, "Customer")
-    System_Ext(payment, "Payment Gateway")
-    Container(web, "Web App", "React")
-    ContainerDb(db, "Database", "PostgreSQL")
-    Rel(customer, web, "Uses")
-    Rel(web, db, "Reads/Writes")
-    Rel(web, payment, "Pays via")`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
+    const result = parseMermaidToSchema(C4_CONTAINER, { targetLevel: 'container' });
 
     expect(result.format).toBe('c4-container');
     expect(result.schema.nodes.find(n => n.entityRef === 'db')).toMatchObject({
@@ -175,12 +212,7 @@ describe('parseMermaidToSchema - C4', () => {
   });
 
   it('parses C4Component diagram', () => {
-    const mermaid = `C4Component
-    Container(api, "API")
-    Component(controller, "Controller", "REST")
-    Rel(api, controller, "Delegates")`;
-
-    const result = parseMermaidToSchema(mermaid, { targetLevel: 'component' });
+    const result = parseMermaidToSchema(C4_COMPONENT, { targetLevel: 'component' });
 
     expect(result.format).toBe('c4-component');
     expect(result.schema.level).toBe('component');
@@ -202,6 +234,70 @@ describe('parseMermaidToSchema - C4', () => {
 
     expect(result.schema.dependencies).toEqual([
       expect.objectContaining({ from: 'user', to: 'api', description: 'Calls' }),
+    ]);
+  });
+});
+
+describe('parseMermaidToSchema + computeImportMergePlan', () => {
+  it('treats new flowchart nodes as additions in the conflict preview', () => {
+    const { schema } = parseMermaidToSchema(FLOWCHART_GATEWAY_DB, {
+      targetLevel: 'container',
+      parentEntityRef: 'billing',
+    });
+    const plan = computeImportMergePlan(baseWorkspace, schema);
+
+    expect(schema.nodes.map(n => n.entityRef).sort()).toEqual(['billing/db', 'billing/gateway']);
+    expect(plan.additions.nodes.map(n => n.entityRef)).toEqual(['billing/db']);
+    expect(plan.conflicts).toEqual([
+      expect.objectContaining({
+        entityRef: 'billing/gateway',
+        existing: expect.objectContaining({ type: 'rest-api', name: 'Gateway' }),
+        imported: expect.objectContaining({ type: 'microservice', name: 'Gateway Node' }),
+      }),
+    ]);
+    expect(plan.additions.dependencies).toHaveLength(0);
+    expect(plan.skippedEdges).toEqual([
+      expect.objectContaining({
+        from: 'billing/gateway',
+        to: 'billing/db',
+        type: 'direct-call',
+      }),
+    ]);
+  });
+
+  it('treats identical scoped flowchart nodes as unchanged', () => {
+    const mermaid = `graph TD
+    Gateway["Gateway"]`;
+    const { schema } = parseMermaidToSchema(mermaid, {
+      targetLevel: 'container',
+      parentEntityRef: 'billing',
+      defaultNodeType: 'rest-api',
+    });
+    const plan = computeImportMergePlan(baseWorkspace, schema);
+
+    expect(plan.conflicts).toHaveLength(0);
+    expect(plan.additions.nodes).toHaveLength(0);
+    expect(plan.unchanged.nodes.some(n => n.entityRef === 'billing/gateway')).toBe(true);
+  });
+
+  it('previews C4 additions without inventing parse rules in the merge plan', () => {
+    const { schema } = parseMermaidToSchema(C4_CONTEXT, {
+      targetLevel: 'context',
+      parentEntityRef: 'billing',
+    });
+    const plan = computeImportMergePlan(baseWorkspace, schema);
+
+    expect(plan.additions.nodes.map(n => n.entityRef).sort()).toEqual([
+      'billing/banking',
+      'billing/user',
+    ]);
+    expect(plan.conflicts).toHaveLength(0);
+    expect(plan.additions.dependencies).toEqual([
+      expect.objectContaining({
+        from: 'billing/user',
+        to: 'billing/banking',
+        description: 'Uses',
+      }),
     ]);
   });
 });

@@ -43,4 +43,16 @@ describe('previewMermaidImport', () => {
     expect(preview.parseResult.format).toBe('flowchart');
     expect(preview.mergePlan.additions.nodes.length).toBeGreaterThanOrEqual(1);
   });
+
+  it('rethrows unchanged core parse failures', () => {
+    expect(() =>
+      previewMermaidImport('sequenceDiagram\n  A->>B: hello', {
+        baseSchema,
+        loadedSystems: [{ path: 'blueprint.yaml', name: 'Test Workspace', schema: baseSchema }],
+        currentFilePath: 'blueprint.yaml',
+        workspaceName: 'Test Workspace',
+        isWorkspaceOpen: true,
+      })
+    ).toThrow(/unrecognised|unsupported/i);
+  });
 });
