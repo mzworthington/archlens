@@ -45,7 +45,7 @@ export function TodayJobs({ showHeading = false }: { showHeading?: boolean }) {
               <li key={job.id} className="contents">
                 <button
                   type="button"
-                  className={`flex h-full min-w-0 flex-col rounded-xl border bg-[#040914]/80 p-5 text-left transition-all hover:border-[#00f0ff]/35 hover:bg-[#061125]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/50 ${
+                  className={`flex h-full min-w-0 flex-col rounded-xl border bg-[#040914]/80 p-5 text-left transition-all max-sm:min-h-[3.25rem] max-sm:flex-row max-sm:items-start max-sm:gap-3 sm:order-0 hover:border-[#00f0ff]/35 hover:bg-[#061125]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/50 ${
                     selected
                       ? 'border-[#00f0ff]/40 shadow-[inset_3px_0_0_#00f0ff]'
                       : 'border-[#00f0ff]/10'
@@ -59,12 +59,14 @@ export function TodayJobs({ showHeading = false }: { showHeading?: boolean }) {
                   }}
                 >
                   <span className="flex min-w-0 flex-1 flex-col">
-                    <span className="text-sm font-semibold text-white">{job.title}</span>
+                    <span className="text-sm font-semibold text-white max-sm:text-base max-sm:tracking-tight">
+                      {job.title}
+                    </span>
                     <span className="mt-1 text-sm text-slate-400 leading-relaxed">
                       {presentInlineMarkdown(job.blurb)}
                     </span>
                   </span>
-                  <span className="mt-3 flex items-center gap-1 border-t border-[#00f0ff]/10 pt-3 text-xs font-semibold text-[#00f0ff]">
+                  <span className="mt-3 flex items-center gap-1 border-t border-[#00f0ff]/10 pt-3 text-xs font-semibold text-[#00f0ff] max-sm:mt-0.5 max-sm:max-w-[4.75rem] max-sm:flex-none max-sm:flex-col max-sm:items-end max-sm:gap-0.5 max-sm:border-0 max-sm:pt-0 max-sm:text-right max-sm:leading-tight">
                     <span>{selected ? 'Hide steps' : 'Show steps'}</span>
                     <JobCueIcon expanded={selected} />
                   </span>
@@ -95,15 +97,15 @@ function JobPanel({
 
   return (
     <div
-      className="order-last col-span-full rounded-xl border border-[#00f0ff]/20 bg-[#061125]/70 p-5 sm:p-6"
+      className="rounded-xl border border-[#00f0ff]/20 bg-[#061125]/70 p-5 sm:col-span-full sm:order-last sm:p-6"
       id="job-panel"
       role="region"
       aria-labelledby="job-panel-title"
     >
-      <h3 id="job-panel-title" className="text-base font-semibold text-white">
+      <h3 id="job-panel-title" className="text-base font-semibold text-white max-sm:sr-only">
         {job.title}
       </h3>
-      <p className="mt-2 text-sm text-slate-400 leading-relaxed">{job.why}</p>
+      <p className="mt-2 text-sm text-slate-400 leading-relaxed max-sm:mt-0">{job.why}</p>
       <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-300 leading-relaxed">
         {job.steps.map(step => (
           <li key={step}>{presentInlineMarkdown(step)}</li>
@@ -113,25 +115,25 @@ function JobPanel({
         <span className="shrink-0 text-xs font-mono uppercase tracking-wider text-slate-500">
           Start here:
         </span>
-        <span className="flex min-w-0 flex-1 items-center gap-2">
+        <span className="flex min-w-0 flex-1 items-center gap-2 max-sm:flex-wrap">
           {startHref ? (
             <a
               href={startHref}
-              className="min-w-0 truncate font-mono text-sm text-[#00f0ff] hover:text-white"
+              className="min-w-0 font-mono text-sm text-[#00f0ff] hover:text-white max-sm:whitespace-pre-wrap max-sm:break-words sm:truncate"
             >
               {job.cmd}
             </a>
           ) : (
             <code
               title={job.cmd}
-              className="min-w-0 truncate rounded border border-white/5 bg-slate-950/80 px-2 py-1 font-mono text-sm text-[#00f0ff]"
+              className="min-w-0 rounded border border-white/5 bg-slate-950/80 px-2 py-1 font-mono text-sm text-[#00f0ff] max-sm:whitespace-pre-wrap max-sm:break-words sm:truncate"
             >
               {job.cmd}
             </code>
           )}
           <button
             type="button"
-            className="shrink-0 rounded-lg border border-white/10 px-2.5 py-1 text-xs font-semibold text-slate-200 hover:bg-white/5"
+            className="shrink-0 rounded-lg border border-white/10 px-2.5 py-1 text-xs font-semibold text-slate-200 hover:bg-white/5 max-sm:min-h-10 max-sm:px-3"
             aria-label={`Copy command: ${job.cmd}`}
             onClick={() => {
               void navigator.clipboard?.writeText(job.cmd).then(() => {
@@ -149,7 +151,10 @@ function JobPanel({
           const href = resolveTodayJobHref(action.href);
           return (
             <li key={action.href}>
-              <a href={href} className="text-xs font-semibold text-[#00f0ff] hover:text-white">
+              <a
+                href={href}
+                className="text-xs font-semibold text-[#00f0ff] hover:text-white max-sm:inline-flex max-sm:min-h-10 max-sm:items-center max-sm:text-sm"
+              >
                 {action.label}
               </a>
             </li>

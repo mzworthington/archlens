@@ -3,6 +3,7 @@ import type { SystemSchema, NodePosition } from '../../models/schema.ts';
 import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../../models/schemaVersion.ts';
 import { ENTITY_REF_PATTERN } from '../../lib/entityRef.ts';
 import { getNodePosition } from '../../lib/nodePosition.ts';
+import { nodeForensicsSchema } from '../../forensics/wireSchema.ts';
 
 const nodeTypeSchema = z.enum([
   'person',
@@ -46,44 +47,6 @@ const entityRefStringSchema = z
     ENTITY_REF_PATTERN,
     'entityRef must be alphanumeric, dashes or underscores segments separated by slashes'
   );
-
-const forensicClassificationSchema = z.enum(['hotspot', 'knowledge-silo']);
-
-const coupledFileForensicsSchema = z.object({
-  path: z.string().min(1),
-  score: z.number(),
-  sharedCommits: z.number(),
-});
-
-const forensicAuthorSchema = z.object({
-  email: z.string().min(1),
-  commits: z.number().nonnegative(),
-});
-
-const nodeForensicsSchema = z.object({
-  complexity: z.number().optional(),
-  complexityPeak: z.number().optional(),
-  cognitiveComplexity: z.number().optional(),
-  functionCount: z.number().nonnegative().optional(),
-  loc: z.number().optional(),
-  sloc: z.number().optional(),
-  churn: z.number().optional(),
-  lineChurn: z.number().optional(),
-  churn30: z.number().optional(),
-  churn365: z.number().optional(),
-  churnByWeek: z.array(z.number().nonnegative()).optional(),
-  hotspotScoreByWeek: z.array(z.number().nonnegative()).optional(),
-  authorCount: z.number().optional(),
-  topAuthorPercent: z.number().optional(),
-  authors: z.array(forensicAuthorSchema).optional(),
-  hotspotScore: z.number().optional(),
-  classifications: z.array(forensicClassificationSchema).optional(),
-  coupledFiles: z.array(coupledFileForensicsSchema).optional(),
-  sinceDays: z.number().positive().optional(),
-  fileCount: z.number().optional(),
-  hotspotCount: z.number().optional(),
-  knowledgeSiloCount: z.number().optional(),
-});
 
 const nodeSafeguardsPropertySchema = z.object({
   circuitBreaker: z.boolean().optional(),

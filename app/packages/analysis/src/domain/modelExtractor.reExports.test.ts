@@ -28,15 +28,12 @@ describe('ModelExtractor re-exports', () => {
 
     const { componentDependencies } = extractor.extractGraph([
       tsFile('app/packages/core/src/import-iac.ts', {
-        reExports: [
-          { moduleSpecifier: './rules/terraformImport' },
-          { moduleSpecifier: './rules/iacImport' },
-        ],
+        reExports: [{ moduleSpecifier: './rules/iacImport' }, { moduleSpecifier: './rules/path' }],
       }),
-      tsFile('app/packages/core/src/rules/terraformImport.ts', {
+      tsFile('app/packages/core/src/rules/iacImport.ts', {
         imports: [{ moduleSpecifier: '@cruglobal/js-hcl2' }],
       }),
-      tsFile('app/packages/core/src/rules/iacImport.ts'),
+      tsFile('app/packages/core/src/rules/path.ts'),
     ]);
 
     const fromBarrel = 'blueprint/app/core/import-iac';

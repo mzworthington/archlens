@@ -92,13 +92,10 @@ describe('typescriptGrouping', () => {
 
     it('rolls up files in the same folder to one component', () => {
       const first = resolveTypeScriptComponent(
-        'app/packages/core/src/rules/terraformImport.ts',
-        'terraformImport'
-      );
-      const second = resolveTypeScriptComponent(
         'app/packages/core/src/rules/iacImport.ts',
         'iacImport'
       );
+      const second = resolveTypeScriptComponent('app/packages/core/src/rules/path.ts', 'path');
       expect(first).toEqual({ componentId: 'rules', componentName: 'Rules' });
       expect(second).toEqual(first);
     });
@@ -121,9 +118,9 @@ describe('typescriptGrouping', () => {
       expect(
         resolveRelativeTypeScriptImportPath(
           'app/packages/core/src/import-iac.ts',
-          './rules/terraformImport'
+          './rules/iacImport'
         )
-      ).toBe('app/packages/core/src/rules/terraformImport.ts');
+      ).toBe('app/packages/core/src/rules/iacImport.ts');
 
       expect(
         resolveRelativeTypeScriptImportPath('src/adapters/Canvas.tsx', '../domain/graph')
@@ -140,7 +137,7 @@ describe('typescriptGrouping', () => {
       expect(
         resolveTypeScriptImportComponentId(
           'app/packages/core/src/import-iac.ts',
-          './rules/terraformImport'
+          './rules/iacImport'
         )
       ).toBe('rules');
     });

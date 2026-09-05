@@ -12,14 +12,6 @@
         "KIT_ROOT": "${userHome}/.agents"
       }
     },
-    "context7": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
-    },
     "github": {
       "type": "stdio",
       "command": "npx",
@@ -44,9 +36,13 @@
         "MEMORY_FILE_PATH": "${userHome}/.agents/sync/mcp-memory.jsonl"
       }
     },
-    "linear": {
+    "cloudflare": {
       "type": "http",
-      "url": "https://mcp.linear.app/mcp"
+      "url": "https://mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-observability": {
+      "type": "http",
+      "url": "https://observability.mcp.cloudflare.com/mcp"
     }
   },
   "mcpServers": {
@@ -61,13 +57,6 @@
         "KIT_ROOT": "${userHome}/.agents"
       }
     },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
-    },
     "github": {
       "command": "npx",
       "args": [
@@ -90,8 +79,11 @@
         "MEMORY_FILE_PATH": "${userHome}/.agents/sync/mcp-memory.jsonl"
       }
     },
-    "linear": {
-      "url": "https://mcp.linear.app/mcp"
+    "cloudflare": {
+      "url": "https://mcp.cloudflare.com/mcp"
+    },
+    "cloudflare-observability": {
+      "url": "https://observability.mcp.cloudflare.com/mcp"
     }
   }
 }

@@ -76,6 +76,7 @@ describe('docs link resolution', () => {
     expect(page?.title).toBe('Privacy policy');
     expect(page?.markdown).toMatch(/PostHog/);
     expect(page?.markdown).toMatch(/Cloud EU/);
+    expect(page?.markdown).toMatch(/opt in/i);
     expect(DOCS_SIDEBAR.flatMap(s => s.items).some(i => i.path === '/privacy')).toBe(false);
   });
 

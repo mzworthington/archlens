@@ -15,6 +15,8 @@ describe('TodayJobs', () => {
     const panel = screen.getByRole('region', { name: /i have never used archlens/i });
     expect(within(panel).getByText('Start here:')).toBeInTheDocument();
     expect(first.compareDocumentPosition(panel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(panel.className.split(/\s+/)).toContain('sm:order-last');
+    expect(panel.className.split(/\s+/)).not.toContain('order-last');
 
     fireEvent.click(screen.getByRole('button', { name: /map a folder without installing/i }));
     expect(screen.getByRole('region', { name: /map a folder without installing/i })).toBeTruthy();

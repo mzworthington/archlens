@@ -40,6 +40,7 @@ export default defineConfig({
     env: {
       ...process.env,
       VITE_REMOTE_CATALOG_BASE_URL: '',
+      POSTHOG_TOKEN: process.env.POSTHOG_TOKEN || 'phc_e2e_placeholder',
     },
   },
 });

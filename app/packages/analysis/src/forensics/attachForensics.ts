@@ -1,5 +1,10 @@
-import type { NodeForensics, SystemNode, SystemSchema } from '@archlens/core';
-import { EntityRef } from '@archlens/core';
+import {
+  componentsInContainer,
+  componentsInSystem,
+  type NodeForensics,
+  type SystemNode,
+  type SystemSchema,
+} from '@archlens/core';
 import {
   rollupChurnByWeek,
   rollupForensicAuthors,
@@ -187,16 +192,7 @@ function attachContainerRollups(
 ): SystemNode[] {
   return nodes.map(node => {
     if (node.type !== 'container') return node;
-    const containerId = EntityRef.leaf(node.entityRef);
-    const children = componentNodes.filter(c => {
-      const cid = c.properties?.containerId;
-      if (typeof cid === 'string' && cid === containerId) return true;
-      try {
-        return EntityRef.getParent(c.entityRef) === node.entityRef;
-      } catch {
-        return false;
-      }
-    });
+    const children = componentsInContainer(node, componentNodes);
     const forensics = aggregateNodeForensics(children);
     return forensics ? { ...node, forensics } : node;
   });
@@ -207,10 +203,7 @@ function attachSystemRollups(
   componentNodes: readonly SystemNode[]
 ): SystemNode[] {
   return nodes.map(node => {
-    const prefix = `${node.entityRef}/`;
-    const children = componentNodes.filter(
-      c => c.entityRef === node.entityRef || c.entityRef.startsWith(prefix)
-    );
+    const children = componentsInSystem(node, componentNodes);
     const forensics = aggregateNodeForensics(children);
     return forensics ? { ...node, forensics } : node;
   });

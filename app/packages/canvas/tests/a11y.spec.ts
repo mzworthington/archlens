@@ -10,6 +10,13 @@ test.describe('Accessibility (axe)', () => {
     await expectNoSeriousA11yViolations(page, 'docs home');
   });
 
+  test('analytics consent dialog', async ({ page }) => {
+    await gotoApp(page, '/', { analyticsConsent: 'unset' });
+    const dialog = page.getByRole('dialog', { name: /help us improve archlens/i });
+    await expect(dialog).toBeVisible();
+    await expectNoSeriousA11yViolations(page, 'analytics consent dialog');
+  });
+
   test('privacy policy', async ({ page }) => {
     await gotoApp(page, '/privacy');
     await expectNoSeriousA11yViolations(page, 'privacy policy');

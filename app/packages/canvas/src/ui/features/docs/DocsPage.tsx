@@ -10,6 +10,7 @@ import {
   filterFeatureMarkdown,
 } from './filterFeatureMarkdown';
 import { findDocsPage } from './pages';
+import { AnalyticsPreference } from '../../components/AnalyticsConsent/AnalyticsPreference';
 
 export const DocsPage: React.FC = () => {
   const [location] = useLocation();
@@ -112,6 +113,7 @@ export const DocsPage: React.FC = () => {
         </div>
       ) : null}
       {page.productAction ? <DocsProductCta action={page.productAction} /> : null}
+      {page.path === '/privacy' ? <AnalyticsPreference /> : null}
       <MarkdownView markdown={markdown} fromDir={page.dir} />
     </DocsShell>
   );

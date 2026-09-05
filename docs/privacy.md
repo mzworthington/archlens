@@ -1,6 +1,6 @@
 # Privacy policy
 
-Last updated 3 September 2026.
+Last updated 5 September 2026.
 
 This page says what ArchLens does with information when you use [archlens.dev](https://archlens.dev). It is a plain-language notice, not legal advice.
 
@@ -14,13 +14,15 @@ Share-link collaboration talks to a Worker we host (`collab.archlens.dev`). That
 
 ## Product analytics (PostHog)
 
-The public site uses [PostHog](https://posthog.com) **Cloud EU** (servers in the EU) so we can see which pages people open, how the app is used, errors and session replay of the UI.
+The public site can use [PostHog](https://posthog.com) **Cloud EU** (servers in the EU) so we can see which pages people open, how the app is used, errors and session replay of the UI.
 
-We configure PostHog with **cookieless tracking**: it does not write PostHog cookies or use local/session storage for identity, and we do not call `identify()`. Counts use a privacy-preserving hash on PostHog’s servers.
+We do not start PostHog until you opt in. You can also choose **Don't track me**. Either choice is stored in this browser (`localStorage`) so we do not ask again every visit. You can change it with the control at the top of this page.
 
-That is why this site does not show a cookie banner for PostHog. Cloudflare or the browser may still use their own cookies for hosting, security or the installable app (service worker).
+If you opt in, PostHog uses a **cookie** (and local storage) so repeat visits can be told apart. We still do not call `identify()` and we do not send your name or email. Session replay can still show whatever is on screen in Canvas, so treat diagrams with secrets the way you would a screen share.
 
-We do not use PostHog to store your name or email. Session replay can still show whatever is on screen in Canvas, so treat diagrams with secrets the way you would a screen share.
+If you decline, we do not load PostHog in this browser.
+
+Cloudflare or the browser may still use their own cookies for hosting, security or the installable app (service worker).
 
 PostHog’s own terms and privacy policy apply to data they process for us.
 

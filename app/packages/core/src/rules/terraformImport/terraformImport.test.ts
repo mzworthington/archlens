@@ -3,7 +3,7 @@ import {
   parseTerraformToSchema,
   parseTerraformBatchToSchema,
   extractTerraformFromMarkdown,
-} from './terraformImport';
+} from './index';
 
 describe('parseTerraformToSchema - HCL resources', () => {
   it('maps a single lambda resource to a scoped node', () => {

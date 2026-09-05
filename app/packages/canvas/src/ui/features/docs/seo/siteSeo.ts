@@ -152,7 +152,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/privacy': {
     headline: 'Privacy policy',
     description:
-      'How ArchLens handles diagrams on your device, Cloudflare hosting and cookieless PostHog Cloud EU analytics.',
+      'How ArchLens handles diagrams on your device, Cloudflare hosting and opt-in PostHog Cloud EU analytics.',
   },
 };
 
