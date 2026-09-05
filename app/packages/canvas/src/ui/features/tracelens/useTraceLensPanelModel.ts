@@ -3,10 +3,8 @@ import { useLocation, useSearch } from 'wouter';
 import { useShallow } from 'zustand/react/shallow';
 import { buildChaosRiskContextMap } from '@archlens/core/forensics';
 import { useBlueprintStore } from '../../../application/store/store';
-import {
-  filterRankedEstateItems,
-  rankEstateItems,
-} from '../../../application/recommendations/buildEstateRecommendations';
+import { filterRankedEstateItems } from '../../../application/recommendations/buildEstateRecommendations';
+import { rankEstateItems } from '../../../application/recommendations/rankEstateItems';
 import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
 import {
   findForensicsOffenderByEntityRef,

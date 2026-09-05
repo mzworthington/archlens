@@ -24,6 +24,7 @@ import {
   type OffenderTestFilter,
   type RankedOffender,
 } from '../forensics/rankOffenders';
+import { compareEstateRank, estateRankSignalFrom } from './estateRank';
 
 export type EstateRecommendation = Recommendation & {
   diagramPath: string;
@@ -93,7 +94,9 @@ function mergeEstateRecommendations(
     }
   }
 
-  return [...byId.values()].sort((a, b) => b.priority - a.priority);
+  return [...byId.values()].sort((a, b) =>
+    compareEstateRank(estateRankSignalFrom(a), estateRankSignalFrom(b))
+  );
 }
 
 /**
@@ -186,55 +189,6 @@ export function formatEstateAdviceLensArtifact(
   format: AdviceLensArtifactFormat = 'yaml'
 ): string {
   return formatAdviceLensArtifact(estateRecommendationsToAdviceLensArtifact(report), format);
-}
-
-function offenderFallbackRecommendation(
-  offender: RankedOffender,
-  system: LoadedSystemRef | undefined
-): EstateRecommendation {
-  const priority = Math.round(
-    Math.min(
-      55,
-      (offender.effectiveRefactorScore ?? offender.refactorScore) * 0.35 +
-        offender.hotspotScore * 35 +
-        (offender.compositeRiskScore ?? 0) * 20
-    )
-  );
-
-  return {
-    id: `forensics-fallback:${offender.entityRef}`,
-    kind: 'reduce-composite-risk',
-    source: 'tracelens',
-    targetEntityRef: offender.entityRef,
-    targetName: offender.name,
-    title: 'Review forensics signals',
-    detail:
-      offender.chaosRiskLabel ??
-      `Elevated forensics on ${offender.name} - open the refactor plan or run a failure simulation.`,
-    priority: Math.max(1, priority),
-    evidence: {
-      forensics: {
-        hotspotScore: offender.hotspotScore,
-        refactorScore: offender.refactorScore,
-        effectiveRefactorScore: offender.effectiveRefactorScore,
-        complexity: offender.complexity,
-        churn: offender.churn,
-        authorCount: offender.authorCount,
-        topAuthorPercent: offender.topAuthorPercent,
-        classifications: offender.classifications,
-      },
-      compositeRiskScore: offender.compositeRiskScore,
-    },
-    actions: [
-      {
-        kind: 'review-refactor-plan',
-        label: `Review refactor plan for ${offender.name}`,
-        targetEntityRef: offender.entityRef,
-      },
-    ],
-    diagramPath: offender.schemaPath,
-    diagramName: system?.name ?? offender.parentLabel,
-  };
 }
 
 function matchesScope(schemaLevel: RankedOffender['schemaLevel'], scope: OffenderScope): boolean {
@@ -354,52 +308,6 @@ function matchesRecommendationScope(
     recommendation.targetEntityRef === scopeEntityRef ||
     recommendation.targetEntityRef.startsWith(`${scopeEntityRef}/`)
   );
-}
-
-/**
- * Unified estate ranking: structured recommendations first, then forensics-only fallbacks.
- */
-export function rankEstateItems(
-  systems: readonly LoadedSystemRef[],
-  options: BuildEstateRecommendationsOptions = {}
-): {
-  items: RankedEstateItem[];
-  summary: EstateRecommendationsReport['summary'];
-  diagrams: DiagramResilienceReport[];
-  report: EstateRecommendationsReport;
-} {
-  const report = buildEstateRecommendations(systems, options);
-  const offenders = rankForensicsOffenders(systems, 'components', 'all');
-  const offenderByRef = new Map(offenders.map(offender => [offender.entityRef, offender]));
-  const entitiesWithRecommendations = new Set(
-    report.recommendations.map(recommendation => recommendation.targetEntityRef)
-  );
-
-  const items: RankedEstateItem[] = report.recommendations.map(recommendation => ({
-    recommendation,
-    offender: offenderByRef.get(recommendation.targetEntityRef),
-  }));
-
-  for (const offender of offenders) {
-    if (entitiesWithRecommendations.has(offender.entityRef)) continue;
-    items.push({
-      recommendation: offenderFallbackRecommendation(
-        offender,
-        diagramForEntity(systems, offender.entityRef)
-      ),
-      offender,
-      isFallback: true,
-    });
-  }
-
-  items.sort((a, b) => b.recommendation.priority - a.recommendation.priority);
-
-  return {
-    items,
-    summary: report.summary,
-    diagrams: report.diagrams,
-    report,
-  };
 }
 
 export function filterRankedEstateItems(

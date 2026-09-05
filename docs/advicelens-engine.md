@@ -16,6 +16,7 @@ For using AdviceLens in ArchLens Canvas and the CLI, see the [product guide](./g
 | **Scenario library**  | `app/packages/core/src/recommendations/estateScenarios.ts`             | Default headless chaos scenarios per diagram                |
 | **Narration (stub)**  | `app/packages/core/src/recommendations/narrateRecommendations.ts`      | Phase 5 LLM contract; identity pass without narrator        |
 | **Canvas adapter**    | `app/packages/canvas/src/application/recommendations/`                 | `buildDiagramRecommendations`, `buildEstateRecommendations` |
+| **Estate ranking**    | `app/packages/canvas/src/application/recommendations/estateRank.ts`    | Priority-only sort; copy/narration cannot change order      |
 | **CLI**               | `app/packages/cli/src/cli/resilienceRun.ts`                            | `archlens resilience` estate sweep + gate                   |
 | **Artifact / gate**   | `app/packages/core/src/recommendations/adviceLensArtifact.ts`          | Versioned JSON/YAML report + `evaluateAdviceLensGate`       |
 | **CI action**         | `.github/actions/advicelens-gate/`                                     | PR SLA gate + artifact upload                               |
