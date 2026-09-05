@@ -1,5 +1,5 @@
+import { EntityRef } from '../models/entityIdentity';
 import type { SystemNode } from '../models/schema';
-import { EntityRef } from '../models/schema';
 
 /** Persisted hint: whether `name` was curated or derived from entityRef. */
 export const DISPLAY_NAME_SOURCE_PROPERTY = 'displayNameSource';

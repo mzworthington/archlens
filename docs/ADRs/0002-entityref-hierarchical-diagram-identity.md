@@ -55,5 +55,5 @@ flowchart TD
 ## Links
 
 - Related ADRs: [ADR-0001](./0001-yaml-blueprintspec-as-canonical-format.md)
-- Spec / issue: [BlueprintSpec / entityRef guide](../guide/schema.md); core [`entityRef.ts`](../../app/packages/core/src/lib/entityRef.ts), [`schema.ts`](../../app/packages/core/src/models/schema.ts); [architecture.md](../architecture.md)
+- Spec / issue: [BlueprintSpec / entityRef guide](../guide/schema.md); core [`entityIdentity.ts`](../../app/packages/core/src/models/entityIdentity.ts), [`entityRef.ts`](../../app/packages/core/src/lib/entityRef.ts), [`schema.ts`](../../app/packages/core/src/models/schema.ts); [architecture.md](../architecture.md)
 - Arch norms: hexagonal, DDD, vertical slices (kit `CODING_PHILOSOPHY.md`)

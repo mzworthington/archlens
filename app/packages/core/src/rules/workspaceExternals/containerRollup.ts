@@ -1,5 +1,5 @@
-import type { EntityRef, SystemDependency, SystemSchema } from '../../models/schema';
-import { EntityRef as EntityRefUtil } from '../../models/schema';
+import { EntityRef as EntityRefUtil, type EntityRef } from '../../models/entityIdentity';
+import type { SystemDependency, SystemSchema } from '../../models/schema';
 import { positionExternalNodes } from '../externalNodeLayout';
 import type {
   CrossContainerComponentDep,

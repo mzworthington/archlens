@@ -1,5 +1,5 @@
-import type { EntityRef, SystemSchema } from '../models/schema';
-import { EntityRef as EntityRefUtil } from '../models/schema';
+import { EntityRef as EntityRefUtil, type EntityRef } from '../models/entityIdentity';
+import type { SystemSchema } from '../models/schema';
 import type { ChaosSpecDocument } from '../resilience/chaosSpecDocument';
 import {
   chaosSpecDocumentToRuntime,

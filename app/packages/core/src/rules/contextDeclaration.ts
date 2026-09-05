@@ -1,3 +1,4 @@
+import { EntityRef } from '../models/entityIdentity';
 import type {
   DependencyType,
   NodeType,
@@ -5,7 +6,6 @@ import type {
   SystemNode,
   SystemSchema,
 } from '../models/schema';
-import { EntityRef } from '../models/schema';
 import {
   DISPLAY_NAME_SOURCE_PROPERTY,
   displayNameSourceForDeclaration,

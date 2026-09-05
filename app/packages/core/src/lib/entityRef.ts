@@ -1,4 +1,5 @@
-import type { C4Level, SystemSchema } from '../models/schema.ts';
+import type { C4Level } from '../models/entityIdentity.ts';
+import type { SystemSchema } from '../models/schema.ts';
 import { slugify } from './slug.ts';
 
 /** Shared FQN shape for schema identity and node refs (no file paths). */

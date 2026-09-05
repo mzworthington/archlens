@@ -1,5 +1,5 @@
+import { EntityRef } from '../models/entityIdentity';
 import type { SystemDependency, SystemNode, SystemSchema } from '../models/schema';
-import { EntityRef } from '../models/schema';
 import { preferDisplayName } from '../lib/displayName';
 import { isHumanActorNode, isThirdPartyNode } from '../taxonomy/nodeOwnership';
 

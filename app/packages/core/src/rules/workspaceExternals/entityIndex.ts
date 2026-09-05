@@ -1,4 +1,4 @@
-import { EntityRef as EntityRefUtil, type EntityRef } from '../../models/schema';
+import { EntityRef as EntityRefUtil, type EntityRef } from '../../models/entityIdentity';
 import type { LoadedSystemInput, WorkspaceEntity, WorkspaceEntityIndex } from './types';
 
 /**
