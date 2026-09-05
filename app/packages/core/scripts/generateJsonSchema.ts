@@ -10,7 +10,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SYSTEM_SCHEMA_MAJOR_VERSION } from '../src/models/schemaVersion.ts';
 import { CHAOS_SCHEMA_MAJOR_VERSION } from '../src/models/chaosVersion.ts';
-import { toSystemSchemaJsonSchema } from '../src/rules/graph.ts';
+import { toSystemSchemaJsonSchema } from '../src/models/systemSchema.ts';
 import { toChaosSpecJsonSchema } from '../src/resilience/chaosSpecDocument.ts';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import type { SystemSchema, NodePosition } from '../models/schema.ts';
-import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../models/schemaVersion.ts';
+import type { SystemSchema, NodePosition } from './schema.ts';
+import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from './schemaVersion.ts';
 import { ENTITY_REF_PATTERN } from '../lib/entityRef.ts';
 import { getNodePosition } from '../lib/nodePosition.ts';
 

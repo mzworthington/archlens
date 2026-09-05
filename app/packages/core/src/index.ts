@@ -1,5 +1,6 @@
 export * from './models/schema';
 export * from './models/schemaVersion';
+export * from './models/systemSchema';
 export * from './lib/entityRef';
 export * from './lib/displayName';
 export * from './lib/workspaceCatalog';

@@ -1,27 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import {
-  validateGraph,
-  parseSchemaFromYaml,
-  serializeSchemaToYaml,
-  serializeSchemaToMermaid,
-  toSystemSchemaJsonSchema,
-  dedupeDependencies,
-} from './graph';
-import type { SystemSchema } from '../models/schema';
-
-describe('dedupeDependencies', () => {
-  it('keeps the first edge for each from→to pair', () => {
-    const deps = dedupeDependencies([
-      { from: 'a', to: 'b', type: 'direct-call', description: 'first' },
-      { from: 'a', to: 'b', type: 'direct-call', description: 'dup' },
-      { from: 'a', to: 'c', type: 'read-write' },
-    ]);
-    expect(deps).toEqual([
-      { from: 'a', to: 'b', type: 'direct-call', description: 'first' },
-      { from: 'a', to: 'c', type: 'read-write' },
-    ]);
-  });
-});
+import { parseSchemaFromYaml } from '../rules/graphParse';
+import { serializeSchemaToYaml } from '../rules/graphSerialize';
+import type { SystemSchema } from './schema';
+import { toSystemSchemaJsonSchema } from './systemSchema';
 
 describe('toSystemSchemaJsonSchema', () => {
   it('exports Draft-07 JSON Schema as a v4 object document with metadata', () => {
@@ -44,100 +25,6 @@ describe('toSystemSchemaJsonSchema', () => {
         name: expect.any(Object),
       })
     );
-  });
-});
-
-describe('Graph Validation & Cycle Detection', () => {
-  it('should validate a clean, acyclic graph', () => {
-    const schema: SystemSchema = {
-      name: 'Acyclic System',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'Gateway', type: 'rest-api', name: 'Gateway' },
-        { entityRef: 'AuthService', type: 'grpc-service', name: 'AuthService' },
-        { entityRef: 'SessionDB', type: 'relational-database', name: 'SessionDB' },
-      ],
-      dependencies: [
-        { from: 'Gateway', to: 'AuthService', type: 'direct-call' },
-        { from: 'AuthService', to: 'SessionDB', type: 'read-write' },
-      ],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(true);
-    expect(result.issues).toHaveLength(0);
-  });
-
-  it('should detect a direct cycle (A -> A)', () => {
-    const schema: SystemSchema = {
-      name: 'Self Loop',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [{ entityRef: 'Worker', type: 'serverless-function', name: 'Worker' }],
-      dependencies: [{ from: 'Worker', to: 'Worker', type: 'direct-call' }],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
-    expect(result.issues[0].type).toBe('cycle');
-    expect(result.issues[0].path).toEqual(['Worker', 'Worker']);
-  });
-
-  it('should detect a multi-node cycle (A -> B -> C -> A)', () => {
-    const schema: SystemSchema = {
-      name: 'Circular Services',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'ServiceA', type: 'grpc-service', name: 'Service A' },
-        { entityRef: 'ServiceB', type: 'grpc-service', name: 'Service B' },
-        { entityRef: 'ServiceC', type: 'grpc-service', name: 'Service C' },
-      ],
-      dependencies: [
-        { from: 'ServiceA', to: 'ServiceB', type: 'direct-call' },
-        { from: 'ServiceB', to: 'ServiceC', type: 'direct-call' },
-        { from: 'ServiceC', to: 'ServiceA', type: 'direct-call' },
-      ],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
-    expect(result.issues[0].type).toBe('cycle');
-
-    const path = result.issues[0].path;
-    expect(path).toContain('ServiceA');
-    expect(path).toContain('ServiceB');
-    expect(path).toContain('ServiceC');
-    expect(path![0]).toBe(path![path!.length - 1]);
-  });
-
-  it('should detect cycles in disconnected subgraphs', () => {
-    const schema: SystemSchema = {
-      name: 'Disconnected Cycles',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'A', type: 'rest-api', name: 'A' },
-        { entityRef: 'B', type: 'grpc-service', name: 'B' },
-        { entityRef: 'C', type: 'event-broker', name: 'C' },
-        { entityRef: 'D', type: 'event-broker', name: 'D' },
-      ],
-      dependencies: [
-        { from: 'A', to: 'B', type: 'direct-call' },
-        { from: 'C', to: 'D', type: 'publish-subscribe' },
-        { from: 'D', to: 'C', type: 'publish-subscribe' },
-      ],
-    };
-
-    const result = validateGraph(schema);
-    expect(result.isValid).toBe(false);
-    expect(result.issues).toHaveLength(1);
-    expect(result.issues[0].type).toBe('cycle');
-    expect(result.issues[0].path).toContain('C');
-    expect(result.issues[0].path).toContain('D');
   });
 });
 
@@ -359,57 +246,6 @@ nodes:
     expect(serialized).toContain('isTest: true');
   });
 
-  it('should serialize SystemSchema model to valid Mermaid code and handle keyword conflicts', () => {
-    const schema: SystemSchema = {
-      name: 'Demo System',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'Gateway', type: 'rest-api', name: 'Gateway Node' },
-        { entityRef: 'DB', type: 'relational-database', name: 'DB Node' },
-        { entityRef: 'graph', type: 'background-worker', name: 'graph Service' },
-      ],
-      dependencies: [{ from: 'Gateway', to: 'DB', type: 'direct-call', description: 'Query' }],
-    };
-
-    const mermaidContent = serializeSchemaToMermaid(schema);
-    expect(mermaidContent).toContain('graph TD');
-    expect(mermaidContent).toContain('node_Gateway["Gateway Node"]');
-    expect(mermaidContent).toContain('node_DB[("DB Node")]');
-    expect(mermaidContent).toContain('node_graph["graph Service"]');
-    expect(mermaidContent).toContain('node_Gateway --> |"Query"| node_DB');
-  });
-
-  it('serializes group children into subgraph blocks', () => {
-    const schema: SystemSchema = {
-      name: 'Demo Context',
-      version: '1.0.0',
-      level: 'context',
-      nodes: [
-        { entityRef: 'demo/user', type: 'person', name: 'User' },
-        { entityRef: 'demo/hub', type: 'group', name: 'Product Hub' },
-        {
-          entityRef: 'demo/api',
-          type: 'software-system',
-          name: 'API',
-          parentEntityRef: 'demo/hub',
-        },
-      ],
-      dependencies: [
-        { from: 'demo/user', to: 'demo/hub', type: 'direct-call', description: 'Uses' },
-      ],
-    };
-
-    const mermaid = serializeSchemaToMermaid(schema);
-    expect(mermaid).toContain('subgraph node_demo_hub["Product Hub"]');
-    expect(mermaid).toContain('node_demo_api["API"]');
-    expect(mermaid).toContain('node_demo_user --> |"Uses"| node_demo_hub');
-
-    const imported = parseSchemaFromYaml(serializeSchemaToYaml(schema));
-    const reExported = serializeSchemaToMermaid(imported);
-    expect(reExported).toContain('subgraph node_demo_hub["Product Hub"]');
-  });
-
   it('should accept container node type from CLI-generated schemas', () => {
     const yamlContent = `
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -482,7 +318,7 @@ nodes: []
       expect(() => parseSchemaFromYaml(invalidYaml)).toThrow(/entityRef/);
     });
 
-    it('should serialize C4 properties to valid YAML and Mermaid', () => {
+    it('should serialize C4 properties to valid YAML', () => {
       const schema: SystemSchema = {
         name: 'Workspace Level',
         version: '1.2.0',
@@ -515,10 +351,6 @@ nodes: []
       expect(yamlContent).toContain('level: container');
       expect(yamlContent).toContain('entityRef: billing/web-portal');
       expect(yamlContent).toContain('external: true');
-
-      const mermaid = serializeSchemaToMermaid(schema);
-      expect(mermaid).toContain('node_billing_web_portal_webapp["Web Portal"]');
-      expect(mermaid).toContain('node_billing_web_portal_external_svc["API Service (External)"]');
     });
 
     it('should parse and round-trip node forensics', () => {
