@@ -25,8 +25,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ omits loc/sloc on rollups when no child reports them
 - ✅ rolls up author commits from children
 - ✅ rolls up churnByWeek and churn-weighted ownership from children
+- ✅ rolls up peak hotspotScoreByWeek from children
 - ✅ rolls up dual churn windows from children
-- ✅ rolls up complexity peaks, line churn, and coupled files from children
+- ✅ rolls up complexity peaks, line churn and coupled files from children
 
 #### attachForensicsToSchema
 
@@ -56,7 +57,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ComponentLevelWriter
 
-- ✅ writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes
+- ✅ writes one component schema per container with expected path, entityRef, slugified ids and filtered nodes
 - ✅ includes dependencies touching the container, including cross-container edges
 - ✅ emits rollup drill-down schemas from rollupDrillDown
 - ✅ strips representative filepaths from parent rollups that have drill-down diagrams
@@ -82,10 +83,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ModelExtractor
 
-- ✅ assigns package containers, marks tests, and hydrates node types from markers
+- ✅ assigns package containers, marks tests and hydrates node types from markers
 - ✅ preserves slash segments in rolled-up component entity refs
 - ✅ marks containers as tests when every source file in them is a test
-- ✅ rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies
+- ✅ rolls up C# files by layer, skips boilerplate, types API containers and links dependencies
 - ✅ creates container nodes and edges from csproj references without source files
 
 ### containerLevelWriter
@@ -196,7 +197,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ##### shouldSkipCSharpFile
 
-- ✅ skips GlobalUsings, Migrations, Designer, and ModelSnapshot files
+- ✅ skips GlobalUsings, Migrations, Designer and ModelSnapshot files
 - ✅ keeps architectural sources
 
 ### entityRefContext
@@ -267,11 +268,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ no-ops when no IaC roots exist
 - ✅ projects meaningful Cloudflare externals and hydrates context from seed serves
 
+### iacDiscovery
+
+#### directorySlug
+
+- ✅ slugs the last path segment to lowercase kebab-case
+- ✅ uses fallback when the path has no alphanumeric characters
+- ✅ does not depend on trailing-dash replace chains for punctuation-heavy names
+
+#### slugFromPath
+
+- ✅ returns the scan-root slug when the path is the scan root
+- ✅ slugs nested directories relative to the scan root
+
 ### javaAnalyzer
 
 #### JavaAnalyzer Strategy
 
-- ✅ supports java, kt, and kts
+- ✅ supports java, kt and kts
 - ✅ creates a Java node with correct technology
 - ✅ creates a Kotlin node with correct technology
 - ✅ marks test files
@@ -433,19 +447,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### testPath
 
 - ✅ marks unit test files and test directories
-- ✅ marks .NET, Go, Java, and Python test conventions
+- ✅ marks .NET, Go, Java and Python test conventions
 - ✅ recognises dedicated test-project folder segments
 
 ### treeSitterAstExtract
 
 #### extractParsedSourceFileFromTree
 
-- ✅ extracts TypeScript imports, re-exports, constructors, and calls
+- ✅ extracts TypeScript imports, re-exports, constructors and calls
 - ✅ flags test files from their path
 - ✅ extracts Python imports and capitalised constructor-like calls
-- ✅ extracts Go package clause, imports, and exported constructors
-- ✅ extracts Java package, imports, and object creation
-- ✅ extracts C# namespace, usings, and base types
+- ✅ extracts Go package clause, imports and exported constructors
+- ✅ extracts Java package, imports and object creation
+- ✅ extracts C# namespace, usings and base types
 
 ### typescriptAnalyzer
 
@@ -482,7 +496,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ##### shouldSkipTypeScriptFile
 
-- ✅ skips config, declaration, and setup boilerplate
+- ✅ skips config, declaration and setup boilerplate
 - ✅ skips e2e and unit test trees under packages
 - ✅ keeps architectural sources
 
@@ -507,11 +521,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ## Canvas
 
+### _headers
+
+#### _headers (Cloudflare Pages)
+
+- ✅ keeps version.json uncacheable and HTML revalidating for deploy smoke
+
 ### _redirects
 
-#### _redirects (Cloudflare Pages SPA routing)
+#### _redirects (Cloudflare Pages)
 
-- ✅ canonicalises www, 404s real asset prefixes, and serves /index.html without a pretty-URL 308
+- ✅ canonicalises www, 404s real asset prefixes and serves /index.html without a pretty-URL 308
 
 ### ActionControls
 
@@ -526,8 +546,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ triggers saveActiveDiagram on clicking Save when workspace is open
 - ✅ triggers initSchema on clearing canvas if confirmed
 - ✅ does not trigger initSchema on clearing canvas if not confirmed
+- ✅ hides feature flags from the overflow menu when none are catalogued
 - ✅ disables buttons when isLoading is true
 - ✅ disables undo button when past history is empty, enables and triggers action when filled
+- ✅ disables undo with an explanation while a live room is active
 - ✅ disables redo button when future history is empty, enables and triggers action when filled
 
 ### adviceLensUrl
@@ -562,6 +584,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### AppHeader
 
+- ✅ shows a Beta stage chip on the right of the header
 - ✅ shows a burger menu on mobile and reveals navigation links
 - ✅ closes the mobile menu when a link is selected
 - ✅ closes the mobile menu when Escape is pressed
@@ -577,7 +600,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### applyDocumentHead
 
-- ✅ updates title, description, canonical, robots, and social tags
+- ✅ updates title, description, canonical, robots and social tags
 - ✅ sets noindex for workspace and replaces prior JSON-LD
 
 ### applyRefactorBoundaryAsDraft
@@ -593,6 +616,34 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ loads the diagram and navigates to workspace on success
 - ✅ rejects single-member boundaries
+
+### BlankCanvasFileSave
+
+#### BlankCanvasFileSave
+
+- ✅ lets the user name the diagram and save YAML
+- ✅ saves when Enter is pressed in the name field
+- ✅ says when the diagram is still unsaved
+- ✅ replaces the boot placeholder and follows schema name updates
+
+### blankCanvasSession
+
+#### blankCanvasSession
+
+- ✅ slugs a display name into a workspace entity ref
+- ✅ round-trips a saved session
+- ✅ treats a legacy session without placement as unsaved when it is still the starter file
+- ✅ restores empty-workspace and the persisted named URL, not unrelated deep links
+
+### blankWorkspacePlacement
+
+#### blankWorkspacePlacement
+
+- ✅ keeps a typed name and falls back when the field is blank
+- ✅ does not show the boot placeholder as a workspace name
+- ✅ names file, folder, and unsaved placements
+- ✅ requires an explicit ack before continuing unsaved
+- ✅ asks to save before share while the canvas is still unsaved
 
 ### blastHeatmap
 
@@ -695,6 +746,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders nothing when closed
 - ✅ shows lite vs CLI messaging and dismisses
 
+### BrowserLiteScanProgress
+
+#### BrowserLiteScanProgress
+
+- ✅ shows files versus cap, binding byte budget and a named cancel control
+- ✅ hides the byte line while still discovering files
+
 ### browserNetworkStatus
 
 #### BrowserNetworkStatusAdapter
@@ -706,7 +764,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### describeTruncation
 
-- ✅ explains which budgets truncated the scan
+- ✅ explains which budgets truncated the scan and that git is not included
 
 #### pickSourceDirectory
 
@@ -723,6 +781,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ collects Terraform and Pulumi inputs without counting them as application sources
 - ✅ stops and marks truncated once the cumulative byte budget is exhausted
 - ✅ marks metadata truncation when manifests exceed the metadata budget
+- ✅ reports file and byte progress while walking and reading
 - ✅ aborts the walk when the scan signal is cancelled
 
 ### browserTreeSitterParser
@@ -788,6 +847,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### buildForensicsTrendDashboard
 
 - ✅ builds component-level trends from direct forensics
+- ✅ includes hotspotScoreByWeek direction from the weekly series
 - ✅ rolls up descendant trends for containers
 - ✅ returns undefined when there is no chartable data
 
@@ -811,14 +871,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### buildRefactorPlan
 
 - ✅ collects boundary node inputs from loaded systems
-- ✅ builds boundary, ownership, and suggestions for an offender
+- ✅ builds boundary, ownership and suggestions for an offender
 
 ### buildTraceLensScopeOptions
 
 #### buildTraceLensScopeOptions
 
 - ✅ includes structural entities and offenders with subtree counts
-- ✅ filters options by name, entity ref, or level
+- ✅ filters options by name, entity ref or level
 
 ### bundledChaosSpecCatalog
 
@@ -879,6 +939,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ always shows actors and external dependencies at context level
 - ✅ keeps actors and externals visible under dependency focus at context level
 
+### CanvasZoomReadout
+
+#### CanvasZoomReadout
+
+- ✅ shows the current zoom as a percent on the viewport controls
+
 ### chaosLensUrl
 
 #### chaosLensUrl
@@ -908,7 +974,74 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should show error when applying invalid JSON configuration
 - ✅ should support Mermaid preview toggle and render mock visual preview
 - ✅ should open mermaid import dialog from the mermaid tab
-- ✅ should filter test components from YAML, JSON, and Mermaid views based on showTests state
+- ✅ should filter test components from YAML, JSON and Mermaid views based on showTests state
+
+### CollabCursors
+
+#### CollabCursorMarkers
+
+- ✅ renders peer names as text so markup stays literal
+
+### collabDisplayName
+
+#### collabDisplayName
+
+- ✅ stores a session name and prefills later visits from localStorage
+- ✅ rejects an invalid name without writing storage
+- ✅ notifies subscribers when a name is saved
+
+### CollabNameDialog
+
+#### CollabNameDialog
+
+- ✅ asks a guest to name themselves before joining
+- ✅ sends a labelled room secret so a password manager can fill it
+- ✅ keeps the guest out and names the mismatch
+- ✅ does not render when closed
+
+### collabPresence
+
+#### normalizeCollabDisplayName
+
+- ✅ trims and collapses whitespace
+- ✅ rejects empty, oversized and control characters
+- ✅ keeps markup as literal text
+
+#### presenceFromAwarenessStates
+
+- ✅ counts named peers including self and omits the local cursor
+- ✅ counts a named peer without a cursor and ignores unnamed states
+- ✅ assigns a stable palette color per client id
+
+### collabRoomUrl
+
+#### collabRoomUrl
+
+- ✅ accepts uuid-shaped room ids and rejects junk
+- ✅ parses room from the query string and preserves other params when writing
+
+### collabShareAudience
+
+#### collabShareAudience
+
+- ✅ treats a missing Worker URL as same-browser tabs
+- ✅ treats a configured Worker URL as a joinable room
+
+### CollabShareDialog
+
+#### CollabShareDialog
+
+- ✅ lists who is online and lets you rename before copying the link
+- ✅ lets the host require a labelled secret instead of anyone-with-the-link
+- ✅ says you will be first when the roster is empty
+- ✅ says the room is only other tabs on this machine when there is no Worker
+
+### collabVsDisk
+
+#### collabVsDisk
+
+- ✅ only previews live room vs disk in a folder workspace that is in a room
+- ✅ requires pushing disk back to the room when keeping disk in a live session
 
 ### compareOffenders
 
@@ -922,7 +1055,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### compareSystemSchemas
 
 - ✅ returns empty diff for identical schemas
-- ✅ detects added, modified, and deleted nodes
+- ✅ detects added, modified and deleted nodes
 
 ### computeClientLayout
 
@@ -965,7 +1098,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### countSchemaForensicsMetrics
 
-- ✅ counts diagram-wide externals, tests, and dependencies when nothing is selected
+- ✅ counts diagram-wide externals, tests and dependencies when nothing is selected
 - ✅ counts partners and incident edges for a selected node
 - ✅ returns zeros for an unknown selection
 
@@ -1045,7 +1178,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### diagramState Actions & State Management
 
-- ✅ should initialize with correct default nodes, edges, and schemas
+- ✅ should initialize with correct default nodes, edges and schemas
 - ✅ should successfully add a new node and serialize to YAML
 - ✅ should delete a node and clean up referencing edges
 - ✅ should update a node name and metadata properties
@@ -1071,14 +1204,26 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ logs schema validation warnings only when the issue set changes
 - ✅ does not re-run schema validation on dimensions-only node changes
 
+### diagramViewport
+
+#### formatZoomPercent
+
+- ✅ rounds React Flow zoom to a whole percent
+
+#### viewportForLoadedDiagram
+
+- ✅ zooms an empty canvas out instead of fitting a vacant view
+- ✅ fits populated diagrams without zooming a single node to maxZoom
+
 ### DiffMenu
 
 #### DiffMenu Component
 
 - ✅ is hidden when isOpen is false
 - ✅ renders up to date message when there are no structural differences
-- ✅ displays added, modified, and deleted component nodes and connections
+- ✅ displays added, modified and deleted component nodes and connections
 - ✅ triggers revert schema operations and calls initSchema when Revert is confirmed
+- ✅ names live room vs disk and pushes disk back into the room
 - ✅ triggers commit schema operations and calls saveActiveDiagram when Commit is clicked
 
 ### DocsHome
@@ -1106,10 +1251,21 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### DocsShell
 
-- ✅ shows mobile section scrollers for Start, Surfaces, and Tech
-- ✅ shows header hubs for Start, Surfaces, and Tech
+- ✅ shows mobile section scrollers for Start, Surfaces and Tech
+- ✅ shows header hubs for Start, Surfaces and Tech
 - ✅ shows local section nav on mobile and nested sidebar items when provided
 - ✅ links author credit to mzworthington.co.uk
+- ✅ links Privacy policy to /privacy
+
+### dropResizeObserverLoopCapture
+
+#### dropResizeObserverLoopCapture
+
+- ✅ drops $exception events whose message is a ResizeObserver loop
+- ✅ drops $exception events whose exception list value is a ResizeObserver loop
+- ✅ keeps other $exception events
+- ✅ keeps non-exception events
+- ✅ passes through a null capture
 
 ### elkLayoutAdapter
 
@@ -1125,6 +1281,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ hides while loading
 - ✅ hides when nodes are present
 - ✅ hides for the intentional empty workspace starter
+
+### emptyWorkspaceDraft
+
+#### emptyWorkspaceDraft
+
+- ✅ restores only when the in-memory canvas is empty, no folder is open and the draft has nodes
+- ✅ warns before leaving when a blank-canvas session has nodes and no folder
+- ✅ skips the next restore after an explicit blank reset
+- ✅ claims restore once per page session unless an explicit reset skipped it
 
 ### executeRecommendationAction
 
@@ -1183,6 +1348,37 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resolveRelativeSpecifier
 
 - ✅ resolves relative imports against known paths
+
+### FeatureFlagsDialog
+
+#### FeatureFlagsDialog
+
+- ✅ shows an empty state when no flags are catalogued
+- ✅ does not render when closed
+
+### featureGate
+
+#### feature catalog
+
+- ✅ is empty after live collaboration shipped
+
+#### isFeatureEnabled
+
+- ✅ is off by default
+- ✅ stays enabled from storage
+- ✅ does not leak enablement across flag ids
+- ✅ uses localStorage by default so enable survives a new tab
+- ✅ rejects invalid flag ids
+
+#### setFeatureEnabled
+
+- ✅ persists an enabled flag
+- ✅ clears storage when disabled
+- ✅ ignores invalid flag ids
+
+#### subscribeFeatureFlags
+
+- ✅ notifies listeners when a flag is set
 
 ### fetchSourceFileContent
 
@@ -1271,7 +1467,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ForensicsTrendPanel
 
-- ✅ renders churn, author, and complexity micro charts for rollups
+- ✅ renders churn, author and complexity micro charts for rollups
+- ✅ renders hotspotScore sparkline and getting-worse label
 
 ### GoldenJourneyTour
 
@@ -1331,12 +1528,41 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns parse result and merge plan for new nodes
 
+### initBrowserPostHog
+
+#### initBrowserPostHog
+
+- ✅ does not call the client when analytics is disabled
+- ✅ initialises the client for SPA navigation, replay and error tracking
+
+### initialState
+
+#### createDiagramInitialState
+
+- ✅ boots an empty diagram on the current schema contract, not legacy semver
+
+### injectBuildIdMeta
+
+#### injectBuildIdMeta
+
+- ✅ injects app-build-id into the document head once
+
+#### resolveDeployIdentity
+
+- ✅ uses the full GitHub SHA and a 12-character build id in CI
+- ✅ falls back to VITE_APP_BUILD_ID when GitHub SHA is absent
+
+#### serializeVersionJson
+
+- ✅ emits sha and buildId for live smoke checks
+
 ### ioState
 
 #### ioState Actions & State Management
 
-- ✅ should open workspace, read blueprint.yaml, and mark workspace as open
+- ✅ should open workspace, read blueprint.yaml and mark workspace as open
 - ✅ runs browser repo scan from a mocked source directory and opens generated blueprints
+- ✅ cancels an in-flight browser lite scan without opening a workspace
 - ✅ notifies when the browser cannot pick a source directory
 - ✅ should catalog all systems on open and lazy-load when selecting another
 
@@ -1371,6 +1597,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should return false if saveSchema port operation fails
 - ✅ should return false and log error if saveSchema throws
+- ✅ reloads the written YAML when no folder workspace is open
+- ✅ writes a named blank canvas into a picked folder
 
 ### LayoutEngineControls
 
@@ -1478,6 +1706,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ treats package manifests and csproj as metadata
 - ✅ recognizes Terraform and Pulumi as IaC inputs, not application sources
 
+### liteScanProgress
+
+#### liteScanProgress
+
+- ✅ formats file counts against the cap and walking discovery separately
+- ✅ formats the 8 MB byte budget in decimal megabytes
+- ✅ treats the byte budget as binding after the walk, not during discovery
+- ✅ names each phase for accessible status copy
+
 ### LiveSchemaPreview
 
 #### LiveSchemaPreview
@@ -1522,6 +1759,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders current config and reports changes
 
+### NameBlankWorkspaceDialog
+
+#### NameBlankWorkspaceDialog
+
+- ✅ saves as a file with the typed name
+- ✅ blocks continue unsaved until the risk is acknowledged
+- ✅ disables folder save when the picker is unavailable
+
 ### navigateToWorkspaceEntity
 
 #### navigateToWorkspaceEntity
@@ -1542,7 +1787,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### openChaosSpecOnCanvas
 
-- ✅ navigates to the target diagram, selects it, and applies the ChaosSpec
+- ✅ navigates to the target diagram, selects it and applies the ChaosSpec
 - ✅ runs simulation when requested
 - ✅ fails when the diagram is missing from the workspace catalog
 - ✅ surfaces apply errors after navigation
@@ -1575,6 +1820,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ registers product CTAs for each product guide chapter
 - ✅ resolves in-app AdviceLens entry link
 - ✅ resolves absolute docs paths
+- ✅ registers the privacy policy page without putting it in the Tech sidebar
 - ✅ registers CI workflows and Tech sidebar pages
 - ✅ groups docs nav into Start/Surfaces/Tech hubs and sidebar
 - ✅ marks Start vs Surfaces vs Tech hubs active without colliding on CI workflows
@@ -1591,6 +1837,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ removes HTML comments used as reporter placeholders
 
+### parseTodayJobs
+
+#### docs/today-jobs.md
+
+- ✅ is the source for the landing-page jobs
+
+#### parseTodayJobsMarkdown
+
+- ✅ parses id, title, blurb, why, steps, command and actions
+- ✅ skips headings without an id pipe
+- ✅ treats in-app paths as start links
+
 ### partitionLayoutComponents
 
 #### partitionLayoutComponents
@@ -1604,6 +1862,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ updates entityRef when the slug is unique
 - ✅ keeps the name only when the slug collides
 - ✅ keeps the name only when the slug is unchanged
+
+### posthogConfig
+
+#### resolvePostHogConfig
+
+- ✅ disables capture when the project key is missing
+- ✅ uses the shared reverse-proxy ingest host when the host env is unset
+- ✅ honours POSTHOG_HOST
+- ✅ reports the missing-key message in development without throwing
+- ✅ does not report missing keys in production or tests
 
 ### prerenderHtml
 
@@ -1687,7 +1955,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resetToEmptyWorkspace
 
 - ✅ clears sandbox systems and leaves a blank diagram
-- ✅ switches the right panel to the Catalog tab
+- ✅ promotes the URL entity when the blank canvas is named
 
 ### resilienceState
 
@@ -1779,6 +2047,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resolveDiagramPathsForEntityScope
 
 - ✅ collects home and child diagram paths from the workspace catalog
+
+### restoreEmptyWorkspaceDraft
+
+#### restoreEmptyWorkspaceDraft
+
+- ✅ rehydrates an IndexedDB blank-canvas draft onto the empty workspace
+- ✅ does not restore when a folder workspace is open
+- ✅ does not restore when the in-memory canvas already has nodes
+- ✅ does not restore immediately after an explicit blank start
+- ✅ rehydrates a named saved draft for its workspace URL
 
 ### runBrowserAnalysisWorker
 
@@ -1872,7 +2150,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### SelectedDependencySection
 
-- ✅ shows from/to refs, description, and dangling warning when endpoints missing
+- ✅ shows from/to refs, description and dangling warning when endpoints missing
 - ✅ lets the user edit dependency type
 
 ### sessionLayoutCache
@@ -1900,7 +2178,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ covers the ADR index in the SEO catalog
 - ✅ marks workspace routes as non-indexable with a workspace title
 - ✅ builds a sitemap that lists indexable URLs and omits workspace
-- ✅ builds JSON-LD graph with Organization, WebSite, and SoftwareApplication nodes
+- ✅ builds JSON-LD graph with Organization, WebSite and SoftwareApplication nodes
 
 ### SourceCodeDialog
 
@@ -1911,6 +2189,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows scan system name when present on provenance
 - ✅ renders informative helper card when source preview is unavailable
 - ✅ allows user to save PAT token for private repository access
+- ✅ does not use a javascript: custom repo URL as a link href
+- ✅ builds an https viewer link from a custom GitHub repo URL
+- ✅ ignores javascript: viewer URLs returned by the loader
 
 ### SourceCodeSection
 
@@ -1948,6 +2229,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### TelemetryPanel
 
 - ✅ explains when SLA is unchanged but integrity degraded
+
+### TodayJobs
+
+#### TodayJobs
+
+- ✅ shows steps under the selected job and names the action on each card
+
+### ToolbarShareButton
+
+#### ToolbarShareButton
+
+- ✅ opens a session dialog with who is online instead of copying immediately
+- ✅ shows how many people are in the session
 
 ### TraceLensPanel
 
@@ -2026,14 +2320,34 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### UpdateBanner
 
 - ✅ is hidden when no update is pending
+- ✅ asks the registered service worker to check for updates on mount
 - ✅ shows refresh prompt when the service worker reports an update
 - ✅ dismisses the banner when Later is clicked
+
+### updateCheck
+
+#### startPeriodicUpdateChecks
+
+- ✅ runs a check immediately when the tab is visible
+- ✅ does not check immediately when the tab is hidden
+- ✅ re-checks on the interval while the tab stays visible
+- ✅ skips interval ticks while the tab is hidden
+- ✅ checks again when the tab becomes visible
+- ✅ does not check when visibility fires while still hidden
+- ✅ stops interval and visibility checks after unsubscribe
 
 ### useActiveDiagramEntity
 
 #### useActiveDiagramEntity
 
 - ✅ derives parent entityRef from the active diagram without loading the parent system
+
+### useBlankCanvasUnloadGuard
+
+#### useBlankCanvasUnloadGuard
+
+- ✅ prevents unload when the blank canvas has nodes and no folder is open
+- ✅ does not prevent unload on a truly empty canvas
 
 ### useBundledWorkspaceBootstrap
 
@@ -2043,6 +2357,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ opens the startup chooser on /workspace/ trailing slash without looping
 - ✅ auto-opens sandbox for deep-linked /workspace/<entityRef>
 - ✅ does not reopen the chooser when a workspace is already open
+- ✅ does not auto-open sandbox for /workspace/empty-workspace
+- ✅ restores a named blank-canvas session instead of opening the demo
+- ✅ does not restore an empty-workspace draft when a collab room is present
+- ✅ does not auto-open sandbox when a collab room is in the query
+- ✅ does not open the startup chooser when a collab room is on bare /workspace
 
 ### useChaosSpecDialog
 
@@ -2050,6 +2369,32 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ previews a valid ChaosSpec and applies it on load
 - ✅ generates export YAML from the active scenario
+
+### useCollabRoomSync
+
+#### useCollabRoomSync
+
+- ✅ does not join a room when there is no share link
+- ✅ does not join an invalid room param
+- ✅ waits for a display name before joining a share link
+- ✅ joins after a display name is provided
+- ✅ sends a guest secret when joining a protected room
+- ✅ joins a named session from the URL on a blank canvas
+- ✅ keeps joining while the room stays in the query
+- ✅ leaves the room when the room query is removed
+- ✅ strips the room from the URL when a guest cancels join
+
+### useCollabShareSession
+
+#### useCollabShareSession
+
+- ✅ opens the share dialog
+
+### useFeatureFlag
+
+#### useFeatureFlag
+
+- ✅ re-renders when the flag is toggled in this tab
 
 ### useImportIacDialog
 
@@ -2078,9 +2423,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should not trigger shortcuts when typing in TEXTAREA
 - ✅ should not trigger shortcuts when typing in contenteditable element
 - ✅ should call onUndo when ⌘Z or Ctrl+Z is pressed (not typing)
-- ✅ should call onRedo when ⌘Shift+Z, Ctrl+Shift+Z, ⌘Y, or Ctrl+Y is pressed (not typing)
+- ✅ should call onRedo when ⌘Shift+Z, Ctrl+Shift+Z, ⌘Y or Ctrl+Y is pressed (not typing)
 - ✅ should call onShortcutsOpen when ? is pressed (not typing)
 - ✅ should cleanup event listener on unmount
+
+### useSourceCodeDialog
+
+#### useSourceCodeDialog
+
+- ✅ loads source content when the dialog opens
+- ✅ does not update state after unmount while a source fetch is in flight
 
 ### useTraceLensUrlSync
 
@@ -2109,6 +2461,28 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ opens ChaosSpec picker from browse=chaosspecs and keeps it in the URL
 - ✅ writes browse=chaosspecs when the ChaosSpec picker opens
 
+### vite.config.pwa
+
+#### PWA Workbox navigation fallback (Cloudflare Pages)
+
+- ✅ falls back to / so Workbox never fetches /index.html (Pages pretty-URLs 308 that path)
+
+### websocketCollabTransport
+
+#### collab websocket frames
+
+- ✅ round-trips a sync frame
+- ✅ round-trips an update frame from ArrayBuffer
+
+#### createWebsocketCollabTransport reconnect
+
+- ✅ opens a new socket after close and re-sends sync plus awareness on reopen
+- ✅ forwards local doc updates on the reconnected socket
+- ✅ does not reconnect after dispose
+- ✅ reconnects immediately on an online signal after a dead socket
+- ✅ applies remote updates after reconnect using a stable origin
+- ✅ does not sync the diagram or reconnect after a denied secret
+
 ### WorkspaceDisplayControls
 
 #### WorkspaceDisplayControls
@@ -2123,11 +2497,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### WorkspaceEntryPanel
 
 - ✅ renders the sample strip above Investigate / Collaborate / Ideate as a horizontal row
-- ✅ renders blank-canvas action when provided
+- ✅ hides Collaborate when no share handlers are provided
 - ✅ shows a collapsed CLI panel that expands on toggle
 - ✅ surfaces unsupported-browser feedback for lite scan when folder picker is missing
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens
+- ✅ shows live scan progress and keeps cancel reachable while other actions are disabled
 
 ### workspaceOpenSession
 
@@ -2142,7 +2517,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### WorkspacePage Component
 
-- ✅ should render Explorer, Canvas, and PropertyPanel
+- ✅ should render Explorer, Canvas and PropertyPanel
 - ✅ should support expanding and collapsing left and right side panels
 - ✅ should synchronize workspace system selection from URL params
 - ✅ does not reopen the startup chooser when navigating within the workspace
@@ -2163,6 +2538,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ lists mutually exclusive left-slot panels
 - ✅ resolves active panel within a slot
 
+### WorkspacePanelRail
+
+#### WorkspacePanelRail
+
+- ✅ uses a panel icon when collapsed and no visible Props label
+- ✅ uses a collapse chevron when the panel is open
+
 ### WorkspaceStatusBadges
 
 #### WorkspaceStatusBadges
@@ -2170,8 +2552,34 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ displays the C4 level badge
 - ✅ displays a lite-scan badge when the workspace came from a browser scan
 - ✅ displays valid status badge when validation is successful
+- ✅ does not open the validation dialog from the valid status chip
 - ✅ displays cycle warning validation status badge when cycle is present and opens modal on click
 - ✅ displays schema version warning badge when loaded version mismatches app expectation
+
+### yamlFileNameFromDiagramName
+
+#### yamlFileNameFromDiagramName
+
+- ✅ turns a display name into a yaml filename
+- ✅ falls back when the name is empty
+
+### yjsCollabSessionAdapter
+
+#### createYjsCollabSession
+
+- ✅ hydrates a late joiner from the seeded room
+- ✅ pushes a local node add to the other session
+- ✅ broadcasts named cursors and connected count to the other session
+- ✅ does not seed the diagram when the Worker never admits the socket
+- ✅ does not join without a display name
+
+### yjsSchemaProjection
+
+#### yjsSchemaProjection
+
+- ✅ round-trips a schema through a Y.Doc
+- ✅ merges concurrent node adds from two peers
+- ✅ merges concurrent field edits on the same node without splitting position
 
 ## CLI
 
@@ -2244,7 +2652,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ForensicAnalyzer
 
-- ✅ correlates structure + history, classifies, and reports
+- ✅ correlates structure + history, classifies and reports
+- ✅ attaches weekly hotspotScore series from lookback churn buckets
 - ✅ skips AST for cold files when minChurnForComplexity is set but still counts loc
 - ✅ filters to hotspots only when requested
 
@@ -2304,9 +2713,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### collectGitProvenance
 
-- ✅ collects remote, branch, commit, and scanRoot offset
+- ✅ collects remote, branch, commit and scanRoot offset
 - ✅ returns undefined when not inside a git repository
 - ✅ omits remoteUrl when origin is not configured
+
+### includeGlobPattern
+
+#### parseIncludeGlobPattern
+
+- ✅ extracts brace-group extensions without a quantified `{...}` regex
+- ✅ extracts a single trailing extension
+- ✅ defaults when the pattern has no extension group
+- ✅ does not hang on brace-like prefixes without a closing `}`
 
 ### interactiveGitChoice
 
@@ -2346,7 +2764,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### NodeFileSystemAdapter
 
-- ✅ should verify file exists, write to files, and delete files
+- ✅ should verify file exists, write to files and delete files
 - ✅ should create directories and handle package.json name reading
 - ✅ should support path and directory lookups
 
@@ -2514,11 +2932,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### TreeSitterParserAdapter
 
-- ✅ should parse imports, instantiations, and calls from TypeScript files
-- ✅ should parse imports, instantiations, and calls from Python files
-- ✅ should parse imports, instantiations, and calls from C# files
-- ✅ should parse imports, package, and calls from Java files
-- ✅ should parse imports, package clause, and calls from Go files
+- ✅ should parse imports, instantiations and calls from TypeScript files
+- ✅ should parse imports, instantiations and calls from Python files
+- ✅ should parse imports, instantiations and calls from C# files
+- ✅ should parse imports, package and calls from Java files
+- ✅ should parse imports, package clause and calls from Go files
 - ✅ records C# object creation and base types, not parameter or field type annotations
 
 ### treeSitterWasmPaths
@@ -2535,7 +2953,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### TsMorphParserAdapter
 
-- ✅ should parse imports, instantiations, and calls from TypeScript files
+- ✅ should parse imports, instantiations and calls from TypeScript files
 - ✅ should identify test files correctly
 - ✅ should include files under test directories and mark them as tests
 - ✅ should parse export-from re-exports on barrel files
@@ -2621,6 +3039,60 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ parses --watch and --watch-debounce
 
+## collab
+
+### frames
+
+#### collab websocket frames
+
+- ✅ round-trips a sync frame
+- ✅ rejects empty payloads
+- ✅ round-trips an update frame
+- ✅ round-trips an awareness frame without treating it as durable state
+
+### handleRoomControl
+
+#### handleRoomControl
+
+- ✅ admits after a host claim and refuses a later guest without the secret
+- ✅ broadcasts ended when the host revokes the room
+
+### health
+
+#### collab health
+
+- ✅ only matches GET /health
+- ✅ returns ok and the deployed sha without caching
+- ✅ uses local when the deploy sha is missing
+
+### roomControl
+
+#### roomControl
+
+- ✅ parses a claim from the room creator
+- ✅ rejects malformed control text
+
+### roomPolicy
+
+#### roomPolicy
+
+- ✅ rejects a secret shorter than the minimum
+- ✅ lets the first host claim an open room
+- ✅ keeps the diagram off until a guest presents the matching secret
+- ✅ does not store the plaintext secret
+- ✅ lets the host rejoin with the host token and end the room
+- ✅ expires a room so new joins fail and current guests must be told
+- ✅ does not let a second host steal an already claimed room
+- ✅ treats an unclaimed room as not joinable by a guest
+
+### roomRoute
+
+#### resolveCollabRoomPath
+
+- ✅ returns not-found outside /room/:id
+- ✅ rejects short or illegal room ids
+- ✅ accepts uuid-shaped room ids
+
 ## Core
 
 ### adviceLensArtifact
@@ -2690,7 +3162,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### buildWorkspaceCatalogFromYamlFiles
 
-- ✅ parses YAML, resolves refs, and emits navigation catalog entries
+- ✅ parses YAML, resolves refs and emits navigation catalog entries
 - ✅ reports skipped invalid files via onInvalid
 - ✅ throws when no valid schemas remain
 
@@ -2816,6 +3288,28 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ can apply both classifications
 - ✅ returns empty when neither applies
 
+### collabDocument
+
+#### collabDependencyKey
+
+- ✅ keys a dependency by from, to and type
+- ✅ round-trips the dependency key
+
+#### diffCollabDocuments
+
+- ✅ adds and removes nodes relative to the previous local document only
+- ✅ deletes only keys that disappeared from the previous local document
+
+#### emptyCollabDocument
+
+- ✅ starts on the current schema contract, not legacy semver
+
+#### schemaToCollabDocument / collabDocumentToSchema
+
+- ✅ round-trips SystemSchema including position as one object and source
+- ✅ omits undefined optional node fields instead of storing them as keys
+- ✅ keeps last-write-wins position as a single {x,y} record, not split axes
+
 ### compareBlueprintTrees
 
 #### compareBlueprintTrees
@@ -2828,7 +3322,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### compareSystemSchemas
 
 - ✅ returns empty diff for identical schemas
-- ✅ detects added, modified, and deleted nodes
+- ✅ detects added, modified and deleted nodes
 
 ### compositeRisk
 
@@ -2861,7 +3355,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### assembleContextDeclaration
 
-- ✅ builds personas, system anchors, and third-party externals with synthesized edges
+- ✅ builds personas, system anchors and third-party externals with synthesized edges
 - ✅ serializes a YAML seed with metadata description
 - ✅ derives names from entityRef when omitted
 - ✅ hydrates the committed ArchLens blueprints context seed
@@ -3091,7 +3585,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### aggregateFileHistory
 
-- ✅ computes churn, authorCount, and topAuthorPercent
+- ✅ computes churn, authorCount and topAuthorPercent
 - ✅ includes churnByWeek when sinceDays is provided
 - ✅ filters churn to a shorter window when windowDays is set
 - ✅ aggregates lineChurn from commit numstat when present
@@ -3108,7 +3602,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### golden-journey estate fixture
 
-- ✅ loads estate, platform, and component YAML
+- ✅ loads estate, platform and component YAML
 - ✅ component diagrams expose richer internal graphs
 - ✅ models temporal coupling on Payment Client for Coupling lens demos
 - ✅ models product personas linked to each platform on the estate
@@ -3182,15 +3676,32 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ uses structural-only scores when churn is flat zero
 - ✅ prefers line churn over commit churn when present
 
+### hotspotTrend
+
+#### classifyHotspotScoreTrend
+
+- ✅ returns null when there are fewer than two weeks
+- ✅ labels the last up-to-4 weeks against the previous up-to-4 weeks
+
+#### computeHotspotScoreByWeek
+
+- ✅ returns an empty map when no weekly churn series exist
+- ✅ recomputes relative hotspotScore for each week using current complexity
+- ✅ pads missing later weeks with zero churn
+
+#### formatHotspotScoreTrend
+
+- ✅ uses practitioner labels for direction
+
 ### iacExternalSignificance
 
 #### classifyIacResource
 
 - ✅ classifies Cloudflare Pages as a primary product
 - ✅ classifies Cloudflare R2 bucket as a primary product
-- ✅ classifies DNS, Pages domains, CORS, and custom domains as supporting
+- ✅ classifies DNS, Pages domains, CORS and custom domains as supporting
 - ✅ classifies zone data sources as noise
-- ✅ classifies AWS Lambda, S3, and RDS as primary products
+- ✅ classifies AWS Lambda, S3 and RDS as primary products
 - ✅ classifies AWS IAM and networking helpers as supporting
 - ✅ classifies Azure and GCP primaries
 - ✅ returns null for providers outside known packs
@@ -3342,7 +3853,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### parseMermaidToSchema - C4
 
-- ✅ parses C4Context with Person, System, and Rel
+- ✅ parses C4Context with Person, System and Rel
 - ✅ parses C4Container with ContainerDb and external systems
 - ✅ parses C4Component diagram
 - ✅ parses directed Rel variants and ignores malformed Rel lines
@@ -3488,7 +3999,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### computeRefactorScore
 
-- ✅ weights complexity, churn, and distributed ownership
+- ✅ weights complexity, churn and distributed ownership
 - ✅ treats missing ownership as zero concentration
 
 ### refactorSuggestions
@@ -3520,7 +4031,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ##### Scenario: Successful publish builds an immutable snapshot
 
-- ✅ builds snapshot manifest, latest pointer, and upload object keys
+- ✅ builds snapshot manifest, latest pointer and upload object keys
 
 #### parseRemoteCatalogLatestPointer
 
@@ -3613,7 +4124,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 ##### parse()
 
 - ✅ should correctly parse and slugify a root context reference when parent is not provided
-- ✅ should correctly parse, slugify, and nest under parent reference when parent is provided
+- ✅ should correctly parse, slugify and nest under parent reference when parent is provided
 - ✅ should throw an error if the value input is missing or empty
 
 #### slugify Helper Utility
@@ -3719,11 +4230,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ converts SCP-style git@ URLs to HTTPS
 - ✅ strips .git suffix from HTTPS remotes
 - ✅ returns undefined for empty input
+- ✅ returns undefined for javascript: and other non-http schemes
 
 #### resolveRepoRelativeFilePath
 
 - ✅ joins scanRoot with node filepath when scan root is a subdirectory
 - ✅ returns filepath unchanged when scanRoot is root
+
+#### safeHttpUrl
+
+- ✅ allows http(s) URLs
+- ✅ rejects javascript: and other non-http schemes
 
 ### suggestionOverlay
 
@@ -3800,7 +4317,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### bucketAuthorActivity
 
-- ✅ groups author counts into solo, pair, and team bands
+- ✅ groups author counts into solo, pair and team bands
 
 #### bucketComplexityCounts
 
@@ -3810,6 +4327,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ sums aligned weekly buckets across series
 - ✅ pads shorter series with implicit zeros
+- ✅ returns undefined when no series have data
+
+#### rollupMaxByWeek
+
+- ✅ keeps the peak aligned weekly value across series
 - ✅ returns undefined when no series have data
 
 ### validateBlueprintWorkspace
@@ -3897,6 +4419,67 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ suggests related containers from parent container diagram
 - ✅ suggests cross-container components referenced from other diagrams
 - ✅ suggests unresolved dependency endpoints in the active schema
+
+## deploySmoke
+
+### evaluate
+
+#### cacheBustUrl
+
+- ✅ appends a query so CDN caches cannot hide a stale version.json
+
+#### evaluateCanvasSmoke
+
+- ✅ passes when origin SHA, user path and build id match the promoted commit
+- ✅ fails when the live SHA is a different commit
+- ✅ fails when the user-visible path is not 200
+
+#### evaluateCollabSmoke
+
+- ✅ passes when health reports the promoted SHA
+- ✅ fails when health SHA does not match
+
+#### evaluateRestoredCanvasSmoke
+
+- ✅ treats a different live SHA as a successful restore when the previous SHA was not captured
+
+#### extractAppBuildId
+
+- ✅ reads the injected meta tag from HTML
+- ✅ returns null when the meta tag is missing
+
+#### formatSmokeSummary
+
+- ✅ writes a GitHub step summary for the smoke job
+
+#### parseCollabHealth
+
+- ✅ reads ok and sha from collab /health
+- ✅ rejects a failed or sha-less health body
+
+#### parseVersionDocument
+
+- ✅ reads sha and buildId from live /version.json
+- ✅ rejects a missing or empty sha
+
+### previousIdentity
+
+#### pickPreviousPagesDeploymentId
+
+- ✅ takes the newest successful production deployment as the restore identity
+- ✅ skips preview and failed production rows
+- ✅ returns null when nothing is restorable
+
+#### pickPreviousWorkerVersionId
+
+- ✅ reads the 100% version from the newest deployment
+- ✅ returns null when deployments are empty
+
+#### rollbackPlan
+
+- ✅ restores the captured identity when smoke fails and a previous identity exists
+- ✅ does not restore when smoke passed
+- ✅ fails loud when smoke failed and there is no previous identity
 
 ## Reporters
 
