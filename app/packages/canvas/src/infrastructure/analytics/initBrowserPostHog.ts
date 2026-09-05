@@ -1,5 +1,9 @@
 import posthog from 'posthog-js';
 import { POSTHOG_SDK_DEFAULTS, type PostHogBrowserConfig } from './posthogConfig';
+import {
+  dropResizeObserverLoopExceptions,
+  suppressResizeObserverLoopErrors,
+} from './resizeObserverLoopError';
 
 export type PostHogInitClient = {
   init: (
@@ -11,6 +15,7 @@ export type PostHogInitClient = {
       capture_pageview: 'history_change';
       cookieless_mode: 'always';
       person_profiles: 'never';
+      before_send: typeof dropResizeObserverLoopExceptions;
     }
   ) => unknown;
   startExceptionAutocapture?: () => void;
@@ -25,8 +30,10 @@ const defaultPostHogClient: PostHogInitClient = {
 
 export function initBrowserPostHog(
   config: PostHogBrowserConfig,
-  client: PostHogInitClient = defaultPostHogClient
+  client: PostHogInitClient = defaultPostHogClient,
+  suppressLayoutErrors: () => void = suppressResizeObserverLoopErrors
 ): boolean {
+  suppressLayoutErrors();
   if (!config.enabled) {
     return false;
   }
@@ -37,6 +44,7 @@ export function initBrowserPostHog(
     capture_pageview: 'history_change',
     cookieless_mode: 'always',
     person_profiles: 'never',
+    before_send: dropResizeObserverLoopExceptions,
   });
   client.startExceptionAutocapture?.();
   return true;

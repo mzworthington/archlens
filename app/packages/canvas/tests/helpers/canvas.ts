@@ -21,6 +21,24 @@ async function waitForDiagramIdle(page: Page, timeout = 60_000) {
   }).toPass({ timeout });
 }
 
+export function watchResizeObserverLoopPageErrors(page: Page): string[] {
+  const errors: string[] = [];
+  page.on('pageerror', error => {
+    if (/ResizeObserver loop/i.test(error.message)) {
+      errors.push(error.message);
+    }
+  });
+  return errors;
+}
+
+export async function expectResizeObserverLoopIsHandled(page: Page) {
+  const handled = await page.evaluate(() => {
+    const message = 'ResizeObserver loop completed with undelivered notifications.';
+    return window.onerror?.(message, window.location.href, 1, 1, new Error(message)) === true;
+  });
+  expect(handled).toBe(true);
+}
+
 export async function expectCanvasReady(page: Page, timeout = 60_000): Promise<Locator> {
   await waitForDiagramIdle(page, timeout);
   const nodes = page.locator('.react-flow__node');

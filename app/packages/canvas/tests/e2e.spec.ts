@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { drillIntoFirstZoomable, expectCanvasReady } from './helpers/canvas';
+import {
+  drillIntoFirstZoomable,
+  expectCanvasReady,
+  expectResizeObserverLoopIsHandled,
+  watchResizeObserverLoopPageErrors,
+} from './helpers/canvas';
 import { gotoApp } from './helpers/navigation';
 import { loadSandbox, keepStartupChooserOpen } from './helpers/workspace';
 
@@ -16,6 +21,7 @@ test.describe('Blueprint E2E Journeys', () => {
 
   test('Workspace panels and diagram zoom', async ({ page }) => {
     test.setTimeout(180_000);
+    const resizeObserverLoopErrors = watchResizeObserverLoopPageErrors(page);
     await loadSandbox(page);
 
     const leftPanelButton = page.getByTestId('left-panel-rail');
@@ -49,6 +55,8 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(statusBadges.getByText('context', { exact: true })).toBeVisible({
       timeout: 30_000,
     });
+    await expectResizeObserverLoopIsHandled(page);
+    expect(resizeObserverLoopErrors).toEqual([]);
   });
 
   test('Phone viewport: mobile panel toggles', async ({ page }) => {
