@@ -204,6 +204,116 @@ dependencies: []
     commitWrite.mockRestore();
   });
 
+  it('does not bind a folder when some scan YAML files fail to write', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', "import { service } from './service';\n")];
+        yield ['service.ts', makeFileHandle('service.ts', 'export const service = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'partial-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+    };
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    const folderPort: WorkspacePort = {
+      ...mockWorkspacePort,
+      getDirectoryName: () => 'blueprints',
+      selectDirectory: async () => true,
+      writeFile: async () => true,
+    };
+    useBlueprintStore.setState({ folderWorkspacePort: folderPort });
+
+    expect(await useBlueprintStore.getState().openBrowserLiteScan()).toBe(true);
+    const memoryPort = useBlueprintStore.getState().workspacePort;
+    const scanFiles = await memoryPort.readDirectoryFiles();
+    expect(scanFiles.length).toBeGreaterThan(1);
+    const failPath = scanFiles[1]!.name;
+    const writeFile = vi.fn(async (path: string) => path !== failPath);
+    useBlueprintStore.setState({
+      folderWorkspacePort: { ...folderPort, writeFile },
+    });
+
+    const saved = await useBlueprintStore.getState().persistBrowserLiteScanToFolder();
+    expect(saved).toBe(false);
+    expect(useBlueprintStore.getState().browserLiteSavedToFolder).toBe(false);
+    expect(useBlueprintStore.getState().workspacePort).toBe(memoryPort);
+    expect(useBlueprintStore.getState().isBrowserLitePersistPromptOpen).toBe(true);
+    expect(useBlueprintStore.getState().notification?.title).toBe('Save map failed');
+  });
+
+  it('ignores a second persist while a folder save is already in flight', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', 'export const n = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'overlap-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+    };
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    let releasePicker: () => void = () => undefined;
+    const pickerGate = new Promise<void>(resolve => {
+      releasePicker = resolve;
+    });
+    const selectDirectory = vi.fn(async () => {
+      await pickerGate;
+      return true;
+    });
+    const writeFile = vi.fn(async () => true);
+    useBlueprintStore.setState({
+      folderWorkspacePort: {
+        ...mockWorkspacePort,
+        getDirectoryName: () => 'blueprints',
+        selectDirectory,
+        writeFile,
+      },
+    });
+
+    expect(await useBlueprintStore.getState().openBrowserLiteScan()).toBe(true);
+
+    const first = useBlueprintStore.getState().persistBrowserLiteScanToFolder();
+    await vi.waitFor(() => {
+      expect(selectDirectory).toHaveBeenCalledTimes(1);
+    });
+    const second = await useBlueprintStore.getState().persistBrowserLiteScanToFolder();
+    expect(second).toBe(false);
+    expect(selectDirectory).toHaveBeenCalledTimes(1);
+
+    releasePicker();
+    expect(await first).toBe(true);
+    expect(selectDirectory).toHaveBeenCalledTimes(1);
+  });
+
   it('keeps the scan map in memory when save is declined', async () => {
     const makeFileHandle = (name: string, content: string) => ({
       kind: 'file',

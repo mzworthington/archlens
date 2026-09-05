@@ -35,6 +35,7 @@ export const WorkspacePage: React.FC = () => {
       isBrowserLiteWorkspace && !browserLiteSavedToFolder
         ? () => {
             const state = useBlueprintStore.getState();
+            if (state.isLoading) return;
             if (state.isBrowserLitePersistPromptOpen) {
               void state.persistBrowserLiteScanToFolder();
               return;

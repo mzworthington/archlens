@@ -18,10 +18,12 @@ export function overlayWorkingYamlFiles(
   });
 }
 
+export type YamlWriteResult = { written: string[]; failed: string[] };
+
 export async function writeYamlFilesToWorkspace(
   port: Pick<WorkspacePort, 'writeFile'>,
   files: readonly YamlWorkspaceFile[]
-): Promise<{ written: string[]; failed: string[] }> {
+): Promise<YamlWriteResult> {
   const written: string[] = [];
   const failed: string[] = [];
   for (const file of files) {
@@ -30,6 +32,18 @@ export async function writeYamlFilesToWorkspace(
     else failed.push(file.name);
   }
   return { written, failed };
+}
+
+export function shouldBindFolderAfterWrite(result: YamlWriteResult): boolean {
+  return result.written.length > 0 && result.failed.length === 0;
+}
+
+export function canStartBrowserLitePersist(state: {
+  isBrowserLiteWorkspace: boolean;
+  browserLiteSavedToFolder: boolean;
+  persistInFlight: boolean;
+}): boolean {
+  return state.isBrowserLiteWorkspace && !state.browserLiteSavedToFolder && !state.persistInFlight;
 }
 
 export function browserLiteTraceLensEmptyCopy(isBrowserLiteWorkspace: boolean): string | null {

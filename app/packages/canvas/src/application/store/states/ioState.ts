@@ -54,7 +54,9 @@ import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramNa
 import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSession';
 import { serializeSchemaToYaml } from '@archlens/core';
 import {
+  canStartBrowserLitePersist,
   overlayWorkingYamlFiles,
+  shouldBindFolderAfterWrite,
   writeYamlFilesToWorkspace,
 } from '../../analysis/persistBrowserLiteScan';
 import { createStoreZip, triggerNamedDownload } from '../../../infrastructure/analysis/yamlZip';
@@ -63,6 +65,7 @@ import type { BlueprintStoreSet } from '../store';
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
 let browserLiteScanController: AbortController | null = null;
+let browserLitePersistInFlight = false;
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -521,8 +524,17 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       initSchema,
       setIsLoading,
     } = get();
-    if (!get().isBrowserLiteWorkspace || get().browserLiteSavedToFolder) return false;
+    if (
+      !canStartBrowserLitePersist({
+        isBrowserLiteWorkspace: get().isBrowserLiteWorkspace,
+        browserLiteSavedToFolder: get().browserLiteSavedToFolder,
+        persistInFlight: browserLitePersistInFlight,
+      })
+    ) {
+      return false;
+    }
 
+    browserLitePersistInFlight = true;
     setIsLoading(true);
     try {
       const files = await collectBrowserLiteYamlFiles(get);
@@ -538,15 +550,19 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       const selected = await folderWorkspacePort.selectDirectory();
       if (!selected) return false;
 
-      const { written, failed } = await writeYamlFilesToWorkspace(folderWorkspacePort, files);
-      if (written.length === 0) {
+      const writeResult = await writeYamlFilesToWorkspace(folderWorkspacePort, files);
+      if (!shouldBindFolderAfterWrite(writeResult)) {
         setNotification?.({
           type: 'error',
           title: 'Save map failed',
-          message: 'Could not write Blueprint YAML into that folder.',
+          message:
+            writeResult.failed.length > 0
+              ? `Could not write ${writeResult.failed.join(', ')}. The map stays in memory so you can try again.`
+              : 'Could not write Blueprint YAML into that folder.',
         });
         return false;
       }
+      const { written } = writeResult;
 
       const opened = await loadWorkspaceFromYamlFiles({
         files,
@@ -567,8 +583,8 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         setNotification?.({
           type: 'success',
           title: 'Map saved to folder',
-          message: `Wrote ${written.length} Blueprint YAML file${written.length === 1 ? '' : 's'}${
-            failed.length > 0 ? ` (${failed.length} skipped)` : ''
+          message: `Wrote ${written.length} Blueprint YAML file${
+            written.length === 1 ? '' : 's'
           }. Later edits use draft/commit like other folder workspaces.`,
         });
       }
@@ -582,6 +598,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       });
       return false;
     } finally {
+      browserLitePersistInFlight = false;
       setIsLoading(false);
     }
   },

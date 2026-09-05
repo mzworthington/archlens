@@ -4,7 +4,9 @@ import {
   BROWSER_LITE_TRACE_LENS_EMPTY,
   browserLiteComplexityEmptyCopy,
   browserLiteTraceLensEmptyCopy,
+  canStartBrowserLitePersist,
   overlayWorkingYamlFiles,
+  shouldBindFolderAfterWrite,
   writeYamlFilesToWorkspace,
 } from './persistBrowserLiteScan';
 
@@ -36,6 +38,33 @@ describe('persistBrowserLiteScan', () => {
     expect(writeFile).toHaveBeenCalledTimes(2);
     expect(result.written).toEqual(['context.yaml']);
     expect(result.failed).toEqual(['bad.yaml']);
+    expect(shouldBindFolderAfterWrite(result)).toBe(false);
+    expect(shouldBindFolderAfterWrite({ written: ['context.yaml'], failed: [] })).toBe(true);
+    expect(shouldBindFolderAfterWrite({ written: [], failed: ['context.yaml'] })).toBe(false);
+  });
+
+  it('blocks a second persist while one is already in flight or already saved', () => {
+    expect(
+      canStartBrowserLitePersist({
+        isBrowserLiteWorkspace: true,
+        browserLiteSavedToFolder: false,
+        persistInFlight: false,
+      })
+    ).toBe(true);
+    expect(
+      canStartBrowserLitePersist({
+        isBrowserLiteWorkspace: true,
+        browserLiteSavedToFolder: false,
+        persistInFlight: true,
+      })
+    ).toBe(false);
+    expect(
+      canStartBrowserLitePersist({
+        isBrowserLiteWorkspace: true,
+        browserLiteSavedToFolder: true,
+        persistInFlight: false,
+      })
+    ).toBe(false);
   });
 
   it('does not tell TraceLens that git hotspots exist in a browser-scan tab', () => {
