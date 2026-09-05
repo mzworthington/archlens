@@ -1,81 +1,29 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { WorkspaceCatalogEntry } from '@archlens/core';
-import { loadWorkspaceFromCatalog } from './openWorkspace';
 import { GOLDEN_JOURNEY_CONTAINERS_PATH } from '../../samplesWorkspace';
-
-const v4 = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
-
-const catalog: WorkspaceCatalogEntry[] = [
-  {
-    path: 'advicelens-stress/context.yaml',
-    name: 'AdviceLens Stress',
-    level: 'context',
-    entityRef: 'advicelens-stress',
-    nodeEntityRefs: [],
-  },
-  {
-    path: 'golden-journey/context.yaml',
-    name: 'Samples',
-    level: 'context',
-    entityRef: 'samples',
-    nodeEntityRefs: ['samples/golden-journey'],
-  },
-  {
-    path: GOLDEN_JOURNEY_CONTAINERS_PATH,
-    name: 'Golden Journey Estate',
-    level: 'container',
-    entityRef: 'samples/golden-journey',
-    nodeEntityRefs: ['samples/golden-journey/web'],
-    parentEntityRef: 'samples',
-  },
-  {
-    path: 'other/containers.yaml',
-    name: 'Other',
-    level: 'container',
-    entityRef: 'other',
-    nodeEntityRefs: [],
-  },
-];
-
-const entryYaml = `
-version: ${v4}
-level: container
-metadata:
-  entityRef: samples/golden-journey
-  name: Golden Journey Estate
-nodes:
-  - entityRef: samples/golden-journey/web
-    type: web-app
-    name: Web
-dependencies: []
-`;
+import { loadWorkspaceFromCatalog } from './openWorkspaceFromCatalog';
+import {
+  OPEN_WORKSPACE_CONTAINERS_YAML,
+  createOpenWorkspaceLogger,
+  createOpenWorkspaceWorkingCopy,
+  openWorkspaceCatalogFixture,
+  readOpenWorkspaceFixtureFile,
+} from './openWorkspace.fixtures';
 
 describe('loadWorkspaceFromCatalog', () => {
   const set = vi.fn();
   const initSchema = vi.fn();
-  const logger = {
-    info: vi.fn(),
-    warn: vi.fn(),
-    error: vi.fn(),
-  };
-  const workingCopy = {
-    saveBaselineSchema: vi.fn(async () => {}),
-    saveWorkingSchema: vi.fn(async () => {}),
-    loadWorkingSchema: vi.fn(async () => null),
-  };
+  const logger = createOpenWorkspaceLogger();
+  const workingCopy = createOpenWorkspaceWorkingCopy();
 
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('loads only the entry YAML and installs the prebuilt catalog', async () => {
-    const readFile = vi.fn(async (path: string) => {
-      if (path === GOLDEN_JOURNEY_CONTAINERS_PATH) return entryYaml;
-      throw new Error(`unexpected read: ${path}`);
-    });
+    const readFile = vi.fn(readOpenWorkspaceFixtureFile);
 
     const ok = await loadWorkspaceFromCatalog({
-      catalog,
+      catalog: openWorkspaceCatalogFixture,
       entryPath: GOLDEN_JOURNEY_CONTAINERS_PATH,
       readFile,
       getDirectoryName: () => 'samples',
@@ -94,7 +42,7 @@ describe('loadWorkspaceFromCatalog', () => {
         isWorkspaceOpen: true,
         isSampleWorkspace: true,
         workspaceName: 'samples',
-        workspaceCatalog: catalog,
+        workspaceCatalog: openWorkspaceCatalogFixture,
         currentFilePath: GOLDEN_JOURNEY_CONTAINERS_PATH,
         loadedSystems: [
           expect.objectContaining({
@@ -115,9 +63,9 @@ describe('loadWorkspaceFromCatalog', () => {
   it('throws when the entry path is missing from the catalog', async () => {
     await expect(
       loadWorkspaceFromCatalog({
-        catalog,
+        catalog: openWorkspaceCatalogFixture,
         entryPath: 'missing.yaml',
-        readFile: async () => entryYaml,
+        readFile: async () => OPEN_WORKSPACE_CONTAINERS_YAML,
         getDirectoryName: () => 'samples',
         workingCopy: workingCopy as never,
         logger,
@@ -125,6 +73,24 @@ describe('loadWorkspaceFromCatalog', () => {
         set,
       })
     ).rejects.toThrow(/missing.yaml/i);
+    expect(set).not.toHaveBeenCalled();
+  });
+
+  it('throws when the entry file cannot be read', async () => {
+    await expect(
+      loadWorkspaceFromCatalog({
+        catalog: openWorkspaceCatalogFixture,
+        entryPath: GOLDEN_JOURNEY_CONTAINERS_PATH,
+        readFile: async () => {
+          throw new Error('File not found: golden-journey/containers.yaml');
+        },
+        getDirectoryName: () => 'samples',
+        workingCopy: workingCopy as never,
+        logger,
+        initSchema,
+        set,
+      })
+    ).rejects.toThrow(/File not found/i);
     expect(set).not.toHaveBeenCalled();
   });
 });

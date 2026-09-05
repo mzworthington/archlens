@@ -779,6 +779,20 @@ dependencies: []
       schedulePreload.mockRestore();
     });
 
+    it('surfaces lastError when the sandbox session is denied', async () => {
+      const loadSession = vi
+        .spyOn(sampleWorkspaceLoader, 'loadSampleWorkspaceSession')
+        .mockRejectedValue(new Error('Sandbox catalog denied'));
+
+      const success = await useBlueprintStore.getState().openBundledSample();
+
+      expect(success).toBe(false);
+      expect(useBlueprintStore.getState().lastError).toContain('Sandbox catalog denied');
+      expect(useBlueprintStore.getState().isWorkspaceOpen).toBe(false);
+
+      loadSession.mockRestore();
+    });
+
     it('keeps sample mode when the folder picker is cancelled', async () => {
       useBlueprintStore.setState({
         isWorkspaceOpen: true,

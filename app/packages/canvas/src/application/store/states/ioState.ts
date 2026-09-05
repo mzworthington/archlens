@@ -21,11 +21,10 @@ import {
   EMPTY_COLLAB_PRESENCE,
 } from '../../../core';
 import {
-  loadWorkspaceFromCatalog,
   loadWorkspaceFromDirectory,
+  loadWorkspaceFromSandbox,
   loadWorkspaceFromYamlFiles,
 } from './ioState/openWorkspace';
-import { selectBundledSampleEntryPath } from '../samplesWorkspace';
 import { scheduleBundledBlueprintPreload } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
@@ -328,33 +327,19 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     const openGeneration = beginWorkspaceOpen();
     setIsLoading(SANDBOX_LOADING_MESSAGE);
     try {
-      const session = await loadSampleWorkspaceSession();
-      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
-
-      const catalog = session.catalog;
-      const entryPath = selectBundledSampleEntryPath(catalog);
-      const opened = await loadWorkspaceFromCatalog({
-        catalog,
-        entryPath,
-        readFile: relativePath => session.workspacePort.readFile(relativePath),
-        getDirectoryName: () => session.workspacePort.getDirectoryName(),
+      return await loadWorkspaceFromSandbox({
+        loadSession: loadSampleWorkspaceSession,
         workingCopy: workingCopyPort,
         logger,
         setNotification,
         initSchema,
         set,
-        isSampleWorkspace: true,
         openGeneration,
-        committedPorts: {
-          workspacePort: session.workspacePort,
-          sampleWorkspacePort: session.workspacePort,
+        onOpened: catalog => {
+          // Full peer list stays in catalog; warm ArchLens context + golden/stress YAML.
+          scheduleBundledBlueprintPreload(catalog);
         },
       });
-      if (opened) {
-        // Full peer list stays in catalog; warm ArchLens context + golden/stress YAML.
-        scheduleBundledBlueprintPreload(catalog);
-      }
-      return opened;
     } catch (err) {
       logger.error('Failed to open bundled sample workspace', err);
       set({ lastError: (err as Error).message || 'Failed to open bundled sample workspace' });
