@@ -57,9 +57,7 @@ export class TreeSitterImportGraphAdapter implements ImportGraphPort {
         if (specifiers.length > 0) {
           result.set(normalized, specifiers);
         }
-      } catch {
-        // Skip unreadable files
-      }
+      } catch {}
     }
 
     return result;

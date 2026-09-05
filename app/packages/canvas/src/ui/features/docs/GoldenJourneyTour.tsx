@@ -61,7 +61,7 @@ const STEPS: JourneyStep[] = [
     step: 1,
     title: 'Scan the repository',
     product: 'ArchLens CLI',
-    body: 'Run ArchLens CLI against your codebase to emit BlueprintSpec for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces - catalog, identity, checkout, and billing groups in one context window, sharing a Payment Gateway.',
+    body: 'Run ArchLens CLI against your codebase to emit BlueprintSpec for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces - catalog, identity, checkout and billing groups in one context window, sharing a Payment Gateway.',
     icon: Terminal,
     cli: 'archlens scan ./src --output ./blueprints\narchlens resilience ./blueprints/golden-journey --chaos-specs=./chaos-specs',
     tryLabel: 'CLI guide',
@@ -71,7 +71,7 @@ const STEPS: JourneyStep[] = [
     step: 2,
     title: 'Open the estate context',
     product: 'ArchLens Canvas',
-    body: 'Load Samples to open the Golden Journey estate - personas, storefronts, catalog, identity, checkout, and billing platforms around a shared Payment Gateway. Switch to the Samples context breadcrumb anytime to see persona-only context view.',
+    body: 'Load Samples to open the Golden Journey estate - personas, storefronts, catalog, identity, checkout and billing platforms around a shared Payment Gateway. Switch to the Samples context breadcrumb anytime to see persona-only context view.',
     icon: ScanSearch,
     tryHref: WORKSPACE_ESTATE,
     tryLabel: 'Open Golden Journey estate',
@@ -80,7 +80,7 @@ const STEPS: JourneyStep[] = [
     step: 3,
     title: 'Simulate Payment Gateway outage',
     product: 'ChaosLens',
-    body: 'Toggle Resilience, select Payment Gateway, add a region-outage fault, and run Simulate. Blast radius crosses group boundaries - from the shared gateway through Checkout Platform to Web and Mobile entry points.',
+    body: 'Toggle Resilience, select Payment Gateway, add a region-outage fault and run Simulate. Blast radius crosses group boundaries - from the shared gateway through Checkout Platform to Web and Mobile entry points.',
     icon: ShieldAlert,
     tryHref: WORKSPACE_RESILIENCE,
     tryLabel: 'Open in Resilience mode',
@@ -177,9 +177,9 @@ export const GoldenJourneyTour: React.FC = () => {
           Day in the life: Payment Gateway outage
         </h2>
         <p className="mt-2 max-w-3xl text-sm text-slate-400 leading-relaxed">
-          One estate context window - catalog, identity, checkout, and billing product groups
-          sharing a Payment Gateway - then ChaosLens simulation, AdviceLens ranking, TraceLens
-          refactor evidence, and ChaosSpec export for your RFC.
+          One estate context window - catalog, identity, checkout and billing product groups sharing
+          a Payment Gateway - then ChaosLens simulation, AdviceLens ranking, TraceLens refactor
+          evidence and ChaosSpec export for your RFC.
         </p>
       </div>
 

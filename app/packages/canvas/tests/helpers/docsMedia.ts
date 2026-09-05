@@ -22,9 +22,7 @@ function hasBinary(name: string): boolean {
     try {
       accessSync(path.join(dir, name), constants.X_OK);
       return true;
-    } catch {
-      // try next PATH entry
-    }
+    } catch {}
   }
   return false;
 }

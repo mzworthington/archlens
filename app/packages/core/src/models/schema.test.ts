@@ -84,7 +84,6 @@ describe('End-to-End Schema Validation Test', () => {
     const systemContext = 'My System Context';
     const contextRef = EntityRef.parse(systemContext);
 
-    // Asserting system node properties compile cleanly with slugified references
     const apiRef = EntityRef.parse('Core Gateway', contextRef);
     const cacheRef = EntityRef.parse('Redis Cache', contextRef);
 

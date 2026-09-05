@@ -24,14 +24,12 @@ const DATABASE_IMPORT_MARKERS = [
   'microsoft.entityframeworkcore',
   'npgsql',
   'mysql',
-  // Java / JVM
   'javax.persistence',
   'jakarta.persistence',
   'org.springframework.data',
   'org.hibernate',
   'java.sql',
   'javax.sql',
-  // Go
   'database/sql',
   'github.com/jackc/pgx',
   'gorm.io/gorm',
@@ -57,11 +55,9 @@ const EVENT_IMPORT_MARKERS = [
   'stackexchange.redis',
   'nats',
   '@nestjs/microservices',
-  // Java / JVM
   'org.springframework.kafka',
   'org.springframework.amqp',
   'io.nats',
-  // Go
   'github.com/segmentio/kafka-go',
   'github.com/nats-io/nats.go',
   'github.com/redis/go-redis',
@@ -78,12 +74,10 @@ const API_IMPORT_MARKERS = [
   'django.urls',
   'microsoft.aspnetcore',
   'aspnetcore',
-  // Java / JVM
   'org.springframework.web',
   'javax.ws.rs',
   'jakarta.ws.rs',
   'io.ktor',
-  // Go
   'net/http',
   'github.com/gin-gonic/gin',
   'github.com/gorilla/mux',
@@ -199,7 +193,6 @@ function labelFor(type: NodeType, baseName: string): string {
 export function classifyParsedSource(file: ParsedSourceFile): NodeHydration {
   const pathName = pathAndNameHaystack(file);
 
-  // Import / construction markers (highest confidence when present)
   if (importMatches(file, UI_IMPORT_MARKERS)) {
     return {
       type: 'gateway-api',

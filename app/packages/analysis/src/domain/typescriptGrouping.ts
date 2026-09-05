@@ -71,5 +71,3 @@ export function resolveTypeScriptImportComponentId(
   const baseName = fileName.replace(STRIP_EXTENSION, '');
   return resolveTypeScriptComponent(targetPath, baseName)?.componentId ?? null;
 }
-
-// Re-export for tests that assert monorepo + segment helpers.

@@ -61,7 +61,6 @@ export function useTraceLensUrlSync({
 
   const adviceLensActive = isAdviceLensUrl(location, search);
 
-  // URL → UI (navigation, deep links, back/forward)
   useEffect(() => {
     if (!isEstateLensUrl(location, search)) return;
 
@@ -131,7 +130,6 @@ export function useTraceLensUrlSync({
     refactorPlanOptions,
   ]);
 
-  // UI → URL (user opened/closed plan or source)
   useEffect(() => {
     if (!isEstateLensUrl(location, search)) return;
 

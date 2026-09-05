@@ -56,49 +56,49 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
-    title: 'ArchLens Canvas - Interactive architecture diagrams | ArchLens',
+    title: 'ArchLens Canvas - BlueprintSpec maps in the browser | ArchLens',
     description:
       'ArchLens Canvas is the map over BlueprintSpec: local folders, diagram sync and catalogs published from CI.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {
     headline: 'ArchLens CLI',
-    title: 'ArchLens CLI - Codebase to BlueprintSpec architecture maps | ArchLens',
+    title: 'ArchLens CLI - scan a repo to BlueprintSpec | ArchLens',
     description:
       'ArchLens CLI scans source, discovers systems and dependencies and writes a validated multi-level BlueprintSpec.',
     softwareName: 'ArchLens CLI',
   },
   '/guide/tracelens': {
     headline: 'TraceLens',
-    title: 'TraceLens - Code hotspot forensics on architecture diagrams | ArchLens',
+    title: 'TraceLens - git hotspots on the diagram | ArchLens',
     description:
       'TraceLens overlays git churn, complexity, temporal coupling and blueprint dependency risk on ArchLens diagrams.',
     softwareName: 'TraceLens',
   },
   '/guide/chaoslens': {
     headline: 'ChaosLens',
-    title: 'ChaosLens - Architecture failure simulation without production risk | ArchLens',
+    title: 'ChaosLens - simulate failures on the open map | ArchLens',
     description:
       'ChaosLens simulates what-if failures on your BlueprintSpec in the browser: blast radius and SLA bands, without a game day in production.',
     softwareName: 'ChaosLens',
   },
   '/guide/advicelens': {
     headline: 'AdviceLens',
-    title: 'AdviceLens - Ranked architecture fix recommendations | ArchLens',
+    title: 'AdviceLens - ranked fixes from TraceLens and ChaosLens | ArchLens',
     description:
       'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked action list for the studio and CI.',
     softwareName: 'AdviceLens',
   },
   '/guide/schema': {
     headline: 'BlueprintSpec',
-    title: 'BlueprintSpec - Architecture contract schema | ArchLens',
+    title: 'BlueprintSpec - architecture contract schema | ArchLens',
     description:
       'BlueprintSpec is the ArchLens architecture contract for systems, containers, components and entityRef-linked diagrams.',
     softwareName: 'BlueprintSpec',
   },
   '/guide/chaos-spec': {
     headline: 'ChaosSpec',
-    title: 'ChaosSpec - Versioned chaos scenarios for architecture diagrams | ArchLens',
+    title: 'ChaosSpec - versioned failure scenarios | ArchLens',
     description:
       'ChaosSpec targets BlueprintSpec diagrams so ChaosLens failure scenarios stay versioned beside your architecture.',
     softwareName: 'ChaosSpec',
@@ -176,7 +176,7 @@ export function resolvePageSeo(pathname: string): PageSeo {
       headline: 'ArchLens Canvas workspace',
       title: 'ArchLens Canvas workspace | ArchLens',
       description:
-        'Open the ArchLens Canvas workspace to author BlueprintSpec diagrams and run TraceLens, ChaosLens and AdviceLens.',
+        'Open ArchLens Canvas to author BlueprintSpec diagrams and run TraceLens, ChaosLens and AdviceLens.',
       canonicalUrl: `${SITE_ORIGIN}/workspace`,
       ogImageUrl: SITE_SOCIAL_IMAGE,
       indexable: false,

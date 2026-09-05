@@ -10,7 +10,6 @@ import type { SystemSchema } from '@archlens/core';
 
 describe('db.ts - IndexedDB Client Operations', () => {
   beforeEach(async () => {
-    // Clear all collections before each test to ensure isolation
     await db.originalNodes.clear();
     await db.workingNodes.clear();
     await db.originalDependencies.clear();
@@ -194,11 +193,9 @@ describe('db.ts - IndexedDB Client Operations', () => {
     };
     await saveWorkingSchema('blueprints/sys.yaml', updatedSchema, 'backstage', sampleNodeRefMap);
 
-    // Verify draft has been modified first
     const diffBefore = await computeSchemaDiff('blueprints/sys.yaml');
     expect(diffBefore.nodes.modified).toHaveLength(1);
 
-    // Execute revert
     const restored = await revertWorkingSchema(
       'blueprints/sys.yaml',
       'Sample System',
@@ -206,14 +203,12 @@ describe('db.ts - IndexedDB Client Operations', () => {
       'component'
     );
 
-    // Verify returned schema matches original
     expect(restored.name).toBe('Sample System');
     expect(restored.nodes).toHaveLength(2);
     const restoredService = restored.nodes.find(n => n.entityRef === 'backstage/catalog/service-a');
     expect(restoredService?.name).toBe('Service A');
     expect(restored.dependencies).toHaveLength(1);
 
-    // Verify DB working state is reset
     const diffAfter = await computeSchemaDiff('blueprints/sys.yaml');
     expect(diffAfter.nodes.added).toHaveLength(0);
     expect(diffAfter.nodes.modified).toHaveLength(0);

@@ -11,7 +11,6 @@ export class BaseWriter {
   async writeYaml(pathName: string, schema: SystemSchema): Promise<void> {
     const output = serializeSchemaToYaml(schema);
 
-    // Ensure parent directory exists
     const normalizedPath = pathName.replace(/\\/g, '/');
     const lastSlash = normalizedPath.lastIndexOf('/');
     if (lastSlash !== -1) {

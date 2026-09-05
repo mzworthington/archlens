@@ -29,9 +29,7 @@ export class NodeFileSystemAdapter implements AnalysisFileSystemPort {
         const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
         return pkg.name || null;
       }
-    } catch {
-      // ignore
-    }
+    } catch {}
     return null;
   }
 

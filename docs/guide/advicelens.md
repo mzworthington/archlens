@@ -1,6 +1,6 @@
 # AdviceLens
 
-**AdviceLens** ranks what to change. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into an ordered list: what to fix first, and why.
+**AdviceLens** ranks what to change. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into an ordered list: what to fix first and why.
 
 AdviceLens **Core** is deterministic. Priority and evidence come from simulation and forensics, not a chatbot. Optional **Narration** (Phase 5) can enrich detail text with LLM-generated fixes grounded on that evidence, without changing rank order.
 
@@ -12,7 +12,7 @@ AdviceLens **Core** is deterministic. Priority and evidence come from simulation
 | ChaosLens  | What fails and how far does damage spread?     |
 | AdviceLens | What should we fix first, and why?             |
 
-TraceLens and ChaosLens **observe**. AdviceLens **prescribes** - synthesizing their signals into comparable recommendations with evidence.
+TraceLens and ChaosLens **observe**. AdviceLens **prescribes** - it turns their signals into comparable recommendations with evidence.
 
 ## Where to see AdviceLens
 

@@ -56,9 +56,7 @@ export function parseNpmWorkspaces(packageJsonText: string): string[] {
     if (pkg.workspaces && Array.isArray(pkg.workspaces.packages)) {
       return pkg.workspaces.packages;
     }
-  } catch {
-    // ignore
-  }
+  } catch {}
   return [];
 }
 
@@ -112,9 +110,7 @@ export function readPackageName(cwd: string, fs: SystemDiscoveryFs): string | un
       const name = JSON.parse(text).name as string | undefined;
       if (!name || name === 'root') continue;
       return name.includes('/') ? name.split('/').pop() : name;
-    } catch {
-      // try next candidate
-    }
+    } catch {}
   }
   return undefined;
 }

@@ -28,7 +28,6 @@ export class GoAnalyzer implements LanguageAnalyzer {
   ): ContainerInfo | null {
     // Go packages live at the immediate parent directory of the file.
     const parts = normalizedPath.split('/');
-    // Remove the filename
     const dirParts = parts.slice(0, -1);
 
     // Skip generic top-level directories shared across all Go projects.

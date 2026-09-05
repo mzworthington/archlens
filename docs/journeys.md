@@ -10,7 +10,7 @@ The interactive golden journey lives at **`/journeys`** in ArchLens Canvas.
 | Checkout API components           | `samples/golden-journey/checkout-platform/checkout-api-components.yaml` |
 | ChaosSpec                         | `chaos-specs/golden-journey-payment-gateway-outage.yaml`                |
 
-The estate diagram places **Catalog**, **Identity**, **Checkout**, and **Billing** product groups in one context window. Checkout and Billing share an external **Payment Gateway** - the demo outage and AdviceLens circuit-breaker ranking.
+The estate diagram places **Catalog**, **Identity**, **Checkout** and **Billing** product groups in one context window. Checkout and Billing share an external **Payment Gateway** - the demo outage and AdviceLens circuit-breaker ranking.
 
 Source of truth: `samples/golden-journey/`.
 

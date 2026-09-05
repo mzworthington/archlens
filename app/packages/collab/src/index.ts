@@ -74,9 +74,7 @@ export class CollabRoom {
       try {
         peer.send(payload);
         peer.close(1000, reason);
-      } catch {
-        // Peer already gone.
-      }
+      } catch {}
     }
   }
 

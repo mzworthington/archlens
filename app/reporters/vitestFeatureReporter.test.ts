@@ -88,7 +88,6 @@ describe('VitestFeatureReporter', () => {
     expect(md).toContain('✅ collapses the side panels');
     expect(md).toContain('✅ parses refs');
     expect(md).not.toContain('computes layout coordinates');
-    // Packages sorted alphabetically: Canvas before Core
     expect(md.indexOf('## Canvas')).toBeLessThan(md.indexOf('## Core'));
     // Prettier-compatible list markers and heading spacing
     expect(md).toMatch(/\n- ✅ collapses the side panels\n/);

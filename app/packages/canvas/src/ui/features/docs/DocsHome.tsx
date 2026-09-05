@@ -77,7 +77,7 @@ const PRODUCTS: Product[] = [
   {
     title: 'ChaosLens',
     tagline: 'Break a service on the map',
-    details: 'Fault a service on the map you have open. See what else fails. Production stays up.',
+    details: 'Fault a service on the open map. See what else fails. Production stays up.',
     href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,

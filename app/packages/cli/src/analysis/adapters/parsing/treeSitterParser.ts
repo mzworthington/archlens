@@ -45,9 +45,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
             results.push(filePath);
           }
         }
-      } catch {
-        // Skip files that throw stat errors (e.g. broken symlinks)
-      }
+      } catch {}
     });
     return results;
   }

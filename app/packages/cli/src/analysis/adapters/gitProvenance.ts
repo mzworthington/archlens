@@ -42,9 +42,7 @@ export async function collectGitProvenance(
     try {
       const rawRemote = await runGit(execFile, ['remote', 'get-url', 'origin'], gitRoot);
       remoteUrl = normalizeGitRemoteUrl(rawRemote);
-    } catch {
-      // origin may be unset
-    }
+    } catch {}
 
     let defaultBranch: string | undefined;
     try {
@@ -57,9 +55,7 @@ export async function collectGitProvenance(
     } catch {
       try {
         defaultBranch = await runGit(execFile, ['branch', '--show-current'], gitRoot);
-      } catch {
-        // detached HEAD or empty repo
-      }
+      } catch {}
     }
 
     const scannedAtCommit = await runGit(execFile, ['rev-parse', 'HEAD'], gitRoot);

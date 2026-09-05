@@ -333,7 +333,6 @@ describe('attachForensicsToSchema', () => {
     };
 
     const withComponents = attachForensicsToSchema(components, new Map());
-    // components already have forensics; attach with empty map keeps existing when joining by filepath miss - actually join overwrites only when match. Keep existing.
 
     const next = attachForensicsToSchema(containers, new Map(), {
       componentNodes: withComponents.nodes,

@@ -178,9 +178,7 @@ export class VitestFeatureReporter implements Reporter {
     };
   }
 
-  onInit(): void {
-    // no-op - report is written in onTestRunEnd
-  }
+  onInit(): void {}
 
   async onTestRunEnd(testModules: ReadonlyArray<TestModule> = []): Promise<void> {
     await generateFeaturesUnitReport(testModules, this.options);

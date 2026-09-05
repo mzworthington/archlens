@@ -20,9 +20,7 @@ export function createGitignoreFilter(cwd: string = process.cwd()): Ignore {
       try {
         const content = fs.readFileSync(gitignorePath, 'utf8');
         ig.add(content);
-      } catch {
-        // ignore unreadable files
-      }
+      } catch {}
     }
 
     const parent = path.dirname(dir);

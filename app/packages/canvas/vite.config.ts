@@ -24,7 +24,6 @@ const appPackageVersion = JSON.parse(
   fs.readFileSync(path.join(canvasPackageRoot, 'package.json'), 'utf8')
 ).version as string;
 
-// https://vite.dev/config/
 export default defineConfig({
   base,
   // Project API key is a public phc_ token; expose only POSTHOG_TOKEN / POSTHOG_HOST.

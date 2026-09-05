@@ -10,20 +10,16 @@ import {
 } from '../../../../../application/search/searchWorkspaceNodes';
 
 export interface UseSearchbarReturn {
-  // State
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   activeIndex: number;
-  // Refs
   containerRef: React.RefObject<HTMLDivElement | null>;
   inputRef: React.RefObject<HTMLInputElement | null>;
   resultsMenuRef: React.RefObject<HTMLDivElement | null>;
-  // Derived
   filteredNodes: WorkspaceSearchHit[];
   kbdText: string;
-  // Handlers
   handleSelectNode: (entityRef: string) => void;
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }

@@ -58,9 +58,7 @@ function walkDirectory(
       const relativePath = path.relative(cwd, absolute).replace(/\\/g, '/');
       if (shouldSkip(relativePath)) continue;
       results.push(relativePath);
-    } catch {
-      // Skip broken symlinks / permission errors
-    }
+    } catch {}
   }
 }
 

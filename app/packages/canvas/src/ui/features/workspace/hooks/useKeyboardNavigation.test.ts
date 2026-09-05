@@ -96,7 +96,6 @@ describe('useKeyboardNavigation Hook', () => {
     const onSearchOpen = vi.fn();
     renderHook(() => useKeyboardNavigation({ onSearchOpen }));
 
-    // Simulate typing in an input
     const input = document.createElement('input');
     document.body.appendChild(input);
     input.focus();
@@ -115,7 +114,6 @@ describe('useKeyboardNavigation Hook', () => {
     const onSearchOpen = vi.fn();
     renderHook(() => useKeyboardNavigation({ onSearchOpen }));
 
-    // Simulate typing in a textarea
     const textarea = document.createElement('textarea');
     document.body.appendChild(textarea);
     textarea.focus();
@@ -134,7 +132,6 @@ describe('useKeyboardNavigation Hook', () => {
     const onSearchOpen = vi.fn();
     renderHook(() => useKeyboardNavigation({ onSearchOpen }));
 
-    // Simulate typing in a contenteditable element
     const div = document.createElement('div');
     div.setAttribute('contenteditable', 'true');
     document.body.appendChild(div);

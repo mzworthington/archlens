@@ -256,7 +256,6 @@ export const pickSourceDirectory: DirectoryPicker = async () => {
     const handle = await window.showDirectoryPicker!({ mode: 'read' });
     return { status: 'ok', handle };
   } catch {
-    // User cancelled or permission denied.
     return { status: 'cancelled' };
   }
 };

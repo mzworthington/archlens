@@ -6,7 +6,6 @@ type Tab = 'yaml' | 'json' | 'mermaid';
 type MermaidMode = 'preview' | 'code';
 
 export interface UseCodeViewerReturn {
-  // State
   activeTab: Tab;
   setActiveTab: (tab: Tab) => void;
   copied: boolean;
@@ -16,16 +15,13 @@ export interface UseCodeViewerReturn {
   setYamlText: (text: string) => void;
   jsonText: string;
   setJsonText: (text: string) => void;
-  // Derived
   availableTabs: readonly Tab[];
   filteredSchema: ReturnType<typeof buildFilteredSchema>;
-  // Handlers
   getCodeContent: () => string;
   handleCopy: () => Promise<void>;
   handleSaveYaml: () => boolean;
   handleSaveJson: () => boolean;
   handleOpenMermaidImport: () => void;
-  // Store passthrough
   lastError: string | null;
   clearError: () => void;
   leftCollapsed: boolean;

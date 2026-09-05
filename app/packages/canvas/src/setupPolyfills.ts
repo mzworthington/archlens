@@ -1,6 +1,5 @@
 import fakeIndexedDB, { IDBKeyRange } from 'fake-indexeddb';
 
-// Polyfill standard Node global
 globalThis.indexedDB = fakeIndexedDB;
 globalThis.IDBKeyRange = IDBKeyRange;
 
@@ -36,9 +35,7 @@ function ensureStorage(name: 'localStorage' | 'sessionStorage') {
       current.removeItem('__archlens_storage_probe__');
       return;
     }
-  } catch {
-    // fall through to polyfill
-  }
+  } catch {}
   Object.defineProperty(globalThis, name, {
     configurable: true,
     writable: true,
@@ -49,7 +46,6 @@ function ensureStorage(name: 'localStorage' | 'sessionStorage') {
 ensureStorage('localStorage');
 ensureStorage('sessionStorage');
 
-// Polyfill window global if it exists in current scope
 if (typeof window !== 'undefined') {
   window.indexedDB = fakeIndexedDB;
   window.IDBKeyRange = IDBKeyRange;
@@ -69,7 +65,6 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Polyfill JSDOM window global inside Node vm isolation
 const jsdomWindow = (globalThis as { window?: typeof globalThis & Window }).window;
 if (jsdomWindow) {
   jsdomWindow.indexedDB = fakeIndexedDB;

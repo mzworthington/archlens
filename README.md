@@ -1,4 +1,4 @@
-# ArchLens - catch architecture risk before it becomes an outage
+# ArchLens - git hotspots and blast radius on the same map
 
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)

@@ -32,7 +32,6 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
   ): ContainerInfo | null {
     const langPrefix = ['js', 'jsx'].includes(fileExt) ? 'JavaScript' : 'TypeScript';
 
-    // Core layer
     if (normalizedPath.startsWith('packages/core/') || normalizedPath.startsWith('src/domain/')) {
       return {
         entityRef: 'domain-logic',
@@ -43,7 +42,6 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
       };
     }
 
-    // Infrastructure / Application layers
     if (
       normalizedPath.startsWith('packages/app/src/infrastructure/') ||
       normalizedPath.startsWith('packages/app/src/application/') ||
@@ -79,7 +77,6 @@ export class TypeScriptAnalyzer implements LanguageAnalyzer {
       }
     }
 
-    // UI Layer
     if (
       normalizedPath.startsWith('packages/app/src/ui/') ||
       normalizedPath.startsWith('packages/app/src/components/') ||

@@ -163,7 +163,6 @@ describe('entityRef Rules', () => {
 
   describe('resolveWorkspaceEntityRefs', () => {
     it('should correctly resolve FQN references across container and component hierarchies', () => {
-      // 1. Container-level schema
       const containerSchema: SystemSchema = {
         name: 'Backstage - Container Level',
         version: '1.0.0',
@@ -184,7 +183,6 @@ describe('entityRef Rules', () => {
         dependencies: [],
       };
 
-      // 2. Component-level schema for Catalog
       const catalogSchema: SystemSchema = {
         name: 'Backstage - catalog Components',
         version: '1.0.0',
@@ -203,7 +201,6 @@ describe('entityRef Rules', () => {
         ],
       };
 
-      // 3. Loose/Orphan component-level schema
       const orphanSchema: SystemSchema = {
         name: 'Orphan Components',
         version: '1.0.0',
@@ -223,7 +220,6 @@ describe('entityRef Rules', () => {
 
       const result = resolveWorkspaceEntityRefs(workspaceFiles);
 
-      // Verify node FQN mappings
       const catalogNodes = result.schemas['blueprints/backstage/catalog-components.yaml'].nodes;
       expect(catalogNodes[0].entityRef).toBe('backstage/catalog/immediateentityprovider');
       expect(catalogNodes[1].entityRef).toBe('backstage/catalog/catalogclient');
@@ -235,7 +231,6 @@ describe('entityRef Rules', () => {
       const orphanNodes = result.schemas['blueprints/backstage/orphan-components.yaml'].nodes;
       expect(orphanNodes[0].entityRef).toBe('backstage/orphan/helper');
 
-      // Verify node FQN lookup map
       expect(
         result.nodeRefMap['blueprints/backstage/catalog-components.yaml']['catalogclient']
       ).toBe('backstage/catalog/catalogclient');
@@ -245,7 +240,6 @@ describe('entityRef Rules', () => {
     });
 
     it('should correctly resolve FQN references using schema entityRef parent linkage', () => {
-      // 1. Container-level schema
       const containerSchema: SystemSchema = {
         name: 'Backstage - Container Level',
         version: '1.0.0',
@@ -258,7 +252,6 @@ describe('entityRef Rules', () => {
         dependencies: [],
       };
 
-      // 2. Component-level schema for Catalog
       const catalogSchema: SystemSchema = {
         name: 'Backstage - catalog Components',
         version: '1.0.0',
@@ -284,7 +277,6 @@ describe('entityRef Rules', () => {
 
       const result = resolveWorkspaceEntityRefs(workspaceFiles);
 
-      // Verify node FQN mappings
       const catalogNodes = result.schemas['blueprints/backstage/catalog-components.yaml'].nodes;
       expect(catalogNodes[0].entityRef).toBe('backstage/catalog/immediateentityprovider');
       expect(catalogNodes[1].entityRef).toBe('backstage/catalog/catalogclient');

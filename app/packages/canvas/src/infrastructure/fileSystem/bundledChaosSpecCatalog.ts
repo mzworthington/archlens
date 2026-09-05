@@ -94,9 +94,7 @@ export async function loadWorkspaceChaosSpecs(
       const id = workspaceChaosSpecId(file.name);
       entries.push(toChaosSpecCatalogEntry(id, document));
       yamlById.set(id, file.content);
-    } catch {
-      // Skip non-ChaosSpec YAML under chaos-specs/.
-    }
+    } catch {}
   }
   return { entries, yamlById };
 }

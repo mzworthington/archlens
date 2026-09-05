@@ -104,9 +104,7 @@ export async function fetchSourceFileContent(
         viewerUrl,
         rawUrl,
       };
-    } catch {
-      // Fall through to remote fetch when workspace file is missing.
-    }
+    } catch {}
   }
 
   if (!rawUrl) {
@@ -153,9 +151,7 @@ export async function fetchSourceFileContent(
             viewerUrl,
             rawUrl,
           };
-        } catch {
-          // Fall through to original error message
-        }
+        } catch {}
       }
     }
 

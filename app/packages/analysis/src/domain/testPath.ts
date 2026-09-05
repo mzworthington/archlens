@@ -31,7 +31,6 @@ interface FrameworkRule {
 }
 
 const FRAMEWORK_RULES: FrameworkRule[] = [
-  // JavaScript / TypeScript
   { framework: 'vitest', importModules: ['vitest'] },
   {
     framework: 'jest',
@@ -40,15 +39,12 @@ const FRAMEWORK_RULES: FrameworkRule[] = [
   { framework: 'jest', pathTokens: ['jest.config'] },
   { framework: 'mocha', importModules: ['mocha', 'chai'] },
   { framework: 'jasmine', importModules: ['jasmine'] },
-  // Python
   { framework: 'pytest', importModules: ['pytest', '_pytest'] },
   { framework: 'unittest', importModules: ['unittest'] },
-  // .NET
   { framework: 'xunit', importModules: ['xunit', 'Xunit'] },
   { framework: 'nunit', importModules: ['nunit', 'NUnit'] },
   // mstest before unittest to avoid 'unittest' substring matching 'unittesting'
   { framework: 'mstest', importModules: ['microsoft.visualstudio.testtools', 'mstest'] },
-  // Java / Kotlin
   { framework: 'junit', importModules: ['org.junit', 'junit.framework', 'io.kotest'] },
   // Go - path-based: *_test.go uses the "testing" stdlib package
   { framework: 'go-testing', importModules: ['testing'] },
@@ -115,23 +111,18 @@ export function isTestSourcePath(relativePath: string): boolean {
   const segments = normalized.split('/').filter(Boolean);
   const baseName = segments[segments.length - 1] ?? '';
 
-  // JS/TS: file.test.ts, file.spec.tsx, setupTests.ts
   if (/\.(test|spec)\.[^./]+$/i.test(baseName)) return true;
   if (/^setupTests\.[^./]+$/i.test(baseName)) return true;
 
-  // Go: foo_test.go
   if (/_test\.[^./]+$/i.test(baseName)) return true;
 
   // .NET: FooTests.cs (plural avoids Contest.cs / Context.cs false positives)
   if (/Tests\.[^./]+$/i.test(baseName)) return true;
 
-  // Java/Kotlin: FooTest.java
   if (/Test\.(java|kt|kts)$/i.test(baseName)) return true;
 
-  // Python: test_foo.py, foo_test.py
   if (/^test_.+\.[^./]+$/i.test(baseName) || /^.+_test\.[^./]+$/i.test(baseName)) return true;
 
-  // Path segments (exclude the filename)
   for (const seg of segments.slice(0, -1)) {
     if (/^(__tests__|tests?)$/i.test(seg)) return true;
     if (isTestProjectSegment(seg)) return true;

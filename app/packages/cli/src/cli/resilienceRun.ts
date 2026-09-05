@@ -47,9 +47,7 @@ async function loadChaosSpecs(rootDir: string): Promise<ChaosSpecDocument[]> {
     try {
       const raw = await fs.readFile(filePath, 'utf8');
       documents.push(parseChaosSpecFromYaml(raw));
-    } catch {
-      // Skip non-chaos YAML files in the directory.
-    }
+    } catch {}
   }
   return documents;
 }

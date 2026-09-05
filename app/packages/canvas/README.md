@@ -1,8 +1,8 @@
-# `@archlens/canvas` - Visual Systems Architecture Canvas App
+# `@archlens/canvas`
 
-This is the front-end web application client for **ArchLens Canvas**. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
+Front-end for **ArchLens Canvas**. Vite, React, React Flow and Zustand.
 
-Interactive canvas over **BlueprintSpec** diagrams: local folder authoring, diagrams that stay in sync with the canvas and optional read-only catalogs published from CI.
+Interactive canvas over **BlueprintSpec**: local folder authoring, diagrams that stay in sync with the canvas and optional read-only catalogs published from CI.
 
 ---
 
@@ -18,7 +18,7 @@ Interactive canvas over **BlueprintSpec** diagrams: local folder authoring, diag
 - **Offline / PWA:** Production builds register a service worker that precaches the app shell so returning visits work offline; local IndexedDB and File System Access continue without a network. Installable via the browser “Install app” / Add to Home Screen prompt.
 - **Design System Showcase:** Includes a built-in Design System Showcase page (`/design-system`) demonstrating all atomic component states, buttons, property panel attributes, and visual styles.
 - **ChaosLens:** Toggle **Resilience** in the bottom toolbar to model fault injection and blast-radius impact on the active diagram (see [ChaosLens](../../../docs/guide/chaoslens.md)).
-- **TraceLens:** Explorer → **TraceLens** tab for git metrics, dependency/coupling overlays, and the **TraceLens** full-page estate ranking (`?lens=tracelens`).
+- **TraceLens:** Explorer → **TraceLens** tab for git metrics, dependency/coupling overlays and the **TraceLens** full-page estate ranking (`?lens=tracelens`).
 
 ---
 

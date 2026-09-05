@@ -182,7 +182,6 @@ function applyContainerRollupToCanvas(
   for (const dep of enriched.dependencies) {
     const key = `${dep.from}\0${dep.to}`;
     if (edgeKeys.has(key)) {
-      // Refresh label when rollup provides a component-pair description
       if (dep.description) {
         const idx = currentEdges.findIndex(e => e.source === dep.from && e.target === dep.to);
         if (idx !== -1 && !currentEdges[idx]!.data?.description) {

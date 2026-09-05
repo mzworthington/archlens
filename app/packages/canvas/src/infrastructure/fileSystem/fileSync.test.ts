@@ -225,7 +225,6 @@ describe('fileSync Adapters', () => {
         content: 'nested config content',
       });
 
-      // Restore
       mockDirectoryHandle.values = originalValues;
     });
 

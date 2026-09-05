@@ -2,7 +2,7 @@
 
 ArchLens Canvas is the map over **BlueprintSpec**: author in a local folder, or browse a catalog your pipeline published. Diagrams are views over a strict schema. Edit either side and the other stays in sync.
 
-![Canvas panels, zoom, and navigation](../screenshots/canvas-tour.gif)
+![Canvas panels, zoom and navigation](../screenshots/canvas-tour.gif)
 
 ## Opening a workspace
 
@@ -22,14 +22,14 @@ You can open a folder, run a browser lite scan, load a single YAML file, or impo
 
 ## Layout
 
-- **Canvas** - interactive diagram of systems, containers, and components
-- **Explorer** (left) - **TraceLens** and **Schema** tabs: forensics lenses, dependency view, and YAML / JSON / Mermaid for the active schema
-- **Properties** (right) - identity, metadata, connections, catalog, and validation
+- **Canvas** - interactive diagram of systems, containers and components
+- **Explorer** (left) - **TraceLens** and **Schema** tabs: forensics lenses, dependency view and YAML / JSON / Mermaid for the active schema
+- **Properties** (right) - identity, metadata, connections, catalog and validation
 - **Breadcrumbs** - where you are in the hierarchy
 
 On **desktop**, use the chevron rails at the panel edges to expand or collapse Explorer and Properties. On **mobile**, **Explorer** and **Props** chips in the toolbar open the left and right panels when both are collapsed.
 
-The **bottom toolbar** (row 2) has layout engine controls, **Lite** canvas, and **Resilience** (ChaosLens) with **Simulate** when a scenario is active.
+The **bottom toolbar** (row 2) has layout engine controls, **Lite** canvas and **Resilience** (ChaosLens) with **Simulate** when a scenario is active.
 
 Collapse panels for a clean canvas:
 

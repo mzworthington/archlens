@@ -101,9 +101,7 @@ export async function watchAndRerun(
 
   log(pc.dim('Watching for changes… (Ctrl+C to stop)'));
 
-  await new Promise<void>(() => {
-    // Keep process alive until stop() is called.
-  });
+  await new Promise<void>(() => {});
 
   throw new Error('unreachable');
 }

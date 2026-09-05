@@ -1,4 +1,3 @@
-/** localStorage prefix so a flag stays on across tabs. */
 const FEATURE_STORAGE_PREFIX = 'archlens.feature.';
 
 const FEATURE_ID_PATTERN = /^[a-z][a-z0-9-]{0,62}$/;
@@ -11,10 +10,6 @@ export type FeatureFlagDefinition = {
   description: string;
 };
 
-/**
- * Current in-flight flags. Add an id here when a slice is gated; remove when it ships or dies.
- * Live collaboration shipped — catalog is empty until the next gated preview.
- */
 export const FEATURE_FLAGS: readonly FeatureFlagDefinition[] = [];
 
 const listeners = new Set<() => void>();

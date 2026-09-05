@@ -71,7 +71,6 @@ describe('CodebaseAnalyzer Domain Service', () => {
 
     await analyzer.runAnalysis('test-pkg', 'blueprints');
 
-    // 1. Verify ContextLevelWriter.writeSystems was called once with the fallback system
     expect(mockContextWriteSystems).toHaveBeenCalledTimes(1);
     expect(mockContextWriteSystems).toHaveBeenCalledWith(
       '/workspace/blueprints',
@@ -88,24 +87,20 @@ describe('CodebaseAnalyzer Domain Service', () => {
       undefined
     );
 
-    // 2. Verify ContainerLevelWriter was called
     expect(mockContainerWrite).toHaveBeenCalledTimes(1);
     const containerArgs = mockContainerWrite.mock.calls[0];
     expect(containerArgs[0]).toBe('/workspace/blueprints/test-pkg');
     expect(containerArgs[1]).toBe('test-pkg');
     expect(containerArgs[2]).toBe('test-pkg');
-    // Verify container nodes map contains our extracted containers (domain, adapters)
     const containerNodesMap = containerArgs[3];
     expect(containerNodesMap.has('domain')).toBe(true);
     expect(containerNodesMap.has('adapters')).toBe(true);
 
-    // 3. Verify ComponentLevelWriter was called
     expect(mockComponentWrite).toHaveBeenCalledTimes(1);
     const componentArgs = mockComponentWrite.mock.calls[0];
     expect(componentArgs[0]).toBe('/workspace/blueprints/test-pkg');
     expect(componentArgs[1]).toBe('test-pkg');
     expect(componentArgs[2]).toBe('test-pkg');
-    // Verify component nodes map contains our extracted components (graph, canvas)
     const componentNodesMap = componentArgs[3];
     expect(componentNodesMap.has('domain/graph')).toBe(true);
     expect(componentNodesMap.has('adapters/canvas')).toBe(true);

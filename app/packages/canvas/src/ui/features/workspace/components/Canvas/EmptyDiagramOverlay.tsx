@@ -30,11 +30,11 @@ export const EmptyDiagramOverlay: React.FC = () => {
           <p className="text-[11px] leading-relaxed text-slate-400">
             {schemaName ? (
               <>
-                <span className="text-slate-300">{schemaName}</span> loaded successfully but has an
-                empty node list. Re-scan or republish the catalog if this should contain containers.
+                <span className="text-slate-300">{schemaName}</span> loaded but has no nodes.
+                Re-scan or republish the catalog if this view should show containers.
               </>
             ) : (
-              <>This diagram loaded successfully but has an empty node list.</>
+              <>This diagram loaded but has no nodes.</>
             )}
           </p>
         </div>

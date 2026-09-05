@@ -104,9 +104,7 @@ export class CodebaseAnalyzer {
           return nameWithoutScope;
         }
       }
-    } catch {
-      // ignore
-    }
+    } catch {}
 
     try {
       const baseDir = globPattern.split('**')[0].replace(/\/$/, '').replace(/\\$/, '');
@@ -116,9 +114,7 @@ export class CodebaseAnalyzer {
           return baseName;
         }
       }
-    } catch {
-      // ignore
-    }
+    } catch {}
 
     const parts = this.deps.fileSystem.getCurrentWorkingDirectory().split(/[\\/]/).filter(Boolean);
     return parts[parts.length - 1] || 'blueprint';

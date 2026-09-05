@@ -242,13 +242,11 @@ describe('diagramState Actions & State Management', () => {
       targetHandle: 'top-target',
     });
 
-    // Simulate resolved canvas state: RF id stays short while data.entityRef is FQN
     const afterConnect = useBlueprintStore.getState();
     expect(afterConnect.nodes.find(n => n.id === personId)?.data.entityRef).toBe(
       'blueprint/person-' + personId.split('-')[1]
     );
 
-    // First rename succeeds
     updateNode(personId, { name: 'Customer', entityRef: 'customer' });
     const afterRename = useBlueprintStore.getState();
     expect(afterRename.validationResult.isValid).toBe(true);
@@ -372,7 +370,6 @@ describe('diagramState Actions & State Management', () => {
       targetHandle: 'top-target',
     });
 
-    // Simulate stale edge using resolved FQN while RF node id remains short
     const staleEdges = useBlueprintStore.getState().edges.map(e => ({
       ...e,
       source: `blueprint/${personId}`,
@@ -491,19 +488,16 @@ describe('diagramState Actions & State Management', () => {
     expect(store.past).toHaveLength(0);
     expect(store.future).toHaveLength(0);
 
-    // Perform action
     store.addNode('relational-database' as NodeType);
     expect(useBlueprintStore.getState().nodes).toHaveLength(3);
     expect(useBlueprintStore.getState().past).toHaveLength(1);
     expect(useBlueprintStore.getState().future).toHaveLength(0);
 
-    // Undo
     useBlueprintStore.getState().undo();
     expect(useBlueprintStore.getState().nodes).toHaveLength(2);
     expect(useBlueprintStore.getState().past).toHaveLength(0);
     expect(useBlueprintStore.getState().future).toHaveLength(1);
 
-    // Redo
     useBlueprintStore.getState().redo();
     expect(useBlueprintStore.getState().nodes).toHaveLength(3);
     expect(useBlueprintStore.getState().past).toHaveLength(1);

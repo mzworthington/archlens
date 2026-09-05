@@ -53,7 +53,6 @@ describe('DocsPage feature filter', () => {
     fireEvent.change(screen.getByTestId('docs-feature-filter'), { target: { value: 'zooms' } });
 
     expect(screen.getByTestId('docs-feature-count')).toHaveTextContent('1 feature');
-    // Package chips stay available from the full outline
     expect(screen.getByTestId('docs-feature-outline')).toHaveTextContent('Canvas');
     expect(screen.getByTestId('docs-feature-outline')).toHaveTextContent('Core');
     const md = screen.getByTestId('docs-markdown');
@@ -74,7 +73,6 @@ describe('DocsPage feature filter', () => {
     expect(screen.getByTestId('docs-markdown')).not.toHaveTextContent('## Canvas');
     expect(screen.getByTestId('docs-markdown')).not.toHaveTextContent('collapses panels');
 
-    // Toggle off
     fireEvent.click(screen.getByTestId('docs-feature-package-Core'));
     expect(screen.getByTestId('docs-feature-count')).toHaveTextContent('3 features');
   });
