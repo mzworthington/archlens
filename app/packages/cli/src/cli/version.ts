@@ -1,4 +1,5 @@
 import { ARCHLENS_BUILD_VERSION } from './buildVersion.generated.ts';
+import { FLAG } from './cliFlagCatalog.ts';
 
 /** Installed release tag (e.g. v0.1.5) or `dev` for source / local builds. */
 export function getArchlensVersion(): string {
@@ -10,5 +11,5 @@ export function isCompiledRelease(): boolean {
 }
 
 export function wantsVersionFlag(argv: string[]): boolean {
-  return argv.includes('--version') || argv.includes('-V');
+  return argv.includes(FLAG.version) || argv.includes(FLAG.versionShort);
 }

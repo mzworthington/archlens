@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
+import { helpRowsFor } from './cliFlagCatalog.ts';
 
 function heading(text: string): void {
   console.log(pc.bold(pc.cyan(`\n${text}`)));
@@ -47,27 +47,9 @@ export function printOverviewHelp(): void {
   );
 
   heading('COMMON FLAGS');
-  flag('--headless', 'Skip interactive prompts');
-  flag('--glob=<pattern>', `Source files to scan (default: ${DEFAULT_SCAN_GLOB})`);
-  flag('--output=<dir>', 'Blueprint output folder (default: blueprints)');
-  flag('--context=<name>', 'Root entityRef slug (default: blueprint)');
-  flag('--system-name=<name>', 'Software system for this repo (multi-repo products)');
-  flag('--publish', 'After scan, upload output tree to object storage (--no-dry-run)');
-  flag(
-    '--key-prefix=<path>',
-    'With --publish: object key prefix (or OBJECT_STORAGE_KEY_PREFIX; samples estate: estates/{id}/)'
-  );
-  flag('--workspace-name=<name>', 'With --publish: workspace name for entityRef resolution');
-  flag(
-    '--skip-validation',
-    'With --publish: allow upload without a validation gate (default; use --validate to gate)'
-  );
-  flag('--validate', 'With --publish: fail upload when workspace validation fails');
-  flag('--no-git', 'Skip TraceLens git forensics enrichment');
-  flag('--git --git-since=<days>', 'Enable forensics with lookback window');
-  flag('--watch', 'Re-run when source files change');
-  flag('--no-update-check', 'Skip startup update prompt');
-  flag('--version, -V', 'Print version');
+  for (const row of helpRowsFor('overview')) {
+    flag(row.label, row.summary);
+  }
 
   heading('EXAMPLES');
   example('archlens');
@@ -99,32 +81,9 @@ export function printScanHelp(): void {
   example('archlens --scan [options]');
 
   heading('OPTIONS');
-  flag('--glob=<pattern>', `Files to analyze (default: ${DEFAULT_SCAN_GLOB})`);
-  flag('--output=<dir>', 'Write YAML under this folder');
-  flag('--context=<name>', 'Context diagram root name / entityRef');
-  flag('--system-name=<name>', 'Name this repo on the context diagram (multi-repo products)');
-  flag(
-    '--parser=tree-sitter|ts-morph',
-    'AST engine (default: tree-sitter; ts-morph = TypeScript-only opt-in)'
-  );
-  flag('--rollup-modules', 'Collapse *-module-* packages into prefix systems');
-  flag('--ignore=<a,b>', 'Extra ignore globs (comma-separated)');
-  flag('--systems=<a,b>', 'Restrict discovery to these roots');
-  flag('--no-git', 'Structure-only scan (no TraceLens blocks)');
-  flag('--git --git-since=<days>', 'Attach git forensics (default on)');
-  flag('--publish', 'Upload output tree to object storage after a successful scan');
-  flag(
-    '--key-prefix=<path>',
-    'With --publish: object key prefix inside the bucket (isolates catalogs; see ADR-0014)'
-  );
-  flag('--workspace-name=<name>', 'With --publish: workspace name for entityRef resolution');
-  flag(
-    '--skip-validation',
-    'Allow upload without a validation gate (default; catalogs prefer visibility over blocking)'
-  );
-  flag('--validate', 'Fail publish when workspace validation fails (optional hard gate)');
-  flag('--watch [--watch-debounce=<ms>]', 'Re-run on file changes');
-  flag('--headless', 'Same as scan - never prompts');
+  for (const row of helpRowsFor('scan')) {
+    flag(row.label, row.summary);
+  }
 
   heading('EXAMPLES');
   example('archlens scan');

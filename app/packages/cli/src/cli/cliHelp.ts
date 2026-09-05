@@ -1,4 +1,5 @@
 import pc from 'picocolors';
+import { FLAG } from './cliFlagCatalog.ts';
 import { getArchlensVersion } from './version.ts';
 import {
   printCatalogHelp,
@@ -48,7 +49,7 @@ const TOPIC_ALIASES: Record<string, HelpTopic> = {
 };
 
 export function wantsHelpFlag(argv: string[]): boolean {
-  return argv.includes('--help') || argv.includes('-h');
+  return argv.includes(FLAG.help) || argv.includes(FLAG.helpShort);
 }
 
 function isHelpSubcommand(argv: string[]): boolean {
