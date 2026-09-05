@@ -8,6 +8,7 @@ import {
   resolvePublishSkipValidation,
   type OutputFormat,
 } from './argvFlags.ts';
+import { FLAG } from './cliFlagCatalog.ts';
 
 export interface CatalogComposeCliPlan {
   estateId: string;
@@ -78,11 +79,11 @@ export interface CatalogPruneCliPlan {
 
 export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
+  const estateId = flagValue(rest, FLAG.estate);
   if (!estateId?.trim()) {
     throw new Error('archlens catalog compose requires --estate=<id>');
   }
-  const maxRetriesRaw = flagValue(rest, '--max-retries');
+  const maxRetriesRaw = flagValue(rest, FLAG.maxRetries);
   // Default 8: concurrent estate composers (publish workflows + safety-net) need headroom.
   const maxRetriesParsed = maxRetriesRaw === undefined ? 8 : Number(maxRetriesRaw);
   const maxRetries =
@@ -91,24 +92,24 @@ export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
   return {
     estateId: estateId.trim(),
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
+    dryRun: !rest.includes(FLAG.noDryRun),
     skipValidation: resolvePublishSkipValidation(rest),
-    allowEmpty: rest.includes('--allow-empty'),
-    workspaceName: flagValue(rest, '--workspace-name'),
+    allowEmpty: rest.includes(FLAG.allowEmpty),
+    workspaceName: flagValue(rest, FLAG.workspaceName),
     maxRetries,
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix) ?? defaultEstateKeyPrefix(estateId.trim()),
   };
 }
 
 export function parseCatalogPublishFragmentArgv(argv: string[]): CatalogPublishFragmentCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
   const positional = positionalArgs(rest);
-  const estateId = flagValue(rest, '--estate');
-  const productId = flagValue(rest, '--product') ?? flagValue(rest, '--product-id');
-  const sourceRef = flagValue(rest, '--source-ref');
+  const estateId = flagValue(rest, FLAG.estate);
+  const productId = flagValue(rest, FLAG.product) ?? flagValue(rest, FLAG.productId);
+  const sourceRef = flagValue(rest, FLAG.sourceRef);
   if (!estateId?.trim()) {
     throw new Error('archlens catalog publish-fragment requires --estate=<id>');
   }
@@ -119,30 +120,30 @@ export function parseCatalogPublishFragmentArgv(argv: string[]): CatalogPublishF
     throw new Error('archlens catalog publish-fragment requires --source-ref=<ref>');
   }
 
-  const systemId = flagValue(rest, '--system') ?? flagValue(rest, '--system-id');
+  const systemId = flagValue(rest, FLAG.system) ?? flagValue(rest, FLAG.systemId);
   return {
-    targetPath: flagValue(rest, '--path') ?? positional[0] ?? 'blueprints',
+    targetPath: flagValue(rest, FLAG.path) ?? positional[0] ?? 'blueprints',
     estateId: estateId.trim(),
     productId: productId.trim(),
     ...(systemId?.trim() ? { systemId: systemId.trim() } : {}),
-    fragmentKey: flagValue(rest, '--fragment-key'),
+    fragmentKey: flagValue(rest, FLAG.fragmentKey),
     sourceRef: sourceRef.trim(),
-    runId: flagValue(rest, '--run-id'),
+    runId: flagValue(rest, FLAG.runId),
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
+    dryRun: !rest.includes(FLAG.noDryRun),
     skipValidation: resolvePublishSkipValidation(rest),
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix) ?? defaultEstateKeyPrefix(estateId.trim()),
   };
 }
 
 export function parseCatalogAcceptOverlayArgv(argv: string[]): CatalogAcceptOverlayCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
   const positional = positionalArgs(rest);
-  const estateId = flagValue(rest, '--estate');
-  const overlayFile = flagValue(rest, '--file') ?? positional[0];
+  const estateId = flagValue(rest, FLAG.estate);
+  const overlayFile = flagValue(rest, FLAG.file) ?? positional[0];
   if (!estateId?.trim()) {
     throw new Error('archlens catalog accept-overlay requires --estate=<id>');
   }
@@ -153,18 +154,18 @@ export function parseCatalogAcceptOverlayArgv(argv: string[]): CatalogAcceptOver
     estateId: estateId.trim(),
     overlayFile: overlayFile.trim(),
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
+    dryRun: !rest.includes(FLAG.noDryRun),
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix) ?? defaultEstateKeyPrefix(estateId.trim()),
   };
 }
 
 export function parseCatalogRejectOverlayArgv(argv: string[]): CatalogRejectOverlayCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
-  const overlayId = flagValue(rest, '--overlay-id') ?? flagValue(rest, '--id');
+  const estateId = flagValue(rest, FLAG.estate);
+  const overlayId = flagValue(rest, FLAG.overlayId) ?? flagValue(rest, FLAG.overlayIdAlias);
   if (!estateId?.trim()) {
     throw new Error('archlens catalog reject-overlay requires --estate=<id>');
   }
@@ -175,30 +176,30 @@ export function parseCatalogRejectOverlayArgv(argv: string[]): CatalogRejectOver
     estateId: estateId.trim(),
     overlayId: overlayId.trim(),
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
+    dryRun: !rest.includes(FLAG.noDryRun),
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix) ?? defaultEstateKeyPrefix(estateId.trim()),
   };
 }
 
 export function parseCatalogPruneArgv(argv: string[]): CatalogPruneCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
+  const estateId = flagValue(rest, FLAG.estate);
   if (!estateId?.trim()) {
     throw new Error('archlens catalog prune requires --estate=<id>');
   }
   return {
     estateId: estateId.trim(),
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    keepSnapshotCount: parsePositiveIntFlag(rest, '--keep-snapshots', 7),
-    keepSnapshotDays: parsePositiveIntFlag(rest, '--keep-snapshot-days', 14),
-    keepFragmentRuns: parsePositiveIntFlag(rest, '--keep-fragment-runs', 2),
+    dryRun: !rest.includes(FLAG.noDryRun),
+    keepSnapshotCount: parsePositiveIntFlag(rest, FLAG.keepSnapshots, 7),
+    keepSnapshotDays: parsePositiveIntFlag(rest, FLAG.keepSnapshotDays, 14),
+    keepFragmentRuns: parsePositiveIntFlag(rest, FLAG.keepFragmentRuns, 2),
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix) ?? defaultEstateKeyPrefix(estateId.trim()),
   };
 }

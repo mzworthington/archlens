@@ -10,6 +10,7 @@ import {
   type OutputFormat,
   type ResilienceOutputFormat,
 } from './argvFlags.ts';
+import { FLAG } from './cliFlagCatalog.ts';
 
 export interface ValidateCliPlan {
   targetPath: string;
@@ -63,15 +64,15 @@ export interface PublishCliPlan {
 export function parseValidateArgv(argv: string[]): ValidateCliPlan {
   const rest = argv[0] === 'validate' ? argv.slice(1) : argv;
   const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  const targetPath = flagValue(rest, FLAG.path) ?? positional[0] ?? 'blueprints';
   const sinceCommitFlag =
-    rest.includes('--since-commit') || rest.some(arg => arg.startsWith('--since-commit='));
-  const sinceCommitRaw = flagValue(rest, '--since-commit');
+    rest.includes(FLAG.sinceCommit) || rest.some(arg => arg.startsWith(`${FLAG.sinceCommit}=`));
+  const sinceCommitRaw = flagValue(rest, FLAG.sinceCommit);
   return {
     targetPath,
     format: parseOutputFormat(rest),
-    includeContract: rest.includes('--contract'),
-    baselinePath: flagValue(rest, '--baseline') || undefined,
+    includeContract: rest.includes(FLAG.contract),
+    baselinePath: flagValue(rest, FLAG.baseline) || undefined,
     sinceCommit: sinceCommitRaw ?? (sinceCommitFlag ? 'HEAD~1' : undefined),
   };
 }
@@ -79,8 +80,8 @@ export function parseValidateArgv(argv: string[]): ValidateCliPlan {
 export function parseDiffArgv(argv: string[]): DiffCliPlan {
   const rest = argv[0] === 'diff' ? argv.slice(1) : argv;
   const positional = positionalArgs(rest);
-  const baselinePath = flagValue(rest, '--baseline') ?? positional[0] ?? 'blueprints';
-  const currentPath = flagValue(rest, '--current') ?? positional[1] ?? baselinePath;
+  const baselinePath = flagValue(rest, FLAG.baseline) ?? positional[0] ?? 'blueprints';
+  const currentPath = flagValue(rest, FLAG.current) ?? positional[1] ?? baselinePath;
   return {
     baselinePath,
     currentPath,
@@ -91,33 +92,33 @@ export function parseDiffArgv(argv: string[]): DiffCliPlan {
 export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
   const rest = argv[0] === 'resilience' ? argv.slice(1) : argv;
   const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  const targetPath = flagValue(rest, FLAG.path) ?? positional[0] ?? 'blueprints';
   return {
     targetPath,
     format: parseResilienceOutputFormat(rest),
-    chaosSpecsDir: flagValue(rest, '--chaos-specs'),
-    outputPath: flagValue(rest, '--output'),
-    minSla: parseSlaThreshold(flagValue(rest, '--min-sla')),
-    failOnRecommendations: rest.includes('--fail-on-recommendations'),
-    maxRegionOutageTargets: parsePositiveInt(flagValue(rest, '--max-region-outages')),
-    maxFanInProbes: parsePositiveInt(flagValue(rest, '--max-fan-in-probes')),
+    chaosSpecsDir: flagValue(rest, FLAG.chaosSpecs),
+    outputPath: flagValue(rest, FLAG.output),
+    minSla: parseSlaThreshold(flagValue(rest, FLAG.minSla)),
+    failOnRecommendations: rest.includes(FLAG.failOnRecommendations),
+    maxRegionOutageTargets: parsePositiveInt(flagValue(rest, FLAG.maxRegionOutages)),
+    maxFanInProbes: parsePositiveInt(flagValue(rest, FLAG.maxFanInProbes)),
   };
 }
 
 export function parsePublishArgv(argv: string[]): PublishCliPlan {
   const rest = argv[0] === 'publish' ? argv.slice(1) : argv;
   const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
-  const workspaceName = flagValue(rest, '--workspace-name');
+  const targetPath = flagValue(rest, FLAG.path) ?? positional[0] ?? 'blueprints';
+  const workspaceName = flagValue(rest, FLAG.workspaceName);
   return {
     targetPath,
     format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
+    dryRun: !rest.includes(FLAG.noDryRun),
     skipValidation: resolvePublishSkipValidation(rest),
     workspaceName,
     storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix'),
+    bucket: flagValue(rest, FLAG.bucket),
+    accountId: flagValue(rest, FLAG.accountId),
+    keyPrefix: flagValue(rest, FLAG.keyPrefix),
   };
 }

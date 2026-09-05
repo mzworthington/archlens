@@ -8,6 +8,7 @@ import {
   resolvePublishSkipValidation,
   type ResilienceOutputFormat,
 } from './argvFlags.ts';
+import { FLAG } from './cliFlagCatalog.ts';
 import {
   parseCatalogAcceptOverlayArgv,
   parseCatalogComposeArgv,
@@ -100,11 +101,11 @@ export type ArchlensCommandPlan =
 
 function hasExplicitGitDecision(argv: string[]): boolean {
   return (
-    argv.includes('--git') ||
-    argv.includes('--no-git') ||
-    argv.includes('--git-only') ||
-    argv.some(a => a.startsWith('--git-since')) ||
-    (isEnrichArgv(argv) && argv.includes('--git'))
+    argv.includes(FLAG.git) ||
+    argv.includes(FLAG.noGit) ||
+    argv.includes(FLAG.gitOnly) ||
+    argv.some(a => a.startsWith(FLAG.gitSince)) ||
+    (isEnrichArgv(argv) && argv.includes(FLAG.git))
   );
 }
 
@@ -170,27 +171,27 @@ export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
 }
 
 export function skipUpdateCheck(argv: string[]): boolean {
-  return argv.includes('--no-update-check');
+  return argv.includes(FLAG.noUpdateCheck);
 }
 
 /** True when the user invoked the non-interactive `scan` subcommand or `--scan` flag. */
 function isScanArgv(argv: string[]): boolean {
-  return argv[0] === 'scan' || argv.includes('--scan');
+  return argv[0] === 'scan' || argv.includes(FLAG.scan);
 }
 
 function stripScanTokens(argv: string[]): string[] {
   const withoutSubcommand = argv[0] === 'scan' ? argv.slice(1) : argv;
-  return withoutSubcommand.filter(arg => arg !== '--scan');
+  return withoutSubcommand.filter(arg => arg !== FLAG.scan);
 }
 
 /** True when only enriching existing blueprint YAML (externals pass, no source scan). */
 function isEnrichArgv(argv: string[]): boolean {
-  return argv[0] === 'enrich' || argv.includes('--enrich-only');
+  return argv[0] === 'enrich' || argv.includes(FLAG.enrichOnly);
 }
 
 function stripEnrichTokens(argv: string[]): string[] {
   const withoutSubcommand = argv[0] === 'enrich' ? argv.slice(1) : argv;
-  return withoutSubcommand.filter(arg => arg !== '--enrich-only');
+  return withoutSubcommand.filter(arg => arg !== FLAG.enrichOnly);
 }
 
 function normalizeCommandArgv(argv: string[]): string[] {
@@ -204,16 +205,16 @@ export function isHeadlessArgv(argv: string[]): boolean {
   return (
     isScanArgv(argv) ||
     isEnrichArgv(argv) ||
-    argv.includes('--headless') ||
-    argv.includes('--git-only') ||
-    !!flagValue(argv, '--parser') ||
-    !!flagValue(argv, '--glob') ||
-    !!flagValue(argv, '--output') ||
-    !!flagValue(argv, '--context') ||
-    !!flagValue(argv, '--system-name') ||
-    argv.includes('--rollup-modules') ||
-    parseCsv(flagValue(argv, '--ignore')).length > 0 ||
-    !!flagValue(argv, '--systems') ||
+    argv.includes(FLAG.headless) ||
+    argv.includes(FLAG.gitOnly) ||
+    !!flagValue(argv, FLAG.parser) ||
+    !!flagValue(argv, FLAG.glob) ||
+    !!flagValue(argv, FLAG.output) ||
+    !!flagValue(argv, FLAG.context) ||
+    !!flagValue(argv, FLAG.systemName) ||
+    argv.includes(FLAG.rollupModules) ||
+    parseCsv(flagValue(argv, FLAG.ignore)).length > 0 ||
+    !!flagValue(argv, FLAG.systems) ||
     (!forceInteractive && !process.stdout.isTTY) ||
     (!forceInteractive && !!process.env.CI)
   );
@@ -229,21 +230,21 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
   const enrichMode = isEnrichArgv(rawArgv);
   const commandArgv = normalizeCommandArgv(rawArgv);
 
-  const noGit = commandArgv.includes('--no-git');
+  const noGit = commandArgv.includes(FLAG.noGit);
   const gitDecisionExplicit = scanMode || enrichMode || hasExplicitGitDecision(commandArgv);
 
-  const sinceFromGit = flagValue(commandArgv, '--git-since');
+  const sinceFromGit = flagValue(commandArgv, FLAG.gitSince);
 
   const architecture: ArchitectureCliFlags = {
-    parserType: flagValue(commandArgv, '--parser'),
-    glob: flagValue(commandArgv, '--glob'),
-    outputDir: flagValue(commandArgv, '--output'),
-    context: flagValue(commandArgv, '--context'),
-    systemName: flagValue(commandArgv, '--system-name'),
-    rollupModules: commandArgv.includes('--rollup-modules'),
-    ignore: parseCsv(flagValue(commandArgv, '--ignore')),
+    parserType: flagValue(commandArgv, FLAG.parser),
+    glob: flagValue(commandArgv, FLAG.glob),
+    outputDir: flagValue(commandArgv, FLAG.output),
+    context: flagValue(commandArgv, FLAG.context),
+    systemName: flagValue(commandArgv, FLAG.systemName),
+    rollupModules: commandArgv.includes(FLAG.rollupModules),
+    ignore: parseCsv(flagValue(commandArgv, FLAG.ignore)),
     systems: (() => {
-      const raw = flagValue(commandArgv, '--systems');
+      const raw = flagValue(commandArgv, FLAG.systems);
       return raw ? parseCsv(raw) : undefined;
     })(),
   };
@@ -251,28 +252,28 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
   const git: GitForensicsCliFlags = {
     sinceDays: parseSinceDays(sinceFromGit),
     maxCouplingCommitFiles: parseNonNegativeInt(
-      flagValue(commandArgv, '--max-coupling-commit-files')
+      flagValue(commandArgv, FLAG.maxCouplingCommitFiles)
     ),
-    glob: flagValue(commandArgv, '--glob'),
-    ignore: parseCsv(flagValue(commandArgv, '--ignore')),
+    glob: flagValue(commandArgv, FLAG.glob),
+    ignore: parseCsv(flagValue(commandArgv, FLAG.ignore)),
     targetPath: '.',
   };
 
   const isHeadless = scanMode || enrichMode || isHeadlessArgv(commandArgv);
-  const publishAfterScan = commandArgv.includes('--publish');
+  const publishAfterScan = commandArgv.includes(FLAG.publish);
   const publishSkipValidation = resolvePublishSkipValidation(commandArgv);
 
   return {
     isHeadless,
     runArchitecture: !enrichMode,
     runEnrichOnly: enrichMode,
-    runGitForensics: enrichMode ? commandArgv.includes('--git') : !noGit,
+    runGitForensics: enrichMode ? commandArgv.includes(FLAG.git) : !noGit,
     publishAfterScan,
     publishSkipValidation,
-    publishKeyPrefix: flagValue(commandArgv, '--key-prefix'),
-    publishWorkspaceName: flagValue(commandArgv, '--workspace-name'),
+    publishKeyPrefix: flagValue(commandArgv, FLAG.keyPrefix),
+    publishWorkspaceName: flagValue(commandArgv, FLAG.workspaceName),
     gitDecisionExplicit,
-    watch: commandArgv.includes('--watch'),
+    watch: commandArgv.includes(FLAG.watch),
     watchDebounceMs: parseWatchDebounce(commandArgv),
     architecture,
     git,

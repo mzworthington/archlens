@@ -5,6 +5,7 @@ import fsp from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
+import { FLAG } from './cliFlagCatalog.ts';
 import {
   detectReleaseAsset,
   releaseDownloadUrl,
@@ -205,8 +206,8 @@ export async function installRelease(options: SelfUpdateOptions): Promise<string
 
 export function relaunchArgsWithNoUpdateCheck(argv: string[] = process.argv): string[] {
   const args = argv.slice(2).filter(arg => arg !== 'update');
-  if (!args.includes('--no-update-check')) {
-    args.push('--no-update-check');
+  if (!args.includes(FLAG.noUpdateCheck)) {
+    args.push(FLAG.noUpdateCheck);
   }
   return args;
 }

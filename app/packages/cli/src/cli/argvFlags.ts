@@ -1,3 +1,5 @@
+import { FLAG } from './cliFlagCatalog.ts';
+
 export type OutputFormat = 'text' | 'json';
 /** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
 export type ResilienceOutputFormat = OutputFormat | 'yaml';
@@ -5,7 +7,7 @@ export type ResilienceOutputFormat = OutputFormat | 'yaml';
 const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
 export function parseWatchDebounce(argv: string[]): number {
-  const raw = flagValue(argv, '--watch-debounce');
+  const raw = flagValue(argv, FLAG.watchDebounce);
   if (!raw) return DEFAULT_WATCH_DEBOUNCE_MS;
   const parsed = Number(raw);
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_WATCH_DEBOUNCE_MS;
@@ -42,7 +44,7 @@ export function parseNonNegativeInt(raw: string | undefined): number | undefined
 }
 
 export function parseStorageProvider(argv: string[]): 'r2' | 's3' | 'azure' | undefined {
-  const providerRaw = flagValue(argv, '--provider');
+  const providerRaw = flagValue(argv, FLAG.provider);
   return providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
     ? providerRaw
     : undefined;
@@ -58,8 +60,8 @@ export function defaultEstateKeyPrefix(estateId: string): string {
  * `--skip-validation` is always allowed and wins over `--validate`.
  */
 export function resolvePublishSkipValidation(argv: string[]): boolean {
-  if (argv.includes('--skip-validation')) return true;
-  if (argv.includes('--validate')) return false;
+  if (argv.includes(FLAG.skipValidation)) return true;
+  if (argv.includes(FLAG.validate)) return false;
   return true;
 }
 
@@ -71,12 +73,12 @@ export function parsePositiveIntFlag(argv: string[], name: string, fallback: num
 }
 
 export function parseOutputFormat(argv: string[]): OutputFormat {
-  const raw = flagValue(argv, '--format');
+  const raw = flagValue(argv, FLAG.format);
   return raw === 'json' ? 'json' : 'text';
 }
 
 export function parseResilienceOutputFormat(argv: string[]): ResilienceOutputFormat {
-  const raw = flagValue(argv, '--format');
+  const raw = flagValue(argv, FLAG.format);
   if (raw === 'json') return 'json';
   if (raw === 'yaml' || raw === 'yml') return 'yaml';
   return 'text';

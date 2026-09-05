@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
+import { catalogHelpLines, HELP_SECTION, type HelpTopic } from './cliFlagCatalog.ts';
 
 function heading(text: string): void {
   console.log(pc.bold(pc.cyan(`\n${text}`)));
@@ -19,6 +19,13 @@ function flag(name: string, summary: string): void {
 
 function example(text: string): void {
   console.log(`  ${pc.dim('$')} ${pc.white(text)}`);
+}
+
+function printCatalogFlags(topic: HelpTopic, section: string): void {
+  heading(section);
+  for (const entry of catalogHelpLines(topic, section)) {
+    flag(entry.helpName, entry.summary);
+  }
 }
 
 export function printOverviewHelp(): void {
@@ -46,28 +53,7 @@ export function printOverviewHelp(): void {
     'Show help (topics: scan, enrich, validate, diff, publish, catalog, resilience, update)'
   );
 
-  heading('COMMON FLAGS');
-  flag('--headless', 'Skip interactive prompts');
-  flag('--glob=<pattern>', `Source files to scan (default: ${DEFAULT_SCAN_GLOB})`);
-  flag('--output=<dir>', 'Blueprint output folder (default: blueprints)');
-  flag('--context=<name>', 'Root entityRef slug (default: blueprint)');
-  flag('--system-name=<name>', 'Software system for this repo (multi-repo products)');
-  flag('--publish', 'After scan, upload output tree to object storage (--no-dry-run)');
-  flag(
-    '--key-prefix=<path>',
-    'With --publish: object key prefix (or OBJECT_STORAGE_KEY_PREFIX; samples estate: estates/{id}/)'
-  );
-  flag('--workspace-name=<name>', 'With --publish: workspace name for entityRef resolution');
-  flag(
-    '--skip-validation',
-    'With --publish: allow upload without a validation gate (default; use --validate to gate)'
-  );
-  flag('--validate', 'With --publish: fail upload when workspace validation fails');
-  flag('--no-git', 'Skip TraceLens git forensics enrichment');
-  flag('--git --git-since=<days>', 'Enable forensics with lookback window');
-  flag('--watch', 'Re-run when source files change');
-  flag('--no-update-check', 'Skip startup update prompt');
-  flag('--version, -V', 'Print version');
+  printCatalogFlags('overview', HELP_SECTION.common);
 
   heading('EXAMPLES');
   example('archlens');
@@ -98,33 +84,7 @@ export function printScanHelp(): void {
   example('archlens scan [options]');
   example('archlens --scan [options]');
 
-  heading('OPTIONS');
-  flag('--glob=<pattern>', `Files to analyze (default: ${DEFAULT_SCAN_GLOB})`);
-  flag('--output=<dir>', 'Write YAML under this folder');
-  flag('--context=<name>', 'Context diagram root name / entityRef');
-  flag('--system-name=<name>', 'Name this repo on the context diagram (multi-repo products)');
-  flag(
-    '--parser=tree-sitter|ts-morph',
-    'AST engine (default: tree-sitter; ts-morph = TypeScript-only opt-in)'
-  );
-  flag('--rollup-modules', 'Collapse *-module-* packages into prefix systems');
-  flag('--ignore=<a,b>', 'Extra ignore globs (comma-separated)');
-  flag('--systems=<a,b>', 'Restrict discovery to these roots');
-  flag('--no-git', 'Structure-only scan (no TraceLens blocks)');
-  flag('--git --git-since=<days>', 'Attach git forensics (default on)');
-  flag('--publish', 'Upload output tree to object storage after a successful scan');
-  flag(
-    '--key-prefix=<path>',
-    'With --publish: object key prefix inside the bucket (isolates catalogs; see ADR-0014)'
-  );
-  flag('--workspace-name=<name>', 'With --publish: workspace name for entityRef resolution');
-  flag(
-    '--skip-validation',
-    'Allow upload without a validation gate (default; catalogs prefer visibility over blocking)'
-  );
-  flag('--validate', 'Fail publish when workspace validation fails (optional hard gate)');
-  flag('--watch [--watch-debounce=<ms>]', 'Re-run on file changes');
-  flag('--headless', 'Same as scan - never prompts');
+  printCatalogFlags('scan', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens scan');
@@ -148,10 +108,7 @@ export function printEnrichHelp(): void {
   example('archlens enrich [options]');
   example('archlens --enrich-only [options]');
 
-  heading('OPTIONS');
-  flag('--output=<dir>', 'Blueprint folder (default: blueprints)');
-  flag('--git', 'Also refresh TraceLens git metrics on nodes');
-  flag('--git-since=<days>', 'Forensics lookback when --git is set');
+  printCatalogFlags('enrich', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens enrich');
@@ -174,12 +131,7 @@ export function printValidateHelp(): void {
   heading('USAGE');
   example('archlens validate [path] [options]');
 
-  heading('OPTIONS');
-  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
-  flag('--format=text|json', 'Output format (default: text)');
-  flag('--contract', 'Also fail on BlueprintSpec wiring/schema issues');
-  flag('--since-commit[=<ref>]', 'Compare health to blueprints at git ref (default HEAD~1)');
-  flag('--baseline=<dir>', 'Compare health to another on-disk blueprint tree');
+  printCatalogFlags('validate', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens validate');
@@ -197,10 +149,7 @@ export function printDiffHelp(): void {
   heading('USAGE');
   example('archlens diff [baseline] [current] [options]');
 
-  heading('OPTIONS');
-  flag('--baseline=<dir>', 'Baseline tree (default: blueprints)');
-  flag('--current=<dir>', 'Current tree (default: same as baseline)');
-  flag('--format=text|json', 'Output format (default: text)');
+  printCatalogFlags('diff', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens diff base-blueprints/ head-blueprints/');
@@ -217,15 +166,7 @@ export function printResilienceHelp(): void {
   heading('USAGE');
   example('archlens resilience [path] [options]');
 
-  heading('OPTIONS');
-  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
-  flag('--chaos-specs=<dir>', 'Optional ChaosSpec YAML directory (e.g. chaos-specs/)');
-  flag('--min-sla=<percent>', 'Exit 1 when worst SLA falls below threshold (default: 100)');
-  flag('--fail-on-recommendations', 'Exit 1 when any recommendation is emitted');
-  flag('--max-region-outages=<n>', 'Cap region-outage scenarios per diagram (default: 15)');
-  flag('--max-fan-in-probes=<n>', 'Cap fan-in latency probes per diagram (default: 5)');
-  flag('--format=text|json|yaml', 'Output format (default: text; CI uses json)');
-  flag('--output=<file>', 'Write AdviceLens artifact to a file (.json or .yaml)');
+  printCatalogFlags('resilience', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens resilience blueprints/chaoslens-stress/');
@@ -246,26 +187,7 @@ export function printPublishHelp(): void {
   heading('USAGE');
   example('archlens publish [path] [options]');
 
-  heading('OPTIONS');
-  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
-  flag('--workspace-name=<name>', 'Workspace name for entityRef resolution (default: blueprints)');
-  flag(
-    '--provider=r2|s3|azure',
-    'Object storage provider (default: OBJECT_STORAGE_PROVIDER or r2)'
-  );
-  flag('--format=text|json', 'Output format (default: text)');
-  flag('--bucket=<name>', 'Bucket/container (default: OBJECT_STORAGE_BUCKET / R2_BUCKET env)');
-  flag('--account-id=<id>', 'Cloudflare account id for R2 endpoint override');
-  flag(
-    '--key-prefix=<path>',
-    'Object key prefix inside the bucket (or OBJECT_STORAGE_KEY_PREFIX; samples estate: estates/{id}/)'
-  );
-  flag('--no-dry-run', 'Upload snapshot to object storage');
-  flag(
-    '--skip-validation',
-    'Allow upload without a validation gate (default; use --validate to gate)'
-  );
-  flag('--validate', 'Fail publish when workspace validation fails');
+  printCatalogFlags('publish', HELP_SECTION.options);
 
   heading('EXAMPLES');
   example('archlens publish blueprints/');
@@ -292,51 +214,10 @@ export function printCatalogHelp(): void {
   example('archlens catalog reject-overlay --estate=<id> --overlay-id=<id>');
   example('archlens catalog prune --estate=<id>');
 
-  heading('publish-fragment OPTIONS');
-  flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
-  flag('--product=<id>', 'Product composition key');
-  flag('--system=<id>', 'Optional system / path slice within the product');
-  flag('--fragment-key=<id>', 'Override fragment key (default: product[--system])');
-  flag('--source-ref=<ref>', 'Repo@sha or CI run identity');
-  flag('--run-id=<id>', 'Optional run id (default: UTC timestamp)');
-  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
-  flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
-  flag('--no-dry-run', 'Upload fragment to object storage');
-  flag(
-    '--skip-validation',
-    'Allow upload without a validation gate (default; use --validate to gate)'
-  );
-  flag('--validate', 'Fail fragment publish when workspace validation fails');
-
-  heading('compose OPTIONS');
-  flag('--estate=<id>', 'Estate id to compose (loads fragments/ under the key prefix)');
-  flag('--workspace-name=<name>', 'Workspace name for validation / catalog');
-  flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
-  flag('--max-retries=<n>', 'CAS retries on latest/manifest.json (default: 8)');
-  flag('--no-dry-run', 'Upload composed snapshot and CAS-update latest');
-  flag('--allow-empty', 'Exit 0 when no fragments are staged (cron safety nets)');
-  flag(
-    '--skip-validation',
-    'Allow compose without a validation gate (default; use --validate to gate)'
-  );
-  flag('--validate', 'Fail compose when the composed tree fails validation');
-  flag('--format=text|json', 'Output format (default: text)');
-
-  heading('prune OPTIONS');
-  flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
-  flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
-  flag('--keep-snapshots=<n>', 'Keep at least N newest snapshots (default: 7)');
-  flag('--keep-snapshot-days=<n>', 'Also keep snapshots newer than N days (default: 14)');
-  flag('--keep-fragment-runs=<n>', 'Keep N newest runs per fragment key (default: 2)');
-  flag('--no-dry-run', 'Delete planned keys (default is dry-run)');
-  flag('--format=text|json', 'Output format (default: text)');
-
-  heading('accept-overlay / reject-overlay OPTIONS');
-  flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
-  flag('--file=<overlay.yaml>', 'accept-overlay: suggestion overlay document to stage');
-  flag('--overlay-id=<id>', 'reject-overlay: overlay id to tombstone');
-  flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
-  flag('--no-dry-run', 'Write overlay accept/reject to object storage');
+  printCatalogFlags('catalog', HELP_SECTION.fragment);
+  printCatalogFlags('catalog', HELP_SECTION.compose);
+  printCatalogFlags('catalog', HELP_SECTION.prune);
+  printCatalogFlags('catalog', HELP_SECTION.overlay);
 
   heading('EXAMPLES');
   example(
@@ -363,6 +244,5 @@ export function printUpdateHelp(): void {
   heading('USAGE');
   example('archlens update');
 
-  heading('OPTIONS');
-  flag('--no-update-check', 'Skip the interactive startup update prompt on other commands');
+  printCatalogFlags('update', HELP_SECTION.options);
 }

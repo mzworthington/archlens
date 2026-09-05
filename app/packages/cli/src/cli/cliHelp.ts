@@ -1,4 +1,5 @@
 import pc from 'picocolors';
+import { FLAG, type HelpTopic } from './cliFlagCatalog.ts';
 import { getArchlensVersion } from './version.ts';
 import {
   printCatalogHelp,
@@ -12,16 +13,7 @@ import {
   printValidateHelp,
 } from './cliHelpTopics.ts';
 
-export type HelpTopic =
-  | 'overview'
-  | 'scan'
-  | 'enrich'
-  | 'validate'
-  | 'diff'
-  | 'resilience'
-  | 'publish'
-  | 'catalog'
-  | 'update';
+export type { HelpTopic };
 
 const SUBCOMMANDS = [
   'scan',
@@ -48,7 +40,7 @@ const TOPIC_ALIASES: Record<string, HelpTopic> = {
 };
 
 export function wantsHelpFlag(argv: string[]): boolean {
-  return argv.includes('--help') || argv.includes('-h');
+  return argv.includes(FLAG.help) || argv.includes(FLAG.helpShort);
 }
 
 function isHelpSubcommand(argv: string[]): boolean {
