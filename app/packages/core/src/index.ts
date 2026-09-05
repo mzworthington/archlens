@@ -18,7 +18,7 @@ export * from './rules/architectureHealth';
 export * from './rules/dependencyCycles';
 export * from './rules/collabDocument';
 export * from './rules/context';
-export * from './rules/iacExternalSignificance';
+export * from './rules/iacImport/iacExternalSignificance';
 export * from './rules/workspaceExternals';
 
 export * from './rules/externalNodeLayout';

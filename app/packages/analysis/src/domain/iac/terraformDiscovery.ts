@@ -1,4 +1,4 @@
-import type { AnalysisFileSystemPort } from './ports.ts';
+import type { AnalysisFileSystemPort } from '../ports.ts';
 import { slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
 
 export type DiscoveredTerraformRoot = {

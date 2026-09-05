@@ -2,16 +2,16 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { parsePulumiToSchema } from './pulumi';
+import { parsePulumiToSchema } from '../pulumi';
 import {
   classifyIacResource,
   infrastructureServesOf,
   projectMeaningfulIacExternals,
   type IacResourceKind,
 } from './iacExternalSignificance';
-import type { SystemNode, SystemSchema } from '../models/schema';
+import type { SystemNode, SystemSchema } from '../../models/schema';
 
-const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../../../../');
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../../../../../');
 
 function node(
   providerType: string,

@@ -29,7 +29,7 @@ For non-trivial feature work, before coding: inventory tests (functional + XFN),
 - **Canonical format:** YAML `SystemSchema` (BlueprintSpec) linked by `entityRef`. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).
 - **Imports:** External diagrams enter via import wizards into `SystemSchema` with conflict preview. Do not make export-only views editable.
 - **Workspaces:** Prefer merge-into-active-diagram. Disk writes go through the DiffMenu commit flow.
-- **TDD for parsers/merge:** Red → green → refactor in `@archlens/core`. UI stays in canvas adapters. Core modules: `mermaidImport/`, `schema/schemaMerge.ts`. Terraform parsing lives in `terraformImport/` and stays off the canvas editor (CLI/analysis + import wizard only).
+- **TDD for parsers/merge:** Red → green → refactor in `@archlens/core`. UI stays in canvas adapters. Core modules: `mermaidImport/`, `iacImport/`, `schema/schemaMerge.ts`. Terraform parsing lives in `terraformImport/` and stays off the canvas editor (CLI/analysis + import wizard only).
 
 ## Toolchain
 

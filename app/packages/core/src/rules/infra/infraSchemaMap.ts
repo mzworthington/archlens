@@ -6,7 +6,7 @@ import type {
   SystemNode,
   SystemSchema,
 } from '../../models/schema';
-import { mapProviderTypeToNodeType } from '../iacResourceMap';
+import { mapProviderTypeToNodeType } from './iacResourceMap';
 import type { InfraIR, InfraNode } from './infraIr';
 
 export interface InfraImportOptions {

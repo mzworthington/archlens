@@ -2,10 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import path from 'node:path';
 import { parseSchemaFromYaml } from '@archlens/core';
 import { IacAnalyzer } from './iacAnalyzer.ts';
-import { ContextLevelWriter } from '../writers/contextLevelWriter.ts';
-import { discoverSystems } from './systemDiscovery.ts';
-import { MockFileSystem } from '../test/fakes.ts';
-import type { DiscoveredSystem } from './systemDiscovery.ts';
+import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
+import { discoverSystems } from '../systemDiscovery/index.ts';
+import { MockFileSystem } from '../../test/fakes.ts';
+import type { DiscoveredSystem } from '../systemDiscovery/index.ts';
 
 class SilentLogger {
   infos: string[] = [];

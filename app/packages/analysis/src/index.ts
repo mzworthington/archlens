@@ -13,7 +13,7 @@ export {
   type AnalysisOptions,
 } from './domain/analysisOptions.ts';
 export { CodebaseAnalyzer } from './domain/analyzer.ts';
-export { IacAnalyzer } from './domain/iacAnalyzer.ts';
+export { IacAnalyzer } from './domain/iac/index.ts';
 export { ModelExtractor } from './domain/modelExtractor.ts';
 export { CancellationError, isCancellationError, throwIfAborted } from './domain/cancellation.ts';
 export {
@@ -43,8 +43,8 @@ export {
 export { ContainerLevelWriter } from './writers/containerLevelWriter.ts';
 export { ComponentLevelWriter } from './writers/componentLevelWriter.ts';
 export { fileLeafEntityRef, shouldEmitRollupDrillDown } from './writers/rollupDrillDown.ts';
-export { discoverSystems, partitionFilesBySystem } from './domain/systemDiscovery.ts';
-export type { DiscoveredSystem } from './domain/systemDiscovery.ts';
+export { discoverSystems, partitionFilesBySystem } from './domain/systemDiscovery/index.ts';
+export type { DiscoveredSystem } from './domain/systemDiscovery/index.ts';
 export { isTestSourcePath, detectTestFramework } from './domain/testPath.ts';
 export type { TestFramework } from './domain/testPath.ts';
 export { extractParsedSourceFileFromTree } from './parsing/treeSitterAstExtract.ts';

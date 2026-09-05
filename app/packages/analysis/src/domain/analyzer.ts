@@ -10,7 +10,7 @@ import {
   discoverSystems,
   partitionFilesBySystem,
   type DiscoveredSystem,
-} from './systemDiscovery.ts';
+} from './systemDiscovery/index.ts';
 import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext.ts';
 import { throwIfAborted } from './cancellation.ts';
 import {

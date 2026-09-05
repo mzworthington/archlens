@@ -1,23 +1,23 @@
 import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
 import type { TelemetryViewMode } from '@archlens/core/resilience';
-import { syncResilienceExternalsToCanvas } from '../../resilience/syncResilienceExternals';
-import { createFaultSafeguardToggleActions } from './resilienceState/faultSafeguardToggles';
-import { resilienceModePanelPatch } from './resilienceState/helpers';
-import { createSimulationActions } from './resilienceState/simulationActions';
+import { syncResilienceExternalsToCanvas } from '../../../resilience/syncResilienceExternals';
+import { createFaultSafeguardToggleActions } from './faultSafeguardToggles';
+import { resilienceModePanelPatch } from './helpers';
+import { createSimulationActions } from './simulationActions';
 import {
   DEFAULT_RESILIENCE_MONTE_CARLO,
   type ResilienceGet,
   type ResiliencePanelTab,
   type ResilienceSet,
   type ResilienceState,
-} from './resilienceState/types';
-import { createUrlParseApplyActions } from './resilienceState/urlParseApply';
+} from './types';
+import { createUrlParseApplyActions } from './urlParseApply';
 
 export {
   DEFAULT_RESILIENCE_MONTE_CARLO,
   type ResiliencePanelTab,
   type ResilienceState,
-} from './resilienceState/types';
+} from './types';
 
 export const createResilienceState = (set: ResilienceSet, get: ResilienceGet): ResilienceState => ({
   isResilienceMode: false,

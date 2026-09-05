@@ -6,7 +6,7 @@ import {
   parseIacBatchToSchema,
   parseIacToSchema,
   vendorForKind,
-} from './iacImport';
+} from './index';
 
 describe('detectIacSourceKind', () => {
   it('detects terraform hcl from path and content', () => {

@@ -16,7 +16,7 @@ export {
   type IacSignificance,
   type MeaningfulIacExternalsProjection,
   type ProjectMeaningfulIacExternalsOptions,
-} from './rules/iacExternalSignificance';
+} from './rules/iacImport/iacExternalSignificance';
 export {
   isPulumiProjectContent,
   isPulumiProjectFileName,

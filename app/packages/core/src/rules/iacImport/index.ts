@@ -1,13 +1,13 @@
-import type { SystemSchema } from '../models/schema';
-import type { InfraImportOptions as InfraSchemaImportOptions } from './infra/infraSchemaMap';
+import type { SystemSchema } from '../../models/schema';
+import type { InfraImportOptions as InfraSchemaImportOptions } from '../infra/infraSchemaMap';
 import {
   parsePulumiBatchToSchema,
   parsePulumiStackToSchema,
   readPulumiProjectRuntime,
   type PulumiRuntime,
   type PulumiSourceFile,
-} from './pulumi';
-import { parseTerraformBatchToSchema, type TerraformSourceFile } from './terraformImport';
+} from '../pulumi';
+import { parseTerraformBatchToSchema, type TerraformSourceFile } from '../terraformImport';
 
 export type IacImportOptions = InfraSchemaImportOptions & {
   /** Force source kind; default auto-detects per file. */

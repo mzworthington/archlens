@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
-import { MockFileSystem } from '../test/fakes.ts';
+import { MockFileSystem } from '../../test/fakes.ts';
 import path from 'node:path';
 
 describe('discoverTerraformRoots', () => {

@@ -1,5 +1,5 @@
-import { EntityRef } from '../models/schema';
-import type { NodeType, SystemDependency, SystemNode, SystemSchema } from '../models/schema';
+import { EntityRef } from '../../models/schema';
+import type { NodeType, SystemDependency, SystemNode, SystemSchema } from '../../models/schema';
 
 export type IacResourceKind = 'resource' | 'data' | 'module';
 

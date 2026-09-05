@@ -27,8 +27,8 @@ graph TD
     subgraph Store [Zustand Store - State Sync]
         StoreEntry[store.ts - Composition Root]
         UiState[uiState.ts - Layout & Panels]
-        DiagramState[diagramState.ts - Canvas & Navigation]
-        IoState[ioState.ts - File Systems Sync]
+        DiagramState[diagramState/ - Canvas & Navigation]
+        IoState[ioState/ - File Systems Sync]
         StoreEntry --> UiState
         StoreEntry --> DiagramState
         StoreEntry --> IoState
@@ -134,6 +134,7 @@ Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 - **[graph/](../app/packages/core/src/rules/graph/):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
 - **[mermaidImport/](../app/packages/core/src/rules/mermaidImport/) / [schemaMerge.ts](../app/packages/core/src/rules/schema/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (canvas import wizard).
 - **[terraformImport/](../app/packages/core/src/rules/terraformImport/):** Static Terraform HCL/JSON → `SystemSchema` (CLI/analysis IaC pass; canvas import wizard delegates, no Terraform editor).
+- **[iacImport/](../app/packages/core/src/rules/iacImport/):** Detect Terraform vs Pulumi and classify meaningful externals for the IaC import facade.
 - **[workspaceExternals/](../app/packages/core/src/rules/workspaceExternals/):** Suggest / add external proxy nodes across loaded workspace schemas.
 - **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - Canvas resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.

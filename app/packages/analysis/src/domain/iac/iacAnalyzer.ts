@@ -7,14 +7,14 @@ import {
   type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
-import { BaseWriter } from '../writers/baseWriter.ts';
+import { BaseWriter } from '../../writers/baseWriter.ts';
 import {
   ContextLevelWriter,
   LEGACY_CONTEXT_RELATIVE_PATH,
   resolveContextSeedRelativePath,
-} from '../writers/contextLevelWriter.ts';
-import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';
-import { throwIfAborted } from './cancellation.ts';
+} from '../../writers/contextLevelWriter.ts';
+import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from '../ports.ts';
+import { throwIfAborted } from '../cancellation.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
 import {
@@ -22,14 +22,14 @@ import {
   productHubInputsForIac,
   resolveProductIdForPath,
   type DiscoveredSystem,
-} from './systemDiscovery.ts';
+} from '../systemDiscovery/index.ts';
 import {
   analyzeAndWriteIacRoot,
   type IacExternalProposals,
   type IacRoot,
   type IacSubsystemRef,
 } from './iacRootAnalysis.ts';
-import { resolveSystemEntityRef } from './entityRefContext.ts';
+import { resolveSystemEntityRef } from '../entityRefContext.ts';
 
 export type IacAnalyzerDependencies = {
   fileSystem: AnalysisFileSystemPort;
@@ -108,7 +108,7 @@ async function loadContextSeed(
 }
 
 /** Resolve `serves` from an infra spoke in the blueprint seed; default to the landscape system. */
-export function resolveServedSystemRefs(
+function resolveServedSystemRefs(
   seed: SystemSchema | null,
   infraSystemEntityRef: string,
   landscapeEntityRef: string

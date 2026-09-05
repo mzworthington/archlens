@@ -1,4 +1,4 @@
-import type { AnalysisFileSystemPort } from './ports.ts';
+import type { AnalysisFileSystemPort } from '../ports.ts';
 
 const IAC_SKIP_DIR_NAMES = new Set([
   'node_modules',

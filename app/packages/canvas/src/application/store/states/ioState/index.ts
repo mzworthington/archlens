@@ -1,5 +1,5 @@
-import type { DiagramState } from './diagramState';
-import type { UiState } from './uiState';
+import type { DiagramState } from '../diagramState';
+import type { UiState } from '../uiState';
 import {
   type FileSystemPort,
   type WorkspacePort,
@@ -19,13 +19,13 @@ import {
   noopResilienceEngine,
   noopCollabSession,
   EMPTY_COLLAB_PRESENCE,
-} from '../../../core';
-import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
-import { readCollabHostToken } from '../../collab/collabRoomCredentials';
-import type { LiteScanProgress } from '../../analysis/liteScanProgress';
-import type { BlueprintStoreSet } from '../store';
-import { createOpenWorkspaceStoreActions } from './ioState/openWorkspace/openWorkspaceStoreActions';
-import { createSaveWorkspaceActions } from './ioState/saveWorkspaceActions';
+} from '../../../../core';
+import { setCollabDisplayName as persistCollabDisplayName } from '../../../collab/collabDisplayName';
+import { readCollabHostToken } from '../../../collab/collabRoomCredentials';
+import type { LiteScanProgress } from '../../../analysis/liteScanProgress';
+import type { BlueprintStoreSet } from '../../store';
+import { createOpenWorkspaceStoreActions } from './openWorkspace/openWorkspaceStoreActions';
+import { createSaveWorkspaceActions } from './saveWorkspaceActions';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;

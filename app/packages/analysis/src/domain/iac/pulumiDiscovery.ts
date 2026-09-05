@@ -4,7 +4,7 @@ import {
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,
 } from '@archlens/core/import-iac';
-import type { AnalysisFileSystemPort } from './ports.ts';
+import type { AnalysisFileSystemPort } from '../ports.ts';
 import { directorySlug, slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
 
 export type DiscoveredPulumiRoot = {

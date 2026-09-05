@@ -11,8 +11,8 @@ describe('folderComponentRollup', () => {
   it('rolls up monorepo paths to full folder depth', () => {
     expect(
       resolveFolderRolledComponent(
-        'app/packages/canvas/src/application/store/states/diagramState.ts',
-        'diagramState',
+        'app/packages/canvas/src/application/store/states/uiState.ts',
+        'uiState',
         { layoutRoots, stripExtension: tsStrip, leafWhenSingleSegmentInSimpleRepo: true }
       )
     ).toEqual({

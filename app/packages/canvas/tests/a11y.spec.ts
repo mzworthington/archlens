@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { gotoApp } from './helpers/navigation';
 import { expectNoSeriousA11yViolations } from './helpers/a11y';
 import { loadSandbox } from './helpers/workspace';

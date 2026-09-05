@@ -1,4 +1,4 @@
-import type { NodeType } from '../models/schema';
+import type { NodeType } from '../../models/schema';
 
 export interface ResourceTypeMapping {
   nodeType: NodeType;

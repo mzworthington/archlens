@@ -13,7 +13,7 @@ import {
   hubRefForProductNodes,
   normalizeContextGrouping,
   pruneEmptyProductHubs,
-} from '../domain/systemDiscovery.ts';
+} from '../domain/systemDiscovery/index.ts';
 import { resolveContextDisplayName, resolveSystemEntityRef } from '../domain/entityRefContext.ts';
 
 export { PERSON_EDGE_DESCRIPTION };

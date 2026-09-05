@@ -1,7 +1,7 @@
 import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
-import type { CodebaseParserPort } from './ports.ts';
-import { resolveSystemEntityRef } from './entityRefContext.ts';
-import { ModelExtractor } from './modelExtractor.ts';
+import type { CodebaseParserPort } from '../ports.ts';
+import { resolveSystemEntityRef } from '../entityRefContext.ts';
+import { ModelExtractor } from '../modelExtractor.ts';
 
 function globForRuntime(runtime: string, relRoot: string): string {
   const prefix = relRoot ? `${relRoot}/` : '';

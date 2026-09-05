@@ -92,8 +92,8 @@ describe('typescriptGrouping', () => {
 
     it('rolls up files in the same folder to one component', () => {
       const first = resolveTypeScriptComponent(
-        'app/packages/core/src/rules/iacImport.ts',
-        'iacImport'
+        'app/packages/core/src/rules/architectureHealth.ts',
+        'architectureHealth'
       );
       const second = resolveTypeScriptComponent('app/packages/core/src/rules/path.ts', 'path');
       expect(first).toEqual({ componentId: 'rules', componentName: 'Rules' });
@@ -116,11 +116,8 @@ describe('typescriptGrouping', () => {
   describe('resolveRelativeTypeScriptImportPath', () => {
     it('resolves sibling and parent-relative imports', () => {
       expect(
-        resolveRelativeTypeScriptImportPath(
-          'app/packages/core/src/import-iac.ts',
-          './rules/iacImport'
-        )
-      ).toBe('app/packages/core/src/rules/iacImport.ts');
+        resolveRelativeTypeScriptImportPath('app/packages/core/src/import-iac.ts', './rules/path')
+      ).toBe('app/packages/core/src/rules/path.ts');
 
       expect(
         resolveRelativeTypeScriptImportPath('src/adapters/Canvas.tsx', '../domain/graph')
@@ -135,10 +132,7 @@ describe('typescriptGrouping', () => {
       );
 
       expect(
-        resolveTypeScriptImportComponentId(
-          'app/packages/core/src/import-iac.ts',
-          './rules/iacImport'
-        )
+        resolveTypeScriptImportComponentId('app/packages/core/src/import-iac.ts', './rules/path')
       ).toBe('rules');
     });
   });
