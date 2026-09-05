@@ -9,6 +9,7 @@ describe('TraceLensPanel', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isTraceLensMode: true,
+      isBrowserLiteWorkspace: false,
       loadedSystems: [
         {
           path: 'canvas-components.yaml',
@@ -611,5 +612,38 @@ describe('TraceLensPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
 
     expect(mem.history?.[mem.history.length - 1]).toBe('/workspace?lens=advicelens');
+  });
+
+  it('does not tell a browser-scan workspace that git hotspots exist here', () => {
+    useBlueprintStore.setState({
+      isBrowserLiteWorkspace: true,
+      isWorkspaceOpen: true,
+      loadedSystems: [
+        {
+          path: 'demo/context.yaml',
+          name: 'demo',
+          schema: {
+            name: 'Demo',
+            version: '1.0.0',
+            level: 'context',
+            dependencies: [],
+            nodes: [{ entityRef: 'demo/web', name: 'Web', type: 'web-app' }],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
+    render(
+      <Router hook={hook}>
+        <TraceLensPanel />
+      </Router>
+    );
+
+    expect(screen.getByTestId('workspace-complexity-summary')).toHaveTextContent(
+      /structure-only browser scan/i
+    );
+    expect(screen.queryByText(/Re-scan with git/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/git hotspots exist/i)).not.toBeInTheDocument();
   });
 });

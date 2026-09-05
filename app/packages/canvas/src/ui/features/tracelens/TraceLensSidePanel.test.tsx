@@ -18,6 +18,7 @@ describe('TraceLensSidePanelContent', () => {
       selectedNodeId: null,
       showCoupling: false,
       showHotspotHeatmap: true,
+      isBrowserLiteWorkspace: false,
     });
     useBlueprintStore.getState().initSchema({
       name: 'Test',
@@ -38,6 +39,14 @@ describe('TraceLensSidePanelContent', () => {
   it('shows empty selection hint when no node is selected', () => {
     render(<TraceLensSidePanelContent />);
     expect(screen.getByTestId('tracelens-empty-selection')).toBeInTheDocument();
+    expect(screen.getByTestId('tracelens-empty-selection')).toHaveTextContent(/git metrics/i);
+  });
+
+  it('does not claim git metrics exist for a browser lite scan', () => {
+    useBlueprintStore.setState({ isBrowserLiteWorkspace: true });
+    render(<TraceLensSidePanelContent />);
+    expect(screen.getByTestId('tracelens-empty-selection')).toHaveTextContent(/no CLI forensics/i);
+    expect(screen.getByTestId('tracelens-empty-selection')).not.toHaveTextContent(/git metrics/i);
   });
 
   it('navigates to full trace lens mode from worst offenders CTA', () => {

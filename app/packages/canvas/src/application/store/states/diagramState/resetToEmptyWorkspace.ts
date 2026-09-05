@@ -38,6 +38,8 @@ export function resetToEmptyWorkspace(
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    isMemoryScanWorkspace: false,
+    isScanMapPersistOpen: false,
     workspaceName: '',
     selectedNodeId: null,
     selectedEdgeId: null,

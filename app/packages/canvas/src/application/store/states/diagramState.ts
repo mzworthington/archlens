@@ -49,6 +49,7 @@ export const createDiagramState = (
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    isMemoryScanWorkspace: false,
     workspaceName: '',
     workspaceCatalog: [],
     loadedSystems: initial.loadedSystems,

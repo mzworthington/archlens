@@ -379,6 +379,7 @@ async function finalizeWorkspaceOpen(args: {
     isSampleWorkspace,
     isBrowserLiteWorkspace,
     browserLiteBannerOpen: isBrowserLiteWorkspace,
+    isMemoryScanWorkspace: false,
     workspaceName,
     workspaceCatalog,
     loadedSystems: [entry],

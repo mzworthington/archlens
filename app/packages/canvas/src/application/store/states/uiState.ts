@@ -59,6 +59,8 @@ export interface UiState {
   mermaidEnrichBannerOpen: boolean;
   /** Sticky reminder after a browser lite scan - graduate to CLI for forensics. */
   browserLiteBannerOpen: boolean;
+  /** Prompt to persist a browser-scan map to a blueprints folder or download. */
+  isScanMapPersistOpen: boolean;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
   diagramLoadCount: number;
@@ -94,6 +96,7 @@ export interface UiState {
   setNotification: (notification: ToastNotification | null) => void;
   setMermaidEnrichBannerOpen: (open: boolean) => void;
   setBrowserLiteBannerOpen: (open: boolean) => void;
+  setIsScanMapPersistOpen: (open: boolean) => void;
   setLayoutEngine: (engine: LayoutEngineId | null) => void;
   setFocusedCyclePath: (path: string[] | null) => void;
   setIsLoading: (loading: boolean | string) => void;
@@ -137,6 +140,7 @@ export const createUiState = (
   notification: null,
   mermaidEnrichBannerOpen: false,
   browserLiteBannerOpen: false,
+  isScanMapPersistOpen: false,
   focusedCyclePath: null,
   isLoading: false,
   diagramLoadCount: 0,
@@ -209,6 +213,7 @@ export const createUiState = (
   setNotification: notification => set({ notification }),
   setMermaidEnrichBannerOpen: open => set({ mermaidEnrichBannerOpen: open }),
   setBrowserLiteBannerOpen: open => set({ browserLiteBannerOpen: open }),
+  setIsScanMapPersistOpen: open => set({ isScanMapPersistOpen: open }),
   setLayoutEngine: engine => set({ layoutEngine: engine }),
   setFocusedCyclePath: path => set({ focusedCyclePath: path }),
   setIsLoading: loading => set({ isLoading: loading }),

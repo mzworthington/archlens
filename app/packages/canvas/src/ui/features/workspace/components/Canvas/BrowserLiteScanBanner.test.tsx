@@ -22,4 +22,11 @@ describe('BrowserLiteScanBanner', () => {
     fireEvent.click(screen.getByRole('button', { name: /Dismiss lite scan banner/i }));
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });
+
+  it('offers a named save when the map is still in memory', () => {
+    const onSaveMap = vi.fn();
+    render(<BrowserLiteScanBanner open onDismiss={vi.fn()} onSaveMap={onSaveMap} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Save map to folder' }));
+    expect(onSaveMap).toHaveBeenCalledTimes(1);
+  });
 });

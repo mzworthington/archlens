@@ -7,12 +7,14 @@ import { CLI_GETTING_STARTED_PATH } from '../../../../../constants/cli';
 type BrowserLiteScanBannerProps = {
   open: boolean;
   onDismiss: () => void;
+  onSaveMap?: () => void;
 };
 
 /** Sticky reminder that the open workspace is a structure-only browser scan. */
 export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
   open,
   onDismiss,
+  onSaveMap,
 }) => {
   if (!open) return null;
 
@@ -35,14 +37,26 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
             This map has no TraceLens git hotspots or CI publish. Install the ArchLens CLI for
             in-depth forensics, watch mode and catalog workflows.
           </p>
-          <Link
-            href={CLI_GETTING_STARTED_PATH}
-            className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
-            data-testid="browser-lite-scan-banner-cli"
-          >
-            <Terminal className="w-3 h-3" aria-hidden />
-            Install CLI & run a full scan
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href={CLI_GETTING_STARTED_PATH}
+              className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
+              data-testid="browser-lite-scan-banner-cli"
+            >
+              <Terminal className="w-3 h-3" aria-hidden />
+              Install CLI & run a full scan
+            </Link>
+            {onSaveMap ? (
+              <button
+                type="button"
+                onClick={onSaveMap}
+                className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-amber-200 hover:underline cursor-pointer"
+                data-testid="browser-lite-scan-banner-save"
+              >
+                Save map to folder
+              </button>
+            ) : null}
+          </div>
         </div>
         <button
           type="button"

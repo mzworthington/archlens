@@ -50,8 +50,12 @@ import { LITE_SCAN_MAX_FILES, LITE_SCAN_MAX_TOTAL_BYTES } from '../../analysis/l
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
 import { readCollabHostToken } from '../../collab/collabRoomCredentials';
-import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
 import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSession';
+import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
+import {
+  downloadScanYamlFileName,
+  writeWorkspaceYamlFiles,
+} from '../../workspace/writeWorkspaceYamlFiles';
 import type { BlueprintStoreSet } from '../store';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
@@ -96,6 +100,9 @@ export interface IoState {
   openBundledSample: () => Promise<boolean>;
   /** Structural TS/JS scan in the browser (no git / CLI install). */
   openBrowserLiteScan: () => Promise<boolean>;
+  persistBrowserScanMapToFolder: () => Promise<boolean>;
+  persistBrowserScanMapDownload: () => Promise<boolean>;
+  dismissScanMapPersist: () => void;
   /** Live files/bytes while a browser lite scan is in flight. */
   liteScanProgress: LiteScanProgress | null;
   /** Abort the in-flight browser lite scan (chooser or toolbar). */
@@ -456,19 +463,20 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         isSampleWorkspace: false,
         isBrowserLiteWorkspace: true,
         openGeneration,
-        committedPorts: { workspacePort: scanPort, folderWorkspacePort: scanPort },
+        committedPorts: { workspacePort: scanPort },
       });
 
       if (opened) {
         // Only lock out demo bootstrap after a successful scan workspace open.
         markFolderWorkspacePreferred();
+        set({ isMemoryScanWorkspace: true, isScanMapPersistOpen: true });
         const truncatedNote = describeTruncation(walked.truncationReasons, walked.sourceFileCount);
         setNotification?.({
           type: 'info',
           title: 'Browser lite scan ready',
           message: `Loaded ${walked.sourceFileCount} source file(s)${
             walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
-          } - structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
+          } - structure only (no TraceLens/git hotspots).${truncatedNote} Save the map to a folder, or keep it in memory. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
         });
         return true;
       }
@@ -500,6 +508,88 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     }
   },
 
+  persistBrowserScanMapToFolder: async () => {
+    const {
+      workspacePort,
+      folderWorkspacePort,
+      isMemoryScanWorkspace,
+      logger,
+      setNotification,
+      setIsLoading,
+    } = get();
+    if (!isMemoryScanWorkspace) return false;
+    setIsLoading(true);
+    try {
+      const files = await workspacePort.readDirectoryFiles();
+      const selected = await folderWorkspacePort.selectDirectory();
+      if (!selected) return false;
+      const written = await writeWorkspaceYamlFiles(folderWorkspacePort, files);
+      if (!written.ok) {
+        setNotification?.({
+          type: 'error',
+          title: 'Save failed',
+          message: `Could not write ${written.failedPath} into that folder.`,
+        });
+        return false;
+      }
+      set({
+        workspacePort: folderWorkspacePort,
+        isMemoryScanWorkspace: false,
+        isScanMapPersistOpen: false,
+      });
+      setNotification?.({
+        type: 'success',
+        title: 'Map saved',
+        message: `Wrote ${files.length} blueprint file(s) to ${folderWorkspacePort.getDirectoryName()}. Later edits use draft and commit like other folders.`,
+      });
+      return true;
+    } catch (err) {
+      logger.error('Failed to save browser scan map to a folder', err);
+      setNotification?.({
+        type: 'error',
+        title: 'Save failed',
+        message: (err as Error).message || 'Could not save the map into a folder.',
+      });
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  },
+
+  persistBrowserScanMapDownload: async () => {
+    const { workspacePort, fileSystemPort, isMemoryScanWorkspace, logger, setNotification } = get();
+    if (!isMemoryScanWorkspace) return false;
+    try {
+      const files = await workspacePort.readDirectoryFiles();
+      for (const file of files) {
+        const saved = await fileSystemPort.saveSchema(
+          file.content,
+          downloadScanYamlFileName(file.name)
+        );
+        if (!saved) return false;
+      }
+      set({ isScanMapPersistOpen: false });
+      setNotification?.({
+        type: 'success',
+        title: 'Map downloaded',
+        message: `Downloaded ${files.length} blueprint file(s). The canvas copy stays in memory until you save to a folder.`,
+      });
+      return true;
+    } catch (err) {
+      logger.error('Failed to download browser scan map', err);
+      setNotification?.({
+        type: 'error',
+        title: 'Download failed',
+        message: (err as Error).message || 'Could not download the map.',
+      });
+      return false;
+    }
+  },
+
+  dismissScanMapPersist: () => {
+    set({ isScanMapPersistOpen: false });
+  },
+
   clearWorkspaceDrafts: async () => {
     const { workingCopyPort, logger } = get();
     try {
@@ -519,9 +609,14 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       workingCopyPort,
       isWorkspaceOpen,
       isSampleWorkspace,
+      isMemoryScanWorkspace,
       logger,
       setNotification,
     } = get();
+    if (isMemoryScanWorkspace) {
+      set({ isScanMapPersistOpen: true });
+      return false;
+    }
     if (!isWorkspaceOpen || isSampleWorkspace) {
       return get().saveSchema();
     }

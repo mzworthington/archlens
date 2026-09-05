@@ -41,6 +41,7 @@ describe('ActionControls Component', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
+      isMemoryScanWorkspace: false,
       openWorkspaceDirectory: vi.fn(),
       saveSchema: vi.fn(),
       loadSchema: vi.fn(),
@@ -141,6 +142,20 @@ describe('ActionControls Component', () => {
     openMoreMenu();
     fireEvent.click(screen.getByTitle('Save diagram directly in folder'));
 
+    expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('names Save map to folder when the workspace is a memory scan', () => {
+    const saveActiveDiagramMock = vi.fn();
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isMemoryScanWorkspace: true,
+      saveActiveDiagram: saveActiveDiagramMock,
+    });
+
+    renderToolbarActions();
+    openMoreMenu();
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Save map to folder' }));
     expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
   });
 

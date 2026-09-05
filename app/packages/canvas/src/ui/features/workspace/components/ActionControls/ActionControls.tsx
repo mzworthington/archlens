@@ -32,6 +32,7 @@ function useControlsDisabled(): boolean {
 
 function useSaveAction() {
   const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
+  const isMemoryScanWorkspace = useBlueprintStore(s => s.isMemoryScanWorkspace);
   const saveSchema = useBlueprintStore(s => s.saveSchema);
   const saveActiveDiagram = useBlueprintStore(s => s.saveActiveDiagram);
   const controlsDisabled = useControlsDisabled();
@@ -44,7 +45,7 @@ function useSaveAction() {
     }
   }, [isWorkspaceOpen, saveActiveDiagram, saveSchema]);
 
-  return { controlsDisabled, handleSave, isWorkspaceOpen };
+  return { controlsDisabled, handleSave, isWorkspaceOpen, isMemoryScanWorkspace };
 }
 
 function useClearAction() {
@@ -154,7 +155,12 @@ export const ToolbarEditActions: React.FC = () => {
 
 export const ToolbarOverflowMenu: React.FC = () => {
   const { controlsDisabled, handleClear } = useClearAction();
-  const { controlsDisabled: saveDisabled, handleSave, isWorkspaceOpen } = useSaveAction();
+  const {
+    controlsDisabled: saveDisabled,
+    handleSave,
+    isWorkspaceOpen,
+    isMemoryScanWorkspace,
+  } = useSaveAction();
   const setIsCompareOpen = useBlueprintStore(s => s.setIsCompareOpen);
   const setIsFeatureFlagsOpen = useBlueprintStore(s => s.setIsFeatureFlagsOpen);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
@@ -190,10 +196,17 @@ export const ToolbarOverflowMenu: React.FC = () => {
           }}
           disabled={saveDisabled}
           className={menuItemClass}
-          title={isWorkspaceOpen ? 'Save diagram directly in folder' : 'Save YAML to disk'}
+          title={
+            isMemoryScanWorkspace
+              ? 'Save scan map to a blueprints folder or download'
+              : isWorkspaceOpen
+                ? 'Save diagram directly in folder'
+                : 'Save YAML to disk'
+          }
+          aria-label={isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
         >
           <Download className="w-3.5 h-3.5 shrink-0" />
-          Save
+          {isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
         </button>
 
         <DiagramExportMenuItems menuItemClass={menuItemClass} onClose={close} />

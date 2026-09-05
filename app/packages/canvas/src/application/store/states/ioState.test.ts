@@ -137,6 +137,9 @@ dependencies: []
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
     expect(state.notification?.title).toBe('Browser lite scan ready');
     expect(state.notification?.message).toContain('structure only');
+    expect(state.isMemoryScanWorkspace).toBe(true);
+    expect(state.isScanMapPersistOpen).toBe(true);
+    expect(state.workspacePort).not.toBe(state.folderWorkspacePort);
     expect(state.liteScanProgress).toBeNull();
   });
 
@@ -420,6 +423,112 @@ nodes: []`);
       const success = await store.saveActiveDiagram();
       expect(success).toBe(false);
       spyWrite.mockRestore();
+    });
+  });
+
+  describe('browser scan map persist', () => {
+    it('writes scan YAML into a picked folder and then allows disk commit', async () => {
+      const folderWrites: Array<{ path: string; content: string }> = [];
+      const folderPort: WorkspacePort = {
+        ...mockWorkspacePort,
+        selectDirectory: async () => true,
+        getDirectoryName: () => 'blueprints',
+        writeFile: async (path, content) => {
+          folderWrites.push({ path, content });
+          return true;
+        },
+      };
+      useBlueprintStore.setState({
+        isMemoryScanWorkspace: true,
+        isScanMapPersistOpen: true,
+        isBrowserLiteWorkspace: true,
+        isWorkspaceOpen: true,
+        folderWorkspacePort: folderPort,
+        workspacePort: {
+          ...mockWorkspacePort,
+          writeFile: async () => false,
+          readDirectoryFiles: async () => [
+            { name: 'demo/context.yaml', content: 'level: context\n' },
+          ],
+        },
+      });
+
+      const saved = await useBlueprintStore.getState().persistBrowserScanMapToFolder();
+      const state = useBlueprintStore.getState();
+
+      expect(saved).toBe(true);
+      expect(folderWrites).toEqual([{ path: 'demo/context.yaml', content: 'level: context\n' }]);
+      expect(state.workspacePort).toBe(folderPort);
+      expect(state.isMemoryScanWorkspace).toBe(false);
+      expect(state.isScanMapPersistOpen).toBe(false);
+      expect(state.isBrowserLiteWorkspace).toBe(true);
+
+      const committed = await useBlueprintStore.getState().saveActiveDiagram();
+      expect(committed).toBe(true);
+      expect(folderWrites.length).toBeGreaterThan(1);
+    });
+
+    it('leaves the map in memory when save is declined', async () => {
+      const writeFile = vi.fn(async () => true);
+      const memoryPort: WorkspacePort = {
+        ...mockWorkspacePort,
+        writeFile: async () => false,
+        readDirectoryFiles: async () => [{ name: 'demo/context.yaml', content: 'x' }],
+      };
+      useBlueprintStore.setState({
+        isMemoryScanWorkspace: true,
+        isScanMapPersistOpen: true,
+        isBrowserLiteWorkspace: true,
+        workspacePort: memoryPort,
+        folderWorkspacePort: { ...mockWorkspacePort, writeFile },
+      });
+
+      useBlueprintStore.getState().dismissScanMapPersist();
+      const state = useBlueprintStore.getState();
+
+      expect(state.isScanMapPersistOpen).toBe(false);
+      expect(state.isMemoryScanWorkspace).toBe(true);
+      expect(state.workspacePort).toBe(memoryPort);
+      expect(writeFile).not.toHaveBeenCalled();
+    });
+
+    it('opens the persist prompt instead of writing when Save runs on a memory scan', async () => {
+      useBlueprintStore.setState({
+        isWorkspaceOpen: true,
+        isSampleWorkspace: false,
+        isMemoryScanWorkspace: true,
+        isScanMapPersistOpen: false,
+      });
+
+      const success = await useBlueprintStore.getState().saveActiveDiagram();
+      expect(success).toBe(false);
+      expect(useBlueprintStore.getState().isScanMapPersistOpen).toBe(true);
+    });
+
+    it('downloads YAML without attaching a folder workspace', async () => {
+      const saveSchema = vi.fn(async (content: string, fileName: string) => ({
+        fileName,
+        content,
+      }));
+      const memoryPort: WorkspacePort = {
+        ...mockWorkspacePort,
+        writeFile: async () => false,
+        readDirectoryFiles: async () => [
+          { name: 'demo/context.yaml', content: 'level: context\n' },
+        ],
+      };
+      useBlueprintStore.setState({
+        isMemoryScanWorkspace: true,
+        isScanMapPersistOpen: true,
+        workspacePort: memoryPort,
+        fileSystemPort: { ...useBlueprintStore.getState().fileSystemPort, saveSchema },
+      });
+
+      const saved = await useBlueprintStore.getState().persistBrowserScanMapDownload();
+      expect(saved).toBe(true);
+      expect(saveSchema).toHaveBeenCalledWith('level: context\n', 'demo__context.yaml');
+      expect(useBlueprintStore.getState().isMemoryScanWorkspace).toBe(true);
+      expect(useBlueprintStore.getState().workspacePort).toBe(memoryPort);
     });
   });
 

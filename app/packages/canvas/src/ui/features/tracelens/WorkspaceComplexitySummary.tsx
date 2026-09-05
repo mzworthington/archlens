@@ -1,4 +1,5 @@
 import type { WorkspaceComplexitySummary as Summary } from '../../../application/forensics/summarizeWorkspaceForensics';
+import { TRACE_LENS_BROWSER_SCAN_EMPTY } from '../../../application/forensics/traceLensBrowserScanCopy';
 
 function formatCount(value: number): string {
   return value.toLocaleString('en-US');
@@ -15,10 +16,11 @@ function SummaryStat({ label, value }: { label: string; value: string }) {
 
 type Props = {
   summary: Summary;
+  isBrowserLiteWorkspace?: boolean;
 };
 
 /** Estate / per-repo complexity markers for the loaded workspace. */
-export function WorkspaceComplexitySummary({ summary }: Props) {
+export function WorkspaceComplexitySummary({ summary, isBrowserLiteWorkspace = false }: Props) {
   const avg = summary.avgComplexity == null ? '-' : formatCount(summary.avgComplexity);
 
   return (
@@ -45,9 +47,15 @@ export function WorkspaceComplexitySummary({ summary }: Props) {
       </div>
       {summary.diagramCount > 0 && summary.nodesWithForensics === 0 ? (
         <p className="mt-3 text-xs text-slate-500 leading-relaxed">
-          Topology is loaded, but no TraceLens blocks were found. Re-scan with git enabled or run{' '}
-          <span className="font-mono text-slate-400">archlens enrich --git</span> to populate LOC
-          and complexity.
+          {isBrowserLiteWorkspace ? (
+            TRACE_LENS_BROWSER_SCAN_EMPTY
+          ) : (
+            <>
+              Topology is loaded, but no TraceLens blocks were found. Re-scan with git enabled or
+              run <span className="font-mono text-slate-400">archlens enrich --git</span> to
+              populate LOC and complexity.
+            </>
+          )}
         </p>
       ) : null}
     </section>

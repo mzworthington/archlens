@@ -12,6 +12,7 @@ import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/Worksp
 import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
+import { SaveScanMapDialog } from '../components/SaveScanMapDialog/SaveScanMapDialog';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
@@ -72,6 +73,10 @@ export function useWorkspaceDialogs(): React.ReactNode {
     updateSchemaName,
     saveSchema,
     saveBlankCanvasToFolder,
+    persistBrowserScanMapToFolder,
+    persistBrowserScanMapDownload,
+    dismissScanMapPersist,
+    isScanMapPersistOpen,
     setNotification,
   } = useBlueprintStore();
 
@@ -266,6 +271,18 @@ export function useWorkspaceDialogs(): React.ReactNode {
           setNameBlankOpen(false);
           setShareAfterNamed(false);
         }}
+      />
+      <SaveScanMapDialog
+        isOpen={isScanMapPersistOpen}
+        folderSaveAvailable={folderPickerAvailable()}
+        busy={Boolean(isLoading)}
+        onSaveFolder={() => {
+          void persistBrowserScanMapToFolder();
+        }}
+        onDownload={() => {
+          void persistBrowserScanMapDownload();
+        }}
+        onKeepInMemory={dismissScanMapPersist}
       />
       <CollabShareDialog
         isOpen={collabShare.shareOpen}

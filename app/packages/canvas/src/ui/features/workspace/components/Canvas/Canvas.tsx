@@ -70,6 +70,8 @@ export const Canvas: React.FC = () => {
     setMermaidEnrichBannerOpen,
     browserLiteBannerOpen,
     setBrowserLiteBannerOpen,
+    isMemoryScanWorkspace,
+    setIsScanMapPersistOpen,
     applyClientLayout,
     layoutSessionId,
     undo,
@@ -116,6 +118,8 @@ export const Canvas: React.FC = () => {
       setMermaidEnrichBannerOpen: state.setMermaidEnrichBannerOpen,
       browserLiteBannerOpen: state.browserLiteBannerOpen,
       setBrowserLiteBannerOpen: state.setBrowserLiteBannerOpen,
+      isMemoryScanWorkspace: state.isMemoryScanWorkspace,
+      setIsScanMapPersistOpen: state.setIsScanMapPersistOpen,
       applyClientLayout: state.applyClientLayout,
       layoutSessionId: state.layoutSessionId,
       undo: state.undo,
@@ -310,6 +314,7 @@ export const Canvas: React.FC = () => {
         <BrowserLiteScanBanner
           open={browserLiteBannerOpen}
           onDismiss={() => setBrowserLiteBannerOpen(false)}
+          onSaveMap={isMemoryScanWorkspace ? () => setIsScanMapPersistOpen(true) : undefined}
         />
         <EmptyDiagramOverlay />
         <DiagramLoadingOverlay />

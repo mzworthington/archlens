@@ -3,6 +3,7 @@ import { EstateRecommendationsPanel } from '../forensics/EstateRecommendationsPa
 import { RefactorPlanSlideOver } from '../forensics/RefactorPlanSlideOver';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { summarizeWorkspaceForensics } from '../../../application/forensics/summarizeWorkspaceForensics';
+import { traceLensMissingForensicsCopy } from '../../../application/forensics/traceLensBrowserScanCopy';
 import { EstateRankedRow } from './EstateRankedRow';
 import { TraceLensFilters } from './TraceLensFilters';
 import { TraceLensHero } from './TraceLensHero';
@@ -32,6 +33,7 @@ export const TraceLensPanel: React.FC = () => {
     clearActivePlan,
     hasScope,
     hasForensicsData,
+    isBrowserLiteWorkspace,
     estateRanking,
     offenders,
     scopeOptions,
@@ -73,7 +75,10 @@ export const TraceLensPanel: React.FC = () => {
             />
           </div>
 
-          <WorkspaceComplexitySummary summary={complexitySummary} />
+          <WorkspaceComplexitySummary
+            summary={complexitySummary}
+            isBrowserLiteWorkspace={isBrowserLiteWorkspace}
+          />
 
           {traceLensView === 'recommendations' ? (
             <EstateRecommendationsPanel
@@ -119,7 +124,7 @@ export const TraceLensPanel: React.FC = () => {
                       : scopeEntityRef
                         ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
                         : hasScope && !hasForensicsData
-                          ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
+                          ? traceLensMissingForensicsCopy(isBrowserLiteWorkspace)
                           : hasScope
                             ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
                             : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'}

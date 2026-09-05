@@ -44,6 +44,8 @@ export interface DiagramState {
    * Cleared when opening a folder, sample or empty workspace.
    */
   isBrowserLiteWorkspace: boolean;
+  /** Scan YAML is still only in memory (not yet written to a picked folder). */
+  isMemoryScanWorkspace: boolean;
   workspaceName: string;
   /** Lightweight workspace index (all diagrams). Full schemas live in loadedSystems. */
   workspaceCatalog: WorkspaceCatalogEntry[];
