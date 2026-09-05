@@ -257,4 +257,27 @@ describe('WorkspaceEntryPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Cancel scan' }));
     expect(onCancelScan).toHaveBeenCalledTimes(1);
   });
+
+  it('gives every chooser control an accessible name', () => {
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+        onImportMermaid={vi.fn()}
+        onImportIac={vi.fn()}
+        onStartBlankCanvas={vi.fn()}
+        onShareBlankCanvas={vi.fn()}
+        onShareDirectory={vi.fn()}
+        onShareFile={vi.fn()}
+        showCliPanel
+      />
+    );
+
+    fireEvent.click(screen.getByTestId('workspace-cli-panel-toggle'));
+
+    for (const control of [...screen.getAllByRole('button'), ...screen.getAllByRole('link')]) {
+      expect(control).toHaveAccessibleName();
+    }
+  });
 });
