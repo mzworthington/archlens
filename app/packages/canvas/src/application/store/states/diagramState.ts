@@ -7,9 +7,9 @@ import {
   listWorkspaceExternalCandidates as listWorkspaceExternalCandidatesAction,
   syncSuggestedExternals as syncSuggestedExternalsAction,
 } from './diagramState/externalDependencies';
-import { importSchemaContent } from './diagramState/importSchema';
+import { importSchemaContent } from './diagramState/import/importSchema';
 import { createDiagramInitialState } from './diagramState/initialState';
-import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
+import { applyRefactorBoundaryAsDraft } from '../../forensics/apply/applyRefactorBoundaryAsDraft';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
 import { restoreEmptyWorkspaceDraft as restoreEmptyWorkspaceDraftAction } from './diagramState/restoreEmptyWorkspaceDraft';
 import { materializeCouplingGhostOnDiagram } from '../../forensics/materializeCouplingGhost';
@@ -137,7 +137,7 @@ export const createDiagramState = (
     },
 
     previewMermaidImport: async mermaid => {
-      const { previewMermaidImport } = await import('./diagramState/importMermaid');
+      const { previewMermaidImport } = await import('./diagramState/import/importMermaid');
       const { schema, loadedSystems, currentFilePath, workspaceName, isWorkspaceOpen } = get();
       return previewMermaidImport(mermaid, {
         baseSchema: schema,
@@ -149,12 +149,12 @@ export const createDiagramState = (
     },
 
     importMermaid: async (mermaid, resolutions) => {
-      const { executeMermaidImport } = await import('./diagramState/importMermaid');
+      const { executeMermaidImport } = await import('./diagramState/import/importMermaid');
       return executeMermaidImport(set, get, mermaid, resolutions);
     },
 
     previewIacImport: async (files, kind = 'auto') => {
-      const { previewIacImport } = await import('./diagramState/importIac');
+      const { previewIacImport } = await import('./diagramState/import/importIac');
       const { schema, loadedSystems, currentFilePath, workspaceName, isWorkspaceOpen } = get();
       return previewIacImport(
         files,
@@ -170,7 +170,7 @@ export const createDiagramState = (
     },
 
     importIac: async (files, resolutions, kind = 'auto') => {
-      const { executeIacImport } = await import('./diagramState/importIac');
+      const { executeIacImport } = await import('./diagramState/import/importIac');
       return executeIacImport(set, get, files, resolutions, kind);
     },
 

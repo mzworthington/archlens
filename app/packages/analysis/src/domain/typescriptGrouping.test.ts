@@ -37,7 +37,7 @@ describe('typescriptGrouping', () => {
     it('keeps architectural sources', () => {
       expect(
         shouldSkipTypeScriptFile(
-          'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
+          'app/packages/canvas/src/application/forensics/open/openRefactorOnCanvas.ts',
           'openRefactorOnCanvas'
         )
       ).toBe(false);
@@ -53,12 +53,12 @@ describe('typescriptGrouping', () => {
     it('rolls up monorepo package paths by folders under src', () => {
       expect(
         resolveTypeScriptComponent(
-          'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
+          'app/packages/canvas/src/application/forensics/open/openRefactorOnCanvas.ts',
           'openRefactorOnCanvas'
         )
       ).toEqual({
-        componentId: 'application/forensics',
-        componentName: 'Forensics',
+        componentId: 'application/forensics/open',
+        componentName: 'Open',
       });
 
       expect(

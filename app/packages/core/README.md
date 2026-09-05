@@ -9,9 +9,9 @@ Shared, pure domain models and rules for ArchLens (BlueprintSpec). No I/O adapte
 ### `@archlens/core` (kernel)
 
 - **[schema.ts](./src/models/schema.ts):** TypeScript types for diagrams (`SystemSchema`, nodes, dependencies) and the `EntityRef` helpers.
-- **[graph.ts](./src/rules/graph.ts):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export.
+- **[graph/](./src/rules/graph/):** Zod schema contracts, cycle validation, YAML/JSON parse & serialize, Mermaid export.
 - **[entityRef.ts](./src/lib/entityRef.ts):** Workspace entity-ref resolution helpers.
-- **[schemaMerge.ts](./src/rules/schemaMerge.ts):** Import merge plans and conflict resolution.
+- **[schemaMerge.ts](./src/rules/schema/schemaMerge.ts):** Import merge plans and conflict resolution.
 - **[workspaceExternals/](./src/rules/workspaceExternals/):** Cross-diagram external dependency materialization (entity index, filepath index, enrichment, container rollup).
 
 ### Subpath exports

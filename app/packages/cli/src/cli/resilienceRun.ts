@@ -12,7 +12,7 @@ import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { ResilienceCliPlan, ResilienceOutputFormat } from './parseArchlensArgv.ts';
 import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatEstateResilienceResult } from './formatEstateResilienceResult.ts';
+import { formatEstateResilienceResult } from './format/formatEstateResilienceResult.ts';
 
 async function listYamlFiles(rootDir: string): Promise<string[]> {
   const entries = await fs.readdir(rootDir, { withFileTypes: true });

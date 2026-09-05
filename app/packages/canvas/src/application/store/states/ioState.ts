@@ -24,7 +24,7 @@ import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/c
 import { readCollabHostToken } from '../../collab/collabRoomCredentials';
 import type { LiteScanProgress } from '../../analysis/liteScanProgress';
 import type { BlueprintStoreSet } from '../store';
-import { createOpenWorkspaceStoreActions } from './ioState/openWorkspaceStoreActions';
+import { createOpenWorkspaceStoreActions } from './ioState/openWorkspace/openWorkspaceStoreActions';
 import { createSaveWorkspaceActions } from './ioState/saveWorkspaceActions';
 
 export interface IoState {

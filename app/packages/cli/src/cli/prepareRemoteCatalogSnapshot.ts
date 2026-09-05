@@ -7,8 +7,11 @@ import {
 import type { ObjectStoragePort } from '@archlens/storage';
 import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision.ts';
 import { getArchlensVersion } from './version.ts';
-import type { PublishDryRunResult, PublishUploadResult } from './formatPublishDryRunResult.ts';
-import type { RemoteCatalogPublishResult } from './publishRemoteCatalog.ts';
+import type {
+  PublishDryRunResult,
+  PublishUploadResult,
+} from './format/formatPublishDryRunResult.ts';
+import type { RemoteCatalogPublishResult } from './publish/publishRemoteCatalog.ts';
 
 export type PreparedRemoteCatalogSnapshot = {
   revisionId: string;

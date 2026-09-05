@@ -161,8 +161,8 @@ describe('ModelExtractor', () => {
     const extractor = new ModelExtractor('blueprint/app');
     const { componentNodesMap } = extractor.extractGraph([
       {
-        filePath: 'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
-        relativePath: 'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
+        filePath: 'app/packages/canvas/src/application/forensics/open/openRefactorOnCanvas.ts',
+        relativePath: 'app/packages/canvas/src/application/forensics/open/openRefactorOnCanvas.ts',
         baseName: 'openRefactorOnCanvas',
         isTestFile: false,
         imports: [],
@@ -171,8 +171,8 @@ describe('ModelExtractor', () => {
       },
     ]);
 
-    const node = componentNodesMap.get(componentMapKey('canvas', 'application/forensics'));
-    expect(node?.entityRef).toBe('blueprint/app/canvas/application/forensics');
+    const node = componentNodesMap.get(componentMapKey('canvas', 'application/forensics/open'));
+    expect(node?.entityRef).toBe('blueprint/app/canvas/application/forensics/open');
   });
 
   it('marks containers as tests when every source file in them is a test', () => {

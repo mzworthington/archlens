@@ -1,7 +1,7 @@
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
-import { executePublishRun } from './publishRun.ts';
-import { executeComposeCatalogRun } from './composeCatalogRun.ts';
-import { executePublishFragmentRun } from './publishFragmentRun.ts';
+import { executePublishRun } from './publish/publishRun.ts';
+import { executeComposeCatalogRun } from './compose/composeCatalogRun.ts';
+import { executePublishFragmentRun } from './publish/publishFragmentRun.ts';
 import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
 import {
   promptInteractiveAcceptOverlayPlan,
@@ -10,7 +10,7 @@ import {
   promptInteractivePublishFragmentPlan,
   promptInteractivePublishPlan,
   promptInteractiveRejectOverlayPlan,
-} from './interactiveMainMenu.ts';
+} from './interactive/interactiveMainMenu.ts';
 
 type AskPath = (message: string, defaultValue: string) => Promise<string>;
 

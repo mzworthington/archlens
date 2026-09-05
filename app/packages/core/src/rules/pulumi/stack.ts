@@ -1,4 +1,4 @@
-import type { InfraImportOptions } from '../infraSchemaMap';
+import type { InfraImportOptions } from '../infra/infraSchemaMap';
 import {
   parsePulumiBatchToSchema,
   type PulumiParseResult,

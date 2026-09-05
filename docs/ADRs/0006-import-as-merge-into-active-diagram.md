@@ -48,5 +48,5 @@ flowchart LR
 ## Links
 
 - Related ADRs: [ADR-0001](./0001-yaml-blueprintspec-as-canonical-format.md), [ADR-0004](./0004-local-first-fs-access-and-indexeddb-working-copy.md)
-- Spec / docs: [canvas guide](../guide/canvas.md); `schemaMerge.ts`, `mermaidImport.ts`, `diagramImportShared.ts`
+- Spec / docs: [canvas guide](../guide/canvas.md); `schema/schemaMerge.ts`, `mermaidImport/`, `diagramState/import/diagramImportShared.ts`
 - Arch norms: hexagonal, DDD, vertical slices (kit `CODING_PHILOSOPHY.md`)

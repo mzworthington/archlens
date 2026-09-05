@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatHotspotScoreTrend } from '@archlens/core/forensics';
-import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
+import type { ForensicsTrendDashboard } from '../../../../../application/forensics/build/buildForensicsTrendDashboard';
 import { ChurnSparkline } from '../../../../components/ChurnSparkline/ChurnSparkline';
 import { MicroBarChart } from '../../../../components/MicroBarChart/MicroBarChart';
 

@@ -16,8 +16,8 @@ import type {
 import type { IacSourceFile, IacSourceKind } from '@archlens/core/import-iac';
 import type { CanvasNodeChange, CanvasEdgeChange, CanvasConnection } from '../../../../core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
-import type { MermaidImportPreview } from './importMermaid';
-import type { IacImportPreview } from './importIac';
+import type { MermaidImportPreview } from './import/importMermaid';
+import type { IacImportPreview } from './import/importIac';
 import type { RefactorBoundary } from '@archlens/core/forensics';
 
 export type SelectionOptions = {

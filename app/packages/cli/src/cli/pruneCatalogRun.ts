@@ -1,7 +1,7 @@
 import type { ObjectStoragePort } from '@archlens/storage';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { CatalogPruneCliPlan } from './parseArchlensArgv.ts';
-import { resolvePublishObjectStorage } from './publishRemoteCatalog.ts';
+import { resolvePublishObjectStorage } from './publish/publishRemoteCatalog.ts';
 import { runPruneCatalog } from './pruneCatalog.ts';
 
 export async function executePruneCatalogRun(plan: CatalogPruneCliPlan): Promise<void> {

@@ -4,7 +4,7 @@ import {
   filterTraceLensScopeOptions,
   findTraceLensScopeOption,
   type TraceLensScopeOption,
-} from '../../../application/forensics/buildTraceLensScopeOptions';
+} from '../../../application/forensics/build/buildTraceLensScopeOptions';
 
 type Props = {
   options: readonly TraceLensScopeOption[];

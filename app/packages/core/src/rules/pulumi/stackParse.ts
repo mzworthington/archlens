@@ -1,5 +1,5 @@
 import { load as parseYaml } from 'js-yaml';
-import type { InfraEdge, InfraIR, InfraNode } from '../infraIr';
+import type { InfraEdge, InfraIR, InfraNode } from '../infra/infraIr';
 import { buildYamlEdges, pushNode, yamlResourcesToNodes } from './resourceMap';
 import {
   pulumiTypeToProviderType,

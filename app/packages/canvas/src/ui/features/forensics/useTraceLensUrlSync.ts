@@ -5,7 +5,7 @@ import { findForensicsOffenderByEntityRef } from '../../../application/forensics
 import {
   buildRefactorPlanForOffender,
   type BuildRefactorPlanOptions,
-} from '../../../application/forensics/buildRefactorPlan';
+} from '../../../application/forensics/build/buildRefactorPlan';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
 import { buildTraceLensUrl, currentTraceLensUrl, parseTraceLensUrl } from './traceLensUrl';
 import {

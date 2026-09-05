@@ -4,7 +4,7 @@ import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { DiffCliPlan } from './parseArchlensArgv.ts';
 import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatBlueprintTreeDiff } from './formatBlueprintTreeDiff.ts';
+import { formatBlueprintTreeDiff } from './format/formatBlueprintTreeDiff.ts';
 
 export async function executeDiffRun(plan: DiffCliPlan): Promise<void> {
   const baselineDir = path.resolve(process.cwd(), plan.baselinePath);

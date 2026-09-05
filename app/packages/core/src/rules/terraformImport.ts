@@ -1,12 +1,12 @@
 import { parse as parseHcl } from '@cruglobal/js-hcl2';
 import type { SystemSchema } from '../models/schema';
-import { infraIrToSchema, type InfraImportOptions } from './infraSchemaMap';
+import { infraIrToSchema, type InfraImportOptions } from './infra/infraSchemaMap';
 import {
   normalizeIacSourceFilePath,
   type InfraEdge,
   type InfraIR,
   type InfraNode,
-} from './infraIr';
+} from './infra/infraIr';
 
 export type TerraformFormat = 'hcl' | 'json';
 

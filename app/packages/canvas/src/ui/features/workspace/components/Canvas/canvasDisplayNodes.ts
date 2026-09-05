@@ -2,8 +2,8 @@ import {
   applyCouplingHighlights,
   applyRefactorBoundaryHighlights,
   filterCouplingFocusNodes,
-} from '../../../../../application/forensics/buildCouplingOverlayEdges';
-import { applyDependencyHighlights } from '../../../../../application/forensics/applyDependencyHighlights';
+} from '../../../../../application/forensics/build/buildCouplingOverlayEdges';
+import { applyDependencyHighlights } from '../../../../../application/forensics/apply/applyDependencyHighlights';
 import {
   buildExternalSummaryHubNodes,
   resolveOverviewExternalBands,

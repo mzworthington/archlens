@@ -9,10 +9,10 @@ import {
   findForensicsOffenderByEntityRef,
   type RankedOffender,
 } from '../../../application/forensics/rankOffenders';
-import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
-import { openRefactorOnCanvas } from '../../../application/forensics/openRefactorOnCanvas';
-import { applyRefactorPlanAsDraft } from '../../../application/forensics/applyRefactorPlanAsDraft';
-import { openSimulateFailureOnCanvas } from '../../../application/forensics/openSimulateFailureOnCanvas';
+import { buildRefactorPlanForOffender } from '../../../application/forensics/build/buildRefactorPlan';
+import { openRefactorOnCanvas } from '../../../application/forensics/open/openRefactorOnCanvas';
+import { applyRefactorPlanAsDraft } from '../../../application/forensics/apply/applyRefactorPlanAsDraft';
+import { openSimulateFailureOnCanvas } from '../../../application/forensics/open/openSimulateFailureOnCanvas';
 import { useBlueprintStore } from '../../../application/store/store';
 import { buildTraceLensUrl } from '../forensics/traceLensUrl';
 import { buildAdviceLensUrl } from '../forensics/adviceLensUrl';

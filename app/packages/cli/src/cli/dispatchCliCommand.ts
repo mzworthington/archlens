@@ -2,9 +2,9 @@ import { parseArchlensCommand } from './parseArchlensArgv.ts';
 import { executeValidateRun } from './validateRun.ts';
 import { executeDiffRun } from './diffRun.ts';
 import { executeResilienceRun } from './resilienceRun.ts';
-import { executePublishRun } from './publishRun.ts';
-import { executeComposeCatalogRun } from './composeCatalogRun.ts';
-import { executePublishFragmentRun } from './publishFragmentRun.ts';
+import { executePublishRun } from './publish/publishRun.ts';
+import { executeComposeCatalogRun } from './compose/composeCatalogRun.ts';
+import { executePublishFragmentRun } from './publish/publishFragmentRun.ts';
 import { executePruneCatalogRun } from './pruneCatalogRun.ts';
 import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
 

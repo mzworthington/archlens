@@ -8,7 +8,7 @@ import {
   findNodeIdByFilepath,
   type CouplingEdgeRef,
 } from './resolveCouplingEdges';
-import { buildCouplingGhostNodes } from './buildCouplingOverlayEdges';
+import { buildCouplingGhostNodes } from './build/buildCouplingOverlayEdges';
 
 const EMPTY_FILEPATH_INDEX: WorkspaceFilepathIndex = {
   byPath: new Map(),

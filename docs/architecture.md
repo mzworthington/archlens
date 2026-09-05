@@ -131,8 +131,8 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 
 - **[schema.ts](../app/packages/core/src/models/schema.ts):** Domain types, `EntityRef` helpers, validation result types.
-- **[graph.ts](../app/packages/core/src/rules/graph.ts):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
-- **[mermaidImport/](../app/packages/core/src/rules/mermaidImport/) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (canvas import wizard).
+- **[graph/](../app/packages/core/src/rules/graph/):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
+- **[mermaidImport/](../app/packages/core/src/rules/mermaidImport/) / [schemaMerge.ts](../app/packages/core/src/rules/schema/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (canvas import wizard).
 - **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `/cli`).
 - **[workspaceExternals/](../app/packages/core/src/rules/workspaceExternals/):** Suggest / add external proxy nodes across loaded workspace schemas.
 - **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - Canvas resilience mode).

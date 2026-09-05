@@ -7,7 +7,7 @@ import {
   filterRankedEstateItems,
   rankEstateItems,
 } from '../../../application/recommendations/buildEstateRecommendations';
-import { buildRefactorPlanForOffender } from '../../../application/forensics/buildRefactorPlan';
+import { buildRefactorPlanForOffender } from '../../../application/forensics/build/buildRefactorPlan';
 import {
   findForensicsOffenderByEntityRef,
   rankForensicsOffenders,
@@ -18,7 +18,7 @@ import {
   type OffenderTestFilter,
   type RankedOffender,
 } from '../../../application/forensics/rankOffenders';
-import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
+import { buildTraceLensScopeOptions } from '../../../application/forensics/build/buildTraceLensScopeOptions';
 import { useTraceLensUrlSync } from '../forensics/useTraceLensUrlSync';
 import { useTraceLensScopeLoad } from '../forensics/useTraceLensScopeLoad';
 import { useTraceLensScopeFromUrl } from '../forensics/useTraceLensScopeFromUrl';

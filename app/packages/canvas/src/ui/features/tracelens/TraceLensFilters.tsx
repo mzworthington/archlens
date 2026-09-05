@@ -3,7 +3,7 @@ import type {
   OffenderSignalFilter,
   OffenderTestFilter,
 } from '../../../application/forensics/rankOffenders';
-import type { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
+import type { buildTraceLensScopeOptions } from '../../../application/forensics/build/buildTraceLensScopeOptions';
 import { ForensicsSearchbar } from '../forensics/ForensicsSearchbar';
 import { TraceLensScopePicker } from '../forensics/TraceLensScopePicker';
 import { TraceLensSegmented } from './TraceLensSegmented';

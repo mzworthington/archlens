@@ -1,7 +1,7 @@
 import {
   buildCouplingOverlayEdges,
   buildCouplingSchemaDependencyEdges,
-} from '../../../../../application/forensics/buildCouplingOverlayEdges';
+} from '../../../../../application/forensics/build/buildCouplingOverlayEdges';
 import {
   buildExternalSummaryHubEdges,
   hiddenOverviewExternalRefs,

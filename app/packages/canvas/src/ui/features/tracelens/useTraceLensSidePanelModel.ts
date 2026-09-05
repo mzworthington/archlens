@@ -8,7 +8,7 @@ import {
 import {
   buildForensicsTrendDashboard,
   collectDescendantForensics,
-} from '../../../application/forensics/buildForensicsTrendDashboard';
+} from '../../../application/forensics/build/buildForensicsTrendDashboard';
 import { buildDependencyGraphModel } from '../../../application/forensics/filterSelectedDependencyFocus';
 import { countSchemaForensicsMetrics } from '../../../application/forensics/countForensicsMetrics';
 import { isDependencyFocusMode } from '../../../application/forensics/dependencyViewMode';

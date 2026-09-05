@@ -21,7 +21,7 @@ import {
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
-import type { InteractiveGitChoice } from './interactiveGitChoice.ts';
+import type { InteractiveGitChoice } from './interactive/interactiveGitChoice.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner.ts';

@@ -1,5 +1,5 @@
 import type { SystemSchema } from '../models/schema';
-import type { InfraImportOptions as InfraSchemaImportOptions } from './infraSchemaMap';
+import type { InfraImportOptions as InfraSchemaImportOptions } from './infra/infraSchemaMap';
 import {
   parsePulumiBatchToSchema,
   parsePulumiStackToSchema,

@@ -3,7 +3,7 @@ import {
   applyInteractiveGitChoice,
   shouldPromptForGit,
   type InteractiveGitChoice,
-} from './interactiveGitChoice.ts';
+} from './interactive/interactiveGitChoice.ts';
 import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { renderCliBanner, renderCliIntroNote, renderCliQuickTips } from './cliBanner.ts';

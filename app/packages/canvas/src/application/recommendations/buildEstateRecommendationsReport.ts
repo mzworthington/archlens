@@ -9,7 +9,7 @@ import {
   type Recommendation,
 } from '@archlens/core/recommendations';
 import { buildOwnershipBreakdown, buildRefactorBoundary } from '@archlens/core/forensics';
-import { collectRefactorBoundaryNodes } from '../forensics/buildRefactorPlan';
+import { collectRefactorBoundaryNodes } from '../forensics/build/buildRefactorPlan';
 import { rankForensicsOffenders, type LoadedSystemRef } from '../forensics/rankOffenders';
 import type {
   BuildEstateRecommendationsOptions,

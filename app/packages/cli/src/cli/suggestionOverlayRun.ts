@@ -4,7 +4,7 @@ import type {
   CatalogAcceptOverlayCliPlan,
   CatalogRejectOverlayCliPlan,
 } from './parseArchlensArgv.ts';
-import { resolvePublishObjectStorage } from './publishRemoteCatalog.ts';
+import { resolvePublishObjectStorage } from './publish/publishRemoteCatalog.ts';
 import {
   readOverlayFileFromDisk,
   runAcceptOverlay,

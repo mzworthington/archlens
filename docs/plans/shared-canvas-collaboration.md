@@ -156,12 +156,12 @@ SystemSchema.dependencies   ⟷  BlueprintRFEdge (source/target = entityRefs)
 
 Transient UI fields (`blastHeat`, `couplingGhost`, …) live on RF `data` and are **not** written back into YAML.
 
-| Concern              | Core                                                                       | Canvas                                                                 |
-| -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Import merge plan    | [`schemaMerge.ts`](../../app/packages/core/src/rules/schemaMerge.ts)       | Import Mermaid/IaC dialogs                                             |
-| Conflict resolutions | `skip` / `rename` / `overwrite`                                            | User picks in wizard                                                   |
-| Baseline vs draft    | [`schemaDiff.ts`](../../app/packages/core/src/rules/schemaDiff.ts) + Dexie | DiffMenu                                                               |
-| Commit to disk       | —                                                                          | `saveActiveDiagram` → `WorkspacePort.writeFile`, then refresh baseline |
+| Concern              | Core                                                                              | Canvas                                                                 |
+| -------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Import merge plan    | [`schemaMerge.ts`](../../app/packages/core/src/rules/schema/schemaMerge.ts)       | Import Mermaid/IaC dialogs                                             |
+| Conflict resolutions | `skip` / `rename` / `overwrite`                                                   | User picks in wizard                                                   |
+| Baseline vs draft    | [`schemaDiff.ts`](../../app/packages/core/src/rules/schema/schemaDiff.ts) + Dexie | DiffMenu                                                               |
+| Commit to disk       | —                                                                                 | `saveActiveDiagram` → `WorkspacePort.writeFile`, then refresh baseline |
 
 DiffMenu ([`DiffMenu/`](../../app/packages/canvas/src/ui/features/workspace/components/DiffMenu/)): open → `computeSchemaDiff`; commit → `saveActiveDiagram`; revert → `revertWorkingSchema` + `initSchema`.
 
@@ -380,9 +380,9 @@ No ADR currently records CRDTs, OT or multiplayer sessions.
 **Core**
 
 - `app/packages/core/src/models/schema.ts`
-- `app/packages/core/src/rules/schemaMerge.ts`
-- `app/packages/core/src/rules/schemaDiff.ts`
-- `app/packages/core/src/rules/graph.ts`
+- `app/packages/core/src/rules/schema/schemaMerge.ts`
+- `app/packages/core/src/rules/schema/schemaDiff.ts`
+- `app/packages/core/src/rules/graph/`
 
 **Docs / infra**
 

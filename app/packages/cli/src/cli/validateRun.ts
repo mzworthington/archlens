@@ -9,7 +9,7 @@ import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { ValidateCliPlan } from './parseArchlensArgv.ts';
 import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatArchitectureHealthResult } from './formatArchitectureHealth.ts';
+import { formatArchitectureHealthResult } from './format/formatArchitectureHealth.ts';
 import { materializeGitBaselineBlueprints } from './materializeGitBaseline.ts';
 
 export async function executeValidateRun(plan: ValidateCliPlan): Promise<void> {

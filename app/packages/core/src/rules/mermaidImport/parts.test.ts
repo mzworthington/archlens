@@ -48,7 +48,7 @@ describe('Mermaid import parts', () => {
 
   it('keeps canvas mermaid wizard as a core delegate', () => {
     const files = [
-      'app/packages/canvas/src/application/store/states/diagramState/importMermaid.ts',
+      'app/packages/canvas/src/application/store/states/diagramState/import/importMermaid.ts',
       'app/packages/canvas/src/ui/features/workspace/components/ImportMermaidDialog/useImportMermaidDialog.ts',
       'app/packages/canvas/src/ui/features/workspace/components/ImportMermaidDialog/ImportMermaidDialog.tsx',
     ];

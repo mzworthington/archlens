@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 import { ExternalLink } from 'lucide-react';
 import type { NodeForensics } from '@archlens/core';
-import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
+import type { ForensicsTrendDashboard } from '../../../../../application/forensics/build/buildForensicsTrendDashboard';
 import {
   buildForensicsPanelModel,
   concernBadgeClasses,
@@ -10,7 +10,7 @@ import {
   COUPLING_SCHEMA_DEPS_HELP,
   IMPORTED_FILES_HELP,
   FORENSICS_SECTION_HELP,
-} from '../../../../../application/forensics/buildForensicsPanelModel';
+} from '../../../../../application/forensics/build/buildForensicsPanelModel';
 import { CouplingMiniGraph } from './CouplingMiniGraph';
 import { ForensicsTrendPanel } from './ForensicsTrendPanel';
 import { buildTraceLensUrl } from '../../../forensics/traceLensUrl';

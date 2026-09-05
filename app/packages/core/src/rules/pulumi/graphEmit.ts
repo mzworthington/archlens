@@ -1,6 +1,6 @@
 import type { SystemSchema } from '../../models/schema';
-import { infraIrToSchema, type InfraImportOptions } from '../infraSchemaMap';
-import type { InfraEdge, InfraIR, InfraNode } from '../infraIr';
+import { infraIrToSchema, type InfraImportOptions } from '../infra/infraSchemaMap';
+import type { InfraEdge, InfraIR, InfraNode } from '../infra/infraIr';
 import { buildYamlEdges, yamlResourcesToNodes } from './resourceMap';
 import {
   detectFormat,
