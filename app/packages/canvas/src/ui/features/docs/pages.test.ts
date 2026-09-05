@@ -14,6 +14,8 @@ import { presentDocsMarkdown, splitDocsMarkdown } from './presentDocsMarkdown';
 describe('docs link resolution', () => {
   it('resolves relative markdown links within the guide', () => {
     expect(resolveDocsHref('./getting-started.md', 'guide')).toBe('/guide/getting-started');
+    expect(resolveDocsHref('./jobs.md', 'guide')).toBe('/guide/jobs');
+    expect(DOCS_PAGES.find(p => p.path === '/guide/jobs')?.title).toBe('Jobs for today');
     expect(resolveDocsHref('./canvas.md', 'guide')).toBe('/guide/canvas');
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
     expect(resolveDocsHref('./chaos-spec.md', 'guide')).toBe('/guide/chaos-spec');
@@ -93,6 +95,7 @@ describe('docs link resolution', () => {
     expect(start?.items.map(i => i.path)).toEqual([
       '/guide',
       '/guide/getting-started',
+      '/guide/jobs',
       '/journeys',
     ]);
     expect(surfaces?.items.at(-2)).toEqual({ label: 'BlueprintSpec', path: '/guide/schema' });
@@ -107,6 +110,7 @@ describe('docs link resolution', () => {
     const tech = DOCS_NAV.find(i => i.label === 'Tech')!;
     expect(isDocsNavActive('/guide', start)).toBe(true);
     expect(isDocsNavActive('/guide/getting-started', start)).toBe(true);
+    expect(isDocsNavActive('/guide/jobs', start)).toBe(true);
     expect(isDocsNavActive('/journeys', start)).toBe(true);
     expect(isDocsNavActive('/guide/canvas', start)).toBe(false);
     expect(isDocsNavActive('/guide/canvas', surfaces)).toBe(true);

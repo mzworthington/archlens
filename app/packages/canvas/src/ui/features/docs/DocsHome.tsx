@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { DocsShell } from './DocsShell';
+import { TodayJobs } from './TodayJobs.tsx';
 import { PRODUCT_HERO, WHY_IT_MATTERS } from '../../content/productOutcomes';
 
 type Product = {
@@ -276,10 +277,12 @@ export const DocsHome: React.FC = () => {
           </div>
         </section>
 
+        <TodayJobs showHeading />
+
         <section aria-labelledby="why-it-matters-heading">
           <h2
             id="why-it-matters-heading"
-            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
+            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400 mb-5"
           >
             On the diagram
           </h2>
@@ -305,7 +308,7 @@ export const DocsHome: React.FC = () => {
         <section aria-labelledby="how-it-works-heading">
           <h2
             id="how-it-works-heading"
-            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
+            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400 mb-5"
           >
             CLI, Canvas, then the lenses
           </h2>
@@ -330,11 +333,11 @@ export const DocsHome: React.FC = () => {
             <div>
               <h2
                 id="products-heading"
-                className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500"
+                className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400"
               >
                 The tools
               </h2>
-              <p className="mt-1 text-sm text-slate-400">
+              <p className="mt-1 text-sm text-slate-300">
                 Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map.
               </p>
             </div>

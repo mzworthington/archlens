@@ -4,6 +4,7 @@ import techStackMd from '@docs/tech-stack.md?raw';
 import featuresUnitMd from '@docs/features-unit.md?raw';
 import guideIndexMd from '@docs/guide/index.md?raw';
 import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
+import guideJobsMd from '@docs/guide/jobs.md?raw';
 import guideCanvasMd from '@docs/guide/canvas.md?raw';
 import guideCliMd from '@docs/guide/cli.md?raw';
 import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
@@ -71,7 +72,7 @@ export type DocsPageMeta = {
   productAction?: DocsProductAction;
 };
 
-const START_PATH_PREFIXES = ['/guide/getting-started', '/journeys'];
+const START_PATH_PREFIXES = ['/guide/getting-started', '/guide/jobs', '/journeys'];
 
 const SURFACES_PATH_PREFIXES = [
   '/guide/canvas',
@@ -110,6 +111,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
     items: [
       { label: 'Overview', path: '/guide' },
       { label: 'Getting started', path: '/guide/getting-started' },
+      { label: 'Jobs for today', path: '/guide/jobs' },
       { label: 'Interface tour & journeys', path: '/journeys' },
     ],
   },
@@ -198,6 +200,14 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideGettingStartedMd,
     dir: 'guide',
     group: 'guide',
+  },
+  {
+    path: '/guide/jobs',
+    title: 'Jobs for today',
+    markdown: guideJobsMd,
+    dir: 'guide',
+    group: 'guide',
+    productAction: { label: 'Open ArchLens Canvas', href: '/workspace' },
   },
   {
     path: '/guide/canvas',

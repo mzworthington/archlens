@@ -30,6 +30,7 @@ Use this guide for the product, not the internals.
 ## Guide chapters
 
 - [Getting started](./getting-started.md) - demo → browser scan → CLI install
+- [Jobs for today](./jobs.md) - pick a job: demo, scan, ChaosLens, AdviceLens or CI
 - [ArchLens Canvas](./canvas.md) - startup chooser, panels, Mermaid import, externals, display toggles
 - [ArchLens CLI](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan), [meaningful IaC externals](./cli.md#meaningful-external-dependencies)
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback

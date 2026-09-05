@@ -6,6 +6,7 @@ Product docs are Markdown in this folder. ArchLens Canvas app renders them at:
 | ----------------------------------------- | ------------------------------------------- |
 | `/`                                       | Product homepage                            |
 | `/guide` …                                | [Product guide](./guide/index.md)           |
+| `/guide/jobs`                             | Jobs for today                              |
 | `/guide/tracelens`                        | TraceLens                                   |
 | `/guide/chaoslens`                        | ChaosLens                                   |
 | `/guide/advicelens`                       | AdviceLens                                  |

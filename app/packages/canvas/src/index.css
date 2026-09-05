@@ -32,6 +32,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* White glyphs on a denser cyan fill so muted slate copy stays readable when selected. */
+::selection {
+  background-color: rgb(0 240 255 / 0.55);
+  color: #f8fafc;
+}
+
+::-moz-selection {
+  background-color: rgb(0 240 255 / 0.55);
+  color: #f8fafc;
+}
+
 html,
 body,
 #root {

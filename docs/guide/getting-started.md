@@ -133,6 +133,7 @@ You can also run a local build of ArchLens Canvas when contributing to this repo
 
 ## Next
 
+- [Jobs for today](./jobs.md)
 - [ArchLens Canvas](./canvas.md)
 - [ArchLens CLI](./cli.md)
 - [TraceLens](./tracelens.md)

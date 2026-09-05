@@ -38,6 +38,7 @@ describe('DocsShell', () => {
     expect(startNav.parentElement).toHaveTextContent('Start');
     expect(within(startNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
     expect(within(startNav).getByRole('link', { name: 'Getting started' })).toBeInTheDocument();
+    expect(within(startNav).getByRole('link', { name: 'Jobs for today' })).toBeInTheDocument();
     expect(
       within(startNav).getByRole('link', { name: 'Interface tour & journeys' })
     ).toBeInTheDocument();

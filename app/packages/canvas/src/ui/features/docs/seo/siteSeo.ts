@@ -54,6 +54,11 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     description:
       'Install ArchLens CLI, generate BlueprintSpec from your repo and open the diagrams in Canvas.',
   },
+  '/guide/jobs': {
+    headline: 'Jobs for today',
+    description:
+      'Pick an ArchLens job: try the demo, scan a folder, run the CLI, fault a service, rank fixes or gate a PR.',
+  },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
     title: 'ArchLens Canvas - BlueprintSpec maps in the browser | ArchLens',

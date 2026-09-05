@@ -23,6 +23,8 @@ const LiveSchemaPreview = lazy(() =>
   }))
 );
 
+const TodayJobs = lazy(() => import('./TodayJobs.tsx').then(m => ({ default: m.TodayJobs })));
+
 function extractCodeText(node: React.ReactNode): string {
   if (typeof node === 'string' || typeof node === 'number') return String(node);
   if (Array.isArray(node)) return node.map(extractCodeText).join('');
@@ -138,6 +140,24 @@ function buildComponents(fromDir: string): Components {
             <LiveSchemaPreview channel={channel} />
           </Suspense>
         );
+      }
+      if (/\blanguage-widget\b/.test(className)) {
+        const name = extractCodeText(codeEl).replace(/\n$/, '').trim();
+        if (name === 'today-jobs') {
+          return (
+            <div className="my-6">
+              <Suspense
+                fallback={
+                  <div className="text-xs font-mono text-slate-500 py-6 text-center">
+                    Loading jobs…
+                  </div>
+                }
+              >
+                <TodayJobs />
+              </Suspense>
+            </div>
+          );
+        }
       }
       return (
         <pre className="overflow-x-auto rounded-xl border border-brand-500/15 bg-slate-950/90 p-4 text-sm font-mono text-slate-200 shadow-inner">

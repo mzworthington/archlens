@@ -29,7 +29,8 @@ describe('DocsHome', () => {
     expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
     expect(screen.getByText('Open source')).toBeInTheDocument();
     expect(screen.getByText('Local first')).toBeInTheDocument();
-    expect(screen.getByText(/uploaded to ArchLens servers/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/uploaded to ArchLens servers/i).length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { name: 'What do I do today?' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'On the diagram' })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { name: 'ChaosLens' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
@@ -38,7 +39,10 @@ describe('DocsHome', () => {
     expect(
       screen.getByRole('heading', { name: 'CLI, Canvas, then the lenses' })
     ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'The tools' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'The tools' })).toHaveClass('text-slate-400');
+    expect(
+      screen.getByText('Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map.')
+    ).toHaveClass('text-slate-300');
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
     expect(screen.getAllByText('ChaosLens').length).toBeGreaterThan(0);
