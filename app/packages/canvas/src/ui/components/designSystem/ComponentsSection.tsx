@@ -116,7 +116,8 @@ export const ComponentsSection: React.FC = () => (
           </h4>
           <p className="mt-1 text-xs font-medium text-slate-300">Break a service on the map</p>
           <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-            Fault a service on the map you have open. See what else fails. Production stays up.
+            Monte Carlo on the diagram you have open. Blast radius and SLA bands in the browser.
+            Production stays up.
           </p>
           <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff]">
             ChaosLens guide
@@ -131,7 +132,7 @@ export const ComponentsSection: React.FC = () => (
             </span>
             <h4 className="mt-3 text-sm font-semibold text-white">Flow step card</h4>
             <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-              Numbered steps for &quot;CLI, Canvas, then the lenses&quot; on the homepage.
+              Numbered step card for short sequences.
             </p>
           </div>
           <div className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-5 flex items-center justify-between gap-4">

@@ -67,7 +67,7 @@ mise install
 pnpm record:docs-media
 ```
 
-Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif` and `canvas-tour.gif`. Static PNGs for dense UI (chooser, Mermaid merge) remain in `docs/screenshots/` and are referenced from [canvas.md](../../../docs/guide/canvas.md).
+Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif` and `canvas-tour.gif`. Named collab cursors are a PNG (`9-collab-cursors.png`) from `e2e-collab-cursors.spec.ts` when `RECORD_DOCS_MEDIA=1`. Static PNGs for dense UI (chooser, Mermaid merge) remain in `docs/screenshots/` and are referenced from [canvas.md](../../../docs/guide/canvas.md).
 
 ---
 

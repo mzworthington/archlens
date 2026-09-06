@@ -35,16 +35,17 @@ pnpm test:e2e:remote-catalog   # ADR-0010 fixture consume (local mock, not live 
 pnpm exec playwright test e2e-golden-journey.spec.ts
 ```
 
-| Spec                            | Covers                                                                              |
-| ------------------------------- | ----------------------------------------------------------------------------------- |
-| `e2e.spec.ts`                   | Startup chooser, panels + zoom, phone chrome                                        |
-| `e2e-import-merge-diff.spec.ts` | Mermaid merge, DiffMenu revert/commit download, conflict keep-existing + idempotent |
-| `e2e-collab-join.spec.ts`       | Share-link join: display name then connected count includes you                     |
-| `e2e-remote-catalog.spec.ts`    | Publish→consume via fixture `latest/manifest.json` + snapshot                       |
-| `e2e-golden-journey.spec.ts`    | Payment Gateway outage → AdviceLens circuit-breaker                                 |
-| `e2e-chaoslens.spec.ts`         | Large-graph resilience simulation smoke                                             |
-| `e2e-forensics.spec.ts`         | TraceLens offenders from a loaded estate                                            |
-| `a11y.spec.ts`                  | axe smoke on docs home + sandbox workspace                                          |
+| Spec                            | Covers                                                                                                       |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `e2e.spec.ts`                   | Startup chooser, panels + zoom, phone chrome                                                                 |
+| `e2e-import-merge-diff.spec.ts` | Mermaid merge, DiffMenu revert/commit download, conflict keep-existing + idempotent                          |
+| `e2e-collab-join.spec.ts`       | Share-link join: display name then connected count includes you                                              |
+| `e2e-collab-cursors.spec.ts`    | Five guests join; host canvas shows named cursors (writes `9-collab-cursors.png` when `RECORD_DOCS_MEDIA=1`) |
+| `e2e-remote-catalog.spec.ts`    | Publish→consume via fixture `latest/manifest.json` + snapshot                                                |
+| `e2e-golden-journey.spec.ts`    | Payment Gateway outage → AdviceLens circuit-breaker                                                          |
+| `e2e-chaoslens.spec.ts`         | Large-graph resilience simulation smoke                                                                      |
+| `e2e-forensics.spec.ts`         | TraceLens offenders from a loaded estate                                                                     |
+| `a11y.spec.ts`                  | axe smoke on docs home + sandbox workspace                                                                   |
 
 ## Other product demos
 

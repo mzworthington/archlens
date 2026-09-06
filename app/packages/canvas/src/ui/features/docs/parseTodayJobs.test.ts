@@ -57,16 +57,26 @@ describe('docs/today-jobs.md', () => {
     const jobs = parseTodayJobsMarkdown(todayMd);
     expect(jobs.map(job => job.id)).toEqual([
       'first-look',
+      'share-live',
+      'mermaid',
       'browser-scan',
       'cli-scan',
+      'catalog',
       'chaos',
       'rank',
       'ci-gate',
     ]);
     expect(jobs.every(job => job.cmd.length > 0 && job.actions.length === 3)).toBe(true);
-    expect(jobs[0]?.title).toBe('I have never used ArchLens');
+    expect(jobs.find(job => job.id === 'share-live')?.cmd).toBe('/workspace');
+    expect(jobs.find(job => job.id === 'share-live')?.title).toBe('Join a room with your peers');
+    expect(jobs.find(job => job.id === 'mermaid')?.title).toBe('I already have a Mermaid diagram');
+    expect(jobs.find(job => job.id === 'catalog')?.title).toBe(
+      'Open the estate the pipeline published'
+    );
     expect(jobs[0]?.cmd).toBe('/workspace');
     expect(jobs.find(job => job.id === 'cli-scan')?.cmd).toMatch(/install\.sh/);
     expect(jobs.find(job => job.id === 'ci-gate')?.cmd).toBe('archlens validate blueprints/');
+    expect(jobs.find(job => job.id === 'mermaid')?.cmd).toBe('/workspace');
+    expect(jobs.find(job => job.id === 'catalog')?.cmd).toBe('/workspace');
   });
 });

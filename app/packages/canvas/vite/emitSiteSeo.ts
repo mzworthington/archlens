@@ -13,6 +13,7 @@ function listPrerenderNavLinks(): Array<{ href: string; label: string }> {
   return [
     { href: '/', label: 'ArchLens home' },
     { href: '/guide/canvas', label: 'ArchLens Canvas' },
+    { href: '/guide/collaborate', label: 'Collaborate' },
     { href: '/guide/cli', label: 'ArchLens CLI' },
     { href: '/guide/tracelens', label: 'TraceLens' },
     { href: '/guide/chaoslens', label: 'ChaosLens' },

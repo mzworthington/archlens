@@ -125,7 +125,7 @@ pnpm lint
 pnpm knip
 ```
 
-Canvas E2E (`app/packages/canvas`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Refresh docs & media](../.github/workflows/refresh-docs-media.yml).
+Canvas E2E (`app/packages/canvas`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). Named collab cursors are a still: `RECORD_DOCS_MEDIA=1 pnpm exec playwright test e2e-collab-cursors.spec.ts` writes `docs/screenshots/9-collab-cursors.png`. CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Refresh docs & media](../.github/workflows/refresh-docs-media.yml).
 
 On every push to `main`, production builds regenerate schema and features-unit inline so deploys stay fresh. You can also redeploy without a new commit via **Actions → CI & Deployment Pipeline → Run workflow** (branch: `main`). Committed copies of `CHANGELOG.md`, `docs/features-unit.md`, `schemas/` and product-guide screenshots are refreshed by the **Refresh docs & media** workflow (weekly on Sunday 06:00 UTC or manually via **Actions → Refresh docs & media → Run workflow**).
 

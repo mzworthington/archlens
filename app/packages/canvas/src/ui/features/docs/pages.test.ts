@@ -17,6 +17,7 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./jobs.md', 'guide')).toBe('/guide/jobs');
     expect(DOCS_PAGES.find(p => p.path === '/guide/jobs')?.title).toBe('Jobs for today');
     expect(resolveDocsHref('./canvas.md', 'guide')).toBe('/guide/canvas');
+    expect(resolveDocsHref('./collaborate.md', 'guide')).toBe('/guide/collaborate');
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
     expect(resolveDocsHref('./chaos-spec.md', 'guide')).toBe('/guide/chaos-spec');
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
@@ -42,12 +43,17 @@ describe('docs link resolution', () => {
 
   it('registers product CTAs for each product guide chapter', () => {
     const canvas = DOCS_PAGES.find(p => p.path === '/guide/canvas');
+    const collaborate = DOCS_PAGES.find(p => p.path === '/guide/collaborate');
     const cli = DOCS_PAGES.find(p => p.path === '/guide/cli');
     const tracelens = DOCS_PAGES.find(p => p.path === '/guide/tracelens');
     const chaoslens = DOCS_PAGES.find(p => p.path === '/guide/chaoslens');
     const advicelens = DOCS_PAGES.find(p => p.path === '/guide/advicelens');
 
     expect(canvas?.productAction).toEqual({ label: 'Open ArchLens Canvas', href: '/workspace' });
+    expect(collaborate?.productAction).toEqual({
+      label: 'Open ArchLens Canvas',
+      href: '/workspace',
+    });
     expect(cli?.productAction).toEqual({
       label: 'Install ArchLens CLI',
       href: '/guide/getting-started',
@@ -115,6 +121,7 @@ describe('docs link resolution', () => {
     expect(isDocsNavActive('/journeys', start)).toBe(true);
     expect(isDocsNavActive('/guide/canvas', start)).toBe(false);
     expect(isDocsNavActive('/guide/canvas', surfaces)).toBe(true);
+    expect(isDocsNavActive('/guide/collaborate', surfaces)).toBe(true);
     expect(isDocsNavActive('/guide/schema', surfaces)).toBe(true);
     expect(isDocsNavActive('/guide/chaos-spec', surfaces)).toBe(true);
     expect(isDocsNavActive('/guide/canvas', tech)).toBe(false);

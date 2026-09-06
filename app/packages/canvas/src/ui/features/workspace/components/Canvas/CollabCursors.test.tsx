@@ -12,6 +12,8 @@ describe('CollabCursorMarkers', () => {
       />
     );
 
-    expect(screen.getByTestId('collab-cursor-2')).toHaveTextContent('<script>alert(1)</script>');
+    const marker = screen.getByTestId('collab-cursor-2');
+    expect(marker).toHaveTextContent('<script>alert(1)</script>');
+    expect(marker).toHaveAttribute('data-collab-name', '<script>alert(1)</script>');
   });
 });

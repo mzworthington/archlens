@@ -13,7 +13,7 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { DocsShell } from './DocsShell';
 import { TodayJobs } from './TodayJobs.tsx';
-import { PRODUCT_HERO, WHY_IT_MATTERS } from '../../content/productOutcomes';
+import { PRODUCT_HERO } from '../../content/productOutcomes';
 
 type Product = {
   title: string;
@@ -27,31 +27,12 @@ type Product = {
   role?: 'Observes' | 'Prescribes';
 };
 
-const WHY_ICONS: LucideIcon[] = [ShieldAlert, GitBranch, Lightbulb];
-
-const FLOW = [
-  {
-    step: '1',
-    title: 'CLI',
-    body: 'Scan the repo. ArchLens writes BlueprintSpec you can open in Canvas and check in CI.',
-  },
-  {
-    step: '2',
-    title: 'Canvas',
-    body: 'Open the folder and edit the map. Or publish from CI and browse a shared catalog.',
-  },
-  {
-    step: '3',
-    title: 'The lenses',
-    body: 'TraceLens and ChaosLens run on that map. AdviceLens ranks what to change.',
-  },
-] as const;
-
 const PRODUCTS: Product[] = [
   {
     title: 'ArchLens Canvas',
     tagline: 'The map you work on',
-    details: 'Open a local folder, or a catalog your pipeline published. Diagrams stay in sync.',
+    details:
+      'Open a local folder, or a catalog your pipeline published. Share a live editing link so peers can join the same map.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -69,7 +50,8 @@ const PRODUCTS: Product[] = [
   {
     title: 'TraceLens',
     tagline: 'Git hotspots on the map',
-    details: 'Churn and coupling on the nodes you already have. Hotspots sit on the map.',
+    details:
+      'Churn, coupling and complexity attach to the same entityRef nodes. Not a second dashboard.',
     href: '/guide/tracelens',
     category: 'Intelligence',
     role: 'Observes',
@@ -78,7 +60,8 @@ const PRODUCTS: Product[] = [
   {
     title: 'ChaosLens',
     tagline: 'Break a service on the map',
-    details: 'Fault a service on the open map. See what else fails. Production stays up.',
+    details:
+      'Monte Carlo on the diagram you have open. Blast radius and SLA bands in the browser. Production stays up.',
     href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,
@@ -87,7 +70,7 @@ const PRODUCTS: Product[] = [
     title: 'AdviceLens',
     tagline: 'What to fix first',
     details:
-      'Same ranked list in Canvas, the CLI and CI. Priority comes from TraceLens and ChaosLens.',
+      'One ranked list from TraceLens and ChaosLens. Same items in Canvas, the CLI and CI. Not a chatbot.',
     href: '/guide/advicelens',
     category: 'Intelligence',
     role: 'Prescribes',
@@ -279,66 +262,18 @@ export const DocsHome: React.FC = () => {
 
         <TodayJobs showHeading />
 
-        <section aria-labelledby="why-it-matters-heading">
-          <h2
-            id="why-it-matters-heading"
-            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400 mb-5"
-          >
-            On the diagram
-          </h2>
-          <ul className="grid gap-4 sm:grid-cols-3">
-            {WHY_IT_MATTERS.map((item, index) => {
-              const Icon = WHY_ICONS[index] ?? Lightbulb;
-              return (
-                <li
-                  key={item.title}
-                  className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/60 p-5"
-                >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#00f0ff]/15 bg-[#00f0ff]/5 text-[#00f0ff]">
-                    <Icon className="h-4 w-4" aria-hidden />
-                  </div>
-                  <h3 className="mt-3 text-sm font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">{item.body}</p>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-
-        <section aria-labelledby="how-it-works-heading">
-          <h2
-            id="how-it-works-heading"
-            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400 mb-5"
-          >
-            CLI, Canvas, then the lenses
-          </h2>
-          <ol className="grid gap-4 sm:grid-cols-3">
-            {FLOW.map(item => (
-              <li
-                key={item.step}
-                className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/60 p-5"
-              >
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 font-mono text-xs font-bold text-[#00f0ff]">
-                  {item.step}
-                </span>
-                <h3 className="mt-3 text-sm font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm text-slate-400 leading-relaxed">{item.body}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
         <section aria-labelledby="products-heading">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-5">
             <div>
               <h2
                 id="products-heading"
-                className="text-xs font-mono uppercase tracking-[0.16em] text-slate-400"
+                className="text-xs font-mono uppercase tracking-[0.16em] text-slate-200"
               >
                 The tools
               </h2>
-              <p className="mt-1 text-sm text-slate-300">
-                Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map.
+              <p className="mt-1 text-sm text-slate-100">
+                Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map. Share a
+                live room so peers can join.
               </p>
             </div>
             <Link

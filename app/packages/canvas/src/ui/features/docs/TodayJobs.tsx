@@ -27,11 +27,11 @@ export function TodayJobs({ showHeading = false }: { showHeading?: boolean }) {
         <div>
           <h2
             id="today-heading"
-            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-2"
+            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-200 mb-2"
           >
             What do I do today?
           </h2>
-          <p className="mb-5 max-w-xl text-sm text-slate-400 leading-relaxed">
+          <p className="mb-5 max-w-xl text-sm text-slate-100 leading-relaxed">
             Pick the job in front of you. Each card opens the steps and a command or path you can
             use now.
           </p>

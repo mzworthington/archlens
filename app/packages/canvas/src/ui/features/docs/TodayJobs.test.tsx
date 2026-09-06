@@ -18,6 +18,16 @@ describe('TodayJobs', () => {
     expect(panel.className.split(/\s+/)).toContain('sm:order-last');
     expect(panel.className.split(/\s+/)).not.toContain('order-last');
 
+    fireEvent.click(screen.getByRole('button', { name: /i already have a mermaid diagram/i }));
+    expect(screen.getByRole('region', { name: /i already have a mermaid diagram/i })).toBeTruthy();
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /open the estate the pipeline published/i })
+    );
+    expect(
+      screen.getByRole('region', { name: /open the estate the pipeline published/i })
+    ).toBeTruthy();
+
     fireEvent.click(screen.getByRole('button', { name: /map a folder without installing/i }));
     expect(screen.getByRole('region', { name: /map a folder without installing/i })).toBeTruthy();
 

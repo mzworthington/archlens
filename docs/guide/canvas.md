@@ -8,17 +8,23 @@ ArchLens Canvas is the map over **BlueprintSpec**: author in a local folder, or 
 
 On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** auto-open the demo. Pick an **intent**, then a leaf action:
 
-| Intent / option         | What it does                                                                                      |
-| ----------------------- | ------------------------------------------------------------------------------------------------- |
-| **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens) |
-| **Full analysis (CLI)** | Collapsed strip under the demo: TraceLens git hotspots, watch mode and CI catalog publish         |
-| **Investigate**         | Map real systems: browser lite scan or open a blueprints folder                                   |
-| **Collaborate**         | Share blank room, or open a folder/file then create a live share link                             |
-| **Ideate**              | Solo blank canvas or import Mermaid (share later from the toolbar)                                |
+| Intent / option         | What it does                                                                                              |
+| ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)         |
+| **Full analysis (CLI)** | Collapsed strip under the demo: TraceLens git hotspots, watch mode and CI catalog publish                 |
+| **Investigate**         | Map real systems: browser lite scan or open a blueprints folder                                           |
+| **Collaborate**         | Share a live editing link (blank room, or open a folder/file first). See [Collaborate](./collaborate.md). |
+| **Ideate**              | Solo blank canvas or import Mermaid (share later from the toolbar)                                        |
 
 Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
-You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid anytime from the toolbar **Open** menu.
+You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid anytime from the toolbar **Open** menu. **Share live diagram** in the toolbar starts (or reopens) a room from an already open map.
+
+## Live share
+
+Peers join the same working copy: nodes, dependencies, identity and layout. Named cursors and a connected-user count (including you) show who is in the room. Optional **Require a secret** keeps the secret out of the URL. Folder **Commit** is still the only write to disk.
+
+TraceLens overlays and ChaosLens heat stay local to each browser. Undo is unavailable while sharing. Full access rules, expiry and what a room is not: [Collaborate](./collaborate.md).
 
 ## Layout
 
@@ -155,6 +161,7 @@ ArchLens Canvas installs as a Progressive Web App. After the first visit, the ap
 
 ## Next
 
+- [Collaborate](./collaborate.md) - live share rooms and who can join
 - [ArchLens CLI](./cli.md) - how diagrams get generated
 - [Design system](/design-system) - visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) - E2E-oriented walkthrough

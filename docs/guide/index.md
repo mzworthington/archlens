@@ -6,19 +6,19 @@ Use this guide for the product, not the internals.
 
 ## What you get
 
-| Product             | Role                                                                                                                          |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **ArchLens Canvas** | Interactive canvas (PWA): local folder authoring, Mermaid import, diagrams that stay in sync and read-only published catalogs |
-| **ArchLens CLI**    | Static analysis that writes BlueprintSpec and can publish corpora to object storage for a shared estate view                  |
-| **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                                          |
-| **ChaosLens**       | Fault injection, blast-radius heatmap and SLA telemetry on the live diagram                                                   |
-| **AdviceLens**      | Ranked recommendations from TraceLens + ChaosLens (studio, CLI, CI)                                                           |
-| **BlueprintSpec**   | Architecture contract: public schema URLs, `entityRef` identity, validation rules                                             |
-| **ChaosSpec**       | Failure scenarios: public schema URLs, `diagramRef` binding, faults without duplicating topology                              |
+| Product             | Role                                                                                                                                            |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ArchLens Canvas** | Interactive canvas (PWA): local folder authoring, live share rooms, Mermaid import, diagrams that stay in sync and read-only published catalogs |
+| **ArchLens CLI**    | Static analysis that writes BlueprintSpec and can publish corpora to object storage for a shared estate view                                    |
+| **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                                                            |
+| **ChaosLens**       | Fault injection, blast-radius heatmap and SLA telemetry on the live diagram                                                                     |
+| **AdviceLens**      | Ranked recommendations from TraceLens + ChaosLens (studio, CLI, CI)                                                                             |
+| **BlueprintSpec**   | Architecture contract: public schema URLs, `entityRef` identity, validation rules                                                               |
+| **ChaosSpec**       | Failure scenarios: public schema URLs, `diagramRef` binding, faults without duplicating topology                                                |
 
 ## Typical flow
 
-1. Open **ArchLens Canvas** at `/workspace` - the **startup chooser** appears (nothing auto-loads). Pick an intent (**Investigate** / **Collaborate** / **Ideate**), or use the secondary **Try the demo** strip for ChaosLens insight.
+1. Open **ArchLens Canvas** at `/workspace` - the **startup chooser** appears (nothing auto-loads). Pick an intent (**Investigate** / **Collaborate** / **Ideate**), or use the secondary **Try the demo** strip for ChaosLens insight. **Collaborate** copies a live editing link (named cursors, optional room secret). Disk commit stays on Pending Changes.
 2. When you need TraceLens/git forensics or CI publish, **install ArchLens CLI** (`curl … | bash` on macOS/Linux) - see [Getting started](./getting-started.md).
 3. Run **ArchLens CLI** against a codebase to generate BlueprintSpec (optionally **publish** from CI to object storage).
 4. Return to Canvas and choose **Open existing blueprints folder**, or keep exploring the demo. Import Mermaid/IaC from the toolbar **Open** menu once a diagram is active.
@@ -30,8 +30,9 @@ Use this guide for the product, not the internals.
 ## Guide chapters
 
 - [Getting started](./getting-started.md) - demo → browser scan → CLI install
-- [Jobs for today](./jobs.md) - pick a job: demo, scan, ChaosLens, AdviceLens or CI
+- [Jobs for today](./jobs.md) - pick a job: demo, share, Mermaid, scan, catalog, ChaosLens, AdviceLens or CI
 - [ArchLens Canvas](./canvas.md) - startup chooser, panels, Mermaid import, externals, display toggles
+- [Collaborate](./collaborate.md) - live share rooms, named cursors, who can join
 - [ArchLens CLI](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan), [meaningful IaC externals](./cli.md#meaningful-external-dependencies)
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry

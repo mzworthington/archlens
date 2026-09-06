@@ -1,5 +1,9 @@
 import { test } from '@playwright/test';
-import { RECORD_DOCS_MEDIA, writeRecordingTrimMarker } from '../helpers/docsMedia';
+import {
+  RECORD_DOCS_MEDIA,
+  docsScreenshotPath,
+  writeRecordingTrimMarker,
+} from '../helpers/docsMedia';
 import {
   loadChaoslensLargeGraphDiagram,
   runChaoslensDomainOrdersOutageDemo,
@@ -8,6 +12,12 @@ import { loadGoldenJourneyDiagram, runGoldenJourneyOutageDemo } from '../helpers
 import { runTraceLensDemo } from '../helpers/tracelensDemo';
 import { loadSandbox } from '../helpers/workspace';
 import { drillIntoZoomable, expectCanvasReady } from '../helpers/canvas';
+import {
+  closeCollabPeers,
+  openMultiCursorCollabSession,
+  parkPeerCursors,
+  screenshotFromTopLeft,
+} from '../helpers/collab';
 
 test.describe('docs media recordings', () => {
   test.skip(!RECORD_DOCS_MEDIA, 'Set RECORD_DOCS_MEDIA=1 to record docs media');
@@ -64,5 +74,17 @@ test.describe('docs media recordings', () => {
     test.setTimeout(120_000);
     await runTraceLensDemo(page);
     await page.waitForTimeout(600);
+  });
+
+  test('9-collab-cursors.png', async ({ page, context }) => {
+    test.setTimeout(180_000);
+    const { peers } = await openMultiCursorCollabSession(page, context);
+    try {
+      await parkPeerCursors(page, peers);
+      await page.bringToFront();
+      await screenshotFromTopLeft(page, docsScreenshotPath('9-collab-cursors.png'));
+    } finally {
+      await closeCollabPeers(peers);
+    }
   });
 });

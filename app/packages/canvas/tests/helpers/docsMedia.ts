@@ -11,8 +11,12 @@ const DOCS_SCREENSHOTS_DIR = path.join(REPO_ROOT, 'docs/screenshots');
 
 export const RECORD_DOCS_MEDIA = process.env.RECORD_DOCS_MEDIA === '1';
 
-export function docsGifPath(fileName: string): string {
+export function docsScreenshotPath(fileName: string): string {
   return path.join(DOCS_SCREENSHOTS_DIR, fileName);
+}
+
+export function docsGifPath(fileName: string): string {
+  return docsScreenshotPath(fileName);
 }
 
 function hasBinary(name: string): boolean {

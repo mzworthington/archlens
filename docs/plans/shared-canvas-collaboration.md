@@ -2,6 +2,8 @@
 
 **Status:** Share-link rooms shipped (presence + Worker) · **Last updated:** 2026-09-04 · **Implementation:** core mapping + Canvas session + named cursors; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
 
+Product value and operator steps: [Collaborate](../guide/collaborate.md).
+
 Contributor design for realtime co-editing of ArchLens diagrams. Local-first folder workspaces stay as they are ([ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)). Collaboration is an **opt-in session**, not a replacement for File System Access or IndexedDB drafts.
 
 Related: [Architecture](../architecture.md), [Technology stack](../tech-stack.md), [Remote catalog PRD](../remote-blueprint-catalog-prd.md) (catalog non-goals do **not** include live share-link rooms — those shipped separately).

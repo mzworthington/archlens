@@ -5,23 +5,8 @@ export const PRODUCT_HERO = {
   documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
   lede: 'Canvas is the map you work on. The CLI builds it from the repo. TraceLens and ChaosLens run on that map. AdviceLens ranks what to change.',
   trustLine:
-    'Open source. No account. Drafts stay in the browser or the folder you open. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.',
+    'Open source. No account. Drafts stay in the browser or the folder you open. Live share rooms talk to a Worker we host for that session. Catalog publish from CI is a separate, explicit step.',
 } as const;
-
-export const WHY_IT_MATTERS = [
-  {
-    title: 'ChaosLens',
-    body: 'Monte Carlo on the diagram you have open. Blast radius and SLA bands in the browser. Production stays up.',
-  },
-  {
-    title: 'TraceLens',
-    body: 'Churn, coupling and complexity attach to the same entityRef nodes. Not a second dashboard.',
-  },
-  {
-    title: 'AdviceLens',
-    body: 'One ranked list from those two signals. Same items in Canvas, the CLI and CI. Not a chatbot.',
-  },
-] as const;
 
 export const WORKSPACE_STARTUP = {
   title: 'What do you want to do?',

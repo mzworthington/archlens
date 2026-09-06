@@ -31,18 +31,20 @@ describe('DocsHome', () => {
     expect(screen.getByText('Local first')).toBeInTheDocument();
     expect(screen.getAllByText(/uploaded to ArchLens servers/i).length).toBeGreaterThan(0);
     expect(screen.getByRole('heading', { name: 'What do I do today?' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'On the diagram' })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { name: 'ChaosLens' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );
+    expect(screen.queryByRole('heading', { name: 'On the diagram' })).not.toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'CLI, Canvas, then the lenses' })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'The tools' })).toHaveClass('text-slate-400');
+      screen.queryByRole('heading', { name: 'CLI, Canvas, then the lenses' })
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'The tools' })).toHaveClass('text-slate-200');
     expect(
-      screen.getByText('Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map.')
-    ).toHaveClass('text-slate-300');
+      screen.getByText(
+        'Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map. Share a live room so peers can join.'
+      )
+    ).toHaveClass('text-slate-100');
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
     expect(screen.getAllByText('ChaosLens').length).toBeGreaterThan(0);

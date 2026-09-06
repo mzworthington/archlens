@@ -57,13 +57,20 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/guide/jobs': {
     headline: 'Jobs for today',
     description:
-      'Pick an ArchLens job: try the demo, scan a folder, run the CLI, fault a service, rank fixes or gate a PR.',
+      'Pick an ArchLens job: try the demo, share a live map, import Mermaid, scan a folder, run the CLI, open a published catalog, fault a service, rank fixes or gate a PR.',
   },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
     title: 'ArchLens Canvas - BlueprintSpec maps in the browser | ArchLens',
     description:
-      'ArchLens Canvas is the map over BlueprintSpec: local folders, diagram sync and catalogs published from CI.',
+      'ArchLens Canvas is the map over BlueprintSpec: local folders, live share rooms, diagram sync and catalogs published from CI.',
+    softwareName: 'ArchLens Canvas',
+  },
+  '/guide/collaborate': {
+    headline: 'Collaborate',
+    title: 'Collaborate - live share rooms on the map | ArchLens',
+    description:
+      'Join a room with your peers on a live ArchLens map: named cursors, optional room secret and a shared BlueprintSpec working copy. Disk commit stays on Pending Changes.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {

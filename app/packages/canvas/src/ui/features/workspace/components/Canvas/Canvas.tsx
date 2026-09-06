@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { ReactFlow, Background, Controls, BackgroundVariant, Panel } from '@xyflow/react';
-import type { NodeTypes } from '@xyflow/react';
+import type { NodeTypes, OnInit } from '@xyflow/react';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -30,6 +30,10 @@ import { CanvasZoomReadout } from './CanvasZoomReadout';
 import { DependencyFocusChip } from './DependencyFocusChip';
 import { useSpotlightEdge } from './useSpotlightEdge';
 import { BLANK_CANVAS_ZOOM } from '../../../../../application/canvas/diagramViewport';
+import type {
+  BlueprintRFEdge,
+  BlueprintRFNode,
+} from '../../../../../application/store/layoutUtils';
 
 export const Canvas: React.FC = () => {
   const [, setLocation] = useLocation();
@@ -199,6 +203,10 @@ export const Canvas: React.FC = () => {
   const { onDragOver, onDrop } = useCanvasDropNode(addNode);
   const collabCursors = useBlueprintStore(s => s.collabPresence.cursors);
   const { onPointerMove, onPointerLeave } = useCollabCursorTracking();
+  const onReactFlowInit = useCallback<OnInit<BlueprintRFNode, BlueprintRFEdge>>(instance => {
+    const host = document.querySelector('.react-flow');
+    if (host) Object.assign(host, { __archlensReactFlow: instance });
+  }, []);
 
   return (
     <div className="flex-1 h-full relative">
@@ -254,6 +262,7 @@ export const Canvas: React.FC = () => {
         maxZoom={4}
         defaultViewport={{ x: 0, y: 0, zoom: BLANK_CANVAS_ZOOM }}
         className="h-full"
+        onInit={onReactFlowInit}
       >
         <CollabCursors cursors={collabCursors} />
         {!liteCanvas && (

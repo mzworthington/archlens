@@ -15,7 +15,7 @@ describe('siteSeo catalog', () => {
     const seo = resolvePageSeo('/');
     expect(seo.title.toLowerCase()).toContain('archlens');
     expect(seo.title.toLowerCase()).toContain('architecture risk');
-    expect(seo.description.toLowerCase()).toMatch(/canvas|tracelens|outage|blueprint/);
+    expect(seo.description.toLowerCase()).toMatch(/canvas|tracelens|outage|blueprint|share/);
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}/`);
     expect(seo.ogImageUrl).toBe(SITE_SOCIAL_IMAGE);
     expect(seo.indexable).toBe(true);
@@ -24,6 +24,7 @@ describe('siteSeo catalog', () => {
   it('gives each product surface a unique title and description', () => {
     const products = [
       '/guide/canvas',
+      '/guide/collaborate',
       '/guide/cli',
       '/guide/tracelens',
       '/guide/chaoslens',

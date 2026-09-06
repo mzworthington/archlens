@@ -9,7 +9,8 @@ export function CollabCursorMarkers({ cursors }: { cursors: CollabPeerCursor[] }
         <div
           key={cursor.clientId}
           data-testid={`collab-cursor-${cursor.clientId}`}
-          className="absolute pointer-events-none z-[5] flex items-start gap-1"
+          data-collab-name={cursor.name}
+          className="absolute pointer-events-none z-[20] flex items-start gap-1"
           style={{ transform: `translate(${cursor.x}px, ${cursor.y}px)` }}
         >
           <svg width="16" height="20" viewBox="0 0 16 20" aria-hidden="true">
@@ -21,7 +22,7 @@ export function CollabCursorMarkers({ cursors }: { cursors: CollabPeerCursor[] }
             />
           </svg>
           <span
-            className="mt-3 max-w-[10rem] truncate rounded-sm px-1.5 py-0.5 text-[10px] font-semibold text-slate-950 shadow-sm"
+            className="mt-3 max-w-[12rem] truncate rounded-sm px-2 py-0.5 text-xs font-semibold text-slate-950 shadow-sm"
             style={{ backgroundColor: cursor.color }}
           >
             {cursor.name}

@@ -6,6 +6,7 @@ import guideIndexMd from '@docs/guide/index.md?raw';
 import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
 import guideJobsMd from '@docs/guide/jobs.md?raw';
 import guideCanvasMd from '@docs/guide/canvas.md?raw';
+import guideCollaborateMd from '@docs/guide/collaborate.md?raw';
 import guideCliMd from '@docs/guide/cli.md?raw';
 import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
 import guideChaosLensMd from '@docs/guide/chaoslens.md?raw';
@@ -76,6 +77,7 @@ const START_PATH_PREFIXES = ['/guide/getting-started', '/guide/jobs', '/journeys
 
 const SURFACES_PATH_PREFIXES = [
   '/guide/canvas',
+  '/guide/collaborate',
   '/guide/cli',
   '/guide/tracelens',
   '/guide/chaoslens',
@@ -119,6 +121,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
     title: 'Surfaces',
     items: [
       { label: 'ArchLens Canvas', path: '/guide/canvas' },
+      { label: 'Collaborate', path: '/guide/collaborate' },
       { label: 'ArchLens CLI', path: '/guide/cli' },
       { label: 'TraceLens', path: '/guide/tracelens' },
       { label: 'ChaosLens', path: '/guide/chaoslens' },
@@ -213,6 +216,14 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/guide/canvas',
     title: 'ArchLens Canvas',
     markdown: guideCanvasMd,
+    dir: 'guide',
+    group: 'guide',
+    productAction: { label: 'Open ArchLens Canvas', href: '/workspace' },
+  },
+  {
+    path: '/guide/collaborate',
+    title: 'Collaborate',
+    markdown: guideCollaborateMd,
     dir: 'guide',
     group: 'guide',
     productAction: { label: 'Open ArchLens Canvas', href: '/workspace' },

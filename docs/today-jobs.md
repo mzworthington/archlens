@@ -8,7 +8,7 @@ Each heading is `id | title`. The homepage picker and the [Jobs for today](./gui
 
 > Open the sandbox. Fault a service. Read the ranked list. No install.
 
-The hosted canvas loads a demo map. ChaosLens and AdviceLens run on that map. Drafts stay in the browser. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.
+The hosted canvas loads a demo map. ChaosLens and AdviceLens run on that map. Drafts stay in the browser. Live share rooms talk to a Worker we host for that session. Catalog publish from CI is a separate, explicit step. Nothing else is uploaded to ArchLens servers.
 
 1. **Open** Canvas on this site.
 2. **Choose** Try the demo on the startup chooser.
@@ -21,6 +21,42 @@ The hosted canvas loads a demo map. ChaosLens and AdviceLens run on that map. Dr
 - [5-minute walkthrough](/journeys)
 - [Getting started](./guide/getting-started.md)
 - [ChaosLens guide](./guide/chaoslens.md)
+
+## share-live | Join a room with your peers
+
+> Start a room. Send the link. Peers join and edit the same map.
+
+A live room is a shared BlueprintSpec working copy. Optional room secret (not in the URL). Rooms are ephemeral: not a catalog and not a write to disk.
+
+1. **Open** Canvas and pick **Collaborate** (blank room, folder or file).
+2. **Copy** the link after you set your name and who can join.
+3. **Send** it to your peers so they can join. Commit YAML later via Pending Changes if this is a folder workspace.
+
+```
+/workspace
+```
+
+- [Collaborate guide](./guide/collaborate.md)
+- [ArchLens Canvas](./guide/canvas.md)
+- [Privacy](./privacy.md)
+
+## mermaid | I already have a Mermaid diagram
+
+> Blank canvas or import Mermaid. Scan later if you want git or ChaosLens.
+
+Import is a merge into BlueprintSpec with a conflict preview. Forensics and Mermaid styling do not survive. Do not edit the Code Viewer Mermaid tab expecting a round trip.
+
+1. **Open** Canvas and pick **Ideate**.
+2. **Choose** Import from Mermaid (or Start a blank canvas, then Open → Import Mermaid).
+3. **Review** the preview and merge. Share later from the toolbar if peers need the same map.
+
+```
+/workspace
+```
+
+- [ArchLens Canvas](./guide/canvas.md)
+- [Getting started](./guide/getting-started.md)
+- [BlueprintSpec](./guide/schema.md)
 
 ## browser-scan | Map a folder without installing
 
@@ -57,6 +93,24 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 - [Getting started](./guide/getting-started.md)
 - [ArchLens CLI](./guide/cli.md)
 - [TraceLens guide](./guide/tracelens.md)
+
+## catalog | Open the estate the pipeline published
+
+> Catalog is read-only. CI wrote it. Canvas just shows it.
+
+A composed `latest` snapshot is the estate view. Live rooms and folder commits are not the catalog. On this site, **Try the demo** loads the samples estate.
+
+1. **Have** a composed catalog from CI, or use the hosted samples estate.
+2. **Open** Canvas and pick **Try the demo**.
+3. **Browse** systems on the map. Drafts stay in the browser. Commit does not write the catalog.
+
+```
+/workspace
+```
+
+- [ArchLens Canvas](./guide/canvas.md)
+- [ArchLens CLI](./guide/cli.md)
+- [GitHub Actions workflows](./guide/ci-workflows.md)
 
 ## chaos | What fails if this service dies
 
