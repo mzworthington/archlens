@@ -10,6 +10,7 @@ export {
   classifyIacResource,
   infrastructureServesOf,
   projectMeaningfulIacExternals,
+  schemaForIacDiagramImport,
   type IacExternalClassification,
   type IacResourceKind,
   type IacResourceRef,

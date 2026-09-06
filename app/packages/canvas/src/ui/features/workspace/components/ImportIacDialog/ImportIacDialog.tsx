@@ -155,9 +155,10 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                   ))}
                 </select>
                 <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Terraform and Pulumi are parsed statically in the browser - no{' '}
+                  Same filter as a CLI scan: primary products and vendor extras land here.
+                  Supporting roles, DNS and data sources stay off the merge. Parsing is static - no{' '}
                   <code className="text-slate-400">terraform init</code> or{' '}
-                  <code className="text-slate-400">pulumi preview</code> required.
+                  <code className="text-slate-400">pulumi preview</code>.
                 </p>
               </div>
             </div>
@@ -173,7 +174,11 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                 <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-3">
                   <p className="text-[10px] font-mono uppercase text-slate-500 mb-2">Preview</p>
                   <p className="text-xs text-slate-300">
-                    {preview.parseResult.schema.nodes.length} resources,{' '}
+                    {preview.parseResult.schema.nodes.length} meaningful nodes
+                    {preview.omittedNodeCount > 0
+                      ? `, ${preview.omittedNodeCount} supporting or noise omitted`
+                      : ''}
+                    {', '}
                     {preview.parseResult.schema.dependencies.length} dependencies
                   </p>
                   <ul className="mt-2 text-xs text-slate-400 space-y-1 font-mono max-h-32 overflow-y-auto">
@@ -209,7 +214,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                   mergePlan={preview.mergePlan}
                   resolutions={resolutions}
                   onResolutionChange={setConflictResolution}
-                  footerNote="Static IaC import maps provider types to C4 infra node types. Changes stay in your draft until you commit via Pending Changes."
+                  footerNote="Same significance filter as archlens scan. Changes stay in your draft until you commit via Pending Changes."
                 />
               </>
             )}

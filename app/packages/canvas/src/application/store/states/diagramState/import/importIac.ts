@@ -1,8 +1,10 @@
 import {
   parseIacBatchToSchema,
+  schemaForIacDiagramImport,
   type IacParseResult,
   type IacSourceFile,
   type IacSourceKind,
+  type ProjectMeaningfulIacExternalsOptions,
 } from '@archlens/core/import-iac';
 import type { ConflictResolutions } from '@archlens/core';
 import {
@@ -15,7 +17,22 @@ import {
 } from './diagramImportShared';
 import type { BlueprintStoreSet } from '../../../store';
 
-export type IacImportPreview = DiagramImportPreview<IacParseResult>;
+export type IacImportPreview = DiagramImportPreview<IacParseResult> & {
+  parsedNodeCount: number;
+  omittedNodeCount: number;
+};
+
+function iacProjectionOptions(context: DiagramImportContext): ProjectMeaningfulIacExternalsOptions {
+  const infraSystemEntityRef = parentEntityRefForImport(context);
+  const slash = infraSystemEntityRef.indexOf('/');
+  const landscapeEntityRef =
+    slash === -1 ? infraSystemEntityRef : infraSystemEntityRef.slice(0, slash);
+  return {
+    landscapeEntityRef,
+    infraSystemEntityRef,
+    servedSystemRefs: [landscapeEntityRef],
+  };
+}
 
 export function previewIacImport(
   files: IacSourceFile[],
@@ -27,8 +44,19 @@ export function previewIacImport(
     parentEntityRef: parentEntityRefForImport(context),
     kind,
   });
+  const schema = schemaForIacDiagramImport(
+    parseResult.schema,
+    iacProjectionOptions(context),
+    context.baseSchema.level
+  );
+  const parsedRefs = new Set(parseResult.schema.nodes.map(node => node.entityRef));
+  const keptParsedCount = schema.nodes.filter(node => parsedRefs.has(node.entityRef)).length;
 
-  return previewDiagramImport(context, parseResult);
+  return {
+    ...previewDiagramImport(context, { ...parseResult, schema }),
+    parsedNodeCount: parseResult.schema.nodes.length,
+    omittedNodeCount: parseResult.schema.nodes.length - keptParsedCount,
+  };
 }
 
 export function executeIacImport(

@@ -82,7 +82,7 @@ Bring Terraform or Pulumi definitions into the **active** schema - ArchLens pars
 
 No `terraform init` or `pulumi preview` is required - parsing is static, like the CLI IaC passes. Unknown provider types warn and map to a default infra node type. Import Terraform and Pulumi sources in separate sessions (mixed-vendor batches are rejected).
 
-**CLI vs Canvas:** `archlens scan` applies **meaningful external** projection (vendor third-parties on context; primary products on containers; noise filtered). Canvas Import merges the parsed resource graph into the **active** diagram without that filter today - use CLI scan when you want pack-based significance. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+**CLI vs Canvas:** both apply the same **meaningful external** projection. Context diagrams receive vendor third-parties; container diagrams receive primary products (and their declarations) and omit supporting/noise such as IAM roles and DNS records. Real name collisions still show in the merge preview. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
 ## External dependencies
 

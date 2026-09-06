@@ -1,5 +1,11 @@
 import { EntityRef } from '../../models/schema';
-import type { NodeType, SystemDependency, SystemNode, SystemSchema } from '../../models/schema';
+import type {
+  C4Level,
+  NodeType,
+  SystemDependency,
+  SystemNode,
+  SystemSchema,
+} from '../../models/schema';
 
 export type IacResourceKind = 'resource' | 'data' | 'module';
 
@@ -252,6 +258,7 @@ const GCP_PACK: VendorPack = {
     {
       test: t =>
         t.includes('container_cluster') ||
+        t.includes('container:cluster') ||
         t.includes('cloud_run') ||
         t.includes('compute_instance'),
       productSlug: 'compute',
@@ -509,5 +516,39 @@ export function projectMeaningfulIacExternals(
     },
     proposedThirdParties,
     proposedDependencies,
+  };
+}
+
+function isPrimaryImportNode(node: SystemNode): boolean {
+  const view = node.properties?.['iac.view'];
+  if (view === 'resource') return true;
+  if (view === 'declaration') return node.properties?.['iac.significance'] === 'primary';
+  return true;
+}
+
+export function schemaForIacDiagramImport(
+  schema: SystemSchema,
+  options: ProjectMeaningfulIacExternalsOptions,
+  targetLevel: C4Level
+): SystemSchema {
+  const projection = projectMeaningfulIacExternals(schema, options);
+  if (targetLevel === 'context') {
+    return {
+      ...schema,
+      level: 'context',
+      entityRef: options.landscapeEntityRef,
+      nodes: projection.proposedThirdParties,
+      dependencies: projection.proposedDependencies,
+    };
+  }
+
+  const nodes = projection.containerSchema.nodes.filter(isPrimaryImportNode);
+  const liveRefs = new Set(nodes.map(node => node.entityRef));
+  return {
+    ...projection.containerSchema,
+    nodes,
+    dependencies: projection.containerSchema.dependencies.filter(
+      dep => liveRefs.has(dep.from) && liveRefs.has(dep.to)
+    ),
   };
 }

@@ -155,6 +155,12 @@ describe('docs link resolution', () => {
     expect(presentDocsMarkdown('---\nstatus: Accepted\n---\n\n# Title\n')).not.toContain('```yaml');
   });
 
+  it('describes canvas IaC import as using the same significance filter as a CLI scan', () => {
+    const canvas = DOCS_PAGES.find(p => p.path === '/guide/canvas');
+    expect(canvas?.markdown).toMatch(/meaningful external/i);
+    expect(canvas?.markdown).not.toMatch(/without that filter today/);
+  });
+
   it('resolves current guide chapter paths', () => {
     expect(resolveDocsHref('./tracelens.md', 'guide')).toBe('/guide/tracelens');
     expect(resolveDocsHref('./chaoslens.md', 'guide')).toBe('/guide/chaoslens');
