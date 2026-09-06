@@ -1,5 +1,126 @@
 # Changelog
 
+## 2026-09-06
+
+### 🚀 Features
+
+- _(organisation)_ Show load risk at planned as-of (MZW-55)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump @pulumi/pulumi in /infra/cloudflare (#141)
+- _(deps)_ Bump @aws-sdk/client-s3 from 3.1101.0 to 3.1125.0 in /app (#152)
+- _(deps-dev)_ Bump knip from 6.33.0 to 6.34.0 in /app (#151)
+- _(deps)_ Bump chokidar from 4.0.3 to 5.0.0 in /app (#150)
+- _(deps)_ Bump lucide-react from 1.38.0 to 1.39.0 in /app (#148)
+- _(deps)_ Bump @xyflow/react from 12.11.2 to 12.11.6 in /app (#146)
+- _(deps-dev)_ Bump @types/node from 26.4.0 to 26.4.1 in /app (#145)
+- _(deps-dev)_ Bump @cloudflare/workers-types in /app (#142)
+- _(deps)_ Bump mermaid from 11.16.1 to 11.17.2 in /app (#147)
+- _(deps)_ Bump ignore from 7.0.6 to 7.0.8 in /app (#144)
+- _(deps-dev)_ Bump @types/node in /infra/cloudflare (#143)
+- _(deps-dev)_ Bump wrangler from 4.127.1 to 4.128.0 in /app (#149)
+
+## 2026-09-05
+
+### 🚀 Features
+
+- _(canvas)_ Name and place a blank workspace before drawing (MZW-5)
+- _(docs)_ Add 'Jobs for today' section and related links in documentation
+- _(canvas)_ Persist browser-scan maps to a folder (MZW-38)
+- _(skills)_ Require capability folders instead of prefixed dump extracts
+- Posthog plus opt-in
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Keep collab secrets out of sessionStorage
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Split workspace entry and I/O open/save slices
+- _(canvas)_ Separate estate ranking from recommendation copy
+- _(core)_ Isolate entity-ref identity and graph topology
+- _(cli)_ Drive architecture flags and help from one catalog
+- _(forensics)_ Reorganize forensics-related files and update paths in tests
+- Fold dump barrels into capability folders
+
+### 🧰 Maintenance & Dependencies
+
+- Update assets
+
+### 📚 Documentation
+
+- Update README and canvas titles for clarity and consistency
+- Standardize phrasing across documentation
+
+## 2026-09-04
+
+### 🚀 Features
+
+- Implement live progress tracking for browser lite scans
+- Enhance pre-commit hook with context measurement and update contributing guidelines
+- _(collab)_ Kick guests when a secret room expires (MZW-48)
+
+### 🐛 Bug Fixes
+
+- _(storage)_ Load-test catalog publish/consume through R2 5xx
+
+### 📚 Documentation
+
+- Rewrite homepage and guide voice for practitioners (#130)
+
+## 2026-09-03
+
+### 🐛 Bug Fixes
+
+- Deploy Pages from the app workspace, not a stray root package
+
+### 🧰 Maintenance & Dependencies
+
+- Update documentation for Waykit integration and clarify setup instructions
+- Align to waykit
+- Fix e2e tests
+- Add pulumi to core toolchain installation
+
+## 2026-09-02
+
+### 🚀 Features
+
+- Improved workspace selection
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Update schema version handling and enhance tests
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Land Dependabot updates and pin browserslist (#127)
+- Update references from agent-lifecycle-kit to Waykit in documentation and setup scripts
+
+## 2026-09-01
+
+### 🚀 Features
+
+- _(canvas)_ Add opt-in yjs share-link collaboration
+- _(collab)_ Integrate collab Worker deployment into CI and update documentation
+- _(feature-flags)_ Implement feature flag management and UI integration
+- _(collab)_ Enhance collaboration feature with share link support
+- _(collab)_ Implement collaborative presence and cursor tracking
+- _(canvas)_ Enhance type safety and improve linting rules
+- Enable RUM
+- Add tests for directorySlug and slugFromPath functions, and implement safeHttpUrl for URL validation
+- _(canvas)_ Intent-first workspace startup chooser (#114)
+- _(canvas)_ Ship live collaboration without feature flag (#115)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Update _redirects for Cloudflare Pages to serve static assets and index.html correctly
+- _(canvas)_ Reconnect collab WebSocket after mobile drops (#116)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Land Dependabot bumps and skip web-tree-sitter 0.26 (#113)
+
 ## 2026-08-26
 
 ### 🧰 Maintenance & Dependencies

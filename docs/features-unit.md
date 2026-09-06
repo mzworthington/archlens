@@ -544,6 +544,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ triggers loadSchema on clicking Open File
 - ✅ triggers saveSchema on clicking Save when workspace is closed
 - ✅ triggers saveActiveDiagram on clicking Save when workspace is open
+- ✅ names Save map to folder when the workspace is a memory scan
 - ✅ triggers initSchema on clearing canvas if confirmed
 - ✅ does not trigger initSchema on clearing canvas if not confirmed
 - ✅ hides feature flags from the overflow menu when none are catalogued
@@ -566,6 +567,26 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ strips emoji chrome from analyzer messages
 - ✅ forwards cleaned messages and drops empty info lines
+
+### analyticsConsent
+
+#### analyticsConsent
+
+- ✅ treats missing or unknown values as unset
+- ✅ round-trips granted and denied choices
+
+### AnalyticsConsentRoot
+
+#### AnalyticsConsentRoot
+
+- ✅ asks for a choice and does not start tracking until opt-in
+- ✅ leaves tracking off when the visitor declines
+- ✅ starts tracking on load when consent was already granted
+- ✅ still asks when the product token is missing, but does not start tracking
+
+#### AnalyticsPreference
+
+- ✅ lets a granted visitor stop tracking
 
 ### App
 
@@ -745,6 +766,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders nothing when closed
 - ✅ shows lite vs CLI messaging and dismisses
+- ✅ offers a named save when the map is still in memory
 
 ### BrowserLiteScanProgress
 
@@ -833,6 +855,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns merged resilience and refactor recommendations for loaded diagrams
 - ✅ filters recommendations by source and search query
 - ✅ sorts estate items by descending recommendation priority
+- ✅ returns an empty ranking when the estate has no diagrams
+- ✅ keeps rank order when recommendation wording is rewritten
+- ✅ keeps the same relative order on forensics and resilience lists
 
 ### buildForensicsPanelModel
 
@@ -1012,6 +1037,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ counts named peers including self and omits the local cursor
 - ✅ counts a named peer without a cursor and ignores unnamed states
 - ✅ assigns a stable palette color per client id
+
+### collabRoomCredentials
+
+#### collabRoomCredentials
+
+- ✅ keeps a guest secret in memory and out of sessionStorage
+- ✅ does not persist a host-share secret in sessionStorage
 
 ### collabRoomUrl
 
@@ -1521,6 +1553,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns parse result and merge plan for terraform resources
 - ✅ parses multi-file python pulumi stacks using runtime from Pulumi.yaml
+- ✅ omits supporting terraform resources from container merge additions
+- ✅ lists a name collision when a projected vendor already exists
+- ✅ still rejects mixed terraform and pulumi in one import
 
 ### importMermaid
 
@@ -1530,10 +1565,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### initBrowserPostHog
 
-#### initBrowserPostHog
+#### createAnalyticsSession
 
 - ✅ does not call the client when analytics is disabled
-- ✅ initialises the client for SPA navigation, replay and error tracking
+- ✅ initialises cookie persistence for SPA navigation, replay and error tracking
+- ✅ opts back in without a second init after stop
+- ✅ does not opt out when tracking never started
 
 ### initialState
 
@@ -1565,6 +1602,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ cancels an in-flight browser lite scan without opening a workspace
 - ✅ notifies when the browser cannot pick a source directory
 - ✅ should catalog all systems on open and lazy-load when selecting another
+
+##### browser scan map persist
+
+- ✅ writes scan YAML into a picked folder and then allows disk commit
+- ✅ ignores a second persist while a folder save is already in flight
+- ✅ leaves the map in memory when save is declined
+- ✅ opens the persist prompt instead of writing when Save runs on a memory scan
+- ✅ downloads YAML without attaching a folder workspace
 
 ##### loadSchema error handling
 
@@ -1828,6 +1873,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves feature report pages
 - ✅ registers ADR index and detail pages with frontmatter intact
 - ✅ presents YAML frontmatter as structured fields, not a code fence
+- ✅ describes canvas IaC import as using the same significance filter as a CLI scan
 - ✅ resolves current guide chapter paths
 - ✅ resolves in-app TraceLens links
 - ✅ resolves in-app workspace links
@@ -1949,6 +1995,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ follows latest pointer → catalog → lazy YAML consume protocol
 - ✅ rejects diagram paths that are not listed in the remote catalog
+
+### requestServiceWorkerUpdate
+
+#### requestServiceWorkerUpdate
+
+- ✅ resolves without calling update when there is no registration
+- ✅ asks the registration to check for an update
+- ✅ swallows the AbortError Chrome raises when it cancels the update
+- ✅ propagates a genuine update failure
 
 ### resetToEmptyWorkspace
 
@@ -2103,6 +2158,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ preserves TraceLens when building breadcrumb links
 - ✅ preserves ChaosLens when building breadcrumb links
 
+### SaveScanMapDialog
+
+#### SaveScanMapDialog
+
+- ✅ names save, download and keep-in-memory actions
+- ✅ keeps the map in memory on Escape
+- ✅ disables folder save when the picker is unavailable
+
 ### schemaCompare
 
 #### schemaCompare
@@ -2188,6 +2251,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows loaded source content when open
 - ✅ shows scan system name when present on provenance
 - ✅ renders informative helper card when source preview is unavailable
+- ✅ does not render a link when the viewer URL is a javascript: payload
 - ✅ allows user to save PAT token for private repository access
 - ✅ does not use a javascript: custom repo URL as a link href
 - ✅ builds an https viewer link from a custom GitHub repo URL
@@ -2243,6 +2307,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ opens a session dialog with who is online instead of copying immediately
 - ✅ shows how many people are in the session
 
+### traceLensBrowserScanCopy
+
+#### traceLensMissingForensicsCopy
+
+- ✅ does not tell a browser-scan workspace that git hotspots exist in this tab
+- ✅ keeps the CLI enrich hint for ordinary folders without TraceLens blocks
+
 ### TraceLensPanel
 
 #### TraceLensPanel
@@ -2260,6 +2331,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows chaos risk context when a ChaosLens simulation is active
 - ✅ shows estate recommendations when the recommendations tab is selected
 - ✅ switches to AdviceLens URL when the recommendations tab is selected
+- ✅ does not tell a browser-scan workspace that git hotspots exist here
 
 ### TraceLensScopePicker
 
@@ -2274,6 +2346,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders worst offenders CTA and canvas lens controls
 - ✅ shows empty selection hint when no node is selected
+- ✅ does not claim git metrics exist for a browser lite scan
 - ✅ navigates to full trace lens mode from worst offenders CTA
 - ✅ shows readonly git forensics when the selected node is enriched
 - ✅ shows coupling lens hint for a selected node with on-canvas peers
@@ -2503,6 +2576,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens
 - ✅ shows live scan progress and keeps cancel reachable while other actions are disabled
+- ✅ gives every chooser control an accessible name
 
 ### workspaceOpenSession
 
@@ -2555,6 +2629,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not open the validation dialog from the valid status chip
 - ✅ displays cycle warning validation status badge when cycle is present and opens modal on click
 - ✅ displays schema version warning badge when loaded version mismatches app expectation
+
+### writeWorkspaceYamlFiles
+
+#### downloadScanYamlFileName
+
+- ✅ flattens nested blueprint paths for a download filename
+
+#### writeWorkspaceYamlFiles
+
+- ✅ writes every YAML file through the workspace port
+- ✅ stops and reports the first path that the port cannot write
 
 ### yamlFileNameFromDiagramName
 
@@ -2647,6 +2732,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should log info messages with correct icon styles
 - ✅ should log warnings
 - ✅ should log errors with stack trace or error details
+
+### flagCatalog
+
+#### CLI flag catalog
+
+- ✅ accepts every flag printed in overview and scan help
+- ✅ prints every architecture parse flag in overview or scan help
+- ✅ reports an unknown flag on stderr
 
 ### forensicAnalyzer
 
@@ -3317,6 +3410,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reports added and removed files
 - ✅ reports unchanged files when schemas match
 
+### compareByPriority
+
+#### compareByPriorityDesc
+
+- ✅ orders higher priority first without reading copy
+
 ### compareSystemSchemas
 
 #### compareSystemSchemas
@@ -3502,6 +3601,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should not double-prefix stale dependency refs on context diagrams
 - ✅ keeps diagram-root group entityRef when only one context diagram is loaded
 
+### entityRefIdentity
+
+#### EntityRef identity parsing
+
+##### getLevel()
+
+- ✅ should throw an error if evaluated path exceeds 4 segments or has no segments
+
+##### parse()
+
+- ✅ should correctly parse and slugify a root context reference when parent is not provided
+- ✅ should throw an error if the value input is missing or empty
+
 ### estateFragment
 
 #### Feature: compose estate fragments into one YAML tree
@@ -3628,6 +3740,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### resilience graph
 
+- ✅ walks group edges from topology without schema metadata
 - ✅ expands group targets on dependency edges
 - ✅ maps callers to expanded group children
 - ✅ does not treat provisions edges as availability callers
@@ -3701,6 +3814,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ classifies Cloudflare R2 bucket as a primary product
 - ✅ classifies DNS, Pages domains, CORS and custom domains as supporting
 - ✅ classifies zone data sources as noise
+- ✅ classifies GCP container clusters as a primary compute product
 - ✅ classifies AWS Lambda, S3 and RDS as primary products
 - ✅ classifies AWS IAM and networking helpers as supporting
 - ✅ classifies Azure and GCP primaries
@@ -3718,6 +3832,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ passes through resources outside known vendor packs
 - ✅ dogfoods ArchLens Cloudflare Pulumi source into meaningful externals
 - ✅ projects multi-provider Pulumi TypeScript in one stack
+- ✅ omits supporting and noise declarations when importing onto a container diagram
+- ✅ imports only vendor third-parties onto a context diagram
 
 ### iacImport
 
@@ -3841,6 +3957,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ counts physical and source lines
 
+### membership
+
+#### componentsInContainer
+
+- ✅ matches components by containerId leaf or parent entityRef
+- ✅ returns no components for an empty graph
+
+#### componentsInSystem
+
+- ✅ matches components under the system prefix
+- ✅ returns no components for an empty graph
+
 ### mermaidImport
 
 #### extractMermaidFromMarkdown
@@ -3928,6 +4056,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ hasGroupedLayout detects group and parent-child nodes
 - ✅ stripLayoutCoordinates removes position
 
+### parts
+
+#### Mermaid import parts
+
+- ✅ parses C4 in the C4 module
+- ✅ parses flowcharts in the flowchart module
+- ✅ extracts fenced mermaid from the markdown module
+- ✅ keeps canvas mermaid wizard as a core delegate
+
 ### path
 
 #### Domain Path Utilities
@@ -3976,15 +4113,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ warns on unresolved refs without failing
 - ✅ returns empty schema for project metadata only
 - ✅ throws on invalid YAML
-
-### pulumiStack
-
-#### pulumiStack
-
-- ✅ accepts real Pulumi project metadata and rejects marketplace docs named pulumi.yaml
-- ✅ keeps only Python program files for python runtime
-- ✅ keeps YAML resources for yaml runtime and skips stack config files
-- ✅ parses imperative Python stacks without project metadata YAML
 
 ### refactorBoundary
 
@@ -4241,6 +4369,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ allows http(s) URLs
 - ✅ rejects javascript: and other non-http schemes
+
+### stack
+
+#### pulumiStack
+
+- ✅ accepts real Pulumi project metadata and rejects marketplace docs named pulumi.yaml
+- ✅ keeps only Python program files for python runtime
+- ✅ keeps YAML resources for yaml runtime and skips stack config files
+- ✅ parses imperative Python stacks without project metadata YAML
 
 ### suggestionOverlay
 
