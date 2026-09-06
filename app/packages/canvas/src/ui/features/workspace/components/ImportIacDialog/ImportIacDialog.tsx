@@ -8,7 +8,7 @@ import {
   describeIacImportPreview,
   IAC_IMPORT_FILTER_NOTE,
   IAC_IMPORT_MERGE_FOOTER,
-} from '../../../../../application/store/states/diagramState/import/importIac';
+} from '../../../../../application/store/states/diagramState/import/iacImportCopy';
 
 interface ImportIacDialogProps {
   isOpen: boolean;

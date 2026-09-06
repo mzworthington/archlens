@@ -7,7 +7,7 @@ import { reactFlowGraphChangeAdapter } from '../../../../../infrastructure/layou
 import {
   IAC_IMPORT_FILTER_NOTE,
   IAC_IMPORT_MERGE_FOOTER,
-} from '../../../../../application/store/states/diagramState/import/importIac';
+} from '../../../../../application/store/states/diagramState/import/iacImportCopy';
 
 const AWS_PACK = `
 resource "aws_lambda_function" "api" {

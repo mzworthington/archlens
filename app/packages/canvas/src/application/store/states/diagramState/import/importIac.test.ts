@@ -5,8 +5,8 @@ import {
   describeIacImportPreview,
   IAC_IMPORT_FILTER_NOTE,
   IAC_IMPORT_MERGE_FOOTER,
-  previewIacImport,
-} from './importIac';
+} from './iacImportCopy';
+import { previewIacImport } from './importIac';
 import { parentEntityRefForImport, type DiagramImportContext } from './diagramImportShared';
 
 const baseSchema: SystemSchema = {
