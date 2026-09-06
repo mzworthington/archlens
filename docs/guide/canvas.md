@@ -77,12 +77,12 @@ Bring Terraform or Pulumi definitions into the **active** schema - ArchLens pars
 1. Open **Import Infrastructure** from the toolbar **Open** menu (requires an active diagram).
 2. Paste IaC source or upload one or more files (`.tf`, `.tf.json`, `Pulumi.yaml`, `.ts`).
 3. Choose a format or leave **Auto-detect** (Terraform HCL/JSON or Pulumi YAML/TypeScript).
-4. Review resource preview, additions and any conflicts (keep existing / rename import / overwrite).
+4. Review the significance preview (meaningful externals vs IaC declarations), additions and any conflicts (keep existing / rename import / overwrite).
 5. **Merge into diagram** - draft-only until you commit via Pending Changes. ELK layout runs after a successful merge.
 
 No `terraform init` or `pulumi preview` is required - parsing is static, like the CLI IaC passes. Unknown provider types warn and map to a default infra node type. Import Terraform and Pulumi sources in separate sessions (mixed-vendor batches are rejected).
 
-**CLI vs Canvas:** `archlens scan` applies **meaningful external** projection (vendor third-parties on context; primary products on containers; noise filtered). Canvas Import merges the parsed resource graph into the **active** diagram without that filter today - use CLI scan when you want pack-based significance. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+**CLI vs Canvas:** `archlens scan` and canvas **Import Infrastructure** use the same pack-based significance filter. Primary products land as third-party externals; supporting and lookup resources stay as IaC declarations. CLI also hydrates context vendor third-parties; canvas merges the projected container graph into the **active** diagram. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
 ## External dependencies
 

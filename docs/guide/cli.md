@@ -261,7 +261,7 @@ Declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,
 
 ArchLens uses [`infra/cloudflare`](../../infra/cloudflare) with the committed seed [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml) (`archlens/cloudflare` serves `archlens`).
 
-Canvas **Import infrastructure** still merges parsed resources into the active diagram without this significance filter - use CLI scan when you want vendor/product projection. See [Import infrastructure](./canvas.md#import-infrastructure).
+Canvas **Import infrastructure** applies the same significance filter, then merges the projected container graph into the active diagram. CLI also hydrates context vendor third-parties from `serves`. See [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 

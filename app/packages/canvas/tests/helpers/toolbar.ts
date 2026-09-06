@@ -86,3 +86,32 @@ export async function openImportMermaid(page: Page) {
     await expect(dialog).toBeVisible({ timeout: 15_000 });
   }).toPass({ timeout: 60_000 });
 }
+
+/**
+ * Open the Import Infrastructure dialog from the overflow menu.
+ */
+export async function openImportIac(page: Page) {
+  await gotoApp(page, '/workspace');
+  await continueWithSample(page);
+  await exitResilienceModeIfActive(page);
+
+  const dialog = page.getByTestId('import-iac-dialog');
+  await expect(async () => {
+    if (await dialog.isVisible().catch(() => false)) return;
+
+    if (
+      !(await page
+        .getByRole('menu')
+        .isVisible()
+        .catch(() => false))
+    ) {
+      await openOverflowMenu(page);
+    }
+    const importItem = page
+      .getByRole('menu')
+      .getByRole('menuitem', { name: 'Import Infrastructure' });
+    await expect(importItem).toBeEnabled({ timeout: 10_000 });
+    await importItem.click();
+    await expect(dialog).toBeVisible({ timeout: 15_000 });
+  }).toPass({ timeout: 60_000 });
+}

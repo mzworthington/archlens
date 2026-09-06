@@ -3,6 +3,12 @@ import { Cloud, FileUp, X } from 'lucide-react';
 import { ImportMergePreview } from '../ImportMergePreview/ImportMergePreview';
 import { KIND_OPTIONS, useImportIacDialog } from './useImportIacDialog';
 import type { IacSourceKind } from '@archlens/core/import-iac';
+import {
+  describeIacImportNodeQualifier,
+  describeIacImportPreview,
+  IAC_IMPORT_FILTER_NOTE,
+  IAC_IMPORT_MERGE_FOOTER,
+} from '../../../../../application/store/states/diagramState/import/importIac';
 
 interface ImportIacDialogProps {
   isOpen: boolean;
@@ -37,6 +43,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
       role="dialog"
       aria-modal="true"
       aria-labelledby="import-iac-title"
+      aria-describedby="iac-import-filter-note"
       data-testid="import-iac-dialog"
     >
       <div
@@ -154,10 +161,14 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                     </option>
                   ))}
                 </select>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
+                <p
+                  id="iac-import-filter-note"
+                  className="text-[11px] text-slate-500 leading-relaxed"
+                >
                   Terraform and Pulumi are parsed statically in the browser - no{' '}
                   <code className="text-slate-400">terraform init</code> or{' '}
-                  <code className="text-slate-400">pulumi preview</code> required.
+                  <code className="text-slate-400">pulumi preview</code> required.{' '}
+                  {IAC_IMPORT_FILTER_NOTE}
                 </p>
               </div>
             </div>
@@ -173,8 +184,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                 <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-3">
                   <p className="text-[10px] font-mono uppercase text-slate-500 mb-2">Preview</p>
                   <p className="text-xs text-slate-300">
-                    {preview.parseResult.schema.nodes.length} resources,{' '}
-                    {preview.parseResult.schema.dependencies.length} dependencies
+                    {describeIacImportPreview(preview.parseResult.schema)}
                   </p>
                   <ul className="mt-2 text-xs text-slate-400 space-y-1 font-mono max-h-32 overflow-y-auto">
                     {preview.parseResult.schema.nodes.slice(0, 12).map(node => (
@@ -182,7 +192,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                         {node.name}{' '}
                         <span className="text-slate-600">
                           ({node.type}
-                          {node.external ? ', external' : ''})
+                          {describeIacImportNodeQualifier(node)})
                         </span>
                       </li>
                     ))}
@@ -209,7 +219,7 @@ export const ImportIacDialog: React.FC<ImportIacDialogProps> = ({ isOpen, onClos
                   mergePlan={preview.mergePlan}
                   resolutions={resolutions}
                   onResolutionChange={setConflictResolution}
-                  footerNote="Static IaC import maps provider types to C4 infra node types. Changes stay in your draft until you commit via Pending Changes."
+                  footerNote={IAC_IMPORT_MERGE_FOOTER}
                 />
               </>
             )}
