@@ -29,7 +29,6 @@ describe('WorkspaceEntryPanel', () => {
         onOpenDirectory={vi.fn()}
         onBrowserLiteScan={vi.fn()}
         onImportMermaid={vi.fn()}
-        onImportIac={vi.fn()}
         onStartBlankCanvas={vi.fn()}
         onShareBlankCanvas={vi.fn()}
         onShareDirectory={vi.fn()}
@@ -43,9 +42,6 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-collaborate')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-intent-ideate')).toBeInTheDocument();
 
-    expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(
-      /Structure only \(no git\)/i
-    );
     expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(/Python/i);
     expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open existing blueprints folder/i
@@ -56,12 +52,19 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-ideate')).toContainElement(
       screen.getByTestId('workspace-import-mermaid')
     );
-    expect(screen.getByTestId('workspace-import-iac')).toHaveTextContent(/Import infrastructure/i);
+    expect(screen.queryByTestId('workspace-import-iac')).not.toBeInTheDocument();
     expect(screen.getByTestId('workspace-share-blank')).toHaveTextContent(/Share blank room/i);
-    expect(screen.getByTestId('workspace-share-directory')).toHaveTextContent(
-      /Open folder then share/i
+    expect(screen.getByTestId('workspace-share-open')).toContainElement(
+      screen.getByTestId('workspace-share-directory')
     );
-    expect(screen.getByTestId('workspace-share-file')).toHaveTextContent(/Open file then share/i);
+    expect(screen.getByTestId('workspace-share-open')).toContainElement(
+      screen.getByTestId('workspace-share-file')
+    );
+    expect(screen.getByTestId('workspace-share-directory')).toHaveTextContent(/Folder/i);
+    expect(screen.getByTestId('workspace-share-directory')).toHaveTextContent(
+      /Blueprints directory/i
+    );
+    expect(screen.getByTestId('workspace-share-file')).toHaveTextContent(/YAML blueprint/i);
     expect(screen.getByTestId('workspace-start-blank')).toHaveTextContent(/Start a blank canvas/i);
 
     const sample = screen.getByTestId('workspace-open-sample');
@@ -147,12 +150,20 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
   });
 
+  it('keeps a single share handler as a full-width option', () => {
+    render(
+      <WorkspaceEntryPanel onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} onShareFile={vi.fn()} />
+    );
+
+    expect(screen.queryByTestId('workspace-share-open')).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-share-file')).toHaveTextContent(/Open file then share/i);
+  });
+
   it('invokes the matching handler for each choice', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
     const onImportMermaid = vi.fn();
-    const onImportIac = vi.fn();
     const onStartBlankCanvas = vi.fn();
     const onShareBlankCanvas = vi.fn();
     const onShareDirectory = vi.fn();
@@ -164,7 +175,6 @@ describe('WorkspaceEntryPanel', () => {
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
         onImportMermaid={onImportMermaid}
-        onImportIac={onImportIac}
         onStartBlankCanvas={onStartBlankCanvas}
         onShareBlankCanvas={onShareBlankCanvas}
         onShareDirectory={onShareDirectory}
@@ -176,7 +186,6 @@ describe('WorkspaceEntryPanel', () => {
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
     fireEvent.click(screen.getByTestId('workspace-import-mermaid'));
-    fireEvent.click(screen.getByTestId('workspace-import-iac'));
     fireEvent.click(screen.getByTestId('workspace-start-blank'));
     fireEvent.click(screen.getByTestId('workspace-share-blank'));
     fireEvent.click(screen.getByTestId('workspace-share-directory'));
@@ -186,7 +195,6 @@ describe('WorkspaceEntryPanel', () => {
     expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
     expect(onImportMermaid).toHaveBeenCalledTimes(1);
-    expect(onImportIac).toHaveBeenCalledTimes(1);
     expect(onStartBlankCanvas).toHaveBeenCalledTimes(1);
     expect(onShareBlankCanvas).toHaveBeenCalledTimes(1);
     expect(onShareDirectory).toHaveBeenCalledTimes(1);
@@ -198,9 +206,10 @@ describe('WorkspaceEntryPanel', () => {
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
     const onImportMermaid = vi.fn();
-    const onImportIac = vi.fn();
     const onStartBlankCanvas = vi.fn();
     const onShareBlankCanvas = vi.fn();
+    const onShareDirectory = vi.fn();
+    const onShareFile = vi.fn();
 
     render(
       <WorkspaceEntryPanel
@@ -208,9 +217,10 @@ describe('WorkspaceEntryPanel', () => {
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
         onImportMermaid={onImportMermaid}
-        onImportIac={onImportIac}
         onStartBlankCanvas={onStartBlankCanvas}
         onShareBlankCanvas={onShareBlankCanvas}
+        onShareDirectory={onShareDirectory}
+        onShareFile={onShareFile}
         loadingMessage="Loading sandbox..."
       />
     );
@@ -220,14 +230,19 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-browser-lite-scan')).toBeDisabled();
     expect(screen.getByTestId('workspace-open-directory')).toBeDisabled();
     expect(screen.getByTestId('workspace-import-mermaid')).toBeDisabled();
-    expect(screen.getByTestId('workspace-import-iac')).toBeDisabled();
     expect(screen.getByTestId('workspace-start-blank')).toBeDisabled();
     expect(screen.getByTestId('workspace-share-blank')).toBeDisabled();
+    expect(screen.getByTestId('workspace-share-directory')).toBeDisabled();
+    expect(screen.getByTestId('workspace-share-file')).toBeDisabled();
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
     fireEvent.click(screen.getByTestId('workspace-share-blank'));
+    fireEvent.click(screen.getByTestId('workspace-share-directory'));
+    fireEvent.click(screen.getByTestId('workspace-share-file'));
     expect(onOpenSample).not.toHaveBeenCalled();
     expect(onShareBlankCanvas).not.toHaveBeenCalled();
+    expect(onShareDirectory).not.toHaveBeenCalled();
+    expect(onShareFile).not.toHaveBeenCalled();
   });
 
   it('shows live scan progress and keeps cancel reachable while other actions are disabled', () => {
@@ -265,7 +280,6 @@ describe('WorkspaceEntryPanel', () => {
         onOpenDirectory={vi.fn()}
         onBrowserLiteScan={vi.fn()}
         onImportMermaid={vi.fn()}
-        onImportIac={vi.fn()}
         onStartBlankCanvas={vi.fn()}
         onShareBlankCanvas={vi.fn()}
         onShareDirectory={vi.fn()}

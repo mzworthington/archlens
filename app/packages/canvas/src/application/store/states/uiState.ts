@@ -41,7 +41,6 @@ export interface UiState {
   showDesignSystem: boolean;
   isDiffOpen: boolean;
   isImportMermaidOpen: boolean;
-  isImportIacOpen: boolean;
   isStartupOpen: boolean;
   isCompareOpen: boolean;
   isShortcutsOpen: boolean;
@@ -83,7 +82,6 @@ export interface UiState {
   setShowDesignSystem: (show: boolean) => void;
   setIsDiffOpen: (open: boolean) => void;
   setIsImportMermaidOpen: (open: boolean) => void;
-  setIsImportIacOpen: (open: boolean) => void;
   setIsStartupOpen: (open: boolean) => void;
   setIsCompareOpen: (open: boolean) => void;
   setIsShortcutsOpen: (open: boolean) => void;
@@ -125,7 +123,6 @@ export const createUiState = (
   showDesignSystem: false,
   isDiffOpen: false,
   isImportMermaidOpen: false,
-  isImportIacOpen: false,
   isStartupOpen: true,
   isCompareOpen: false,
   isShortcutsOpen: false,
@@ -193,7 +190,6 @@ export const createUiState = (
   setShowDesignSystem: show => set({ showDesignSystem: show }),
   setIsDiffOpen: open => set({ isDiffOpen: open }),
   setIsImportMermaidOpen: open => set({ isImportMermaidOpen: open }),
-  setIsImportIacOpen: open => set({ isImportIacOpen: open }),
   setIsStartupOpen: open =>
     set(state => (state.isStartupOpen === open ? state : { isStartupOpen: open })),
   setIsCompareOpen: open => set({ isCompareOpen: open }),

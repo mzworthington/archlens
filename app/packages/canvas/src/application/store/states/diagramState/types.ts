@@ -13,11 +13,9 @@ import type {
   WorkspaceEntity,
   WorkspaceCatalogEntry,
 } from '@archlens/core';
-import type { IacSourceFile, IacSourceKind } from '@archlens/core/import-iac';
 import type { CanvasNodeChange, CanvasEdgeChange, CanvasConnection } from '../../../../core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import type { MermaidImportPreview } from './import/importMermaid';
-import type { IacImportPreview } from './import/importIac';
 import type { RefactorBoundary } from '@archlens/core/forensics';
 
 export type SelectionOptions = {
@@ -80,12 +78,6 @@ export interface DiagramState {
   importJson: (jsonContent: string) => boolean;
   previewMermaidImport: (mermaid: string) => Promise<MermaidImportPreview>;
   importMermaid: (mermaid: string, resolutions: ConflictResolutions) => Promise<boolean>;
-  previewIacImport: (files: IacSourceFile[], kind?: IacSourceKind) => Promise<IacImportPreview>;
-  importIac: (
-    files: IacSourceFile[],
-    resolutions: ConflictResolutions,
-    kind?: IacSourceKind
-  ) => Promise<boolean>;
   clearError: () => void;
   onNodesChange: (changes: CanvasNodeChange[]) => void;
   onEdgesChange: (changes: CanvasEdgeChange[]) => void;

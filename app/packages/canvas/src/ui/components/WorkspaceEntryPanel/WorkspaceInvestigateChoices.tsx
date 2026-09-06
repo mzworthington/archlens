@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, Cloud, FolderOpen, ScanSearch, Search } from 'lucide-react';
+import { AlertTriangle, FolderOpen, ScanSearch, Search } from 'lucide-react';
 import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { WorkspaceEntryOption } from './WorkspaceEntryOption';
 import { WorkspaceIntentCard } from './WorkspaceIntentCard';
@@ -13,7 +13,6 @@ export type WorkspaceInvestigateChoicesProps = {
   actionsDisabled: boolean;
   onOpenDirectory: () => void;
   onBrowserLiteScan?: () => void;
-  onImportIac?: () => void;
   onNeedCliHelp: () => void;
 };
 
@@ -21,7 +20,6 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
   actionsDisabled,
   onOpenDirectory,
   onBrowserLiteScan,
-  onImportIac,
   onNeedCliHelp,
 }) => {
   const [liteScanFeedback, setLiteScanFeedback] = React.useState<string | null>(null);
@@ -40,7 +38,7 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
       testId="workspace-intent-investigate"
       titleId="workspace-intent-investigate-title"
       title="Investigate"
-      subtitle="Map or import real systems"
+      subtitle="Map real systems"
       icon={<Search className={intentHeadingIconClass} aria-hidden />}
     >
       {onBrowserLiteScan ? (
@@ -79,7 +77,7 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
           descriptionClassName="text-slate-400"
           description={
             directoryPickerSupported
-              ? 'Structure only (no git): TS, JS, Python, Go, Java, C#, Terraform, Pulumi'
+              ? 'TS, JS, Python, Go, Java, C#, Terraform, Pulumi'
               : 'Needs Chrome or Edge (folder picker API). Use the ArchLens CLI instead.'
           }
         />
@@ -116,17 +114,6 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
         title="Open existing blueprints folder"
         description="Pick a local folder of blueprints"
       />
-
-      {onImportIac ? (
-        <WorkspaceEntryOption
-          testId="workspace-import-iac"
-          onClick={onImportIac}
-          disabled={actionsDisabled}
-          icon={<Cloud className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />}
-          title="Import infrastructure"
-          description="Terraform or Pulumi into a starter diagram"
-        />
-      ) : null}
     </WorkspaceIntentCard>
   );
 };

@@ -7,7 +7,6 @@ import {
   classifyIacResource,
   infrastructureServesOf,
   projectMeaningfulIacExternals,
-  schemaForIacDiagramImport,
   type IacResourceKind,
 } from './iacExternalSignificance';
 import type { SystemNode, SystemSchema } from '../../models/schema';
@@ -402,55 +401,5 @@ const bucket = new aws.s3.Bucket("assets", {});
     expect(result.containerSchema.dependencies.filter(d => d.type === 'provisions')).toHaveLength(
       3
     );
-  });
-
-  it('omits supporting and noise declarations when importing onto a container diagram', () => {
-    const schema = schemaFromProviderTypes([
-      {
-        providerType: 'aws_lambda_function',
-        address: 'aws_lambda_function.api',
-      },
-      { providerType: 'aws_iam_role', address: 'aws_iam_role.lambda' },
-      { providerType: 'aws_s3_bucket', address: 'aws_s3_bucket.assets' },
-      { providerType: 'aws_s3_bucket_policy', address: 'aws_s3_bucket_policy.assets' },
-    ]);
-
-    const imported = schemaForIacDiagramImport(
-      schema,
-      { landscapeEntityRef, infraSystemEntityRef, servedSystemRefs },
-      'container'
-    );
-
-    const declarations = imported.nodes.filter(n => n.properties?.['iac.view'] === 'declaration');
-    const resources = imported.nodes.filter(n => n.properties?.['iac.view'] === 'resource');
-    expect(declarations.map(n => n.properties?.['iac.product']).sort()).toEqual(['lambda', 's3']);
-    expect(resources.map(n => n.properties?.['iac.product']).sort()).toEqual(['lambda', 's3']);
-    expect(imported.nodes.some(n => n.properties?.['iac.address'] === 'aws_iam_role.lambda')).toBe(
-      false
-    );
-  });
-
-  it('imports only vendor third-parties onto a context diagram', () => {
-    const schema = schemaFromProviderTypes([
-      {
-        providerType: 'aws_lambda_function',
-        address: 'aws_lambda_function.api',
-      },
-      { providerType: 'aws_iam_role', address: 'aws_iam_role.lambda' },
-    ]);
-
-    const imported = schemaForIacDiagramImport(
-      schema,
-      { landscapeEntityRef, infraSystemEntityRef, servedSystemRefs },
-      'context'
-    );
-
-    expect(imported.nodes).toEqual([
-      expect.objectContaining({
-        entityRef: 'archlens/vendor-aws',
-        properties: expect.objectContaining({ vendorSlug: 'aws' }),
-      }),
-    ]);
-    expect(imported.nodes.some(n => n.properties?.['iac.address'])).toBe(false);
   });
 });

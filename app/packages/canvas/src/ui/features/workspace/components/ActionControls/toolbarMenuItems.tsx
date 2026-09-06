@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, Download, Folder, GitMerge, ScanSearch, ShieldAlert, Upload } from 'lucide-react';
+import { Download, Folder, GitMerge, ScanSearch, ShieldAlert, Upload } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
@@ -29,7 +29,6 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
   const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
-  const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
   const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
   const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
   const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
@@ -139,21 +138,6 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
       >
         <GitMerge className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
         Import Mermaid
-      </button>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          setIsImportIacOpen(true);
-        }}
-        disabled={disabled || !schema}
-        className={menuItemClass}
-        title="Import Terraform or Pulumi into the active schema"
-        id="import-iac-action"
-      >
-        <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-        Import Infrastructure
       </button>
       <button
         type="button"

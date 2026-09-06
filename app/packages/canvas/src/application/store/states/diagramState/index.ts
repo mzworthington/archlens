@@ -153,27 +153,6 @@ export const createDiagramState = (
       return executeMermaidImport(set, get, mermaid, resolutions);
     },
 
-    previewIacImport: async (files, kind = 'auto') => {
-      const { previewIacImport } = await import('./import/importIac');
-      const { schema, loadedSystems, currentFilePath, workspaceName, isWorkspaceOpen } = get();
-      return previewIacImport(
-        files,
-        {
-          baseSchema: schema,
-          loadedSystems,
-          currentFilePath,
-          workspaceName,
-          isWorkspaceOpen,
-        },
-        kind
-      );
-    },
-
-    importIac: async (files, resolutions, kind = 'auto') => {
-      const { executeIacImport } = await import('./import/importIac');
-      return executeIacImport(set, get, files, resolutions, kind);
-    },
-
     clearError: () => {
       set({ lastError: null });
     },

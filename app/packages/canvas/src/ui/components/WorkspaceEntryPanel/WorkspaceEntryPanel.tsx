@@ -16,8 +16,6 @@ export type WorkspaceEntryPanelProps = {
   onBrowserLiteScan?: () => void;
   /** Import from Mermaid diagram. */
   onImportMermaid?: () => void;
-  /** Import Terraform / Pulumi into an empty starter diagram. */
-  onImportIac?: () => void;
   /** Start an empty diagram with no demo or folder loaded (Ideate). */
   onStartBlankCanvas?: () => void;
   /** Collaborate: blank canvas then share link. */
@@ -48,7 +46,6 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenDirectory,
   onBrowserLiteScan,
   onImportMermaid,
-  onImportIac,
   onStartBlankCanvas,
   onShareBlankCanvas,
   onShareDirectory,
@@ -134,7 +131,6 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             actionsDisabled={actionsDisabled}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
-            onImportIac={onImportIac}
             onNeedCliHelp={() => setCliExpanded(true)}
           />
           <WorkspaceCollaborateChoices

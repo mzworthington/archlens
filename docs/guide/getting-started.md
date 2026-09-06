@@ -8,7 +8,7 @@ Open the hosted app:
 
 **[https://archlens.dev/workspace](https://archlens.dev/workspace)**
 
-Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Choose an intent: **Investigate** (scan, open folder, IaC import), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid). The chooser also has **Try the demo** and a collapsed **Full analysis** CLI strip. New here? Use **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
+Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Choose an intent: **Investigate** (scan or open folder), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid). The chooser also has **Try the demo** and a collapsed **Full analysis** CLI strip. New here? Use **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
 
 ## 2. Scan in the browser
 
@@ -120,12 +120,12 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. Pick an intent: **Investigate** (lite scan, open folder, IaC import, CLI), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid).
+1. Pick an intent: **Investigate** (lite scan, open folder, CLI), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid).
 2. Or use the secondary **Try the demo** strip - explore the bundled golden journey and simulate a failure (lands in ChaosLens).
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
-6. Optionally **Import Mermaid** from Ideate, **Import Infrastructure** from Investigate or either from the toolbar **Open** menu - see [ArchLens Canvas](./canvas.md#import-mermaid).
+6. Optionally **Import Mermaid** from Ideate or the toolbar **Open** menu - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and bootstrap the demo so the matching diagram resolves.
 

@@ -2,7 +2,6 @@ import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
 import { ChaosSpecDialog } from '../components/ChaosSpecDialog/ChaosSpecDialog';
 import { ChaosSpecPickerDialog } from '../components/ChaosSpecPickerDialog/ChaosSpecPickerDialog';
-import { ImportIacDialog } from '../components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from '../components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from '../components/CompareDialog/CompareDialog';
 import { KeyboardShortcutsDialog } from '../components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
@@ -45,8 +44,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsDiffOpen,
     isImportMermaidOpen,
     setIsImportMermaidOpen,
-    isImportIacOpen,
-    setIsImportIacOpen,
     chaosSpecDialogMode,
     openChaosSpecDialog,
     closeChaosSpecDialog,
@@ -118,14 +115,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
     setIsImportMermaidOpen(true);
   }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportMermaidOpen, setLocation]);
-
-  const handleImportIac = useCallback(() => {
-    markFolderWorkspacePreferred();
-    resetToEmptyWorkspace();
-    setIsStartupOpen(false);
-    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
-    setIsImportIacOpen(true);
-  }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportIacOpen, setLocation]);
 
   const openNamedBlankCanvas = useCallback(
     async (name: string, placement: 'file' | 'folder' | 'unsaved') => {
@@ -221,9 +210,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onClose={() => setIsImportMermaidOpen(false)}
         />
       </LazyMountOnOpen>
-      <LazyMountOnOpen isOpen={isImportIacOpen}>
-        <ImportIacDialog isOpen={isImportIacOpen} onClose={() => setIsImportIacOpen(false)} />
-      </LazyMountOnOpen>
       <LazyMountOnOpen isOpen={chaosSpecDialogMode != null}>
         <ChaosSpecDialog
           isOpen={chaosSpecDialogMode != null}
@@ -242,7 +228,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={() => void handleBrowserLiteScan()}
           onImportMermaid={handleImportMermaid}
-          onImportIac={handleImportIac}
           onStartBlankCanvas={handleStartBlankCanvas}
           onShareBlankCanvas={handleShareBlankCanvas}
           onShareDirectory={() => void handleShareDirectory()}

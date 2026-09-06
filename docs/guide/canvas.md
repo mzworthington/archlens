@@ -12,13 +12,13 @@ On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** aut
 | ----------------------- | ------------------------------------------------------------------------------------------------- |
 | **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens) |
 | **Full analysis (CLI)** | Collapsed strip under the demo: TraceLens git hotspots, watch mode and CI catalog publish         |
-| **Investigate**         | Map real systems: browser lite scan, open blueprints folder or IaC import                         |
+| **Investigate**         | Map real systems: browser lite scan or open a blueprints folder                                   |
 | **Collaborate**         | Share blank room, or open a folder/file then create a live share link                             |
 | **Ideate**              | Solo blank canvas or import Mermaid (share later from the toolbar)                                |
 
 Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
-You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid/IaC anytime from the toolbar **Open** menu.
+You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid anytime from the toolbar **Open** menu.
 
 ## Layout
 
@@ -70,19 +70,9 @@ Bring an external flowchart or C4 Mermaid diagram into the **active** schema - A
 
 Import is lossy: forensics, rich properties and styling from Mermaid are not preserved. Do not edit the Code Viewer Mermaid tab expecting round-trip edits.
 
-## Import infrastructure
+## Infrastructure from a scan
 
-Bring Terraform or Pulumi definitions into the **active** schema - ArchLens parses them statically to `SystemSchema`, previews the merge and applies only what you approve.
-
-1. Open **Import Infrastructure** from the toolbar **Open** menu (requires an active diagram).
-2. Paste IaC source or upload one or more files (`.tf`, `.tf.json`, `Pulumi.yaml`, `.ts`).
-3. Choose a format or leave **Auto-detect** (Terraform HCL/JSON or Pulumi YAML/TypeScript).
-4. Review resource preview, additions and any conflicts (keep existing / rename import / overwrite).
-5. **Merge into diagram** - draft-only until you commit via Pending Changes. ELK layout runs after a successful merge.
-
-No `terraform init` or `pulumi preview` is required - parsing is static, like the CLI IaC passes. Unknown provider types warn and map to a default infra node type. Import Terraform and Pulumi sources in separate sessions (mixed-vendor batches are rejected).
-
-**CLI vs Canvas:** both apply the same **meaningful external** projection. Context diagrams receive vendor third-parties; container diagrams receive primary products (and their declarations) and omit supporting/noise such as IAM roles and DNS records. Real name collisions still show in the merge preview. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+Terraform and Pulumi land through **Browser lite scan** or the CLI - the same `IacAnalyzer` and **meaningful external** projection. There is no paste wizard. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
 ## External dependencies
 

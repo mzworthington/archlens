@@ -1,6 +1,12 @@
 export const optionClass =
   'w-full flex items-start gap-3 rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
 
+export const splitOptionShellClass =
+  'flex w-full items-stretch rounded-lg border border-slate-800 bg-slate-950/60 overflow-hidden';
+
+export const splitOptionHalfClass =
+  'min-w-0 flex-1 flex items-start gap-2 px-3 py-2.5 text-left transition hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+
 export const unsupportedOptionClass =
   'w-full flex items-start gap-3 rounded-lg border border-amber-500/35 bg-amber-950/25 px-3 py-2.5 text-left transition hover:border-amber-500/50 hover:bg-amber-950/35 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
 
