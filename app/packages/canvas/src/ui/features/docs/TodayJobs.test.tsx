@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { TodayJobs } from './TodayJobs.tsx';
+import { TodayJobs } from './TodayJobs';
 
 describe('TodayJobs', () => {
   it('shows steps under the selected job and names the action on each card', () => {

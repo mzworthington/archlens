@@ -23,7 +23,7 @@ const LiveSchemaPreview = lazy(() =>
   }))
 );
 
-const TodayJobs = lazy(() => import('./TodayJobs.tsx').then(m => ({ default: m.TodayJobs })));
+const TodayJobs = lazy(() => import('./TodayJobs').then(m => ({ default: m.TodayJobs })));
 
 function extractCodeText(node: React.ReactNode): string {
   if (typeof node === 'string' || typeof node === 'number') return String(node);

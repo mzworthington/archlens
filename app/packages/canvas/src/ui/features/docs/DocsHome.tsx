@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { DocsShell } from './DocsShell';
-import { TodayJobs } from './TodayJobs.tsx';
+import { TodayJobs } from './TodayJobs';
 import { PRODUCT_HERO } from '../../content/productOutcomes';
 
 type Product = {

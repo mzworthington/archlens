@@ -1,8 +1,8 @@
 import { StrictMode, type ReactElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App.tsx';
-import { AppProvider } from './application/context/AppContext.tsx';
+import App from './App';
+import { AppProvider } from './application/context/AppContext';
 import { createBrowserPorts } from './composition/createBrowserPorts';
 import { wireBrowserPorts } from './composition/wireBrowserPorts';
 import { ConsoleLoggerAdapter } from './infrastructure/logging/logger';
