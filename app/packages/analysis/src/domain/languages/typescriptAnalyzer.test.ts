@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TypeScriptAnalyzer } from './typescriptAnalyzer.ts';
+import { TypeScriptAnalyzer } from './typescriptAnalyzer';
 
 describe('TypeScriptAnalyzer Strategy', () => {
   const analyzer = new TypeScriptAnalyzer();

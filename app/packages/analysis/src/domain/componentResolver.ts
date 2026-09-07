@@ -1,14 +1,14 @@
-import type { ParsedSourceFile } from './types.ts';
-import { isCSharpSourcePath, resolveCSharpComponent } from './csharpGrouping.ts';
-import { isGoSourcePath, resolveGoComponent, resolveGoImportComponentId } from './goGrouping.ts';
-import { isJavaSourcePath, resolveJavaComponent } from './javaGrouping.ts';
-import { isPythonSourcePath, resolvePythonComponent } from './pythonDependencies.ts';
+import type { ParsedSourceFile } from './types';
+import { isCSharpSourcePath, resolveCSharpComponent } from './csharpGrouping';
+import { isGoSourcePath, resolveGoComponent, resolveGoImportComponentId } from './goGrouping';
+import { isJavaSourcePath, resolveJavaComponent } from './javaGrouping';
+import { isPythonSourcePath, resolvePythonComponent } from './pythonDependencies';
 import {
   isTypeScriptSourcePath,
   resolveTypeScriptComponent,
   resolveTypeScriptImportComponentId,
-} from './typescriptGrouping.ts';
-import type { ComponentIdentity } from './folderComponentRollup.ts';
+} from './typescriptGrouping';
+import type { ComponentIdentity } from './folderComponentRollup';
 
 export type ComponentResolver = {
   matches: (relativePath: string) => boolean;

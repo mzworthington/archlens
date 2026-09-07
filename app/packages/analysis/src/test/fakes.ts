@@ -1,5 +1,5 @@
-import type { CodebaseParserPort, AnalysisFileSystemPort, LoggerPort } from '../domain/ports.ts';
-import type { ParsedSourceFile } from '../domain/types.ts';
+import type { CodebaseParserPort, AnalysisFileSystemPort, LoggerPort } from '../domain/ports';
+import type { ParsedSourceFile } from '../domain/types';
 
 export class MockParser implements CodebaseParserPort {
   files: ParsedSourceFile[] = [];

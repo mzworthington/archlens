@@ -7,7 +7,7 @@ import {
   positionalArgs,
   resolvePublishSkipValidation,
   type OutputFormat,
-} from './argvFlags.ts';
+} from './argvFlags';
 
 export interface CatalogComposeCliPlan {
   estateId: string;

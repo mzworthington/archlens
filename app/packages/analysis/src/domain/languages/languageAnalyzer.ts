@@ -1,4 +1,4 @@
-import type { ParsedSourceFile } from '../types.ts';
+import type { ParsedSourceFile } from '../types';
 import type { SystemNode } from '@archlens/core';
 
 export interface ContainerInfo {

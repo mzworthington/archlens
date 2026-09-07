@@ -1,8 +1,8 @@
 import { EventEmitter } from 'node:events';
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { watchAndRerun, resolveWatchOptions } from './watchAndRerun.ts';
-import { parseArchlensArgv } from '../parseArchlensArgv.ts';
-import type { ResolvedArchitectureState } from '../architectureRun.ts';
+import { watchAndRerun, resolveWatchOptions } from './watchAndRerun';
+import { parseArchlensArgv } from '../parseArchlensArgv';
+import type { ResolvedArchitectureState } from '../architectureRun';
 import { DEFAULT_ANALYSIS_OPTIONS } from '@archlens/analysis/options';
 
 class FakeWatcher extends EventEmitter {

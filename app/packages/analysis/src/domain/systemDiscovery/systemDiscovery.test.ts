@@ -10,8 +10,8 @@ import {
   resolveProductIdForPath,
   workspaceRootsFromGlobs,
   withProductHub,
-} from './index.ts';
-import type { SystemDiscoveryFs } from './index.ts';
+} from './index';
+import type { SystemDiscoveryFs } from './index';
 
 function memoryFs(opts: {
   texts?: Record<string, string>;

@@ -4,7 +4,7 @@ import {
   applyHydrationUpgrade,
   findComponentInMap,
   pushUniqueDependency,
-} from './modelExtractorHelpers.ts';
+} from './modelExtractorHelpers';
 
 describe('applyHydrationUpgrade', () => {
   it('upgrades node type when hydration has higher priority', () => {

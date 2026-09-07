@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   resolveFolderRolledComponent,
   resolveTrailingFolderComponent,
-} from './folderComponentRollup.ts';
+} from './folderComponentRollup';
 
 describe('folderComponentRollup', () => {
   const tsStrip = /\.(ts|tsx)$/i;

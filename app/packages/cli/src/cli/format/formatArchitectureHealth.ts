@@ -5,7 +5,7 @@ import type {
   BlueprintValidationIssue,
   BlueprintValidationResult,
 } from '@archlens/core';
-import type { OutputFormat } from './formatValidationResult.ts';
+import type { OutputFormat } from './formatValidationResult';
 
 export type ArchitectureValidatePayload = {
   mode: 'health';

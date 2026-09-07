@@ -7,7 +7,7 @@ import {
   buildInteractivePublishPlan,
   buildInteractiveRejectOverlayPlan,
   shouldShowInteractiveMainMenu,
-} from './interactiveMainMenu.ts';
+} from './interactiveMainMenu';
 
 describe('interactiveMainMenu', () => {
   it('lists scan plus catalog actions', () => {

@@ -5,7 +5,7 @@ import type { CodebaseParserPort } from '@archlens/analysis/ports';
 import type { ParsedSourceFile } from '@archlens/analysis/types';
 import type { AnalysisOptions } from '@archlens/analysis/options';
 import { isTestSourcePath } from '@archlens/analysis/test-path';
-import { createSourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
+import { createSourcePathFilter } from '../pathFilter/sourcePathFilter';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 
 export class TsMorphParserAdapter implements CodebaseParserPort {

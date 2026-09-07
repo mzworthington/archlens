@@ -3,7 +3,7 @@ import {
   DEFAULT_STRUCTURAL_IGNORE_GLOBS,
   STRUCTURAL_IAC_IGNORE_GLOBS,
   type AnalysisOptions,
-} from '../domain/analysisOptions.ts';
+} from '../domain/analysisOptions';
 
 export type SourcePathFilter = {
   /** True when the relative path should not be scanned. */

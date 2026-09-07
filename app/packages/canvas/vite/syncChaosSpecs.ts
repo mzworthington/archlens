@@ -4,9 +4,9 @@ import type { Plugin } from 'vite';
 import {
   toChaosSpecCatalogEntry,
   sortChaosSpecCatalogEntries,
-} from '../../core/src/resilience/chaosSpecCatalog.ts';
-import { parseChaosSpecFromYaml } from '../../core/src/resilience/chaosSpecDocument.ts';
-import { bundledChaosSpecsDest, repoChaosSpecs } from './paths.ts';
+} from '../../core/src/resilience/chaosSpecCatalog';
+import { parseChaosSpecFromYaml } from '../../core/src/resilience/chaosSpecDocument';
+import { bundledChaosSpecsDest, repoChaosSpecs } from './paths';
 
 function collectChaosSpecPaths(srcDir: string): string[] {
   if (!fs.existsSync(srcDir)) return [];

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { GoAnalyzer } from './goAnalyzer.ts';
+import { GoAnalyzer } from './goAnalyzer';
 
 const baseFile = {
   filePath: 'pkg/store/store.go',

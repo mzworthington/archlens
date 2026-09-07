@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv.ts';
+import { parseArchlensArgv, type ArchlensCliPlan } from './parseArchlensArgv';
 
 describe('parseArchlensArgv (git options)', () => {
   it('defaults to architecture with git forensics enabled', () => {
@@ -200,7 +200,7 @@ describe('parseArchlensArgv plan shape', () => {
 
 describe('parseArchlensArgv update flags', () => {
   it('detects update subcommand and skip flag helpers', async () => {
-    const { isUpdateSubcommand, skipUpdateCheck } = await import('./parseArchlensArgv.ts');
+    const { isUpdateSubcommand, skipUpdateCheck } = await import('./parseArchlensArgv');
     expect(isUpdateSubcommand(['update'])).toBe(true);
     expect(skipUpdateCheck(['--no-update-check'])).toBe(true);
   });
@@ -208,7 +208,7 @@ describe('parseArchlensArgv update flags', () => {
 
 describe('parseResilienceArgv', () => {
   it('parses resilience defaults and flags', async () => {
-    const { parseResilienceArgv } = await import('./parseArchlensArgv.ts');
+    const { parseResilienceArgv } = await import('./parseArchlensArgv');
     expect(parseResilienceArgv(['resilience'])).toEqual({
       targetPath: 'blueprints',
       format: 'text',

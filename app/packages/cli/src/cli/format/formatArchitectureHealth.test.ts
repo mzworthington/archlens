@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatArchitectureHealthResult } from './formatArchitectureHealth.ts';
+import { formatArchitectureHealthResult } from './formatArchitectureHealth';
 
 describe('formatArchitectureHealthResult', () => {
   it('formats actionable findings in text mode', () => {

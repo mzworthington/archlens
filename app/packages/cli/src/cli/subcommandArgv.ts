@@ -9,7 +9,7 @@ import {
   resolvePublishSkipValidation,
   type OutputFormat,
   type ResilienceOutputFormat,
-} from './argvFlags.ts';
+} from './argvFlags';
 
 export interface ValidateCliPlan {
   targetPath: string;

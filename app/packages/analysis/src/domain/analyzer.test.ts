@@ -1,6 +1,6 @@
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { CodebaseAnalyzer } from './analyzer.ts';
-import { MockParser, MockFileSystem, MockLogger } from '../test/fakes.ts';
+import { CodebaseAnalyzer } from './analyzer';
+import { MockParser, MockFileSystem, MockLogger } from '../test/fakes';
 
 const mockContextWrite = vi.fn();
 const mockContextWriteSystems = vi.fn();

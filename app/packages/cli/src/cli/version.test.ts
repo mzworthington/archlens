@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { getArchlensVersion, isCompiledRelease, wantsVersionFlag } from './version.ts';
+import { getArchlensVersion, isCompiledRelease, wantsVersionFlag } from './version';
 
 vi.mock('./buildVersion.generated.ts', () => ({
   ARCHLENS_BUILD_VERSION: 'v0.1.5',
@@ -29,7 +29,7 @@ describe('version (dev build)', () => {
     vi.doMock('./buildVersion.generated.ts', () => ({
       ARCHLENS_BUILD_VERSION: 'dev',
     }));
-    const { getArchlensVersion, isCompiledRelease } = await import('./version.ts');
+    const { getArchlensVersion, isCompiledRelease } = await import('./version');
     expect(getArchlensVersion()).toBe('dev');
     expect(isCompiledRelease()).toBe(false);
   });

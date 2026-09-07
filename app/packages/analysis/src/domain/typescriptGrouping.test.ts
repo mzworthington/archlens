@@ -5,7 +5,7 @@ import {
   resolveTypeScriptComponent,
   resolveTypeScriptImportComponentId,
   shouldSkipTypeScriptFile,
-} from './typescriptGrouping.ts';
+} from './typescriptGrouping';
 
 describe('typescriptGrouping', () => {
   describe('shouldSkipTypeScriptFile', () => {

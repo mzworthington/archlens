@@ -3,9 +3,9 @@ import {
   buildCSharpNamespaceIndex,
   extractCsprojContainerDependencies,
   isFrameworkNamespace,
-} from './csharpDependencies.ts';
-import { ModelExtractor } from './modelExtractor.ts';
-import type { ParsedSourceFile } from './types.ts';
+} from './csharpDependencies';
+import { ModelExtractor } from './modelExtractor';
+import type { ParsedSourceFile } from './types';
 import type { SystemNode } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
 

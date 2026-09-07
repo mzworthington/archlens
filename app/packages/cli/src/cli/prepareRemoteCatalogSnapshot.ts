@@ -5,13 +5,10 @@ import {
   type RemoteCatalogYamlObject,
 } from '@archlens/core';
 import type { ObjectStoragePort } from '@archlens/storage';
-import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision.ts';
-import { getArchlensVersion } from './version.ts';
-import type {
-  PublishDryRunResult,
-  PublishUploadResult,
-} from './format/formatPublishDryRunResult.ts';
-import type { RemoteCatalogPublishResult } from './publish/publishRemoteCatalog.ts';
+import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision';
+import { getArchlensVersion } from './version';
+import type { PublishDryRunResult, PublishUploadResult } from './format/formatPublishDryRunResult';
+import type { RemoteCatalogPublishResult } from './publish/publishRemoteCatalog';
 
 export type PreparedRemoteCatalogSnapshot = {
   revisionId: string;

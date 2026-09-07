@@ -1,4 +1,4 @@
-import { BaseWriter } from './baseWriter.ts';
+import { BaseWriter } from './baseWriter';
 import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@archlens/core';
 import {
   EntityRef,
@@ -8,13 +8,13 @@ import {
   systemSchemaPublicUrl,
 } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
-import { attachForensicsToSchema } from '../forensics/attachForensics.ts';
+import { attachForensicsToSchema } from '../forensics/attachForensics';
 import {
   hubRefForProductNodes,
   normalizeContextGrouping,
   pruneEmptyProductHubs,
-} from '../domain/systemDiscovery/index.ts';
-import { resolveContextDisplayName, resolveSystemEntityRef } from '../domain/entityRefContext.ts';
+} from '../domain/systemDiscovery/index';
+import { resolveContextDisplayName, resolveSystemEntityRef } from '../domain/entityRefContext';
 
 export { PERSON_EDGE_DESCRIPTION };
 

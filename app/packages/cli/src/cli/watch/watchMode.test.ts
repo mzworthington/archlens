@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildWatchIgnorePatterns, createDebouncer } from './watchMode.ts';
-import { parseArchlensArgv } from '../parseArchlensArgv.ts';
+import { buildWatchIgnorePatterns, createDebouncer } from './watchMode';
+import { parseArchlensArgv } from '../parseArchlensArgv';
 
 describe('buildWatchIgnorePatterns', () => {
   it('ignores blueprint output directory relative to scan root', () => {

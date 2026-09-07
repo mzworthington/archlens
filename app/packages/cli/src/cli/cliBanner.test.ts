@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { formatAnalysisSpinnerMessage, formatSuccessOutro, renderCliBanner } from './cliBanner.ts';
+import { formatAnalysisSpinnerMessage, formatSuccessOutro, renderCliBanner } from './cliBanner';
 
 describe('cliBanner', () => {
   it('renders banner without throwing', () => {

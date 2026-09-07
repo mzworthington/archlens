@@ -1,15 +1,12 @@
 import type { ObjectStoragePort } from '@archlens/storage';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import type {
-  CatalogAcceptOverlayCliPlan,
-  CatalogRejectOverlayCliPlan,
-} from './parseArchlensArgv.ts';
-import { resolvePublishObjectStorage } from './publish/publishRemoteCatalog.ts';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import type { CatalogAcceptOverlayCliPlan, CatalogRejectOverlayCliPlan } from './parseArchlensArgv';
+import { resolvePublishObjectStorage } from './publish/publishRemoteCatalog';
 import {
   readOverlayFileFromDisk,
   runAcceptOverlay,
   runRejectOverlay,
-} from './suggestionOverlayCommands.ts';
+} from './suggestionOverlayCommands';
 
 export async function executeAcceptOverlayRun(plan: CatalogAcceptOverlayCliPlan): Promise<void> {
   const logger = new ConsoleLogger();

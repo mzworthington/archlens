@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import ignore from 'ignore';
-import { isIgnoredByGitignore, createGitignoreFilter } from './gitignoreFilter.ts';
+import { isIgnoredByGitignore, createGitignoreFilter } from './gitignoreFilter';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';

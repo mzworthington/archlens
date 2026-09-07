@@ -2,9 +2,9 @@ import { execFile } from 'child_process';
 import path from 'path';
 import { promisify } from 'util';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
-import type { ForensicsOptions } from '../domain/options.ts';
-import type { GitHistoryPort } from '../domain/ports.ts';
-import type { GitCommit } from '../domain/types.ts';
+import type { ForensicsOptions } from '../domain/options';
+import type { GitHistoryPort } from '../domain/ports';
+import type { GitCommit } from '../domain/types';
 
 const execFileAsync = promisify(execFile);
 

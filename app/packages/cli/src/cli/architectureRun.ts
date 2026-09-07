@@ -1,10 +1,10 @@
 import * as p from '@clack/prompts';
 import pc from 'picocolors';
 import path from 'node:path';
-import { TsMorphParserAdapter } from '../analysis/adapters/parsing/tsMorphParser.ts';
-import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitterParser.ts';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
+import { TsMorphParserAdapter } from '../analysis/adapters/parsing/tsMorphParser';
+import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitterParser';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
 import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
 import { IacAnalyzer } from '@archlens/analysis/iac';
 import { isCancellationError } from '@archlens/analysis/cancellation';
@@ -13,19 +13,16 @@ import {
   loadAnalysisConfig,
   mergeAnalysisOptions,
   type LoadedAnalysisConfig,
-} from '../analysis/adapters/loadAnalysisConfig.ts';
-import {
-  createCliCancellation,
-  type CliCancellation,
-} from '../analysis/adapters/cliCancellation.ts';
-import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
-import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
-import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
-import type { InteractiveGitChoice } from './interactive/interactiveGitChoice.ts';
-import type { FileMetrics } from '../forensics/domain/types.ts';
-import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
-import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner.ts';
-import { promptArchitectureInteractive } from './promptArchitectureInteractive.ts';
+} from '../analysis/adapters/loadAnalysisConfig';
+import { createCliCancellation, type CliCancellation } from '../analysis/adapters/cliCancellation';
+import { collectFileMetrics } from '../forensics/collectFileMetrics';
+import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics';
+import { collectGitProvenance } from '../analysis/adapters/gitProvenance';
+import type { InteractiveGitChoice } from './interactive/interactiveGitChoice';
+import type { FileMetrics } from '../forensics/domain/types';
+import type { ArchlensCliPlan } from './parseArchlensArgv';
+import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner';
+import { promptArchitectureInteractive } from './promptArchitectureInteractive';
 
 const DEFAULT_CONTEXT_NAME = 'blueprint';
 

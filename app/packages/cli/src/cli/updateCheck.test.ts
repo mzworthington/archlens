@@ -4,7 +4,7 @@ import {
   checkForUpdate,
   resolveLatestTag,
   shouldCheckForUpdates,
-} from './updateCheck.ts';
+} from './updateCheck';
 
 describe('shouldCheckForUpdates', () => {
   it('checks only interactive release binaries', () => {

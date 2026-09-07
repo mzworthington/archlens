@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { InMemoryObjectStorage } from '@archlens/storage';
 import { parseSchemaFromYaml } from '@archlens/core';
-import { runPublishCatalog } from './publishCatalog.ts';
+import { runPublishCatalog } from './publishCatalog';
 
 const v4 = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 

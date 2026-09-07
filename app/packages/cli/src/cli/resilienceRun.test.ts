@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolveAdviceLensArtifactFormat } from './resilienceRun.ts';
+import { resolveAdviceLensArtifactFormat } from './resilienceRun';
 
 describe('resolveAdviceLensArtifactFormat', () => {
   it('uses explicit --format for structured artifacts', () => {

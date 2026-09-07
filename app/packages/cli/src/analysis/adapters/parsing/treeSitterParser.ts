@@ -5,11 +5,11 @@ import type { CodebaseParserPort } from '@archlens/analysis/ports';
 import type { ParsedSourceFile } from '@archlens/analysis/types';
 import type { AnalysisOptions } from '@archlens/analysis/options';
 import { extractParsedSourceFileFromTree } from '@archlens/analysis/tree-sitter-extract';
-import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
+import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
-import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
-import type { TreeSitterScanCache } from './treeSitterForensics.ts';
-import { parseIncludeGlobPattern } from './includeGlobPattern.ts';
+import { TreeSitterWasmLoader } from './treeSitterLoader';
+import type { TreeSitterScanCache } from './treeSitterForensics';
+import { parseIncludeGlobPattern } from './includeGlobPattern';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
   private readonly wasmLoader = new TreeSitterWasmLoader();

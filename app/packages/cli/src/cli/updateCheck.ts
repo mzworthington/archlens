@@ -1,8 +1,8 @@
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { DEFAULT_GITHUB_REPO } from './releaseAssets.ts';
-import { isNewerVersion } from './semver.ts';
+import { DEFAULT_GITHUB_REPO } from './releaseAssets';
+import { isNewerVersion } from './semver';
 
 export const UPDATE_CHECK_TTL_MS = 24 * 60 * 60 * 1000;
 

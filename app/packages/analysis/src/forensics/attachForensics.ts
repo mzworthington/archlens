@@ -11,7 +11,7 @@ import {
   rollupMaxByWeek,
   rollupTopCoupledFiles,
 } from '@archlens/core/forensics';
-import type { FileMetrics } from './types.ts';
+import type { FileMetrics } from './types';
 
 export function normalizeFilePath(path: string): string {
   return path.replace(/\\/g, '/').replace(/^\.\//, '');

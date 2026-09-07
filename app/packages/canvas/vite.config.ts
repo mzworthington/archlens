@@ -4,18 +4,18 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import { emitSiteSeo } from './vite/emitSiteSeo.ts';
+import { emitSiteSeo } from './vite/emitSiteSeo';
 import {
   emitVersionJson,
   injectBuildIdMeta,
   resolveDeployIdentity,
-} from './vite/injectBuildIdMeta.ts';
-import { canvasPackageRoot, repoDocs } from './vite/paths.ts';
-import { syncBundledBlueprints } from './vite/syncBundledBlueprints.ts';
-import { syncBundledChaosSpecs } from './vite/syncChaosSpecs.ts';
-import { syncDocsAssets } from './vite/syncDocsAssets.ts';
-import { syncJsonSchemas } from './vite/syncJsonSchemas.ts';
-import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms.ts';
+} from './vite/injectBuildIdMeta';
+import { canvasPackageRoot, repoDocs } from './vite/paths';
+import { syncBundledBlueprints } from './vite/syncBundledBlueprints';
+import { syncBundledChaosSpecs } from './vite/syncChaosSpecs';
+import { syncDocsAssets } from './vite/syncDocsAssets';
+import { syncJsonSchemas } from './vite/syncJsonSchemas';
+import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
 
 const base = process.env.VITE_BASE || '/';
 const deployIdentity = resolveDeployIdentity();

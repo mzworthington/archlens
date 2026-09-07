@@ -1,15 +1,15 @@
 import { throwIfAborted } from '@archlens/analysis/cancellation';
-import type { ForensicsOptions } from '../domain/options.ts';
-import type { ImportGraphPort } from '../domain/ports.ts';
+import type { ForensicsOptions } from '../domain/options';
+import type { ImportGraphPort } from '../domain/ports';
 import {
   extractRelativeImportsFromTree,
   type TreeSitterScanCache,
-} from '../../analysis/adapters/parsing/treeSitterForensics.ts';
+} from '../../analysis/adapters/parsing/treeSitterForensics';
 import path from 'path';
 import fs from 'fs';
 import Parser from 'web-tree-sitter';
 import { extensionToTreeSitterLanguage } from '@archlens/core';
-import { TreeSitterWasmLoader } from '../../analysis/adapters/parsing/treeSitterLoader.ts';
+import { TreeSitterWasmLoader } from '../../analysis/adapters/parsing/treeSitterLoader';
 
 export class TreeSitterImportGraphAdapter implements ImportGraphPort {
   private readonly loader = new TreeSitterWasmLoader();

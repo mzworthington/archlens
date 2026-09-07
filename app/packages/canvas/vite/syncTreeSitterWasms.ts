@@ -1,7 +1,7 @@
 import path from 'node:path';
 import type { Plugin } from 'vite';
-import { copyTreeSitterWasmsTo } from '../../core/src/lib/treeSitterWasmCopy.ts';
-import { canvasPackageRoot } from './paths.ts';
+import { copyTreeSitterWasmsTo } from '../../core/src/lib/treeSitterWasmCopy';
+import { canvasPackageRoot } from './paths';
 
 /** Copy tree-sitter runtime + language WASM parsers for in-browser highlighting. */
 export function syncTreeSitterWasms(): Plugin {

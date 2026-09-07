@@ -11,7 +11,7 @@ import {
   getClosestHandles,
   isDesktopViewport,
   resolveDragGroupMembership,
-} from './layoutUtils.ts';
+} from './layoutUtils';
 import type { NodeType, SystemNode } from '@archlens/core';
 import { getNodePosition } from '@archlens/core';
 import { groupLayoutDimensions } from '@archlens/core/layout';

@@ -6,7 +6,7 @@ import {
   nodeTypePriority,
   resolveCSharpComponent,
   shouldSkipCSharpFile,
-} from './csharpGrouping.ts';
+} from './csharpGrouping';
 
 describe('csharpGrouping', () => {
   describe('shouldSkipCSharpFile', () => {

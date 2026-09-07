@@ -1,12 +1,12 @@
 import path from 'node:path';
 import type { ObjectStoragePort } from '@archlens/storage';
-import { NodeFileSystemAdapter } from '../../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../../analysis/adapters/consoleLogger.ts';
-import type { CatalogPublishFragmentCliPlan } from '../parseArchlensArgv.ts';
-import { loadBlueprintTree } from '../blueprintLoader.ts';
-import { formatValidationResult } from '../format/formatValidationResult.ts';
-import { resolvePublishObjectStorage } from './publishRemoteCatalog.ts';
-import { runPublishFragment } from './publishFragment.ts';
+import { NodeFileSystemAdapter } from '../../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../../analysis/adapters/consoleLogger';
+import type { CatalogPublishFragmentCliPlan } from '../parseArchlensArgv';
+import { loadBlueprintTree } from '../blueprintLoader';
+import { formatValidationResult } from '../format/formatValidationResult';
+import { resolvePublishObjectStorage } from './publishRemoteCatalog';
+import { runPublishFragment } from './publishFragment';
 
 export async function executePublishFragmentRun(
   plan: CatalogPublishFragmentCliPlan

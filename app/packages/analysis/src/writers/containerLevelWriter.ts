@@ -1,8 +1,8 @@
-import { BaseWriter } from './baseWriter.ts';
+import { BaseWriter } from './baseWriter';
 import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@archlens/core';
 import { parseSchemaFromYaml } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
-import { resolveSystemEntityRef } from '../domain/entityRefContext.ts';
+import { resolveSystemEntityRef } from '../domain/entityRefContext';
 
 export class ContainerLevelWriter extends BaseWriter {
   async write(

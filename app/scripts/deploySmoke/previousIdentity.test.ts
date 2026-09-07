@@ -3,7 +3,7 @@ import {
   pickPreviousPagesDeploymentId,
   pickPreviousWorkerVersionId,
   rollbackPlan,
-} from './previousIdentity.ts';
+} from './previousIdentity';
 
 describe('pickPreviousPagesDeploymentId', () => {
   it('takes the newest successful production deployment as the restore identity', () => {

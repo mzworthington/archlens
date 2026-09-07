@@ -7,8 +7,8 @@ import {
   parseWatchDebounce,
   resolvePublishSkipValidation,
   type ResilienceOutputFormat,
-} from './argvFlags.ts';
-import { FLAG } from './help/flagCatalog.ts';
+} from './argvFlags';
+import { FLAG } from './help/flagCatalog';
 import {
   parseCatalogAcceptOverlayArgv,
   parseCatalogComposeArgv,
@@ -20,7 +20,7 @@ import {
   type CatalogPruneCliPlan,
   type CatalogPublishFragmentCliPlan,
   type CatalogRejectOverlayCliPlan,
-} from './catalogArgv.ts';
+} from './catalogArgv';
 import {
   parseDiffArgv,
   parsePublishArgv,
@@ -30,7 +30,7 @@ import {
   type PublishCliPlan,
   type ResilienceCliPlan,
   type ValidateCliPlan,
-} from './subcommandArgv.ts';
+} from './subcommandArgv';
 
 export type { ResilienceOutputFormat };
 export { defaultEstateKeyPrefix };

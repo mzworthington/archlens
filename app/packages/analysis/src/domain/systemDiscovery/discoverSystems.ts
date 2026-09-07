@@ -1,10 +1,10 @@
-import { readPackageName } from './helpers.ts';
-import { withProductHub } from './productHub.ts';
-import { discoverConfiguredSystems, discoverNamedSystem } from './strategies/configStrategy.ts';
-import { discoverFallbackSystem } from './strategies/fallbackStrategy.ts';
-import { discoverStandaloneSystems } from './strategies/standaloneStrategy.ts';
-import { discoverWorkspaceSystems } from './strategies/workspaceStrategy.ts';
-import type { DiscoveredSystem, DiscoverSystemsOptions, SystemDiscoveryFs } from './types.ts';
+import { readPackageName } from './helpers';
+import { withProductHub } from './productHub';
+import { discoverConfiguredSystems, discoverNamedSystem } from './strategies/configStrategy';
+import { discoverFallbackSystem } from './strategies/fallbackStrategy';
+import { discoverStandaloneSystems } from './strategies/standaloneStrategy';
+import { discoverWorkspaceSystems } from './strategies/workspaceStrategy';
+import type { DiscoveredSystem, DiscoverSystemsOptions, SystemDiscoveryFs } from './types';
 
 /**
  * Discover navigable software systems for a complex monorepo.

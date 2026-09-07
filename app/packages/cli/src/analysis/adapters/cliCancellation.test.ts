@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createCliCancellation } from './cliCancellation.ts';
+import { createCliCancellation } from './cliCancellation';
 
 describe('createCliCancellation', () => {
   it('aborts the signal when SIGINT is received', () => {

@@ -1,4 +1,4 @@
-import type { DiscoveredSystem } from './types.ts';
+import type { DiscoveredSystem } from './types';
 
 /** Assign each source file to the best matching system (longest rootPath prefix wins). */
 export function partitionFilesBySystem<T extends { relativePath: string }>(

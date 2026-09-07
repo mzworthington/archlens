@@ -1,21 +1,17 @@
-export type { DiscoveredSystem, SystemDiscoveryFs } from './types.ts';
+export type { DiscoveredSystem, SystemDiscoveryFs } from './types';
 
-export {
-  parseNpmWorkspaces,
-  parsePnpmWorkspacePackages,
-  workspaceRootsFromGlobs,
-} from './helpers.ts';
+export { parseNpmWorkspaces, parsePnpmWorkspacePackages, workspaceRootsFromGlobs } from './helpers';
 
-export { withProductHub } from './productHub.ts';
+export { withProductHub } from './productHub';
 
-export { discoverSystems } from './discoverSystems.ts';
+export { discoverSystems } from './discoverSystems';
 
-export { partitionFilesBySystem, resolveProductIdForPath } from './partitionFiles.ts';
+export { partitionFilesBySystem, resolveProductIdForPath } from './partitionFiles';
 
-export { planIacContextSystems, productHubInputsForIac } from './iacContext.ts';
+export { planIacContextSystems, productHubInputsForIac } from './iacContext';
 
 export {
   hubRefForProductNodes,
   normalizeContextGrouping,
   pruneEmptyProductHubs,
-} from './contextGrouping.ts';
+} from './contextGrouping';

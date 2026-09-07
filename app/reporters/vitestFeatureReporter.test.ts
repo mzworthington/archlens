@@ -8,7 +8,7 @@ import {
   embeddingPlaceholder,
   fileLabel,
   packageLabel,
-} from './vitestFeatureReporter.ts';
+} from './vitestFeatureReporter';
 
 function mockTest(name: string, state: 'passed' | 'failed' | 'skipped'): TestCase {
   return {

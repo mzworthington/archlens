@@ -2,7 +2,7 @@ import {
   resolveRelativeImportPath,
   resolveTrailingFolderComponent,
   type ComponentIdentity,
-} from './folderComponentRollup.ts';
+} from './folderComponentRollup';
 
 const GO_SKIP_DIRS = new Set(['cmd', 'internal', 'pkg', 'vendor', 'src']);
 

@@ -7,10 +7,7 @@ import {
   type ObjectStoragePort,
   type UploadSuggestionOverlayResult,
 } from '@archlens/storage';
-import type {
-  CatalogAcceptOverlayCliPlan,
-  CatalogRejectOverlayCliPlan,
-} from './parseArchlensArgv.ts';
+import type { CatalogAcceptOverlayCliPlan, CatalogRejectOverlayCliPlan } from './parseArchlensArgv';
 
 export type AcceptOverlayDeps = {
   readOverlayFile: (filePath: string) => Promise<string>;

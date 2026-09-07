@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isTestProjectSegment, isTestSourcePath, detectTestFramework } from './testPath.ts';
+import { isTestProjectSegment, isTestSourcePath, detectTestFramework } from './testPath';
 
 describe('testPath', () => {
   it('marks unit test files and test directories', () => {

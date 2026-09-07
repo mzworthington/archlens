@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision.ts';
+import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision';
 
 describe('computeRemoteCatalogRevisionId', () => {
   it('is stable for the same content regardless of input order', () => {

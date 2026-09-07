@@ -8,11 +8,11 @@ import {
 } from '@archlens/core';
 import { parseIacBatchToSchema, projectMeaningfulIacExternals } from '@archlens/core/import-iac';
 import { seedPreservedPositions } from '@archlens/core/layout';
-import type { BaseWriter } from '../../writers/baseWriter.ts';
-import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from '../ports.ts';
-import { throwIfAborted } from '../cancellation.ts';
-import { schemaFromCodeScanFallback } from './iacCodeFallback.ts';
-import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from '../entityRefContext.ts';
+import type { BaseWriter } from '../../writers/baseWriter';
+import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from '../ports';
+import { throwIfAborted } from '../cancellation';
+import { schemaFromCodeScanFallback } from './iacCodeFallback';
+import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from '../entityRefContext';
 
 export type IacVendor = 'terraform' | 'pulumi';
 

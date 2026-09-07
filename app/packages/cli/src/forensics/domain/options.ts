@@ -1,4 +1,4 @@
-import { DEFAULT_FORENSICS_GLOB } from './forensicsGlob.ts';
+import { DEFAULT_FORENSICS_GLOB } from './forensicsGlob';
 
 export interface ForensicsOptions {
   /** Lookback window for churn / authors / coupling. Default 365. */

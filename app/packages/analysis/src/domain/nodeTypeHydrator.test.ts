@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import type { ParsedSourceFile } from './types.ts';
+import type { ParsedSourceFile } from './types';
 import {
   classifyParsedSource,
   dependencyTypeForTarget,
   hydrateNodeFromSource,
-} from './nodeTypeHydrator.ts';
+} from './nodeTypeHydrator';
 
 function file(
   partial: Partial<ParsedSourceFile> & Pick<ParsedSourceFile, 'baseName' | 'relativePath'>

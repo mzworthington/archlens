@@ -1,5 +1,5 @@
-import type { AnalysisFileSystemPort } from '../ports.ts';
-import { slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
+import type { AnalysisFileSystemPort } from '../ports';
+import { slugFromPath, walkForProjectRoots } from './iacDiscovery';
 
 export type DiscoveredTerraformRoot = {
   /** Absolute directory path of the Terraform root module. */

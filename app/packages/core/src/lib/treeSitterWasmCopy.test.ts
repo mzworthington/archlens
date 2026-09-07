@@ -6,8 +6,8 @@ import {
   TREE_SITTER_HCL_PACKAGE_LANGUAGES,
   TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
   wasmFileName,
-} from './treeSitterLanguages.ts';
-import { copyTreeSitterWasmsTo, resolveTreeSitterWasmSourceDirs } from './treeSitterWasmCopy.ts';
+} from './treeSitterLanguages';
+import { copyTreeSitterWasmsTo, resolveTreeSitterWasmSourceDirs } from './treeSitterWasmCopy';
 
 describe('treeSitterWasmCopy', () => {
   it('resolves installed web-tree-sitter and tree-sitter-wasms package dirs', () => {

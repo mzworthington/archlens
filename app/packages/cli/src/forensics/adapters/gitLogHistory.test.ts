@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseGitLogOutput, relativizeCommitPaths } from './gitLogHistory.ts';
+import { parseGitLogOutput, relativizeCommitPaths } from './gitLogHistory';
 
 const SEP = '\x1e';
 

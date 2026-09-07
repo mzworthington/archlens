@@ -17,16 +17,13 @@ import {
   uploadRemoteCatalogSnapshot,
   type ObjectStoragePort,
 } from '@archlens/storage';
-import type { CatalogComposeCliPlan } from '../parseArchlensArgv.ts';
-import type {
-  PublishDryRunResult,
-  PublishUploadResult,
-} from '../format/formatPublishDryRunResult.ts';
+import type { CatalogComposeCliPlan } from '../parseArchlensArgv';
+import type { PublishDryRunResult, PublishUploadResult } from '../format/formatPublishDryRunResult';
 import {
   prepareRemoteCatalogSnapshot,
   toPublishDryRunResult,
   toPublishUploadResult,
-} from '../prepareRemoteCatalogSnapshot.ts';
+} from '../prepareRemoteCatalogSnapshot';
 
 const DEFAULT_WORKSPACE_NAME = 'blueprints';
 

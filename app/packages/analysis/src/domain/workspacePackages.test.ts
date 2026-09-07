@@ -5,9 +5,9 @@ import {
   isRelativeImport,
   packageNameFromSpecifier,
   resolveWorkspacePackageContainer,
-} from './workspacePackages.ts';
-import { ModelExtractor } from './modelExtractor.ts';
-import { componentMapKey } from './containerGrouping.ts';
+} from './workspacePackages';
+import { ModelExtractor } from './modelExtractor';
+import { componentMapKey } from './containerGrouping';
 
 describe('workspacePackages', () => {
   it('detects relative imports', () => {

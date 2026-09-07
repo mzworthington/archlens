@@ -1,5 +1,5 @@
-import type { ForensicsOptions } from './options.ts';
-import type { ForensicReport, StructuralMetrics } from './types.ts';
+import type { ForensicsOptions } from './options';
+import type { ForensicReport, StructuralMetrics } from './types';
 
 export interface SourceFileListerPort {
   /**
@@ -29,7 +29,7 @@ export interface GitHistoryPort {
     rootPath: string,
     options: Pick<ForensicsOptions, 'sinceDays'>,
     signal?: AbortSignal
-  ): Promise<import('./types.ts').GitCommit[]>;
+  ): Promise<import('./types').GitCommit[]>;
 }
 
 export interface ImportGraphPort {

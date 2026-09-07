@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { resolveContextDisplayName, resolveSystemEntityRef } from './entityRefContext.ts';
+import { resolveContextDisplayName, resolveSystemEntityRef } from './entityRefContext';
 
 describe('entityRefContext', () => {
   it('maps known context slugs to display titles', () => {

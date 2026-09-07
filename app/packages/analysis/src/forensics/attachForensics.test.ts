@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemNode, SystemSchema } from '@archlens/core';
-import { attachForensicsToSchema, aggregateNodeForensics } from './attachForensics.ts';
-import type { FileMetrics } from './types.ts';
+import { attachForensicsToSchema, aggregateNodeForensics } from './attachForensics';
+import type { FileMetrics } from './types';
 
 function metrics(partial: Partial<FileMetrics> & { path: string }): FileMetrics {
   return {

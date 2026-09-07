@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { componentsInContainer, componentsInSystem } from './membership.ts';
+import { componentsInContainer, componentsInSystem } from './membership';
 
 describe('componentsInContainer', () => {
   it('matches components by containerId leaf or parent entityRef', () => {

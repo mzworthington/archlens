@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { detectReleaseAsset } from './releaseAssets.ts';
+import { detectReleaseAsset } from './releaseAssets';
 import {
   getInstallDir,
   isBundledTreeSitterWasm,
   relaunchArgsWithNoUpdateCheck,
-} from './selfUpdate.ts';
+} from './selfUpdate';
 
 describe('releaseAssets', () => {
   it('maps darwin arm64 to macOS asset', () => {

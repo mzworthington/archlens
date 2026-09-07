@@ -5,11 +5,7 @@ import fsp from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
-import {
-  detectReleaseAsset,
-  releaseDownloadUrl,
-  type ReleaseArchiveKind,
-} from './releaseAssets.ts';
+import { detectReleaseAsset, releaseDownloadUrl, type ReleaseArchiveKind } from './releaseAssets';
 
 const execFile = promisify(execFileCb);
 

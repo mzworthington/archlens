@@ -1,4 +1,4 @@
-import { EntityRef } from '../../lib/entityRefIdentity.ts';
+import { EntityRef } from '../../lib/entityRefIdentity';
 
 export type GraphMembershipNode = {
   entityRef: string;

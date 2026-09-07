@@ -1,10 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { printCliHelp } from './index.ts';
-import {
-  architectureFlagNames,
-  assertKnownFlags,
-  extractFlagNamesFromText,
-} from './flagCatalog.ts';
+import { printCliHelp } from './index';
+import { architectureFlagNames, assertKnownFlags, extractFlagNamesFromText } from './flagCatalog';
 
 function captureHelp(topic: 'overview' | 'scan'): string {
   const spy = vi.spyOn(console, 'log').mockImplementation(() => {});

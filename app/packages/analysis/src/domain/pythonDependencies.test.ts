@@ -4,9 +4,9 @@ import {
   isPythonSourcePath,
   modulePathFromPythonFile,
   resolvePythonImport,
-} from './pythonDependencies.ts';
-import { ModelExtractor } from './modelExtractor.ts';
-import type { ParsedSourceFile } from './types.ts';
+} from './pythonDependencies';
+import { ModelExtractor } from './modelExtractor';
+import type { ParsedSourceFile } from './types';
 import { EntityRef } from '@archlens/core';
 
 const parentRef = 'application/acme';

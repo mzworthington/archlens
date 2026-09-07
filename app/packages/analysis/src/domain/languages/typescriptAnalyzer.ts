@@ -1,6 +1,6 @@
-import type { ParsedSourceFile } from '../types.ts';
+import type { ParsedSourceFile } from '../types';
 import type { SystemNode } from '@archlens/core';
-import type { LanguageAnalyzer, ContainerInfo } from './languageAnalyzer.ts';
+import type { LanguageAnalyzer, ContainerInfo } from './languageAnalyzer';
 
 export class TypeScriptAnalyzer implements LanguageAnalyzer {
   supports(fileExt: string): boolean {

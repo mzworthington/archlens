@@ -1,6 +1,6 @@
 import ignore, { type Ignore } from 'ignore';
 import { DEFAULT_STRUCTURAL_IGNORE_GLOBS, type AnalysisOptions } from '@archlens/analysis/options';
-import { createGitignoreFilter, isIgnoredByGitignore } from './gitignoreFilter.ts';
+import { createGitignoreFilter, isIgnoredByGitignore } from './gitignoreFilter';
 
 export type SourcePathFilter = {
   /** True when the relative path should not be scanned. */

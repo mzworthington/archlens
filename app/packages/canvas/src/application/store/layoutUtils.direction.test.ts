@@ -4,7 +4,7 @@ import {
   dependencyArrowMarker,
   mapDomainDepToRFEdge,
   shouldAnimateDependencyEdge,
-} from './layoutUtils.ts';
+} from './layoutUtils';
 
 describe('dependency edge direction visuals', () => {
   it('maps domain deps with a closed arrow marker toward the target', () => {

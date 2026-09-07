@@ -1,9 +1,9 @@
-import { BaseWriter } from './baseWriter.ts';
+import { BaseWriter } from './baseWriter';
 import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@archlens/core';
 import { EntityRef, parseSchemaFromYaml } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
-import { resolveSystemEntityRef } from '../domain/entityRefContext.ts';
-import { buildRollupDrillDownSchemas } from './rollupDrillDown.ts';
+import { resolveSystemEntityRef } from '../domain/entityRefContext';
+import { buildRollupDrillDownSchemas } from './rollupDrillDown';
 
 function stripRollupMetadata(nodes: SystemNode[]): SystemNode[] {
   return nodes.map(node => {

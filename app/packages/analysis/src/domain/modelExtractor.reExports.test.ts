@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import type { ParsedSourceFile } from './types.ts';
-import { ModelExtractor } from './modelExtractor.ts';
+import type { ParsedSourceFile } from './types';
+import { ModelExtractor } from './modelExtractor';
 
 function tsFile(relativePath: string, overrides: Partial<ParsedSourceFile> = {}): ParsedSourceFile {
   const baseName = relativePath

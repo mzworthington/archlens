@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import Parser from 'web-tree-sitter';
 import { wasmFileName } from '@archlens/core';
 import { resolveTreeSitterWasmSourceDirs } from '@archlens/core/tree-sitter-wasm';
-import { extractParsedSourceFileFromTree } from './treeSitterAstExtract.ts';
+import { extractParsedSourceFileFromTree } from './treeSitterAstExtract';
 
 const { runtimeDir, wasmsOutDir } = resolveTreeSitterWasmSourceDirs(import.meta.url);
 const languages = new Map<string, Parser.Language>();

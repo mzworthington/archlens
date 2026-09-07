@@ -1,8 +1,8 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import type { Plugin } from 'vite';
-import { buildWorkspaceCatalogFromYamlFiles } from '../../core/src/lib/buildWorkspaceCatalogFromYaml.ts';
-import { bundledBlueprintsDest, bundledWorkspaceName, repoSamples } from './paths.ts';
+import { buildWorkspaceCatalogFromYamlFiles } from '../../core/src/lib/buildWorkspaceCatalogFromYaml';
+import { bundledBlueprintsDest, bundledWorkspaceName, repoSamples } from './paths';
 
 /** Merge overlays (e.g. context-overlay.yaml) are not standalone SystemSchema docs. */
 function isBundledBlueprintYaml(fileName: string): boolean {

@@ -1,18 +1,18 @@
 import type { SystemDependency, SystemNode } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
 import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@archlens/core/cli';
-import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping.ts';
-import type { ParsedSourceFile } from './types.ts';
-import { classifyCSharpContainer } from './csharpGrouping.ts';
+import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping';
+import type { ParsedSourceFile } from './types';
+import { classifyCSharpContainer } from './csharpGrouping';
 import {
   extractCSharpDependencies,
   extractCsprojContainerDependencies,
   mergeContainerDependencies,
   type CsprojFile,
-} from './csharpDependencies.ts';
-import { extractPythonDependencies } from './pythonDependencies.ts';
-import { collectSourceGraphNodes } from './collectSourceGraphNodes.ts';
-import { collectImportDependencies } from './collectImportDependencies.ts';
+} from './csharpDependencies';
+import { extractPythonDependencies } from './pythonDependencies';
+import { collectSourceGraphNodes } from './collectSourceGraphNodes';
+import { collectImportDependencies } from './collectImportDependencies';
 
 export class ModelExtractor {
   public parentRef: string;

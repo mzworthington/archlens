@@ -1,9 +1,9 @@
-export { BaseWriter } from './baseWriter.ts';
-export { ContextLevelWriter } from './contextLevelWriter.ts';
-export { ContainerLevelWriter } from './containerLevelWriter.ts';
-export { ComponentLevelWriter } from './componentLevelWriter.ts';
+export { BaseWriter } from './baseWriter';
+export { ContextLevelWriter } from './contextLevelWriter';
+export { ContainerLevelWriter } from './containerLevelWriter';
+export { ComponentLevelWriter } from './componentLevelWriter';
 export {
   applyExternalDependenciesPass,
   listBlueprintSchemaPaths,
-} from './externalDependenciesPass.ts';
-export { fileLeafEntityRef, shouldEmitRollupDrillDown } from './rollupDrillDown.ts';
+} from './externalDependenciesPass';
+export { fileLeafEntityRef, shouldEmitRollupDrillDown } from './rollupDrillDown';

@@ -1,10 +1,10 @@
-import type { AnalysisFileSystemPort } from './ports.ts';
-import type { AnalysisOptions } from './analysisOptions.ts';
+import type { AnalysisFileSystemPort } from './ports';
+import type { AnalysisOptions } from './analysisOptions';
 import {
   createStructuralPathFilter,
   type SourcePathFilter,
-} from '../pathFilter/structuralPathFilter.ts';
-import type { CsprojFile } from './csharpDependencies.ts';
+} from '../pathFilter/structuralPathFilter';
+import type { CsprojFile } from './csharpDependencies';
 
 function parseGlobBaseDir(globPattern: string, fileSystem: AnalysisFileSystemPort): string {
   const cwd = fileSystem.getCurrentWorkingDirectory();

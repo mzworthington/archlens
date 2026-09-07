@@ -1,5 +1,5 @@
 import type { DependencyType, NodeType, SystemNode } from '@archlens/core';
-import type { ParsedSourceFile } from './types.ts';
+import type { ParsedSourceFile } from './types';
 
 /**
  * Language-agnostic markers used to hydrate node types from parsed source signals.

@@ -11,12 +11,12 @@ import {
   parseCollabHealth,
   parseVersionDocument,
   type SmokeResult,
-} from './evaluate.ts';
+} from './evaluate';
 import {
   pickPreviousPagesDeploymentId,
   pickPreviousWorkerVersionId,
   rollbackPlan,
-} from './previousIdentity.ts';
+} from './previousIdentity';
 
 const CANVAS_ORIGIN = process.env.CANVAS_ORIGIN ?? 'https://archlens.dev';
 const COLLAB_ORIGIN = process.env.COLLAB_ORIGIN ?? 'https://collab.archlens.dev';

@@ -1,4 +1,4 @@
-import type { SystemDiscoveryFs } from './types.ts';
+import type { SystemDiscoveryFs } from './types';
 
 /** Root dirs never promoted to standalone systems. */
 export const STANDALONE_DENYLIST = new Set([

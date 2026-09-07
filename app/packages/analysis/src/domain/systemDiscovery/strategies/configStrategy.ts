@@ -1,6 +1,6 @@
 import { slugify } from '@archlens/core';
-import { titleCase } from '../helpers.ts';
-import type { DiscoveredSystem } from '../types.ts';
+import { titleCase } from '../helpers';
+import type { DiscoveredSystem } from '../types';
 
 /** Pin the scan to a single named software system (multi-repo products). */
 export function discoverNamedSystem(systemName: string, productName: string): DiscoveredSystem[] {

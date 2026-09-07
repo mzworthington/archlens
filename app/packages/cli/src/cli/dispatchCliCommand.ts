@@ -1,12 +1,12 @@
-import { parseArchlensCommand } from './parseArchlensArgv.ts';
-import { executeValidateRun } from './validateRun.ts';
-import { executeDiffRun } from './diffRun.ts';
-import { executeResilienceRun } from './resilienceRun.ts';
-import { executePublishRun } from './publish/publishRun.ts';
-import { executeComposeCatalogRun } from './compose/composeCatalogRun.ts';
-import { executePublishFragmentRun } from './publish/publishFragmentRun.ts';
-import { executePruneCatalogRun } from './pruneCatalogRun.ts';
-import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
+import { parseArchlensCommand } from './parseArchlensArgv';
+import { executeValidateRun } from './validateRun';
+import { executeDiffRun } from './diffRun';
+import { executeResilienceRun } from './resilienceRun';
+import { executePublishRun } from './publish/publishRun';
+import { executeComposeCatalogRun } from './compose/composeCatalogRun';
+import { executePublishFragmentRun } from './publish/publishFragmentRun';
+import { executePruneCatalogRun } from './pruneCatalogRun';
+import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun';
 
 const DISPATCHABLE_PREFIXES = new Set(['validate', 'diff', 'resilience', 'publish', 'catalog']);
 

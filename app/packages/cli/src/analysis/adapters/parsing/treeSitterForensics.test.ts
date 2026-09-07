@@ -1,11 +1,11 @@
 import Parser from 'web-tree-sitter';
 import { describe, expect, it } from 'vitest';
-import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
+import { TreeSitterWasmLoader } from './treeSitterLoader';
 import {
   collectFunctionComplexitySlices,
   extractRelativeImportsFromTree,
   TreeSitterScanCache,
-} from './treeSitterForensics.ts';
+} from './treeSitterForensics';
 
 async function parseSource(
   ext: string,

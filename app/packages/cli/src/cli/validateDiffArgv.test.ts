@@ -4,7 +4,7 @@ import {
   parsePublishArgv,
   parseValidateArgv,
   parseArchlensCommand,
-} from './parseArchlensArgv.ts';
+} from './parseArchlensArgv';
 
 describe('parseValidateArgv', () => {
   it('defaults to blueprints/ with health-only mode', () => {

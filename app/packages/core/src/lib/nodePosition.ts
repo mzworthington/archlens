@@ -1,4 +1,4 @@
-import type { NodePosition, SystemNode } from '../models/schema.ts';
+import type { NodePosition, SystemNode } from '../models/schema';
 
 export type { NodePosition };
 

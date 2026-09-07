@@ -12,7 +12,7 @@ import {
   TREE_SITTER_HCL_PACKAGE_LANGUAGES,
   TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
   wasmFileName,
-} from './treeSitterLanguages.ts';
+} from './treeSitterLanguages';
 
 export type TreeSitterWasmSourceDirs = {
   /** Directory containing `tree-sitter.wasm` (web-tree-sitter package root). */

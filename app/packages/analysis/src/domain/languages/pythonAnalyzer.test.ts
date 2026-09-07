@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { PythonAnalyzer } from './pythonAnalyzer.ts';
+import { PythonAnalyzer } from './pythonAnalyzer';
 
 describe('PythonAnalyzer Strategy', () => {
   const analyzer = new PythonAnalyzer();

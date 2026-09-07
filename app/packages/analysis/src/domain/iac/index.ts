@@ -1,6 +1,6 @@
-export { IacAnalyzer } from './iacAnalyzer.ts';
+export { IacAnalyzer } from './iacAnalyzer';
 export type {
   IacAnalyzerDependencies,
   IacAnalysisResult,
   RunIacAnalysisOptions,
-} from './iacAnalyzer.ts';
+} from './iacAnalyzer';

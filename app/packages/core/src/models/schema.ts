@@ -1,6 +1,6 @@
-import type { C4Level, EntityRef } from '../lib/entityRefIdentity.ts';
-export * from '../lib/entityRefIdentity.ts';
-export { slugify } from '../lib/slug.ts';
+import type { C4Level, EntityRef } from '../lib/entityRefIdentity';
+export * from '../lib/entityRefIdentity';
+export { slugify } from '../lib/slug';
 
 export type NodeType =
   | 'person'

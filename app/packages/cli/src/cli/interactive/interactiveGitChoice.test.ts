@@ -3,8 +3,8 @@ import {
   applyInteractiveGitChoice,
   shouldPromptForGit,
   type InteractiveGitChoice,
-} from './interactiveGitChoice.ts';
-import { parseArchlensArgv } from '../parseArchlensArgv.ts';
+} from './interactiveGitChoice';
+import { parseArchlensArgv } from '../parseArchlensArgv';
 
 describe('applyInteractiveGitChoice', () => {
   it('disables git forensics when user selects none', () => {

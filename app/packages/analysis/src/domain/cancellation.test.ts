@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CancellationError, isCancellationError, throwIfAborted } from './cancellation.ts';
+import { CancellationError, isCancellationError, throwIfAborted } from './cancellation';
 
 describe('cancellation', () => {
   it('throwIfAborted no-ops without a signal or when not aborted', () => {

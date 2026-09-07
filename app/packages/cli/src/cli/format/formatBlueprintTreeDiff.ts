@@ -1,7 +1,7 @@
 import pc from 'picocolors';
 import type { BlueprintTreeDiff } from '@archlens/core';
 import { blueprintTreeDiffHasChanges } from '@archlens/core';
-import type { OutputFormat } from './formatValidationResult.ts';
+import type { OutputFormat } from './formatValidationResult';
 
 export function formatBlueprintTreeDiff(treeDiff: BlueprintTreeDiff, format: OutputFormat): string {
   if (format === 'json') {

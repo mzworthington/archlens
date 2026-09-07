@@ -1,7 +1,7 @@
 import { slugify } from '@archlens/core';
-import { resolveProductHubDisplayName } from '../entityRefContext.ts';
-import { titleCase } from './helpers.ts';
-import type { DiscoveredSystem, IacContextSystemInput } from './types.ts';
+import { resolveProductHubDisplayName } from '../entityRefContext';
+import { titleCase } from './helpers';
+import type { DiscoveredSystem, IacContextSystemInput } from './types';
 
 /**
  * Plan IaC context nodes with correct parents in one pass.

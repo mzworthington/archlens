@@ -3,8 +3,8 @@ import {
   resolveContainerFromPath,
   rollupModuleContainerName,
   componentMapKey,
-} from './containerGrouping.ts';
-import { ModelExtractor } from './modelExtractor.ts';
+} from './containerGrouping';
+import { ModelExtractor } from './modelExtractor';
 
 describe('containerGrouping', () => {
   it('groups by packages/<name> instead of the first path segment', () => {

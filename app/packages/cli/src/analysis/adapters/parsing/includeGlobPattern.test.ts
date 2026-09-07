@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import * as path from 'path';
-import { parseIncludeGlobPattern } from './includeGlobPattern.ts';
+import { parseIncludeGlobPattern } from './includeGlobPattern';
 
 describe('parseIncludeGlobPattern', () => {
   const cwd = path.resolve('/repo');

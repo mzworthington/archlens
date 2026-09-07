@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import type { Plugin } from 'vite';
-import { canvasPackageRoot, repoDocs } from './paths.ts';
+import { canvasPackageRoot, repoDocs } from './paths';
 
 /** Copy docs screenshots (and other static assets) into public for production & dev. */
 export function syncDocsAssets(): Plugin {

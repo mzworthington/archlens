@@ -17,7 +17,7 @@ export interface StructuralMetrics {
 export interface ForensicReport {
   generatedAt: string;
   rootPath: string;
-  options: import('./options.ts').ForensicsOptions;
+  options: import('./options').ForensicsOptions;
   files: FileMetrics[];
   coupledPairs: CoupledPair[];
 }

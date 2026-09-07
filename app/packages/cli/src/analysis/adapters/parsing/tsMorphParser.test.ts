@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { TsMorphParserAdapter } from './tsMorphParser.ts';
+import { TsMorphParserAdapter } from './tsMorphParser';
 import * as fs from 'fs';
 import * as path from 'path';
 

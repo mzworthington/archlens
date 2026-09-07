@@ -4,10 +4,10 @@ import {
   resolveComponentIdentity,
   resolveImportComponentId,
   usesDedicatedImportPass,
-} from './componentResolver.ts';
-import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping.ts';
-import type { ParsedSourceFile } from './types.ts';
-import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
+} from './componentResolver';
+import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping';
+import type { ParsedSourceFile } from './types';
+import { dependencyTypeForTarget } from './nodeTypeHydrator';
 import {
   isNodeBuiltinModule,
   isRelativeImport,
@@ -16,13 +16,13 @@ import {
   resolveWorkspacePackageContainer,
   resolveWorkspacePackageEntryComponentId,
   subpathComponentIdFromSpecifier,
-} from './workspacePackages.ts';
-import { resolveRelativeTypeScriptImportPath } from './typescriptGrouping.ts';
+} from './workspacePackages';
+import { resolveRelativeTypeScriptImportPath } from './typescriptGrouping';
 import {
   componentEntityRef,
   findComponentInMap,
   pushUniqueDependency,
-} from './modelExtractorHelpers.ts';
+} from './modelExtractorHelpers';
 
 export type ImportDependencyMaps = {
   componentNodesMap: Map<string, SystemNode>;

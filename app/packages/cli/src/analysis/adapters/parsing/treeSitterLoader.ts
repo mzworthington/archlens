@@ -6,7 +6,7 @@ import {
   resolveTreeSitterRuntimeWasmPath,
   resolveTreeSitterWasmPath,
   treeSitterWasmSearchDirs,
-} from './treeSitterWasmPaths.ts';
+} from './treeSitterWasmPaths';
 
 export class TreeSitterWasmLoader {
   private static initPromise: Promise<void> | null = null;

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { NodeFileSystemAdapter } from './nodeFileSystem.ts';
+import { NodeFileSystemAdapter } from './nodeFileSystem';
 import * as fs from 'fs';
 import * as path from 'path';
 

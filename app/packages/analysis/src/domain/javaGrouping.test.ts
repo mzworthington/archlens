@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { resolveJavaComponent } from './javaGrouping.ts';
+import { resolveJavaComponent } from './javaGrouping';
 
 describe('javaGrouping', () => {
   describe('resolveJavaComponent', () => {

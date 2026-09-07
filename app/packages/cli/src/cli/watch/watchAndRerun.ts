@@ -1,8 +1,8 @@
 import chokidar, { type FSWatcher } from 'chokidar';
 import pc from 'picocolors';
-import { buildWatchIgnorePatterns, createDebouncer, type WatchModeOptions } from './watchMode.ts';
-import type { ArchlensCliPlan } from '../parseArchlensArgv.ts';
-import { executeArchitectureRun, resolveArchitectureState } from '../architectureRun.ts';
+import { buildWatchIgnorePatterns, createDebouncer, type WatchModeOptions } from './watchMode';
+import type { ArchlensCliPlan } from '../parseArchlensArgv';
+import { executeArchitectureRun, resolveArchitectureState } from '../architectureRun';
 import { isCancellationError } from '@archlens/analysis/cancellation';
 
 export interface WatchAndRerunDeps {

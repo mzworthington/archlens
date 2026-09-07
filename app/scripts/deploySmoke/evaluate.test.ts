@@ -8,7 +8,7 @@ import {
   formatSmokeSummary,
   parseCollabHealth,
   parseVersionDocument,
-} from './evaluate.ts';
+} from './evaluate';
 
 const SHA = '0123456789abcdef0123456789abcdef01234567';
 

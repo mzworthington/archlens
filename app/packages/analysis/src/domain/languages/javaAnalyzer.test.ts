@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { JavaAnalyzer } from './javaAnalyzer.ts';
+import { JavaAnalyzer } from './javaAnalyzer';
 
 const baseFile = {
   filePath: 'src/main/java/com/acme/orders/OrderService.java',

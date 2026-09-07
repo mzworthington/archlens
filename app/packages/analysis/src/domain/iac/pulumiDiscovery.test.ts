@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import path from 'node:path';
-import { discoverPulumiRoots } from './pulumiDiscovery.ts';
-import { MockFileSystem } from '../../test/fakes.ts';
+import { discoverPulumiRoots } from './pulumiDiscovery';
+import { MockFileSystem } from '../../test/fakes';
 
 describe('discoverPulumiRoots', () => {
   it('ignores marketplace catalog YAML named pulumi.yaml that is not a Pulumi project', () => {

@@ -1,6 +1,6 @@
 import type { NodeType } from '@archlens/core';
 import { slugify } from '@archlens/core';
-import { isTestProjectSegment } from './testPath.ts';
+import { isTestProjectSegment } from './testPath';
 
 const LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { EstateResilienceReport } from '@archlens/core/recommendations';
 import { ADVICELENS_ARTIFACT_KIND } from '@archlens/core/recommendations';
-import { formatEstateResilienceResult } from './formatEstateResilienceResult.ts';
+import { formatEstateResilienceResult } from './formatEstateResilienceResult';
 
 function sampleReport(): EstateResilienceReport {
   return {

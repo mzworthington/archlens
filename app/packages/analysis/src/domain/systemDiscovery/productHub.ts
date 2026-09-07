@@ -1,7 +1,7 @@
 import { slugify } from '@archlens/core';
-import { resolveProductHubDisplayName } from '../entityRefContext.ts';
-import { titleCase } from './helpers.ts';
-import type { DiscoveredSystem } from './types.ts';
+import { resolveProductHubDisplayName } from '../entityRefContext';
+import { titleCase } from './helpers';
+import type { DiscoveredSystem } from './types';
 
 /**
  * Attach a product hub when multiple subsystems are found so the context diagram

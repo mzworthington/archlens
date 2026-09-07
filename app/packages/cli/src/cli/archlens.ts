@@ -1,17 +1,17 @@
-import { parseArchlensArgv, isUpdateSubcommand } from './parseArchlensArgv.ts';
-import { getArchlensVersion, wantsVersionFlag } from './version.ts';
-import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
-import { assertKnownFlags } from './help/flagCatalog.ts';
-import { assertKnownSubcommand, printCliHelp, resolveHelpRequest } from './help/index.ts';
-import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
-import { executeEnrichRun } from './enrichRun.ts';
-import { executePublishRun } from './publish/publishRun.ts';
-import { resolveWatchOptions, watchAndRerun } from './watch/watchAndRerun.ts';
-import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
-import { shouldShowInteractiveMainMenu } from './interactive/interactiveMainMenu.ts';
-import { askPathWithTabComplete } from './askPathWithTabComplete.ts';
-import { dispatchCliCommand } from './dispatchCliCommand.ts';
-import { runInteractiveMainMenu } from './runInteractiveMainMenu.ts';
+import { parseArchlensArgv, isUpdateSubcommand } from './parseArchlensArgv';
+import { getArchlensVersion, wantsVersionFlag } from './version';
+import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate';
+import { assertKnownFlags } from './help/flagCatalog';
+import { assertKnownSubcommand, printCliHelp, resolveHelpRequest } from './help/index';
+import { executeArchitectureRun, resolveArchitectureState } from './architectureRun';
+import { executeEnrichRun } from './enrichRun';
+import { executePublishRun } from './publish/publishRun';
+import { resolveWatchOptions, watchAndRerun } from './watch/watchAndRerun';
+import type { ArchlensCliPlan } from './parseArchlensArgv';
+import { shouldShowInteractiveMainMenu } from './interactive/interactiveMainMenu';
+import { askPathWithTabComplete } from './askPathWithTabComplete';
+import { dispatchCliCommand } from './dispatchCliCommand';
+import { runInteractiveMainMenu } from './runInteractiveMainMenu';
 
 async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
   const state = await resolveArchitectureState(plan, {

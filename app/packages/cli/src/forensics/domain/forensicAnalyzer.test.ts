@@ -1,13 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
-import { ForensicAnalyzer } from './forensicAnalyzer.ts';
+import { ForensicAnalyzer } from './forensicAnalyzer';
 import type {
   ComplexityAnalyzerPort,
   GitHistoryPort,
   ImportGraphPort,
   ReporterPort,
   SourceFileListerPort,
-} from './ports.ts';
-import type { GitCommit, StructuralMetrics } from './types.ts';
+} from './ports';
+import type { GitCommit, StructuralMetrics } from './types';
 
 class FakeLister implements SourceFileListerPort {
   constructor(public paths: string[] = []) {}

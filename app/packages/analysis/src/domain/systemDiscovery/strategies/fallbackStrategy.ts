@@ -1,6 +1,6 @@
 import { slugify } from '@archlens/core';
-import { productHubLabel } from '../productHub.ts';
-import type { DiscoveredSystem } from '../types.ts';
+import { productHubLabel } from '../productHub';
+import type { DiscoveredSystem } from '../types';
 
 /** Fallback single product system when nothing is detected. */
 export function discoverFallbackSystem(productName: string): DiscoveredSystem[] {

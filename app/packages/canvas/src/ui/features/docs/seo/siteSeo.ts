@@ -1,4 +1,4 @@
-import { PRODUCT_HERO } from '../../../content/productOutcomes.ts';
+import { PRODUCT_HERO } from '../../../content/productOutcomes';
 
 export const SITE_ORIGIN = 'https://archlens.dev';
 const SITE_NAME = 'ArchLens';

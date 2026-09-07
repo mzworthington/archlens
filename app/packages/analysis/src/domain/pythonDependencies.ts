@@ -4,14 +4,14 @@ import {
   componentMapKey,
   resolveContainerFromPath,
   type ResolveContainerOptions,
-} from './containerGrouping.ts';
+} from './containerGrouping';
 import {
   formatFolderComponentName,
   meaningfulDirSegments,
   type ComponentIdentity,
-} from './folderComponentRollup.ts';
-import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import type { ParsedSourceFile } from './types.ts';
+} from './folderComponentRollup';
+import { dependencyTypeForTarget } from './nodeTypeHydrator';
+import type { ParsedSourceFile } from './types';
 
 const PYTHON_LAYOUT_ROOTS = new Set(['src', 'lib', 'app', 'source', 'sources']);
 

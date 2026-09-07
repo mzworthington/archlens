@@ -5,10 +5,10 @@ import {
   componentMapKey,
   resolveContainerFromPath,
   type ResolveContainerOptions,
-} from './containerGrouping.ts';
-import type { ParsedSourceFile } from './types.ts';
-import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import { isCSharpSourcePath, resolveCSharpComponent } from './csharpGrouping.ts';
+} from './containerGrouping';
+import type { ParsedSourceFile } from './types';
+import { dependencyTypeForTarget } from './nodeTypeHydrator';
+import { isCSharpSourcePath, resolveCSharpComponent } from './csharpGrouping';
 
 const FRAMEWORK_NAMESPACE_PREFIXES = [
   'System',

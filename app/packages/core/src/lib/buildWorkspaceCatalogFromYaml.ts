@@ -1,7 +1,7 @@
-import type { C4Level } from '../models/schema.ts';
+import type { C4Level } from '../models/schema';
 import { parseSchemaFromYaml } from '../rules/graph';
-import { resolveWorkspaceEntityRefs } from './entityRef.ts';
-import { buildWorkspaceCatalog, type WorkspaceCatalogEntry } from './workspaceCatalog.ts';
+import { resolveWorkspaceEntityRefs } from './entityRef';
+import { buildWorkspaceCatalog, type WorkspaceCatalogEntry } from './workspaceCatalog';
 
 const C4_LEVELS = new Set<C4Level>(['context', 'container', 'component', 'code']);
 

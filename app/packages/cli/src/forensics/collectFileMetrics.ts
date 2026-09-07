@@ -1,16 +1,16 @@
 import path from 'path';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import { ForensicAnalyzer } from './domain/forensicAnalyzer.ts';
-import type { ForensicsOptions } from './domain/options.ts';
-import type { FileMetrics } from './domain/types.ts';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import { ForensicAnalyzer } from './domain/forensicAnalyzer';
+import type { ForensicsOptions } from './domain/options';
+import type { FileMetrics } from './domain/types';
 import { normalizeFilePath } from '@archlens/analysis/forensics';
-import { GitLogHistoryAdapter } from './adapters/gitLogHistory.ts';
-import { TreeSitterImportGraphAdapter } from './adapters/treeSitterImportGraph.ts';
-import type { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
-import { loadForensicsConfig, resolveForensicsOptions } from './adapters/loadForensicsConfig.ts';
-import { SourceFileListerAdapter } from './adapters/sourceFileLister.ts';
-import { TreeSitterComplexityAdapter } from './adapters/treeSitterComplexity.ts';
-import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv.ts';
+import { GitLogHistoryAdapter } from './adapters/gitLogHistory';
+import { TreeSitterImportGraphAdapter } from './adapters/treeSitterImportGraph';
+import type { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics';
+import { loadForensicsConfig, resolveForensicsOptions } from './adapters/loadForensicsConfig';
+import { SourceFileListerAdapter } from './adapters/sourceFileLister';
+import { TreeSitterComplexityAdapter } from './adapters/treeSitterComplexity';
+import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv';
 
 /**
  * Collect per-file forensics metrics for attaching onto architecture nodes.

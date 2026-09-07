@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { ConsoleLogger } from './consoleLogger.ts';
+import { ConsoleLogger } from './consoleLogger';
 
 describe('ConsoleLogger', () => {
   const logger = new ConsoleLogger();

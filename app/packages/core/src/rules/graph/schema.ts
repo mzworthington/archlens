@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import type { SystemSchema, NodePosition } from '../../models/schema.ts';
-import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../../models/schemaVersion.ts';
-import { ENTITY_REF_PATTERN } from '../../lib/entityRef.ts';
-import { getNodePosition } from '../../lib/nodePosition.ts';
-import { nodeForensicsSchema } from '../../forensics/wireSchema.ts';
+import type { SystemSchema, NodePosition } from '../../models/schema';
+import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../../models/schemaVersion';
+import { ENTITY_REF_PATTERN } from '../../lib/entityRef';
+import { getNodePosition } from '../../lib/nodePosition';
+import { nodeForensicsSchema } from '../../forensics/wireSchema';
 
 const nodeTypeSchema = z.enum([
   'person',

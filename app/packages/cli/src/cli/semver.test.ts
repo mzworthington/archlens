@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compareSemVer, isNewerVersion, parseSemVer } from './semver.ts';
+import { compareSemVer, isNewerVersion, parseSemVer } from './semver';
 
 describe('semver', () => {
   it('parses v-prefixed tags', () => {

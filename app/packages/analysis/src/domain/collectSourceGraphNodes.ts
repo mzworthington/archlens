@@ -1,21 +1,21 @@
 import type { SystemNode } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
-import { resolveComponentIdentity } from './componentResolver.ts';
+import { resolveComponentIdentity } from './componentResolver';
 import {
   resolveContainerFromPath,
   componentMapKey,
   type ResolveContainerOptions,
-} from './containerGrouping.ts';
-import type { ParsedSourceFile } from './types.ts';
-import { classifyParsedSource } from './nodeTypeHydrator.ts';
-import { classifyCSharpContainer, isCSharpSourcePath } from './csharpGrouping.ts';
-import { fileLeafEntityRef } from '../writers/rollupDrillDown.ts';
+} from './containerGrouping';
+import type { ParsedSourceFile } from './types';
+import { classifyParsedSource } from './nodeTypeHydrator';
+import { classifyCSharpContainer, isCSharpSourcePath } from './csharpGrouping';
+import { fileLeafEntityRef } from '../writers/rollupDrillDown';
 import {
   appendMemberFilepath,
   applyHydrationUpgrade,
   componentEntityRef,
   fileDisplayName,
-} from './modelExtractorHelpers.ts';
+} from './modelExtractorHelpers';
 
 export type SourceGraphNodeMaps = {
   componentNodesMap: Map<string, SystemNode>;

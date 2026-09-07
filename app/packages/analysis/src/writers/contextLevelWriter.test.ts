@@ -6,8 +6,8 @@ import {
   PERSON_EDGE_DESCRIPTION,
   resolveContextSeedRelativePath,
   topLevelSystemNodes,
-} from './contextLevelWriter.ts';
-import { MockFileSystem, MockLogger } from '../test/fakes.ts';
+} from './contextLevelWriter';
+import { MockFileSystem, MockLogger } from '../test/fakes';
 import {
   CONTEXT_OWNERSHIP_AUTHOR,
   CONTEXT_OWNERSHIP_PROPERTY,

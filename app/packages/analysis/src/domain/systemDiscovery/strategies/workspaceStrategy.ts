@@ -1,6 +1,6 @@
 import { slugify } from '@archlens/core';
-import { readWorkspaceGlobs, titleCase, workspaceRootsFromGlobs } from '../helpers.ts';
-import type { DiscoveredSystem, SystemDiscoveryFs } from '../types.ts';
+import { readWorkspaceGlobs, titleCase, workspaceRootsFromGlobs } from '../helpers';
+import type { DiscoveredSystem, SystemDiscoveryFs } from '../types';
 
 /** Discover systems from npm/pnpm workspace roots. */
 export function discoverWorkspaceSystems(cwd: string, fs: SystemDiscoveryFs): DiscoveredSystem[] {

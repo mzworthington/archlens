@@ -2,7 +2,7 @@ import {
   resolveFolderRolledComponent,
   resolveRelativeImportPath,
   type ComponentIdentity,
-} from './folderComponentRollup.ts';
+} from './folderComponentRollup';
 
 const LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);
 

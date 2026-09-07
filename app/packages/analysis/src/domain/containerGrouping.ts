@@ -1,6 +1,6 @@
 import { slugify } from '@archlens/core';
-import { LAYOUT_IDENTITY_DENYLIST } from './analysisOptions.ts';
-import { isTestProjectSegment } from './testPath.ts';
+import { LAYOUT_IDENTITY_DENYLIST } from './analysisOptions';
+import { isTestProjectSegment } from './testPath';
 
 /** Path segments that mark a layout root; the *next* segment may be a container. */
 const LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);

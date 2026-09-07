@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
-import { VitestFeatureReporter } from './reporters/vitestFeatureReporter.ts';
+import { VitestFeatureReporter } from './reporters/vitestFeatureReporter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const docsUnitFeatures = path.resolve(__dirname, '../docs/features-unit.md');

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { formatValidationResult } from './formatValidationResult.ts';
-import { formatBlueprintTreeDiff } from './formatBlueprintTreeDiff.ts';
+import { formatValidationResult } from './formatValidationResult';
+import { formatBlueprintTreeDiff } from './formatBlueprintTreeDiff';
 
 describe('formatValidationResult', () => {
   it('renders json output', () => {

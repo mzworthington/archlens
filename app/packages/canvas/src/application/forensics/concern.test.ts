@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { evaluateForensicsConcern } from './concern.ts';
+import { evaluateForensicsConcern } from './concern';
 
 describe('evaluateForensicsConcern', () => {
   it('returns none for undefined or empty forensics', () => {

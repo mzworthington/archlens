@@ -2,7 +2,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { SourceFileListerAdapter } from './sourceFileLister.ts';
+import { SourceFileListerAdapter } from './sourceFileLister';
 
 const tempDirs: string[] = [];
 

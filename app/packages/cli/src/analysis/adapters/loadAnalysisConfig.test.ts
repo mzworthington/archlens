@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { loadAnalysisConfig, mergeAnalysisOptions } from './loadAnalysisConfig.ts';
+import { loadAnalysisConfig, mergeAnalysisOptions } from './loadAnalysisConfig';
 import { DEFAULT_ANALYSIS_OPTIONS } from '@archlens/analysis/options';
 
 describe('loadAnalysisConfig', () => {

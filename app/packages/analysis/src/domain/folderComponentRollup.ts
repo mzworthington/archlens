@@ -1,5 +1,5 @@
 import { slugify } from '@archlens/core';
-import { LAYOUT_IDENTITY_DENYLIST } from './analysisOptions.ts';
+import { LAYOUT_IDENTITY_DENYLIST } from './analysisOptions';
 
 export type ComponentIdentity = {
   componentId: string;

@@ -4,7 +4,7 @@ import {
   resolveTreeSitterRuntimeWasmPath,
   resolveTreeSitterWasmPath,
   treeSitterWasmSearchDirs,
-} from './treeSitterWasmPaths.ts';
+} from './treeSitterWasmPaths';
 
 describe('treeSitterWasmPaths', () => {
   it('resolves c_sharp WASM from the installed tree-sitter-wasms package', () => {

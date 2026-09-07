@@ -1,4 +1,4 @@
-import type { AnalysisFileSystemPort, LoggerPort } from '../domain/ports.ts';
+import type { AnalysisFileSystemPort, LoggerPort } from '../domain/ports';
 import type { SystemSchema } from '@archlens/core';
 import { serializeSchemaToYaml } from '@archlens/core';
 

@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { systemSchemaPublicUrl } from '@archlens/core';
-import { ContextLevelWriter } from './contextLevelWriter.ts';
-import { ContainerLevelWriter } from './containerLevelWriter.ts';
-import { ComponentLevelWriter } from './componentLevelWriter.ts';
+import { ContextLevelWriter } from './contextLevelWriter';
+import { ContainerLevelWriter } from './containerLevelWriter';
+import { ComponentLevelWriter } from './componentLevelWriter';
 import type { SystemNode, SystemDependency } from '@archlens/core';
-import { MockFileSystem, MockLogger } from '../test/fakes.ts';
+import { MockFileSystem, MockLogger } from '../test/fakes';
 
 function expectV3YamlHeader(yamlContent: string): void {
   expect(yamlContent.split('\n')[0]).toBe(`version: ${systemSchemaPublicUrl()}`);

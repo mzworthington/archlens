@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CSharpAnalyzer } from './csharpAnalyzer.ts';
+import { CSharpAnalyzer } from './csharpAnalyzer';
 
 describe('CSharpAnalyzer Strategy', () => {
   const analyzer = new CSharpAnalyzer();

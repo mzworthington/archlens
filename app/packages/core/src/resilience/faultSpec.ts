@@ -1,4 +1,4 @@
-import type { EntityRef } from '../models/schema.ts';
+import type { EntityRef } from '../models/schema';
 
 export type FaultType = 'latency' | 'error-rate' | 'packet-loss' | 'region-outage';
 

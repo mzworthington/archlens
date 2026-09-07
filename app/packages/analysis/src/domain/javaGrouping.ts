@@ -1,4 +1,4 @@
-import { formatFolderComponentName, type ComponentIdentity } from './folderComponentRollup.ts';
+import { formatFolderComponentName, type ComponentIdentity } from './folderComponentRollup';
 import { slugify } from '@archlens/core';
 
 const JAVA_EXTENSIONS = new Set(['java', 'kt', 'kts']);

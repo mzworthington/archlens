@@ -5,12 +5,12 @@ import {
   compareArchitectureHealth,
   validateBlueprintWorkspace,
 } from '@archlens/core';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import type { ValidateCliPlan } from './parseArchlensArgv.ts';
-import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatArchitectureHealthResult } from './format/formatArchitectureHealth.ts';
-import { materializeGitBaselineBlueprints } from './materializeGitBaseline.ts';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import type { ValidateCliPlan } from './parseArchlensArgv';
+import { loadBlueprintTree } from './blueprintLoader';
+import { formatArchitectureHealthResult } from './format/formatArchitectureHealth';
+import { materializeGitBaselineBlueprints } from './materializeGitBaseline';
 
 export async function executeValidateRun(plan: ValidateCliPlan): Promise<void> {
   const rootDir = path.resolve(process.cwd(), plan.targetPath);

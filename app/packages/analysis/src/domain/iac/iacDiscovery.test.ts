@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { directorySlug, slugFromPath } from './iacDiscovery.ts';
+import { directorySlug, slugFromPath } from './iacDiscovery';
 
 describe('directorySlug', () => {
   it('slugs the last path segment to lowercase kebab-case', () => {

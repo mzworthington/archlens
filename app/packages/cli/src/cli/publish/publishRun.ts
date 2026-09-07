@@ -1,15 +1,15 @@
 import path from 'node:path';
-import { NodeFileSystemAdapter } from '../../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../../analysis/adapters/consoleLogger.ts';
-import type { PublishCliPlan } from '../parseArchlensArgv.ts';
-import { loadBlueprintTree } from '../blueprintLoader.ts';
-import { formatValidationResult } from '../format/formatValidationResult.ts';
+import { NodeFileSystemAdapter } from '../../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../../analysis/adapters/consoleLogger';
+import type { PublishCliPlan } from '../parseArchlensArgv';
+import { loadBlueprintTree } from '../blueprintLoader';
+import { formatValidationResult } from '../format/formatValidationResult';
 import {
   formatPublishDryRunResult,
   formatPublishUploadResult,
-} from '../format/formatPublishDryRunResult.ts';
-import { resolvePublishObjectStorage } from './publishRemoteCatalog.ts';
-import { runPublishCatalog } from './publishCatalog.ts';
+} from '../format/formatPublishDryRunResult';
+import { resolvePublishObjectStorage } from './publishRemoteCatalog';
+import { runPublishCatalog } from './publishCatalog';
 
 export async function executePublishRun(plan: PublishCliPlan): Promise<void> {
   const rootDir = path.resolve(process.cwd(), plan.targetPath);

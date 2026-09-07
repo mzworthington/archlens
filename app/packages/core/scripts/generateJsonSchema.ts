@@ -8,10 +8,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SYSTEM_SCHEMA_MAJOR_VERSION } from '../src/models/schemaVersion.ts';
-import { CHAOS_SCHEMA_MAJOR_VERSION } from '../src/models/chaosVersion.ts';
+import { SYSTEM_SCHEMA_MAJOR_VERSION } from '../src/models/schemaVersion';
+import { CHAOS_SCHEMA_MAJOR_VERSION } from '../src/models/chaosVersion';
 import { toSystemSchemaJsonSchema } from '../src/rules/graph';
-import { toChaosSpecJsonSchema } from '../src/resilience/chaosSpecDocument.ts';
+import { toChaosSpecJsonSchema } from '../src/resilience/chaosSpecDocument';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const schemasRoot = join(__dirname, '../../../../schemas');

@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import type { Plugin } from 'vite';
-import { canvasPackageRoot, repoSchemas } from './paths.ts';
+import { canvasPackageRoot, repoSchemas } from './paths';
 
 /**
  * Publish JSON Schema for external IDE validation under /schemas/v{n}/ and /schemas/latest/.

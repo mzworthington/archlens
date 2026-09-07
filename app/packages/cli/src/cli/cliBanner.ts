@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { getArchlensVersion } from './version.ts';
+import { getArchlensVersion } from './version';
 
 const BANNER_INNER_WIDTH = 52;
 

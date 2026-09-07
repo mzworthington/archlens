@@ -1,7 +1,7 @@
 import type { SystemDependency, SystemNode, NodeType } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
-import { componentMapKey } from './containerGrouping.ts';
-import { nodeTypePriority } from './csharpGrouping.ts';
+import { componentMapKey } from './containerGrouping';
+import { nodeTypePriority } from './csharpGrouping';
 
 export type SourceHydration = {
   type: NodeType;

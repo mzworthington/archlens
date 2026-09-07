@@ -6,8 +6,8 @@ import {
   uploadEstateFragment,
   uploadSuggestionOverlay,
 } from '@archlens/storage';
-import { composeCasBackoffMs, runComposeCatalog } from './composeCatalog.ts';
-import { runPublishFragment } from '../publish/publishFragment.ts';
+import { composeCasBackoffMs, runComposeCatalog } from './composeCatalog';
+import { runPublishFragment } from '../publish/publishFragment';
 
 const noSleep = async (): Promise<void> => undefined;
 

@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
-import { MockFileSystem, MockLogger } from '../test/fakes.ts';
+import { MockFileSystem, MockLogger } from '../test/fakes';
 import {
   applyExternalDependenciesPass,
   listBlueprintSchemaPaths,
-} from './externalDependenciesPass.ts';
+} from './externalDependenciesPass';
 
 const containers: SystemSchema = {
   entityRef: 'application/cli',

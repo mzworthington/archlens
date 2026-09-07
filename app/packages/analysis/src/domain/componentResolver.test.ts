@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { resolveComponentIdentity } from './componentResolver.ts';
-import type { ParsedSourceFile } from './types.ts';
+import { resolveComponentIdentity } from './componentResolver';
+import type { ParsedSourceFile } from './types';
 
 function file(relativePath: string, overrides: Partial<ParsedSourceFile> = {}): ParsedSourceFile {
   const baseName =

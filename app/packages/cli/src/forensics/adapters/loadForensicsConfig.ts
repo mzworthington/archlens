@@ -5,7 +5,7 @@ import {
   DEFAULT_FORENSICS_OPTIONS,
   mergeForensicsOptions,
   type ForensicsOptions,
-} from '../domain/options.ts';
+} from '../domain/options';
 
 export type LoadedForensicsConfig = Partial<ForensicsOptions> & {
   configPath?: string;

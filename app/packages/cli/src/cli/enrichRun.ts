@@ -1,9 +1,9 @@
 import path from 'node:path';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
 import { applyExternalDependenciesPass } from '@archlens/analysis/writers';
-import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
-import { executeForensicsEnrichRun } from './enrichForensicsRun.ts';
+import type { ArchlensCliPlan } from './parseArchlensArgv';
+import { executeForensicsEnrichRun } from './enrichForensicsRun';
 
 /**
  * Re-run the externals pass on existing blueprint YAML (no source re-scan).

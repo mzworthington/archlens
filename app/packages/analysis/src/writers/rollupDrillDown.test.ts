@@ -6,7 +6,7 @@ import {
   fileLeafEntityRef,
   rollupDrillDownRelativePath,
   shouldEmitRollupDrillDown,
-} from './rollupDrillDown.ts';
+} from './rollupDrillDown';
 
 describe('rollupDrillDown', () => {
   it('builds file leaf entity refs under a rollup parent', () => {

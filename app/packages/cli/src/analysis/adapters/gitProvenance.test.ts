@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { collectGitProvenance, type GitExecFn } from './gitProvenance.ts';
+import { collectGitProvenance, type GitExecFn } from './gitProvenance';
 
 function createExecMock(responses: Record<string, string>): GitExecFn {
   return async (_file, args) => {

@@ -1,6 +1,6 @@
 import { slugify } from '@archlens/core';
-import { STANDALONE_DENYLIST, titleCase } from '../helpers.ts';
-import type { DiscoveredSystem, SystemDiscoveryFs } from '../types.ts';
+import { STANDALONE_DENYLIST, titleCase } from '../helpers';
+import type { DiscoveredSystem, SystemDiscoveryFs } from '../types';
 
 /**
  * Discover top-level packages that are not already covered by workspace roots.

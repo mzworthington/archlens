@@ -6,7 +6,7 @@ import {
   type CatalogPublishFragmentCliPlan,
   type CatalogRejectOverlayCliPlan,
   type PublishCliPlan,
-} from '../parseArchlensArgv.ts';
+} from '../parseArchlensArgv';
 
 export type InteractiveMainAction =
   'scan' | 'publish' | 'publish-fragment' | 'compose' | 'accept-overlay' | 'reject-overlay';

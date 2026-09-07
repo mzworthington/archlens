@@ -1,4 +1,4 @@
-import type { ArchlensCliPlan } from '../parseArchlensArgv.ts';
+import type { ArchlensCliPlan } from '../parseArchlensArgv';
 
 export interface InteractiveGitChoice {
   /** none = skip forensics; full = enrich blueprints; skip = leave plan unchanged. */

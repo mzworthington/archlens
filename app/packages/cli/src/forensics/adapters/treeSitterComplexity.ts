@@ -9,16 +9,16 @@ import {
 import { extensionToTreeSitterLanguage } from '@archlens/core';
 import type { LoggerPort } from '@archlens/analysis/ports';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
-import type { ForensicsOptions } from '../domain/options.ts';
-import type { ComplexityAnalyzerPort } from '../domain/ports.ts';
-import type { StructuralMetrics } from '../domain/types.ts';
-import { TreeSitterWasmLoader } from '../../analysis/adapters/parsing/treeSitterLoader.ts';
+import type { ForensicsOptions } from '../domain/options';
+import type { ComplexityAnalyzerPort } from '../domain/ports';
+import type { StructuralMetrics } from '../domain/types';
+import { TreeSitterWasmLoader } from '../../analysis/adapters/parsing/treeSitterLoader';
 import {
   collectCyclomaticAstNodes,
   collectFunctionComplexitySlices,
   type CachedTreeParse,
   type TreeSitterScanCache,
-} from '../../analysis/adapters/parsing/treeSitterForensics.ts';
+} from '../../analysis/adapters/parsing/treeSitterForensics';
 
 function extensionOf(relativePath: string): string {
   const dot = relativePath.lastIndexOf('.');

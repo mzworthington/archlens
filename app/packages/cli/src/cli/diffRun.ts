@@ -1,10 +1,10 @@
 import path from 'node:path';
 import { compareBlueprintTrees, blueprintTreeDiffHasChanges } from '@archlens/core';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import type { DiffCliPlan } from './parseArchlensArgv.ts';
-import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatBlueprintTreeDiff } from './format/formatBlueprintTreeDiff.ts';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import type { DiffCliPlan } from './parseArchlensArgv';
+import { loadBlueprintTree } from './blueprintLoader';
+import { formatBlueprintTreeDiff } from './format/formatBlueprintTreeDiff';
 
 export async function executeDiffRun(plan: DiffCliPlan): Promise<void> {
   const baselineDir = path.resolve(process.cwd(), plan.baselinePath);

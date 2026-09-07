@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { ContainerLevelWriter } from './containerLevelWriter.ts';
+import { ContainerLevelWriter } from './containerLevelWriter';
 import type { SystemNode, SystemDependency } from '@archlens/core';
-import { MockFileSystem, MockLogger } from '../test/fakes.ts';
+import { MockFileSystem, MockLogger } from '../test/fakes';
 
 describe('ContainerLevelWriter', () => {
   let fileSystem: MockFileSystem;

@@ -7,14 +7,10 @@ import {
   computeHotspotScores,
   computeTemporalCoupling,
 } from '@archlens/core/forensics';
-import {
-  DEFAULT_FORENSICS_OPTIONS,
-  mergeForensicsOptions,
-  type ForensicsOptions,
-} from './options.ts';
-import { resolveEffectiveMinChurnForComplexity } from './forensicsGlob.ts';
-import type { ForensicAnalyzerPorts } from './ports.ts';
-import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } from './types.ts';
+import { DEFAULT_FORENSICS_OPTIONS, mergeForensicsOptions, type ForensicsOptions } from './options';
+import { resolveEffectiveMinChurnForComplexity } from './forensicsGlob';
+import type { ForensicAnalyzerPorts } from './ports';
+import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } from './types';
 
 export interface RunForensicsInput {
   rootPath: string;

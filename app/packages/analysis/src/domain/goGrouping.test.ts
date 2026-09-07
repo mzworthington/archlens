@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { resolveGoComponent } from './goGrouping.ts';
+import { resolveGoComponent } from './goGrouping';
 
 describe('goGrouping', () => {
   describe('resolveGoComponent', () => {

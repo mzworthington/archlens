@@ -1,8 +1,8 @@
 import * as p from '@clack/prompts';
-import { checkForUpdate, shouldCheckForUpdates } from './updateCheck.ts';
-import { getArchlensVersion, isCompiledRelease } from './version.ts';
-import { isHeadlessArgv, isUpdateSubcommand, skipUpdateCheck } from './parseArchlensArgv.ts';
-import { performSelfUpdate } from './selfUpdate.ts';
+import { checkForUpdate, shouldCheckForUpdates } from './updateCheck';
+import { getArchlensVersion, isCompiledRelease } from './version';
+import { isHeadlessArgv, isUpdateSubcommand, skipUpdateCheck } from './parseArchlensArgv';
+import { performSelfUpdate } from './selfUpdate';
 
 export interface StartupUpdateDeps {
   exit?: (code: number) => void;

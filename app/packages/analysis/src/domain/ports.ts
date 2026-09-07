@@ -1,4 +1,4 @@
-import type { ParsedSourceFile } from './types.ts';
+import type { ParsedSourceFile } from './types';
 
 export type { LoggerPort } from '@archlens/core/logging';
 

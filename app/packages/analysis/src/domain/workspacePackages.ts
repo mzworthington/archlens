@@ -1,5 +1,5 @@
 import { slugify } from '@archlens/core';
-import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping.ts';
+import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping';
 
 /** Node.js built-in modules that must not match local source files by basename. */
 const NODE_BUILTIN_MODULES = new Set([

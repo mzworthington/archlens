@@ -3,7 +3,7 @@ import {
   type ObjectStoragePort,
   type PruneRemoteCatalogResult,
 } from '@archlens/storage';
-import type { CatalogPruneCliPlan } from './parseArchlensArgv.ts';
+import type { CatalogPruneCliPlan } from './parseArchlensArgv';
 
 export type PruneCatalogDeps = {
   resolveStorage: (plan: CatalogPruneCliPlan) => ObjectStoragePort | null;

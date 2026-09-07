@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Plugin } from 'vite';
-import { injectPrerenderedPageHtml } from '../src/ui/features/docs/seo/prerenderHtml.ts';
+import { injectPrerenderedPageHtml } from '../src/ui/features/docs/seo/prerenderHtml';
 import {
   buildSitemapXml,
   listIndexableSeoPaths,
   resolvePageSeo,
-} from '../src/ui/features/docs/seo/siteSeo.ts';
+} from '../src/ui/features/docs/seo/siteSeo';
 
 /** Product/nav links embedded in prerendered HTML for crawlers. */
 function listPrerenderNavLinks(): Array<{ href: string; label: string }> {

@@ -1,6 +1,6 @@
 import type Parser from 'web-tree-sitter';
-import { isTestSourcePath } from '../domain/testPath.ts';
-import type { ParsedSourceFile } from '../domain/types.ts';
+import { isTestSourcePath } from '../domain/testPath';
+import type { ParsedSourceFile } from '../domain/types';
 
 function extensionOf(path: string): string {
   const idx = path.lastIndexOf('.');

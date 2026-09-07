@@ -1,6 +1,6 @@
-import type { ParsedSourceFile } from '../types.ts';
+import type { ParsedSourceFile } from '../types';
 import { type SystemNode, slugify } from '@archlens/core';
-import type { LanguageAnalyzer, ContainerInfo } from './languageAnalyzer.ts';
+import type { LanguageAnalyzer, ContainerInfo } from './languageAnalyzer';
 
 export class CSharpAnalyzer implements LanguageAnalyzer {
   supports(fileExt: string): boolean {

@@ -5,7 +5,7 @@ import {
   parseCatalogComposeArgv,
   parseCatalogPruneArgv,
   parseCatalogPublishFragmentArgv,
-} from './parseArchlensArgv.ts';
+} from './parseArchlensArgv';
 
 describe('parse catalog commands', () => {
   it('defaults compose key prefix from estate id and skips validation', () => {

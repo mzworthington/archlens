@@ -1,13 +1,13 @@
 import { ObjectStoragePreconditionFailedError, type ObjectStoragePort } from '@archlens/storage';
-import { ConsoleLogger } from '../../analysis/adapters/consoleLogger.ts';
-import type { CatalogComposeCliPlan } from '../parseArchlensArgv.ts';
-import { resolvePublishObjectStorage } from '../publish/publishRemoteCatalog.ts';
-import { runComposeCatalog } from './composeCatalog.ts';
+import { ConsoleLogger } from '../../analysis/adapters/consoleLogger';
+import type { CatalogComposeCliPlan } from '../parseArchlensArgv';
+import { resolvePublishObjectStorage } from '../publish/publishRemoteCatalog';
+import { runComposeCatalog } from './composeCatalog';
 import {
   formatPublishDryRunResult,
   formatPublishUploadResult,
-} from '../format/formatPublishDryRunResult.ts';
-import { formatValidationResult } from '../format/formatValidationResult.ts';
+} from '../format/formatPublishDryRunResult';
+import { formatValidationResult } from '../format/formatValidationResult';
 
 export async function executeComposeCatalogRun(plan: CatalogComposeCliPlan): Promise<void> {
   const logger = new ConsoleLogger();

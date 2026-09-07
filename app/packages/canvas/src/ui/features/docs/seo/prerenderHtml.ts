@@ -1,4 +1,4 @@
-import { buildJsonLdGraph, type PageSeo } from './siteSeo.ts';
+import { buildJsonLdGraph, type PageSeo } from './siteSeo';
 
 function escapeHtml(value: string): string {
   return value

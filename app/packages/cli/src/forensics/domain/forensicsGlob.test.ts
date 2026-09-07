@@ -5,7 +5,7 @@ import {
   DEFAULT_MIN_CHURN_FOR_COMPLEXITY_LARGE,
   LARGE_REPO_FILE_THRESHOLD,
   resolveEffectiveMinChurnForComplexity,
-} from './forensicsGlob.ts';
+} from './forensicsGlob';
 
 describe('forensicsGlob', () => {
   it('aligns forensics glob with architecture scan plus js/jsx and without tf', () => {

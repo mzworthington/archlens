@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { createSourcePathFilter } from './sourcePathFilter.ts';
+import { createSourcePathFilter } from './sourcePathFilter';
 
 describe('sourcePathFilter', () => {
   it('skips structural noise paths by default', () => {

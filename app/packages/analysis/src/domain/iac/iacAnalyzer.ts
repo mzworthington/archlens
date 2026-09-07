@@ -7,29 +7,29 @@ import {
   type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
-import { BaseWriter } from '../../writers/baseWriter.ts';
+import { BaseWriter } from '../../writers/baseWriter';
 import {
   ContextLevelWriter,
   LEGACY_CONTEXT_RELATIVE_PATH,
   resolveContextSeedRelativePath,
-} from '../../writers/contextLevelWriter.ts';
-import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from '../ports.ts';
-import { throwIfAborted } from '../cancellation.ts';
-import { discoverPulumiRoots } from './pulumiDiscovery.ts';
-import { discoverTerraformRoots } from './terraformDiscovery.ts';
+} from '../../writers/contextLevelWriter';
+import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from '../ports';
+import { throwIfAborted } from '../cancellation';
+import { discoverPulumiRoots } from './pulumiDiscovery';
+import { discoverTerraformRoots } from './terraformDiscovery';
 import {
   planIacContextSystems,
   productHubInputsForIac,
   resolveProductIdForPath,
   type DiscoveredSystem,
-} from '../systemDiscovery/index.ts';
+} from '../systemDiscovery/index';
 import {
   analyzeAndWriteIacRoot,
   type IacExternalProposals,
   type IacRoot,
   type IacSubsystemRef,
-} from './iacRootAnalysis.ts';
-import { resolveSystemEntityRef } from '../entityRefContext.ts';
+} from './iacRootAnalysis';
+import { resolveSystemEntityRef } from '../entityRefContext';
 
 export type IacAnalyzerDependencies = {
   fileSystem: AnalysisFileSystemPort;

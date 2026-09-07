@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { resolvePublishObjectStorage } from './publishRemoteCatalog.ts';
+import { resolvePublishObjectStorage } from './publishRemoteCatalog';
 
 describe('Feature: Resolve publish storage adapter', () => {
   afterEach(() => {

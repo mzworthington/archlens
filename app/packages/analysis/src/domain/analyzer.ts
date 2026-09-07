@@ -1,31 +1,28 @@
-import type { CodebaseParserPort, AnalysisFileSystemPort, LoggerPort } from './ports.ts';
-import { ModelExtractor } from './modelExtractor.ts';
-import { ContextLevelWriter } from '../writers/contextLevelWriter.ts';
-import { ContainerLevelWriter } from '../writers/containerLevelWriter.ts';
-import { ComponentLevelWriter } from '../writers/componentLevelWriter.ts';
+import type { CodebaseParserPort, AnalysisFileSystemPort, LoggerPort } from './ports';
+import { ModelExtractor } from './modelExtractor';
+import { ContextLevelWriter } from '../writers/contextLevelWriter';
+import { ContainerLevelWriter } from '../writers/containerLevelWriter';
+import { ComponentLevelWriter } from '../writers/componentLevelWriter';
 import type { SystemNode, SourceProvenance } from '@archlens/core';
-import type { ParsedSourceFile } from './types.ts';
-import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions.ts';
+import type { ParsedSourceFile } from './types';
+import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions';
 import {
   discoverSystems,
   partitionFilesBySystem,
   type DiscoveredSystem,
-} from './systemDiscovery/index.ts';
-import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext.ts';
-import { throwIfAborted } from './cancellation.ts';
+} from './systemDiscovery/index';
+import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext';
+import { throwIfAborted } from './cancellation';
 import {
   attachForensicsToSchema,
   aggregateNodeForensics,
   fileMetricsToNodeForensics,
   normalizeFilePath,
-} from '../forensics/attachForensics.ts';
-import type { FileMetrics } from '../forensics/types.ts';
-import { applyExternalDependenciesPass } from '../writers/externalDependenciesPass.ts';
-import { discoverCsprojFiles } from './discoverCsprojFiles.ts';
-import {
-  buildWorkspacePackageEntryIndex,
-  buildWorkspacePackageIndex,
-} from './workspacePackages.ts';
+} from '../forensics/attachForensics';
+import type { FileMetrics } from '../forensics/types';
+import { applyExternalDependenciesPass } from '../writers/externalDependenciesPass';
+import { discoverCsprojFiles } from './discoverCsprojFiles';
+import { buildWorkspacePackageEntryIndex, buildWorkspacePackageIndex } from './workspacePackages';
 export interface CodebaseAnalyzerDependencies {
   parser: CodebaseParserPort;
   fileSystem: AnalysisFileSystemPort;

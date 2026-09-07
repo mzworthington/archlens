@@ -5,7 +5,7 @@ import {
   type LoadedSystemInput,
   type SystemSchema,
 } from '@archlens/core';
-import type { AnalysisFileSystemPort, LoggerPort } from '../domain/ports.ts';
+import type { AnalysisFileSystemPort, LoggerPort } from '../domain/ports';
 
 export interface ExternalDependenciesPassResult {
   schemasScanned: number;

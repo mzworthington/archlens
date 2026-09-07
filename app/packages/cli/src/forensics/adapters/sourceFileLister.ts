@@ -1,8 +1,8 @@
-import { createSourcePathFilter } from '../../analysis/adapters/pathFilter/sourcePathFilter.ts';
+import { createSourcePathFilter } from '../../analysis/adapters/pathFilter/sourcePathFilter';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
-import type { ForensicsOptions } from '../domain/options.ts';
-import type { SourceFileListerPort } from '../domain/ports.ts';
-import { listFilesForGlob } from './sourceFileWalk.ts';
+import type { ForensicsOptions } from '../domain/options';
+import type { SourceFileListerPort } from '../domain/ports';
+import { listFilesForGlob } from './sourceFileWalk';
 
 export class SourceFileListerAdapter implements SourceFileListerPort {
   constructor(private readonly cwd: string = process.cwd()) {}

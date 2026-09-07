@@ -5,12 +5,12 @@ import {
   type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import { collectFileMetrics } from '../forensics/collectFileMetrics';
 import { attachForensicsToSchema, normalizeFilePath } from '@archlens/analysis/forensics';
 import { listBlueprintSchemaPaths } from '@archlens/analysis/writers';
-import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
+import type { ArchlensCliPlan } from './parseArchlensArgv';
 
 function isComponentSchemaPath(schemaPath: string): boolean {
   return schemaPath.includes('-components.yaml') || schemaPath.endsWith('/components.yaml');

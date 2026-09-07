@@ -1,8 +1,8 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate.ts';
-import * as updateCheck from './updateCheck.ts';
-import * as selfUpdate from './selfUpdate.ts';
-import * as version from './version.ts';
+import { maybePromptAndSelfUpdate, runUpdateCommand } from './startupUpdate';
+import * as updateCheck from './updateCheck';
+import * as selfUpdate from './selfUpdate';
+import * as version from './version';
 
 describe('runUpdateCommand', () => {
   const exit = vi.fn();

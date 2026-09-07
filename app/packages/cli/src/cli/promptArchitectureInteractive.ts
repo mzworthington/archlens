@@ -3,12 +3,12 @@ import {
   applyInteractiveGitChoice,
   shouldPromptForGit,
   type InteractiveGitChoice,
-} from './interactive/interactiveGitChoice.ts';
-import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
-import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
-import { renderCliBanner, renderCliIntroNote, renderCliQuickTips } from './cliBanner.ts';
-import { getArchlensVersion } from './version.ts';
-import type { LoadedAnalysisConfig } from '../analysis/adapters/loadAnalysisConfig.ts';
+} from './interactive/interactiveGitChoice';
+import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options';
+import type { ArchlensCliPlan } from './parseArchlensArgv';
+import { renderCliBanner, renderCliIntroNote, renderCliQuickTips } from './cliBanner';
+import { getArchlensVersion } from './version';
+import type { LoadedAnalysisConfig } from '../analysis/adapters/loadAnalysisConfig';
 
 function exitOnCancel(value: unknown): asserts value is string | boolean {
   if (p.isCancel(value)) {

@@ -8,11 +8,11 @@ import {
   serializeEstateResilienceReport,
   type AdviceLensArtifactFormat,
 } from '@archlens/core/recommendations';
-import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
-import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import type { ResilienceCliPlan, ResilienceOutputFormat } from './parseArchlensArgv.ts';
-import { loadBlueprintTree } from './blueprintLoader.ts';
-import { formatEstateResilienceResult } from './format/formatEstateResilienceResult.ts';
+import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem';
+import { ConsoleLogger } from '../analysis/adapters/consoleLogger';
+import type { ResilienceCliPlan, ResilienceOutputFormat } from './parseArchlensArgv';
+import { loadBlueprintTree } from './blueprintLoader';
+import { formatEstateResilienceResult } from './format/formatEstateResilienceResult';
 
 async function listYamlFiles(rootDir: string): Promise<string[]> {
   const entries = await fs.readdir(rootDir, { withFileTypes: true });
