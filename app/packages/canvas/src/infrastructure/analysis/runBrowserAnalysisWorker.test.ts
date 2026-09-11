@@ -98,7 +98,7 @@ describe('runBrowserAnalysisWorker', () => {
 
     emit({ type: 'error', message: 'boom', cancelled: false });
 
-    await expect(promise).rejects.toThrow('boom');
+    await expect(promise).rejects.toHaveProperty('message', 'boom');
     expect(worker.terminated).toBe(true);
   });
 });

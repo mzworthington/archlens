@@ -99,7 +99,7 @@ describe('BundledSampleWorkspaceAdapter', () => {
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
     await expect(
       BundledSampleWorkspaceAdapter.readFile('app/packages/canvas/src/foo.ts')
-    ).rejects.toThrow(/only contains blueprint/i);
+    ).rejects.toHaveProperty('message', expect.stringMatching(/only contains blueprint/i));
   });
 
   it('loads the prebuilt navigation catalog without fetching every YAML', async () => {

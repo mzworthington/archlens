@@ -92,8 +92,9 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
       fetchImpl,
     });
 
-    await expect(adapter.readFile('missing/context.yaml')).rejects.toThrow(
-      /does not contain blueprint path/i
+    await expect(adapter.readFile('missing/context.yaml')).rejects.toHaveProperty(
+      'message',
+      expect.stringMatching(/does not contain blueprint path/i)
     );
   });
 });
