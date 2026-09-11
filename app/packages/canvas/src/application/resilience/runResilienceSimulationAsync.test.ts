@@ -117,7 +117,7 @@ describe('runResilienceSimulationAsync', () => {
         },
         { engine }
       )
-    ).rejects.toThrow('sim failed');
+    ).rejects.toHaveProperty('message', 'sim failed');
   });
 
   it('logs WASM unavailability through the injected logger', async () => {

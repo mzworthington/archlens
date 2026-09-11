@@ -124,7 +124,7 @@ describe('loadWorkspaceFromCatalog', () => {
         initSchema,
         set,
       })
-    ).rejects.toThrow(/missing.yaml/i);
+    ).rejects.toHaveProperty('message', expect.stringMatching(/missing.yaml/i));
     expect(set).not.toHaveBeenCalled();
   });
 });
