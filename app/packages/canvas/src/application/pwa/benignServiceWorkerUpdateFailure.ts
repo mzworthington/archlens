@@ -9,8 +9,7 @@ export function isBenignServiceWorkerUpdateFailure(error: unknown): boolean {
 
 export function isBenignServiceWorkerUpdateFailureMessage(message: string): boolean {
   return (
-    /Failed to update a ServiceWorker/i.test(message) ||
-    /ServiceWorker script at .+ encountered an error during installation/i.test(message) ||
-    /an unknown error occurred when fetching the script/i.test(message)
+    /an unknown error occurred when fetching the script/i.test(message) ||
+    /ServiceWorker script at .+ encountered an error during installation/i.test(message)
   );
 }

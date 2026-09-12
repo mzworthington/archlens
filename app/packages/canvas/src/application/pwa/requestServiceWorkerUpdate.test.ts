@@ -55,4 +55,12 @@ describe('requestServiceWorkerUpdate', () => {
     const update = vi.fn().mockRejectedValue(failure);
     await expect(requestServiceWorkerUpdate({ update })).rejects.toBe(failure);
   });
+
+  it('propagates a Chrome ServiceWorker TypeError that is not a fetch failure', async () => {
+    const failure = new TypeError(
+      "Failed to update a ServiceWorker for scope ('https://archlens.dev/') with script ('https://archlens.dev/sw.js'): The script has an unsupported MIME type ('text/html')."
+    );
+    const update = vi.fn().mockRejectedValue(failure);
+    await expect(requestServiceWorkerUpdate({ update })).rejects.toBe(failure);
+  });
 });
