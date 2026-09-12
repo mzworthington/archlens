@@ -14,7 +14,7 @@ export function requestServiceWorkerUpdate(
 function isBenignServiceWorkerUpdateFailure(error: unknown): boolean {
   if (isNamedError(error, 'AbortError')) return true;
   if (!(error instanceof TypeError)) return false;
-  return /Failed to fetch|Load failed|fetching the script|ServiceWorker/i.test(error.message);
+  return /Failed to fetch|Load failed|fetching the script/i.test(error.message);
 }
 
 function isNamedError(error: unknown, name: string): boolean {
