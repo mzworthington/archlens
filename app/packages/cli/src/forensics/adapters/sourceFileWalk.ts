@@ -6,27 +6,73 @@ export interface ParsedGlobPattern {
   extensions: string[];
 }
 
-/**
- * Parse a brace-expansion glob into a base directory and extensions.
- */
+const DEFAULT_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.java', '.cs'];
+
+function isExtensionChar(code: number): boolean {
+  const isNum = code >= 48 && code <= 57;
+  const isUpper = code >= 65 && code <= 90;
+  const isLower = code >= 97 && code <= 122;
+  return isNum || isUpper || isLower;
+}
+
+function stripTrailingSeparator(value: string): string {
+  if (value.endsWith('/') || value.endsWith('\\')) return value.slice(0, -1);
+  return value;
+}
+
+function extensionLabel(option: string): string {
+  const trimmed = option.trim();
+  return trimmed.startsWith('.') ? trimmed : `.${trimmed}`;
+}
+
+function splitBraceOptions(inner: string): string[] {
+  const parts: string[] = [];
+  let current = '';
+  for (const ch of inner) {
+    if (ch === ',') {
+      const trimmed = current.trim();
+      if (trimmed) parts.push(trimmed);
+      current = '';
+      continue;
+    }
+    current += ch;
+  }
+  const trimmed = current.trim();
+  if (trimmed) parts.push(trimmed);
+  return parts;
+}
+
+function extensionsFromBraceSet(resolvedPattern: string): string[] | undefined {
+  const open = resolvedPattern.indexOf('{');
+  if (open < 0) return undefined;
+  const close = resolvedPattern.indexOf('}', open + 1);
+  if (close < 0) return undefined;
+  const inner = resolvedPattern.slice(open + 1, close);
+  if (!inner || inner.includes('{')) return undefined;
+  const options = splitBraceOptions(inner);
+  if (options.length === 0) return undefined;
+  return options.map(extensionLabel);
+}
+
+function extensionFromSuffix(resolvedPattern: string): string | undefined {
+  const star = resolvedPattern.lastIndexOf('*');
+  const slash = Math.max(resolvedPattern.lastIndexOf('/'), resolvedPattern.lastIndexOf('\\'));
+  const dot = resolvedPattern.lastIndexOf('.');
+  if (dot < 0 || dot < slash || dot < star) return undefined;
+  const ext = resolvedPattern.slice(dot);
+  if (ext.length < 2) return undefined;
+  for (let i = 1; i < ext.length; i++) {
+    if (!isExtensionChar(ext.charCodeAt(i))) return undefined;
+  }
+  return ext.toLowerCase();
+}
+
 export function parseForensicsGlobPattern(cwd: string, pattern: string): ParsedGlobPattern {
   const resolvedPattern = path.resolve(cwd, pattern);
-  const baseDir = resolvedPattern.split('**')[0].replace(/\/$/, '').replace(/\\$/, '');
-
-  const extMatch = resolvedPattern.match(/\{([^}]+)\}/);
-  let extensions: string[] = [];
-  if (extMatch) {
-    extensions = extMatch[1].split(',').map(e => '.' + e.trim().replace(/^\./, ''));
-  } else {
-    const singleExtMatch = resolvedPattern.match(/\.([a-zA-Z0-9]+)$/);
-    if (singleExtMatch) {
-      extensions = ['.' + singleExtMatch[1]];
-    }
-  }
-
-  if (extensions.length === 0) {
-    extensions = ['.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.java', '.cs'];
-  }
+  const baseDir = stripTrailingSeparator(resolvedPattern.split('**')[0] ?? '');
+  const braceExts = extensionsFromBraceSet(resolvedPattern);
+  const suffix = extensionFromSuffix(resolvedPattern);
+  const extensions = braceExts ?? (suffix ? [suffix] : DEFAULT_EXTENSIONS);
 
   return {
     dir: baseDir || cwd,
@@ -62,9 +108,6 @@ function walkDirectory(
   }
 }
 
-/**
- * List files under `cwd` matching the glob pattern, returning repo-relative posix paths.
- */
 export function listFilesForGlob(
   cwd: string,
   pattern: string,

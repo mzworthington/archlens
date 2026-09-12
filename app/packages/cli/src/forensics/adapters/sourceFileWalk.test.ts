@@ -36,6 +36,14 @@ describe('parseForensicsGlobPattern', () => {
     expect(parseForensicsGlobPattern('/repo', '**/src/**').extensions).toContain('.ts');
     expect(parseForensicsGlobPattern('/repo', '**/src/**').extensions).toContain('.go');
   });
+
+  it('parses brace options in linear time even when the pattern never closes', () => {
+    const poison = `{${'{{|'.repeat(400)}`;
+    const started = Date.now();
+    const parsed = parseForensicsGlobPattern('/repo', poison);
+    expect(Date.now() - started).toBeLessThan(50);
+    expect(parsed.extensions).toContain('.ts');
+  });
 });
 
 describe('listFilesForGlob', () => {
