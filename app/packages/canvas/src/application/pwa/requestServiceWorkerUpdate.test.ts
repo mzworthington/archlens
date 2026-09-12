@@ -39,8 +39,19 @@ describe('requestServiceWorkerUpdate', () => {
     await expect(requestServiceWorkerUpdate({ update })).resolves.toBeUndefined();
   });
 
+  it('swallows a Failed to fetch TypeError on the update request', async () => {
+    const update = vi.fn().mockRejectedValue(new TypeError('Failed to fetch'));
+    await expect(requestServiceWorkerUpdate({ update })).resolves.toBeUndefined();
+  });
+
   it('propagates a genuine update failure', async () => {
     const failure = new DOMException('Permission denied', 'SecurityError');
+    const update = vi.fn().mockRejectedValue(failure);
+    await expect(requestServiceWorkerUpdate({ update })).rejects.toBe(failure);
+  });
+
+  it('propagates a TypeError that is not a script-fetch failure', async () => {
+    const failure = new TypeError('unexpected');
     const update = vi.fn().mockRejectedValue(failure);
     await expect(requestServiceWorkerUpdate({ update })).rejects.toBe(failure);
   });

@@ -3,6 +3,7 @@ export function isBenignServiceWorkerUpdateFailure(error: unknown): boolean {
   const name = 'name' in error && typeof error.name === 'string' ? error.name : '';
   const message = 'message' in error && typeof error.message === 'string' ? error.message : '';
   if (name === 'AbortError' || name === 'NetworkError') return true;
+  if (name === 'TypeError' && /^(Failed to fetch|Load failed)$/i.test(message)) return true;
   return isBenignServiceWorkerUpdateFailureMessage(message);
 }
 
