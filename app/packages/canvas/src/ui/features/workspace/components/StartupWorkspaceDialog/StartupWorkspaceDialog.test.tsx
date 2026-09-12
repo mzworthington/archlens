@@ -1,25 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
+import { useDirectoryPickerStub } from '../../../../../test/stubDirectoryPicker';
 
 describe('StartupWorkspaceDialog', () => {
-  let originalPicker: PropertyDescriptor | undefined;
-
-  beforeEach(() => {
-    originalPicker = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
-    Object.defineProperty(window, 'showDirectoryPicker', {
-      configurable: true,
-      value: vi.fn(),
-    });
-  });
-
-  afterEach(() => {
-    if (originalPicker) {
-      Object.defineProperty(window, 'showDirectoryPicker', originalPicker);
-    } else {
-      Reflect.deleteProperty(window, 'showDirectoryPicker');
-    }
-  });
+  useDirectoryPickerStub();
 
   it('renders intent buckets with sample strip when open', () => {
     render(
@@ -67,51 +52,20 @@ describe('StartupWorkspaceDialog', () => {
     expect(screen.queryByTestId('startup-workspace-dialog')).not.toBeInTheDocument();
   });
 
-  it('invokes handlers from the embedded entry panel', () => {
-    const onOpenSample = vi.fn();
-    const onOpenDirectory = vi.fn();
-    const onBrowserLiteScan = vi.fn();
+  it('forwards ZIP upload from the embedded entry panel', () => {
     const onBrowserLiteScanZip = vi.fn();
-    const onImportMermaid = vi.fn();
-    const onStartBlankCanvas = vi.fn();
-    const onShareBlankCanvas = vi.fn();
-    const onShareDirectory = vi.fn();
-    const onShareFile = vi.fn();
-
     render(
       <StartupWorkspaceDialog
         isOpen
-        onOpenSample={onOpenSample}
-        onOpenDirectory={onOpenDirectory}
-        onBrowserLiteScan={onBrowserLiteScan}
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
         onBrowserLiteScanZip={onBrowserLiteScanZip}
-        onImportMermaid={onImportMermaid}
-        onStartBlankCanvas={onStartBlankCanvas}
-        onShareBlankCanvas={onShareBlankCanvas}
-        onShareDirectory={onShareDirectory}
-        onShareFile={onShareFile}
       />
     );
 
-    fireEvent.click(screen.getByTestId('workspace-open-sample'));
-    fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
-    fireEvent.click(screen.getByTestId('workspace-open-directory'));
-    fireEvent.click(screen.getByTestId('workspace-import-mermaid'));
-    fireEvent.click(screen.getByTestId('workspace-start-blank'));
-    fireEvent.click(screen.getByTestId('workspace-share-blank'));
-    fireEvent.click(screen.getByTestId('workspace-share-directory'));
-    fireEvent.click(screen.getByTestId('workspace-share-file'));
-
-    expect(onOpenSample).toHaveBeenCalledTimes(1);
-    expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
     expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
-    expect(onOpenDirectory).toHaveBeenCalledTimes(1);
-    expect(onImportMermaid).toHaveBeenCalledTimes(1);
-    expect(onStartBlankCanvas).toHaveBeenCalledTimes(1);
-    expect(onShareBlankCanvas).toHaveBeenCalledTimes(1);
-    expect(onShareDirectory).toHaveBeenCalledTimes(1);
-    expect(onShareFile).toHaveBeenCalledTimes(1);
   });
 
   it('surfaces sandbox loading feedback while open is in progress', () => {

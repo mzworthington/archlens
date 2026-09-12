@@ -1,26 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { WorkspaceEntryPanel } from './WorkspaceEntryPanel';
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
+import { stubDirectoryPicker, useDirectoryPickerStub } from '../../../test/stubDirectoryPicker';
 
 describe('WorkspaceEntryPanel', () => {
-  let originalPicker: PropertyDescriptor | undefined;
-
-  beforeEach(() => {
-    originalPicker = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
-    Object.defineProperty(window, 'showDirectoryPicker', {
-      configurable: true,
-      value: vi.fn(),
-    });
-  });
-
-  afterEach(() => {
-    if (originalPicker) {
-      Object.defineProperty(window, 'showDirectoryPicker', originalPicker);
-    } else {
-      Reflect.deleteProperty(window, 'showDirectoryPicker');
-    }
-  });
+  useDirectoryPickerStub();
 
   it('renders the sample strip above Investigate / Collaborate / Ideate as a horizontal row', () => {
     render(
@@ -126,35 +111,35 @@ describe('WorkspaceEntryPanel', () => {
   });
 
   it('offers a named ZIP upload when the folder picker is missing', () => {
-    Object.defineProperty(window, 'showDirectoryPicker', {
-      configurable: true,
-      value: undefined,
-    });
+    const restorePicker = stubDirectoryPicker(undefined);
+    try {
+      const onBrowserLiteScanZip = vi.fn();
+      render(
+        <WorkspaceEntryPanel
+          onOpenSample={vi.fn()}
+          onOpenDirectory={vi.fn()}
+          onBrowserLiteScan={vi.fn()}
+          onBrowserLiteScanZip={onBrowserLiteScanZip}
+          showCliPanel
+        />
+      );
 
-    const onBrowserLiteScanZip = vi.fn();
-    render(
-      <WorkspaceEntryPanel
-        onOpenSample={vi.fn()}
-        onOpenDirectory={vi.fn()}
-        onBrowserLiteScan={vi.fn()}
-        onBrowserLiteScanZip={onBrowserLiteScanZip}
-        showCliPanel
-      />
-    );
+      expect(screen.queryByTestId('workspace-browser-lite-unsupported')).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId('workspace-browser-lite-unavailable-badge')
+      ).not.toBeInTheDocument();
+      expect(screen.getByTestId('workspace-browser-lite-zip-hint')).toHaveTextContent(
+        /Upload a ZIP/i
+      );
+      expect(screen.getByRole('button', { name: 'Upload ZIP' })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /Browser lite scan/i })).not.toBeInTheDocument();
 
-    expect(screen.queryByTestId('workspace-browser-lite-unsupported')).not.toBeInTheDocument();
-    expect(
-      screen.queryByTestId('workspace-browser-lite-unavailable-badge')
-    ).not.toBeInTheDocument();
-    expect(screen.getByTestId('workspace-browser-lite-zip-hint')).toHaveTextContent(
-      /Upload a ZIP/i
-    );
-    expect(screen.getByRole('button', { name: 'Upload ZIP' })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /Browser lite scan/i })).not.toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
-    expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
-    expect(screen.queryByTestId('workspace-cli-panel-body')).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
+      expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
+      expect(screen.queryByTestId('workspace-cli-panel-body')).not.toBeInTheDocument();
+    } finally {
+      restorePicker();
+    }
   });
 
   it('keeps a single share handler as a full-width option', () => {

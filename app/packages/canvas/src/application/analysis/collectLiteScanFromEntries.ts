@@ -9,18 +9,18 @@ import {
   LITE_SCAN_MAX_METADATA_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
   LITE_SCAN_SKIP_DIR_NAMES,
-  isLiteScanIacPath,
-  isLiteScanMetadataPath,
   isLiteScanPulumiProjectPath,
-  isLiteScanPulumiYamlProgramPath,
-  isLiteScanSourcePath,
-  liteScanIacPriority,
-  liteScanMetadataPriority,
-  liteScanSourcePriority,
   type LiteScanTruncationReason,
 } from './liteScanLimits';
 import type { LiteScanProgress } from './liteScanProgress';
 import type { LiteScanSourceFile } from './liteScanTypes';
+import {
+  createLiteScanTakeState,
+  liteScanCandidateKind,
+  selectLiteScanCandidateBuckets,
+  takeLiteScanCandidate,
+  type LiteScanCandidateKind,
+} from './liteScanCandidateSelect';
 
 export type LiteScanWalkResult = {
   files: LiteScanSourceFile[];
@@ -37,13 +37,11 @@ export type MemoryScanEntry = {
   size: number;
 };
 
-type CandidateKind = 'source' | 'metadata' | 'iac';
-
 type Candidate = {
   relativePath: string;
   content: string;
   size: number;
-  kind: CandidateKind;
+  kind: LiteScanCandidateKind;
 };
 
 function normalizeRelativePath(relativePath: string): string | null {
@@ -95,14 +93,6 @@ function isUnderSkippedDirectory(relativePath: string): boolean {
   return parents.some(
     segment => LITE_SCAN_SKIP_DIR_NAMES.has(segment) || isHiddenListingName(segment)
   );
-}
-
-function candidateKind(relativePath: string, hasPulumiProjectInDir: boolean): CandidateKind | null {
-  if (isLiteScanSourcePath(relativePath)) return 'source';
-  if (isLiteScanMetadataPath(relativePath)) return 'metadata';
-  if (isLiteScanIacPath(relativePath)) return 'iac';
-  if (hasPulumiProjectInDir && isLiteScanPulumiYamlProgramPath(relativePath)) return 'iac';
-  return null;
 }
 
 export function stripSharedArchiveRoot(paths: readonly string[]): {
@@ -192,7 +182,10 @@ export function collectLiteScanFromEntries(
     if (isHiddenListingName(baseName(entry.relativePath))) continue;
     if (isUnderSkippedDirectory(entry.relativePath)) continue;
     if (shouldSkipPath(entry.relativePath)) continue;
-    const kind = candidateKind(entry.relativePath, pulumiDirs.has(directoryOf(entry.relativePath)));
+    const kind = liteScanCandidateKind(
+      entry.relativePath,
+      pulumiDirs.has(directoryOf(entry.relativePath))
+    );
     if (!kind) continue;
     candidates.push({
       relativePath: entry.relativePath,
@@ -209,82 +202,38 @@ export function collectLiteScanFromEntries(
     });
   }
 
-  const sources = candidates
-    .filter(c => c.kind === 'source')
-    .sort(
-      (a, b) =>
-        liteScanSourcePriority(a.relativePath) - liteScanSourcePriority(b.relativePath) ||
-        a.relativePath.localeCompare(b.relativePath)
-    );
-  const iac = candidates
-    .filter(c => c.kind === 'iac')
-    .sort(
-      (a, b) =>
-        liteScanIacPriority(a.relativePath) - liteScanIacPriority(b.relativePath) ||
-        a.relativePath.localeCompare(b.relativePath)
-    );
-  const metadata = candidates
-    .filter(c => c.kind === 'metadata')
-    .sort(
-      (a, b) =>
-        liteScanMetadataPriority(a.relativePath) - liteScanMetadataPriority(b.relativePath) ||
-        a.relativePath.localeCompare(b.relativePath)
-    );
-
-  const sharedBudgetPaths = [...sources, ...iac];
-  const truncationReasons = new Set<LiteScanTruncationReason>();
-  if (sharedBudgetPaths.length > maxFiles) truncationReasons.add('files');
-  if (metadata.length > maxMetadataFiles) truncationReasons.add('metadata');
-
-  const files: LiteScanSourceFile[] = [];
-  let totalBytes = 0;
-  let sourceCount = 0;
-  let iacCount = 0;
+  const selected = selectLiteScanCandidateBuckets(candidates, maxFiles, maxMetadataFiles);
+  const state = createLiteScanTakeState(selected.truncationReasons);
+  const limits = { maxFileBytes, maxTotalBytes };
 
   const take = (candidate: Candidate, budget: 'shared' | 'metadata'): boolean => {
     throwIfAborted(options.signal);
-    if (candidate.size > maxFileBytes) return true;
-    if (totalBytes + candidate.size > maxTotalBytes) {
-      truncationReasons.add('bytes');
-      return false;
-    }
-    totalBytes += candidate.size;
-    files.push({ relativePath: candidate.relativePath, content: candidate.content });
-    if (budget === 'metadata') {
+    const result = takeLiteScanCandidate(state, candidate, budget, limits);
+    if (result === 'took') {
       options.onProgress?.({
         phase: 'reading',
-        filesScanned: sourceCount + iacCount,
+        filesScanned: state.sourceCount + state.iacCount,
         fileCap: maxFiles,
-        bytesRead: totalBytes,
+        bytesRead: state.totalBytes,
         byteCap: maxTotalBytes,
       });
-      return true;
     }
-    if (candidate.kind === 'iac') iacCount += 1;
-    else sourceCount += 1;
-    options.onProgress?.({
-      phase: 'reading',
-      filesScanned: sourceCount + iacCount,
-      fileCap: maxFiles,
-      bytesRead: totalBytes,
-      byteCap: maxTotalBytes,
-    });
-    return true;
+    return result !== 'full';
   };
 
-  for (const candidate of sharedBudgetPaths.slice(0, maxFiles)) {
+  for (const candidate of selected.sharedBudget) {
     if (!take(candidate, 'shared')) break;
   }
-  for (const candidate of metadata.slice(0, maxMetadataFiles)) {
+  for (const candidate of selected.metadata) {
     if (!take(candidate, 'metadata')) break;
   }
 
   return {
-    files,
-    sourceFileCount: sourceCount,
-    iacFileCount: iacCount,
-    truncated: truncationReasons.size > 0,
-    truncationReasons: [...truncationReasons],
+    files: state.files,
+    sourceFileCount: state.sourceCount,
+    iacFileCount: state.iacCount,
+    truncated: state.truncationReasons.size > 0,
+    truncationReasons: [...state.truncationReasons],
     directoryName: sharedRoot.directoryName ?? options.directoryName,
   };
 }
