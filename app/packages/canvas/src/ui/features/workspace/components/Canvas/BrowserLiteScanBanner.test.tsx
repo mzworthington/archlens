@@ -17,6 +17,7 @@ describe('BrowserLiteScanBanner', () => {
       /TraceLens git hotspots are on this map/i
     );
     expect(screen.getByRole('button', { name: 'Copy install command' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Copy scan command' })).toBeInTheDocument();
     expect(screen.getByTestId('browser-lite-scan-banner-cli')).toHaveAttribute(
       'href',
       '/guide/getting-started'
