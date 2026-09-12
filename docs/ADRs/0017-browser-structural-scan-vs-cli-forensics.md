@@ -1,5 +1,5 @@
 ---
-status: Accepted
+status: Superseded by [ADR-0018](./0018-browser-git-tracelens-via-isomorphic-git.md)
 date: 2026-08-09
 deciders: ['ArchLens maintainers']
 ---
