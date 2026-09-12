@@ -1,3 +1,5 @@
+import { isBenignServiceWorkerUpdateFailureMessage } from '../../application/pwa/benignServiceWorkerUpdateFailure';
+
 export type PostHogCaptureResult = {
   event: string;
   properties?: Record<string, unknown>;
@@ -7,8 +9,24 @@ function isResizeObserverLoopMessage(message: string): boolean {
   return /ResizeObserver loop/i.test(message);
 }
 
+export function dropBenignBrowserExceptionCapture<T extends PostHogCaptureResult>(
+  capture: T | null
+): T | null {
+  return dropIfExceptionMessage(
+    dropResizeObserverLoopCapture(capture),
+    isBenignServiceWorkerUpdateFailureMessage
+  );
+}
+
 export function dropResizeObserverLoopCapture<T extends PostHogCaptureResult>(
   capture: T | null
+): T | null {
+  return dropIfExceptionMessage(capture, isResizeObserverLoopMessage);
+}
+
+function dropIfExceptionMessage<T extends PostHogCaptureResult>(
+  capture: T | null,
+  isNoise: (message: string) => boolean
 ): T | null {
   if (capture == null) {
     return null;
@@ -16,7 +34,7 @@ export function dropResizeObserverLoopCapture<T extends PostHogCaptureResult>(
   if (capture.event !== '$exception') {
     return capture;
   }
-  if (exceptionMessages(capture.properties).some(isResizeObserverLoopMessage)) {
+  if (exceptionMessages(capture.properties).some(isNoise)) {
     return null;
   }
   return capture;

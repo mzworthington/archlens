@@ -1,6 +1,6 @@
 import posthog from 'posthog-js';
 import {
-  dropResizeObserverLoopCapture,
+  dropBenignBrowserExceptionCapture,
   type PostHogCaptureResult,
 } from './dropResizeObserverLoopCapture';
 import { POSTHOG_SDK_DEFAULTS, type PostHogBrowserConfig } from './posthogConfig';
@@ -32,7 +32,7 @@ const defaultPostHogClient: PostHogSessionClient = {
       capture_pageview: options.capture_pageview,
       persistence: options.persistence,
       person_profiles: options.person_profiles,
-      before_send: event => dropResizeObserverLoopCapture(event),
+      before_send: event => dropBenignBrowserExceptionCapture(event),
     });
   },
   startExceptionAutocapture: () => {
@@ -74,7 +74,7 @@ export function createAnalyticsSession(
         capture_pageview: 'history_change',
         persistence: 'localStorage+cookie',
         person_profiles: 'never',
-        before_send: dropResizeObserverLoopCapture,
+        before_send: dropBenignBrowserExceptionCapture,
       });
       client.startExceptionAutocapture?.();
       started = true;

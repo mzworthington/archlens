@@ -81,7 +81,7 @@ export default defineConfig({
         // demo YAML only (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
         // Remaining /bundled-blueprints/* stay on CacheFirst after first ad-hoc fetch.
         globPatterns: [
-          '**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}',
+          '**/*.{js,css,ico,svg,woff2,webmanifest,png,wasm}',
           'bundled-blueprints/catalog.json',
           'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
           'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
@@ -91,7 +91,8 @@ export default defineConfig({
         ],
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
-        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/version.json'],
+        // Pages pretty-URLs 308 every */index.html; Workbox install fails on those redirects.
+        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/version.json', '**/*.html'],
         // CF Pages 308s /index.html → /. Navigation requests have redirect
         // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
         navigateFallback: '/',
