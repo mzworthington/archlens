@@ -16,13 +16,15 @@ function getLocalBuildId(): string {
   return document.querySelector(`meta[name="${BUILD_ID_META}"]`)?.getAttribute('content') ?? '';
 }
 
-/** Fetch the deploy's current build id from index.html (bypass HTTP cache). */
+/** Fetch the deploy's current build id from version.json (bypass HTTP cache). */
 async function fetchRemoteBuildId(baseUrl: string): Promise<string | null> {
   try {
     const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-    const response = await fetch(`${base}index.html`, { cache: 'no-store' });
+    const response = await fetch(`${base}version.json`, { cache: 'no-store' });
     if (!response.ok) return null;
-    return parseBuildIdFromHtml(await response.text());
+    const body: unknown = await response.json();
+    if (!body || typeof body !== 'object' || !('buildId' in body)) return null;
+    return typeof body.buildId === 'string' && body.buildId ? body.buildId : null;
   } catch {
     return null;
   }

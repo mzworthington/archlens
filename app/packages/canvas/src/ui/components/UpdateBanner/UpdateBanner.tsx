@@ -2,7 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
-import { requestServiceWorkerUpdate } from '../../../application/pwa/requestServiceWorkerUpdate';
+import {
+  reloadWithoutServiceWorker,
+  requestServiceWorkerUpdate,
+} from '../../../application/pwa/requestServiceWorkerUpdate';
 import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck';
 
 /**
@@ -24,7 +27,6 @@ export function UpdateBanner() {
   const [fallbackRefresh, setFallbackRefresh] = useState(false);
 
   const checkForRemoteUpdate = useCallback(async () => {
-    if (import.meta.env.DEV) return;
     const updated = await hasRemoteBuildUpdate(import.meta.env.BASE_URL);
     if (updated) setFallbackRefresh(true);
   }, []);
@@ -51,7 +53,12 @@ export function UpdateBanner() {
       void updateServiceWorker(true);
       return;
     }
-    window.location.reload();
+    void reloadWithoutServiceWorker({
+      getRegistrations: () => navigator.serviceWorker.getRegistrations(),
+      reload: () => {
+        window.location.reload();
+      },
+    });
   };
 
   const dismiss = () => {

@@ -1,5 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { requestServiceWorkerUpdate } from './requestServiceWorkerUpdate';
+import {
+  reloadWithoutServiceWorker,
+  requestServiceWorkerUpdate,
+} from './requestServiceWorkerUpdate';
 
 describe('requestServiceWorkerUpdate', () => {
   it('resolves without calling update when there is no registration', async () => {
@@ -62,5 +65,18 @@ describe('requestServiceWorkerUpdate', () => {
     );
     const update = vi.fn().mockRejectedValue(failure);
     await expect(requestServiceWorkerUpdate({ update })).rejects.toBe(failure);
+  });
+});
+
+describe('reloadWithoutServiceWorker', () => {
+  it('unregisters every worker then reloads so the next document is not a stale shell', async () => {
+    const unregister = vi.fn().mockResolvedValue(true);
+    const reload = vi.fn();
+    await reloadWithoutServiceWorker({
+      getRegistrations: async () => [{ unregister }],
+      reload,
+    });
+    expect(unregister).toHaveBeenCalledTimes(1);
+    expect(reload).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { parseBuildIdFromHtml, formatAppVersionLabel } from './buildInfo';
+import { parseBuildIdFromHtml, formatAppVersionLabel, hasRemoteBuildUpdate } from './buildInfo';
 
 describe('parseBuildIdFromHtml', () => {
   it('reads app-build-id meta tag from html', () => {
@@ -27,5 +27,23 @@ describe('formatAppVersionLabel', () => {
   it('formats major.minor from package version plus build id', () => {
     expect(formatAppVersionLabel()).toBe('v0.1 · abc123d');
     expect(formatAppVersionLabel({ fullBuildId: true })).toBe('v0.1.abc123def456');
+  });
+});
+
+describe('hasRemoteBuildUpdate', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('reads the live build id from version.json instead of index.html', async () => {
+    vi.stubGlobal('__APP_BUILD_ID__', 'oldbuild0000');
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ sha: 'deadbeef', buildId: 'newbuild12' }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(hasRemoteBuildUpdate('/')).resolves.toBe(true);
+    expect(fetchMock).toHaveBeenCalledWith('/version.json', { cache: 'no-store' });
   });
 });
