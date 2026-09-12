@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
+import { DEFAULT_SCAN_GLOB } from '../domain/analysisOptions';
 import {
   DEFAULT_FORENSICS_GLOB,
   DEFAULT_MIN_CHURN_FOR_COMPLEXITY_LARGE,

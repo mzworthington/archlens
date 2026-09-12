@@ -1,4 +1,4 @@
-import { throwIfAborted } from '@archlens/analysis/cancellation';
+import { throwIfAborted } from '../domain/cancellation';
 import {
   aggregateFileHistory,
   buildImportCoupling,
@@ -10,7 +10,8 @@ import {
 import { DEFAULT_FORENSICS_OPTIONS, mergeForensicsOptions, type ForensicsOptions } from './options';
 import { resolveEffectiveMinChurnForComplexity } from './forensicsGlob';
 import type { ForensicAnalyzerPorts } from './ports';
-import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } from './types';
+import type { CoupledFileRef, FileMetrics } from './types';
+import type { ForensicReport, StructuralMetrics } from './report';
 
 export interface RunForensicsInput {
   rootPath: string;

@@ -22,6 +22,24 @@ function normalizeRelative(relativePath: string): string {
   return relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
 }
 
+/** Mutable gitignore matcher for walkers that discover `.gitignore` while scanning. */
+export function createMutableGitignoreFilter(): {
+  add: (content: string) => void;
+  ignores: (relativePath: string) => boolean;
+} {
+  const ig: Ignore = ignore().add('.git');
+  return {
+    add: content => {
+      ig.add(content);
+    },
+    ignores: relativePath => {
+      const normalized = normalizeRelative(relativePath);
+      if (!normalized || normalized === '.') return false;
+      return ig.ignores(normalized);
+    },
+  };
+}
+
 /**
  * Browser-safe path filter: structural defaults + config ignore/include.
  * Does not load `.gitignore` from disk (CLI adapters add that layer).
