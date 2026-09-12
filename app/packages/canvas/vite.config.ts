@@ -16,6 +16,7 @@ import { syncBundledChaosSpecs } from './vite/syncChaosSpecs';
 import { syncDocsAssets } from './vite/syncDocsAssets';
 import { syncJsonSchemas } from './vite/syncJsonSchemas';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
+import { rewritePrecacheHtmlUrls } from './vite/rewritePrecacheHtmlUrls';
 
 const base = process.env.VITE_BASE || '/';
 const deployIdentity = resolveDeployIdentity();
@@ -95,6 +96,9 @@ export default defineConfig({
         // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
         navigateFallback: '/',
         additionalManifestEntries: [{ url: '/', revision: appBuildId }],
+        // Pretty-URLs also 308 globbed folder index.html precache entries.
+        // Rewrite those to the directory URL that returns 200 so install can cache them.
+        manifestTransforms: [async manifest => ({ manifest: rewritePrecacheHtmlUrls(manifest) })],
         // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/* and /assets/* as real assets.
         navigateFallbackDenylist: [
           /^\/schemas\//,

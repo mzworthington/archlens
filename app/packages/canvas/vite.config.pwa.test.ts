@@ -13,4 +13,10 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
     expect(source).toMatch(/additionalManifestEntries/);
     expect(source).toMatch(/url:\s*'\//);
   });
+
+  it('rewrites precached HTML to pretty URLs so install does not cache a 308', () => {
+    const source = fs.readFileSync(viteConfigPath, 'utf8');
+    expect(source).toMatch(/rewritePrecacheHtmlUrls/);
+    expect(source).toMatch(/manifestTransforms/);
+  });
 });
