@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import git, { type ReadCommitResult } from 'isomorphic-git';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
 import type { WorkspacePort } from '../../../core';
@@ -9,6 +10,37 @@ import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampl
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { resetWorkspaceOpenSessionForTests } from '../workspaceOpenSession';
 import { readBlankCanvasSession } from './ioState/blankCanvasSession';
+
+function mockGitLogCommit(args: {
+  oid: string;
+  parent: string[];
+  email: string;
+  path: string;
+}): ReadCommitResult {
+  const timestamp = Math.floor(Date.now() / 1000);
+  return {
+    oid: args.oid,
+    payload: '',
+    commit: {
+      message: 'scan',
+      tree: '0'.repeat(40),
+      parent: args.parent,
+      changes: [['n', 'o', args.path]],
+      author: {
+        name: 'dev',
+        email: args.email,
+        timestamp,
+        timezoneOffset: 0,
+      },
+      committer: {
+        name: 'dev',
+        email: args.email,
+        timestamp,
+        timezoneOffset: 0,
+      },
+    },
+  };
+}
 
 describe('ioState Actions & State Management', () => {
   const v3Version = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
@@ -145,6 +177,87 @@ dependencies: []
     expect(state.isScanMapPersistOpen).toBe(true);
     expect(state.workspacePort).not.toBe(state.folderWorkspacePort);
     expect(state.liteScanProgress).toBeNull();
+  });
+
+  it('attaches TraceLens git hotspots when the picked folder has git history', async () => {
+    const log = vi
+      .spyOn(git, 'log')
+      .mockResolvedValue([
+        mockGitLogCommit({ oid: '1', parent: ['0'], email: 'a@ex.com', path: 'src/hot.ts' }),
+        mockGitLogCommit({ oid: '2', parent: ['1'], email: 'b@ex.com', path: 'src/hot.ts' }),
+        mockGitLogCommit({ oid: '3', parent: ['2'], email: 'c@ex.com', path: 'src/hot.ts' }),
+      ]);
+
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield [
+          'hot.ts',
+          makeFileHandle(
+            'hot.ts',
+            `
+          export function run(x: number) {
+            if (x > 1) {
+              for (const n of [1, 2, 3]) {
+                if (n) return n;
+              }
+            }
+            while (x) {
+              if (x < 0) break;
+              x -= 1;
+            }
+            return x;
+          }
+        `
+          ),
+        ];
+        yield ['cold.ts', makeFileHandle('cold.ts', 'export const n = 1;\n')];
+      },
+    };
+    const gitDir = {
+      kind: 'directory',
+      name: '.git',
+      async *[Symbol.asyncIterator]() {},
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'git-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+      async getDirectoryHandle(name: string) {
+        if (name === '.git') return gitDir;
+        throw new Error('not found');
+      },
+      async getFileHandle() {
+        throw new Error('not found');
+      },
+    };
+
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    try {
+      const opened = await useBlueprintStore.getState().openBrowserLiteScan();
+      const state = useBlueprintStore.getState();
+      expect(opened, state.lastError ?? 'openBrowserLiteScan returned false').toBe(true);
+      expect(state.browserScanGit).toBe('included');
+      expect(state.notification?.message).toMatch(/TraceLens git hotspots are included/i);
+      const hotspotNodes = state.loadedSystems.flatMap(system =>
+        system.schema.nodes.filter(node => node.forensics?.classifications?.includes('hotspot'))
+      );
+      expect(hotspotNodes.length).toBeGreaterThan(0);
+    } finally {
+      log.mockRestore();
+    }
   });
 
   it('cancels an in-flight browser lite scan without opening a workspace', async () => {
