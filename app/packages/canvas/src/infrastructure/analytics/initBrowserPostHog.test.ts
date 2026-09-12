@@ -50,6 +50,15 @@ describe('createAnalyticsSession', () => {
         },
       })
     ).toBeNull();
+    expect(
+      beforeSend?.({
+        event: '$exception',
+        properties: {
+          $exception_message:
+            'ServiceWorker script at https://archlens.dev/sw.js for scope https://archlens.dev/ encountered an error during installation.',
+        },
+      })
+    ).toBeNull();
   });
 
   it('opts back in without a second init after stop', () => {
