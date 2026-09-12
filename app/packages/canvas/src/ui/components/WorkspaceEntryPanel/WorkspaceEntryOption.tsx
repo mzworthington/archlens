@@ -11,6 +11,7 @@ export type WorkspaceEntryOptionProps = {
   className?: string;
   titleExtra?: React.ReactNode;
   ariaDescribedBy?: string;
+  ariaLabel?: string;
   descriptionClassName?: string;
 };
 
@@ -24,6 +25,7 @@ export const WorkspaceEntryOption: React.FC<WorkspaceEntryOptionProps> = ({
   className = optionClass,
   titleExtra,
   ariaDescribedBy,
+  ariaLabel,
   descriptionClassName = 'text-slate-500',
 }) => (
   <button
@@ -32,6 +34,7 @@ export const WorkspaceEntryOption: React.FC<WorkspaceEntryOptionProps> = ({
     onClick={onClick}
     disabled={disabled}
     className={className}
+    aria-label={ariaLabel}
     aria-describedby={ariaDescribedBy}
   >
     {icon}

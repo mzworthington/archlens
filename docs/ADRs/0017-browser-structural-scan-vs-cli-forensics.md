@@ -33,7 +33,7 @@ Chosen option: "**Option A**", because it gives instant feedback while preservin
 - Good, because users can try ArchLens without installing anything
 - Good, because browser scan can stay read-only and avoid local repository writes
 - Bad, because browser scan remains structure-only and cannot show TraceLens/git hotspots
-- Follow-up: ZIP upload fallback for browsers without File System Access API
+- Follow-up delivered (MZW-36): ZIP upload fallback for browsers without File System Access API. ZIP is scan input only — not a commit workspace, and not a git-hotspot source.
 
 ## Links
 

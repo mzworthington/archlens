@@ -1,8 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
 
 describe('StartupWorkspaceDialog', () => {
+  let originalPicker: PropertyDescriptor | undefined;
+
+  beforeEach(() => {
+    originalPicker = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(),
+    });
+  });
+
+  afterEach(() => {
+    if (originalPicker) {
+      Object.defineProperty(window, 'showDirectoryPicker', originalPicker);
+    } else {
+      Reflect.deleteProperty(window, 'showDirectoryPicker');
+    }
+  });
+
   it('renders intent buckets with sample strip when open', () => {
     render(
       <StartupWorkspaceDialog

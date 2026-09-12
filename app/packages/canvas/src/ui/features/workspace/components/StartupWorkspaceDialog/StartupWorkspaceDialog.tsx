@@ -6,7 +6,7 @@ interface StartupWorkspaceDialogProps {
   isOpen: boolean;
   onOpenSample: () => void;
   onOpenDirectory: () => void;
-  onBrowserLiteScan?: () => void;
+  onBrowserLiteScan?: (source?: { zipFile?: File }) => void | Promise<boolean>;
   onImportMermaid?: () => void;
   onStartBlankCanvas?: () => void;
   onShareBlankCanvas?: () => void;

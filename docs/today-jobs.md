@@ -62,10 +62,10 @@ Import is a merge into BlueprintSpec with a conflict preview. Forensics and Merm
 
 > Investigate, then Browser lite scan. Structure only. No git hotspots.
 
-The browser File System Access API builds BlueprintSpec in memory. Application languages plus Terraform/Pulumi. No TraceLens, no CI publish, no writes unless you save later.
+The browser File System Access API builds BlueprintSpec in memory. Application languages plus Terraform/Pulumi. No TraceLens from a ZIP, no CI publish, no writes unless you save later. Safari and Firefox upload a ZIP instead of picking a folder.
 
 1. **Open** Canvas and pick **Investigate**.
-2. **Choose** Browser lite scan and select a source folder.
+2. **Choose** Browser lite scan and select a source folder, or upload a ZIP if the browser cannot pick a folder.
 3. **Explore** the generated map. Install the CLI when you need git forensics or publish.
 
 ```

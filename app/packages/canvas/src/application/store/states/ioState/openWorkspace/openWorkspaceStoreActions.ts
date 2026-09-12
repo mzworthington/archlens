@@ -15,6 +15,10 @@ import {
   pickSourceDirectory,
   walkBrowserSourceDirectory,
 } from '../../../../../infrastructure/analysis/browserSourceWalker';
+import {
+  pickZipArchive,
+  walkZipArchive,
+} from '../../../../../infrastructure/analysis/zipSourceWalker';
 import { createMemoryScanWorkspacePort } from '../../../../../infrastructure/analysis/memoryScanWorkspace';
 import { createAnalysisLogger } from '../../../../../infrastructure/analysis/analysisLogger';
 import { runBrowserAnalysisWorker } from '../../../../../infrastructure/analysis/runBrowserAnalysisWorker';
@@ -23,11 +27,7 @@ import {
   LITE_SCAN_MAX_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
 } from '../../../../analysis/liteScanLimits';
-import {
-  CLI_GETTING_STARTED_PATH,
-  CLI_INSTALL_COMMAND,
-  CLI_SCAN_COMMAND,
-} from '../../../../../constants/cli';
+import { CLI_INSTALL_COMMAND, CLI_SCAN_COMMAND } from '../../../../../constants/cli';
 import { browserScanReadyMessage } from '../../../../forensics/traceLensBrowserScanCopy';
 import {
   downloadScanYamlFileName,
@@ -170,26 +170,29 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       browserLiteScanController?.abort();
     },
 
-    openBrowserLiteScan: async () => {
+    openBrowserLiteScan: async (source?: { zipFile?: File }) => {
       const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
-      const pick = await pickSourceDirectory();
-      if (pick.status === 'cancelled') return false;
-      if (pick.status === 'unsupported') {
-        setNotification?.({
-          type: 'error',
-          title: 'Browser lite scan unavailable',
-          message:
-            'This browser cannot pick a local folder (Firefox and Safari lack the File System Access API). Use Chrome or Edge, or install the ArchLens CLI for a full scan.',
-          actions: [
-            {
-              label: 'Install guide',
-              onClick: () => {
-                window.location.assign(CLI_GETTING_STARTED_PATH);
-              },
-            },
-          ],
-        });
-        return false;
+      let zipFile = source?.zipFile;
+      let directoryHandle: FileSystemDirectoryHandle | null = null;
+
+      if (!zipFile) {
+        const pick = await pickSourceDirectory();
+        if (pick.status === 'cancelled') return false;
+        if (pick.status === 'ok') {
+          directoryHandle = pick.handle;
+        } else {
+          const zipPick = await pickZipArchive();
+          if (zipPick.status === 'cancelled') {
+            setNotification?.({
+              type: 'error',
+              title: 'Scan cancelled',
+              message:
+                'Upload a ZIP of the repo to try again, or install the ArchLens CLI for a full scan.',
+            });
+            return false;
+          }
+          zipFile = zipPick.file;
+        }
       }
 
       const openGeneration = beginWorkspaceOpen();
@@ -214,10 +217,15 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       };
 
       try {
-        const walked = await walkBrowserSourceDirectory(pick.handle, {
-          signal: cancellation.signal,
-          onProgress: reportProgress,
-        });
+        const walked = zipFile
+          ? await walkZipArchive(zipFile, {
+              signal: cancellation.signal,
+              onProgress: reportProgress,
+            })
+          : await walkBrowserSourceDirectory(directoryHandle!, {
+              signal: cancellation.signal,
+              onProgress: reportProgress,
+            });
         if (abortIfSuperseded()) return false;
         if (walked.sourceFileCount === 0 && walked.iacFileCount === 0) {
           throw new Error(
@@ -236,14 +244,16 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         const { yamlFiles, gitStatus } = await runBrowserAnalysisWorker({
           sources: walked.files,
           directoryName: walked.directoryName,
-          rootHandle: pick.handle,
+          rootHandle: directoryHandle ?? undefined,
           logger: createAnalysisLogger(logger),
           signal: cancellation.signal,
         });
         if (abortIfSuperseded()) return false;
 
         if (yamlFiles.length === 0) {
-          throw new Error('Scan produced no BlueprintSpec YAML - check the selected folder.');
+          throw new Error(
+            'Scan produced no BlueprintSpec YAML - check the selected folder or ZIP.'
+          );
         }
 
         const scanPort = createMemoryScanWorkspacePort({

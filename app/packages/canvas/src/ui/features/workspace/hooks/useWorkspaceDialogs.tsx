@@ -97,16 +97,21 @@ export function useWorkspaceDialogs(): React.ReactNode {
     }
   }, [openWorkspaceDirectory, setIsStartupOpen, setLocation]);
 
-  const handleBrowserLiteScan = useCallback(async () => {
-    try {
-      const opened = await openBrowserLiteScan();
-      if (!opened) return;
-      setIsStartupOpen(false);
-      navigateToActiveWorkspaceEntity(setLocation);
-    } catch (err) {
-      console.error('Failed to run browser lite scan:', err);
-    }
-  }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
+  const handleBrowserLiteScan = useCallback(
+    async (source?: { zipFile?: File }) => {
+      try {
+        const opened = await openBrowserLiteScan(source);
+        if (!opened) return false;
+        setIsStartupOpen(false);
+        navigateToActiveWorkspaceEntity(setLocation);
+        return true;
+      } catch (err) {
+        console.error('Failed to run browser lite scan:', err);
+        return false;
+      }
+    },
+    [openBrowserLiteScan, setIsStartupOpen, setLocation]
+  );
 
   const handleImportMermaid = useCallback(() => {
     markFolderWorkspacePreferred();
@@ -226,7 +231,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           isOpen={isStartupOpen}
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
-          onBrowserLiteScan={() => void handleBrowserLiteScan()}
+          onBrowserLiteScan={handleBrowserLiteScan}
           onImportMermaid={handleImportMermaid}
           onStartBlankCanvas={handleStartBlankCanvas}
           onShareBlankCanvas={handleShareBlankCanvas}

@@ -8,13 +8,13 @@ ArchLens Canvas is the map over **BlueprintSpec**: author in a local folder, or 
 
 On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** auto-open the demo. Pick an **intent**, then a leaf action:
 
-| Intent / option         | What it does                                                                                              |
-| ----------------------- | --------------------------------------------------------------------------------------------------------- |
-| **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)         |
-| **Full analysis (CLI)** | Collapsed strip under the demo: TraceLens git hotspots, watch mode and CI catalog publish                 |
-| **Investigate**         | Map real systems: browser lite scan or open a blueprints folder                                           |
-| **Collaborate**         | Share a live editing link (blank room, or open a folder/file first). See [Collaborate](./collaborate.md). |
-| **Ideate**              | Solo blank canvas or import Mermaid (share later from the toolbar)                                        |
+| Intent / option         | What it does                                                                                                            |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)                       |
+| **Full analysis (CLI)** | Collapsed strip under the demo: TraceLens git hotspots, watch mode and CI catalog publish                               |
+| **Investigate**         | Map real systems: browser lite scan (folder, or ZIP where the browser cannot pick a folder) or open a blueprints folder |
+| **Collaborate**         | Share a live editing link (blank room, or open a folder/file first). See [Collaborate](./collaborate.md).               |
+| **Ideate**              | Solo blank canvas or import Mermaid (share later from the toolbar)                                                      |
 
 Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
