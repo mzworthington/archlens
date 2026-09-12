@@ -37,4 +37,17 @@ describe('browserScanReadyMessage', () => {
     expect(message).toMatch(/watch mode and CI publish/);
     expect(message.toLowerCase()).not.toContain('structure only');
   });
+
+  it('says this folder has no git history without claiming the tab cannot do git', () => {
+    const message = browserScanReadyMessage({
+      sourceFileCount: 3,
+      iacFileCount: 0,
+      truncatedNote: '',
+      gitStatus: 'missing',
+    });
+    expect(message).toMatch(/This folder has no git history/);
+    expect(message.toLowerCase()).not.toMatch(/cannot do git/);
+    expect(message.toLowerCase()).not.toContain('structure only');
+    expect(message).toMatch(/watch mode and CI publish/);
+  });
 });

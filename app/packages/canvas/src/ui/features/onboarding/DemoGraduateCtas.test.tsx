@@ -22,7 +22,14 @@ describe('DemoGraduateCtas', () => {
     useBlueprintStore.setState({ openBrowserLiteScan });
     render(<DemoGraduateCtas />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Scan your repo in the browser' }));
+    const scan = screen.getByRole('button', { name: 'Scan your repo in the browser' });
+    const cli = screen.getByRole('button', { name: 'Install CLI for watch and CI' });
+    expect(scan.tagName).toBe('BUTTON');
+    expect(cli.tagName).toBe('BUTTON');
+    expect(scan).not.toHaveAttribute('tabIndex', '-1');
+    expect(cli).not.toHaveAttribute('tabIndex', '-1');
+
+    fireEvent.click(scan);
     expect(openBrowserLiteScan).toHaveBeenCalledTimes(1);
 
     fireEvent.click(screen.getByRole('button', { name: 'Install CLI for watch and CI' }));

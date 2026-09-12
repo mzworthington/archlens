@@ -36,6 +36,18 @@ describe('BrowserLiteScanBanner', () => {
     expect(screen.queryByText(/structure-only/i)).not.toBeInTheDocument();
   });
 
+  it('says this folder has no git without claiming the tab cannot do git', () => {
+    render(<BrowserLiteScanBanner open onDismiss={vi.fn()} gitStatus="missing" />);
+    expect(screen.getByTestId('browser-lite-scan-banner')).toHaveTextContent(/No git history/i);
+    expect(screen.getByTestId('browser-lite-scan-banner')).toHaveTextContent(
+      /This folder has no git history/i
+    );
+    expect(screen.queryByText(/cannot do git/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/structure-only/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Copy install command' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Copy scan command' })).toBeInTheDocument();
+  });
+
   it('offers a named save when the map is still in memory', () => {
     const onSaveMap = vi.fn();
     render(<BrowserLiteScanBanner open onDismiss={vi.fn()} onSaveMap={onSaveMap} />);
