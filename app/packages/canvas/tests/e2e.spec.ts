@@ -11,7 +11,29 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('workspace-open-sample')).toBeVisible();
     await expect(page.getByTestId('workspace-open-directory')).toBeVisible();
+    await expect(page.getByTestId('workspace-browser-lite-scan')).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Upload ZIP for browser lite scan' })
+    ).toBeVisible();
     await expect(page.getByTestId('startup-import-mermaid')).toHaveCount(0);
+  });
+
+  test('Startup chooser offers ZIP when folder pick is missing', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'showDirectoryPicker', {
+        configurable: true,
+        value: undefined,
+      });
+    });
+    await keepStartupChooserOpen(page);
+    await gotoApp(page, '/workspace');
+
+    const dialog = page.getByTestId('startup-workspace-dialog');
+    await expect(dialog).toBeVisible({ timeout: 10_000 });
+    await expect(dialog.getByTestId('workspace-browser-lite-unavailable-badge')).toHaveCount(0);
+    const zipScan = dialog.getByRole('button', { name: 'Upload ZIP for browser lite scan' });
+    await expect(zipScan).toBeVisible();
+    await expect(zipScan).toHaveText(/Upload a ZIP of the repo/i);
   });
 
   test('Workspace panels and diagram zoom', async ({ page }) => {

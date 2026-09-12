@@ -1,4 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { zipSync, strToU8 } from 'fflate';
+import * as zipSourceWalker from '../../../infrastructure/analysis/zipSourceWalker';
 import git, { type ReadCommitResult } from 'isomorphic-git';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
@@ -300,25 +302,66 @@ dependencies: []
     expect(useBlueprintStore.getState().isLoading).toBe(false);
   });
 
-  it('notifies when the browser cannot pick a source directory', async () => {
+  it('recovers when ZIP pick is cancelled after folder pick is unavailable', async () => {
     const original = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
     Object.defineProperty(window, 'showDirectoryPicker', {
       configurable: true,
       value: undefined,
+    });
+    const pickZip = vi.spyOn(zipSourceWalker, 'pickZipArchive').mockResolvedValue({
+      status: 'cancelled',
     });
 
     const opened = await useBlueprintStore.getState().openBrowserLiteScan();
     const state = useBlueprintStore.getState();
 
     expect(opened).toBe(false);
-    expect(state.notification?.title).toBe('Browser lite scan unavailable');
-    expect(state.notification?.message).toMatch(/Firefox|Safari|File System Access/i);
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.notification?.title).toBe('Scan cancelled');
+    expect(state.notification?.message).toMatch(/Upload a ZIP/i);
 
+    pickZip.mockRestore();
     if (original) {
       Object.defineProperty(window, 'showDirectoryPicker', original);
     } else {
       Reflect.deleteProperty(window, 'showDirectoryPicker');
     }
+  });
+
+  it('runs browser repo scan from a ZIP and opens generated blueprints', async () => {
+    const zipped = zipSync({
+      'demo-repo/package.json': strToU8('{"name":"demo-repo"}'),
+      'demo-repo/src/index.ts': strToU8("import { service } from './service';\n"),
+      'demo-repo/src/service.ts': strToU8('export const service = 1;\n'),
+    });
+    const zipFile = new File([zipped], 'demo-repo.zip', { type: 'application/zip' });
+
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan({ zipFile });
+    const state = useBlueprintStore.getState();
+
+    expect(opened, state.lastError ?? 'openBrowserLiteScan returned false').toBe(true);
+    expect(state.isWorkspaceOpen).toBe(true);
+    expect(state.isBrowserLiteWorkspace).toBe(true);
+    expect(state.workspaceName).toBe('demo-repo');
+    expect(state.browserScanGit).toBe('missing');
+    expect(state.notification?.title).toBe('Browser scan ready');
+    expect(state.notification?.message).toMatch(/no git history/i);
+    expect(state.isMemoryScanWorkspace).toBe(true);
+  });
+
+  it('recovers when the ZIP is invalid without hanging the chooser', async () => {
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan({
+      zipFile: new File([new Uint8Array([1, 2, 3, 4])], 'nope.zip'),
+    });
+    const state = useBlueprintStore.getState();
+
+    expect(opened).toBe(false);
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.isLoading).toBe(false);
+    expect(state.liteScanProgress).toBeNull();
+    expect(state.notification?.title).toBe('Browser scan failed');
+    expect(state.notification?.message).toMatch(/not a valid ZIP/i);
+    expect(state.lastError).toMatch(/not a valid ZIP/i);
   });
 
   it('should catalog all systems on open and lazy-load when selecting another', async () => {

@@ -12,8 +12,8 @@ import { sampleStripClass } from './workspaceEntryChrome';
 export type WorkspaceEntryPanelProps = {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
-  /** Structural browser scan - pick a source folder, no CLI install. */
-  onBrowserLiteScan?: () => void;
+  /** Structural browser scan - pick a source folder or ZIP. */
+  onBrowserLiteScan?: (source?: { zipFile?: File }) => void | Promise<boolean>;
   /** Import from Mermaid diagram. */
   onImportMermaid?: () => void;
   /** Start an empty diagram with no demo or folder loaded (Ideate). */
@@ -131,7 +131,6 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             actionsDisabled={actionsDisabled}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
-            onNeedCliHelp={() => setCliExpanded(true)}
           />
           <WorkspaceCollaborateChoices
             actionsDisabled={actionsDisabled}

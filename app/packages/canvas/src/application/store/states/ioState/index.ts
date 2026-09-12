@@ -60,7 +60,7 @@ export interface IoState {
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
-  openBrowserLiteScan: () => Promise<boolean>;
+  openBrowserLiteScan: (source?: { zipFile?: File }) => Promise<boolean>;
   persistBrowserScanMapToFolder: () => Promise<boolean>;
   persistBrowserScanMapDownload: () => Promise<boolean>;
   dismissScanMapPersist: () => void;

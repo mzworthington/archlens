@@ -121,7 +121,7 @@ describe('WorkspaceEntryPanel', () => {
     );
   });
 
-  it('surfaces unsupported-browser feedback for lite scan when folder picker is missing', () => {
+  it('offers ZIP upload for lite scan when folder picker is missing', () => {
     Object.defineProperty(window, 'showDirectoryPicker', {
       configurable: true,
       value: undefined,
@@ -137,17 +137,69 @@ describe('WorkspaceEntryPanel', () => {
       />
     );
 
-    expect(screen.getByTestId('workspace-browser-lite-unsupported')).toHaveTextContent(
-      /Firefox and Safari/i
+    expect(screen.queryByTestId('workspace-browser-lite-unsupported')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('workspace-browser-lite-unavailable-badge')
+    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveAccessibleName(
+      'Upload ZIP for browser lite scan'
     );
-    expect(screen.getByTestId('workspace-browser-lite-unavailable-badge')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(/Upload a ZIP/i);
+    expect(screen.queryByTestId('workspace-browser-lite-scan-zip')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
+    expect(onBrowserLiteScan).not.toHaveBeenCalled();
+    expect(screen.getByTestId('workspace-browser-lite-scan-zip-input')).toBeInTheDocument();
+  });
+
+  it('keeps folder pick as the default and ZIP as a fallback when the picker exists', () => {
+    const onBrowserLiteScan = vi.fn();
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={onBrowserLiteScan}
+      />
+    );
+
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(/Python/i);
+    expect(screen.getByTestId('workspace-browser-lite-scan-zip')).toHaveAccessibleName(
+      'Upload ZIP for browser lite scan'
+    );
+    expect(screen.getByTestId('workspace-browser-lite-scan-zip')).toHaveTextContent(
+      /Or upload a ZIP/i
+    );
 
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
-    expect(screen.getByTestId('workspace-browser-lite-feedback')).toHaveTextContent(
-      /not available in this browser/i
+    expect(onBrowserLiteScan).toHaveBeenCalledWith();
+  });
+
+  it('recovers with a dismissible error when ZIP pick is cancelled or the archive is invalid', async () => {
+    const onBrowserLiteScan = vi.fn(async () => false);
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={onBrowserLiteScan}
+      />
     );
-    expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
+
+    const input = screen.getByTestId('workspace-browser-lite-scan-zip-input');
+    fireEvent.change(input, { target: { files: [] } });
+    expect(screen.getByTestId('workspace-browser-lite-feedback')).toHaveTextContent(
+      /Scan cancelled/i
+    );
+    fireEvent.click(screen.getByTestId('workspace-browser-lite-feedback-dismiss'));
+    expect(screen.queryByTestId('workspace-browser-lite-feedback')).not.toBeInTheDocument();
+
+    fireEvent.change(input, {
+      target: { files: [new File([new Uint8Array([1, 2, 3])], 'bad.zip')] },
+    });
+    expect(await screen.findByTestId('workspace-browser-lite-feedback')).toHaveTextContent(
+      /could not be scanned/i
+    );
+    expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
   });
 
   it('keeps a single share handler as a full-width option', () => {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-12
+
+### 🚀 Features
+
+- _(canvas)_ Scan a repo from Safari or Firefox via ZIP upload (MZW-36)
+
 ## 2026-09-06
 
 ### 🚀 Features

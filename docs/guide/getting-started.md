@@ -12,7 +12,7 @@ Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an
 
 ## 2. Scan in the browser
 
-From the same startup chooser, under **Investigate**, select **Browser lite scan** and pick a source folder.
+From the same startup chooser, under **Investigate**, select **Browser lite scan** and pick a source folder. In Safari or Firefox (no folder picker), upload a ZIP of the repo instead — Chrome and Edge still default to the folder picker, with ZIP as a fallback.
 
 This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate BlueprintSpec, including **TraceLens git hotspots** when the picked folder contains a `.git` directory (isomorphic-git, same `ForensicAnalyzer` as the CLI). After a successful scan you can save Blueprint YAML into a folder (or download it) so later edits draft and commit like other folder workspaces, or keep the map in memory. Caps still apply so the tab stays responsive. The browser path does **not** run watch mode or CI publish.
 
