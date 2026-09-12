@@ -7,10 +7,14 @@ export type PrecacheManifestEntry = {
  * Cloudflare Pages pretty-URLs 308 every folder index.html to the directory URL
  * before `_redirects`. Workbox install (especially Firefox) fails if it caches
  * a redirected response.
+ *
+ * Root `index.html` is dropped (`null`): VitePWA `additionalManifestEntries`
+ * already supplies `/`. Keeping both would emit two `/` revisions and Workbox
+ * throws during install.
  */
-export function prettyUrlForHtmlPrecache(url: string): string {
+export function prettyUrlForHtmlPrecache(url: string): string | null {
   const normalized = url.replace(/^\//, '');
-  if (normalized === 'index.html') return '/';
+  if (normalized === 'index.html') return null;
   if (normalized.endsWith('/index.html')) {
     return normalized.slice(0, -'index.html'.length);
   }
@@ -22,6 +26,7 @@ export function rewritePrecacheHtmlUrls<T extends PrecacheManifestEntry>(entries
 
   for (const entry of entries) {
     const pretty = prettyUrlForHtmlPrecache(entry.url);
+    if (pretty === null) continue;
     const alreadyPretty = pretty === entry.url;
     const next = alreadyPretty ? entry : { ...entry, url: pretty };
     const existing = chosen.get(pretty);

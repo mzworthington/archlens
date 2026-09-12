@@ -3,8 +3,8 @@ import { prettyUrlForHtmlPrecache, rewritePrecacheHtmlUrls } from './rewritePrec
 
 describe('prettyUrlForHtmlPrecache (Cloudflare Pages pretty-URLs)', () => {
   it('maps index.html shells to the directory URL that returns 200', () => {
-    expect(prettyUrlForHtmlPrecache('index.html')).toBe('/');
-    expect(prettyUrlForHtmlPrecache('/index.html')).toBe('/');
+    expect(prettyUrlForHtmlPrecache('index.html')).toBeNull();
+    expect(prettyUrlForHtmlPrecache('/index.html')).toBeNull();
     expect(prettyUrlForHtmlPrecache('guide/canvas/index.html')).toBe('guide/canvas/');
     expect(prettyUrlForHtmlPrecache('/guide/canvas/index.html')).toBe('guide/canvas/');
   });
@@ -26,7 +26,6 @@ describe('rewritePrecacheHtmlUrls', () => {
     ]);
 
     expect(rewritten).toEqual([
-      { url: '/', revision: 'html-hash' },
       { url: 'guide/canvas/', revision: 'docs-hash' },
       { url: 'assets/app.js', revision: null },
     ]);
@@ -60,7 +59,6 @@ describe('rewritePrecacheHtmlUrls', () => {
     const rewritten = rewritePrecacheHtmlUrls(liveHtmlUrls.map(url => ({ url, revision: url })));
 
     expect(rewritten.map(entry => entry.url)).toEqual([
-      '/',
       'tech-stack/',
       'setup/',
       'privacy/',
