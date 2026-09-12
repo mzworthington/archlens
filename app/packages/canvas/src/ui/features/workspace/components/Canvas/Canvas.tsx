@@ -76,6 +76,7 @@ export const Canvas: React.FC = () => {
     setBrowserLiteBannerOpen,
     isMemoryScanWorkspace,
     setIsScanMapPersistOpen,
+    browserScanGit,
     applyClientLayout,
     layoutSessionId,
     undo,
@@ -124,6 +125,7 @@ export const Canvas: React.FC = () => {
       setBrowserLiteBannerOpen: state.setBrowserLiteBannerOpen,
       isMemoryScanWorkspace: state.isMemoryScanWorkspace,
       setIsScanMapPersistOpen: state.setIsScanMapPersistOpen,
+      browserScanGit: state.browserScanGit,
       applyClientLayout: state.applyClientLayout,
       layoutSessionId: state.layoutSessionId,
       undo: state.undo,
@@ -324,6 +326,7 @@ export const Canvas: React.FC = () => {
           open={browserLiteBannerOpen}
           onDismiss={() => setBrowserLiteBannerOpen(false)}
           onSaveMap={isMemoryScanWorkspace ? () => setIsScanMapPersistOpen(true) : undefined}
+          gitStatus={browserScanGit}
         />
         <EmptyDiagramOverlay />
         <DiagramLoadingOverlay />

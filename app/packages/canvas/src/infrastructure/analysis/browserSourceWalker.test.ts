@@ -79,6 +79,42 @@ describe('walkBrowserSourceDirectory', () => {
     expect(result.truncationReasons).toContain('files');
   });
 
+  it('honours .gitignore the way the CLI path filter does', async () => {
+    const root = dir('demo-repo', [
+      ['.gitignore', file('.gitignore', 'ignored/\n')],
+      ['src', dir('src', [['keep.ts', file('keep.ts', 'export const keep = 1;')]])],
+      ['ignored', dir('ignored', [['skip.ts', file('skip.ts', 'export const skip = 1;')]])],
+    ]);
+
+    const result = await walkBrowserSourceDirectory(root);
+
+    expect(result.files.map(f => f.relativePath)).toEqual(['src/keep.ts']);
+  });
+
+  it('applies nested gitignore patterns only under that directory', async () => {
+    const root = dir('demo-repo', [
+      [
+        'pkg',
+        dir('pkg', [
+          ['.gitignore', file('.gitignore', '/scratch\nskip.ts\n')],
+          ['keep.ts', file('keep.ts', 'export const keep = 1;')],
+          ['skip.ts', file('skip.ts', 'export const skip = 1;')],
+          ['scratch', dir('scratch', [['gone.ts', file('gone.ts', 'export const gone = 1;')]])],
+        ]),
+      ],
+      ['scratch', dir('scratch', [['keep.ts', file('keep.ts', 'export const rootScratch = 1;')]])],
+      ['sibling', dir('sibling', [['skip.ts', file('skip.ts', 'export const sibling = 1;')]])],
+    ]);
+
+    const result = await walkBrowserSourceDirectory(root);
+
+    expect(result.files.map(f => f.relativePath).sort()).toEqual([
+      'pkg/keep.ts',
+      'scratch/keep.ts',
+      'sibling/skip.ts',
+    ]);
+  });
+
   it('skips structural noise dirs such as e2e and stories', async () => {
     const root = dir('demo-repo', [
       ['e2e', dir('e2e', [['spec.ts', file('spec.ts', 'export const e2e = 1;')]])],
@@ -251,13 +287,12 @@ describe('pickSourceDirectory', () => {
 });
 
 describe('describeTruncation', () => {
-  it('explains which budgets truncated the scan and that git is not included', () => {
+  it('explains which budgets truncated the scan', () => {
     const note = describeTruncation(['files', 'bytes'], 12);
     expect(note).toContain('Skipped remaining files');
     expect(note).toContain('source file cap (12)');
     expect(note).toContain('total size budget');
-    expect(note).toContain('Structure only');
-    expect(note).toMatch(/no git/i);
+    expect(note).not.toMatch(/structure only/i);
     expect(describeTruncation([], 12)).toBe('');
   });
 });

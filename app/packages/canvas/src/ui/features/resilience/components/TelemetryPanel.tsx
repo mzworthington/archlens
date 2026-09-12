@@ -4,6 +4,7 @@ import type { SimulationResult } from '@archlens/core/resilience';
 import type { Recommendation } from '@archlens/core/recommendations';
 import { RecommendationsList } from '../../recommendations/RecommendationsList';
 import { buildAdviceLensUrl } from '../../forensics/adviceLensUrl';
+import { DemoGraduateCtas } from '../../onboarding/DemoGraduateCtas';
 
 type Props = {
   result: SimulationResult | null;
@@ -180,6 +181,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }
       {recommendations.length > 0 ? (
         <div className="space-y-2">
           <RecommendationsList recommendations={recommendations} />
+          <DemoGraduateCtas testId="telemetry-demo-graduate" />
           <Link
             href={buildAdviceLensUrl()}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"

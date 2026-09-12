@@ -11,26 +11,26 @@ import {
 const reading: LiteScanProgress = {
   phase: 'reading',
   filesScanned: 147,
-  fileCap: 300,
+  fileCap: 2000,
   bytesRead: 2_000_000,
-  byteCap: 8_000_000,
+  byteCap: 32_000_000,
 };
 
 describe('liteScanProgress', () => {
   it('formats file counts against the cap and walking discovery separately', () => {
-    expect(formatLiteScanFileProgress(reading)).toBe('147 / 300 files');
+    expect(formatLiteScanFileProgress(reading)).toBe('147 / 2000 files');
     expect(
       formatLiteScanFileProgress({
         ...reading,
         phase: 'walking',
         filesScanned: 40,
       })
-    ).toBe('40 files found (cap 300)');
+    ).toBe('40 files found (cap 2000)');
   });
 
-  it('formats the 8 MB byte budget in decimal megabytes', () => {
-    expect(formatByteCount(8_000_000)).toBe('8.0 MB');
-    expect(formatLiteScanByteProgress(reading)).toBe('2.0 MB of 8.0 MB');
+  it('formats the byte budget in decimal megabytes', () => {
+    expect(formatByteCount(32_000_000)).toBe('32.0 MB');
+    expect(formatLiteScanByteProgress(reading)).toBe('2.0 MB of 32.0 MB');
   });
 
   it('treats the byte budget as binding after the walk, not during discovery', () => {

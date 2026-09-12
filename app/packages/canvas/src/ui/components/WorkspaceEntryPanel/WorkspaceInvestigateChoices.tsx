@@ -77,7 +77,7 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
           descriptionClassName="text-slate-400"
           description={
             directoryPickerSupported
-              ? 'TS, JS, Python, Go, Java, C#, Terraform, Pulumi'
+              ? 'TS, JS, Python, Go, Java, C#, Terraform, Pulumi — git hotspots when `.git` is present'
               : 'Needs Chrome or Edge (folder picker API). Use the ArchLens CLI instead.'
           }
         />

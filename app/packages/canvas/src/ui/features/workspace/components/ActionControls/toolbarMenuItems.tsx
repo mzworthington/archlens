@@ -89,7 +89,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         }}
         disabled={disabled}
         className={menuItemClass}
-        title="Browser lite scan - structure only (no TraceLens). Use the CLI for in-depth forensics."
+        title="Scan a local repo in the browser, including git hotspots when `.git` is present."
         id={`browser-lite-scan-action${idSuffix}`}
         data-testid={`browser-lite-scan-action${idSuffix}`}
       >

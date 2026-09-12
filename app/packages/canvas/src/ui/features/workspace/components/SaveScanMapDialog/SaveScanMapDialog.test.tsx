@@ -20,6 +20,7 @@ describe('SaveScanMapDialog', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Save map to folder' }));
     fireEvent.click(screen.getByRole('button', { name: 'Download YAML' }));
     fireEvent.click(screen.getByRole('button', { name: 'Keep in memory' }));
+    expect(screen.getByRole('button', { name: 'Copy install command' })).toBeInTheDocument();
     expect(onSaveFolder).toHaveBeenCalledTimes(1);
     expect(onDownload).toHaveBeenCalledTimes(1);
     expect(onKeepInMemory).toHaveBeenCalledTimes(1);

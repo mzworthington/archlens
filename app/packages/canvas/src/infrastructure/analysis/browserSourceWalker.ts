@@ -1,5 +1,8 @@
 import { CancellationError } from '@archlens/analysis/cancellation';
-import { createStructuralPathFilter } from '@archlens/analysis/path-filter';
+import {
+  createMutableGitignoreFilter,
+  createStructuralPathFilter,
+} from '@archlens/analysis/path-filter';
 import {
   LITE_SCAN_MAX_FILE_BYTES,
   LITE_SCAN_MAX_FILES,
@@ -18,12 +21,11 @@ import {
 } from '../../application/analysis/liteScanLimits';
 import type { LiteScanProgress } from '../../application/analysis/liteScanProgress';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
+import { iterateDirectoryEntries } from './fileSystemDirectoryEntries';
 
 export type BrowserSourceWalkResult = {
   files: LiteScanSourceFile[];
-  /** Application source files only - metadata and IaC inputs are excluded. */
   sourceFileCount: number;
-  /** Terraform / Pulumi inputs collected for the IaC analyzer pass. */
   iacFileCount: number;
   truncated: boolean;
   truncationReasons: LiteScanTruncationReason[];
@@ -79,12 +81,6 @@ function candidateKind(
   return null;
 }
 
-/**
- * Recursively walk a directory handle for supported sources and IaC inputs
- * (browser File System Access). Sources, manifests and total bytes are budgeted
- * separately; source roots are preferred when the file cap is hit so peripheral
- * scripts do not starve `src/`.
- */
 export async function walkBrowserSourceDirectory(
   root: DirHandle,
   options: {
@@ -101,7 +97,10 @@ export async function walkBrowserSourceDirectory(
   const maxFileBytes = options.maxFileBytes ?? LITE_SCAN_MAX_FILE_BYTES;
   const maxTotalBytes = options.maxTotalBytes ?? LITE_SCAN_MAX_TOTAL_BYTES;
   // allowIac: collect .tf / Pulumi.yaml while still skipping docs/tooling noise.
+  const gitignore = createMutableGitignoreFilter();
   const pathFilter = createStructuralPathFilter({ ignore: [], include: [], allowIac: true });
+  const shouldSkipPath = (relativePath: string): boolean =>
+    pathFilter.shouldSkip(relativePath) || gitignore.ignores(relativePath);
 
   const candidates: Candidate[] = [];
   const report = (
@@ -124,11 +123,9 @@ export async function walkBrowserSourceDirectory(
     const fileEntries: Array<[string, FileHandle]> = [];
     const dirEntries: Array<[string, DirHandle]> = [];
 
-    for await (const [name, handle] of dir as unknown as AsyncIterable<
-      [string, FileSystemHandle]
-    >) {
+    for await (const [name, handle] of iterateDirectoryEntries(dir)) {
       throwIfCancelled(options.signal);
-      if (name.startsWith('.')) continue;
+      if (name.startsWith('.') && name !== '.gitignore') continue;
 
       if (isDirectoryHandle(handle)) {
         dirEntries.push([name, handle]);
@@ -143,9 +140,21 @@ export async function walkBrowserSourceDirectory(
     const hasPulumiProject = fileEntries.some(([name]) => isLiteScanPulumiProjectPath(name));
 
     for (const [name, handle] of fileEntries) {
+      if (name !== '.gitignore') continue;
       throwIfCancelled(options.signal);
+      try {
+        const file = await handle.getFile();
+        gitignore.add(await file.text(), prefix);
+      } catch {
+        // Unreadable gitignore should not abort the scan.
+      }
+    }
+
+    for (const [name, handle] of fileEntries) {
+      throwIfCancelled(options.signal);
+      if (name === '.gitignore') continue;
       const relativePath = prefix ? `${prefix}/${name}` : name;
-      if (pathFilter.shouldSkip(relativePath)) continue;
+      if (shouldSkipPath(relativePath)) continue;
 
       const kind = candidateKind(relativePath, hasPulumiProject);
       if (!kind) continue;
@@ -156,7 +165,7 @@ export async function walkBrowserSourceDirectory(
     for (const [name, handle] of dirEntries) {
       throwIfCancelled(options.signal);
       const nextPrefix = prefix ? `${prefix}/${name}` : name;
-      if (shouldSkipDirectory(nextPrefix, pathFilter)) continue;
+      if (shouldSkipDirectory(nextPrefix, { shouldSkip: shouldSkipPath })) continue;
       await visit(handle, nextPrefix);
     }
   };
@@ -242,12 +251,10 @@ export async function walkBrowserSourceDirectory(
 
 export type DirectoryPicker = () => Promise<DirectoryPickResult>;
 
-/** True when the File System Access directory picker is available (Chrome/Edge; not Firefox/Safari). */
 export function isBrowserDirectoryPickerSupported(): boolean {
   return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
 }
 
-/** Default picker - read-only is enough for lite scan (we write YAML into memory). */
 export const pickSourceDirectory: DirectoryPicker = async () => {
   if (!isBrowserDirectoryPickerSupported()) {
     return { status: 'unsupported' };
@@ -275,5 +282,5 @@ export function describeTruncation(
   if (reasons.includes('metadata')) {
     parts.push('manifest budget');
   }
-  return ` Skipped remaining files after hitting the ${parts.join(' and ')}. Structure only — no git history.`;
+  return ` Skipped remaining files after hitting the ${parts.join(' and ')}.`;
 }

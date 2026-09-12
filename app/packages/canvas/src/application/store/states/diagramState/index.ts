@@ -49,6 +49,7 @@ export const createDiagramState = (
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    browserScanGit: null,
     isMemoryScanWorkspace: false,
     workspaceName: '',
     workspaceCatalog: [],

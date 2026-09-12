@@ -1,6 +1,7 @@
 import React, { useEffect, useId } from 'react';
 import { Download, Folder, X } from 'lucide-react';
 import { CollabDialogPortal } from '../CollabNameDialog/CollabDialogPortal';
+import { CliCommandCopyStrip } from '../../../../components/WorkspaceEntryPanel/CliCommandCopyStrip';
 
 export type SaveScanMapDialogProps = {
   isOpen: boolean;
@@ -65,6 +66,7 @@ export const SaveScanMapDialog: React.FC<SaveScanMapDialogProps> = ({
                 The scan is on the canvas. Save Blueprint YAML into a folder so later edits can
                 draft and commit, download copies, or keep working in memory.
               </p>
+              <CliCommandCopyStrip testIdPrefix="save-scan-map-cli" />
               <div className="flex flex-col gap-2">
                 <button
                   type="button"

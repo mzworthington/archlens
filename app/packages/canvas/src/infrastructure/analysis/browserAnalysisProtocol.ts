@@ -5,6 +5,7 @@ export type BrowserAnalysisRequest = {
   type: 'scan';
   sources: readonly LiteScanSourceFile[];
   directoryName: string;
+  rootHandle?: FileSystemDirectoryHandle;
 };
 
 export type BrowserAnalysisCancel = { type: 'cancel' };

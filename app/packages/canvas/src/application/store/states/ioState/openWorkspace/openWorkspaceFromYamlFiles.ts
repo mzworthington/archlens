@@ -17,6 +17,7 @@ export async function loadWorkspaceFromYamlFiles(
     set,
     isSampleWorkspace = false,
     isBrowserLiteWorkspace = false,
+    browserScanGit = null,
     committedPorts,
     preferredEntryPath,
   } = deps;
@@ -90,6 +91,7 @@ export async function loadWorkspaceFromYamlFiles(
     workspaceName,
     isSampleWorkspace,
     isBrowserLiteWorkspace,
+    browserScanGit,
     openGeneration,
     committedPorts,
     workingCopy: deps.workingCopy,

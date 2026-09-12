@@ -6,6 +6,7 @@ import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
 import { createAnalysisLogger } from './analysisLogger';
 import { runBrowserAnalysis } from '../../application/analysis/runBrowserAnalysis';
+import { collectBrowserFileMetrics } from '../../application/analysis/collectBrowserFileMetrics';
 
 const silentLogger = createAnalysisLogger({
   info: () => undefined,
@@ -173,5 +174,53 @@ resource "aws_iam_role" "lambda" {
         n => n.properties?.['iac.view'] === 'resource' && n.properties?.['iac.product'] === 'lambda'
       )
     ).toBe(true);
+  });
+
+  it('attaches ForensicAnalyzer hotspot metrics onto the scanned map YAML', async () => {
+    const sources = [
+      {
+        relativePath: 'src/hot.ts',
+        content: `
+          export function run(x: number) {
+            if (x > 1) {
+              for (const n of [1, 2, 3]) {
+                if (n) return n;
+              }
+            }
+            while (x) {
+              if (x < 0) break;
+              x -= 1;
+            }
+            return x;
+          }
+        `,
+      },
+      { relativePath: 'src/cold.ts', content: 'export const n = 1;\n' },
+    ];
+    const now = new Date();
+    const forensicsByPath = await collectBrowserFileMetrics({
+      sources,
+      commits: [
+        { hash: '1', authorEmail: 'a@ex.com', authorDate: now, paths: ['src/hot.ts'] },
+        { hash: '2', authorEmail: 'b@ex.com', authorDate: now, paths: ['src/hot.ts'] },
+        { hash: '3', authorEmail: 'c@ex.com', authorDate: now, paths: ['src/hot.ts'] },
+        { hash: '4', authorEmail: 'a@ex.com', authorDate: now, paths: ['src/cold.ts'] },
+      ],
+    });
+
+    const result = await runBrowserAnalysis({
+      directoryName: 'git-demo',
+      deps: createBrowserAnalysisDeps({ sources }),
+      forensicsByPath,
+      gitStatus: 'included',
+    });
+
+    expect(result.gitStatus).toBe('included');
+    const schemas = result.yamlFiles.map(file => parseSchemaFromYaml(file.content));
+    const hotspotNodes = schemas.flatMap(schema =>
+      schema.nodes.filter(node => node.forensics?.classifications?.includes('hotspot'))
+    );
+    expect(hotspotNodes.length).toBeGreaterThan(0);
+    expect(hotspotNodes.some(node => (node.forensics?.hotspotScore ?? 0) > 0)).toBe(true);
   });
 });

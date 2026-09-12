@@ -12,6 +12,7 @@ import type { LoadedSystemRef } from '../../../application/forensics/rankOffende
 import type { Recommendation, RecommendationAction } from '@archlens/core/recommendations';
 import { RecommendationsList } from '../recommendations/RecommendationsList';
 import { useAdviceLensExport } from './useAdviceLensExport';
+import { DemoGraduateCtas } from '../onboarding/DemoGraduateCtas';
 
 type SourceFilter = 'all' | Recommendation['source'];
 
@@ -172,16 +173,21 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
           </p>
         </div>
       ) : (
-        <RecommendationsList
-          recommendations={visible}
-          title="AdviceLens"
-          showDiagram
-          onSelect={recommendation => onOpenRecommendation(recommendation as EstateRecommendation)}
-          onAction={(action, recommendation) =>
-            onAction(action, recommendation as EstateRecommendation)
-          }
-          testId="estate-recommendations-list"
-        />
+        <>
+          <RecommendationsList
+            recommendations={visible}
+            title="AdviceLens"
+            showDiagram
+            onSelect={recommendation =>
+              onOpenRecommendation(recommendation as EstateRecommendation)
+            }
+            onAction={(action, recommendation) =>
+              onAction(action, recommendation as EstateRecommendation)
+            }
+            testId="estate-recommendations-list"
+          />
+          <DemoGraduateCtas testId="advicelens-demo-graduate" />
+        </>
       )}
     </div>
   );

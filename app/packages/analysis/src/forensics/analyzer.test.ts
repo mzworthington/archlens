@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { ForensicAnalyzer } from './forensicAnalyzer';
+import { ForensicAnalyzer } from './analyzer';
 import type {
   ComplexityAnalyzerPort,
   GitHistoryPort,
@@ -7,7 +7,8 @@ import type {
   ReporterPort,
   SourceFileListerPort,
 } from './ports';
-import type { GitCommit, StructuralMetrics } from './types';
+import type { GitCommit } from '@archlens/core/forensics';
+import type { StructuralMetrics } from './report';
 
 class FakeLister implements SourceFileListerPort {
   constructor(public paths: string[] = []) {}

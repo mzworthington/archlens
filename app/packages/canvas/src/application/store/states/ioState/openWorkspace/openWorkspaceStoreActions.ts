@@ -23,7 +23,12 @@ import {
   LITE_SCAN_MAX_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
 } from '../../../../analysis/liteScanLimits';
-import { CLI_GETTING_STARTED_PATH } from '../../../../../constants/cli';
+import {
+  CLI_GETTING_STARTED_PATH,
+  CLI_INSTALL_COMMAND,
+  CLI_SCAN_COMMAND,
+} from '../../../../../constants/cli';
+import { browserScanReadyMessage } from '../../../../forensics/traceLensBrowserScanCopy';
 import {
   downloadScanYamlFileName,
   writeWorkspaceYamlFiles,
@@ -228,9 +233,10 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           byteCap: LITE_SCAN_MAX_TOTAL_BYTES,
         });
 
-        const { yamlFiles } = await runBrowserAnalysisWorker({
+        const { yamlFiles, gitStatus } = await runBrowserAnalysisWorker({
           sources: walked.files,
           directoryName: walked.directoryName,
+          rootHandle: pick.handle,
           logger: createAnalysisLogger(logger),
           signal: cancellation.signal,
         });
@@ -259,6 +265,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           set,
           isSampleWorkspace: false,
           isBrowserLiteWorkspace: true,
+          browserScanGit: gitStatus,
           openGeneration,
           committedPorts: { workspacePort: scanPort },
         });
@@ -272,10 +279,27 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           );
           setNotification?.({
             type: 'info',
-            title: 'Browser lite scan ready',
-            message: `Loaded ${walked.sourceFileCount} source file(s)${
-              walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
-            } - structure only (no TraceLens/git hotspots).${truncatedNote} Save the map to a folder, or keep it in memory. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
+            title: 'Browser scan ready',
+            message: browserScanReadyMessage({
+              sourceFileCount: walked.sourceFileCount,
+              iacFileCount: walked.iacFileCount,
+              truncatedNote,
+              gitStatus,
+            }),
+            actions: [
+              {
+                label: 'Copy install command',
+                onClick: () => {
+                  void navigator.clipboard.writeText(CLI_INSTALL_COMMAND);
+                },
+              },
+              {
+                label: 'Copy scan command',
+                onClick: () => {
+                  void navigator.clipboard.writeText(CLI_SCAN_COMMAND);
+                },
+              },
+            ],
           });
           return true;
         }

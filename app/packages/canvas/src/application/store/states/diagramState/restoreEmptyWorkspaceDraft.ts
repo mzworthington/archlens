@@ -82,6 +82,7 @@ export async function restoreEmptyWorkspaceDraft(
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    browserScanGit: null,
     isMemoryScanWorkspace: false,
     isScanMapPersistOpen: false,
     workspaceName: '',

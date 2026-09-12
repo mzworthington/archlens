@@ -8,6 +8,7 @@ import {
   markFolderWorkspacePreferred,
 } from '../../../workspaceOpenSession';
 import type { ToastNotification } from '../../uiState';
+import type { BrowserGitHistoryStatus } from '../../../../analysis/browserGitStatus';
 import type { BlueprintStoreSet } from '../../../store';
 import type { LoadedSystem, WorkspaceOpenLogger } from './openWorkspaceTypes';
 
@@ -84,6 +85,7 @@ export async function finalizeWorkspaceOpen(args: {
   workspaceName: string;
   isSampleWorkspace: boolean;
   isBrowserLiteWorkspace?: boolean;
+  browserScanGit?: BrowserGitHistoryStatus | null;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   workingCopy: WorkingCopyPort;
@@ -99,6 +101,7 @@ export async function finalizeWorkspaceOpen(args: {
     workspaceName,
     isSampleWorkspace,
     isBrowserLiteWorkspace = false,
+    browserScanGit = null,
     openGeneration,
     committedPorts,
     workingCopy,
@@ -132,6 +135,7 @@ export async function finalizeWorkspaceOpen(args: {
     isWorkspaceOpen: true,
     isSampleWorkspace,
     isBrowserLiteWorkspace,
+    browserScanGit: isBrowserLiteWorkspace ? (browserScanGit ?? 'missing') : null,
     browserLiteBannerOpen: isBrowserLiteWorkspace,
     isMemoryScanWorkspace: false,
     workspaceName,

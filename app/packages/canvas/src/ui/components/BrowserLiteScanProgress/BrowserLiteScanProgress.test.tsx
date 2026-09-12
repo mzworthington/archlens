@@ -6,9 +6,9 @@ import type { LiteScanProgress } from '../../../application/analysis/liteScanPro
 const reading: LiteScanProgress = {
   phase: 'reading',
   filesScanned: 147,
-  fileCap: 300,
+  fileCap: 2000,
   bytesRead: 2_000_000,
-  byteCap: 8_000_000,
+  byteCap: 32_000_000,
 };
 
 describe('BrowserLiteScanProgress', () => {
@@ -17,14 +17,14 @@ describe('BrowserLiteScanProgress', () => {
     render(<BrowserLiteScanProgress progress={reading} onCancel={onCancel} />);
 
     expect(screen.getByRole('status', { name: /Reading source files/i })).toBeInTheDocument();
-    expect(screen.getByRole('progressbar', { name: '147 / 300 files' })).toHaveAttribute(
+    expect(screen.getByRole('progressbar', { name: '147 / 2000 files' })).toHaveAttribute(
       'aria-valuenow',
       '147'
     );
     expect(screen.getByTestId('browser-lite-scan-progress-bytes')).toHaveTextContent(
-      '2.0 MB of 8.0 MB'
+      '2.0 MB of 32.0 MB'
     );
-    expect(screen.getByText(/Structure only/i)).toBeInTheDocument();
+    expect(screen.getByText(/git history/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Cancel scan' }));
     expect(onCancel).toHaveBeenCalledTimes(1);
@@ -40,7 +40,7 @@ describe('BrowserLiteScanProgress', () => {
 
     expect(screen.queryByTestId('browser-lite-scan-progress-bytes')).not.toBeInTheDocument();
     expect(screen.getByTestId('browser-lite-scan-progress-files')).toHaveTextContent(
-      '12 files found (cap 300)'
+      '12 files found (cap 2000)'
     );
   });
 });
