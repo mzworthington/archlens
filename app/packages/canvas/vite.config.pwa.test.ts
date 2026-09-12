@@ -13,4 +13,10 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
     expect(source).toMatch(/additionalManifestEntries/);
     expect(source).toMatch(/url:\s*'\//);
   });
+
+  it('does not precache *.html — Pages pretty-URLs 308 those paths and fail Firefox install', () => {
+    const source = fs.readFileSync(viteConfigPath, 'utf8');
+    expect(source).not.toMatch(/\*\*\/\*\.\{[^}]*html/);
+    expect(source).toMatch(/'\*\*\/\*\.html'/);
+  });
 });
