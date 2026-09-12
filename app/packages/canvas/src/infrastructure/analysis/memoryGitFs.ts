@@ -1,4 +1,3 @@
-/** Minimal Promise FsClient for isomorphic-git tests (posix paths). */
 export function createMemoryGitFs(): {
   promises: {
     readFile: (filepath: string, options?: { encoding?: string }) => Promise<Uint8Array | string>;

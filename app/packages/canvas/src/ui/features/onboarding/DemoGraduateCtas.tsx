@@ -7,9 +7,6 @@ type DemoGraduateCtasProps = {
   testId?: string;
 };
 
-/**
- * Dual next-step after the golden Chaos → Advice demo: scan this tab, or copy CLI commands.
- */
 export const DemoGraduateCtas: React.FC<DemoGraduateCtasProps> = ({
   testId = 'demo-graduate-ctas',
 }) => {

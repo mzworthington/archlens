@@ -21,7 +21,6 @@ function sourceMapFromLiteScan(sources: readonly LiteScanSourceFile[]): Map<stri
   return files;
 }
 
-/** Shared ForensicAnalyzer over walked sources + git commits (CLI or isomorphic-git). */
 export async function collectBrowserFileMetrics(args: {
   sources: readonly LiteScanSourceFile[];
   commits: readonly GitCommit[];

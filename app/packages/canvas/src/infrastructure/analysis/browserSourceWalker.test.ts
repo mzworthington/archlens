@@ -91,6 +91,30 @@ describe('walkBrowserSourceDirectory', () => {
     expect(result.files.map(f => f.relativePath)).toEqual(['src/keep.ts']);
   });
 
+  it('applies nested gitignore patterns only under that directory', async () => {
+    const root = dir('demo-repo', [
+      [
+        'pkg',
+        dir('pkg', [
+          ['.gitignore', file('.gitignore', '/scratch\nskip.ts\n')],
+          ['keep.ts', file('keep.ts', 'export const keep = 1;')],
+          ['skip.ts', file('skip.ts', 'export const skip = 1;')],
+          ['scratch', dir('scratch', [['gone.ts', file('gone.ts', 'export const gone = 1;')]])],
+        ]),
+      ],
+      ['scratch', dir('scratch', [['keep.ts', file('keep.ts', 'export const rootScratch = 1;')]])],
+      ['sibling', dir('sibling', [['skip.ts', file('skip.ts', 'export const sibling = 1;')]])],
+    ]);
+
+    const result = await walkBrowserSourceDirectory(root);
+
+    expect(result.files.map(f => f.relativePath).sort()).toEqual([
+      'pkg/keep.ts',
+      'scratch/keep.ts',
+      'sibling/skip.ts',
+    ]);
+  });
+
   it('skips structural noise dirs such as e2e and stories', async () => {
     const root = dir('demo-repo', [
       ['e2e', dir('e2e', [['spec.ts', file('spec.ts', 'export const e2e = 1;')]])],

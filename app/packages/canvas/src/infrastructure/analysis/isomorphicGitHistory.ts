@@ -4,7 +4,6 @@ import type { GitCommit } from '@archlens/core/forensics';
 import { DEFAULT_FORENSICS_OPTIONS } from '@archlens/analysis/forensics';
 import { createDirectoryHandleFs } from './directoryHandleFs';
 
-/** Mirrors application `BrowserGitHistoryStatus` without importing inward. */
 type GitHistoryStatus = 'included' | 'missing' | 'failed';
 
 export type BrowserGitHistoryResult = {
@@ -63,13 +62,17 @@ export async function loadGitHistoryFromFs(args: {
   return commits;
 }
 
-async function hasGitDirectory(root: FileSystemDirectoryHandle): Promise<boolean> {
-  if (typeof root.getDirectoryHandle !== 'function') return false;
+async function hasGitCheckout(root: FileSystemDirectoryHandle): Promise<boolean> {
   try {
     await root.getDirectoryHandle('.git');
     return true;
   } catch {
-    return false;
+    try {
+      await root.getFileHandle('.git');
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
 
@@ -78,7 +81,7 @@ export async function loadBrowserGitHistory(
   options: { sinceDays?: number; signal?: AbortSignal } = {}
 ): Promise<BrowserGitHistoryResult> {
   try {
-    if (!(await hasGitDirectory(root))) {
+    if (!(await hasGitCheckout(root))) {
       return { status: 'missing', commits: [] };
     }
     const fs = createDirectoryHandleFs(root);
@@ -88,7 +91,7 @@ export async function loadBrowserGitHistory(
       sinceDays: options.sinceDays,
       signal: options.signal,
     });
-    return { status: commits.length > 0 ? 'included' : 'missing', commits };
+    return { status: 'included', commits };
   } catch (error) {
     if (options.signal?.aborted) throw error;
     return { status: 'failed', commits: [] };

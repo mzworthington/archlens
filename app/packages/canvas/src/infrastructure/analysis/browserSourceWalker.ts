@@ -21,12 +21,11 @@ import {
 } from '../../application/analysis/liteScanLimits';
 import type { LiteScanProgress } from '../../application/analysis/liteScanProgress';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
+import { iterateDirectoryEntries } from './fileSystemDirectoryEntries';
 
 export type BrowserSourceWalkResult = {
   files: LiteScanSourceFile[];
-  /** Application source files only - metadata and IaC inputs are excluded. */
   sourceFileCount: number;
-  /** Terraform / Pulumi inputs collected for the IaC analyzer pass. */
   iacFileCount: number;
   truncated: boolean;
   truncationReasons: LiteScanTruncationReason[];
@@ -82,12 +81,6 @@ function candidateKind(
   return null;
 }
 
-/**
- * Recursively walk a directory handle for supported sources and IaC inputs
- * (browser File System Access). Sources, manifests and total bytes are budgeted
- * separately; source roots are preferred when the file cap is hit so peripheral
- * scripts do not starve `src/`.
- */
 export async function walkBrowserSourceDirectory(
   root: DirHandle,
   options: {
@@ -130,9 +123,7 @@ export async function walkBrowserSourceDirectory(
     const fileEntries: Array<[string, FileHandle]> = [];
     const dirEntries: Array<[string, DirHandle]> = [];
 
-    for await (const [name, handle] of dir as unknown as AsyncIterable<
-      [string, FileSystemHandle]
-    >) {
+    for await (const [name, handle] of iterateDirectoryEntries(dir)) {
       throwIfCancelled(options.signal);
       if (name.startsWith('.') && name !== '.gitignore') continue;
 
@@ -153,7 +144,7 @@ export async function walkBrowserSourceDirectory(
       throwIfCancelled(options.signal);
       try {
         const file = await handle.getFile();
-        gitignore.add(await file.text());
+        gitignore.add(await file.text(), prefix);
       } catch {
         // Unreadable gitignore should not abort the scan.
       }
@@ -260,12 +251,10 @@ export async function walkBrowserSourceDirectory(
 
 export type DirectoryPicker = () => Promise<DirectoryPickResult>;
 
-/** True when the File System Access directory picker is available (Chrome/Edge; not Firefox/Safari). */
 export function isBrowserDirectoryPickerSupported(): boolean {
   return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
 }
 
-/** Default picker - read-only is enough for lite scan (we write YAML into memory). */
 export const pickSourceDirectory: DirectoryPicker = async () => {
   if (!isBrowserDirectoryPickerSupported()) {
     return { status: 'unsupported' };

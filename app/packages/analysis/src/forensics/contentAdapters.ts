@@ -13,10 +13,6 @@ import type { StructuralMetrics } from './report';
 
 const CONTROL_FLOW = /\b(?:if|else|elif|for|while|switch|case|catch|except|when|match)\b/g;
 
-/**
- * Language-agnostic control-flow count so in-memory scans still produce
- * cyclomatic-like complexity without a tree-sitter runtime.
- */
 export function estimateControlFlowComplexity(text: string): number {
   const matches = text.match(CONTROL_FLOW);
   return 1 + (matches?.length ?? 0);
@@ -81,7 +77,6 @@ export class ContentImportGraphAdapter implements ImportGraphPort {
   }
 }
 
-/** GitHistoryPort that returns commits already loaded by an adapter (CLI git log or isomorphic-git). */
 export class StaticGitHistoryAdapter implements GitHistoryPort {
   constructor(private readonly commits: readonly GitCommit[]) {}
 

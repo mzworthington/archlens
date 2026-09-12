@@ -12,7 +12,7 @@ deciders: ['ArchLens maintainers']
 
 ## Decision Drivers
 
-- Honesty: when `.git` is present, the map should show the same hotspot/silo classifications as the CLI
+- Honesty: when `.git` is present (directory or gitdir file), the map should show the same hotspot/silo classifications as the CLI. Missing git copy is only for folders with no checkout; an empty lookback window is still a git checkout. Nested `.gitignore` patterns apply relative to that file’s directory.
 - Hexagonal boundary: canvas must not depend on `@archlens/cli`; git adapters stay at the edge
 - Tab operability: keep a file/byte cap so structured-clone into the worker stays responsive
 - Reversibility: isomorphic-git is an adapter; `ForensicAnalyzer` stays in `@archlens/analysis`
