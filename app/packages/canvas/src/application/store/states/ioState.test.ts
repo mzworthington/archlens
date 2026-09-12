@@ -135,8 +135,9 @@ dependencies: []
     expect(state.workspaceName).toBe('demo-repo');
     expect(state.schema.level).toBe('context');
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
-    expect(state.notification?.title).toBe('Browser lite scan ready');
-    expect(state.notification?.message).toContain('structure only');
+    expect(state.notification?.title).toBe('Browser scan ready');
+    expect(state.notification?.message).toMatch(/no git history/i);
+    expect(state.notification?.actions?.some(a => a.label === 'Copy install command')).toBe(true);
     expect(state.isMemoryScanWorkspace).toBe(true);
     expect(state.isScanMapPersistOpen).toBe(true);
     expect(state.workspacePort).not.toBe(state.folderWorkspacePort);

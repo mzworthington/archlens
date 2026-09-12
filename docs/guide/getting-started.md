@@ -1,6 +1,6 @@
 # Getting started
 
-This page is for **using** ArchLens. Start with the demo, try a browser scan for structure, then install the CLI when you need TraceLens/git forensics or CI publish. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens. Start with the demo, try a browser scan (structure plus git hotspots when `.git` is present), then install the CLI when you need watch mode or CI publish. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
 ## 1. Try the demo
 
@@ -14,9 +14,9 @@ Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an
 
 From the same startup chooser, under **Investigate**, select **Browser lite scan** and pick a source folder.
 
-This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec. After a successful scan you can save Blueprint YAML into a folder (or download it) so later edits draft and commit like other folder workspaces, or keep the map in memory. It is intentionally a **lite / structure-only** preview: application languages (`ts`/`tsx`/`js`/`cs`/`java`/`go`/`py`) plus Terraform/Pulumi via the same `IacAnalyzer` pass as the CLI - **no** TraceLens git hotspots and **no** CI publish.
+This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate BlueprintSpec, including **TraceLens git hotspots** when the picked folder contains a `.git` directory (isomorphic-git, same `ForensicAnalyzer` as the CLI). After a successful scan you can save Blueprint YAML into a folder (or download it) so later edits draft and commit like other folder workspaces, or keep the map in memory. Caps still apply so the tab stays responsive. The browser path does **not** run watch mode or CI publish.
 
-Use this path for fast first feedback without installing anything. For in-depth knowledge (git forensics, watch mode, catalog publish), install and run the ArchLens CLI in the next step.
+Use this path for fast first feedback without installing anything. For watch mode, catalog publish, and uncapped scans, install and run the ArchLens CLI in the next step.
 
 ## 3. Install ArchLens CLI
 

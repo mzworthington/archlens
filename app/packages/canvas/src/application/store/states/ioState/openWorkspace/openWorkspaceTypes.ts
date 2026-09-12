@@ -2,6 +2,7 @@ import type { SystemSchema, WorkspaceCatalogEntry } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../../core';
 import type { ToastNotification } from '../../uiState';
 import type { BlueprintStoreSet } from '../../../store';
+import type { BrowserGitHistoryStatus } from '../../../../analysis/browserGitStatus';
 
 export type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -49,6 +50,7 @@ export type LoadWorkspaceFromYamlFilesDeps = {
   set: BlueprintStoreSet;
   isSampleWorkspace?: boolean;
   isBrowserLiteWorkspace?: boolean;
+  browserScanGit?: BrowserGitHistoryStatus | null;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   preferredEntryPath?: string;

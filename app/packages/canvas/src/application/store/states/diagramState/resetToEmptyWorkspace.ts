@@ -38,6 +38,7 @@ export function resetToEmptyWorkspace(
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    browserScanGit: null,
     isMemoryScanWorkspace: false,
     isScanMapPersistOpen: false,
     workspaceName: '',

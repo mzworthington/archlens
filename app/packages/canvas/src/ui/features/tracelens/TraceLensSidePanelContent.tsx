@@ -120,7 +120,7 @@ export const TraceLensSidePanelContent: React.FC = () => {
         <div className="border-t border-slate-900 pt-4" data-testid="tracelens-empty-selection">
           <p className="text-xs text-slate-400 leading-relaxed">
             {isBrowserLiteWorkspace
-              ? 'Select a node on the canvas for structure and dependency details. This tab has no CLI forensics.'
+              ? 'Select a node on the canvas for structure, git metrics when history was read, and dependency details.'
               : 'Select a node on the canvas to see git metrics, schema dependencies, coupling peers and connection details.'}
           </p>
         </div>

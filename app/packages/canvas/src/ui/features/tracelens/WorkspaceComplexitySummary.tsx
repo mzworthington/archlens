@@ -1,5 +1,6 @@
 import type { WorkspaceComplexitySummary as Summary } from '../../../application/forensics/summarizeWorkspaceForensics';
-import { TRACE_LENS_BROWSER_SCAN_EMPTY } from '../../../application/forensics/traceLensBrowserScanCopy';
+import { traceLensMissingForensicsCopy } from '../../../application/forensics/traceLensBrowserScanCopy';
+import type { BrowserGitHistoryStatus } from '../../../application/analysis/browserGitStatus';
 
 function formatCount(value: number): string {
   return value.toLocaleString('en-US');
@@ -17,11 +18,20 @@ function SummaryStat({ label, value }: { label: string; value: string }) {
 type Props = {
   summary: Summary;
   isBrowserLiteWorkspace?: boolean;
+  gitStatus?: BrowserGitHistoryStatus | null;
 };
 
 /** Estate / per-repo complexity markers for the loaded workspace. */
-export function WorkspaceComplexitySummary({ summary, isBrowserLiteWorkspace = false }: Props) {
+export function WorkspaceComplexitySummary({
+  summary,
+  isBrowserLiteWorkspace = false,
+  gitStatus = null,
+}: Props) {
   const avg = summary.avgComplexity == null ? '-' : formatCount(summary.avgComplexity);
+  const gitHonesty =
+    isBrowserLiteWorkspace && gitStatus !== 'included'
+      ? traceLensMissingForensicsCopy(true, gitStatus)
+      : null;
 
   return (
     <section
@@ -45,17 +55,13 @@ export function WorkspaceComplexitySummary({ summary, isBrowserLiteWorkspace = f
         <SummaryStat label="Knowledge silos" value={formatCount(summary.knowledgeSiloNodes)} />
         <SummaryStat label="Nodes with TraceLens" value={formatCount(summary.nodesWithForensics)} />
       </div>
-      {summary.diagramCount > 0 && summary.nodesWithForensics === 0 ? (
+      {gitHonesty ? (
+        <p className="mt-3 text-xs text-slate-500 leading-relaxed">{gitHonesty}</p>
+      ) : summary.diagramCount > 0 && summary.nodesWithForensics === 0 ? (
         <p className="mt-3 text-xs text-slate-500 leading-relaxed">
-          {isBrowserLiteWorkspace ? (
-            TRACE_LENS_BROWSER_SCAN_EMPTY
-          ) : (
-            <>
-              Topology is loaded, but no TraceLens blocks were found. Re-scan with git enabled or
-              run <span className="font-mono text-slate-400">archlens enrich --git</span> to
-              populate LOC and complexity.
-            </>
-          )}
+          Topology is loaded, but no TraceLens blocks were found. Re-scan with git enabled or run{' '}
+          <span className="font-mono text-slate-400">archlens enrich --git</span> to populate LOC
+          and complexity.
         </p>
       ) : null}
     </section>

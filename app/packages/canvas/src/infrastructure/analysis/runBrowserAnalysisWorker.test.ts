@@ -42,11 +42,13 @@ describe('runBrowserAnalysisWorker', () => {
       type: 'result',
       contextName: 'demo-repo',
       yamlFiles: [{ name: 'demo-repo/context.yaml', content: 'level: context\n' }],
+      gitStatus: 'missing',
     });
 
     await expect(promise).resolves.toEqual({
       contextName: 'demo-repo',
       yamlFiles: [{ name: 'demo-repo/context.yaml', content: 'level: context\n' }],
+      gitStatus: 'missing',
     });
     expect(worker.terminated).toBe(true);
   });
@@ -63,7 +65,7 @@ describe('runBrowserAnalysisWorker', () => {
     });
 
     emit({ type: 'log', level: 'warn', message: 'partial parse', context: { failed: 2 } });
-    emit({ type: 'result', contextName: 'demo-repo', yamlFiles: [] });
+    emit({ type: 'result', contextName: 'demo-repo', yamlFiles: [], gitStatus: 'missing' });
     await promise;
 
     expect(warn).toHaveBeenCalledWith('partial parse', { failed: 2 });

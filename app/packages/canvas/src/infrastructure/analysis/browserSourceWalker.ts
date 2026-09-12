@@ -1,5 +1,8 @@
 import { CancellationError } from '@archlens/analysis/cancellation';
-import { createStructuralPathFilter } from '@archlens/analysis/path-filter';
+import {
+  createMutableGitignoreFilter,
+  createStructuralPathFilter,
+} from '@archlens/analysis/path-filter';
 import {
   LITE_SCAN_MAX_FILE_BYTES,
   LITE_SCAN_MAX_FILES,
@@ -101,7 +104,10 @@ export async function walkBrowserSourceDirectory(
   const maxFileBytes = options.maxFileBytes ?? LITE_SCAN_MAX_FILE_BYTES;
   const maxTotalBytes = options.maxTotalBytes ?? LITE_SCAN_MAX_TOTAL_BYTES;
   // allowIac: collect .tf / Pulumi.yaml while still skipping docs/tooling noise.
+  const gitignore = createMutableGitignoreFilter();
   const pathFilter = createStructuralPathFilter({ ignore: [], include: [], allowIac: true });
+  const shouldSkipPath = (relativePath: string): boolean =>
+    pathFilter.shouldSkip(relativePath) || gitignore.ignores(relativePath);
 
   const candidates: Candidate[] = [];
   const report = (
@@ -128,7 +134,7 @@ export async function walkBrowserSourceDirectory(
       [string, FileSystemHandle]
     >) {
       throwIfCancelled(options.signal);
-      if (name.startsWith('.')) continue;
+      if (name.startsWith('.') && name !== '.gitignore') continue;
 
       if (isDirectoryHandle(handle)) {
         dirEntries.push([name, handle]);
@@ -143,9 +149,21 @@ export async function walkBrowserSourceDirectory(
     const hasPulumiProject = fileEntries.some(([name]) => isLiteScanPulumiProjectPath(name));
 
     for (const [name, handle] of fileEntries) {
+      if (name !== '.gitignore') continue;
       throwIfCancelled(options.signal);
+      try {
+        const file = await handle.getFile();
+        gitignore.add(await file.text());
+      } catch {
+        // Unreadable gitignore should not abort the scan.
+      }
+    }
+
+    for (const [name, handle] of fileEntries) {
+      throwIfCancelled(options.signal);
+      if (name === '.gitignore') continue;
       const relativePath = prefix ? `${prefix}/${name}` : name;
-      if (pathFilter.shouldSkip(relativePath)) continue;
+      if (shouldSkipPath(relativePath)) continue;
 
       const kind = candidateKind(relativePath, hasPulumiProject);
       if (!kind) continue;
@@ -156,7 +174,7 @@ export async function walkBrowserSourceDirectory(
     for (const [name, handle] of dirEntries) {
       throwIfCancelled(options.signal);
       const nextPrefix = prefix ? `${prefix}/${name}` : name;
-      if (shouldSkipDirectory(nextPrefix, pathFilter)) continue;
+      if (shouldSkipDirectory(nextPrefix, { shouldSkip: shouldSkipPath })) continue;
       await visit(handle, nextPrefix);
     }
   };
@@ -275,5 +293,5 @@ export function describeTruncation(
   if (reasons.includes('metadata')) {
     parts.push('manifest budget');
   }
-  return ` Skipped remaining files after hitting the ${parts.join(' and ')}. Structure only — no git history.`;
+  return ` Skipped remaining files after hitting the ${parts.join(' and ')}.`;
 }

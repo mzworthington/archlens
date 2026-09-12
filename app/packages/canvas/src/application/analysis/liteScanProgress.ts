@@ -1,4 +1,4 @@
-/** Live progress for an in-browser structural scan (no git). */
+/** Live progress for an in-browser scan (sources + optional git history). */
 
 export type LiteScanPhase = 'walking' | 'reading' | 'analyzing';
 
@@ -35,7 +35,7 @@ export function isLiteScanByteBudgetBinding(progress: LiteScanProgress): boolean
 }
 
 export function liteScanProgressLabel(progress: LiteScanProgress): string {
-  if (progress.phase === 'analyzing') return 'Building map from scanned files';
+  if (progress.phase === 'analyzing') return 'Building map and TraceLens from scanned files';
   if (progress.phase === 'walking') return 'Looking through the folder';
   return 'Reading source files';
 }

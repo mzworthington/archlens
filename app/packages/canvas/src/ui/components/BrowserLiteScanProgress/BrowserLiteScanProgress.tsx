@@ -64,7 +64,9 @@ export const BrowserLiteScanProgress: React.FC<BrowserLiteScanProgressProps> = (
           {formatLiteScanByteProgress(progress)}
         </p>
       ) : null}
-      <p className="text-[11px] text-slate-500">Structure only — no git history.</p>
+      <p className="text-[11px] text-slate-500">
+        Reading sources and git history when `.git` is present.
+      </p>
       <button
         type="button"
         onClick={onCancel}

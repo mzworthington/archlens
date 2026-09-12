@@ -17,6 +17,7 @@ import type { CanvasNodeChange, CanvasEdgeChange, CanvasConnection } from '../..
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import type { MermaidImportPreview } from './import/importMermaid';
 import type { RefactorBoundary } from '@archlens/core/forensics';
+import type { BrowserGitHistoryStatus } from '../../../analysis/browserGitStatus';
 
 export type SelectionOptions = {
   /** Expand the property panel even on mobile (e.g. shared deep links). */
@@ -38,10 +39,12 @@ export interface DiagramState {
   /** Bundled Samples workspace (read-only; save downloads YAML). */
   isSampleWorkspace: boolean;
   /**
-   * Workspace came from in-browser structural scan (no git TraceLens / CLI forensics).
-   * Cleared when opening a folder, sample or empty workspace.
+   * Workspace came from an in-browser scan (File System Access). Git hotspots may be
+   * attached when `.git` was readable. Cleared when opening a folder, sample or empty workspace.
    */
   isBrowserLiteWorkspace: boolean;
+  /** Git history outcome for the current browser scan; null when not a browser-scan workspace. */
+  browserScanGit: BrowserGitHistoryStatus | null;
   /** Scan YAML is still only in memory (not yet written to a picked folder). */
   isMemoryScanWorkspace: boolean;
   workspaceName: string;

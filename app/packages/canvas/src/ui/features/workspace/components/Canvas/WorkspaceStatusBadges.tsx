@@ -22,7 +22,7 @@ export const WorkspaceStatusBadges: React.FC = () => {
       {isBrowserLiteWorkspace ? (
         <span
           className={`px-2 py-0.5 rounded bg-amber-950/90 border border-amber-500/40 text-amber-300 text-[10px] font-semibold uppercase tracking-wider font-mono ${badgeClass}`}
-          title="Structure-only browser scan - run the ArchLens CLI for TraceLens git forensics"
+          title="Browser scan — git hotspots when `.git` is readable"
           data-testid="browser-lite-workspace-badge"
         >
           Lite scan

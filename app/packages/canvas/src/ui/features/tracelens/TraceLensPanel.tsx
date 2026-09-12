@@ -34,6 +34,7 @@ export const TraceLensPanel: React.FC = () => {
     hasScope,
     hasForensicsData,
     isBrowserLiteWorkspace,
+    browserScanGit,
     estateRanking,
     offenders,
     scopeOptions,
@@ -78,6 +79,7 @@ export const TraceLensPanel: React.FC = () => {
           <WorkspaceComplexitySummary
             summary={complexitySummary}
             isBrowserLiteWorkspace={isBrowserLiteWorkspace}
+            gitStatus={browserScanGit}
           />
 
           {traceLensView === 'recommendations' ? (
@@ -123,11 +125,13 @@ export const TraceLensPanel: React.FC = () => {
                       ? 'Try another name, entity ref, parent or type.'
                       : scopeEntityRef
                         ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
-                        : hasScope && !hasForensicsData
-                          ? traceLensMissingForensicsCopy(isBrowserLiteWorkspace)
-                          : hasScope
-                            ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
-                            : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'}
+                        : hasScope && isBrowserLiteWorkspace && browserScanGit !== 'included'
+                          ? traceLensMissingForensicsCopy(true, browserScanGit)
+                          : hasScope && !hasForensicsData
+                            ? traceLensMissingForensicsCopy(false)
+                            : hasScope
+                              ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
+                              : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'}
                   </p>
                 </div>
               ) : (

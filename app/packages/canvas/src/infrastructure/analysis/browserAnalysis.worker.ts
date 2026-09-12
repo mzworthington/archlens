@@ -1,8 +1,10 @@
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import type { LoggerPort } from '@archlens/analysis/ports';
+import { collectBrowserFileMetrics } from '../../application/analysis/collectBrowserFileMetrics';
 import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import type { BrowserAnalysisCommand, BrowserAnalysisResponse } from './browserAnalysisProtocol';
 import { runBrowserAnalysis } from '../../application/analysis/runBrowserAnalysis';
+import { loadBrowserGitHistory } from './isomorphicGitHistory';
 
 let activeController: AbortController | null = null;
 
@@ -40,16 +42,28 @@ self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
     return;
   }
 
-  // Fresh controller per scan so a prior cancel cannot stick on a reused worker.
   const controller = new AbortController();
   activeController = controller;
 
-  const { sources, directoryName } = event.data;
-  void runBrowserAnalysis({
-    directoryName,
-    deps: createBrowserAnalysisDeps({ sources, logger: forwardingLogger }),
-    signal: controller.signal,
-  })
+  const { sources, directoryName, rootHandle } = event.data;
+
+  void (async () => {
+    const git = rootHandle
+      ? await loadBrowserGitHistory(rootHandle, { signal: controller.signal })
+      : { status: 'missing' as const, commits: [] };
+    const forensicsByPath = await collectBrowserFileMetrics({
+      sources,
+      commits: git.commits,
+      signal: controller.signal,
+    });
+    return runBrowserAnalysis({
+      directoryName,
+      deps: createBrowserAnalysisDeps({ sources, logger: forwardingLogger }),
+      signal: controller.signal,
+      forensicsByPath,
+      gitStatus: git.status,
+    });
+  })()
     .then(result => {
       if (controller.signal.aborted) return;
       post({ type: 'result', ...result });

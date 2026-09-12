@@ -1,5 +1,6 @@
 import { CancellationError } from '@archlens/analysis/cancellation';
 import type { LoggerPort } from '@archlens/analysis/ports';
+import { collectBrowserFileMetrics } from '../../application/analysis/collectBrowserFileMetrics';
 import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 import type { BrowserAnalysisCommand, BrowserAnalysisResponse } from './browserAnalysisProtocol';
@@ -7,6 +8,7 @@ import {
   runBrowserAnalysis,
   type BrowserAnalysisResult,
 } from '../../application/analysis/runBrowserAnalysis';
+import { loadBrowserGitHistory } from './isomorphicGitHistory';
 
 /** Minimal slice of Worker used here, so tests can supply a fake. */
 export type AnalysisWorkerLike = {
@@ -30,22 +32,43 @@ function canUseWorker(): boolean {
 export type RunBrowserAnalysisWorkerArgs = {
   sources: readonly LiteScanSourceFile[];
   directoryName: string;
+  rootHandle?: FileSystemDirectoryHandle;
   logger?: LoggerPort;
   signal?: AbortSignal;
   /** @internal Test seam. */
   createWorker?: AnalysisWorkerFactory;
 };
 
+async function executeBrowserAnalysis(args: {
+  sources: readonly LiteScanSourceFile[];
+  directoryName: string;
+  rootHandle?: FileSystemDirectoryHandle;
+  logger?: LoggerPort;
+  signal?: AbortSignal;
+}): Promise<BrowserAnalysisResult> {
+  const git = args.rootHandle
+    ? await loadBrowserGitHistory(args.rootHandle, { signal: args.signal })
+    : { status: 'missing' as const, commits: [] };
+  const forensicsByPath = await collectBrowserFileMetrics({
+    sources: args.sources,
+    commits: git.commits,
+    signal: args.signal,
+  });
+  return runBrowserAnalysis({
+    directoryName: args.directoryName,
+    deps: createBrowserAnalysisDeps({ sources: args.sources, logger: args.logger }),
+    signal: args.signal,
+    forensicsByPath,
+    gitStatus: git.status,
+  });
+}
+
 export function runBrowserAnalysisWorker(
   args: RunBrowserAnalysisWorkerArgs
 ): Promise<BrowserAnalysisResult> {
   const createWorker = args.createWorker ?? defaultWorkerFactory;
   if (!args.createWorker && !canUseWorker()) {
-    return runBrowserAnalysis({
-      directoryName: args.directoryName,
-      deps: createBrowserAnalysisDeps({ sources: args.sources, logger: args.logger }),
-      signal: args.signal,
-    });
+    return executeBrowserAnalysis(args);
   }
 
   return new Promise((resolve, reject) => {
@@ -61,7 +84,6 @@ export function runBrowserAnalysisWorker(
     };
 
     function onAbort() {
-      // Ask for a cooperative stop, then drop the worker so it cannot outlive the scan.
       worker.postMessage({ type: 'cancel' });
       finish(() => reject(new CancellationError('Scan cancelled.')));
     }
@@ -80,7 +102,13 @@ export function runBrowserAnalysisWorker(
         return;
       }
       if (data.type === 'result') {
-        finish(() => resolve({ yamlFiles: data.yamlFiles, contextName: data.contextName }));
+        finish(() =>
+          resolve({
+            yamlFiles: data.yamlFiles,
+            contextName: data.contextName,
+            gitStatus: data.gitStatus,
+          })
+        );
         return;
       }
       finish(() =>
@@ -94,9 +122,9 @@ export function runBrowserAnalysisWorker(
 
     worker.postMessage({
       type: 'scan',
-      // Structured clone copies once - avoid an intermediate array spread.
       sources: args.sources,
       directoryName: args.directoryName,
+      rootHandle: args.rootHandle,
     });
   });
 }

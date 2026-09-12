@@ -614,9 +614,10 @@ describe('TraceLensPanel', () => {
     expect(mem.history?.[mem.history.length - 1]).toBe('/workspace?lens=advicelens');
   });
 
-  it('does not tell a browser-scan workspace that git hotspots exist here', () => {
+  it('does not tell a browser-scan workspace that the tab cannot do git', () => {
     useBlueprintStore.setState({
       isBrowserLiteWorkspace: true,
+      browserScanGit: 'missing',
       isWorkspaceOpen: true,
       loadedSystems: [
         {
@@ -641,9 +642,9 @@ describe('TraceLensPanel', () => {
     );
 
     expect(screen.getByTestId('workspace-complexity-summary')).toHaveTextContent(
-      /structure-only browser scan/i
+      /this folder has no git history/i
     );
     expect(screen.queryByText(/Re-scan with git/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/git hotspots exist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/structure-only/i)).not.toBeInTheDocument();
   });
 });

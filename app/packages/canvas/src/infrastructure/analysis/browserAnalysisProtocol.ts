@@ -5,6 +5,8 @@ export type BrowserAnalysisRequest = {
   type: 'scan';
   sources: readonly LiteScanSourceFile[];
   directoryName: string;
+  /** Optional directory handle so the worker can read `.git` via isomorphic-git. */
+  rootHandle?: FileSystemDirectoryHandle;
 };
 
 export type BrowserAnalysisCancel = { type: 'cancel' };

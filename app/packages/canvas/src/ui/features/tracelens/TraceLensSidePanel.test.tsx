@@ -45,8 +45,13 @@ describe('TraceLensSidePanelContent', () => {
   it('does not claim git metrics exist for a browser lite scan', () => {
     useBlueprintStore.setState({ isBrowserLiteWorkspace: true });
     render(<TraceLensSidePanelContent />);
-    expect(screen.getByTestId('tracelens-empty-selection')).toHaveTextContent(/no CLI forensics/i);
-    expect(screen.getByTestId('tracelens-empty-selection')).not.toHaveTextContent(/git metrics/i);
+    expect(screen.getByTestId('tracelens-empty-selection')).toHaveTextContent(
+      /git metrics when history was read/i
+    );
+    expect(screen.getByTestId('tracelens-empty-selection')).not.toHaveTextContent(
+      /see git metrics, schema dependencies/i
+    );
+    expect(screen.queryByText(/structure-only/i)).not.toBeInTheDocument();
   });
 
   it('navigates to full trace lens mode from worst offenders CTA', () => {

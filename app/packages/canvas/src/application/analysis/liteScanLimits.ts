@@ -1,10 +1,10 @@
 const PULUMI_PROJECT_FILE = /^pulumi\.ya?ml$/i;
 
-/** Caps for in-browser structural scan (no git / no CLI parity). */
-export const LITE_SCAN_MAX_FILES = 300;
-export const LITE_SCAN_MAX_FILE_BYTES = 512_000;
+/** Caps for in-browser scan so the tab stays responsive. CLI has no equivalent cap. */
+export const LITE_SCAN_MAX_FILES = 2000;
+export const LITE_SCAN_MAX_FILE_BYTES = 1_000_000;
 /** Cumulative read budget - sources are structured-cloned into the analysis worker. */
-export const LITE_SCAN_MAX_TOTAL_BYTES = 8_000_000;
+export const LITE_SCAN_MAX_TOTAL_BYTES = 32_000_000;
 /**
  * Source extensions for browser structural scan (application languages).
  * Align with CLI languages and `extensionToTreeSitterLanguage` in `@archlens/core`.
