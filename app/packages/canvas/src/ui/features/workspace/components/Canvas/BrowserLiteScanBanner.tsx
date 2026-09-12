@@ -3,6 +3,7 @@ import { Panel } from '@xyflow/react';
 import { ScanSearch, Terminal, X } from 'lucide-react';
 import { Link } from 'wouter';
 import { CLI_GETTING_STARTED_PATH } from '../../../../../constants/cli';
+import { CliCopyCommands } from '../../../../components/CliCopyCommands/CliCopyCommands';
 
 type BrowserLiteScanBannerProps = {
   open: boolean;
@@ -37,6 +38,7 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
             This map has no TraceLens git hotspots or CI publish. Install the ArchLens CLI for
             in-depth forensics, watch mode and catalog workflows.
           </p>
+          <CliCopyCommands testIdPrefix="browser-lite-scan-banner-copy" />
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href={CLI_GETTING_STARTED_PATH}
@@ -44,7 +46,7 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
               data-testid="browser-lite-scan-banner-cli"
             >
               <Terminal className="w-3 h-3" aria-hidden />
-              Install CLI & run a full scan
+              Install guide
             </Link>
             {onSaveMap ? (
               <button

@@ -137,6 +137,11 @@ dependencies: []
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
     expect(state.notification?.title).toBe('Browser lite scan ready');
     expect(state.notification?.message).toContain('structure only');
+    expect(state.notification?.message.toLowerCase()).not.toMatch(/git hotspots in the browser/);
+    expect(state.notification?.actions?.map(action => action.label)).toEqual([
+      'Copy install command',
+      'Copy scan command',
+    ]);
     expect(state.isMemoryScanWorkspace).toBe(true);
     expect(state.isScanMapPersistOpen).toBe(true);
     expect(state.workspacePort).not.toBe(state.folderWorkspacePort);

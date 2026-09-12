@@ -17,6 +17,7 @@ import type { SimulationResult } from '@archlens/core/resilience';
 import type { EntityRef, SystemNode } from '@archlens/core';
 import type { Recommendation } from '@archlens/core/recommendations';
 import { GoToEntityButton } from '../GoToEntityButton';
+import { DemoGraduationCta } from '../DemoGraduationCta/DemoGraduationCta';
 
 type Props = {
   telemetryView: TelemetryViewMode;
@@ -47,6 +48,7 @@ type Props = {
   onExportChaosSpec: () => void;
   onClearScenario: () => void;
   sampleMode?: boolean;
+  onScanRepo?: () => void;
 };
 
 export const ResilienceSection: React.FC<Props> = props => {
@@ -164,6 +166,9 @@ export const ResilienceSection: React.FC<Props> = props => {
       ) : (
         <ExecutiveTelemetryPanel result={props.simulationResult} />
       )}
+      {props.sampleMode && (props.recommendations?.length ?? 0) > 0 && props.onScanRepo ? (
+        <DemoGraduationCta onScanRepo={props.onScanRepo} />
+      ) : null}
       {props.resilienceUnavailable ? (
         <div
           className="border-t border-slate-800 pt-6 space-y-3"

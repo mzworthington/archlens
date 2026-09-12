@@ -24,6 +24,7 @@ import {
   LITE_SCAN_MAX_TOTAL_BYTES,
 } from '../../../../analysis/liteScanLimits';
 import { CLI_GETTING_STARTED_PATH } from '../../../../../constants/cli';
+import { createCliCopyToastActions } from '../../../../onboarding/cliCopyToastActions';
 import {
   downloadScanYamlFileName,
   writeWorkspaceYamlFiles,
@@ -276,6 +277,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
             message: `Loaded ${walked.sourceFileCount} source file(s)${
               walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
             } - structure only (no TraceLens/git hotspots).${truncatedNote} Save the map to a folder, or keep it in memory. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
+            actions: createCliCopyToastActions(),
           });
           return true;
         }

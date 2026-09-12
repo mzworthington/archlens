@@ -53,6 +53,7 @@ export const AppNotificationToast: React.FC = () => {
                   key={action.label}
                   type="button"
                   onClick={action.onClick}
+                  aria-label={action.label}
                   className="rounded-md border border-current/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider hover:bg-white/10"
                 >
                   {action.label}

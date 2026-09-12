@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
+import { navigateToActiveWorkspaceEntity } from '../hooks/navigateToActiveWorkspaceEntity';
 import { WorkspacePanelShell } from './WorkspacePanelShell';
 import { LeftPanelTabs } from './LeftPanelTabs';
 import { CodeViewerContent } from '../components/CodeViewer/CodeViewerContent';
@@ -17,6 +19,20 @@ export const LeftWorkspacePanel: React.FC = () => {
   } = useBlueprintStore();
 
   const model = usePropertyPanelModel();
+  const [, setLocation] = useLocation();
+
+  const handleScanRepo = useCallback(() => {
+    void (async () => {
+      try {
+        const opened = await useBlueprintStore.getState().openBrowserLiteScan();
+        if (!opened) return;
+        useBlueprintStore.getState().setIsStartupOpen(false);
+        navigateToActiveWorkspaceEntity(setLocation);
+      } catch (err) {
+        console.error('Failed to run browser lite scan:', err);
+      }
+    })();
+  }, [setLocation]);
 
   const handleTabChange = (panel: typeof activeLeftPanel) => {
     if (isResilienceMode && panel !== 'chaosLens') {
@@ -78,6 +94,7 @@ export const LeftWorkspacePanel: React.FC = () => {
               onLoadChaosSpec={() => model.openChaosSpecDialog('import')}
               onExportChaosSpec={() => model.openChaosSpecDialog('export')}
               onClearScenario={model.clearResilienceScenario}
+              onScanRepo={handleScanRepo}
             />
           </div>
         ) : activeTab === 'traceLens' ? (

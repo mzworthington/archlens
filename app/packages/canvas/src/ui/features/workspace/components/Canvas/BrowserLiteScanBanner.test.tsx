@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import { CLI_INSTALL_COMMAND, CLI_SCAN_COMMAND } from '../../../../../constants/cli';
 import { BrowserLiteScanBanner } from './BrowserLiteScanBanner';
 
 describe('BrowserLiteScanBanner', () => {
@@ -28,5 +29,18 @@ describe('BrowserLiteScanBanner', () => {
     render(<BrowserLiteScanBanner open onDismiss={vi.fn()} onSaveMap={onSaveMap} />);
     fireEvent.click(screen.getByRole('button', { name: 'Save map to folder' }));
     expect(onSaveMap).toHaveBeenCalledTimes(1);
+  });
+
+  it('lets the user copy install and scan commands on the canvas', () => {
+    render(<BrowserLiteScanBanner open onDismiss={vi.fn()} />);
+
+    const banner = screen.getByTestId('browser-lite-scan-banner');
+    expect(banner).toHaveTextContent(/no TraceLens git hotspots or CI publish/i);
+    expect(banner).toHaveTextContent(CLI_INSTALL_COMMAND);
+    expect(banner).toHaveTextContent(CLI_SCAN_COMMAND);
+    expect(screen.getByRole('button', { name: 'Copy install command' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Copy scan command' })).toBeEnabled();
+    expect(banner.textContent?.toLowerCase()).not.toMatch(/git hotspots in the browser/);
+    expect(banner.textContent?.toLowerCase()).not.toMatch(/ci publish in the browser/);
   });
 });

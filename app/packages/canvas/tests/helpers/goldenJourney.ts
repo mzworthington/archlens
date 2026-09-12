@@ -47,6 +47,10 @@ export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJou
   await expect(page.getByText(/In Checkout API, add a circuit breaker/i)).toBeVisible({
     timeout: 30_000,
   });
+  await expect(page.getByRole('button', { name: 'Scan your repo in the browser' })).toBeVisible({
+    timeout: 15_000,
+  });
+  await expect(page.getByRole('button', { name: 'Unlock TraceLens with the CLI' })).toBeVisible();
 
   if (recording) await page.waitForTimeout(1_500);
   await releaseE2ePage(page);
