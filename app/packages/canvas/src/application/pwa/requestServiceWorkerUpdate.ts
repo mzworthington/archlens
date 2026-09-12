@@ -6,13 +6,19 @@ export function requestServiceWorkerUpdate(
     .update()
     .then(() => undefined)
     .catch((error: unknown) => {
-      if (isAbortError(error)) return;
+      if (isBenignServiceWorkerUpdateFailure(error)) return;
       throw error;
     });
 }
 
-function isAbortError(error: unknown): boolean {
+function isBenignServiceWorkerUpdateFailure(error: unknown): boolean {
+  if (isNamedError(error, 'AbortError')) return true;
+  if (!(error instanceof TypeError)) return false;
+  return /Failed to fetch|Load failed|fetching the script|ServiceWorker/i.test(error.message);
+}
+
+function isNamedError(error: unknown, name: string): boolean {
   if (typeof error !== 'object' || error === null) return false;
   if (!('name' in error)) return false;
-  return error.name === 'AbortError';
+  return error.name === name;
 }
