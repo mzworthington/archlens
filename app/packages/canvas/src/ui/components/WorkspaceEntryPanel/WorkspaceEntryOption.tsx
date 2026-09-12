@@ -12,6 +12,7 @@ export type WorkspaceEntryOptionProps = {
   titleExtra?: React.ReactNode;
   ariaDescribedBy?: string;
   descriptionClassName?: string;
+  accessibleName?: string;
 };
 
 export const WorkspaceEntryOption: React.FC<WorkspaceEntryOptionProps> = ({
@@ -25,6 +26,7 @@ export const WorkspaceEntryOption: React.FC<WorkspaceEntryOptionProps> = ({
   titleExtra,
   ariaDescribedBy,
   descriptionClassName = 'text-slate-500',
+  accessibleName,
 }) => (
   <button
     type="button"
@@ -33,6 +35,7 @@ export const WorkspaceEntryOption: React.FC<WorkspaceEntryOptionProps> = ({
     disabled={disabled}
     className={className}
     aria-describedby={ariaDescribedBy}
+    aria-label={accessibleName}
   >
     {icon}
     <span className="min-w-0 flex-1">

@@ -7,6 +7,7 @@ interface StartupWorkspaceDialogProps {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
   onBrowserLiteScan?: () => void;
+  onBrowserLiteScanZip?: () => void;
   onImportMermaid?: () => void;
   onStartBlankCanvas?: () => void;
   onShareBlankCanvas?: () => void;
@@ -23,6 +24,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onBrowserLiteScanZip,
   onImportMermaid,
   onStartBlankCanvas,
   onShareBlankCanvas,
@@ -51,6 +53,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
             onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
+            onBrowserLiteScanZip={onBrowserLiteScanZip}
             onImportMermaid={onImportMermaid}
             onStartBlankCanvas={onStartBlankCanvas}
             onShareBlankCanvas={onShareBlankCanvas}

@@ -12,9 +12,13 @@ import {
 } from '../../../workspaceOpenSession';
 import {
   describeTruncation,
+  isBrowserDirectoryPickerSupported,
   pickSourceDirectory,
   walkBrowserSourceDirectory,
 } from '../../../../../infrastructure/analysis/browserSourceWalker';
+import { pickZipArchiveFile } from '../../../../../infrastructure/analysis/pickZipArchiveFile';
+import { ZipScanError } from '../../../../../infrastructure/analysis/unzipLiteScanArchive';
+import { walkBrowserSourceZip } from '../../../../../infrastructure/analysis/walkBrowserSourceZip';
 import { createMemoryScanWorkspacePort } from '../../../../../infrastructure/analysis/memoryScanWorkspace';
 import { createAnalysisLogger } from '../../../../../infrastructure/analysis/analysisLogger';
 import { runBrowserAnalysisWorker } from '../../../../../infrastructure/analysis/runBrowserAnalysisWorker';
@@ -23,11 +27,7 @@ import {
   LITE_SCAN_MAX_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
 } from '../../../../analysis/liteScanLimits';
-import {
-  CLI_GETTING_STARTED_PATH,
-  CLI_INSTALL_COMMAND,
-  CLI_SCAN_COMMAND,
-} from '../../../../../constants/cli';
+import { CLI_INSTALL_COMMAND, CLI_SCAN_COMMAND } from '../../../../../constants/cli';
 import { browserScanReadyMessage } from '../../../../forensics/traceLensBrowserScanCopy';
 import {
   downloadScanYamlFileName,
@@ -36,7 +36,7 @@ import {
 import type { BlueprintStoreSet } from '../../../store';
 import type { DiagramState } from '../../diagramState';
 import type { UiState } from '../../uiState';
-import type { IoState } from '../../ioState';
+import type { BrowserLiteScanInput, IoState } from '../../ioState';
 import {
   loadWorkspaceFromCatalog,
   loadWorkspaceFromDirectory,
@@ -170,26 +170,30 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       browserLiteScanController?.abort();
     },
 
-    openBrowserLiteScan: async () => {
+    openBrowserLiteScan: async (input: BrowserLiteScanInput = {}) => {
       const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
-      const pick = await pickSourceDirectory();
-      if (pick.status === 'cancelled') return false;
-      if (pick.status === 'unsupported') {
-        setNotification?.({
-          type: 'error',
-          title: 'Browser lite scan unavailable',
-          message:
-            'This browser cannot pick a local folder (Firefox and Safari lack the File System Access API). Use Chrome or Edge, or install the ArchLens CLI for a full scan.',
-          actions: [
-            {
-              label: 'Install guide',
-              onClick: () => {
-                window.location.assign(CLI_GETTING_STARTED_PATH);
-              },
-            },
-          ],
-        });
-        return false;
+      let zipFile = input.zipFile;
+      let directoryHandle: FileSystemDirectoryHandle | undefined;
+
+      if (!zipFile) {
+        const preferZip =
+          input.source === 'zip' ||
+          (input.source !== 'folder' && !isBrowserDirectoryPickerSupported());
+        if (preferZip) {
+          const picked = await pickZipArchiveFile();
+          if (picked.status === 'cancelled') return false;
+          zipFile = picked.file;
+        } else {
+          const pick = await pickSourceDirectory();
+          if (pick.status === 'cancelled') return false;
+          if (pick.status === 'unsupported') {
+            const picked = await pickZipArchiveFile();
+            if (picked.status === 'cancelled') return false;
+            zipFile = picked.file;
+          } else {
+            directoryHandle = pick.handle;
+          }
+        }
       }
 
       const openGeneration = beginWorkspaceOpen();
@@ -214,10 +218,15 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       };
 
       try {
-        const walked = await walkBrowserSourceDirectory(pick.handle, {
-          signal: cancellation.signal,
-          onProgress: reportProgress,
-        });
+        const walked = zipFile
+          ? await walkBrowserSourceZip(zipFile, {
+              signal: cancellation.signal,
+              onProgress: reportProgress,
+            })
+          : await walkBrowserSourceDirectory(directoryHandle!, {
+              signal: cancellation.signal,
+              onProgress: reportProgress,
+            });
         if (abortIfSuperseded()) return false;
         if (walked.sourceFileCount === 0 && walked.iacFileCount === 0) {
           throw new Error(
@@ -236,14 +245,14 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         const { yamlFiles, gitStatus } = await runBrowserAnalysisWorker({
           sources: walked.files,
           directoryName: walked.directoryName,
-          rootHandle: pick.handle,
+          rootHandle: directoryHandle,
           logger: createAnalysisLogger(logger),
           signal: cancellation.signal,
         });
         if (abortIfSuperseded()) return false;
 
         if (yamlFiles.length === 0) {
-          throw new Error('Scan produced no BlueprintSpec YAML - check the selected folder.');
+          throw new Error('Scan produced no BlueprintSpec YAML - check the selected files.');
         }
 
         const scanPort = createMemoryScanWorkspacePort({
@@ -312,13 +321,17 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           restoreDemoBootstrapIfNeeded();
           return false;
         }
+        const message =
+          err instanceof ZipScanError
+            ? err.message
+            : (err as Error).message || 'Failed to scan repository in browser';
         logger.error('Failed to run browser lite scan', err);
         restoreDemoBootstrapIfNeeded();
-        set({ lastError: (err as Error).message || 'Failed to scan repository in browser' });
+        set({ lastError: message });
         setNotification?.({
           type: 'error',
-          title: 'Browser scan failed',
-          message: (err as Error).message || 'Failed to scan repository in browser',
+          title: err instanceof ZipScanError ? 'ZIP scan failed' : 'Browser scan failed',
+          message,
         });
         return false;
       } finally {

@@ -14,6 +14,8 @@ export type WorkspaceEntryPanelProps = {
   onOpenDirectory: () => void;
   /** Structural browser scan - pick a source folder, no CLI install. */
   onBrowserLiteScan?: () => void;
+  /** ZIP fallback when folder picking is missing or the user opts out of it. */
+  onBrowserLiteScanZip?: () => void;
   /** Import from Mermaid diagram. */
   onImportMermaid?: () => void;
   /** Start an empty diagram with no demo or folder loaded (Ideate). */
@@ -45,6 +47,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onBrowserLiteScanZip,
   onImportMermaid,
   onStartBlankCanvas,
   onShareBlankCanvas,
@@ -131,7 +134,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             actionsDisabled={actionsDisabled}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
-            onNeedCliHelp={() => setCliExpanded(true)}
+            onBrowserLiteScanZip={onBrowserLiteScanZip}
           />
           <WorkspaceCollaborateChoices
             actionsDisabled={actionsDisabled}

@@ -27,6 +27,11 @@ import type { BlueprintStoreSet } from '../../store';
 import { createOpenWorkspaceStoreActions } from './openWorkspace/openWorkspaceStoreActions';
 import { createSaveWorkspaceActions } from './saveWorkspaceActions';
 
+export type BrowserLiteScanInput = {
+  zipFile?: File;
+  source?: 'folder' | 'zip';
+};
+
 export interface IoState {
   fileSystemPort: FileSystemPort;
   workspacePort: WorkspacePort;
@@ -60,7 +65,7 @@ export interface IoState {
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
-  openBrowserLiteScan: () => Promise<boolean>;
+  openBrowserLiteScan: (input?: BrowserLiteScanInput) => Promise<boolean>;
   persistBrowserScanMapToFolder: () => Promise<boolean>;
   persistBrowserScanMapDownload: () => Promise<boolean>;
   dismissScanMapPersist: () => void;

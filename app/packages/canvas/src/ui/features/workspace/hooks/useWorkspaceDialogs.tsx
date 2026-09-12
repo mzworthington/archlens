@@ -108,6 +108,17 @@ export function useWorkspaceDialogs(): React.ReactNode {
     }
   }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
 
+  const handleBrowserLiteScanZip = useCallback(async () => {
+    try {
+      const opened = await openBrowserLiteScan({ source: 'zip' });
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
+    } catch (err) {
+      console.error('Failed to run browser ZIP scan:', err);
+    }
+  }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
+
   const handleImportMermaid = useCallback(() => {
     markFolderWorkspacePreferred();
     resetToEmptyWorkspace();
@@ -227,6 +238,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={() => void handleBrowserLiteScan()}
+          onBrowserLiteScanZip={() => void handleBrowserLiteScanZip()}
           onImportMermaid={handleImportMermaid}
           onStartBlankCanvas={handleStartBlankCanvas}
           onShareBlankCanvas={handleShareBlankCanvas}

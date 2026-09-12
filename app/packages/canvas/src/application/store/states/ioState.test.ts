@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import git, { type ReadCommitResult } from 'isomorphic-git';
+import { zipSync } from 'fflate';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
 import type { WorkspacePort } from '../../../core';
@@ -8,6 +9,8 @@ import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorking
 import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
 import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import { setPickZipArchiveFileForTests } from '../../../infrastructure/analysis/pickZipArchiveFile';
+import { ZIP_SCAN_INVALID_MESSAGE } from '../../../infrastructure/analysis/unzipLiteScanArchive';
 import { resetWorkspaceOpenSessionForTests } from '../workspaceOpenSession';
 import { readBlankCanvasSession } from './ioState/blankCanvasSession';
 
@@ -40,6 +43,15 @@ function mockGitLogCommit(args: {
       },
     },
   };
+}
+
+function zipArchiveFile(files: Record<string, string>, name = 'demo-repo.zip'): File {
+  const encoder = new TextEncoder();
+  const zippable: Record<string, Uint8Array> = {};
+  for (const [path, content] of Object.entries(files)) {
+    zippable[path] = encoder.encode(content);
+  }
+  return new File([zipSync(zippable)], name, { type: 'application/zip' });
 }
 
 describe('ioState Actions & State Management', () => {
@@ -92,6 +104,7 @@ dependencies: []
   };
 
   beforeEach(async () => {
+    setPickZipArchiveFileForTests(null);
     resetWorkspaceOpenSessionForTests();
     delete mockFiles['another-system.yaml'];
     await db.originalNodes.clear();
@@ -300,25 +313,79 @@ dependencies: []
     expect(useBlueprintStore.getState().isLoading).toBe(false);
   });
 
-  it('notifies when the browser cannot pick a source directory', async () => {
+  it('cancels a ZIP picker without hanging the chooser when folder pick is missing', async () => {
     const original = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
     Object.defineProperty(window, 'showDirectoryPicker', {
       configurable: true,
       value: undefined,
     });
+    const pickZip = vi.fn(async () => ({ status: 'cancelled' as const }));
+    setPickZipArchiveFileForTests(pickZip);
 
     const opened = await useBlueprintStore.getState().openBrowserLiteScan();
     const state = useBlueprintStore.getState();
 
     expect(opened).toBe(false);
-    expect(state.notification?.title).toBe('Browser lite scan unavailable');
-    expect(state.notification?.message).toMatch(/Firefox|Safari|File System Access/i);
+    expect(state.isLoading).toBe(false);
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.notification).toBeNull();
+    expect(pickZip).toHaveBeenCalledTimes(1);
 
     if (original) {
       Object.defineProperty(window, 'showDirectoryPicker', original);
     } else {
       Reflect.deleteProperty(window, 'showDirectoryPicker');
     }
+  });
+
+  it('opens a workspace from a ZIP without attaching git history', async () => {
+    const zipFile = zipArchiveFile({
+      'demo-repo/package.json': '{"name":"demo-repo"}',
+      'demo-repo/src/index.ts': "import { service } from './service';\n",
+      'demo-repo/src/service.ts': 'export const service = 1;\n',
+    });
+
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan({ zipFile });
+    const state = useBlueprintStore.getState();
+
+    expect(opened, state.lastError ?? 'openBrowserLiteScan returned false').toBe(true);
+    expect(state.isWorkspaceOpen).toBe(true);
+    expect(state.isBrowserLiteWorkspace).toBe(true);
+    expect(state.workspaceName).toBe('demo-repo');
+    expect(state.browserScanGit).toBe('missing');
+    expect(state.notification?.title).toBe('Browser scan ready');
+    expect(state.notification?.message).toMatch(/no git history/i);
+    expect(state.isMemoryScanWorkspace).toBe(true);
+  });
+
+  it('shows a dismissable ZIP scan failed toast for an invalid archive', async () => {
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan({
+      zipFile: new File([new Uint8Array([1, 2, 3, 4])], 'bad.zip', { type: 'application/zip' }),
+    });
+    const state = useBlueprintStore.getState();
+
+    expect(opened).toBe(false);
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.isLoading).toBe(false);
+    expect(state.notification?.type).toBe('error');
+    expect(state.notification?.title).toBe('ZIP scan failed');
+    expect(state.notification?.message).toBe(ZIP_SCAN_INVALID_MESSAGE);
+  });
+
+  it('picks a ZIP instead of a folder when source is zip', async () => {
+    const dirPicker = vi.fn();
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: dirPicker,
+    });
+    const pickZip = vi.fn(async () => ({ status: 'cancelled' as const }));
+    setPickZipArchiveFileForTests(pickZip);
+
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan({ source: 'zip' });
+
+    expect(opened).toBe(false);
+    expect(dirPicker).not.toHaveBeenCalled();
+    expect(pickZip).toHaveBeenCalledTimes(1);
   });
 
   it('should catalog all systems on open and lazy-load when selecting another', async () => {

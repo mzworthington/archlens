@@ -1,8 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
 
 describe('StartupWorkspaceDialog', () => {
+  let originalPicker: PropertyDescriptor | undefined;
+
+  beforeEach(() => {
+    originalPicker = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(),
+    });
+  });
+
+  afterEach(() => {
+    if (originalPicker) {
+      Object.defineProperty(window, 'showDirectoryPicker', originalPicker);
+    } else {
+      Reflect.deleteProperty(window, 'showDirectoryPicker');
+    }
+  });
+
   it('renders intent buckets with sample strip when open', () => {
     render(
       <StartupWorkspaceDialog
@@ -53,6 +71,7 @@ describe('StartupWorkspaceDialog', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
+    const onBrowserLiteScanZip = vi.fn();
     const onImportMermaid = vi.fn();
     const onStartBlankCanvas = vi.fn();
     const onShareBlankCanvas = vi.fn();
@@ -65,6 +84,7 @@ describe('StartupWorkspaceDialog', () => {
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
+        onBrowserLiteScanZip={onBrowserLiteScanZip}
         onImportMermaid={onImportMermaid}
         onStartBlankCanvas={onStartBlankCanvas}
         onShareBlankCanvas={onShareBlankCanvas}
@@ -75,6 +95,7 @@ describe('StartupWorkspaceDialog', () => {
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
+    fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
     fireEvent.click(screen.getByTestId('workspace-import-mermaid'));
     fireEvent.click(screen.getByTestId('workspace-start-blank'));
@@ -84,6 +105,7 @@ describe('StartupWorkspaceDialog', () => {
 
     expect(onOpenSample).toHaveBeenCalledTimes(1);
     expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
+    expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
     expect(onImportMermaid).toHaveBeenCalledTimes(1);
     expect(onStartBlankCanvas).toHaveBeenCalledTimes(1);

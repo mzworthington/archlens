@@ -28,6 +28,7 @@ describe('WorkspaceEntryPanel', () => {
         onOpenSample={vi.fn()}
         onOpenDirectory={vi.fn()}
         onBrowserLiteScan={vi.fn()}
+        onBrowserLiteScanZip={vi.fn()}
         onImportMermaid={vi.fn()}
         onStartBlankCanvas={vi.fn()}
         onShareBlankCanvas={vi.fn()}
@@ -43,6 +44,9 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-ideate')).toBeInTheDocument();
 
     expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(/Python/i);
+    expect(screen.getByRole('button', { name: 'Upload ZIP' })).toHaveTextContent(
+      /Upload ZIP instead/i
+    );
     expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open existing blueprints folder/i
     );
@@ -121,33 +125,36 @@ describe('WorkspaceEntryPanel', () => {
     );
   });
 
-  it('surfaces unsupported-browser feedback for lite scan when folder picker is missing', () => {
+  it('offers a named ZIP upload when the folder picker is missing', () => {
     Object.defineProperty(window, 'showDirectoryPicker', {
       configurable: true,
       value: undefined,
     });
 
-    const onBrowserLiteScan = vi.fn();
+    const onBrowserLiteScanZip = vi.fn();
     render(
       <WorkspaceEntryPanel
         onOpenSample={vi.fn()}
         onOpenDirectory={vi.fn()}
-        onBrowserLiteScan={onBrowserLiteScan}
+        onBrowserLiteScan={vi.fn()}
+        onBrowserLiteScanZip={onBrowserLiteScanZip}
         showCliPanel
       />
     );
 
-    expect(screen.getByTestId('workspace-browser-lite-unsupported')).toHaveTextContent(
-      /Firefox and Safari/i
+    expect(screen.queryByTestId('workspace-browser-lite-unsupported')).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('workspace-browser-lite-unavailable-badge')
+    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-browser-lite-zip-hint')).toHaveTextContent(
+      /Upload a ZIP/i
     );
-    expect(screen.getByTestId('workspace-browser-lite-unavailable-badge')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Upload ZIP' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Browser lite scan/i })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
-    expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
-    expect(screen.getByTestId('workspace-browser-lite-feedback')).toHaveTextContent(
-      /not available in this browser/i
-    );
-    expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
+    expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('workspace-cli-panel-body')).not.toBeInTheDocument();
   });
 
   it('keeps a single share handler as a full-width option', () => {
@@ -163,6 +170,7 @@ describe('WorkspaceEntryPanel', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
+    const onBrowserLiteScanZip = vi.fn();
     const onImportMermaid = vi.fn();
     const onStartBlankCanvas = vi.fn();
     const onShareBlankCanvas = vi.fn();
@@ -174,6 +182,7 @@ describe('WorkspaceEntryPanel', () => {
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
+        onBrowserLiteScanZip={onBrowserLiteScanZip}
         onImportMermaid={onImportMermaid}
         onStartBlankCanvas={onStartBlankCanvas}
         onShareBlankCanvas={onShareBlankCanvas}
@@ -184,6 +193,7 @@ describe('WorkspaceEntryPanel', () => {
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
+    fireEvent.click(screen.getByRole('button', { name: 'Upload ZIP' }));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
     fireEvent.click(screen.getByTestId('workspace-import-mermaid'));
     fireEvent.click(screen.getByTestId('workspace-start-blank'));
@@ -193,6 +203,7 @@ describe('WorkspaceEntryPanel', () => {
 
     expect(onOpenSample).toHaveBeenCalledTimes(1);
     expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
+    expect(onBrowserLiteScanZip).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
     expect(onImportMermaid).toHaveBeenCalledTimes(1);
     expect(onStartBlankCanvas).toHaveBeenCalledTimes(1);
@@ -205,6 +216,7 @@ describe('WorkspaceEntryPanel', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
+    const onBrowserLiteScanZip = vi.fn();
     const onImportMermaid = vi.fn();
     const onStartBlankCanvas = vi.fn();
     const onShareBlankCanvas = vi.fn();
@@ -216,6 +228,7 @@ describe('WorkspaceEntryPanel', () => {
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
+        onBrowserLiteScanZip={onBrowserLiteScanZip}
         onImportMermaid={onImportMermaid}
         onStartBlankCanvas={onStartBlankCanvas}
         onShareBlankCanvas={onShareBlankCanvas}
@@ -228,6 +241,7 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-entry-loading')).toHaveTextContent(/Loading sandbox/i);
     expect(screen.getByTestId('workspace-open-sample')).toBeDisabled();
     expect(screen.getByTestId('workspace-browser-lite-scan')).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Upload ZIP' })).toBeDisabled();
     expect(screen.getByTestId('workspace-open-directory')).toBeDisabled();
     expect(screen.getByTestId('workspace-import-mermaid')).toBeDisabled();
     expect(screen.getByTestId('workspace-start-blank')).toBeDisabled();
@@ -279,6 +293,7 @@ describe('WorkspaceEntryPanel', () => {
         onOpenSample={vi.fn()}
         onOpenDirectory={vi.fn()}
         onBrowserLiteScan={vi.fn()}
+        onBrowserLiteScanZip={vi.fn()}
         onImportMermaid={vi.fn()}
         onStartBlankCanvas={vi.fn()}
         onShareBlankCanvas={vi.fn()}
