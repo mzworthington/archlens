@@ -18,6 +18,10 @@ jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    env:
+      # Overlay incremental analysis failed this repo on ubuntu-latest disk
+      # (CodeQL then fails the job after SARIF export). Full-scan mode is enough.
+      CODEQL_OVERLAY_DATABASE_MODE: none
     strategy:
       fail-fast: false
       matrix:
