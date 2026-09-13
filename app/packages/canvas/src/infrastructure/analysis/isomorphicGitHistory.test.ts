@@ -1,7 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import git from 'isomorphic-git';
 import { createMemoryGitFs } from './memoryGitFs';
-import { loadBrowserGitHistory, loadGitHistoryFromFs } from './isomorphicGitHistory';
+import {
+  collectGitProvenanceFromFs,
+  loadBrowserGitHistory,
+  loadGitHistoryFromFs,
+} from './isomorphicGitHistory';
 
 type Entry = [string, FileSystemHandle];
 
@@ -96,5 +100,66 @@ describe('loadBrowserGitHistory', () => {
     ]);
     const result = await loadBrowserGitHistory(root);
     expect(result.status).not.toBe('missing');
+  });
+
+  it('includes origin provenance from the directory handle checkout', async () => {
+    const log = vi.spyOn(git, 'log').mockResolvedValue([]);
+    const remotes = vi
+      .spyOn(git, 'listRemotes')
+      .mockResolvedValue([
+        { remote: 'origin', url: 'https://github.com/mzworthington/RoMini.git' },
+      ]);
+    const branch = vi.spyOn(git, 'currentBranch').mockResolvedValue('main');
+    const head = vi.spyOn(git, 'resolveRef').mockResolvedValue('abc123');
+    const root = dir('repo', [['.git', dir('.git', [])]]);
+    try {
+      await expect(loadBrowserGitHistory(root)).resolves.toEqual({
+        status: 'included',
+        commits: [],
+        source: {
+          remoteUrl: 'https://github.com/mzworthington/RoMini',
+          defaultBranch: 'main',
+          scannedAtCommit: 'abc123',
+          scanRoot: '.',
+        },
+      });
+    } finally {
+      log.mockRestore();
+      remotes.mockRestore();
+      branch.mockRestore();
+      head.mockRestore();
+    }
+  });
+});
+
+describe('collectGitProvenanceFromFs', () => {
+  it('reads origin URL, HEAD commit and current branch from the checkout', async () => {
+    const fs = createMemoryGitFs();
+    const dir = '/repo';
+    await fs.promises.mkdir(dir, { recursive: true });
+    await git.init({ fs, dir, defaultBranch: 'main' });
+    await git.addRemote({
+      fs,
+      dir,
+      remote: 'origin',
+      url: 'git@github.com:mzworthington/RoMini.git',
+    });
+    await fs.promises.writeFile(`${dir}/README.md`, '# RoMini\n');
+    await git.add({ fs, dir, filepath: 'README.md' });
+    const oid = await git.commit({
+      fs,
+      dir,
+      message: 'init',
+      author: { name: 'Ada', email: 'ada@ex.com' },
+    });
+
+    const provenance = await collectGitProvenanceFromFs({ fs, dir });
+
+    expect(provenance).toEqual({
+      remoteUrl: 'https://github.com/mzworthington/RoMini',
+      defaultBranch: 'main',
+      scannedAtCommit: oid,
+      scanRoot: '.',
+    });
   });
 });

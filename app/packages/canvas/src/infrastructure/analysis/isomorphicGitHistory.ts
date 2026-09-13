@@ -1,6 +1,7 @@
 import git, { type FsClient } from 'isomorphic-git';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 import type { GitCommit } from '@archlens/core/forensics';
+import { normalizeGitRemoteUrl, type SourceProvenance } from '@archlens/core';
 import { DEFAULT_FORENSICS_OPTIONS } from '@archlens/analysis/forensics';
 import { createDirectoryHandleFs } from './directoryHandleFs';
 
@@ -9,6 +10,7 @@ type GitHistoryStatus = 'included' | 'missing' | 'failed';
 export type BrowserGitHistoryResult = {
   status: GitHistoryStatus;
   commits: GitCommit[];
+  source?: SourceProvenance;
 };
 
 const MAX_COMMITS = 2000;
@@ -33,6 +35,36 @@ function toGitCommit(entry: {
     authorDate: new Date(entry.commit.author.timestamp * 1000),
     paths,
   };
+}
+
+export async function collectGitProvenanceFromFs(args: {
+  fs: FsClient;
+  dir?: string;
+}): Promise<SourceProvenance | undefined> {
+  const dir = args.dir ?? '/';
+  try {
+    const remotes = await git.listRemotes({ fs: args.fs, dir });
+    const origin = remotes.find(remote => remote.remote === 'origin') ?? remotes[0];
+    const remoteUrl = origin ? normalizeGitRemoteUrl(origin.url) : undefined;
+
+    let defaultBranch: string | undefined;
+    try {
+      const current = await git.currentBranch({ fs: args.fs, dir });
+      if (current) defaultBranch = current;
+    } catch {}
+
+    const scannedAtCommit = await git.resolveRef({ fs: args.fs, dir, ref: 'HEAD' });
+
+    const provenance: SourceProvenance = {
+      scannedAtCommit,
+      scanRoot: '.',
+    };
+    if (remoteUrl) provenance.remoteUrl = remoteUrl;
+    if (defaultBranch) provenance.defaultBranch = defaultBranch;
+    return provenance;
+  } catch {
+    return undefined;
+  }
 }
 
 export async function loadGitHistoryFromFs(args: {
@@ -91,7 +123,8 @@ export async function loadBrowserGitHistory(
       sinceDays: options.sinceDays,
       signal: options.signal,
     });
-    return { status: 'included', commits };
+    const source = await collectGitProvenanceFromFs({ fs, dir: '/' });
+    return source ? { status: 'included', commits, source } : { status: 'included', commits };
   } catch (error) {
     if (options.signal?.aborted) throw error;
     return { status: 'failed', commits: [] };

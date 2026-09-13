@@ -8,7 +8,7 @@ import {
   runBrowserAnalysis,
   type BrowserAnalysisResult,
 } from '../../application/analysis/runBrowserAnalysis';
-import { loadBrowserGitHistory } from './isomorphicGitHistory';
+import { loadBrowserGitHistory, type BrowserGitHistoryResult } from './isomorphicGitHistory';
 
 /** Minimal slice of Worker used here, so tests can supply a fake. */
 export type AnalysisWorkerLike = {
@@ -46,9 +46,9 @@ async function executeBrowserAnalysis(args: {
   logger?: LoggerPort;
   signal?: AbortSignal;
 }): Promise<BrowserAnalysisResult> {
-  const git = args.rootHandle
+  const git: BrowserGitHistoryResult = args.rootHandle
     ? await loadBrowserGitHistory(args.rootHandle, { signal: args.signal })
-    : { status: 'missing' as const, commits: [] };
+    : { status: 'missing', commits: [] };
   const forensicsByPath = await collectBrowserFileMetrics({
     sources: args.sources,
     commits: git.commits,
@@ -60,6 +60,7 @@ async function executeBrowserAnalysis(args: {
     signal: args.signal,
     forensicsByPath,
     gitStatus: git.status,
+    source: git.source,
   });
 }
 

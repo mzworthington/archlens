@@ -223,4 +223,24 @@ resource "aws_iam_role" "lambda" {
     expect(hotspotNodes.length).toBeGreaterThan(0);
     expect(hotspotNodes.some(node => (node.forensics?.hotspotScore ?? 0) > 0)).toBe(true);
   });
+
+  it('stamps git origin from the checkout onto emitted YAML metadata.source', async () => {
+    const sources = [{ relativePath: 'src/a.ts', content: 'export const a = 1;\n' }];
+
+    const result = await runBrowserAnalysis({
+      directoryName: 'romini',
+      deps: createBrowserAnalysisDeps({ sources }),
+      source: {
+        remoteUrl: 'https://github.com/mzworthington/RoMini',
+        defaultBranch: 'main',
+        scannedAtCommit: 'abc123',
+        scanRoot: '.',
+      },
+    });
+
+    const schemas = result.yamlFiles.map(file => parseSchemaFromYaml(file.content));
+    expect(
+      schemas.some(schema => schema.source?.remoteUrl === 'https://github.com/mzworthington/RoMini')
+    ).toBe(true);
+  });
 });

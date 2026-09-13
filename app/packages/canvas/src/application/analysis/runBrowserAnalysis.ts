@@ -4,6 +4,7 @@ import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
 import type { AnalysisFileSystemPort, CodebaseParserPort } from '@archlens/analysis/ports';
 import type { LoggerPort } from '@archlens/analysis/ports';
 import type { FileMetrics } from '@archlens/analysis/forensics';
+import type { SourceProvenance } from '@archlens/core';
 import { slugifyWorkspaceName } from './slugifyWorkspaceName';
 import type { BrowserGitHistoryStatus } from './browserGitStatus';
 
@@ -40,6 +41,7 @@ export async function runBrowserAnalysis(args: {
   signal?: AbortSignal;
   forensicsByPath?: ReadonlyMap<string, FileMetrics>;
   gitStatus?: BrowserGitHistoryStatus;
+  source?: SourceProvenance;
 }): Promise<BrowserAnalysisResult> {
   const contextName = slugifyWorkspaceName(args.directoryName);
   const analyzer = new CodebaseAnalyzer({
@@ -59,9 +61,12 @@ export async function runBrowserAnalysis(args: {
     BROWSER_SCAN_OUTPUT_ROOT,
     BROWSER_SCAN_GLOB,
     args.signal,
-    args.forensicsByPath && args.forensicsByPath.size > 0
-      ? { forensicsByPath: args.forensicsByPath }
-      : {}
+    {
+      ...(args.forensicsByPath && args.forensicsByPath.size > 0
+        ? { forensicsByPath: args.forensicsByPath }
+        : {}),
+      ...(args.source ? { source: args.source } : {}),
+    }
   );
 
   const iacAnalyzer = new IacAnalyzer({
@@ -73,6 +78,7 @@ export async function runBrowserAnalysis(args: {
     scanRoot: BROWSER_SCAN_CWD,
     signal: args.signal,
     discoveredSystems,
+    ...(args.source ? { source: args.source } : {}),
   });
 
   return {

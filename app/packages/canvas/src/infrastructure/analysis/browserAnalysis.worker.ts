@@ -62,6 +62,7 @@ self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
       signal: controller.signal,
       forensicsByPath,
       gitStatus: git.status,
+      source: git.source,
     });
   })()
     .then(result => {

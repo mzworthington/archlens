@@ -1,4 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
+import git from 'isomorphic-git';
+import { parseSchemaFromYaml } from '@archlens/core';
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { runBrowserAnalysisWorker, type AnalysisWorkerLike } from './runBrowserAnalysisWorker';
 import type { BrowserAnalysisCommand, BrowserAnalysisResponse } from './browserAnalysisProtocol';
@@ -26,6 +28,22 @@ function createFakeWorker() {
 }
 
 const sources = [{ relativePath: 'src/a.ts', content: 'export const a = 1;\n' }];
+
+function dir(name: string, entries: Array<[string, FileSystemHandle]>): FileSystemDirectoryHandle {
+  const handle = {
+    kind: 'directory' as const,
+    name,
+    async getDirectoryHandle(child: string) {
+      const found = entries.find(([n, h]) => n === child && h.kind === 'directory');
+      if (!found) throw new Error('not found');
+      return found[1] as FileSystemDirectoryHandle;
+    },
+    async getFileHandle() {
+      throw new Error('not found');
+    },
+  };
+  return handle as unknown as FileSystemDirectoryHandle;
+}
 
 describe('runBrowserAnalysisWorker', () => {
   it('resolves with the worker result and terminates the worker', async () => {
@@ -102,5 +120,34 @@ describe('runBrowserAnalysisWorker', () => {
 
     await expect(promise).rejects.toHaveProperty('message', 'boom');
     expect(worker.terminated).toBe(true);
+  });
+
+  it('stamps git origin onto YAML when the scan root has a checkout', async () => {
+    const log = vi.spyOn(git, 'log').mockResolvedValue([]);
+    const remotes = vi
+      .spyOn(git, 'listRemotes')
+      .mockResolvedValue([
+        { remote: 'origin', url: 'https://github.com/mzworthington/RoMini.git' },
+      ]);
+    const branch = vi.spyOn(git, 'currentBranch').mockResolvedValue('main');
+    const head = vi.spyOn(git, 'resolveRef').mockResolvedValue('abc123');
+    try {
+      const result = await runBrowserAnalysisWorker({
+        sources,
+        directoryName: 'romini',
+        rootHandle: dir('romini', [['.git', dir('.git', [])]]),
+      });
+      const schemas = result.yamlFiles.map(file => parseSchemaFromYaml(file.content));
+      expect(
+        schemas.some(
+          schema => schema.source?.remoteUrl === 'https://github.com/mzworthington/RoMini'
+        )
+      ).toBe(true);
+    } finally {
+      log.mockRestore();
+      remotes.mockRestore();
+      branch.mockRestore();
+      head.mockRestore();
+    }
   });
 });
