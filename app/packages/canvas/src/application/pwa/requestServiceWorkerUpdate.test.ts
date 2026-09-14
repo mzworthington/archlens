@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  cacheBustingReloadUrl,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
 } from './requestServiceWorkerUpdate';
@@ -68,6 +69,14 @@ describe('requestServiceWorkerUpdate', () => {
   });
 });
 
+describe('cacheBustingReloadUrl', () => {
+  it('adds a unique query param so the next navigation is not a cached shell', () => {
+    expect(cacheBustingReloadUrl('https://archlens.dev/', 1700000000000)).toBe(
+      'https://archlens.dev/?al_refresh=1700000000000'
+    );
+  });
+});
+
 describe('reloadWithoutServiceWorker', () => {
   it('unregisters every worker then reloads so the next document is not a stale shell', async () => {
     const unregister = vi.fn().mockResolvedValue(true);
@@ -77,6 +86,56 @@ describe('reloadWithoutServiceWorker', () => {
       reload,
     });
     expect(unregister).toHaveBeenCalledTimes(1);
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it('clears Cache Storage before reload so a controlling worker cannot serve the old shell', async () => {
+    const unregister = vi.fn().mockResolvedValue(true);
+    const deleteCache = vi.fn().mockResolvedValue(true);
+    const reload = vi.fn();
+    await reloadWithoutServiceWorker({
+      getRegistrations: async () => [{ unregister }],
+      cacheKeys: async () => ['workbox-precache-v2-https://archlens.dev/'],
+      deleteCache,
+      reload,
+    });
+    expect(deleteCache).toHaveBeenCalledWith('workbox-precache-v2-https://archlens.dev/');
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it('still reloads when skipWaiting throws because the waiting worker never installed', async () => {
+    const reload = vi.fn();
+    await reloadWithoutServiceWorker({
+      skipWaiting: () => {
+        throw new TypeError(
+          'ServiceWorker script at https://archlens.dev/sw.js for scope https://archlens.dev/ encountered an error during installation.'
+        );
+      },
+      getRegistrations: async () => [],
+      reload,
+    });
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it('still reloads when unregister rejects', async () => {
+    const reload = vi.fn();
+    await reloadWithoutServiceWorker({
+      getRegistrations: async () => [
+        { unregister: vi.fn().mockRejectedValue(new TypeError('Failed to fetch')) },
+      ],
+      reload,
+    });
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it('still reloads when listing registrations throws', async () => {
+    const reload = vi.fn();
+    await reloadWithoutServiceWorker({
+      getRegistrations: async () => {
+        throw new TypeError('navigator.serviceWorker is undefined');
+      },
+      reload,
+    });
     expect(reload).toHaveBeenCalledTimes(1);
   });
 });

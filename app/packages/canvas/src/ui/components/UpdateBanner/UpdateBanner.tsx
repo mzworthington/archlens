@@ -3,6 +3,7 @@ import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
 import {
+  cacheBustingReloadUrl,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
 } from '../../../application/pwa/requestServiceWorkerUpdate';
@@ -49,14 +50,17 @@ export function UpdateBanner() {
   if (!show) return null;
 
   const refresh = () => {
-    if (needRefresh) {
-      void updateServiceWorker(true);
-      return;
+    try {
+      updateServiceWorker(false);
+    } catch {
+      // Waiting worker may never activate; hard reload is the source of truth.
     }
     void reloadWithoutServiceWorker({
-      getRegistrations: () => navigator.serviceWorker.getRegistrations(),
+      getRegistrations: () => navigator.serviceWorker?.getRegistrations() ?? Promise.resolve([]),
+      cacheKeys: () => (typeof caches === 'undefined' ? Promise.resolve([]) : caches.keys()),
+      deleteCache: cacheName => caches.delete(cacheName),
       reload: () => {
-        window.location.reload();
+        window.location.replace(cacheBustingReloadUrl(window.location.href));
       },
     });
   };
