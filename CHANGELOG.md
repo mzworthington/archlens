@@ -1,10 +1,55 @@
 # Changelog
 
+## 2026-09-14
+
+### 🐛 Bug Fixes
+
+- Vhs version pinning
+
+## 2026-09-13
+
+### 🚀 Features
+
+- Read git location on browser scan
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Refresh Pulumi TypeScript lockfile and skip CodeQL overlay
+
 ## 2026-09-12
 
 ### 🚀 Features
 
-- _(canvas)_ Scan a repo from Safari or Firefox via ZIP upload (MZW-36)
+- _(canvas)_ Attach isomorphic-git TraceLens and demo graduation CTAs (MZW-39) (#159)
+- _(canvas)_ Scan a repo from a ZIP when folder pick is missing (MZW-36) (#160)
+- Improved refresh logic
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Stop service worker html 308s and swallow fetch TypeErrors (MZW-102)
+- _(canvas)_ Only swallow service worker fetch TypeErrors (MZW-102)
+- _(canvas)_ Swallow transient service worker update failures (#155)
+- _(canvas)_ Rewrite PWA precache HTML off 308s (MZW-102)
+- _(canvas)_ Drop root index.html from PWA precache (MZW-102)
+- _(canvas)_ Rewrite leftover PWA html off 308s (MZW-102)
+
+### 🧰 Maintenance & Dependencies
+
+- Improve dependendabot & codeQL
+
+## 2026-09-11
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump @vitest/mocker from 4.1.10 to 5.0.0 in /app in the npm_and_yarn group across 0 directory (#154)
+- Update wk hooks
+- _(deps)_ Bump app and Pulumi packages to latest current majors
+
+## 2026-09-07
+
+### 🐛 Bug Fixes
+
+- Update import paths to remove file extensions in analysis package
 
 ## 2026-09-06
 
@@ -26,6 +71,11 @@
 - _(deps)_ Bump ignore from 7.0.6 to 7.0.8 in /app (#144)
 - _(deps-dev)_ Bump @types/node in /infra/cloudflare (#143)
 - _(deps-dev)_ Bump wrangler from 4.127.1 to 4.128.0 in /app (#149)
+- _(ui)_ Remove duplicate IaC import functionality
+
+### 📚 Documentation
+
+- Improve collab docs
 
 ## 2026-09-05
 

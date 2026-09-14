@@ -17,6 +17,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ attaches forensics onto component and container nodes when metrics are provided
 - ✅ stops when the abort signal is already aborted
 
+#### ForensicAnalyzer
+
+- ✅ correlates structure + history, classifies and reports
+- ✅ attaches weekly hotspotScore series from lookback churn buckets
+- ✅ skips AST for cold files when minChurnForComplexity is set but still counts loc
+- ✅ filters to hotspots only when requested
+
 ### attachForensics
 
 #### aggregateNodeForensics
@@ -98,6 +105,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ nests under system when system id matches the context root
 - ✅ writes container nodes without layout positions
 - ✅ should log successful write
+
+### contentAdapters
+
+#### ContentComplexityAdapter
+
+- ✅ counts loc and skips AST complexity when asked
+
+#### ContentImportGraphAdapter
+
+- ✅ extracts relative TS imports from in-memory sources
+
+#### estimateControlFlowComplexity
+
+- ✅ counts branching keywords as cyclomatic-like complexity
 
 ### contextLevelWriter
 
@@ -229,6 +250,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ rolls up monorepo paths to folder depth
 - ✅ keeps simple-repo leaf files under one src folder
 - ✅ rolls up python packages by immediate parent folder
+
+### forensicsGlob
+
+#### forensicsGlob
+
+- ✅ aligns forensics glob with architecture scan plus js/jsx and without tf
+- ✅ returns configured min churn when explicitly set
+- ✅ applies large-repo default when configured min churn is zero
 
 ### goAnalyzer
 
@@ -402,6 +431,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ builds nested drill-down schemas for multi-level folder rollups
 - ✅ keeps outgoing dependencies to other rollups for external resolution
 - ✅ rewrites cross-container deps to single-file rollup leaves onto the emitted rollup
+
+### structuralPathFilter
+
+#### createMutableGitignoreFilter
+
+- ✅ applies nested gitignore patterns relative to that directory
 
 ### systemDiscovery
 
@@ -759,13 +794,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ runs CodebaseAnalyzer against memory FS and emits YAML
 - ✅ preserves semantic parity between direct browser adapters and browser scan runner
 - ✅ runs IacAnalyzer for Terraform roots during browser scan
+- ✅ attaches ForensicAnalyzer hotspot metrics onto the scanned map YAML
+- ✅ stamps git origin from the checkout onto emitted YAML metadata.source
 
 ### BrowserLiteScanBanner
 
 #### BrowserLiteScanBanner
 
 - ✅ renders nothing when closed
-- ✅ shows lite vs CLI messaging and dismisses
+- ✅ shows git-included messaging, copyable CLI commands and dismisses
+- ✅ says git could not be read without claiming the tab cannot do git
+- ✅ says this folder has no git without claiming the tab cannot do git
 - ✅ offers a named save when the map is still in memory
 
 ### BrowserLiteScanProgress
@@ -786,7 +825,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### describeTruncation
 
-- ✅ explains which budgets truncated the scan and that git is not included
+- ✅ explains which budgets truncated the scan
 
 #### pickSourceDirectory
 
@@ -797,6 +836,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ collects sources plus analyzer manifests and counts only sources
 - ✅ does not let manifests consume the source budget
 - ✅ prefers src/ over peripheral scripts when the source cap is hit
+- ✅ honours .gitignore the way the CLI path filter does
+- ✅ applies nested gitignore patterns only under that directory
 - ✅ skips structural noise dirs such as e2e and stories
 - ✅ skips declaration files and includes .mjs/.cjs
 - ✅ collects CLI-supported languages plus csproj metadata
@@ -885,6 +926,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### formatAppVersionLabel
 
 - ✅ formats major.minor from package version plus build id
+
+#### hasRemoteBuildUpdate
+
+- ✅ reads the live build id from version.json instead of index.html
 
 #### parseBuildIdFromHtml
 
@@ -1075,6 +1120,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ only previews live room vs disk in a folder workspace that is in a room
 - ✅ requires pushing disk back to the room when keeping disk in a live session
 
+### collectBrowserFileMetrics
+
+#### collectBrowserFileMetrics
+
+- ✅ classifies a frequently changed complex file as a hotspot
+- ✅ still counts loc when git history is empty so the map matches a gitless CLI scan
+
 ### compareOffenders
 
 #### compareOffenders
@@ -1165,6 +1217,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should detect modified properties, name or type of components
 - ✅ should detect position changes of components
 - ✅ should revert draft changes back to baseline
+
+### DemoGraduateCtas
+
+#### DemoGraduateCtas
+
+- ✅ is hidden off the demo workspace
+- ✅ names browser scan and CLI actions and keeps them keyboard reachable
 
 ### DependencyFocusChip
 
@@ -1258,6 +1317,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ names live room vs disk and pushes disk back into the room
 - ✅ triggers commit schema operations and calls saveActiveDiagram when Commit is clicked
 
+### directoryHandleFs
+
+#### createDirectoryHandleFs
+
+- ✅ reads nested files and directories for isomorphic-git
+
 ### DocsHome
 
 #### DocsHome
@@ -1288,6 +1353,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows local section nav on mobile and nested sidebar items when provided
 - ✅ links author credit to mzworthington.co.uk
 - ✅ links Privacy policy to /privacy
+
+### dropBenignBrowserExceptionCapture
+
+#### dropBenignBrowserExceptionCapture
+
+- ✅ drops $exception events for a failed service worker script fetch
+- ✅ drops $exception events for a synthetic service worker install failure
+- ✅ still drops ResizeObserver loop notifications
+- ✅ keeps a Chrome ServiceWorker MIME TypeError
+- ✅ keeps unrelated $exception events
 
 ### dropResizeObserverLoopCapture
 
@@ -1547,16 +1622,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns null for zero intensity
 - ✅ returns a red-scale hex for positive intensity
 
-### importIac
-
-#### previewIacImport
-
-- ✅ returns parse result and merge plan for terraform resources
-- ✅ parses multi-file python pulumi stacks using runtime from Pulumi.yaml
-- ✅ omits supporting terraform resources from container merge additions
-- ✅ lists a name collision when a projected vendor already exists
-- ✅ still rejects mixed terraform and pulumi in one import
-
 ### importMermaid
 
 #### previewMermaidImport
@@ -1599,8 +1664,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should open workspace, read blueprint.yaml and mark workspace as open
 - ✅ runs browser repo scan from a mocked source directory and opens generated blueprints
+- ✅ attaches TraceLens git hotspots when the picked folder has git history
 - ✅ cancels an in-flight browser lite scan without opening a workspace
-- ✅ notifies when the browser cannot pick a source directory
+- ✅ recovers when ZIP pick is cancelled after folder pick is unavailable
+- ✅ runs browser repo scan from a ZIP and opens generated blueprints
+- ✅ recovers when the ZIP is invalid without hanging the chooser
 - ✅ should catalog all systems on open and lazy-load when selecting another
 
 ##### browser scan map persist
@@ -1644,6 +1712,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should return false and log error if saveSchema throws
 - ✅ reloads the written YAML when no folder workspace is open
 - ✅ writes a named blank canvas into a picked folder
+
+### isomorphicGitHistory
+
+#### collectGitProvenanceFromFs
+
+- ✅ reads origin URL, HEAD commit and current branch from the checkout
+
+#### loadBrowserGitHistory
+
+- ✅ reports missing only when the folder has no git checkout
+- ✅ reports included when .git exists even if the lookback window is empty
+- ✅ does not treat a gitdir file as a missing checkout
+- ✅ includes origin provenance from the directory handle checkout
+
+#### loadGitHistoryFromFs
+
+- ✅ reads non-merge commits and changed paths the way CLI git log would
 
 ### LayoutEngineControls
 
@@ -1756,7 +1841,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### liteScanProgress
 
 - ✅ formats file counts against the cap and walking discovery separately
-- ✅ formats the 8 MB byte budget in decimal megabytes
+- ✅ formats the byte budget in decimal megabytes
 - ✅ treats the byte budget as binding after the walk, not during discovery
 - ✅ names each phase for accessible status copy
 
@@ -1873,7 +1958,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves feature report pages
 - ✅ registers ADR index and detail pages with frontmatter intact
 - ✅ presents YAML frontmatter as structured fields, not a code fence
-- ✅ describes canvas IaC import as using the same significance filter as a CLI scan
+- ✅ describes canvas IaC as coming from lite scan or the CLI with the same significance filter
 - ✅ resolves current guide chapter paths
 - ✅ resolves in-app TraceLens links
 - ✅ resolves in-app workspace links
@@ -1998,12 +2083,22 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### requestServiceWorkerUpdate
 
+#### reloadWithoutServiceWorker
+
+- ✅ unregisters every worker then reloads so the next document is not a stale shell
+
 #### requestServiceWorkerUpdate
 
 - ✅ resolves without calling update when there is no registration
 - ✅ asks the registration to check for an update
 - ✅ swallows the AbortError Chrome raises when it cancels the update
+- ✅ swallows a TypeError when the browser cannot fetch sw.js
+- ✅ swallows a TypeError when service worker installation fails
+- ✅ swallows a NetworkError from a transient update fetch
+- ✅ swallows a Failed to fetch TypeError on the update request
 - ✅ propagates a genuine update failure
+- ✅ propagates a TypeError that is not a script-fetch failure
+- ✅ propagates a Chrome ServiceWorker TypeError that is not a fetch failure
 
 ### resetToEmptyWorkspace
 
@@ -2113,6 +2208,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not restore immediately after an explicit blank start
 - ✅ rehydrates a named saved draft for its workspace URL
 
+### rewritePrecacheHtmlUrls
+
+#### prettyUrlForHtmlPrecache (Cloudflare Pages pretty-URLs)
+
+- ✅ maps index.html shells to the directory URL that returns 200
+- ✅ leaves non-HTML and already-pretty URLs unchanged
+
+#### rewritePrecacheHtmlUrls
+
+- ✅ rewrites globbed index.html entries so Workbox never fetches a 308
+- ✅ rewrites the live generateSW HTML set to directory URLs
+- ✅ dedupes rewritten index.html against an explicit / shell entry
+
 ### runBrowserAnalysisWorker
 
 #### runBrowserAnalysisWorker
@@ -2121,6 +2229,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ forwards worker log records to the caller logger
 - ✅ cancels the worker when the scan is aborted
 - ✅ rejects when the worker reports a failure
+- ✅ stamps git origin onto YAML when the scan root has a checkout
 
 ### runResilienceSimulationAsync
 
@@ -2309,9 +2418,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### traceLensBrowserScanCopy
 
+#### browserScanReadyMessage
+
+- ✅ announces git hotspots when history was attached
+- ✅ says this folder has no git history without claiming the tab cannot do git
+
 #### traceLensMissingForensicsCopy
 
-- ✅ does not tell a browser-scan workspace that git hotspots exist in this tab
+- ✅ tells a browser-scan workspace the folder has no git rather than that the tab cannot do git
+- ✅ explains a failed git read without claiming CI publish
 - ✅ keeps the CLI enrich hint for ordinary folders without TraceLens blocks
 
 ### TraceLensPanel
@@ -2331,7 +2446,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows chaos risk context when a ChaosLens simulation is active
 - ✅ shows estate recommendations when the recommendations tab is selected
 - ✅ switches to AdviceLens URL when the recommendations tab is selected
-- ✅ does not tell a browser-scan workspace that git hotspots exist here
+- ✅ does not tell a browser-scan workspace that the tab cannot do git
 
 ### TraceLensScopePicker
 
@@ -2396,6 +2511,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ asks the registered service worker to check for updates on mount
 - ✅ shows refresh prompt when the service worker reports an update
 - ✅ dismisses the banner when Later is clicked
+- ✅ drops a stale service worker when Refresh is only from a remote build mismatch
 
 ### updateCheck
 
@@ -2469,12 +2585,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ re-renders when the flag is toggled in this tab
 
-### useImportIacDialog
-
-#### useImportIacDialog
-
-- ✅ applies ELK layout after a successful IaC import
-
 ### useImportMermaidDialog
 
 #### useImportMermaidDialog
@@ -2539,6 +2649,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### PWA Workbox navigation fallback (Cloudflare Pages)
 
 - ✅ falls back to / so Workbox never fetches /index.html (Pages pretty-URLs 308 that path)
+- ✅ does not precache *.html — Pages pretty-URLs 308 those paths and fail Firefox install
+- ✅ rewrites any remaining precache HTML to pretty URLs so install does not cache a 308
 
 ### websocketCollabTransport
 
@@ -2572,7 +2684,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders the sample strip above Investigate / Collaborate / Ideate as a horizontal row
 - ✅ hides Collaborate when no share handlers are provided
 - ✅ shows a collapsed CLI panel that expands on toggle
-- ✅ surfaces unsupported-browser feedback for lite scan when folder picker is missing
+- ✅ offers ZIP upload for lite scan when folder picker is missing
+- ✅ keeps folder pick as the default and ZIP as a fallback when the picker exists
+- ✅ recovers with a dismissible error when ZIP pick is cancelled or the archive is invalid
+- ✅ keeps a single share handler as a full-width option
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens
 - ✅ shows live scan progress and keeps cancel reachable while other actions are disabled
@@ -2666,6 +2781,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ merges concurrent node adds from two peers
 - ✅ merges concurrent field edits on the same node without splitting position
 
+### zipSourceWalker
+
+#### pickZipArchive
+
+- ✅ reports cancelled when the file chooser is dismissed
+
+#### walkZipArchive
+
+- ✅ collects the same sources, manifests and ignore rules as a folder scan
+- ✅ strips a single shared archive root before applying caps
+- ✅ prefers src/ over peripheral scripts when the source cap is hit
+- ✅ stops and marks truncated once the cumulative byte budget is exhausted
+- ✅ drops path-traversal entries instead of escaping the scan root
+- ✅ rejects a file that is not a valid ZIP
+- ✅ rejects an archive that exceeds the compressed size cap
+- ✅ aborts when the scan signal is cancelled
+
 ## CLI
 
 ### catalogArgv
@@ -2740,23 +2872,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ accepts every flag printed in overview and scan help
 - ✅ prints every architecture parse flag in overview or scan help
 - ✅ reports an unknown flag on stderr
-
-### forensicAnalyzer
-
-#### ForensicAnalyzer
-
-- ✅ correlates structure + history, classifies and reports
-- ✅ attaches weekly hotspotScore series from lookback churn buckets
-- ✅ skips AST for cold files when minChurnForComplexity is set but still counts loc
-- ✅ filters to hotspots only when requested
-
-### forensicsGlob
-
-#### forensicsGlob
-
-- ✅ aligns forensics glob with architecture scan plus js/jsx and without tf
-- ✅ returns configured min churn when explicitly set
-- ✅ applies large-repo default when configured min churn is zero
 
 ### formatArchitectureHealth
 
@@ -2975,6 +3090,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ parses brace expansion into extensions
 - ✅ falls back to common extensions when pattern has no brace block
+- ✅ parses brace options in linear time even when the pattern never closes
 
 ### sourcePathFilter
 
@@ -3287,14 +3403,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### chaoslens-stress fixtures
 
 - ✅ loads every scenario YAML from samples/chaoslens-stress/
-- ✅ 'e-commerce dual entry + preset API ci…'
-- ✅ 'shared hub fan-out with preset hub sa…'
-- ✅ 'safeguards bulkhead contains leaf fau…'
-- ✅ 'group boundary expansion propagates t…'
-- ✅ 'deep chain bulkhead contains leaf fau…'
-- ✅ 'diamond DAG merges parallel paths'
-- ✅ 'multi-domain cross-cutting payment'
-- ✅ 'large graph partial blast radius with…'
+- ✅ e-commerce dual entry + preset API circ…
+- ✅ shared hub fan-out with preset hub safe…
+- ✅ safeguards bulkhead contains leaf fault
+- ✅ group boundary expansion propagates to …
+- ✅ deep chain bulkhead contains leaf fault
+- ✅ diamond DAG merges parallel paths
+- ✅ multi-domain cross-cutting payment
+- ✅ large graph partial blast radius with B…
 - ✅ runs all scenarios within the KR3 latency budget
 
 ### chaosRiskContext
@@ -3832,8 +3948,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ passes through resources outside known vendor packs
 - ✅ dogfoods ArchLens Cloudflare Pulumi source into meaningful externals
 - ✅ projects multi-provider Pulumi TypeScript in one stack
-- ✅ omits supporting and noise declarations when importing onto a container diagram
-- ✅ imports only vendor third-parties onto a context diagram
 
 ### iacImport
 
