@@ -69,7 +69,8 @@ describe('UpdateBanner', () => {
     render(<UpdateBanner />);
     expect(screen.getByTestId('update-banner')).toHaveTextContent(/new version/i);
     fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
-    expect(updateServiceWorker).toHaveBeenCalledWith(true);
+    expect(updateServiceWorker).toHaveBeenCalledWith(false);
+    expect(reloadWithoutServiceWorker).toHaveBeenCalled();
   });
 
   it('dismisses the banner when Later is clicked', () => {
@@ -87,6 +88,14 @@ describe('UpdateBanner', () => {
     render(<UpdateBanner />);
     fireEvent.click(await screen.findByRole('button', { name: /^Refresh$/i }));
     expect(reloadWithoutServiceWorker).toHaveBeenCalled();
-    expect(updateServiceWorker).not.toHaveBeenCalled();
+    expect(updateServiceWorker).toHaveBeenCalledWith(false);
+  });
+
+  it('hard-reloads even when the waiting worker never takes control', () => {
+    needRefresh = true;
+    render(<UpdateBanner />);
+    fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
+    expect(reloadWithoutServiceWorker).toHaveBeenCalled();
+    expect(updateServiceWorker).not.toHaveBeenCalledWith(true);
   });
 });
