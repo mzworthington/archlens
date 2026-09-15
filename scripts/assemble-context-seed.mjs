@@ -21,7 +21,8 @@ function slugify(value) {
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/^-+/g, '')
+    .replace(/-+$/g, '');
 }
 
 function parseEntityRef(value, parent) {

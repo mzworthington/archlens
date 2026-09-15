@@ -73,7 +73,7 @@ export function parsePnpmWorkspacePackages(yamlText: string): string[] {
         inPackages = false;
         continue;
       }
-      const match = line.match(/^\s*-\s*['"]?([^'"#]+)['"]?\s*$/);
+      const match = line.match(/^\s*-\s*['"]?([^'"#\s]+)['"]?\s*$/);
       if (match) packages.push(match[1].trim());
     }
   }

@@ -38,7 +38,10 @@ runs:
       shell: bash
       run: |
         # Prefer bash: install.sh uses pipefail (not supported by Ubuntu dash `sh`).
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
+        curl --proto '=https' --tlsv1.2 -fsSL \
+          https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
+          -o /tmp/archlens-install.sh
+        bash /tmp/archlens-install.sh
         archlens --version
 
     - name: Run AdviceLens estate sweep

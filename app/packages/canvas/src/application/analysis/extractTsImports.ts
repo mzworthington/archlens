@@ -12,9 +12,9 @@ export function extractTsImports(source: string): ExtractedTsImports {
   const imports: string[] = [];
   const reExports: string[] = [];
 
-  const fromImport = /(?:^|\n)\s*import\s+(?:type\s+)?(?:[^\n]*?)\s+from\s*['"]([^'"]+)['"]/g;
+  const fromImport = /(?:^|\n)\s*import\s+(?:type\s+)?[^'"\n]{1,400}\s+from\s*['"]([^'"]+)['"]/g;
   const sideEffectImport = /(?:^|\n)\s*import\s*['"]([^'"]+)['"]\s*;?/g;
-  const exportFrom = /(?:^|\n)\s*export\s+(?:type\s+)?(?:[^\n]*?)\s+from\s*['"]([^'"]+)['"]/g;
+  const exportFrom = /(?:^|\n)\s*export\s+(?:type\s+)?[^'"\n]{1,400}\s+from\s*['"]([^'"]+)['"]/g;
   const requireCall = /require\s*\(\s*['"]([^'"]+)['"]\s*\)/g;
 
   let match: RegExpExecArray | null;

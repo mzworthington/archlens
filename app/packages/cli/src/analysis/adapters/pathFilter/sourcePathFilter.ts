@@ -1,5 +1,9 @@
 import ignore, { type Ignore } from 'ignore';
-import { DEFAULT_STRUCTURAL_IGNORE_GLOBS, type AnalysisOptions } from '@archlens/analysis/options';
+import {
+  DEFAULT_ANALYSIS_OPTIONS,
+  DEFAULT_STRUCTURAL_IGNORE_GLOBS,
+  type AnalysisOptions,
+} from '@archlens/analysis/options';
 import { createGitignoreFilter, isIgnoredByGitignore } from './gitignoreFilter';
 
 export type SourcePathFilter = {
@@ -18,7 +22,7 @@ function normalizeRelative(relativePath: string): string {
  */
 export function createSourcePathFilter(
   cwd: string = process.cwd(),
-  options: Pick<AnalysisOptions, 'ignore' | 'include'> = { ignore: [], include: [] }
+  options: Pick<AnalysisOptions, 'ignore' | 'include'> = DEFAULT_ANALYSIS_OPTIONS
 ): SourcePathFilter {
   const gitignore = createGitignoreFilter(cwd);
 

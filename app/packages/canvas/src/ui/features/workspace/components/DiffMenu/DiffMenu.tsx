@@ -26,8 +26,10 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
     <div
       className={`fixed inset-0 z-[100] pointer-events-none ${isOpen ? 'visible' : 'invisible transition-all delay-300'}`}
     >
-      <div
-        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-all duration-300 ease-in-out cursor-pointer ${
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-all duration-300 ease-in-out cursor-pointer border-0 p-0 ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}

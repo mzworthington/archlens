@@ -79,7 +79,7 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
         const mermaid = await getMermaid();
         if (!active) return;
 
-        const id = `mermaid-render-${Math.random().toString(36).substring(2, 11)}`;
+        const id = `mermaid-render-${crypto.randomUUID()}`;
         const { svg: renderedSvg } = await mermaid.render(id, code);
 
         if (active) {
@@ -141,7 +141,9 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
 
   return (
     <>
-      <div
+      <button
+        type="button"
+        aria-label="Expand Mermaid preview"
         onClick={() => setIsExpanded(true)}
         className="flex-1 bg-slate-900/20 border border-slate-900/50 rounded-xl p-4 overflow-auto flex items-start justify-center relative group min-h-[300px] cursor-zoom-in hover:border-slate-800 transition"
       >
@@ -157,16 +159,20 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
             <span>Click to Expand</span>
           </div>
         </div>
-      </div>
+      </button>
 
       {isExpanded &&
         createPortal(
-          <div
-            onClick={() => setIsExpanded(false)}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-8 cursor-zoom-out animate-in fade-in duration-200"
-          >
+          <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-8 cursor-zoom-out animate-in fade-in duration-200">
+            <button
+              type="button"
+              aria-label="Dismiss preview"
+              onClick={() => setIsExpanded(false)}
+              className="absolute inset-0 z-0 border-0 p-0 cursor-zoom-out bg-transparent"
+            />
             {/* Close button in top right */}
             <button
+              type="button"
               onClick={e => {
                 e.stopPropagation();
                 setIsExpanded(false);
@@ -179,7 +185,6 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
 
             <div
               ref={zoomContainerRef}
-              onClick={e => e.stopPropagation()}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
@@ -188,7 +193,7 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
                 setScale(1);
                 setPosition({ x: 0, y: 0 });
               }}
-              className={`w-11/12 h-5/6 max-w-[90vw] max-h-[85vh] bg-slate-900/95 border border-slate-800/80 rounded-2xl shadow-2xl overflow-hidden flex relative text-slate-100 select-none animate-in zoom-in-95 duration-200 ${
+              className={`w-11/12 h-5/6 max-w-[90vw] max-h-[85vh] bg-slate-900/95 border border-slate-800/80 rounded-2xl shadow-2xl overflow-hidden flex relative z-10 text-slate-100 select-none animate-in zoom-in-95 duration-200 ${
                 isDragging ? 'cursor-grabbing' : 'cursor-grab'
               }`}
             >
@@ -204,7 +209,7 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
             </div>
 
             <div
-              onClick={e => e.stopPropagation()}
+              onPointerDown={e => e.stopPropagation()}
               className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-xl shadow-xl flex items-center gap-3 z-50 text-slate-200 text-xs font-semibold select-none"
             >
               <button

@@ -243,7 +243,7 @@ export function composeEstateFragments(
   const estateIds = new Set(fragments.map(f => f.estateId));
   if (estateIds.size > 1) {
     throw new Error(
-      `Cannot compose estate: mixed estateId values (${[...estateIds].sort().join(', ')})`
+      `Cannot compose estate: mixed estateId values (${[...estateIds].sort((a, b) => a.localeCompare(b)).join(', ')})`
     );
   }
 

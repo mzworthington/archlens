@@ -60,13 +60,13 @@ export function parseSchemaContractMajor(version: string): number | 'legacy' | n
 
   const urlMatch = trimmed.match(/\/schemas\/(?:v(\d+)|latest)\//i);
   if (urlMatch) {
-    if (urlMatch[1]) return parseInt(urlMatch[1], 10);
+    if (urlMatch[1]) return Number.parseInt(urlMatch[1], 10);
     return SYSTEM_SCHEMA_MAJOR_VERSION;
   }
 
   const relMatch = trimmed.match(/schemas\/(?:v(\d+)|latest)\//i);
   if (relMatch) {
-    if (relMatch[1]) return parseInt(relMatch[1], 10);
+    if (relMatch[1]) return Number.parseInt(relMatch[1], 10);
     return SYSTEM_SCHEMA_MAJOR_VERSION;
   }
 

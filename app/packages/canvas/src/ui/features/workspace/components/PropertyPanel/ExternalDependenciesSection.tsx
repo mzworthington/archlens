@@ -60,6 +60,7 @@ export const ExternalDependenciesSection: React.FC = () => {
           candidates.map(candidate => (
             <label
               key={candidate.entityRef}
+              aria-label={`${candidate.name} ${candidate.entityRef}`}
               className="flex items-start gap-2 p-2.5 hover:bg-slate-900/60 cursor-pointer"
             >
               <input

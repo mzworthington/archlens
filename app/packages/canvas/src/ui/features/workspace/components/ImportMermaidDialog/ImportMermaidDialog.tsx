@@ -46,8 +46,10 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
       aria-labelledby="import-mermaid-title"
       data-testid="import-mermaid-dialog"
     >
-      <div
-        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 ${
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 border-0 p-0 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}
@@ -86,7 +88,10 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
           <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-800">
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-[11px] font-mono uppercase text-slate-500 tracking-wider">
+                <label
+                  htmlFor="import-mermaid-source"
+                  className="text-[11px] font-mono uppercase text-slate-500 tracking-wider"
+                >
                   Mermaid source
                 </label>
                 <button
@@ -110,6 +115,7 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
                 />
               </div>
               <textarea
+                id="import-mermaid-source"
                 value={mermaidText}
                 onChange={e => setMermaidText(e.target.value)}
                 placeholder={`Paste Mermaid diagram (flowchart or C4)...\n\ngraph TD\n  A["Service"] --> B[("DB")]`}

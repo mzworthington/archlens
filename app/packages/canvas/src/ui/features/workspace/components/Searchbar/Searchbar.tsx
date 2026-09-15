@@ -64,7 +64,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
               : 'w-auto sm:w-44 md:w-52 shrink-0'
             : 'w-full sm:w-44 md:w-52 shrink-0'
       }`}
-      onClick={e => e.stopPropagation()}
+      onPointerDown={e => e.stopPropagation()}
     >
       {collapsibleOnMobile && !mobileExpanded ? (
         <button

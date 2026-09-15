@@ -18,7 +18,7 @@ ensure_mise() {
     return 0
   fi
   echo "▶ Installing mise…"
-  curl -fsSL https://mise.run | sh
+  curl --proto '=https' --tlsv1.2 -fsSL https://mise.run | sh
   export PATH="${HOME}/.local/bin:${PATH}"
 }
 

@@ -17,7 +17,7 @@ function schemaTopologyKey(schema: SystemSchema): string {
         properties: n.properties || {},
       })
     )
-    .sort();
+    .sort((a, b) => a.localeCompare(b));
 
   const dependencies = [...(schema.dependencies || [])]
     .map(d =>
@@ -28,7 +28,7 @@ function schemaTopologyKey(schema: SystemSchema): string {
         description: d.description || '',
       })
     )
-    .sort();
+    .sort((a, b) => a.localeCompare(b));
 
   return JSON.stringify({
     entityRef: schema.entityRef || '',

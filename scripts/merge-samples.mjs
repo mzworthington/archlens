@@ -12,9 +12,18 @@ import { fileURLToPath } from 'node:url';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, '..');
 const samplesDir = path.join(repoRoot, 'samples');
-const blueprintsDir = process.argv[2]
-  ? path.resolve(process.argv[2])
-  : path.join(repoRoot, 'blueprints');
+
+function resolveUnderRepo(candidate) {
+  const resolved = path.resolve(candidate);
+  const relative = path.relative(repoRoot, resolved);
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error(`Refusing path outside repo: ${candidate}`);
+  }
+  return resolved;
+}
+const blueprintsDir = resolveUnderRepo(
+  process.argv[2] ? path.resolve(process.argv[2]) : path.join(repoRoot, 'blueprints')
+);
 
 if (!fs.existsSync(samplesDir)) {
   throw new Error(`Missing samples directory: ${samplesDir}`);

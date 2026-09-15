@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { slugify } from './slug';
+import { slugify, trimAffixRuns } from './slug';
+
+describe('trimAffixRuns', () => {
+  it('strips leading and trailing runs of the affix character', () => {
+    expect(trimAffixRuns('--acme-q4--', '-')).toBe('acme-q4');
+  });
+});
 
 describe('Slug utility tests', () => {
   it('should convert workspace names to clean URL slugs', () => {

@@ -182,20 +182,30 @@ export const ComponentsSection: React.FC = () => (
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="design-system-input-node-name"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Input Node Name
           </label>
           <input
+            id="design-system-input-node-name"
             type="text"
             placeholder="MyServiceComponent"
             className="w-full bg-[#040914] border border-[#00f0ff]/25 focus:border-[#00f0ff] focus:shadow-[0_0_10px_rgba(0,240,255,0.15)] rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none transition duration-200"
           />
         </div>
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="design-system-select-format"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Select Format
           </label>
-          <select className="w-full bg-[#040914] border border-[#00f0ff]/25 focus:border-[#00f0ff] focus:shadow-[0_0_10px_rgba(0,240,255,0.15)] rounded-lg px-3 py-2 text-xs font-mono text-slate-200 focus:outline-none transition duration-200 cursor-pointer">
+          <select
+            id="design-system-select-format"
+            className="w-full bg-[#040914] border border-[#00f0ff]/25 focus:border-[#00f0ff] focus:shadow-[0_0_10px_rgba(0,240,255,0.15)] rounded-lg px-3 py-2 text-xs font-mono text-slate-200 focus:outline-none transition duration-200 cursor-pointer"
+          >
             <option>microservice</option>
             <option>relational-database</option>
             <option>event-broker</option>

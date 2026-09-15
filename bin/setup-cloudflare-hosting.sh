@@ -26,5 +26,5 @@ export PULUMI_STACK DOMAIN WWW_DOMAIN PAGES_PROJECT_NAME CATALOG_BUCKET_NAME CAT
 
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
-curl -fsSL "$SCRIPT_URL" -o "${tmpdir}/setup-cloudflare-hosting.sh"
+curl --proto '=https' --tlsv1.2 -fsSL "$SCRIPT_URL" -o "${tmpdir}/setup-cloudflare-hosting.sh"
 bash "${tmpdir}/setup-cloudflare-hosting.sh" "$@"

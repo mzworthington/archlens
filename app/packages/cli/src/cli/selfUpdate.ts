@@ -101,7 +101,7 @@ async function copyInstalledFiles(
   const binaryTarget = path.join(installDir, binaryName);
   await fsp.copyFile(binarySource, binaryTarget);
   if (process.platform !== 'win32') {
-    await fsp.chmod(binaryTarget, 0o755);
+    await fsp.chmod(binaryTarget, 0o750);
   }
 
   const entries = await fsp.readdir(sourceDir);
@@ -247,6 +247,10 @@ export async function performSelfUpdate(
       stdio: 'ignore',
       detached: true,
       windowsHide: true,
+      env: {
+        ...process.env,
+        PATH: 'C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\WindowsPowerShell\\v1.0',
+      },
     });
     child.unref();
     process.exit(0);

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { resolveTodayJobHref } from './parseTodayJobs';
 
-const TOKEN = /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*)/g;
+const TOKEN = /(\[[^\]]{1,200}\]\([^)]{1,500}\)|`[^`]{1,200}`|\*\*[^*]{1,200}\*\*)/g;
 
 /** Turn a short markdown phrase into nodes. Links, code and bold only. */
 export function presentInlineMarkdown(text: string): ReactNode[] {

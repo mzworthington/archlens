@@ -267,8 +267,10 @@ export const BlueprintNodeExternalSummaryHub: React.FC<ExternalSummaryHubProps> 
 }) => {
   const bandLabel = band === 'callers' ? 'External callers' : 'External targets';
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
+      aria-label={bandLabel}
       data-testid={`external-summary-hub-${band}`}
       className={`relative w-72 rounded-xl border border-dashed p-4 cursor-pointer transition-colors ${
         band === 'callers'
@@ -291,6 +293,6 @@ export const BlueprintNodeExternalSummaryHub: React.FC<ExternalSummaryHubProps> 
       <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">{bandLabel}</p>
       <h4 className="mt-1 text-2xl font-bold text-slate-100 tabular-nums">{count}</h4>
       <p className="mt-2 text-xs text-slate-400">Click to expand cross-diagram dependencies</p>
-    </div>
+    </button>
   );
 };

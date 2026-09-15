@@ -143,21 +143,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   return (
     <div
-      onClick={handleClick}
       title={resilienceTitle}
-      data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
-      data-hotspot-heat={showHotspotHeat ? hotspotHeat.toFixed(2) : undefined}
-      data-availability-heat={showAvailabilityRisk ? blastHeat.toFixed(2) : undefined}
-      data-integrity-heat={showIntegrityRisk ? integrityHeat.toFixed(2) : undefined}
-      data-testid={
-        liteCanvas
-          ? 'blueprint-node-simplified'
-          : activeSafeguards
-            ? 'resilience-safeguard-node'
-            : showRiskVisualization
-              ? 'hotspot-heat'
-              : 'blueprint-node'
-      }
       className={`relative w-64 rounded-xl border p-4 cursor-pointer ${
         liteCanvas ? '' : 'transition-colors duration-150'
       } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''} ${
@@ -177,58 +163,83 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         integrityHeat,
       })}
     >
-      <BlueprintNodeBlastRipple show={showBlastRipple} />
-      <BlueprintNodeHandles />
-
-      {liteCanvas && canZoom ? (
-        <div className="absolute top-2 right-2">
-          <BlueprintNodeZoomButton name={name} liteCanvas onZoom={zoomToChild} />
-        </div>
-      ) : null}
-
-      {!liteCanvas && (
-        <BlueprintNodeHeaderChrome
-          config={config}
-          name={name}
-          entityRef={entityRef}
-          canZoom={canZoom}
-          childExternalsCount={childExternalsCount}
-          showSourceCodeButton={showSourceCodeButton}
-          sourceFilepath={sourceFilepath}
-          diagramSource={diagramSource}
-          isExternal={data.external}
-          isCouplingGhost={data.couplingGhost}
-          couplingGhostPosition={data.couplingGhostPosition}
-          onViewSource={openSourceCodeDialog}
-          onMaterializeGhost={materializeCouplingGhost}
-          onZoom={zoomToChild}
-        />
-      )}
-
-      <BlueprintNodeTitle
-        name={name}
-        id={id}
-        entityRef={data.entityRef}
-        liteCanvas={liteCanvas}
-        hiddenExternalGhost={data.hiddenExternalGhost}
-        couplingGhost={data.couplingGhost}
-        externalKind={externalKind}
+      <button
+        type="button"
+        aria-label={name}
+        onClick={handleClick}
+        data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
+        data-hotspot-heat={showHotspotHeat ? hotspotHeat.toFixed(2) : undefined}
+        data-availability-heat={showAvailabilityRisk ? blastHeat.toFixed(2) : undefined}
+        data-integrity-heat={showIntegrityRisk ? integrityHeat.toFixed(2) : undefined}
+        data-testid={
+          liteCanvas
+            ? 'blueprint-node-simplified'
+            : activeSafeguards
+              ? 'resilience-safeguard-node'
+              : showRiskVisualization
+                ? 'hotspot-heat'
+                : 'blueprint-node'
+        }
+        className="absolute inset-0 z-0 border-0 bg-transparent p-0 cursor-pointer"
       />
+      <div className="relative z-10 pointer-events-none">
+        <div className="pointer-events-auto">
+          <BlueprintNodeBlastRipple show={showBlastRipple} />
+          <BlueprintNodeHandles />
+        </div>
 
-      {!liteCanvas && (
-        <BlueprintNodeBadges
-          typeLabel={config.label}
-          showHotBadge={showHotBadge}
-          showSiloBadge={showSiloBadge}
-          couplingHighlight={data.couplingHighlight}
-          refactorBoundaryHighlight={data.refactorBoundaryHighlight}
-          dependencyRole={data.dependencyRole}
-          activeSafeguards={activeSafeguards}
-          showAvailabilityRisk={showAvailabilityRisk}
-          showIntegrityRisk={showIntegrityRisk}
-          isTest={data.isTest}
+        {liteCanvas && canZoom ? (
+          <div className="absolute top-2 right-2 pointer-events-auto">
+            <BlueprintNodeZoomButton name={name} liteCanvas onZoom={zoomToChild} />
+          </div>
+        ) : null}
+
+        {!liteCanvas && (
+          <div className="pointer-events-auto">
+            <BlueprintNodeHeaderChrome
+              config={config}
+              name={name}
+              entityRef={entityRef}
+              canZoom={canZoom}
+              childExternalsCount={childExternalsCount}
+              showSourceCodeButton={showSourceCodeButton}
+              sourceFilepath={sourceFilepath}
+              diagramSource={diagramSource}
+              isExternal={data.external}
+              isCouplingGhost={data.couplingGhost}
+              couplingGhostPosition={data.couplingGhostPosition}
+              onViewSource={openSourceCodeDialog}
+              onMaterializeGhost={materializeCouplingGhost}
+              onZoom={zoomToChild}
+            />
+          </div>
+        )}
+
+        <BlueprintNodeTitle
+          name={name}
+          id={id}
+          entityRef={data.entityRef}
+          liteCanvas={liteCanvas}
+          hiddenExternalGhost={data.hiddenExternalGhost}
+          couplingGhost={data.couplingGhost}
+          externalKind={externalKind}
         />
-      )}
+
+        {!liteCanvas && (
+          <BlueprintNodeBadges
+            typeLabel={config.label}
+            showHotBadge={showHotBadge}
+            showSiloBadge={showSiloBadge}
+            couplingHighlight={data.couplingHighlight}
+            refactorBoundaryHighlight={data.refactorBoundaryHighlight}
+            dependencyRole={data.dependencyRole}
+            activeSafeguards={activeSafeguards}
+            showAvailabilityRisk={showAvailabilityRisk}
+            showIntegrityRisk={showIntegrityRisk}
+            isTest={data.isTest}
+          />
+        )}
+      </div>
     </div>
   );
 });

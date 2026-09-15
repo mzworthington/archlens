@@ -91,7 +91,7 @@ function extractPyRelativeImports(text: string): string[] {
     if (line.startsWith('import ')) {
       let afterImport = line.slice(7).trimStart();
       if (!afterImport.startsWith('.')) continue;
-      const asIdx = afterImport.search(/[ \t]+as[ \t]+/);
+      const asIdx = afterImport.search(/\sas\s/);
       if (asIdx !== -1) afterImport = afterImport.slice(0, asIdx);
       const spec = afterImport.trim();
       if (spec.startsWith('.') && !/[ \t]/.test(spec)) imports.add(spec);

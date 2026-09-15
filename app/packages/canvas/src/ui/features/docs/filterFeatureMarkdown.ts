@@ -32,7 +32,7 @@ export function filterFeatureMarkdown(
 
   for (; i < lines.length; i++) {
     const line = lines[i]!;
-    const heading = line.match(/^(#{2,6})\s+(.+)$/);
+    const heading = line.match(/^(#{2,6})\s+([^\n]+)$/);
     if (heading) {
       const node: Node = {
         heading: heading[2]!.trim(),
@@ -112,6 +112,6 @@ export function countFeatureMatches(
 export function extractFeatureOutline(markdown: string): string[] {
   return markdown
     .split('\n')
-    .map(l => l.match(/^##\s+(.+)$/)?.[1]?.trim())
+    .map(l => l.match(/^##\s+([^\n]+)$/)?.[1]?.trim())
     .filter((h): h is string => Boolean(h));
 }

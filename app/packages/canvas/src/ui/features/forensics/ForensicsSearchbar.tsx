@@ -17,19 +17,28 @@ export const ForensicsSearchbar: React.FC<Props> = ({ value, onChange }) => {
     typeof navigator !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
   const kbdText = isMac ? '⌘K' : 'Ctrl+K';
 
+  const expandSearch = () => {
+    setIsExpanded(true);
+    setTimeout(() => inputRef.current?.focus(), 50);
+  };
+
   return (
     <div className="relative select-none z-50">
+      {!isExpanded ? (
+        <button
+          type="button"
+          aria-label="Expand search"
+          onClick={expandSearch}
+          className="sm:hidden bg-slate-900 border border-slate-850 hover:border-slate-800 rounded-xl w-9 h-9 p-0 flex items-center justify-center cursor-pointer"
+        >
+          <Search className="w-4 h-4 text-slate-400 shrink-0" />
+        </button>
+      ) : null}
       <div
-        onClick={() => {
-          if (!isExpanded) {
-            setIsExpanded(true);
-            setTimeout(() => inputRef.current?.focus(), 50);
-          }
-        }}
-        className={`bg-slate-900 border border-slate-850 hover:border-slate-800 focus-within:border-brand-500 rounded-xl transition-all duration-300 flex items-center gap-2 ${
+        className={`bg-slate-900 border border-slate-850 hover:border-slate-800 focus-within:border-brand-500 rounded-xl transition-all duration-300 items-center gap-2 ${
           isExpanded
-            ? 'absolute right-0 top-1/2 -translate-y-1/2 w-[calc(100vw-32px)] max-w-[280px] px-3 py-1.5 sm:relative sm:top-auto sm:translate-y-0 sm:w-64 sm:focus-within:w-80'
-            : 'w-9 h-9 p-0 justify-center cursor-pointer sm:w-64 sm:focus-within:w-80 sm:px-3 sm:py-1.5 sm:justify-start sm:cursor-default'
+            ? 'flex absolute right-0 top-1/2 -translate-y-1/2 w-[calc(100vw-32px)] max-w-[280px] px-3 py-1.5 sm:relative sm:top-auto sm:translate-y-0 sm:w-64 sm:focus-within:w-80'
+            : 'hidden sm:flex w-64 sm:focus-within:w-80 px-3 py-1.5 justify-start'
         }`}
       >
         <Search className="w-4 h-4 text-slate-400 shrink-0" />

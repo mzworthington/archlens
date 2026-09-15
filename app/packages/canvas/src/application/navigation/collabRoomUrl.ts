@@ -7,10 +7,7 @@ export function isValidCollabRoomId(roomId: string): boolean {
 }
 
 export function createCollabRoomId(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID();
-  }
-  return `room-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  return crypto.randomUUID();
 }
 
 function queryFromSearch(search: string): URLSearchParams {

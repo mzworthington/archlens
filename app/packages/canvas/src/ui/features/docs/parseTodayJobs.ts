@@ -115,13 +115,18 @@ function extractSteps(body: string): string[] {
 }
 
 function extractCommand(body: string): string {
-  const match = body.match(/```[^\n]*\n([\s\S]*?)```/);
-  return match ? match[1].replace(/\n$/, '') : '';
+  const open = body.indexOf('```');
+  if (open === -1) return '';
+  const afterFence = body.indexOf('\n', open);
+  if (afterFence === -1) return '';
+  const close = body.indexOf('```', afterFence + 1);
+  if (close === -1) return '';
+  return body.slice(afterFence + 1, close).replace(/\n$/, '');
 }
 
 function extractActions(body: string): TodayJobAction[] {
   const actions: TodayJobAction[] = [];
-  const re = /^\s*-\s+\[(.+?)\]\((.+?)\)\s*$/gm;
+  const re = /^\s*-\s+\[([^\]]+)\]\(([^)]+)\)\s*$/gm;
   let match: RegExpExecArray | null;
   while ((match = re.exec(body)) !== null) {
     actions.push({ label: match[1], href: match[2] });

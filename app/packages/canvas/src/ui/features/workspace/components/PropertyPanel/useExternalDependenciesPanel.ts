@@ -27,7 +27,7 @@ export function useExternalDependenciesPanel() {
     for (const candidate of listWorkspaceExternalCandidates()) {
       types.add(candidate.type);
     }
-    return [...types].sort();
+    return [...types].sort((a, b) => a.localeCompare(b));
   }, [listWorkspaceExternalCandidates]);
 
   const toggleSelected = useCallback((entityRef: string) => {

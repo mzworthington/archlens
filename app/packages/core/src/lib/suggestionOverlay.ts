@@ -180,8 +180,10 @@ export function parseSuggestionOverlay(data: unknown): SuggestionOverlay {
       ? { recommendationId: record.recommendationId.trim() }
       : {}),
     delta: {
-      nodes: deltaRecord.nodes.map(parseOverlayNode),
-      dependencies: deltaRecord.dependencies.map(parseOverlayDependency),
+      nodes: deltaRecord.nodes.map((node, index) => parseOverlayNode(node, index)),
+      dependencies: deltaRecord.dependencies.map((dep, index) =>
+        parseOverlayDependency(dep, index)
+      ),
     },
     ...(typeof record.rejectedAt === 'string' && record.rejectedAt.trim()
       ? { rejectedAt: record.rejectedAt.trim() }

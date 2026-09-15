@@ -188,6 +188,7 @@ function rollbackCollab(previousId: string): void {
     {
       cwd: fileURLToPath(new URL('../../packages/collab/', import.meta.url)),
       stdio: 'inherit',
+      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
     }
   );
   if (result.status !== 0) {
@@ -259,7 +260,10 @@ try {
     throw new Error('Usage: run.ts capture-pages|capture-collab|smoke');
   }
 } catch (error) {
-  const message = error instanceof Error ? error.message : String(error);
+  const message = (error instanceof Error ? error.message : String(error)).replace(
+    /[\r\n\u2028\u2029]/g,
+    ' '
+  );
   writeSummary([`error: ${message}`]);
   console.error(message);
   process.exitCode = 1;

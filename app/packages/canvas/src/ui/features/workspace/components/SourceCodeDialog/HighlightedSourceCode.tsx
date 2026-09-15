@@ -45,7 +45,6 @@ export const HighlightedSourceCode: React.FC<HighlightedSourceCodeProps> = ({
 
       <pre
         className="flex-1 min-h-0 overflow-auto overscroll-contain p-4 text-xs font-mono text-slate-300 leading-relaxed whitespace-pre"
-        tabIndex={0}
         aria-label="Source code content"
         data-highlighted={supported && spans ? 'true' : 'false'}
         data-highlight-loading={loading ? 'true' : 'false'}

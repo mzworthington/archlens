@@ -127,7 +127,7 @@ export function resolveFolderRolledComponent(
     };
   }
 
-  const componentId = meaningful.map(slugify).join('/');
+  const componentId = meaningful.map(segment => slugify(segment)).join('/');
   return {
     componentId,
     componentName: formatFolderComponentName(componentId, options.nameLayerSuffix),
@@ -151,7 +151,7 @@ export function resolveTrailingFolderComponent(
     return { componentId: leaf, componentName: formatFolderComponentName(leaf) };
   }
 
-  const componentId = meaningful.map(slugify).join('/');
+  const componentId = meaningful.map(segment => slugify(segment)).join('/');
   return { componentId, componentName: formatFolderComponentName(componentId) };
 }
 

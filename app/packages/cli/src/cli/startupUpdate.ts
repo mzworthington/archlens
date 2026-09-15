@@ -33,10 +33,15 @@ export async function runUpdateCommand(
       return;
     }
 
-    console.log(`Updating archlens ${availability.current} → ${availability.latest}…`);
+    console.log(
+      `Updating archlens ${availability.current} → ${availability.latest.replace(/[\r\n\u2028\u2029]/g, ' ')}…`
+    );
     await performSelfUpdate(availability.latest);
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+    const message = (error instanceof Error ? error.message : String(error)).replace(
+      /[\r\n\u2028\u2029]/g,
+      ' '
+    );
     console.error(`Update failed: ${message}`);
     exit(1);
   }

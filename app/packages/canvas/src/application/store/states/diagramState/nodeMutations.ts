@@ -63,8 +63,8 @@ export function addNodeMutation(
       properties: {},
     },
     {
-      x: position?.x ?? 100 + Math.random() * 200,
-      y: position?.y ?? 100 + Math.random() * 200,
+      x: position?.x ?? 100 + (crypto.getRandomValues(new Uint32Array(1))[0]! / 2 ** 32) * 200,
+      y: position?.y ?? 100 + (crypto.getRandomValues(new Uint32Array(1))[0]! / 2 ** 32) * 200,
     }
   );
 

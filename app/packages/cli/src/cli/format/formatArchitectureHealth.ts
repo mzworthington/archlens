@@ -172,7 +172,7 @@ function formatInformationalSection(
   const lines: string[] = ['', pc.bold(`Informational coupling (${informationalFindings.length})`)];
 
   const byReason = countInformationalByReason(informationalFindings);
-  for (const [reason, count] of [...byReason.entries()].sort()) {
+  for (const [reason, count] of [...byReason.entries()].sort(([a], [b]) => a.localeCompare(b))) {
     lines.push(`  ${pc.dim(reason)}: ${count}`);
   }
 

@@ -17,7 +17,9 @@ export function compareBlueprintTrees(
 ): BlueprintTreeDiff {
   const baselineByPath = new Map(baseline.map(file => [file.relativePath, file]));
   const currentByPath = new Map(current.map(file => [file.relativePath, file]));
-  const allPaths = [...new Set([...baselineByPath.keys(), ...currentByPath.keys()])].sort();
+  const allPaths = [...new Set([...baselineByPath.keys(), ...currentByPath.keys()])].sort((a, b) =>
+    a.localeCompare(b)
+  );
 
   const files = allPaths.map(relativePath => {
     const baselineFile = baselineByPath.get(relativePath);

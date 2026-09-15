@@ -84,8 +84,10 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
         aria-labelledby={titleId}
         data-testid="collab-share-dialog"
       >
-        <div
-          className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer"
+        <button
+          type="button"
+          aria-label="Dismiss"
+          className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer border-0 p-0"
           onClick={onCancel}
         />
 

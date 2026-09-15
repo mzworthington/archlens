@@ -57,6 +57,6 @@ export function presentDocsMarkdown(markdown: string): string {
 
 /** Title from first ATX heading, else a humanized fallback. */
 export function titleFromMarkdown(markdown: string, fallback: string): string {
-  const heading = markdown.match(/^#\s+(.+)$/m);
+  const heading = markdown.match(/^#\s+([^\n]+)/m);
   return heading?.[1]?.trim() || fallback;
 }

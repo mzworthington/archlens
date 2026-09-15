@@ -11,7 +11,11 @@ function runGit(
   cwd: string
 ): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise(resolve => {
-    const child = spawn('git', args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] });
+    const child = spawn('git', args, {
+      cwd,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+    });
     let stdout = '';
     let stderr = '';
     child.stdout.on('data', chunk => {
@@ -60,9 +64,11 @@ export async function materializeGitBaselineBlueprints(
   const archive = spawn('git', ['archive', commitRef, '--', normalized], {
     cwd: repoRoot,
     stdio: ['ignore', 'pipe', 'pipe'],
+    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
   });
   const tar = spawn('tar', ['-x', `-C`, tempRoot, `--strip-components=${strip}`], {
     stdio: [archive.stdout, 'pipe', 'pipe'],
+    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
   });
 
   let archiveErr = '';

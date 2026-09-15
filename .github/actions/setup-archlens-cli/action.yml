@@ -19,9 +19,10 @@ runs:
         if [[ -n "$version" && "$version" != "latest" ]]; then
           install_args+=(--version "$version")
         fi
-        # Must use bash: install.sh uses `set -o pipefail` (not supported by Ubuntu's dash `sh`).
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
-          | bash -s -- "${install_args[@]}"
+        curl --proto '=https' --tlsv1.2 -fsSL \
+          https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
+          -o /tmp/archlens-install.sh
+        bash /tmp/archlens-install.sh "${install_args[@]}"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         if [[ ! -f "$HOME/.local/bin/tree-sitter.wasm" ]]; then
           echo "Installed archlens is missing tree-sitter.wasm beside the binary." >&2

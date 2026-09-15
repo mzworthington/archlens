@@ -80,7 +80,9 @@ export function syncBundledBlueprints(): Plugin {
       throw new Error(`Missing repo samples directory: ${repoSamples}`);
     }
 
-    const manifestPaths = collectBundledBlueprintPaths(repoSamples).sort();
+    const manifestPaths = collectBundledBlueprintPaths(repoSamples).sort((a, b) =>
+      a.localeCompare(b)
+    );
     const syncKey = bundledBlueprintsSyncKey(manifestPaths);
     const manifestPath = path.join(bundledBlueprintsDest, 'manifest.json');
     const catalogPath = path.join(bundledBlueprintsDest, 'catalog.json');

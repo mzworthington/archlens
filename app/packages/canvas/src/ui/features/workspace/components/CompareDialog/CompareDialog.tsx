@@ -54,8 +54,10 @@ export const CompareDialog: React.FC<CompareDialogProps> = ({ isOpen, onClose })
       aria-labelledby="compare-dialog-title"
       data-testid="compare-dialog"
     >
-      <div
-        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer"
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer border-0 p-0"
         onClick={onClose}
       />
 

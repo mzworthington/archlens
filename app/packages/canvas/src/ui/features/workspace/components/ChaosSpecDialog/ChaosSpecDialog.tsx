@@ -53,8 +53,10 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
       aria-labelledby="chaos-spec-dialog-title"
       data-testid="chaos-spec-dialog"
     >
-      <div
-        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 ${
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 border-0 p-0 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}
@@ -134,7 +136,10 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-[11px] font-mono uppercase text-slate-500 tracking-wider">
+                <label
+                  htmlFor="chaos-spec-yaml"
+                  className="text-[11px] font-mono uppercase text-slate-500 tracking-wider"
+                >
                   ChaosSpec YAML
                 </label>
                 <div className="flex items-center gap-3">
@@ -173,6 +178,7 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
                 />
               </div>
               <textarea
+                id="chaos-spec-yaml"
                 value={yamlText}
                 onChange={e => setYamlText(e.target.value)}
                 readOnly={!isImport && !canExport}

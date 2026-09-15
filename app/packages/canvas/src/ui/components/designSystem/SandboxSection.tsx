@@ -40,10 +40,14 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
       {/* Sandbox Controls */}
       <div className="lg:col-span-5 bg-[#040914]/60 border border-[#00f0ff]/10 rounded-xl p-4 space-y-4">
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="sandbox-node-title"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Node Title
           </label>
           <input
+            id="sandbox-node-title"
             type="text"
             value={sandboxTitle}
             onChange={e => setSandboxTitle(e.target.value)}
@@ -52,10 +56,14 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="sandbox-type-symbol"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Type Symbol
           </label>
           <select
+            id="sandbox-type-symbol"
             value={sandboxNodeType}
             onChange={e => setSandboxNodeType(e.target.value as SandboxNodeType)}
             className="w-full bg-[#040914] border border-[#00f0ff]/25 focus:border-[#00f0ff] rounded-lg px-3 py-1.5 text-xs font-mono text-slate-300 focus:outline-none cursor-pointer"
@@ -68,10 +76,14 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="sandbox-description"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Description
           </label>
           <textarea
+            id="sandbox-description"
             value={sandboxDesc}
             onChange={e => setSandboxDesc(e.target.value)}
             rows={2}
@@ -80,13 +92,18 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold font-mono text-slate-400 uppercase">
+          <label
+            htmlFor="sandbox-status-healthy"
+            className="text-[10px] font-bold font-mono text-slate-400 uppercase"
+          >
             Status Level
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-2" role="group" aria-label="Status Level">
             {(['healthy', 'warning', 'error'] as const).map(s => (
               <button
                 key={s}
+                id={s === 'healthy' ? 'sandbox-status-healthy' : undefined}
+                type="button"
                 onClick={() => setSandboxStatus(s)}
                 className={`flex-1 py-1 rounded text-[10px] font-mono capitalize border transition ${
                   sandboxStatus === s
@@ -158,15 +175,17 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
           </div>
         </div>
 
-        {/* Schema export preview */}
-        <div className="bg-[#040914]/90 border border-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-300">
-          <div className="text-[#00f0ff] mb-1 font-bold">// Serialized YAML Model Output:</div>
-          <div>id: {sandboxTitle.toLowerCase().replace(/\s+/g, '-')}</div>
-          <div>title: {sandboxTitle}</div>
-          <div>type: {sandboxNodeType}</div>
-          <div>description: {sandboxDesc}</div>
-          <div>status: {sandboxStatus}</div>
-        </div>
+        {
+          // Schema export preview
+          <div className="bg-[#040914]/90 border border-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-300">
+            <div className="text-[#00f0ff] mb-1 font-bold">// Serialized YAML Model Output:</div>
+            <div>id: {sandboxTitle.toLowerCase().replace(/\s+/g, '-')}</div>
+            <div>title: {sandboxTitle}</div>
+            <div>type: {sandboxNodeType}</div>
+            <div>description: {sandboxDesc}</div>
+            <div>status: {sandboxStatus}</div>
+          </div>
+        }
       </div>
     </div>
   </div>

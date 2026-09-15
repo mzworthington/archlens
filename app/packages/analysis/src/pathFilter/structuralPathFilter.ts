@@ -2,6 +2,7 @@ import ignore, { type Ignore } from 'ignore';
 import {
   DEFAULT_STRUCTURAL_IGNORE_GLOBS,
   STRUCTURAL_IAC_IGNORE_GLOBS,
+  DEFAULT_ANALYSIS_OPTIONS,
   type AnalysisOptions,
 } from '../domain/analysisOptions';
 
@@ -53,7 +54,7 @@ export function createMutableGitignoreFilter(): {
 }
 
 export function createStructuralPathFilter(
-  options: StructuralPathFilterOptions = { ignore: [], include: [] }
+  options: StructuralPathFilterOptions = DEFAULT_ANALYSIS_OPTIONS
 ): SourcePathFilter {
   const structuralGlobs = options.allowIac
     ? DEFAULT_STRUCTURAL_IGNORE_GLOBS.filter(glob => !STRUCTURAL_IAC_IGNORE_GLOBS.includes(glob))

@@ -224,7 +224,7 @@ describe('BlueprintNode Component', () => {
   it('triggers store selectNode when clicked', () => {
     render(<BlueprintNode {...defaultProps} />);
 
-    fireEvent.click(screen.getByText('My Service'));
+    fireEvent.click(screen.getByRole('button', { name: 'My Service' }));
 
     expect(useBlueprintStore.getState().selectedNodeId).toBe('test-node-1');
   });

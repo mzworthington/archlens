@@ -155,8 +155,10 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
       aria-labelledby="chaos-spec-picker-title"
       data-testid="chaos-spec-picker-dialog"
     >
-      <div
-        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 ${
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className={`fixed inset-0 bg-[#020617]/80 backdrop-blur-sm transition-opacity duration-300 border-0 p-0 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}

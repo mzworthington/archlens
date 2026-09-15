@@ -181,6 +181,18 @@ describe('mapDomainNodesToRFNodes', () => {
     expect(schema.nodes.find(n => n.entityRef === 'ctx/child')?.parentEntityRef).toBe('ctx/hub');
     expect(schema.nodes.find(n => n.entityRef === 'ctx/hub')?.type).toBe('group');
   });
+
+  it('uses crypto.randomUUID when a mapped node has no entityRef', () => {
+    const uuid = '11111111-2222-4333-8444-555555555555';
+    vi.spyOn(crypto, 'randomUUID').mockReturnValue(
+      uuid as `${string}-${string}-${string}-${string}-${string}`
+    );
+    const rfNodes = mapDomainNodesToRFNodes([
+      { type: 'container', name: 'Unnamed', position: { x: 0, y: 0 } } as SystemNode,
+    ]);
+    expect(rfNodes[0]?.id).toBe(`node-${uuid}`);
+    vi.restoreAllMocks();
+  });
 });
 
 describe('getAbsoluteNodePosition', () => {

@@ -114,7 +114,6 @@ export const LensToolbarControls: React.FC = () => {
       className="flex items-center gap-1.5 shrink-0 select-none whitespace-nowrap"
       data-testid="lens-toolbar-controls"
       onPointerDown={e => e.stopPropagation()}
-      onClick={e => e.stopPropagation()}
     >
       <ResilienceLensButton />
       {isResilienceMode ? <SimulateButton /> : null}

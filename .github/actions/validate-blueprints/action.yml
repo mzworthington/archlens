@@ -32,8 +32,10 @@ runs:
           install_args+=(--version "$version")
         fi
         # Prefer bash: install.sh uses pipefail (not supported by Ubuntu dash `sh`).
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
-          | bash -s -- "${install_args[@]}"
+        curl --proto '=https' --tlsv1.2 -fsSL \
+          https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
+          -o /tmp/archlens-install.sh
+        bash /tmp/archlens-install.sh "${install_args[@]}"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         archlens --version
 

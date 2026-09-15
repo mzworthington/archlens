@@ -13,7 +13,7 @@ import { materializeExternalNodes } from './externalNodes';
 function displayNameForRef(ref: EntityRef, index: WorkspaceEntityIndex): string {
   const entity = index.byRef.get(ref);
   if (entity?.name) {
-    return entity.name.replace(/\s*\(External\)\s*$/i, '').trim();
+    return entity.name.replace(/ \(External\)$/i, '').trim();
   }
   return EntityRefUtil.leaf(ref);
 }

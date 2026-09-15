@@ -19,10 +19,7 @@ function getOrCreateCollabHostToken(roomId: string): string {
   const key = `${HOST_KEY_PREFIX}${roomId}`;
   const existing = sessionStorage.getItem(key);
   if (existing) return existing;
-  const token =
-    typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID()
-      : `host-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  const token = crypto.randomUUID();
   sessionStorage.setItem(key, token);
   return token;
 }

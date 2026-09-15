@@ -43,7 +43,7 @@ export function discoverPulumiRoots(
   const roots = walkForProjectRoots(
     scanRoot,
     fileSystem,
-    names => names.some(isPulumiProjectFileName),
+    names => names.some(name => isPulumiProjectFileName(name)),
     isPulumiProjectFileName
   );
 

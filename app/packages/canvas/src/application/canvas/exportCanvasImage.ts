@@ -50,7 +50,11 @@ export async function exportCanvasImage(
     filter,
   };
 
-  const safeName = diagramName.replace(/[^\w.-]+/g, '-').replace(/^-+|-+$/g, '') || 'diagram';
+  const safeName =
+    diagramName
+      .replace(/[^\w.-]+/g, '-')
+      .replace(/^-+/g, '')
+      .replace(/-+$/g, '') || 'diagram';
 
   if (format === 'svg') {
     const dataUrl = await toSvg(viewportElement, options);

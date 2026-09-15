@@ -48,7 +48,7 @@ export function listBlueprintSchemaPaths(
   };
 
   walk(rootDir);
-  return results.sort();
+  return results.sort((a, b) => a.localeCompare(b));
 }
 
 function schemasEqualForExternals(a: SystemSchema, b: SystemSchema): boolean {

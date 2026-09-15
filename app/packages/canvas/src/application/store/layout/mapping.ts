@@ -172,7 +172,7 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
   const rfNodes: BlueprintRFNode[] = [];
 
   for (const node of sorted) {
-    const ref = node.entityRef || `node-${Math.random().toString(36).substring(2, 9)}`;
+    const ref = node.entityRef || `node-${crypto.randomUUID()}`;
 
     if (node.type === 'group') {
       const layout = groupLayouts.get(ref);

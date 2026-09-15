@@ -52,8 +52,10 @@ export const ChildLevelExternalsDialog: React.FC = () => {
       aria-labelledby="child-level-externals-title"
       data-testid="child-level-externals-dialog"
     >
-      <div
-        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer"
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer border-0 p-0"
         onClick={closeChildLevelExternals}
       />
 

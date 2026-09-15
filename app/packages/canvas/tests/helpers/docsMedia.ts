@@ -83,5 +83,6 @@ export function convertWebmToGif(
     `[s1][p]paletteuse=dither=sierra2_4a`;
   execFileSync('ffmpeg', ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath], {
     stdio: 'inherit',
+    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
   });
 }

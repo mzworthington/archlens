@@ -61,7 +61,7 @@ function detectFromPath(path: string): Exclude<IacSourceKind, 'auto'> | null {
 
 function detectFromContent(content: string): Exclude<IacSourceKind, 'auto'> {
   const trimmed = content.trim();
-  if (/^\s*resource\s+"/m.test(trimmed)) return 'terraform-hcl';
+  if (/^resource "/m.test(trimmed) || /\nresource "/.test(trimmed)) return 'terraform-hcl';
   if (/^\s*\{/.test(trimmed) && /"resource"\s*:/m.test(trimmed)) return 'terraform-json';
   if (/^resources\s*:/m.test(trimmed) || /\nresources\s*:/m.test(trimmed)) return 'pulumi-yaml';
   if (/^import\s/m.test(trimmed) || /\bnew\s+[\w.]+\(/.test(trimmed)) return 'pulumi-typescript';

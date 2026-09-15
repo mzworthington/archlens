@@ -1,5 +1,5 @@
 import type { AnalysisFileSystemPort } from './ports';
-import type { AnalysisOptions } from './analysisOptions';
+import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions';
 import {
   createStructuralPathFilter,
   type SourcePathFilter,
@@ -53,7 +53,7 @@ function collectCsprojFiles(
 export function discoverCsprojFiles(
   globPattern: string,
   fileSystem: AnalysisFileSystemPort,
-  options: Pick<AnalysisOptions, 'ignore' | 'include'> = { ignore: [], include: [] }
+  options: Pick<AnalysisOptions, 'ignore' | 'include'> = DEFAULT_ANALYSIS_OPTIONS
 ): CsprojFile[] {
   const pathFilter = createStructuralPathFilter(options);
   const baseDir = parseGlobBaseDir(globPattern, fileSystem);

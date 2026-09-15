@@ -116,5 +116,5 @@ export function listFilesForGlob(
   const { dir, extensions } = parseForensicsGlobPattern(cwd, pattern);
   const results: string[] = [];
   walkDirectory(dir, cwd, extensions, shouldSkip, results);
-  return results.sort();
+  return results.sort((a, b) => a.localeCompare(b));
 }

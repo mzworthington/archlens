@@ -47,7 +47,11 @@ export function partitionLayoutComponents(
 
   return [...groups.values()]
     .map(nodeIds => ({ nodeIds }))
-    .sort((a, b) => [...a.nodeIds].sort()[0]!.localeCompare([...b.nodeIds].sort()[0]!));
+    .sort((a, b) =>
+      [...a.nodeIds]
+        .sort((x, y) => x.localeCompare(y))[0]!
+        .localeCompare([...b.nodeIds].sort((x, y) => x.localeCompare(y))[0]!)
+    );
 }
 
 function layoutBounds(

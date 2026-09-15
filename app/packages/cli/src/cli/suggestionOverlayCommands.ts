@@ -81,5 +81,11 @@ export async function runRejectOverlay(
 }
 
 export async function readOverlayFileFromDisk(filePath: string): Promise<string> {
-  return fs.readFile(filePath, 'utf8');
+  const cwd = path.resolve(process.cwd());
+  const resolved = path.resolve(filePath);
+  const relative = path.relative(cwd, resolved);
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    throw new Error(`Refusing overlay path outside working directory: ${filePath}`);
+  }
+  return fs.readFile(resolved, 'utf8');
 }

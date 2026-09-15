@@ -103,6 +103,7 @@ function findGitRoot(startDir: string): Promise<string> {
     const child = spawn('git', ['rev-parse', '--show-toplevel'], {
       cwd: startDir,
       stdio: ['ignore', 'pipe', 'pipe'],
+      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
     });
     let stdout = '';
     let stderr = '';

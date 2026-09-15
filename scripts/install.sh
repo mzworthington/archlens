@@ -2,7 +2,7 @@
 # Install ArchLens CLI from GitHub releases.
 # Usage: curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
 # Prefer `| bash` (not `| sh`): this script needs bash features such as `pipefail`.
-if [ -z "${BASH_VERSION:-}" ]; then
+if [[ -z "${BASH_VERSION:-}" ]]; then
   echo "error: run this installer with bash, e.g.:" >&2
   echo "  curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash" >&2
   exit 1
@@ -169,7 +169,7 @@ download_release() {
   fi
 
   echo "Downloading ${url}" >&2
-  curl -fsSL -o "$archive" "$url"
+  curl --proto '=https' --tlsv1.2 -fsSL -o "$archive" "$url"
 
   if [[ -n "$version" ]]; then
     verify_checksum "$archive" "$asset" "$version"
@@ -188,7 +188,7 @@ verify_checksum() {
 
   checksums_url="https://github.com/${GITHUB_REPO}/releases/download/${version}/checksums.txt"
   sums_file="$(mktemp)"
-  if ! curl -fsSL -o "$sums_file" "$checksums_url" 2>/dev/null; then
+  if ! curl --proto '=https' --tlsv1.2 -fsSL -o "$sums_file" "$checksums_url" 2>/dev/null; then
     rm -f "$sums_file"
     return 0
   fi
@@ -221,7 +221,7 @@ verify_checksum_latest() {
   local api_url tag
 
   api_url="https://api.github.com/repos/${GITHUB_REPO}/releases/latest"
-  tag="$(curl -fsSL "$api_url" | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)"
+  tag="$(curl --proto '=https' --tlsv1.2 -fsSL "$api_url" | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)"
   if [[ -z "$tag" ]]; then
     return 0
   fi

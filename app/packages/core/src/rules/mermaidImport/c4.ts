@@ -16,22 +16,22 @@ function parseC4Element(line: string): ParsedNode | null {
     type: NodeType;
     external?: boolean;
   }> = [
-    { regex: /^Person\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'person' },
+    { regex: /^Person\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'person' },
     {
-      regex: /^System_Ext\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i,
+      regex: /^System_Ext\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i,
       type: 'software-system',
       external: true,
     },
     {
-      regex: /^SystemDb_Ext\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i,
+      regex: /^SystemDb_Ext\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i,
       type: 'relational-database',
       external: true,
     },
-    { regex: /^System\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'software-system' },
-    { regex: /^ContainerDb\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'relational-database' },
-    { regex: /^ContainerQueue\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'event-broker' },
-    { regex: /^Container\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'container' },
-    { regex: /^Component\s*\(\s*([^,)]+)\s*,\s*"([^"]*)"/i, type: 'component' },
+    { regex: /^System\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'software-system' },
+    { regex: /^ContainerDb\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'relational-database' },
+    { regex: /^ContainerQueue\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'event-broker' },
+    { regex: /^Container\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'container' },
+    { regex: /^Component\s*\(\s*([^,\s)]+),\s*"([^"]*)"/i, type: 'component' },
   ];
 
   for (const { regex, type, external } of patterns) {
@@ -46,7 +46,7 @@ function parseC4Element(line: string): ParsedNode | null {
 
 function parseC4Rel(line: string): ParsedEdge | null {
   const match = line.match(
-    /^Rel(?:_U|_D|_L|_R)?\s*\(\s*([^\s,)]+)\s*,\s*([^\s,)]+)(?:\s*,\s*"([^"]*)")?\s*\)/i
+    /^Rel(?:_U|_D|_L|_R)?\s*\(\s*([^\s,)]+),\s*([^\s,)]+)(?:,\s*"([^"]*)")?\s*\)/i
   );
   if (!match) return null;
   return {

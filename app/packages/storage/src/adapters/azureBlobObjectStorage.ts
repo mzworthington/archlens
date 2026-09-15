@@ -62,7 +62,7 @@ export function createAzureBlobObjectStorage(config: AzureBlobStorageConfig): Ob
       for await (const item of container.listBlobsFlat({ prefix: fullPrefix })) {
         const name = item.name;
         if (prefix) {
-          const withSlash = `${prefix.replace(/\/+$/, '')}/`;
+          const withSlash = `${prefix.replace(/\/+$/g, '')}/`;
           keys.push(name.startsWith(withSlash) ? name.slice(withSlash.length) : name);
         } else {
           keys.push(name);

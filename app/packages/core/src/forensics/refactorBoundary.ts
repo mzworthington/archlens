@@ -73,7 +73,7 @@ function buildByFilepath(
 }
 
 function stableBoundaryId(memberEntityRefs: readonly string[]): string {
-  return [...memberEntityRefs].sort().join('|');
+  return [...memberEntityRefs].sort((a, b) => a.localeCompare(b)).join('|');
 }
 
 function memberFromNode(node: RefactorBoundaryNodeInput): RefactorBoundaryMember {

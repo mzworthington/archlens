@@ -24,8 +24,10 @@ export const ValidationDialog: React.FC = () => {
       aria-labelledby="validation-dialog-title"
       data-testid="validation-dialog"
     >
-      <div
-        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer"
+      <button
+        type="button"
+        aria-label="Dismiss"
+        className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm cursor-pointer border-0 p-0"
         onClick={() => setIsValidationOpen(false)}
       />
 
