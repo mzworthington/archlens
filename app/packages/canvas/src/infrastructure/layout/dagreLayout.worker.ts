@@ -1,3 +1,4 @@
+import './dagreWorkerGlobals';
 import type { LayoutEdgeInput, LayoutNodeInput, LayoutPosition } from '../../core';
 import { computeDagrePositions } from './dagreLayoutCore';
 
