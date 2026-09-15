@@ -71,4 +71,22 @@ describe('MermaidPreview Component', () => {
 
     expect(screen.queryByRole('button', { name: 'Close Preview' })).not.toBeInTheDocument();
   });
+
+  it('keeps the expanded pan surface out of the tab order because zoom uses buttons', async () => {
+    vi.mocked(mermaid.render).mockResolvedValue({
+      svg: '<svg data-testid="mock-svg">Mock SVG</svg>',
+      diagramType: 'flowchart',
+    });
+
+    render(<MermaidPreview code="graph TD; A-->B;" />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('mock-svg')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText('Click to Expand'));
+
+    const surface = screen.getByRole('application', { name: 'Mermaid diagram pan and zoom' });
+    expect(surface).not.toHaveAttribute('tabindex');
+  });
 });
