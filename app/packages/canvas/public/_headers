@@ -2,6 +2,10 @@
 /version.json
   Cache-Control: no-store
 
+# Unhashed SW script must not pair with a stale hashed Workbox runtime.
+/sw.js
+  Cache-Control: no-cache
+
 # Prerendered HTML shells should revalidate after a Pages deploy.
 /*.html
   Cache-Control: no-cache
