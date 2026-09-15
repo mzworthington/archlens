@@ -38,7 +38,7 @@ export function rewritePrecacheHtmlUrls<T extends PrecacheManifestEntry>(entries
   return [...chosen.values()].map(({ entry }) => entry);
 }
 
-export function isWasmPrecacheUrl(url: string): boolean {
+function isWasmPrecacheUrl(url: string): boolean {
   const path = url.split('?')[0] ?? url;
   return path.toLowerCase().endsWith('.wasm');
 }
