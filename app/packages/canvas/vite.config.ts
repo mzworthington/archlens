@@ -16,7 +16,7 @@ import { syncBundledChaosSpecs } from './vite/syncChaosSpecs';
 import { syncDocsAssets } from './vite/syncDocsAssets';
 import { syncJsonSchemas } from './vite/syncJsonSchemas';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
-import { rewritePrecacheHtmlUrls } from './vite/rewritePrecacheHtmlUrls';
+import { sanitizePrecacheManifest } from './vite/rewritePrecacheHtmlUrls';
 
 const base = process.env.VITE_BASE || '/';
 const deployIdentity = resolveDeployIdentity();
@@ -81,7 +81,7 @@ export default defineConfig({
         // demo YAML only (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
         // Remaining /bundled-blueprints/* stay on CacheFirst after first ad-hoc fetch.
         globPatterns: [
-          '**/*.{js,css,ico,svg,woff2,webmanifest,png,wasm}',
+          '**/*.{js,css,ico,svg,woff2,webmanifest,png}',
           'bundled-blueprints/catalog.json',
           'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
           'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
@@ -92,14 +92,22 @@ export default defineConfig({
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
         // Pages pretty-URLs 308 every */index.html; Workbox install fails on those redirects.
-        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/version.json', '**/*.html'],
+        // WASM (~14MB tree-sitter + chaoslens) is CacheFirst after first use — precaching it
+        // fails Firefox install (MZW-104) even after HTML 308s were removed (MZW-102).
+        globIgnores: [
+          '**/docs-assets/**',
+          '**/schemas/**',
+          '**/version.json',
+          '**/*.html',
+          '**/*.wasm',
+        ],
         // CF Pages 308s /index.html → /. Navigation requests have redirect
         // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
         navigateFallback: '/',
         additionalManifestEntries: [{ url: '/', revision: appBuildId }],
         // Pretty-URLs also 308 globbed folder index.html precache entries.
         // Rewrite those to the directory URL that returns 200 so install can cache them.
-        manifestTransforms: [async manifest => ({ manifest: rewritePrecacheHtmlUrls(manifest) })],
+        manifestTransforms: [async manifest => ({ manifest: sanitizePrecacheManifest(manifest) })],
         // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/* and /assets/* as real assets.
         navigateFallbackDenylist: [
           /^\/schemas\//,
@@ -111,6 +119,20 @@ export default defineConfig({
           /^\/version\.json$/,
         ],
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith('.wasm'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'wasm-binaries',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
           {
             urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),
             handler: 'CacheFirst',

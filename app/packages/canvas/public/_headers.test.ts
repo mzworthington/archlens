@@ -11,4 +11,9 @@ describe('_headers (Cloudflare Pages)', () => {
     expect(text).toMatch(/\/version\.json[\s\S]*Cache-Control:\s*no-store/);
     expect(text).toMatch(/\/\*\.html[\s\S]*Cache-Control:\s*no-cache/);
   });
+
+  it('busts the service worker script so Firefox cannot install a stale sw.js', () => {
+    const text = fs.readFileSync(headersPath, 'utf8');
+    expect(text).toMatch(/\/sw\.js[\s\S]*Cache-Control:\s*public,\s*max-age=0,\s*must-revalidate/);
+  });
 });

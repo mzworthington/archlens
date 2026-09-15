@@ -49,6 +49,14 @@ function exceptionMessages(properties: Record<string, unknown> | undefined): str
   if (typeof top === 'string') {
     messages.push(top);
   }
+  const values = properties.$exception_values;
+  if (Array.isArray(values)) {
+    for (const value of values) {
+      if (typeof value === 'string') {
+        messages.push(value);
+      }
+    }
+  }
   const list = properties.$exception_list;
   if (!Array.isArray(list)) {
     return messages;

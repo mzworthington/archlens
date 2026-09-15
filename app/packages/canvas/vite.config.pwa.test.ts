@@ -22,7 +22,14 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
 
   it('rewrites any remaining precache HTML to pretty URLs so install does not cache a 308', () => {
     const source = fs.readFileSync(viteConfigPath, 'utf8');
-    expect(source).toMatch(/rewritePrecacheHtmlUrls/);
+    expect(source).toMatch(/sanitizePrecacheManifest/);
     expect(source).toMatch(/manifestTransforms/);
+  });
+
+  it('does not glob wasm — Firefox install waits on ~14MB of tree-sitter/chaoslens binaries', () => {
+    const source = fs.readFileSync(viteConfigPath, 'utf8');
+    expect(source).not.toMatch(/\*\*\/\*\.\{[^}]*wasm/);
+    expect(source).toMatch(/'\*\*\/\*\.wasm'/);
+    expect(source).toMatch(/pathname\.endsWith\('\.wasm'\)/);
   });
 });
