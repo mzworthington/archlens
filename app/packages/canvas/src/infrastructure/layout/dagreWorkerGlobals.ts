@@ -19,11 +19,15 @@
  * Import this module before dagre so the stub exists when dagre evaluates.
  */
 export function installDagreWorkerRequireStub(
-  scope: { require?: unknown } = globalThis as { require?: unknown }
+  scope: { require?: unknown; window?: unknown } = globalThis as {
+    require?: unknown;
+    window?: unknown;
+  }
 ): void {
   scope.require ??= () => {
     throw new Error('require is not available inside the dagre layout worker');
   };
+  scope.window ??= scope;
 }
 
 installDagreWorkerRequireStub();
