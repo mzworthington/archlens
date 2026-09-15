@@ -12,26 +12,31 @@ export function extractTsImports(source: string): ExtractedTsImports {
   const imports: string[] = [];
   const reExports: string[] = [];
 
-  const fromImport = /(?:^|\n)\s*import\s+(?:type\s+)?[^'"\n]{1,400}\s+from\s*['"]([^'"]+)['"]/g;
-  const sideEffectImport = /(?:^|\n)\s*import\s*['"]([^'"]+)['"]\s*;?/g;
-  const exportFrom = /(?:^|\n)\s*export\s+(?:type\s+)?[^'"\n]{1,400}\s+from\s*['"]([^'"]+)['"]/g;
-  const requireCall = /require\s*\(\s*['"]([^'"]+)['"]\s*\)/g;
-
-  let match: RegExpExecArray | null;
-  while ((match = fromImport.exec(source)) != null) {
-    imports.push(match[1]!);
-  }
-  while ((match = sideEffectImport.exec(source)) != null) {
-    imports.push(match[1]!);
-  }
-  while ((match = exportFrom.exec(source)) != null) {
-    reExports.push(match[1]!);
-  }
-  while ((match = requireCall.exec(source)) != null) {
-    imports.push(match[1]!);
+  for (const line of source.split('\n')) {
+    const trimmed = line.trim();
+    const specifier = quotedSpecifier(trimmed);
+    if (!specifier) continue;
+    if (trimmed.startsWith('export ') && trimmed.includes(' from ')) {
+      reExports.push(specifier);
+      continue;
+    }
+    if (trimmed.startsWith('import ') || trimmed.includes('require(')) {
+      imports.push(specifier);
+    }
   }
 
   return { imports, reExports };
+}
+
+function quotedSpecifier(line: string): string | undefined {
+  const single = line.indexOf("'");
+  const double = line.indexOf('"');
+  const start = single === -1 ? double : double === -1 ? single : Math.min(single, double);
+  if (start === -1) return undefined;
+  const quote = line[start];
+  const end = line.indexOf(quote, start + 1);
+  if (end === -1) return undefined;
+  return line.slice(start + 1, end);
 }
 
 /** Resolve a relative module specifier against the importing file's directory. */

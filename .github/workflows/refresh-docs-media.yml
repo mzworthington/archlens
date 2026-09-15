@@ -52,12 +52,14 @@ jobs:
           go-version-file: resilience-engine/go.mod
           cache-dependency-path: resilience-engine/go.mod
 
+      - name: Install mise
+        uses: jdx/mise-action@v4
+
       - name: Install media tooling
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg ttyd
-          go install github.com/charmbracelet/vhs@v0.11.0
-          echo "${HOME}/go/bin" >> "${GITHUB_PATH}"
+          mise install vhs
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile

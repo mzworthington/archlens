@@ -100,10 +100,10 @@ export async function executeValidateRun(plan: ValidateCliPlan): Promise<void> {
 
 function findGitRoot(startDir: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    const child = spawn('git', ['rev-parse', '--show-toplevel'], {
+    const child = spawn('/usr/bin/git', ['rev-parse', '--show-toplevel'], {
       cwd: startDir,
       stdio: ['ignore', 'pipe', 'pipe'],
-      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
     });
     let stdout = '';
     let stderr = '';

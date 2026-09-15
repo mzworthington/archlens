@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  cacheBustingReloadPath,
   cacheBustingReloadUrl,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
@@ -74,6 +75,17 @@ describe('cacheBustingReloadUrl', () => {
     expect(cacheBustingReloadUrl('https://archlens.dev/', 1700000000000)).toBe(
       'https://archlens.dev/?al_refresh=1700000000000'
     );
+  });
+});
+
+describe('cacheBustingReloadPath', () => {
+  it('returns a same-origin relative path so location.replace cannot open-redirect', () => {
+    expect(
+      cacheBustingReloadPath(
+        { pathname: '/workspace', search: '?room=abc', hash: '#x' },
+        1700000000000
+      )
+    ).toBe('/workspace?room=abc&al_refresh=1700000000000#x');
   });
 });
 

@@ -1,4 +1,12 @@
-import { accessSync, constants, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  accessSync,
+  constants,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -81,8 +89,19 @@ export function convertWebmToGif(
     `[0:v]fps=10,scale=${width}:-1:flags=lanczos,split[s0][s1];` +
     `[s0]palettegen=stats_mode=full:max_colors=256[p];` +
     `[s1][p]paletteuse=dither=sierra2_4a`;
-  execFileSync('ffmpeg', ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath], {
-    stdio: 'inherit',
-    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
-  });
+  execFileSync(
+    ffmpegBin(),
+    ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath],
+    {
+      stdio: 'inherit',
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
+    }
+  );
+}
+
+function ffmpegBin(): string {
+  for (const candidate of ['/usr/bin/ffmpeg', '/opt/homebrew/bin/ffmpeg']) {
+    if (existsSync(candidate)) return candidate;
+  }
+  throw new Error('ffmpeg not found in a fixed directory');
 }

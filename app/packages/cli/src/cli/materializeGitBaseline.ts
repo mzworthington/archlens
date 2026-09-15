@@ -11,10 +11,10 @@ function runGit(
   cwd: string
 ): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise(resolve => {
-    const child = spawn('git', args, {
+    const child = spawn('/usr/bin/git', args, {
       cwd,
       stdio: ['ignore', 'pipe', 'pipe'],
-      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
     });
     let stdout = '';
     let stderr = '';
@@ -61,14 +61,14 @@ export async function materializeGitBaselineBlueprints(
 
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'archlens-baseline-'));
   const strip = normalized.split('/').filter(Boolean).length;
-  const archive = spawn('git', ['archive', commitRef, '--', normalized], {
+  const archive = spawn('/usr/bin/git', ['archive', commitRef, '--', normalized], {
     cwd: repoRoot,
     stdio: ['ignore', 'pipe', 'pipe'],
-    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+    env: { ...process.env, PATH: '/usr/bin:/bin' },
   });
-  const tar = spawn('tar', ['-x', `-C`, tempRoot, `--strip-components=${strip}`], {
+  const tar = spawn('/usr/bin/tar', ['-x', `-C`, tempRoot, `--strip-components=${strip}`], {
     stdio: [archive.stdout, 'pipe', 'pipe'],
-    env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+    env: { ...process.env, PATH: '/usr/bin:/bin' },
   });
 
   let archiveErr = '';

@@ -175,17 +175,14 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
           </div>
         </div>
 
-        {
-          // Schema export preview
-          <div className="bg-[#040914]/90 border border-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-300">
-            <div className="text-[#00f0ff] mb-1 font-bold">// Serialized YAML Model Output:</div>
-            <div>id: {sandboxTitle.toLowerCase().replace(/\s+/g, '-')}</div>
-            <div>title: {sandboxTitle}</div>
-            <div>type: {sandboxNodeType}</div>
-            <div>description: {sandboxDesc}</div>
-            <div>status: {sandboxStatus}</div>
-          </div>
-        }
+        <div className="bg-[#040914]/90 border border-slate-900 rounded-xl p-3 font-mono text-[10px] text-slate-300">
+          <div className="text-[#00f0ff] mb-1 font-bold">// Serialized YAML Model Output:</div>
+          <div>id: {sandboxTitle.toLowerCase().replace(/\s+/g, '-')}</div>
+          <div>title: {sandboxTitle}</div>
+          <div>type: {sandboxNodeType}</div>
+          <div>description: {sandboxDesc}</div>
+          <div>status: {sandboxStatus}</div>
+        </div>
       </div>
     </div>
   </div>

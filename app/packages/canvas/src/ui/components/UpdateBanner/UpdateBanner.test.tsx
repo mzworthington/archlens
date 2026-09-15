@@ -115,7 +115,7 @@ describe('UpdateBanner', () => {
     });
     reload();
     expect(replace).toHaveBeenCalledWith(
-      expect.stringMatching(/^https:\/\/archlens\.dev\/workspace\?room=abc&al_refresh=\d+#x$/)
+      expect.stringMatching(/^\/workspace\?room=abc&al_refresh=\d+#x$/)
     );
   });
 });

@@ -14,6 +14,29 @@ function downloadDataUrl(dataUrl: string, filename: string): void {
   anchor.click();
 }
 
+function safeDownloadStem(name: string): string {
+  const parts: string[] = [];
+  let token = '';
+  for (const ch of name) {
+    const code = ch.charCodeAt(0);
+    const ok =
+      (code >= 48 && code <= 57) ||
+      (code >= 65 && code <= 90) ||
+      (code >= 97 && code <= 122) ||
+      ch === '_' ||
+      ch === '.' ||
+      ch === '-';
+    if (ok) {
+      token += ch;
+    } else if (token) {
+      parts.push(token);
+      token = '';
+    }
+  }
+  if (token) parts.push(token);
+  return parts.join('-');
+}
+
 /**
  * Export the visible React Flow diagram to PNG or SVG for decks and docs.
  */
@@ -50,11 +73,7 @@ export async function exportCanvasImage(
     filter,
   };
 
-  const safeName =
-    diagramName
-      .replace(/[^\w.-]+/g, '-')
-      .replace(/^-+/g, '')
-      .replace(/-+$/g, '') || 'diagram';
+  const safeName = safeDownloadStem(diagramName) || 'diagram';
 
   if (format === 'svg') {
     const dataUrl = await toSvg(viewportElement, options);

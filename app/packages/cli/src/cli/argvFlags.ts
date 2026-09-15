@@ -49,7 +49,10 @@ export function parseStorageProvider(argv: string[]): 'r2' | 's3' | 'azure' | un
 }
 
 export function defaultEstateKeyPrefix(estateId: string): string {
-  return `estates/${estateId.replace(/^\/+/g, '').replace(/\/+$/g, '')}`;
+  let trimmed = estateId;
+  while (trimmed.startsWith('/')) trimmed = trimmed.slice(1);
+  while (trimmed.endsWith('/')) trimmed = trimmed.slice(0, -1);
+  return `estates/${trimmed}`;
 }
 
 /**

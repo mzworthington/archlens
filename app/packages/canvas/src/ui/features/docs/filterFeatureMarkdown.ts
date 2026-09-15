@@ -15,7 +15,7 @@ export function filterFeatureMarkdown(
   const lines = markdown.split('\n');
   const intro: string[] = [];
   let i = 0;
-  while (i < lines.length && !/^#{2,6}\s/.test(lines[i]!)) {
+  while (i < lines.length && headingLevel(lines[i]!) === 0) {
     intro.push(lines[i]!);
     i++;
   }
@@ -32,11 +32,11 @@ export function filterFeatureMarkdown(
 
   for (; i < lines.length; i++) {
     const line = lines[i]!;
-    const heading = line.match(/^(#{2,6})\s+([^\n]+)$/);
+    const heading = parseMarkdownHeading(line);
     if (heading) {
       const node: Node = {
-        heading: heading[2]!.trim(),
-        level: heading[1]!.length,
+        heading: heading.title,
+        level: heading.level,
         items: [],
         children: [],
       };
@@ -51,7 +51,7 @@ export function filterFeatureMarkdown(
       stack.push(node);
       continue;
     }
-    if (stack.length && /^\s*-\s+/.test(line)) {
+    if (stack.length && isMarkdownListItem(line)) {
       stack[stack.length - 1]!.items.push(line);
     }
   }
@@ -88,10 +88,7 @@ export function filterFeatureMarkdown(
     if (matched) emit(matched, out);
   }
 
-  return `${out
-    .join('\n')
-    .replace(/\n{3,}/g, '\n\n')
-    .trimEnd()}\n`;
+  return `${collapseBlankLines(out.join('\n')).trimEnd()}\n`;
 }
 
 export function countFeatureMatches(
@@ -101,17 +98,51 @@ export function countFeatureMatches(
 ): number {
   const q = query.trim().toLowerCase();
   if (!q) {
-    return markdown.split('\n').filter(l => /^\s*-\s+/.test(l)).length;
+    return markdown.split('\n').filter(l => isMarkdownListItem(l)).length;
   }
   return filterFeatureMarkdown(markdown, query, mode)
     .split('\n')
-    .filter(l => /^\s*-\s+/.test(l)).length;
+    .filter(l => isMarkdownListItem(l)).length;
 }
 
 /** Top-level ## headings for an on-page outline. */
 export function extractFeatureOutline(markdown: string): string[] {
-  return markdown
-    .split('\n')
-    .map(l => l.match(/^##\s+([^\n]+)$/)?.[1]?.trim())
-    .filter((h): h is string => Boolean(h));
+  const headings: string[] = [];
+  for (const line of markdown.split('\n')) {
+    const heading = parseMarkdownHeading(line);
+    if (heading?.level === 2) headings.push(heading.title);
+  }
+  return headings;
+}
+
+function headingLevel(line: string): number {
+  return parseMarkdownHeading(line)?.level ?? 0;
+}
+
+function parseMarkdownHeading(line: string): { level: number; title: string } | undefined {
+  let level = 0;
+  while (level < line.length && line[level] === '#') level += 1;
+  if (level < 2 || level > 6 || line[level] !== ' ') return undefined;
+  return { level, title: line.slice(level + 1).trim() };
+}
+
+function isMarkdownListItem(line: string): boolean {
+  const trimmed = line.trimStart();
+  return trimmed.startsWith('- ');
+}
+
+function collapseBlankLines(text: string): string {
+  const lines = text.split('\n');
+  const out: string[] = [];
+  let blank = 0;
+  for (const line of lines) {
+    if (line === '') {
+      blank += 1;
+      if (blank < 2) out.push(line);
+      continue;
+    }
+    blank = 0;
+    out.push(line);
+  }
+  return out.join('\n');
 }

@@ -126,10 +126,16 @@ function extractCommand(body: string): string {
 
 function extractActions(body: string): TodayJobAction[] {
   const actions: TodayJobAction[] = [];
-  const re = /^\s*-\s+\[([^\]]+)\]\(([^)]+)\)\s*$/gm;
-  let match: RegExpExecArray | null;
-  while ((match = re.exec(body)) !== null) {
-    actions.push({ label: match[1], href: match[2] });
+  for (const line of body.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed.startsWith('- [')) continue;
+    const closeLabel = trimmed.indexOf('](');
+    if (closeLabel === -1) continue;
+    const closeHref = trimmed.indexOf(')', closeLabel + 2);
+    if (closeHref === -1) continue;
+    const label = trimmed.slice(3, closeLabel);
+    const href = trimmed.slice(closeLabel + 2, closeHref);
+    if (label && href) actions.push({ label, href });
   }
   return actions;
 }

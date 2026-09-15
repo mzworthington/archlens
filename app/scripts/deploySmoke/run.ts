@@ -175,20 +175,16 @@ async function rollbackPages(previousId: string): Promise<void> {
 }
 
 function rollbackCollab(previousId: string): void {
+  const wrangler = fileURLToPath(
+    new URL('../../packages/collab/node_modules/wrangler/bin/wrangler.js', import.meta.url)
+  );
   const result = spawnSync(
-    'pnpm',
-    [
-      'exec',
-      'wrangler',
-      'rollback',
-      previousId,
-      '--message',
-      'smoke failed; restore previous version',
-    ],
+    process.execPath,
+    [wrangler, 'rollback', previousId, '--message', 'smoke failed; restore previous version'],
     {
       cwd: fileURLToPath(new URL('../../packages/collab/', import.meta.url)),
       stdio: 'inherit',
-      env: { ...process.env, PATH: '/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin' },
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
     }
   );
   if (result.status !== 0) {

@@ -11,12 +11,19 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 export type ChaosSpecDialogMode = 'import' | 'export';
 
 function chaosSpecFileName(name: string): string {
-  const slug = name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+/g, '')
-    .replace(/-+$/g, '');
-  return `${slug || 'chaos-scenario'}.yaml`;
+  const parts: string[] = [];
+  let token = '';
+  for (const ch of name.toLowerCase()) {
+    const ok = (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9');
+    if (ok) {
+      token += ch;
+    } else if (token) {
+      parts.push(token);
+      token = '';
+    }
+  }
+  if (token) parts.push(token);
+  return `${parts.join('-') || 'chaos-scenario'}.yaml`;
 }
 
 function buildExportYamlFromStore(): string {

@@ -3,7 +3,7 @@ import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
 import {
-  cacheBustingReloadUrl,
+  cacheBustingReloadPath,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
 } from '../../../application/pwa/requestServiceWorkerUpdate';
@@ -60,8 +60,7 @@ export function UpdateBanner() {
       cacheKeys: () => (typeof caches === 'undefined' ? Promise.resolve([]) : caches.keys()),
       deleteCache: cacheName => caches.delete(cacheName),
       reload: () => {
-        const { origin, pathname, search, hash } = window.location;
-        window.location.replace(cacheBustingReloadUrl(`${origin}${pathname}${search}${hash}`));
+        window.location.replace(cacheBustingReloadPath(window.location));
       },
     });
   };

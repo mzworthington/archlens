@@ -17,12 +17,21 @@ import { fileURLToPath } from 'node:url';
 const SCHEMA_VERSION = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 
 function slugify(value) {
-  return String(value || '')
+  const parts = [];
+  let token = '';
+  for (const ch of String(value || '')
     .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+/g, '')
-    .replace(/-+$/g, '');
+    .toLowerCase()) {
+    const ok = (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9');
+    if (ok) {
+      token += ch;
+    } else if (token) {
+      parts.push(token);
+      token = '';
+    }
+  }
+  if (token) parts.push(token);
+  return parts.join('-');
 }
 
 function parseEntityRef(value, parent) {

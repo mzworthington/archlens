@@ -242,16 +242,20 @@ export async function performSelfUpdate(
     }
     // Fixed script basename + cwd - avoids shell argv built from env-derived absolute paths
     // (CodeQL js/shell-command-injection-from-environment).
-    const child = spawn('cmd.exe', ['/d', '/s', '/c', 'archlens-update.cmd'], {
-      cwd: installDir,
-      stdio: 'ignore',
-      detached: true,
-      windowsHide: true,
-      env: {
-        ...process.env,
-        PATH: 'C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\WindowsPowerShell\\v1.0',
-      },
-    });
+    const child = spawn(
+      'C:\\Windows\\System32\\cmd.exe',
+      ['/d', '/s', '/c', 'archlens-update.cmd'],
+      {
+        cwd: installDir,
+        stdio: 'ignore',
+        detached: true,
+        windowsHide: true,
+        env: {
+          ...process.env,
+          PATH: 'C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\WindowsPowerShell\\v1.0',
+        },
+      }
+    );
     child.unref();
     process.exit(0);
   }

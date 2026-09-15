@@ -12,6 +12,12 @@ function toBodyBytes(body: string | Uint8Array): Uint8Array {
   return typeof body === 'string' ? new TextEncoder().encode(body) : body;
 }
 
+function trimTrailingSlashes(value: string): string {
+  let trimmed = value;
+  while (trimmed.endsWith('/')) trimmed = trimmed.slice(0, -1);
+  return trimmed;
+}
+
 function resolveContainerClient(config: AzureBlobStorageConfig): ContainerClient {
   if (config.connectionString) {
     return BlobServiceClient.fromConnectionString(config.connectionString).getContainerClient(
@@ -62,7 +68,7 @@ export function createAzureBlobObjectStorage(config: AzureBlobStorageConfig): Ob
       for await (const item of container.listBlobsFlat({ prefix: fullPrefix })) {
         const name = item.name;
         if (prefix) {
-          const withSlash = `${prefix.replace(/\/+$/g, '')}/`;
+          const withSlash = `${trimTrailingSlashes(prefix)}/`;
           keys.push(name.startsWith(withSlash) ? name.slice(withSlash.length) : name);
         } else {
           keys.push(name);

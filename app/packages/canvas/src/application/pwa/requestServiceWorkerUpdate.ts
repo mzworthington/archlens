@@ -17,6 +17,19 @@ export function cacheBustingReloadUrl(href: string, now: number = Date.now()): s
   return url.toString();
 }
 
+/** Same-origin relative path so `location.replace` cannot open-redirect off-site. */
+export function cacheBustingReloadPath(
+  location: Pick<Location, 'pathname' | 'search' | 'hash'>,
+  now: number = Date.now()
+): string {
+  const url = new URL(
+    `${location.pathname}${location.search}${location.hash}`,
+    'https://archlens.invalid'
+  );
+  url.searchParams.set(REFRESH_QUERY_PARAM, String(now));
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
 /** Drop a wedged controller so the next load is not served from a stale app shell. */
 export async function reloadWithoutServiceWorker({
   getRegistrations,
