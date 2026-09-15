@@ -31,6 +31,20 @@ describe('dropBenignBrowserExceptionCapture', () => {
     ).toBeNull();
   });
 
+  it('drops $exception events that only expose $exception_values (PostHog before_send shape)', () => {
+    expect(
+      dropBenignBrowserExceptionCapture({
+        event: '$exception',
+        properties: {
+          $exception_types: ['TypeError'],
+          $exception_values: [
+            'ServiceWorker script at https://archlens.dev/sw.js for scope https://archlens.dev/ encountered an error during installation.',
+          ],
+        },
+      })
+    ).toBeNull();
+  });
+
   it('still drops ResizeObserver loop notifications', () => {
     expect(
       dropBenignBrowserExceptionCapture({

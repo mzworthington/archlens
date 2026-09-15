@@ -2,6 +2,11 @@
 /version.json
   Cache-Control: no-store
 
+# Browsers (Firefox especially) must not install a stale generateSW script.
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
+
 # Prerendered HTML shells should revalidate after a Pages deploy.
 /*.html
   Cache-Control: no-cache
