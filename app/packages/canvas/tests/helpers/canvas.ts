@@ -107,15 +107,11 @@ export async function clickCanvasNode(page: Page, label: string) {
   }).toPass({ timeout: 30_000 });
 }
 
-/** Click the node whose heading is exactly `label`, not a neighbor that only mentions it. */
-export async function clickCanvasNodeHeading(page: Page, label: string) {
-  await expect(async () => {
-    const node = page
-      .locator('.react-flow__node')
-      .filter({ has: page.getByRole('heading', { name: label, exact: true }) })
-      .filter({ hasNot: page.locator('.react-flow__node') });
-    await expect(node).toBeVisible({ timeout: 5_000 });
-    await node.getByRole('heading', { name: label, exact: true }).click({ force: true });
-    await expect(page.getByLabel('Name', { exact: true })).toHaveValue(label);
-  }).toPass({ timeout: 30_000 });
+/** Select a node by entityRef without canvas hit-testing (overlap / culling). */
+export async function selectWorkspaceNode(page: Page, name: string, entityRef: string) {
+  await page.bringToFront();
+  const node = page.locator(`.react-flow__node[data-id="${entityRef}"]`);
+  await expect(node).toBeVisible({ timeout: 15_000 });
+  await node.getByRole('button', { name, exact: true }).dispatchEvent('click');
+  await expect(page.getByLabel('Name', { exact: true })).toHaveValue(name, { timeout: 15_000 });
 }
