@@ -18,6 +18,9 @@ test.describe('Live room node comments', () => {
     try {
       await joinLiveDiagram(peer, roomPath, 'Grace');
       await expectGoldenJourneyEstateReady(peer);
+      await expect(page.getByTestId('collab-connected-count')).toHaveText('2', {
+        timeout: 20_000,
+      });
 
       await clickCanvasNode(page, 'Checkout API');
       const hostThread = page.getByTestId('node-comments-section');

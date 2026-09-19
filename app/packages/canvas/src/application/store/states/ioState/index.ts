@@ -135,7 +135,11 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         displayName,
         credentials,
         onSchema: applyRemoteCollabSchema,
-        onPresence: presence => set({ collabPresence: presence }),
+        onPresence: presence =>
+          set({
+            collabPresence: presence,
+            collabRoomActive: get().collabSessionPort.isActive(),
+          }),
         onComments: comments => set({ collabComments: comments }),
         onRoomControl: event => {
           if (event === 'admitted') {

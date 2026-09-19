@@ -157,6 +157,25 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByText('<b>not html</b>')).toBeInTheDocument();
   });
 
+  it('shows the comment thread from live presence when the room-active flag lags', () => {
+    useBlueprintStore.setState({
+      selectedNodeId: 'gateway-api',
+      collabRoomActive: false,
+      collabPresence: {
+        connectedCount: 2,
+        cursors: [],
+        participants: [
+          { clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true },
+          { clientId: 8, name: 'Grace', color: '#f472b6', isLocal: false },
+        ],
+      },
+    });
+
+    render(<PropertyPanel />);
+
+    expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
+  });
+
   it('should display node attributes editor when a node is selected', () => {
     useBlueprintStore.setState({ selectedNodeId: 'gateway-api' });
 

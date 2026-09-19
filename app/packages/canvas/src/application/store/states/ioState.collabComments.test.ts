@@ -56,4 +56,42 @@ describe('ioState collab comments', () => {
     expect(useBlueprintStore.getState().collabRoomActive).toBe(false);
     expect(useBlueprintStore.getState().collabComments).toEqual([]);
   });
+
+  it('marks the room active when presence arrives before join resolves', async () => {
+    let releaseJoin!: () => void;
+    const hang = new Promise<void>(resolve => {
+      releaseJoin = resolve;
+    });
+    let active = false;
+    const port: CollabSessionPort = {
+      ...noopCollabSession,
+      isActive: () => active,
+      join: async args => {
+        active = true;
+        args.onPresence({
+          connectedCount: 2,
+          cursors: [],
+          participants: [
+            { clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true },
+            { clientId: 8, name: 'Grace', color: '#f472b6', isLocal: false },
+          ],
+        } satisfies CollabPresence);
+        await hang;
+      },
+    };
+
+    useBlueprintStore.setState({
+      schema: seed,
+      collabSessionPort: port,
+      collabRoomActive: false,
+      applyRemoteCollabSchema: () => {},
+    });
+
+    const joining = useBlueprintStore.getState().joinCollabRoom('room-1', 'Ada');
+    await Promise.resolve();
+    expect(useBlueprintStore.getState().collabRoomActive).toBe(true);
+
+    releaseJoin();
+    await joining;
+  });
 });

@@ -84,7 +84,11 @@ export async function expectGoldenJourneyEstateReady(page: Page) {
       if (await zoom.isVisible().catch(() => false)) {
         await zoom.click({ force: true });
       } else {
-        await navigateToWorkspacePath(page, GOLDEN_JOURNEY_WORKSPACE_PATH);
+        const roomQuery = new URL(page.url()).search;
+        await navigateToWorkspacePath(
+          page,
+          roomQuery ? `${GOLDEN_JOURNEY_WORKSPACE_PATH}${roomQuery}` : GOLDEN_JOURNEY_WORKSPACE_PATH
+        );
       }
     }
     await expect(page).toHaveURL(/\/workspace\/samples\/golden-journey(?:\/|$|\?)/, {

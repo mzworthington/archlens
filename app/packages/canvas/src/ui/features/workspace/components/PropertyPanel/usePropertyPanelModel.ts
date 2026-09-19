@@ -252,7 +252,7 @@ export function usePropertyPanelModel() {
     handleDeleteSelectedNode,
     handleExternalChange,
     handleSafeguardChange,
-    collabRoomActive,
+    collabRoomActive: collabRoomActive || collabPresence.connectedCount > 0,
     collabComments,
     localCollabClientId: collabPresence.participants.find(p => p.isLocal)?.clientId ?? null,
     addCollabComment,
