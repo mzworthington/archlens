@@ -16,7 +16,7 @@ import { syncBundledChaosSpecs } from './vite/syncChaosSpecs';
 import { syncDocsAssets } from './vite/syncDocsAssets';
 import { syncJsonSchemas } from './vite/syncJsonSchemas';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
-import { rewritePrecacheHtmlUrls } from './vite/rewritePrecacheHtmlUrls';
+import { sanitizePrecacheManifest } from './vite/rewritePrecacheHtmlUrls';
 
 const base = process.env.VITE_BASE || '/';
 const deployIdentity = resolveDeployIdentity();
@@ -92,7 +92,8 @@ export default defineConfig({
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
         // Pages pretty-URLs 308 every */index.html; Workbox install fails on those redirects.
-        // Tree-sitter + ChaosLens wasm (~16MB) blow Firefox Cache quota during install.
+        // WASM (~14MB tree-sitter + chaoslens) is CacheFirst after first use — precaching it
+        // fails Firefox install (MZW-104) even after HTML 308s were removed (MZW-102).
         globIgnores: [
           '**/docs-assets/**',
           '**/schemas/**',
@@ -106,7 +107,7 @@ export default defineConfig({
         additionalManifestEntries: [{ url: '/', revision: appBuildId }],
         // Pretty-URLs also 308 globbed folder index.html precache entries.
         // Rewrite those to the directory URL that returns 200 so install can cache them.
-        manifestTransforms: [async manifest => ({ manifest: rewritePrecacheHtmlUrls(manifest) })],
+        manifestTransforms: [async manifest => ({ manifest: sanitizePrecacheManifest(manifest) })],
         // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/* and /assets/* as real assets.
         navigateFallbackDenylist: [
           /^\/schemas\//,
@@ -118,6 +119,20 @@ export default defineConfig({
           /^\/version\.json$/,
         ],
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith('.wasm'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'wasm-binaries',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
           {
             urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),
             handler: 'CacheFirst',

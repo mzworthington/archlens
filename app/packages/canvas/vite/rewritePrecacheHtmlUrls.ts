@@ -37,3 +37,17 @@ export function rewritePrecacheHtmlUrls<T extends PrecacheManifestEntry>(entries
 
   return [...chosen.values()].map(({ entry }) => entry);
 }
+
+function isWasmPrecacheUrl(url: string): boolean {
+  const path = url.split('?')[0] ?? url;
+  return path.toLowerCase().endsWith('.wasm');
+}
+
+export function dropPrecacheWasm<T extends PrecacheManifestEntry>(entries: T[]): T[] {
+  return entries.filter(entry => !isWasmPrecacheUrl(entry.url));
+}
+
+/** HTML pretty-URL rewrite plus wasm drop so Workbox install stays off 308s and large binaries. */
+export function sanitizePrecacheManifest<T extends PrecacheManifestEntry>(entries: T[]): T[] {
+  return rewritePrecacheHtmlUrls(dropPrecacheWasm(entries));
+}

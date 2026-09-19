@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { prettyUrlForHtmlPrecache, rewritePrecacheHtmlUrls } from './rewritePrecacheHtmlUrls';
+import {
+  dropPrecacheWasm,
+  prettyUrlForHtmlPrecache,
+  rewritePrecacheHtmlUrls,
+  sanitizePrecacheManifest,
+} from './rewritePrecacheHtmlUrls';
 
 describe('prettyUrlForHtmlPrecache (Cloudflare Pages pretty-URLs)', () => {
   it('maps index.html shells to the directory URL that returns 200', () => {
@@ -94,5 +99,42 @@ describe('rewritePrecacheHtmlUrls', () => {
       { url: '/', revision: 'build-id' },
       { url: 'guide/', revision: 'guide-hash' },
     ]);
+  });
+});
+
+describe('dropPrecacheWasm', () => {
+  it('drops tree-sitter and chaoslens wasm so Firefox install does not wait on 14MB binaries', () => {
+    const kept = dropPrecacheWasm([
+      { url: 'assets/index-abc.js', revision: null },
+      { url: 'tree-sitter/tree-sitter-c_sharp.wasm', revision: 'cs' },
+      { url: 'tree-sitter/tree-sitter-typescript.wasm', revision: 'ts' },
+      { url: 'resilience-engine/chaoslens.wasm', revision: 'wasm' },
+      { url: 'resilience-engine/wasm_exec.js', revision: 'js' },
+      { url: '/', revision: 'build-id' },
+    ]);
+
+    expect(kept.map(entry => entry.url)).toEqual([
+      'assets/index-abc.js',
+      'resilience-engine/wasm_exec.js',
+      '/',
+    ]);
+  });
+});
+
+describe('sanitizePrecacheManifest', () => {
+  it('rewrites HTML 308s and drops wasm from the live-style generateSW set', () => {
+    const sanitized = sanitizePrecacheManifest([
+      { url: 'index.html', revision: 'html-hash' },
+      { url: 'guide/canvas/index.html', revision: 'docs-hash' },
+      { url: 'tree-sitter/tree-sitter.wasm', revision: 'wasm' },
+      { url: 'resilience-engine/chaoslens.wasm', revision: 'chaos' },
+      { url: '/', revision: 'build-id' },
+      { url: 'favicon.svg', revision: 'icon' },
+      { url: 'favicon.svg', revision: 'icon' },
+    ]);
+
+    expect(sanitized.map(entry => entry.url)).toEqual(['guide/canvas/', '/', 'favicon.svg']);
+    expect(sanitized.some(entry => entry.url.endsWith('.wasm'))).toBe(false);
+    expect(sanitized.some(entry => entry.url.endsWith('index.html'))).toBe(false);
   });
 });

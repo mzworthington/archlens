@@ -2,9 +2,10 @@
 /version.json
   Cache-Control: no-store
 
-# Unhashed SW script must not pair with a stale hashed Workbox runtime.
+# Browsers (Firefox especially) must not install a stale generateSW script.
 /sw.js
-  Cache-Control: no-cache
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
 
 # Prerendered HTML shells should revalidate after a Pages deploy.
 /*.html
