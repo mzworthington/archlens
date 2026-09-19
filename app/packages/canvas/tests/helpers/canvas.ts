@@ -106,3 +106,15 @@ export async function clickCanvasNode(page: Page, label: string) {
     await node.click({ force: true });
   }).toPass({ timeout: 30_000 });
 }
+
+/** Click the node whose heading is exactly `label`, not a neighbor that only mentions it. */
+export async function clickCanvasNodeHeading(page: Page, label: string) {
+  await expect(async () => {
+    const node = page.locator('.react-flow__node').filter({
+      has: page.getByRole('heading', { name: label, exact: true }),
+    });
+    await expect(node).toBeVisible({ timeout: 5_000 });
+    await node.click({ force: true });
+    await expect(page.getByLabel('Name', { exact: true })).toHaveValue(label);
+  }).toPass({ timeout: 30_000 });
+}
