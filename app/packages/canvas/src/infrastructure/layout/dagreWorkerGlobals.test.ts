@@ -14,4 +14,10 @@ describe('installDagreWorkerRequireStub', () => {
     installDagreWorkerRequireStub(scope);
     expect(scope.require).toBe(existing);
   });
+
+  it('defines window on a worker-like scope that has none', () => {
+    const scope: { require?: unknown; window?: unknown } = {};
+    installDagreWorkerRequireStub(scope);
+    expect(scope.window).toBe(scope);
+  });
 });
