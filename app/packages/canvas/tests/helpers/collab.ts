@@ -46,7 +46,7 @@ export async function shareLoadedLiveDiagram(page: Page, name: string): Promise<
   await shareDialog.getByLabel('Your name').fill(name);
   await shareDialog.getByRole('button', { name: 'Copy link' }).click();
   await expect(page).toHaveURL(/[?&]room=/, { timeout: 15_000 });
-  await shareDialog.getByRole('button', { name: 'Close' }).click();
+  await shareDialog.getByRole('button', { name: 'Close', exact: true }).click();
   await expect(shareDialog).toHaveCount(0, { timeout: 10_000 });
   await expect(page.getByTestId('collab-connected-count')).toHaveText('1', {
     timeout: 20_000,
