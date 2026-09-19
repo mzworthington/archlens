@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { clickCanvasNode, expectGoldenJourneyEstateReady } from './helpers/canvas';
-import { joinLiveDiagram } from './helpers/collab';
+import { joinLiveDiagram, shareLoadedLiveDiagram } from './helpers/collab';
+import { gotoApp } from './helpers/navigation';
 
 test.describe('Live room node comments', () => {
   test('peers see a node comment and it leaves the open thread after resolve', async ({
@@ -8,19 +9,20 @@ test.describe('Live room node comments', () => {
     context,
   }) => {
     test.setTimeout(180_000);
-    const roomId = `e2e-comments-${Date.now()}`;
-    const roomPath = `/workspace/samples/golden-journey?room=${roomId}`;
 
-    await joinLiveDiagram(page, roomPath, 'Ada');
+    await gotoApp(page, '/workspace/samples/golden-journey');
     await expectGoldenJourneyEstateReady(page);
+    const roomPath = await shareLoadedLiveDiagram(page, 'Ada');
 
     const peer = await context.newPage();
     try {
       await joinLiveDiagram(peer, roomPath, 'Grace');
-      await expectGoldenJourneyEstateReady(peer);
       await expect(page.getByTestId('collab-connected-count')).toHaveText('2', {
         timeout: 20_000,
       });
+      await expect(
+        peer.locator('.react-flow__node').filter({ hasText: 'Checkout API' })
+      ).toBeVisible({ timeout: 30_000 });
 
       await clickCanvasNode(page, 'Checkout API');
       const hostThread = page.getByTestId('node-comments-section');
