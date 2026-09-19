@@ -1,5 +1,5 @@
 /**
- * Give the dagre Web Worker a `require` before dagre loads.
+ * Give the dagre Web Worker `require` and `window` before dagre loads.
  *
  * dagre@0.8.5 bundles UMD copies of lodash and graphlib. Each module reads its
  * dependencies through `require` only when `typeof require === 'function'`, and
@@ -14,15 +14,19 @@
  * Defining `require` makes dagre take the `require` branch and load the lodash
  * and graphlib copies already in this bundle - the same path the main thread
  * uses. dagre only reads `typeof require`; it never calls this stub for those
- * modules.
+ * modules. Pointing `window` at the worker global keeps the leftover
+ * `window._` / `window.graphlib` fallback from throwing if that branch is
+ * skipped.
  *
- * Import this module before dagre so the stub exists when dagre evaluates.
+ * Import this module before dagre so the stubs exist when dagre evaluates.
  */
-export function installDagreWorkerRequireStub(
-  scope: { require?: unknown; window?: unknown } = globalThis as {
-    require?: unknown;
-    window?: unknown;
-  }
+export type DagreWorkerGlobalScope = {
+  require?: unknown;
+  window?: unknown;
+};
+
+export function installDagreWorkerGlobals(
+  scope: DagreWorkerGlobalScope = globalThis as DagreWorkerGlobalScope
 ): void {
   scope.require ??= () => {
     throw new Error('require is not available inside the dagre layout worker');
@@ -30,4 +34,4 @@ export function installDagreWorkerRequireStub(
   scope.window ??= scope;
 }
 
-installDagreWorkerRequireStub();
+installDagreWorkerGlobals();
