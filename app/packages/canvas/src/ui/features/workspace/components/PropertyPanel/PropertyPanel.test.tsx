@@ -132,10 +132,7 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
 
     useBlueprintStore.setState({
-      collabSessionPort: {
-        ...useBlueprintStore.getState().collabSessionPort,
-        isActive: () => true,
-      },
+      collabRoomActive: true,
       collabPresence: {
         connectedCount: 1,
         cursors: [],

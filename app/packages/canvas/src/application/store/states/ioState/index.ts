@@ -41,6 +41,7 @@ export interface IoState {
   collabSessionPort: CollabSessionPort;
   collabPresence: CollabPresence;
   collabComments: NodeComment[];
+  collabRoomActive: boolean;
   collabJoinError: string | null;
   setPorts: (
     ports: Partial<{
@@ -107,6 +108,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   collabSessionPort: noopCollabSession,
   collabPresence: EMPTY_COLLAB_PRESENCE,
   collabComments: [],
+  collabRoomActive: false,
   collabJoinError: null,
   liteScanProgress: null,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
@@ -126,7 +128,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   joinCollabRoom: async (roomId, displayName, credentials) => {
     const { collabSessionPort, schema, applyRemoteCollabSchema, logger, setNotification } = get();
     try {
-      set({ collabJoinError: null });
+      set({ collabJoinError: null, collabRoomActive: false });
       await collabSessionPort.join({
         roomId,
         seedSchema: schema,
@@ -162,6 +164,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
           }
         },
       });
+      set({ collabRoomActive: get().collabSessionPort.isActive() });
     } catch (err) {
       logger.error('Failed to join collab room', err);
     }
@@ -176,7 +179,12 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
 
   leaveCollabRoom: () => {
     get().collabSessionPort.leave();
-    set({ collabPresence: EMPTY_COLLAB_PRESENCE, collabComments: [], collabJoinError: null });
+    set({
+      collabPresence: EMPTY_COLLAB_PRESENCE,
+      collabComments: [],
+      collabRoomActive: false,
+      collabJoinError: null,
+    });
   },
 
   setCollabCursor: (position: { x: number; y: number } | null) => {
