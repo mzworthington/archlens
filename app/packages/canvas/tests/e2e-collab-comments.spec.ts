@@ -27,7 +27,7 @@ test.describe('Live room node comments', () => {
       await clickCanvasNode(page, 'Checkout API');
       const hostThread = page.getByTestId('node-comments-section');
       await expect(hostThread).toBeVisible({ timeout: 20_000 });
-      await hostThread.getByLabel('Comment').fill('needs a circuit breaker');
+      await hostThread.getByRole('textbox', { name: 'Comment' }).fill('needs a circuit breaker');
       await hostThread.getByRole('button', { name: 'Add comment' }).click();
       await expect(hostThread.getByText('needs a circuit breaker')).toBeVisible();
       await expect(hostThread.getByText('Ada', { exact: true })).toBeVisible();

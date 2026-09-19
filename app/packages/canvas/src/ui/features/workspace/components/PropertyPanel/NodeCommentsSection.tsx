@@ -36,7 +36,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
         Comments
       </h4>
 
-      <ul className="space-y-3 mb-3" aria-label="Open comments">
+      <ul className="space-y-3 mb-3" aria-label="Open thread">
         {open.map(comment => {
           const mine = localClientId !== null && comment.authorClientId === localClientId;
           return (
