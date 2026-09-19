@@ -60,7 +60,8 @@ export function UpdateBanner() {
       cacheKeys: () => (typeof caches === 'undefined' ? Promise.resolve([]) : caches.keys()),
       deleteCache: cacheName => caches.delete(cacheName),
       reload: () => {
-        window.location.replace(cacheBustingReloadPath(window.location));
+        window.history.replaceState(null, '', cacheBustingReloadPath(window.location));
+        window.location.reload();
       },
     });
   };

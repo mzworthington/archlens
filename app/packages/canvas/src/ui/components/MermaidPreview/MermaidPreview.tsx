@@ -186,7 +186,6 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
             <div
               ref={zoomContainerRef}
               role="application"
-              tabIndex={0}
               aria-label="Mermaid diagram pan and zoom"
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}

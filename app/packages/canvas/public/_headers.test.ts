@@ -11,4 +11,9 @@ describe('_headers (Cloudflare Pages)', () => {
     expect(text).toMatch(/\/version\.json[\s\S]*Cache-Control:\s*no-store/);
     expect(text).toMatch(/\/\*\.html[\s\S]*Cache-Control:\s*no-cache/);
   });
+
+  it('keeps /sw.js uncacheable so Firefox does not install a stale Workbox runtime', () => {
+    const text = fs.readFileSync(headersPath, 'utf8');
+    expect(text).toMatch(/\/sw\.js[\s\S]*Cache-Control:\s*no-cache/);
+  });
 });

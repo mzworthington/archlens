@@ -99,12 +99,15 @@ describe('UpdateBanner', () => {
     expect(updateServiceWorker).not.toHaveBeenCalledWith(true);
   });
 
-  it('reloads a cache-busted same-origin URL instead of window.location.href', () => {
+  it('cache-busts via history.replaceState so location.replace cannot open-redirect', () => {
     needRefresh = true;
     render(<UpdateBanner />);
     fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
     const [{ reload }] = reloadWithoutServiceWorker.mock.calls[0] as [{ reload: () => void }];
     const replace = vi.fn();
+    const replaceState = vi.fn();
+    const reloadLocation = vi.fn();
+    vi.stubGlobal('history', { replaceState });
     vi.stubGlobal('location', {
       origin: 'https://archlens.dev',
       pathname: '/workspace',
@@ -112,10 +115,15 @@ describe('UpdateBanner', () => {
       hash: '#x',
       href: 'https://evil.example/phish',
       replace,
+      reload: reloadLocation,
     });
     reload();
-    expect(replace).toHaveBeenCalledWith(
+    expect(replaceState).toHaveBeenCalledWith(
+      null,
+      '',
       expect.stringMatching(/^\/workspace\?room=abc&al_refresh=\d+#x$/)
     );
+    expect(reloadLocation).toHaveBeenCalled();
+    expect(replace).not.toHaveBeenCalled();
   });
 });
