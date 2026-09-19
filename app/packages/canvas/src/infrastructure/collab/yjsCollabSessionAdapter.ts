@@ -66,12 +66,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     onComments(readComments(ydoc));
   };
 
-  const newCommentId = (): string => {
-    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-      return crypto.randomUUID();
-    }
-    return `c-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-  };
+  const newCommentId = (): string => crypto.randomUUID();
 
   const localAuthor = (): { name: string; clientId: number } | null => {
     if (!awareness) return null;

@@ -287,15 +287,17 @@ describe('createYjsCollabSession', () => {
 
     sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'first' });
     sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'second' });
-    const [first, second] = commentsB.at(-1) ?? [];
+    const posted = commentsB.at(-1) ?? [];
+    const first = posted.find(comment => comment.body === 'first');
+    const second = posted.find(comment => comment.body === 'second');
     expect(first && second).toBeTruthy();
 
-    sessionA.resolveComment(first.id);
+    sessionA.resolveComment(first!.id);
     expect((commentsB.at(-1) ?? []).filter(c => c.status === 'open').map(c => c.body)).toEqual([
       'second',
     ]);
 
-    sessionA.deleteComment(second.id);
+    sessionA.deleteComment(second!.id);
     expect((commentsB.at(-1) ?? []).filter(c => c.status === 'open')).toEqual([]);
 
     sessionA.leave();
