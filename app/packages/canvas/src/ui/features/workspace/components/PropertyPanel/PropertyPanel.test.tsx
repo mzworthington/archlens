@@ -126,6 +126,40 @@ describe('PropertyPanel UI Component', () => {
     expect(groupNode).toBeDefined();
   });
 
+  it('shows a labelled comment thread only while a live room is active', () => {
+    useBlueprintStore.setState({ selectedNodeId: 'gateway-api' });
+    const { rerender } = render(<PropertyPanel />);
+    expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
+
+    useBlueprintStore.setState({
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        isActive: () => true,
+      },
+      collabPresence: {
+        connectedCount: 1,
+        cursors: [],
+        participants: [{ clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true }],
+      },
+      collabComments: [
+        {
+          id: 'c1',
+          nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
+          authorName: 'Ada',
+          authorClientId: 7,
+          body: '<b>not html</b>',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+    });
+    rerender(<PropertyPanel />);
+
+    expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
+    expect(screen.getByLabelText('Comment')).toBeInTheDocument();
+    expect(screen.getByText('<b>not html</b>')).toBeInTheDocument();
+  });
+
   it('should display node attributes editor when a node is selected', () => {
     useBlueprintStore.setState({ selectedNodeId: 'gateway-api' });
 

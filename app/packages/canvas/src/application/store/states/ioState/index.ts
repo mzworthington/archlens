@@ -10,6 +10,7 @@ import {
   type ResilienceEnginePort,
   type CollabSessionPort,
   type CollabPresence,
+  type NodeComment,
   noopFileSystem,
   noopWorkspace,
   noopLogger,
@@ -39,6 +40,7 @@ export interface IoState {
   resilienceEnginePort: ResilienceEnginePort;
   collabSessionPort: CollabSessionPort;
   collabPresence: CollabPresence;
+  collabComments: NodeComment[];
   collabJoinError: string | null;
   setPorts: (
     ports: Partial<{
@@ -85,6 +87,9 @@ export interface IoState {
   leaveCollabRoom: () => void;
   setCollabCursor: (position: { x: number; y: number } | null) => void;
   updateCollabDisplayName: (name: string) => boolean;
+  addCollabComment: (input: { nodeEntityRef: string; body: string }) => void;
+  resolveCollabComment: (id: string) => void;
+  deleteCollabComment: (id: string) => void;
 }
 
 type IoStateDeps = IoState & DiagramState & UiState;
@@ -101,6 +106,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   resilienceEnginePort: noopResilienceEngine,
   collabSessionPort: noopCollabSession,
   collabPresence: EMPTY_COLLAB_PRESENCE,
+  collabComments: [],
   collabJoinError: null,
   liteScanProgress: null,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
@@ -128,6 +134,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         credentials,
         onSchema: applyRemoteCollabSchema,
         onPresence: presence => set({ collabPresence: presence }),
+        onComments: comments => set({ collabComments: comments }),
         onRoomControl: event => {
           if (event === 'admitted') {
             set({ collabJoinError: null });
@@ -169,7 +176,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
 
   leaveCollabRoom: () => {
     get().collabSessionPort.leave();
-    set({ collabPresence: EMPTY_COLLAB_PRESENCE, collabJoinError: null });
+    set({ collabPresence: EMPTY_COLLAB_PRESENCE, collabComments: [], collabJoinError: null });
   },
 
   setCollabCursor: (position: { x: number; y: number } | null) => {
@@ -181,5 +188,17 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     if (!name) return false;
     get().collabSessionPort.setDisplayName(name);
     return true;
+  },
+
+  addCollabComment: input => {
+    get().collabSessionPort.addComment(input);
+  },
+
+  resolveCollabComment: id => {
+    get().collabSessionPort.resolveComment(id);
+  },
+
+  deleteCollabComment: id => {
+    get().collabSessionPort.deleteComment(id);
   },
 });

@@ -409,4 +409,4 @@ Still later:
 
 1. **ADR** — Yjs shared working copy vs YAML-on-disk, once we commit the choice as lasting.
 2. **Catalog PRD** — collab is no longer listed as a catalog non-goal; keep catalog vs share-link caveats if the PRD drifts.
-3. **Slice C remainder** — comments, collab-vs-disk conflict preview, multi-file rooms, auth.
+3. **Slice C remainder** — collab-vs-disk conflict preview, multi-file rooms, auth. Node comments ship as a session-side Y.Map (`comments`) outside `CollabDocument` / YAML.

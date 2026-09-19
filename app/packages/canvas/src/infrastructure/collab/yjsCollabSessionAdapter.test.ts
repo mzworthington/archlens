@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import * as Y from 'yjs';
 import { Awareness, applyAwarenessUpdate, encodeAwarenessUpdate } from 'y-protocols/awareness';
-import type { SystemSchema } from '@archlens/core';
+import type { NodeComment, SystemSchema } from '@archlens/core';
 import type { CollabPresence } from '../../core';
 import type { CollabTransport } from './collabTransport';
 import { createYjsCollabSession } from './yjsCollabSessionAdapter';
@@ -220,6 +220,86 @@ describe('createYjsCollabSession', () => {
 
     expect(session.isActive()).toBe(false);
     expect(received).toEqual([]);
+  });
+
+  it('broadcasts a node comment to the other session without changing the schema', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsB: NodeComment[][] = [];
+    const schemasB: SystemSchema[] = [];
+
+    await sessionA.join({
+      roomId: 'room-comments',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-comments',
+      seedSchema: seed,
+      displayName: 'Grace',
+      onSchema: schema => schemasB.push(schema),
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'needs a gateway' });
+
+    const latest = commentsB.at(-1) ?? [];
+    expect(latest).toEqual([
+      expect.objectContaining({
+        nodeEntityRef: 'shop/api',
+        authorName: 'Ada',
+        body: 'needs a gateway',
+        status: 'open',
+      }),
+    ]);
+    expect(schemasB.at(-1)?.nodes.map(n => n.entityRef)).toEqual(['shop/api']);
+    expect(JSON.stringify(schemasB.at(-1))).not.toContain('needs a gateway');
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
+  it('clears an open comment for peers after resolve or delete', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsB: NodeComment[][] = [];
+
+    await sessionA.join({
+      roomId: 'room-resolve',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-resolve',
+      seedSchema: seed,
+      displayName: 'Grace',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'first' });
+    sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'second' });
+    const [first, second] = commentsB.at(-1) ?? [];
+    expect(first && second).toBeTruthy();
+
+    sessionA.resolveComment(first.id);
+    expect((commentsB.at(-1) ?? []).filter(c => c.status === 'open').map(c => c.body)).toEqual([
+      'second',
+    ]);
+
+    sessionA.deleteComment(second.id);
+    expect((commentsB.at(-1) ?? []).filter(c => c.status === 'open')).toEqual([]);
+
+    sessionA.leave();
+    sessionB.leave();
   });
 
   it('does not join without a display name', async () => {

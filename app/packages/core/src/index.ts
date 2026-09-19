@@ -17,6 +17,7 @@ export * from './rules/validateBlueprintWorkspace';
 export * from './rules/architectureHealth';
 export * from './rules/dependencyCycles';
 export * from './rules/collabDocument';
+export * from './rules/collabComments';
 export * from './rules/context';
 export * from './rules/iacImport/iacExternalSignificance';
 export * from './rules/workspaceExternals';

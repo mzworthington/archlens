@@ -52,6 +52,12 @@ export function usePropertyPanelModel() {
     openChaosSpecPicker,
     clearResilienceScenario,
     isSampleWorkspace,
+    collabSessionPort,
+    collabPresence,
+    collabComments,
+    addCollabComment,
+    resolveCollabComment,
+    deleteCollabComment,
   } = useBlueprintStore();
 
   const [propKey, setPropKey] = useState('');
@@ -246,6 +252,12 @@ export function usePropertyPanelModel() {
     handleDeleteSelectedNode,
     handleExternalChange,
     handleSafeguardChange,
+    collabRoomActive: collabSessionPort.isActive(),
+    collabComments,
+    localCollabClientId: collabPresence.participants.find(p => p.isLocal)?.clientId ?? null,
+    addCollabComment,
+    resolveCollabComment,
+    deleteCollabComment,
   };
 }
 
