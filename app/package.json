@@ -1,70 +1,70 @@
 {
-    "name": "archlens",
-    "private": true,
-    "version": "0.1.0",
-    "license": "MIT",
-    "type": "module",
-    "scripts": {
-        "dev": "pnpm --filter @archlens/canvas dev",
-        "dev:cli": "pnpm --filter @archlens/cli dev",
-        "dev:collab": "pnpm --filter @archlens/collab dev",
-        "build:resilience-engine": "make -C ../resilience-engine copy-wasm",
-        "build": "pnpm build:resilience-engine && pnpm --filter @archlens/canvas build && pnpm --filter @archlens/cli build",
-        "lint": "oxlint -c .oxlintrc.json --deny-warnings",
-        "typecheck": "pnpm --filter @archlens/canvas exec tsc -b && pnpm --filter @archlens/collab typecheck",
-        "preview": "pnpm --filter @archlens/canvas preview",
-        "test": "pnpm -r test",
-        "test:core": "pnpm --filter @archlens/core test",
-        "test:analysis": "pnpm --filter @archlens/analysis test",
-        "test:cli": "pnpm --filter @archlens/cli test",
-        "test:collab": "pnpm --filter @archlens/collab test",
-        "test:vhs": "pnpm --filter @archlens/cli test:vhs",
-        "test:canvas": "pnpm --filter @archlens/canvas test",
-        "test:app": "pnpm --filter @archlens/canvas test",
-        "test:coverage": "vitest run --coverage",
-        "test:ci": "GENERATE_FEATURES_UNIT=1 vitest run --coverage",
-        "test:e2e": "pnpm --filter @archlens/canvas test:e2e",
-        "test:a11y": "pnpm --filter @archlens/canvas test:a11y",
-        "test:lighthouse": "pnpm build:resilience-engine && pnpm --filter @archlens/canvas build && pnpm --filter @archlens/canvas test:lighthouse",
-        "record:docs-media": "pnpm --filter @archlens/canvas record:docs-media",
-        "format:check": "prettier --config ../.prettierrc --ignore-path ../.prettierignore --check \"**/*.{ts,tsx,css,json,md}\" \"../*.md\" \"../docs/**/*.{md,ts}\"",
-        "format:write": "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write \"**/*.{ts,tsx,css,json,md}\" \"../*.md\" \"../docs/**/*.{md,ts}\"",
-        "knip": "knip",
-        "generate:schema": "tsx packages/core/scripts/generateJsonSchema.ts",
-        "generate:features-unit": "GENERATE_FEATURES_UNIT=1 vitest run",
-        "generate": "pnpm generate:schema && pnpm generate:features-unit && pnpm format:write && pnpm lint",
-        "sync-derived": "../bin/sync-derived.sh",
-        "prepare": "cd .. && husky"
-    },
-    "devDependencies": {
-        "@types/node": "^26.6.1",
-        "@vitest/coverage-v8": "5.0.0",
-        "git-cliff": "^2.13.1",
-        "husky": "^9.1.7",
-        "jsdom": "^30.0.1",
-        "knip": "^6.36.0",
-        "lint-staged": "^17.5.1",
-        "oxlint": "^1.83.0",
-        "prettier": "^3.9.6",
-        "tsx": "^4.23.12",
-        "typescript": "7.0.2",
-        "vite": "^8.3.0",
-        "vitest": "^5.0.0",
-        "x-feature-reporter": "^3.2.0"
-    },
-    "lint-staged": {
-        "**/*.{ts,tsx}": [
-            "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write",
-            "oxlint -c .oxlintrc.json --deny-warnings"
-        ],
-        "**/*.{css,json,md}": [
-            "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
-        ],
-        "../docs/**/*.{md,ts}": [
-            "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
-        ],
-        "../*.md": [
-            "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
-        ]
-    }
+  "name": "archlens",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @archlens/canvas dev",
+    "dev:cli": "pnpm --filter @archlens/cli dev",
+    "dev:collab": "pnpm --filter @archlens/collab dev",
+    "build:resilience-engine": "make -C ../resilience-engine copy-wasm",
+    "build": "pnpm build:resilience-engine && pnpm --filter @archlens/canvas build && pnpm --filter @archlens/cli build",
+    "lint": "oxlint -c .oxlintrc.json --deny-warnings",
+    "typecheck": "pnpm --filter @archlens/canvas exec tsc -b && pnpm --filter @archlens/collab typecheck",
+    "preview": "pnpm --filter @archlens/canvas preview",
+    "test": "pnpm -r test",
+    "test:core": "pnpm --filter @archlens/core test",
+    "test:analysis": "pnpm --filter @archlens/analysis test",
+    "test:cli": "pnpm --filter @archlens/cli test",
+    "test:collab": "pnpm --filter @archlens/collab test",
+    "test:vhs": "pnpm --filter @archlens/cli test:vhs",
+    "test:canvas": "pnpm --filter @archlens/canvas test",
+    "test:app": "pnpm --filter @archlens/canvas test",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "GENERATE_FEATURES_UNIT=1 vitest run --coverage",
+    "test:e2e": "pnpm --filter @archlens/canvas test:e2e",
+    "test:a11y": "pnpm --filter @archlens/canvas test:a11y",
+    "test:lighthouse": "pnpm build:resilience-engine && pnpm --filter @archlens/canvas build && pnpm --filter @archlens/canvas test:lighthouse",
+    "record:docs-media": "pnpm --filter @archlens/canvas record:docs-media",
+    "format:check": "prettier --config ../.prettierrc --ignore-path ../.prettierignore --check \"**/*.{ts,tsx,css,json,md}\" \"../*.md\" \"../docs/**/*.{md,ts}\"",
+    "format:write": "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write \"**/*.{ts,tsx,css,json,md}\" \"../*.md\" \"../docs/**/*.{md,ts}\"",
+    "knip": "knip",
+    "generate:schema": "tsx packages/core/scripts/generateJsonSchema.ts",
+    "generate:features-unit": "GENERATE_FEATURES_UNIT=1 vitest run",
+    "generate": "pnpm generate:schema && pnpm generate:features-unit && pnpm format:write && pnpm lint",
+    "sync-derived": "../bin/sync-derived.sh",
+    "prepare": "cd .. && husky"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "@vitest/coverage-v8": "5.0.0",
+    "git-cliff": "^2.13.1",
+    "husky": "^9.1.7",
+    "jsdom": "^30.0.1",
+    "knip": "^6.36.0",
+    "lint-staged": "^17.5.1",
+    "oxlint": "^1.83.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.12",
+    "typescript": "7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0",
+    "x-feature-reporter": "^3.2.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write",
+      "oxlint -c .oxlintrc.json --deny-warnings"
+    ],
+    "**/*.{css,json,md}": [
+      "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
+    ],
+    "../docs/**/*.{md,ts}": [
+      "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
+    ],
+    "../*.md": [
+      "prettier --config ../.prettierrc --ignore-path ../.prettierignore --write"
+    ]
+  }
 }
