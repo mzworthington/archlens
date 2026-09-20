@@ -561,6 +561,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### _headers (Cloudflare Pages)
 
 - ✅ keeps version.json uncacheable and HTML revalidating for deploy smoke
+- ✅ busts the service worker script so Firefox cannot install a stale sw.js
 
 ### _redirects
 
@@ -1206,6 +1207,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ spreads siblings so fan-in labels have horizontal room
 - ✅ centers a hub node above its children
 
+### dagreWorkerGlobals
+
+#### installDagreWorkerGlobals
+
+- ✅ defines a require function on a scope that has none
+- ✅ keeps an existing require untouched
+- ✅ points window at the worker scope when it is missing
+- ✅ keeps an existing window untouched
+- ✅ keeps dagre on the bundled require path
+- ✅ reads window._ without throwing when require is not a function
+
 ### db
 
 #### db.ts - IndexedDB Client Operations
@@ -1360,6 +1372,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ drops $exception events for a failed service worker script fetch
 - ✅ drops $exception events for a synthetic service worker install failure
+- ✅ drops $exception events that only expose $exception_values (PostHog before_send shape)
 - ✅ still drops ResizeObserver loop notifications
 - ✅ keeps a Chrome ServiceWorker MIME TypeError
 - ✅ keeps unrelated $exception events
@@ -1772,6 +1785,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ maps group parents and nested children with parentId
 - ✅ does not set React Flow parentId for diagram-membership parentEntityRef
 - ✅ round-trips parentEntityRef through rebuildSchemaFromCanvas
+- ✅ uses crypto.randomUUID when a mapped node has no entityRef
 
 #### resolveDragGroupMembership
 
@@ -1873,6 +1887,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders loading state initially then displays rendered SVG
 - ✅ displays visualization error when render fails
 - ✅ opens and closes expanded portal view
+- ✅ keeps the expanded pan surface out of the tab order because zoom uses buttons
 
 ### MobilePanelToggles
 
@@ -2083,9 +2098,21 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### requestServiceWorkerUpdate
 
+#### cacheBustingReloadPath
+
+- ✅ returns a same-origin relative path so location.replace cannot open-redirect
+
+#### cacheBustingReloadUrl
+
+- ✅ adds a unique query param so the next navigation is not a cached shell
+
 #### reloadWithoutServiceWorker
 
 - ✅ unregisters every worker then reloads so the next document is not a stale shell
+- ✅ clears Cache Storage before reload so a controlling worker cannot serve the old shell
+- ✅ still reloads when skipWaiting throws because the waiting worker never installed
+- ✅ still reloads when unregister rejects
+- ✅ still reloads when listing registrations throws
 
 #### requestServiceWorkerUpdate
 
@@ -2210,6 +2237,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### rewritePrecacheHtmlUrls
 
+#### dropPrecacheWasm
+
+- ✅ drops tree-sitter and chaoslens wasm so Firefox install does not wait on 14MB binaries
+
 #### prettyUrlForHtmlPrecache (Cloudflare Pages pretty-URLs)
 
 - ✅ maps index.html shells to the directory URL that returns 200
@@ -2220,6 +2251,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ rewrites globbed index.html entries so Workbox never fetches a 308
 - ✅ rewrites the live generateSW HTML set to directory URLs
 - ✅ dedupes rewritten index.html against an explicit / shell entry
+
+#### sanitizePrecacheManifest
+
+- ✅ rewrites HTML 308s and drops wasm from the live-style generateSW set
 
 ### runBrowserAnalysisWorker
 
@@ -2257,6 +2292,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ uses bundled catalog when remote env is unset
 - ✅ falls back to bundled catalog when remote manifest is unavailable
 - ✅ uses remote catalog when manifest resolves
+
+### SandboxSection
+
+#### SandboxSection
+
+- ✅ renders the YAML preview label once
 
 ### sandboxWorkspace
 
@@ -2512,6 +2553,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows refresh prompt when the service worker reports an update
 - ✅ dismisses the banner when Later is clicked
 - ✅ drops a stale service worker when Refresh is only from a remote build mismatch
+- ✅ hard-reloads even when the waiting worker never takes control
+- ✅ cache-busts via history.replaceState so location.replace cannot open-redirect
 
 ### updateCheck
 
@@ -2650,7 +2693,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ falls back to / so Workbox never fetches /index.html (Pages pretty-URLs 308 that path)
 - ✅ does not precache *.html — Pages pretty-URLs 308 those paths and fail Firefox install
+- ✅ does not precache *.wasm — Workbox install exceeds Firefox cache quota
 - ✅ rewrites any remaining precache HTML to pretty URLs so install does not cache a 308
+- ✅ does not glob wasm — Firefox install waits on ~14MB of tree-sitter/chaoslens binaries
 
 ### websocketCollabTransport
 
@@ -4453,6 +4498,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should convert workspace names to clean URL slugs
 - ✅ should treat dots as separators for namespaces and package-like ids
+
+#### trimAffixRuns
+
+- ✅ strips leading and trailing runs of the affix character
 
 ### sourceProvenance
 

@@ -1,10 +1,53 @@
 # Changelog
 
+## 2026-09-20
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump js-yaml from 5.4.1 to 5.4.2 in /app (#181)
+- _(deps)_ Batch dependabot updates (#182)
+
+## 2026-09-19
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Shim window in the dagre layout worker (MZW-107)
+- _(canvas)_ Stop Firefox ServiceWorker install failing on wasm precache (MZW-104)
+- _(ci)_ Keep Actions version-tag pins out of Sonar (#168)
+
+## 2026-09-17
+
+### 📚 Documentation
+
+- Render readme status badges via shields.io
+
+## 2026-09-15
+
+### 🐛 Bug Fixes
+
+- Clear ArchLens SonarCloud quality findings
+- _(canvas)_ Shim require in the dagre layout worker (#163)
+- Clear ArchLens SonarCloud security and reliability findings
+- _(canvas)_ Shim window in the dagre layout worker (MZW-107) (#164)
+- _(canvas)_ Stop Workbox precaching wasm so Firefox can install /sw.js (MZW-104) (#166)
+- _(canvas)_ Update MermaidPreview and UpdateBanner components for accessibility and cache-busting
+
+### 🧰 Maintenance & Dependencies
+
+- Sonar mcp
+- Remove state from git
+
 ## 2026-09-14
 
 ### 🐛 Bug Fixes
 
 - Vhs version pinning
+- _(deps)_ Drop stray root lockfile that kept Dependabot alerts open
+- _(canvas)_ Hard-reload when the update banner Refresh is clicked (#162)
+
+### 🧰 Maintenance & Dependencies
+
+- Stop tracking local .waykit session state
 
 ## 2026-09-13
 
