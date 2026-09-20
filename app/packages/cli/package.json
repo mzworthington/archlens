@@ -1,32 +1,32 @@
 {
-  "name": "@archlens/cli",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "tsx src/cli/archlens.ts",
-    "build": "bun scripts/emitBuildVersion.ts && bun build src/cli/archlens.ts --compile --outfile ../../dist/archlens && bun scripts/copyTreeSitterWasms.ts",
-    "copy-wasms": "bun scripts/copyTreeSitterWasms.ts",
-    "test": "vitest run",
-    "test:vhs": "vitest run --config vitest.vhs.config.ts"
-  },
-  "dependencies": {
-    "@archlens/analysis": "workspace:*",
-    "@archlens/core": "workspace:*",
-    "@archlens/storage": "workspace:*",
-    "@clack/prompts": "^1.8.0",
-    "chokidar": "^5.0.0",
-    "ignore": "^7.0.9",
-    "js-yaml": "^5.4.2",
-    "picocolors": "^1.1.1",
-    "tree-sitter-wasms": "0.1.13",
-    "ts-morph": "^28.0.0",
-    "tsx": "^4.23.12",
-    "web-tree-sitter": "0.20.8"
-  },
-  "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.5.1"
-  }
+    "name": "@archlens/cli",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "tsx src/cli/archlens.ts",
+        "build": "bun scripts/emitBuildVersion.ts && bun build src/cli/archlens.ts --compile --outfile ../../dist/archlens && bun scripts/copyTreeSitterWasms.ts",
+        "copy-wasms": "bun scripts/copyTreeSitterWasms.ts",
+        "test": "vitest run",
+        "test:vhs": "vitest run --config vitest.vhs.config.ts"
+    },
+    "dependencies": {
+        "@archlens/analysis": "workspace:*",
+        "@archlens/core": "workspace:*",
+        "@archlens/storage": "workspace:*",
+        "@clack/prompts": "^1.8.0",
+        "chokidar": "^5.0.0",
+        "ignore": "^7.0.9",
+        "js-yaml": "^5.4.2",
+        "picocolors": "^1.1.1",
+        "tree-sitter-wasms": "0.1.13",
+        "ts-morph": "^28.0.0",
+        "tsx": "^4.23.12",
+        "web-tree-sitter": "0.20.8"
+    },
+    "devDependencies": {
+        "@types/js-yaml": "^4.0.9",
+        "@types/node": "^26.6.1"
+    }
 }
