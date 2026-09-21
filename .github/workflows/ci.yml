@@ -81,6 +81,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -120,6 +122,12 @@ jobs:
           working-directory: app
           json-summary-path: coverage/coverage-summary.json
           json-final-path: coverage/coverage-final.json
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
 
   e2e:
     runs-on: ubuntu-latest

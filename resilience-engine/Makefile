@@ -4,7 +4,7 @@ GOROOT_WASM := $(shell go env GOROOT)/lib/wasm/wasm_exec.js
 CANVAS_PUBLIC := ../app/packages/canvas/public/resilience-engine
 
 test:
-	go test ./...
+	go test -coverprofile=coverage.out ./...
 
 fmt-check:
 	@test -z "$$(gofmt -l .)" || (echo "Go files need formatting. Run: make fmt" && gofmt -l . && exit 1)
