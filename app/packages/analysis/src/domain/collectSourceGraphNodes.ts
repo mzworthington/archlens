@@ -9,6 +9,11 @@ import {
 import type { ParsedSourceFile } from './types';
 import { classifyParsedSource } from './nodeTypeHydrator';
 import { classifyCSharpContainer, isCSharpSourcePath } from './csharpGrouping';
+import {
+  isPythonSourcePath,
+  resolvePythonContainerFromPath,
+  sharedPythonDistributionPackage,
+} from './pythonDependencies';
 import { fileLeafEntityRef } from '../writers/rollupDrillDown';
 import {
   appendMemberFilepath,
@@ -146,11 +151,12 @@ export function collectSourceGraphNodes(
     filepathToFileEntityRef: new Map(),
   };
 
+  const pythonDistributionPackage = sharedPythonDistributionPackage(sourceFiles);
+
   for (const file of sourceFiles) {
-    const { containerId, displayName } = resolveContainerFromPath(
-      file.relativePath,
-      resolveOptions
-    );
+    const { containerId, displayName } = isPythonSourcePath(file.relativePath)
+      ? resolvePythonContainerFromPath(file.relativePath, resolveOptions, pythonDistributionPackage)
+      : resolveContainerFromPath(file.relativePath, resolveOptions);
 
     const componentIdentity = resolveComponentIdentity(file);
     if (!componentIdentity) continue;

@@ -3,6 +3,7 @@ import {
   buildPythonModuleIndex,
   isPythonSourcePath,
   modulePathFromPythonFile,
+  resolvePythonContainerFromPath,
   resolvePythonImport,
 } from './pythonDependencies';
 import { ModelExtractor } from './modelExtractor';
@@ -16,6 +17,27 @@ describe('pythonDependencies', () => {
     it('detects .py files', () => {
       expect(isPythonSourcePath('src/orders/service.py')).toBe(true);
       expect(isPythonSourcePath('src/orders/service.ts')).toBe(false);
+    });
+  });
+
+  describe('resolvePythonContainerFromPath', () => {
+    it('skips the src-layout distribution package so layers become containers', () => {
+      expect(
+        resolvePythonContainerFromPath('src/romini/features/library/add_track.py', {}, 'romini')
+      ).toEqual({
+        containerId: 'features',
+        displayName: 'features',
+      });
+      expect(
+        resolvePythonContainerFromPath('src/romini/composition/dashboard/library.py', {}, 'romini')
+      ).toEqual({
+        containerId: 'composition',
+        displayName: 'composition',
+      });
+      expect(resolvePythonContainerFromPath('src/gateway/handlers.py')).toEqual({
+        containerId: 'gateway',
+        displayName: 'gateway',
+      });
     });
   });
 
@@ -105,6 +127,61 @@ describe('pythonDependencies', () => {
     it('ignores stdlib imports', () => {
       expect(resolvePythonImport('src/gateway/handlers.py', 'os', index)).toBeUndefined();
     });
+
+    it('strips a distribution package prefix when the scan root is inside that package', () => {
+      const innerFiles: ParsedSourceFile[] = [
+        {
+          filePath: 'composition/dashboard/library.py',
+          relativePath: 'composition/dashboard/library.py',
+          baseName: 'library',
+          isTestFile: false,
+          imports: [],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+        {
+          filePath: 'features/library/add_track.py',
+          relativePath: 'features/library/add_track.py',
+          baseName: 'add_track',
+          isTestFile: false,
+          imports: [],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+      ];
+      const innerIndex = buildPythonModuleIndex(innerFiles, {});
+
+      expect(
+        resolvePythonImport(
+          'composition/dashboard/library.py',
+          'romini.features.library.add_track',
+          innerIndex
+        )
+      ).toEqual({
+        containerId: 'library',
+        componentId: 'add_track',
+      });
+    });
+
+    it('does not treat a third-party import as a local module that shares the last segment', () => {
+      const files: ParsedSourceFile[] = [
+        {
+          filePath: 'responses.py',
+          relativePath: 'responses.py',
+          baseName: 'responses',
+          isTestFile: false,
+          imports: [],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+      ];
+      const localIndex = buildPythonModuleIndex(files, {});
+
+      expect(resolvePythonImport('responses.py', 'fastapi.responses', localIndex)).toBeUndefined();
+    });
   });
 
   describe('ModelExtractor integration', () => {
@@ -157,6 +234,58 @@ describe('pythonDependencies', () => {
         })
       );
       expect(containerDependencies).toHaveLength(2);
+    });
+
+    it('links containers when src-layout imports keep a package prefix the scan root omitted', () => {
+      const extractor = new ModelExtractor(parentRef);
+      const { containerDependencies } = extractor.extractGraph([
+        {
+          filePath: 'composition/dashboard/library.py',
+          relativePath: 'composition/dashboard/library.py',
+          baseName: 'library',
+          isTestFile: false,
+          imports: [
+            { moduleSpecifier: 'romini.features.library.add_track' },
+            { moduleSpecifier: 'romini.features.play_by_tag.place_figure' },
+          ],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+        {
+          filePath: 'features/library/add_track.py',
+          relativePath: 'features/library/add_track.py',
+          baseName: 'add_track',
+          isTestFile: false,
+          imports: [],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+        {
+          filePath: 'features/play_by_tag/place_figure.py',
+          relativePath: 'features/play_by_tag/place_figure.py',
+          baseName: 'place_figure',
+          isTestFile: false,
+          imports: [],
+          newExpressions: [],
+          callExpressions: [],
+          namespaces: [],
+        },
+      ]);
+
+      expect(containerDependencies).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            from: EntityRef.child(parentRef, 'dashboard'),
+            to: EntityRef.child(parentRef, 'library'),
+          }),
+          expect.objectContaining({
+            from: EntityRef.child(parentRef, 'dashboard'),
+            to: EntityRef.child(parentRef, 'play_by_tag'),
+          }),
+        ])
+      );
     });
   });
 });

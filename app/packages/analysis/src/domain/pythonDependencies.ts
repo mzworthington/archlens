@@ -70,6 +70,49 @@ export function isPythonSourcePath(relativePath: string): boolean {
   return relativePath.replace(/\\/g, '/').toLowerCase().endsWith('.py');
 }
 
+/** Container identity for Python: skip a shared src-layout distribution package so layers become peers. */
+export function resolvePythonContainerFromPath(
+  relativePath: string,
+  options: ResolveContainerOptions = {},
+  distributionPackage?: string | null
+): { containerId: string; displayName: string } {
+  const generic = resolveContainerFromPath(relativePath, options);
+  if (!distributionPackage) return generic;
+
+  const parts = relativePath.replace(/\\/g, '/').split('/').filter(Boolean);
+  const layoutIdx = parts.findIndex(part => PYTHON_LAYOUT_ROOTS.has(part.toLowerCase()));
+  if (layoutIdx < 0) return generic;
+
+  const distribution = parts[layoutIdx + 1];
+  const layer = parts[layoutIdx + 2];
+  if (!distribution || !layer || parts.length < layoutIdx + 4) return generic;
+  if (distribution !== distributionPackage) return generic;
+  if (generic.containerId !== slugify(distribution)) return generic;
+
+  return { containerId: slugify(layer), displayName: layer };
+}
+
+export function sharedPythonDistributionPackage(
+  sourceFiles: readonly { relativePath: string }[]
+): string | null {
+  const layersByRoot = new Map<string, Set<string>>();
+  for (const file of sourceFiles) {
+    if (!isPythonSourcePath(file.relativePath)) continue;
+    const modulePath = modulePathFromPythonFile(file.relativePath);
+    if (!modulePath) continue;
+    const parts = modulePath.split('.').filter(Boolean);
+    const root = parts[0];
+    const layer = parts[1];
+    if (!root || !layer) continue;
+    const layers = layersByRoot.get(root) ?? new Set<string>();
+    layers.add(layer);
+    layersByRoot.set(root, layers);
+  }
+  if (layersByRoot.size !== 1) return null;
+  const [root, layers] = [...layersByRoot.entries()][0]!;
+  return layers.size >= 2 ? root : null;
+}
+
 export function modulePathFromPythonFile(relativePath: string): string | null {
   const normalized = relativePath.replace(/\\/g, '/');
   if (!normalized.endsWith('.py')) return null;
@@ -150,7 +193,16 @@ function isPythonStdlibModule(moduleSpecifier: string): boolean {
   return PYTHON_STDLIB_MODULES.has(root);
 }
 
-function resolvePythonModuleTarget(
+function pythonIndexRoots(index: Map<string, PythonModuleTarget>): Set<string> {
+  const roots = new Set<string>();
+  for (const modulePath of index.keys()) {
+    const root = modulePath.split('.')[0];
+    if (root) roots.add(root);
+  }
+  return roots;
+}
+
+function lookupPythonModulePrefix(
   specifier: string,
   index: Map<string, PythonModuleTarget>
 ): PythonModuleTarget | undefined {
@@ -159,6 +211,26 @@ function resolvePythonModuleTarget(
     const candidate = parts.slice(0, i).join('.');
     const found = index.get(candidate);
     if (found) return found;
+  }
+  return undefined;
+}
+
+function resolvePythonModuleTarget(
+  specifier: string,
+  index: Map<string, PythonModuleTarget>
+): PythonModuleTarget | undefined {
+  const direct = lookupPythonModulePrefix(specifier, index);
+  if (direct) return direct;
+
+  // Scan roots inside a src-layout package drop the distribution name from paths
+  // (`features/library.py`) while imports still use `romini.features.library`.
+  const roots = pythonIndexRoots(index);
+  const parts = specifier.split('.').filter(Boolean);
+  for (let i = 1; i < parts.length; i++) {
+    if (!roots.has(parts[i]!)) continue;
+    const remainder = parts.slice(i);
+    if (remainder.length < 2) return undefined;
+    return lookupPythonModulePrefix(remainder.join('.'), index);
   }
   return undefined;
 }
@@ -189,6 +261,7 @@ export function buildPythonModuleIndex(
   resolveOptions: ResolveContainerOptions
 ): Map<string, PythonModuleTarget> {
   const index = new Map<string, PythonModuleTarget>();
+  const distributionPackage = sharedPythonDistributionPackage(sourceFiles);
 
   for (const file of sourceFiles) {
     if (!isPythonSourcePath(file.relativePath)) continue;
@@ -198,7 +271,11 @@ export function buildPythonModuleIndex(
 
     const componentIdentity = resolvePythonComponent(file.relativePath, file.baseName);
     if (!componentIdentity) continue;
-    const { containerId } = resolveContainerFromPath(file.relativePath, resolveOptions);
+    const { containerId } = resolvePythonContainerFromPath(
+      file.relativePath,
+      resolveOptions,
+      distributionPackage
+    );
     index.set(modulePath, {
       containerId,
       componentId: componentIdentity.componentId,
@@ -237,15 +314,17 @@ export function extractPythonDependencies(
   const componentDependencies: SystemDependency[] = [];
   const containerDependencies: SystemDependency[] = [];
   const moduleIndex = buildPythonModuleIndex(sourceFiles, resolveOptions);
+  const distributionPackage = sharedPythonDistributionPackage(sourceFiles);
 
   for (const file of sourceFiles) {
     if (!isPythonSourcePath(file.relativePath)) continue;
 
     const fromIdentity = resolvePythonComponent(file.relativePath, file.baseName);
     if (!fromIdentity) continue;
-    const { containerId: fromContainerId } = resolveContainerFromPath(
+    const { containerId: fromContainerId } = resolvePythonContainerFromPath(
       file.relativePath,
-      resolveOptions
+      resolveOptions,
+      distributionPackage
     );
     const fromComponent = componentNodesMap.get(
       componentMapKey(fromContainerId, fromIdentity.componentId)

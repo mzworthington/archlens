@@ -36,18 +36,23 @@ describe('browser analysis adapters', () => {
     expect(files[0]?.imports).toEqual([{ moduleSpecifier: './b' }]);
   });
 
-  it('keeps non-JS/TS files without applying the JS/TS import regex', async () => {
+  it('extracts Python import specifiers without the JS/TS regex', async () => {
     const parser = new BrowserSourceParser([
       {
         relativePath: 'src/service.py',
-        content: 'import os\nfrom orders import service\n',
+        content:
+          'import os\nfrom orders import service\nfrom romini.features.library.add_track import add_track\n',
       },
     ]);
 
     const files = await parser.parseSourceFiles('**/*.{py}');
     expect(files).toHaveLength(1);
     expect(files[0]?.relativePath).toBe('src/service.py');
-    expect(files[0]?.imports).toEqual([]);
+    expect(files[0]?.imports.map(i => i.moduleSpecifier)).toEqual([
+      'os',
+      'orders',
+      'romini.features.library.add_track',
+    ]);
     expect(files[0]?.reExports).toEqual([]);
   });
 
@@ -222,6 +227,35 @@ resource "aws_iam_role" "lambda" {
     );
     expect(hotspotNodes.length).toBeGreaterThan(0);
     expect(hotspotNodes.some(node => (node.forensics?.hotspotScore ?? 0) > 0)).toBe(true);
+  });
+
+  it('emits container edges for Python src-layout imports that keep a package prefix', async () => {
+    const sources = [
+      {
+        relativePath: 'composition/dashboard/library.py',
+        content: 'from romini.features.library.add_track import add_track\n',
+      },
+      {
+        relativePath: 'features/library/add_track.py',
+        content: 'def add_track():\n    return None\n',
+      },
+    ];
+
+    const result = await runBrowserAnalysis({
+      directoryName: 'romini',
+      deps: createBrowserAnalysisDeps({ sources }),
+    });
+
+    const containersFile = result.yamlFiles.find(
+      file => file.name.endsWith('containers.yaml') && file.content.includes('level: container')
+    );
+    expect(containersFile).toBeDefined();
+    const schema = parseSchemaFromYaml(containersFile!.content);
+    expect(
+      schema.dependencies.some(
+        dep => dep.from.endsWith('/dashboard') && dep.to.endsWith('/library')
+      )
+    ).toBe(true);
   });
 
   it('stamps git origin from the checkout onto emitted YAML metadata.source', async () => {

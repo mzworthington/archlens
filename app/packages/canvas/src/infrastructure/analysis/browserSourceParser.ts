@@ -3,6 +3,7 @@ import type { ParsedSourceFile } from '@archlens/analysis/types';
 import { isTestSourcePath } from '@archlens/analysis/test-path';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { extractTsImports } from '../../application/analysis/extractTsImports';
+import { extractPythonImports } from '../../application/analysis/extractPythonImports';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 import {
   isLiteScanJsTsPath,
@@ -11,9 +12,9 @@ import {
 
 /**
  * Browser CodebaseParserPort: maps a pre-walked source tree to ParsedSourceFile[].
- * Uses lightweight JS/TS specifier extraction when tree-sitter is unavailable -
- * graph building stays in @archlens/analysis. Non-JS/TS files get empty imports
- * (tree-sitter path owns their edges).
+ * Uses lightweight JS/TS and Python specifier extraction when tree-sitter is
+ * unavailable - graph building stays in @archlens/analysis. Other languages get
+ * empty imports (tree-sitter path owns their edges).
  */
 export class BrowserSourceParser implements CodebaseParserPort {
   constructor(
@@ -33,7 +34,9 @@ export class BrowserSourceParser implements CodebaseParserPort {
         ?.replace(/\.[^.]+$/, '') ?? relativePath;
     const extracted = isLiteScanJsTsPath(relativePath)
       ? extractTsImports(source.content)
-      : { imports: [] as string[], reExports: [] as string[] };
+      : relativePath.toLowerCase().endsWith('.py')
+        ? { imports: extractPythonImports(source.content), reExports: [] as string[] }
+        : { imports: [] as string[], reExports: [] as string[] };
 
     return {
       filePath: `${this.cwd}/${relativePath}`.replace(/\/{2,}/g, '/'),
