@@ -37,6 +37,24 @@ export async function joinLiveDiagram(page: Page, pathWithRoom: string, name: st
   await expect(nameDialog).toHaveCount(0, { timeout: 15_000 });
 }
 
+/** Share the already-loaded canvas so the room is seeded from the current schema. */
+export async function shareLoadedLiveDiagram(page: Page, name: string): Promise<string> {
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.getByTestId('toolbar-share-collab').click();
+  const shareDialog = page.getByTestId('collab-share-dialog');
+  await expect(shareDialog).toBeVisible({ timeout: 15_000 });
+  await shareDialog.getByLabel('Your name').fill(name);
+  await shareDialog.getByRole('button', { name: 'Copy link' }).click();
+  await expect(page).toHaveURL(/[?&]room=/, { timeout: 15_000 });
+  await shareDialog.getByRole('button', { name: 'Close', exact: true }).click();
+  await expect(shareDialog).toHaveCount(0, { timeout: 10_000 });
+  await expect(page.getByTestId('collab-connected-count')).toHaveText('1', {
+    timeout: 20_000,
+  });
+  const url = new URL(page.url());
+  return `${url.pathname}${url.search}`;
+}
+
 async function expectBlankCollabCanvasReady(page: Page) {
   await expect(page).toHaveURL(/[?&]room=/);
   await expect(page.locator('.react-flow__pane')).toBeVisible({ timeout: 30_000 });

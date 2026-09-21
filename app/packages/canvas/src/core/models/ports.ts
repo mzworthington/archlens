@@ -208,6 +208,13 @@ export type CollabPresence = {
   participants: CollabParticipant[];
 };
 
+export type { NodeComment } from '@archlens/core';
+
+export type AddCollabCommentInput = {
+  nodeEntityRef: string;
+  body: string;
+};
+
 export const EMPTY_COLLAB_PRESENCE: CollabPresence = {
   connectedCount: 0,
   cursors: [],
@@ -225,6 +232,7 @@ export interface CollabSessionPort {
     displayName: string;
     onSchema: (schema: import('@archlens/core').SystemSchema) => void;
     onPresence: (presence: CollabPresence) => void;
+    onComments?: (comments: import('@archlens/core').NodeComment[]) => void;
     credentials?: {
       hostToken?: string;
       secret?: string;
@@ -244,6 +252,10 @@ export interface CollabSessionPort {
   setDisplayName(name: string): void;
   /** Host-only: revoke the live room. No-op when not the host. */
   endRoom(hostToken: string | null): void;
+  /** Session-side node comment. No-op when not in a room. */
+  addComment(input: AddCollabCommentInput): void;
+  resolveComment(id: string): void;
+  deleteComment(id: string): void;
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
@@ -255,6 +267,9 @@ export const noopCollabSession: CollabSessionPort = {
   setCursor: () => {},
   setDisplayName: () => {},
   endRoom: () => {},
+  addComment: () => {},
+  resolveComment: () => {},
+  deleteComment: () => {},
   leave: () => {},
   isActive: () => false,
   roomId: () => null,

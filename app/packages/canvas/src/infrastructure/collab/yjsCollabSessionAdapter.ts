@@ -3,10 +3,12 @@ import { Awareness } from 'y-protocols/awareness';
 import {
   collabDocumentToSchema,
   collabPatchIsEmpty,
+  createNodeComment,
   diffCollabDocuments,
   emptyCollabDocument,
   schemaToCollabDocument,
   type CollabDocument,
+  type NodeComment,
 } from '@archlens/core';
 import {
   EMPTY_COLLAB_PRESENCE,
@@ -19,6 +21,13 @@ import {
 import type { CollabTransport } from './collabTransport';
 import type { CollabClientControl } from '@archlens/collab/roomControl';
 import { applyCollabPatch, readCollabDocument, YJS_LOCAL_ORIGIN } from './yjsSchemaProjection';
+import {
+  deleteStoredComment,
+  readComments,
+  resolveStoredComment,
+  writeComment,
+  YJS_COMMENTS_MAP,
+} from './yjsCommentProjection';
 
 export type YjsCollabSessionOptions = {
   transport: CollabTransport;
@@ -49,11 +58,41 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
   let lastLocal = emptyCollabDocument();
   let pushing = false;
   let onPresence: ((presence: CollabPresence) => void) | null = null;
+  let onComments: ((comments: NodeComment[]) => void) | null = null;
+  let unobserveComments: (() => void) | null = null;
+
+  const emitComments = () => {
+    if (!ydoc || !onComments) return;
+    onComments(readComments(ydoc));
+  };
+
+  const newCommentId = (): string => crypto.randomUUID();
+
+  const localAuthor = (): { name: string; clientId: number } | null => {
+    if (!awareness) return null;
+    const raw = awareness.getLocalState();
+    const name =
+      raw && typeof raw === 'object' && typeof (raw as { name?: unknown }).name === 'string'
+        ? normalizeCollabDisplayName((raw as { name: string }).name)
+        : null;
+    if (!name) return null;
+    return { name, clientId: awareness.clientID };
+  };
+
+  const observeComments = (doc: Y.Doc) => {
+    unobserveComments?.();
+    const comments = doc.getMap(YJS_COMMENTS_MAP);
+    const listener = () => emitComments();
+    comments.observeDeep(listener);
+    unobserveComments = () => comments.unobserveDeep(listener);
+  };
 
   const leave = () => {
     if (awareness) {
       awareness.setLocalState(null);
     }
+    unobserveComments?.();
+    unobserveComments = null;
     disconnect?.();
     disconnect = null;
     sendControl = null;
@@ -64,6 +103,8 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     lastLocal = emptyCollabDocument();
     onPresence?.(EMPTY_COLLAB_PRESENCE);
     onPresence = null;
+    onComments?.([]);
+    onComments = null;
   };
 
   const port: CollabSessionPort = {
@@ -73,6 +114,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       displayName,
       onSchema,
       onPresence: nextOnPresence,
+      onComments: nextOnComments,
       credentials,
       onRoomControl,
     }) {
@@ -85,6 +127,8 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       activeRoom = roomId;
       lastLocal = emptyCollabDocument();
       onPresence = nextOnPresence;
+      onComments = nextOnComments ?? null;
+      observeComments(ydoc);
 
       ydoc.on('update', (_update, origin) => {
         if (!ydoc || origin === YJS_LOCAL_ORIGIN || pushing) return;
@@ -152,6 +196,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
         lastLocal = readCollabDocument(ydoc);
         onSchema(collabDocumentToSchema(lastLocal));
       }
+      emitComments();
     },
 
     pushSchema(schema) {
@@ -181,6 +226,40 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     endRoom(hostToken) {
       if (!hostToken || !sendControl) return;
       sendControl({ v: 1, op: 'end', hostToken });
+    },
+
+    addComment(input) {
+      const author = localAuthor();
+      if (!ydoc || !activeRoom || !author) return;
+      const created = createNodeComment({
+        id: newCommentId(),
+        nodeEntityRef: input.nodeEntityRef,
+        authorName: author.name,
+        authorClientId: author.clientId,
+        body: input.body,
+        createdAtMs: Date.now(),
+      });
+      if (!created) return;
+      writeComment(ydoc, created, YJS_LOCAL_ORIGIN);
+      emitComments();
+    },
+
+    resolveComment(id) {
+      const author = localAuthor();
+      if (!ydoc || !activeRoom || !author) return;
+      const existing = readComments(ydoc).find(comment => comment.id === id);
+      if (!existing || existing.authorClientId !== author.clientId) return;
+      resolveStoredComment(ydoc, id, YJS_LOCAL_ORIGIN);
+      emitComments();
+    },
+
+    deleteComment(id) {
+      const author = localAuthor();
+      if (!ydoc || !activeRoom || !author) return;
+      const existing = readComments(ydoc).find(comment => comment.id === id);
+      if (!existing || existing.authorClientId !== author.clientId) return;
+      deleteStoredComment(ydoc, id, YJS_LOCAL_ORIGIN);
+      emitComments();
     },
 
     leave,

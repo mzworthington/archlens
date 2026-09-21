@@ -106,3 +106,12 @@ export async function clickCanvasNode(page: Page, label: string) {
     await node.click({ force: true });
   }).toPass({ timeout: 30_000 });
 }
+
+/** Select a node by entityRef without canvas hit-testing (overlap / culling). */
+export async function selectWorkspaceNode(page: Page, name: string, entityRef: string) {
+  await page.bringToFront();
+  const node = page.locator(`.react-flow__node[data-id="${entityRef}"]`);
+  await expect(node).toBeVisible({ timeout: 15_000 });
+  await node.getByRole('button', { name, exact: true }).dispatchEvent('click');
+  await expect(page.getByLabel('Name', { exact: true })).toHaveValue(name, { timeout: 15_000 });
+}

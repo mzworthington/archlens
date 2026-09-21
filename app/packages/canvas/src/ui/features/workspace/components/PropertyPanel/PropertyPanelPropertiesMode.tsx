@@ -83,6 +83,12 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
           childExternalsCount={model.childExternalsCount}
           handleDeleteSelectedNode={model.handleDeleteSelectedNode}
           titleType={model.titleType}
+          collabRoomActive={model.collabRoomActive}
+          collabComments={model.collabComments}
+          localCollabClientId={model.localCollabClientId}
+          addCollabComment={model.addCollabComment}
+          resolveCollabComment={model.resolveCollabComment}
+          deleteCollabComment={model.deleteCollabComment}
         />
       ) : (
         <div className="flex flex-col gap-6 w-full min-w-0">

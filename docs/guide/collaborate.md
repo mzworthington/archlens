@@ -45,7 +45,7 @@ The toolbar badge is a **connected count that includes you**. Open **Share live 
 
 ## What the room syncs
 
-The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land.
+The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Select a node to leave a **comment** — peers see the text and who wrote it without a reload. Resolve or delete your comment and it leaves the open thread. Comments stay in the live session; they are not part of BlueprintSpec YAML.
 
 These stay on each browser, not in the room:
 
@@ -59,7 +59,7 @@ These stay on each browser, not in the room:
 
 - Not a published catalog. Pipeline → object storage → Canvas is still [CLI publish](./cli.md).
 - Not disk. Folder **Commit** remains the only write back to YAML.
-- Not comments, threads or multi-file workspace rooms.
+- Not Linear tickets, voice/video or multi-file workspace rooms.
 - Not product sign-in. Treat an open link like a meeting URL.
 
 On the hosted app, peers on other machines join through the collab Worker (`collab.archlens.dev`). Local builds without a collab WebSocket URL only share across **tabs on the same machine**.

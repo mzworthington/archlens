@@ -2,6 +2,7 @@ import React from 'react';
 import { Trash2 } from 'lucide-react';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
 import { ConnectionsSection } from './ConnectionsSection';
+import { NodeCommentsSection } from './NodeCommentsSection';
 import { PropertiesSection } from './PropertiesSection';
 import { SourceCodeSection } from './SourceCodeSection';
 import type { PropertyPanelModel } from './usePropertyPanelModel';
@@ -28,6 +29,12 @@ type SelectedNodeSectionsProps = Pick<
   | 'childExternalsCount'
   | 'handleDeleteSelectedNode'
   | 'titleType'
+  | 'collabRoomActive'
+  | 'collabComments'
+  | 'localCollabClientId'
+  | 'addCollabComment'
+  | 'resolveCollabComment'
+  | 'deleteCollabComment'
 >;
 
 export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
@@ -51,6 +58,12 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
   childExternalsCount,
   handleDeleteSelectedNode,
   titleType,
+  collabRoomActive,
+  collabComments,
+  localCollabClientId,
+  addCollabComment,
+  resolveCollabComment,
+  deleteCollabComment,
 }) => {
   if (!selectedNode || !selectedNodeId) return null;
 
@@ -72,6 +85,17 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
         onAddProperty={handleAddProperty}
         onDeleteProperty={handleDeleteProperty}
       />
+
+      {collabRoomActive ? (
+        <NodeCommentsSection
+          nodeEntityRef={selectedNode.entityRef}
+          comments={collabComments}
+          localClientId={localCollabClientId}
+          onAdd={addCollabComment}
+          onResolve={resolveCollabComment}
+          onDelete={deleteCollabComment}
+        />
+      ) : null}
 
       <ConnectionsSection
         selectedNodeId={selectedNodeId}
