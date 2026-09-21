@@ -126,8 +126,10 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_API_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: -Dsonar.organization=${{ vars.SONARQUBE_ORG }}
 
   e2e:
     runs-on: ubuntu-latest
