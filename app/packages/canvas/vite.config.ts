@@ -203,8 +203,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov', 'cobertura', 'json-summary', 'json'],
-      include: ['src/**/*'],
-      exclude: ['src/**/*.test.{ts,tsx}', 'src/setupTests.ts'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/*.test.{ts,tsx}', 'src/setupTests.ts', '**/*.d.ts'],
     },
   },
 });
