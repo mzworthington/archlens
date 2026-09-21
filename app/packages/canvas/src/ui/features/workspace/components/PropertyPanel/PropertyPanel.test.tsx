@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
+import { EMPTY_COLLAB_PRESENCE } from '../../../../../core';
 import { PropertyPanel } from './PropertyPanel';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
@@ -11,6 +12,9 @@ describe('PropertyPanel UI Component', () => {
       workspaceName: undefined,
       loadedSystems: [],
       rightPanelTab: 'properties',
+      collabRoomActive: false,
+      collabPresence: EMPTY_COLLAB_PRESENCE,
+      collabComments: [],
     });
 
     const { initSchema } = useBlueprintStore.getState();
@@ -124,6 +128,37 @@ describe('PropertyPanel UI Component', () => {
     expect(nodes).toHaveLength(3);
     const groupNode = nodes.find(n => n.data.type === 'group');
     expect(groupNode).toBeDefined();
+  });
+
+  it('shows a labelled comment thread on the diagram when a live room is active and no node is selected', () => {
+    const { rerender } = render(<PropertyPanel />);
+    expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
+
+    useBlueprintStore.setState({
+      selectedNodeId: null,
+      collabRoomActive: true,
+      collabPresence: {
+        connectedCount: 1,
+        cursors: [],
+        participants: [{ clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true }],
+      },
+      collabComments: [
+        {
+          id: 'c-diagram',
+          nodeEntityRef: 'cloud-infrastructure-workspace',
+          authorName: 'Ada',
+          authorClientId: 7,
+          body: 'walk the map from here',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+    });
+    rerender(<PropertyPanel />);
+
+    expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
+    expect(screen.getByLabelText('Comment')).toBeInTheDocument();
+    expect(screen.getByText('walk the map from here')).toBeInTheDocument();
   });
 
   it('shows a labelled comment thread only while a live room is active', () => {

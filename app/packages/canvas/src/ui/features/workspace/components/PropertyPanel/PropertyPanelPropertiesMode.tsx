@@ -2,6 +2,7 @@ import React from 'react';
 import { GoToEntityButton } from '../GoToEntityButton';
 import { ExternalDependenciesSection } from './ExternalDependenciesSection';
 import { IdentitySection } from './IdentitySection';
+import { NodeCommentsSection } from './NodeCommentsSection';
 import { SelectedDependencySection } from './SelectedDependencySection';
 import { SelectedNodeSections } from './SelectedNodeSections';
 import type { PropertyPanelModel } from './usePropertyPanelModel';
@@ -93,6 +94,16 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
       ) : (
         <div className="flex flex-col gap-6 w-full min-w-0">
           {loadedSystems.length > 0 ? <ExternalDependenciesSection /> : null}
+          {model.collabRoomActive ? (
+            <NodeCommentsSection
+              nodeEntityRef={model.entityRefValue}
+              comments={model.collabComments}
+              localClientId={model.localCollabClientId}
+              onAdd={model.addCollabComment}
+              onResolve={model.resolveCollabComment}
+              onDelete={model.deleteCollabComment}
+            />
+          ) : null}
         </div>
       )}
     </>

@@ -45,7 +45,7 @@ The toolbar badge is a **connected count that includes you**. Open **Share live 
 
 ## What the room syncs
 
-The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Select a node to leave a **comment** — peers see the text and who wrote it without a reload. Resolve or delete your comment and it leaves the open thread. Comments stay in the live session; they are not part of BlueprintSpec YAML.
+The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Clear the selection (click empty canvas) to leave a **comment** on the diagram itself, or select a node to comment on that entity. Peers see the text and who wrote it without a reload. Resolve or delete your comment and it leaves the open thread. Comments stay in the live session; they are not part of BlueprintSpec YAML. Diagram comments use the map’s `entityRef` (the same identity as the properties panel).
 
 These stay on each browser, not in the room:
 
