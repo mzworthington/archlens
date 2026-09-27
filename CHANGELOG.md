@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-09-22
+
+### 🧰 Maintenance & Dependencies
+
+- Sonar auto analysis
+
+## 2026-09-21
+
+### 🚀 Features
+
+- _(canvas)_ Sync node comments in a live room (MZW-50) (#169)
+- _(canvas)_ Enhance PropertyPanel with collaborative comments functionality
+
+### 🐛 Bug Fixes
+
+- _(analysis)_ Resolve Python src-layout import edges
+
+### 🧰 Maintenance & Dependencies
+
+- Publish existing coverage reports to SonarCloud
+- Use SONARQUBE_API_TOKEN and SONARQUBE_ORG for SonarCloud
+- Keep test files out of coverage reports
+
 ## 2026-09-20
 
 ### 🧰 Maintenance & Dependencies

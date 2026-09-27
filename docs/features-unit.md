@@ -408,17 +408,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 ##### ModelExtractor integration
 
 - ✅ links Python modules via absolute and relative imports
+- ✅ links containers when src-layout imports keep a package prefix the scan root omitted
 
 ##### modulePathFromPythonFile
 
 - ✅ maps src-layout modules
 - ✅ maps flat package modules
 
+##### resolvePythonContainerFromPath
+
+- ✅ skips the src-layout distribution package so layers become containers
+
 ##### resolvePythonImport
 
 - ✅ resolves absolute imports
 - ✅ resolves parent-relative imports
 - ✅ ignores stdlib imports
+- ✅ strips a distribution package prefix when the scan root is inside that package
+- ✅ does not treat a third-party import as a local module that shares the last segment
 
 ### rollupDrillDown
 
@@ -790,12 +797,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### browser analysis adapters
 
 - ✅ parses walked sources into ParsedSourceFile records
-- ✅ keeps non-JS/TS files without applying the JS/TS import regex
+- ✅ extracts Python import specifiers without the JS/TS regex
 - ✅ skips metadata manifests when parsing sources
 - ✅ runs CodebaseAnalyzer against memory FS and emits YAML
 - ✅ preserves semantic parity between direct browser adapters and browser scan runner
 - ✅ runs IacAnalyzer for Terraform roots during browser scan
 - ✅ attaches ForensicAnalyzer hotspot metrics onto the scanned map YAML
+- ✅ emits container edges for Python src-layout imports that keep a package prefix
 - ✅ stamps git origin from the checkout onto emitted YAML metadata.source
 
 ### BrowserLiteScanBanner
@@ -1459,6 +1467,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not collapse externals when the diagram has no internal nodes
 - ✅ does not build empty summary hubs for external-only diagrams
 
+### extractPythonImports
+
+#### extractPythonImports
+
+- ✅ extracts absolute and relative module specifiers from import lines
+
 ### extractTsImports
 
 #### extractTsImports
@@ -1726,6 +1740,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reloads the written YAML when no folder workspace is open
 - ✅ writes a named blank canvas into a picked folder
 
+### ioState.collabComments
+
+#### ioState collab comments
+
+- ✅ marks the room active after join so the comment thread can render
+- ✅ marks the room active when presence arrives before join resolves
+
 ### isomorphicGitHistory
 
 #### collectGitProvenanceFromFs
@@ -1920,6 +1941,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ uses the diagram entityRef in the URL when the target is a diagram
 - ✅ returns false when the entity is not in the catalog
 
+### NodeCommentsSection
+
+#### NodeCommentsSection
+
+- ✅ labels the comment field and renders bodies as text, not HTML
+- ✅ adds, resolves, and deletes the local author comment
+
 ### OfflineBanner
 
 #### OfflineBanner
@@ -2036,6 +2064,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should render read-only Diagram entityRef from workspaceName or schema.name
 - ✅ should trigger node creation when catalog component is clicked in Catalog tab
 - ✅ should trigger group node creation when Group / Boundary component is clicked in Catalog tab
+- ✅ shows a labelled comment thread on the diagram when a live room is active and no node is selected
+- ✅ shows a labelled comment thread only while a live room is active
+- ✅ shows the comment thread from live presence when the room-active flag lags
 - ✅ should display node attributes editor when a node is selected
 - ✅ should rename node and metadata attributes when edited in node details
 - ✅ should allow adding custom metadata attributes to the component
@@ -2816,6 +2847,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ pushes a local node add to the other session
 - ✅ broadcasts named cursors and connected count to the other session
 - ✅ does not seed the diagram when the Worker never admits the socket
+- ✅ broadcasts a node comment to the other session without changing the schema
+- ✅ clears an open comment for peers after resolve or delete
 - ✅ does not join without a display name
 
 ### yjsSchemaProjection
@@ -3541,6 +3574,21 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not treat never-touched files as silos
 - ✅ can apply both classifications
 - ✅ returns empty when neither applies
+
+### collabComments
+
+#### collab comment document
+
+- ✅ lists only open comments for a node after resolve or delete
+
+#### comment sidecar vs BlueprintSpec
+
+- ✅ does not change YAML export when a session sidecar holds comments
+
+#### createNodeComment
+
+- ✅ attaches a text comment and author to a node
+- ✅ keeps markup characters as text and rejects a blank body
 
 ### collabDocument
 
