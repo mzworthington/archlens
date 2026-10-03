@@ -64,6 +64,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     openWorkspaceDirectory,
     openBundledSample,
     openBrowserLiteScan,
+    openInTabCliScan,
+    stopInTabCliSession,
     cancelBrowserLiteScan,
     resetToEmptyWorkspace,
     loadSchema,
@@ -112,6 +114,19 @@ export function useWorkspaceDialogs(): React.ReactNode {
     },
     [openBrowserLiteScan, setIsStartupOpen, setLocation]
   );
+
+  const handleInTabFullScan = useCallback(async () => {
+    try {
+      const opened = await openInTabCliScan();
+      if (!useBlueprintStore.getState().isWorkspaceOpen) return opened;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
+      return true;
+    } catch (err) {
+      console.error('Failed to run in-tab CLI scan:', err);
+      return false;
+    }
+  }, [openInTabCliScan, setIsStartupOpen, setLocation]);
 
   const handleImportMermaid = useCallback(() => {
     markFolderWorkspacePreferred();
@@ -232,6 +247,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={handleBrowserLiteScan}
+          onInTabFullScan={handleInTabFullScan}
+          onStopInTabCli={stopInTabCliSession}
           onImportMermaid={handleImportMermaid}
           onStartBlankCanvas={handleStartBlankCanvas}
           onShareBlankCanvas={handleShareBlankCanvas}

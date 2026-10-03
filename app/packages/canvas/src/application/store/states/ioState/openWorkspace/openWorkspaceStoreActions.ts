@@ -24,9 +24,18 @@ import { createAnalysisLogger } from '../../../../../infrastructure/analysis/ana
 import { runBrowserAnalysisWorker } from '../../../../../infrastructure/analysis/runBrowserAnalysisWorker';
 import type { LiteScanProgress } from '../../../../analysis/liteScanProgress';
 import {
+  LITE_SCAN_MAX_FILE_BYTES,
   LITE_SCAN_MAX_FILES,
+  LITE_SCAN_MAX_METADATA_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
 } from '../../../../analysis/liteScanLimits';
+import {
+  IN_TAB_CLI_MAX_FILE_BYTES,
+  IN_TAB_CLI_MAX_FILES,
+  IN_TAB_CLI_MAX_METADATA_FILES,
+  IN_TAB_CLI_MAX_TOTAL_BYTES,
+} from '../../../../analysis/inTabCliLimits';
+import { createInTabCliSandbox, type InTabCliSandbox } from '../../../../analysis/inTabCliSandbox';
 import { CLI_INSTALL_COMMAND, CLI_SCAN_COMMAND } from '../../../../../constants/cli';
 import { browserScanReadyMessage } from '../../../../forensics/traceLensBrowserScanCopy';
 import {
@@ -46,9 +55,12 @@ import {
 type IoGet = () => IoState & DiagramState & UiState;
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
+const IN_TAB_CLI_LOADING_MESSAGE = 'Running sandboxed CLI scan…';
 
 let browserLiteScanController: AbortController | null = null;
 let browserLitePersistInFlight = false;
+let inTabCliSandbox: InTabCliSandbox | null = null;
+let scanKind: 'lite' | 'in-tab-cli' = 'lite';
 
 export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoGet) {
   return {
@@ -167,17 +179,49 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
     },
 
     cancelBrowserLiteScan: () => {
+      inTabCliSandbox?.stop();
       browserLiteScanController?.abort();
     },
 
+    stopInTabCliSession: () => {
+      inTabCliSandbox?.stop();
+      browserLiteScanController?.abort();
+    },
+
+    openInTabCliScan: async () => {
+      scanKind = 'in-tab-cli';
+      try {
+        return await get().openBrowserLiteScan();
+      } finally {
+        scanKind = 'lite';
+      }
+    },
+
     openBrowserLiteScan: async (source?: { zipFile?: File }) => {
+      const kind = scanKind;
+      const inTab = kind === 'in-tab-cli';
+      const maxFiles = inTab ? IN_TAB_CLI_MAX_FILES : LITE_SCAN_MAX_FILES;
+      const maxFileBytes = inTab ? IN_TAB_CLI_MAX_FILE_BYTES : LITE_SCAN_MAX_FILE_BYTES;
+      const maxTotalBytes = inTab ? IN_TAB_CLI_MAX_TOTAL_BYTES : LITE_SCAN_MAX_TOTAL_BYTES;
+      const maxMetadataFiles = inTab ? IN_TAB_CLI_MAX_METADATA_FILES : LITE_SCAN_MAX_METADATA_FILES;
+      const loadingMessage = inTab ? IN_TAB_CLI_LOADING_MESSAGE : BROWSER_LITE_SCAN_LOADING_MESSAGE;
+      const readyTitle = inTab ? 'In-tab scan ready' : 'Browser scan ready';
       const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
       let zipFile = source?.zipFile;
       let directoryHandle: FileSystemDirectoryHandle | null = null;
 
       if (!zipFile) {
         const pick = await pickSourceDirectory();
-        if (pick.status === 'cancelled') return false;
+        if (pick.status === 'cancelled') return inTab ? true : false;
+        if (inTab && pick.status === 'unsupported') {
+          setNotification?.({
+            type: 'error',
+            title: 'In-tab scan unavailable',
+            message:
+              'This browser cannot pick a folder. Use browser lite scan with a ZIP, or install the ArchLens CLI.',
+          });
+          return false;
+        }
         if (pick.status === 'ok') {
           directoryHandle = pick.handle;
         } else {
@@ -196,9 +240,11 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       }
 
       const openGeneration = beginWorkspaceOpen();
-      setIsLoading(BROWSER_LITE_SCAN_LOADING_MESSAGE);
+      setIsLoading(loadingMessage);
       const cancellation = new AbortController();
       browserLiteScanController = cancellation;
+      const sandbox = inTab ? createInTabCliSandbox(() => cancellation.abort()) : null;
+      if (sandbox) inTabCliSandbox = sandbox;
       const abortIfSuperseded = () => {
         if (isWorkspaceOpenCurrent(openGeneration)) return false;
         cancellation.abort();
@@ -217,15 +263,19 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       };
 
       try {
+        const walkLimits = { maxFiles, maxFileBytes, maxTotalBytes, maxMetadataFiles };
         const walked = zipFile
           ? await walkZipArchive(zipFile, {
               signal: cancellation.signal,
               onProgress: reportProgress,
+              ...walkLimits,
             })
           : await walkBrowserSourceDirectory(directoryHandle!, {
               signal: cancellation.signal,
               onProgress: reportProgress,
+              ...walkLimits,
             });
+        sandbox?.holdSources(walked.files);
         if (abortIfSuperseded()) return false;
         if (walked.sourceFileCount === 0 && walked.iacFileCount === 0) {
           throw new Error(
@@ -236,9 +286,9 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         reportProgress({
           phase: 'analyzing',
           filesScanned: walked.sourceFileCount + walked.iacFileCount,
-          fileCap: LITE_SCAN_MAX_FILES,
+          fileCap: maxFiles,
           bytesRead: get().liteScanProgress?.bytesRead ?? 0,
-          byteCap: LITE_SCAN_MAX_TOTAL_BYTES,
+          byteCap: maxTotalBytes,
         });
 
         const { yamlFiles, gitStatus } = await runBrowserAnalysisWorker({
@@ -247,6 +297,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           rootHandle: directoryHandle ?? undefined,
           logger: createAnalysisLogger(logger),
           signal: cancellation.signal,
+          onWorker: worker => sandbox?.attachWorker(worker),
         });
         if (abortIfSuperseded()) return false;
 
@@ -289,7 +340,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           );
           setNotification?.({
             type: 'info',
-            title: 'Browser scan ready',
+            title: readyTitle,
             message: browserScanReadyMessage({
               sourceFileCount: walked.sourceFileCount,
               iacFileCount: walked.iacFileCount,
@@ -318,9 +369,9 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         return false;
       } catch (err) {
         if (isCancellationError(err)) {
-          logger.info('Browser lite scan cancelled');
+          logger.info(inTab ? 'In-tab CLI scan stopped' : 'Browser lite scan cancelled');
           restoreDemoBootstrapIfNeeded();
-          return false;
+          return inTab ? true : false;
         }
         logger.error('Failed to run browser lite scan', err);
         restoreDemoBootstrapIfNeeded();
@@ -332,6 +383,8 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         });
         return false;
       } finally {
+        sandbox?.stop();
+        if (inTabCliSandbox === sandbox) inTabCliSandbox = null;
         if (browserLiteScanController === cancellation) {
           browserLiteScanController = null;
         }

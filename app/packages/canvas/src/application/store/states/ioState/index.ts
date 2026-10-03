@@ -64,6 +64,8 @@ export interface IoState {
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
   openBrowserLiteScan: (source?: { zipFile?: File }) => Promise<boolean>;
+  openInTabCliScan: () => Promise<boolean>;
+  stopInTabCliSession: () => void;
   persistBrowserScanMapToFolder: () => Promise<boolean>;
   persistBrowserScanMapDownload: () => Promise<boolean>;
   dismissScanMapPersist: () => void;

@@ -325,6 +325,67 @@ describe('WorkspaceEntryPanel', () => {
     expect(onCancelScan).toHaveBeenCalledTimes(1);
   });
 
+  it('shows that an in-tab CLI session is experimental, sandboxed, and may be slow when it starts', () => {
+    const onInTabFullScan = vi.fn(async () => true);
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+        onInTabFullScan={onInTabFullScan}
+        showCliPanel
+      />
+    );
+
+    fireEvent.click(screen.getByTestId('workspace-in-tab-cli-scan'));
+
+    const notice = screen.getByTestId('in-tab-cli-notice');
+    expect(notice).toHaveTextContent(/experimental/i);
+    expect(notice).toHaveTextContent(/sandboxed/i);
+    expect(notice).toHaveTextContent(/slow/i);
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toBeInTheDocument();
+    expect(onInTabFullScan).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps lite scan and CLI install after an in-tab CLI failure is dismissed', async () => {
+    const onInTabFullScan = vi.fn(async () => false);
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+        onInTabFullScan={onInTabFullScan}
+        showCliPanel
+      />
+    );
+
+    fireEvent.click(screen.getByTestId('workspace-in-tab-cli-scan'));
+    expect(await screen.findByTestId('in-tab-cli-error')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('in-tab-cli-error-dismiss'));
+    expect(screen.queryByTestId('in-tab-cli-error')).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toBeEnabled();
+    fireEvent.click(screen.getByTestId('workspace-cli-panel-toggle'));
+    expect(screen.getByRole('button', { name: 'Copy install command' })).toBeEnabled();
+  });
+
+  it('stops the in-tab CLI session from the notice', () => {
+    const onStopInTabCli = vi.fn();
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+        onInTabFullScan={vi.fn(async () => true)}
+        onStopInTabCli={onStopInTabCli}
+      />
+    );
+
+    fireEvent.click(screen.getByTestId('workspace-in-tab-cli-scan'));
+    fireEvent.click(screen.getByRole('button', { name: 'Stop in-tab scan and free memory' }));
+    expect(onStopInTabCli).toHaveBeenCalledTimes(1);
+  });
+
   it('gives every chooser control an accessible name', () => {
     render(
       <WorkspaceEntryPanel

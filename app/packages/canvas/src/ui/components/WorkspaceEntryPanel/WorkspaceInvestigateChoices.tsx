@@ -1,5 +1,9 @@
 import React from 'react';
-import { AlertTriangle, FolderOpen, ScanSearch, Search, X } from 'lucide-react';
+import { AlertTriangle, Box, FolderOpen, ScanSearch, Search, X } from 'lucide-react';
+import {
+  IN_TAB_CLI_FAILED_MESSAGE,
+  IN_TAB_CLI_NOTICE,
+} from '../../../application/analysis/inTabCliNotice';
 import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { WorkspaceEntryOption } from './WorkspaceEntryOption';
 import { WorkspaceIntentCard } from './WorkspaceIntentCard';
@@ -19,14 +23,20 @@ export type WorkspaceInvestigateChoicesProps = {
   actionsDisabled: boolean;
   onOpenDirectory: () => void;
   onBrowserLiteScan?: (source?: BrowserLiteScanSource) => void | Promise<boolean>;
+  onInTabFullScan?: () => void | Promise<boolean>;
+  onStopInTabCli?: () => void;
 };
 
 export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesProps> = ({
   actionsDisabled,
   onOpenDirectory,
   onBrowserLiteScan,
+  onInTabFullScan,
+  onStopInTabCli,
 }) => {
   const [liteScanFeedback, setLiteScanFeedback] = React.useState<string | null>(null);
+  const [inTabCliStarted, setInTabCliStarted] = React.useState(false);
+  const [inTabCliError, setInTabCliError] = React.useState<string | null>(null);
   const zipInputRef = React.useRef<HTMLInputElement>(null);
   const directoryPickerSupported = isBrowserDirectoryPickerSupported();
 
@@ -122,6 +132,65 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
             </button>
           ) : null}
         </>
+      ) : null}
+
+      {onInTabFullScan ? (
+        <WorkspaceEntryOption
+          testId="workspace-in-tab-cli-scan"
+          onClick={() => {
+            setInTabCliError(null);
+            setInTabCliStarted(true);
+            void Promise.resolve(onInTabFullScan()).then(opened => {
+              if (opened === false) setInTabCliError(IN_TAB_CLI_FAILED_MESSAGE);
+            });
+          }}
+          disabled={actionsDisabled}
+          className={optionClass}
+          icon={<Box className="w-4 h-4 shrink-0 mt-0.5 text-violet-300" />}
+          title="Run full scan in tab"
+          titleExtra={
+            <span className="inline-flex items-center rounded border border-violet-500/40 bg-violet-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-violet-200">
+              Experimental
+            </span>
+          }
+          descriptionClassName="text-slate-400"
+          description="Sandboxed CLI for a repo you cannot install locally"
+        />
+      ) : null}
+      {inTabCliStarted ? (
+        <div
+          className="rounded-lg border border-violet-500/40 bg-violet-950/40 px-3 py-2 text-xs text-violet-100 leading-relaxed space-y-2"
+          role="status"
+          data-testid="in-tab-cli-notice"
+        >
+          <p>{IN_TAB_CLI_NOTICE}</p>
+          <button
+            type="button"
+            onClick={() => onStopInTabCli?.()}
+            className="rounded border border-violet-400/40 px-2 py-1 text-[11px] font-semibold text-violet-50 hover:bg-violet-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/50"
+          >
+            Stop in-tab scan and free memory
+          </button>
+        </div>
+      ) : null}
+      {inTabCliError ? (
+        <div
+          className="flex items-start gap-2 rounded-lg border border-rose-500/40 bg-rose-950/50 px-3 py-2 text-xs text-rose-100"
+          role="alert"
+          data-testid="in-tab-cli-error"
+        >
+          <AlertTriangle className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" aria-hidden />
+          <p className="leading-relaxed flex-1">{inTabCliError}</p>
+          <button
+            type="button"
+            onClick={() => setInTabCliError(null)}
+            className="shrink-0 rounded p-0.5 text-rose-200/80 hover:bg-white/10 hover:text-rose-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400/40"
+            aria-label="Dismiss in-tab scan error"
+            data-testid="in-tab-cli-error-dismiss"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
       ) : null}
 
       {liteScanFeedback ? (

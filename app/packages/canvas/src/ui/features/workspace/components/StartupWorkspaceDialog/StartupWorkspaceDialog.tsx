@@ -7,6 +7,8 @@ interface StartupWorkspaceDialogProps {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
   onBrowserLiteScan?: (source?: { zipFile?: File }) => void | Promise<boolean>;
+  onInTabFullScan?: () => void | Promise<boolean>;
+  onStopInTabCli?: () => void;
   onImportMermaid?: () => void;
   onStartBlankCanvas?: () => void;
   onShareBlankCanvas?: () => void;
@@ -23,6 +25,8 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onInTabFullScan,
+  onStopInTabCli,
   onImportMermaid,
   onStartBlankCanvas,
   onShareBlankCanvas,
@@ -51,6 +55,8 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
             onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
+            onInTabFullScan={onInTabFullScan}
+            onStopInTabCli={onStopInTabCli}
             onImportMermaid={onImportMermaid}
             onStartBlankCanvas={onStartBlankCanvas}
             onShareBlankCanvas={onShareBlankCanvas}

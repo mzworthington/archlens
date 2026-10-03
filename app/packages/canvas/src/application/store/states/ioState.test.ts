@@ -262,6 +262,87 @@ dependencies: []
     }
   });
 
+  it('attaches TraceLens git hotspots when an in-tab CLI scan finishes', async () => {
+    const log = vi
+      .spyOn(git, 'log')
+      .mockResolvedValue([
+        mockGitLogCommit({ oid: '1', parent: ['0'], email: 'a@ex.com', path: 'src/hot.ts' }),
+        mockGitLogCommit({ oid: '2', parent: ['1'], email: 'b@ex.com', path: 'src/hot.ts' }),
+        mockGitLogCommit({ oid: '3', parent: ['2'], email: 'c@ex.com', path: 'src/hot.ts' }),
+      ]);
+
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield [
+          'hot.ts',
+          makeFileHandle(
+            'hot.ts',
+            `
+          export function run(x: number) {
+            if (x > 1) {
+              for (const n of [1, 2, 3]) {
+                if (n) return n;
+              }
+            }
+            while (x) {
+              if (x < 0) break;
+              x -= 1;
+            }
+            return x;
+          }
+        `
+          ),
+        ];
+        yield ['cold.ts', makeFileHandle('cold.ts', 'export const n = 1;\n')];
+      },
+    };
+    const gitDir = {
+      kind: 'directory',
+      name: '.git',
+      async *[Symbol.asyncIterator]() {},
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'git-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+      async getDirectoryHandle(name: string) {
+        if (name === '.git') return gitDir;
+        throw new Error('not found');
+      },
+      async getFileHandle() {
+        throw new Error('not found');
+      },
+    };
+
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    try {
+      const opened = await useBlueprintStore.getState().openInTabCliScan();
+      const state = useBlueprintStore.getState();
+      expect(opened, state.lastError ?? 'openInTabCliScan returned false').toBe(true);
+      expect(state.browserScanGit).toBe('included');
+      expect(state.notification?.title).toBe('In-tab scan ready');
+      const hotspotNodes = state.loadedSystems.flatMap(system =>
+        system.schema.nodes.filter(node => node.forensics?.classifications?.includes('hotspot'))
+      );
+      expect(hotspotNodes.length).toBeGreaterThan(0);
+    } finally {
+      log.mockRestore();
+    }
+  });
+
   it('cancels an in-flight browser lite scan without opening a workspace', async () => {
     let releaseWalk: () => void = () => undefined;
     const gate = new Promise<void>(resolve => {

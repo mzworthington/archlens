@@ -14,6 +14,9 @@ export type WorkspaceEntryPanelProps = {
   onOpenDirectory: () => void;
   /** Structural browser scan - pick a source folder or ZIP. */
   onBrowserLiteScan?: (source?: { zipFile?: File }) => void | Promise<boolean>;
+  /** Opt-in sandboxed CLI scan. Not the default Investigate path. */
+  onInTabFullScan?: () => void | Promise<boolean>;
+  onStopInTabCli?: () => void;
   /** Import from Mermaid diagram. */
   onImportMermaid?: () => void;
   /** Start an empty diagram with no demo or folder loaded (Ideate). */
@@ -45,6 +48,8 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onInTabFullScan,
+  onStopInTabCli,
   onImportMermaid,
   onStartBlankCanvas,
   onShareBlankCanvas,
@@ -131,6 +136,8 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             actionsDisabled={actionsDisabled}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
+            onInTabFullScan={onInTabFullScan}
+            onStopInTabCli={onStopInTabCli}
           />
           <WorkspaceCollaborateChoices
             actionsDisabled={actionsDisabled}

@@ -37,6 +37,8 @@ export type RunBrowserAnalysisWorkerArgs = {
   signal?: AbortSignal;
   /** @internal Test seam. */
   createWorker?: AnalysisWorkerFactory;
+  /** Called with the live worker so a session can terminate it. */
+  onWorker?: (worker: AnalysisWorkerLike) => void;
 };
 
 async function executeBrowserAnalysis(args: {
@@ -74,6 +76,7 @@ export function runBrowserAnalysisWorker(
 
   return new Promise((resolve, reject) => {
     const worker = createWorker();
+    args.onWorker?.(worker);
     let settled = false;
 
     const finish = (settle: () => void) => {
