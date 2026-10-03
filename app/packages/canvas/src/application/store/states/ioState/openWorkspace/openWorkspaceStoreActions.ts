@@ -297,6 +297,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           rootHandle: directoryHandle ?? undefined,
           logger: createAnalysisLogger(logger),
           signal: cancellation.signal,
+          complexity: inTab ? 'syntax-tree' : 'keywords',
           onWorker: worker => sandbox?.attachWorker(worker),
         });
         if (abortIfSuperseded()) return false;

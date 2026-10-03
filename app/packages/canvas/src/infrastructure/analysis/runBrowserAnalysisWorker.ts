@@ -1,6 +1,9 @@
 import { CancellationError } from '@archlens/analysis/cancellation';
 import type { LoggerPort } from '@archlens/analysis/ports';
-import { collectBrowserFileMetrics } from '../../application/analysis/collectBrowserFileMetrics';
+import {
+  collectBrowserFileMetrics,
+  type BrowserScanComplexity,
+} from '../../application/analysis/collectBrowserFileMetrics';
 import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 import type { BrowserAnalysisCommand, BrowserAnalysisResponse } from './browserAnalysisProtocol';
@@ -35,6 +38,7 @@ export type RunBrowserAnalysisWorkerArgs = {
   rootHandle?: FileSystemDirectoryHandle;
   logger?: LoggerPort;
   signal?: AbortSignal;
+  complexity?: BrowserScanComplexity;
   /** @internal Test seam. */
   createWorker?: AnalysisWorkerFactory;
   /** Called with the live worker so a session can terminate it. */
@@ -47,6 +51,7 @@ async function executeBrowserAnalysis(args: {
   rootHandle?: FileSystemDirectoryHandle;
   logger?: LoggerPort;
   signal?: AbortSignal;
+  complexity?: BrowserScanComplexity;
 }): Promise<BrowserAnalysisResult> {
   const git: BrowserGitHistoryResult = args.rootHandle
     ? await loadBrowserGitHistory(args.rootHandle, { signal: args.signal })
@@ -55,6 +60,7 @@ async function executeBrowserAnalysis(args: {
     sources: args.sources,
     commits: git.commits,
     signal: args.signal,
+    complexity: args.complexity,
   });
   return runBrowserAnalysis({
     directoryName: args.directoryName,
@@ -129,6 +135,7 @@ export function runBrowserAnalysisWorker(
       sources: args.sources,
       directoryName: args.directoryName,
       rootHandle: args.rootHandle,
+      complexity: args.complexity,
     });
   });
 }

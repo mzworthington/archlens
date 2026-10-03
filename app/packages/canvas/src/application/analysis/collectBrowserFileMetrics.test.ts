@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { collectBrowserFileMetrics } from './collectBrowserFileMetrics';
 
+const COMMENTED_BRANCHES = `export function run(x: number) {
+  return x;
+}
+// if for while switch
+`;
+
 describe('collectBrowserFileMetrics', () => {
   it('classifies a frequently changed complex file as a hotspot', async () => {
     const sources = [
@@ -45,5 +51,21 @@ describe('collectBrowserFileMetrics', () => {
     });
     expect(byPath.get('src/a.ts')?.loc).toBe(1);
     expect(byPath.get('src/a.ts')?.classifications).not.toContain('hotspot');
+  });
+
+  it('scores an in-tab scan from the syntax tree and leaves keyword counts on the lite scan', async () => {
+    const sources = [{ relativePath: 'src/hot.ts', content: COMMENTED_BRANCHES }];
+
+    const lite = await collectBrowserFileMetrics({ sources, commits: [] });
+    expect(lite.get('src/hot.ts')?.complexity).toBe(5);
+
+    const inTab = await collectBrowserFileMetrics({
+      sources,
+      commits: [],
+      complexity: 'syntax-tree',
+      measureSyntaxTree: async () => ({ complexity: 1, complexityPeak: 1, functionCount: 1 }),
+    });
+    expect(inTab.get('src/hot.ts')?.complexity).toBe(1);
+    expect(inTab.get('src/hot.ts')?.functionCount).toBe(1);
   });
 });

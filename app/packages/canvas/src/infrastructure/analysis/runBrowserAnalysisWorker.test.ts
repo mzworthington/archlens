@@ -71,6 +71,26 @@ describe('runBrowserAnalysisWorker', () => {
     expect(worker.terminated).toBe(true);
   });
 
+  it('asks the worker to score complexity from the syntax tree', async () => {
+    const { worker, posted, emit } = createFakeWorker();
+
+    const promise = runBrowserAnalysisWorker({
+      sources,
+      directoryName: 'demo-repo',
+      complexity: 'syntax-tree',
+      createWorker: () => worker,
+    });
+
+    expect(posted[0]).toMatchObject({ type: 'scan', complexity: 'syntax-tree' });
+    emit({
+      type: 'result',
+      contextName: 'demo-repo',
+      yamlFiles: [],
+      gitStatus: 'missing',
+    });
+    await promise;
+  });
+
   it('forwards worker log records to the caller logger', async () => {
     const { worker, emit } = createFakeWorker();
     const warn = vi.fn();

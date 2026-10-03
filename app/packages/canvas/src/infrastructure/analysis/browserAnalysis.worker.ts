@@ -45,7 +45,7 @@ self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
   const controller = new AbortController();
   activeController = controller;
 
-  const { sources, directoryName, rootHandle } = event.data;
+  const { sources, directoryName, rootHandle, complexity } = event.data;
 
   void (async () => {
     const git = rootHandle
@@ -55,6 +55,7 @@ self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
       sources,
       commits: git.commits,
       signal: controller.signal,
+      complexity,
     });
     return runBrowserAnalysis({
       directoryName,

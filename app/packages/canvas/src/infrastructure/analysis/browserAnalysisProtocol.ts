@@ -1,3 +1,4 @@
+import type { BrowserScanComplexity } from '../../application/analysis/collectBrowserFileMetrics';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 import type { BrowserAnalysisResult } from '../../application/analysis/runBrowserAnalysis';
 
@@ -6,6 +7,7 @@ export type BrowserAnalysisRequest = {
   sources: readonly LiteScanSourceFile[];
   directoryName: string;
   rootHandle?: FileSystemDirectoryHandle;
+  complexity?: BrowserScanComplexity;
 };
 
 export type BrowserAnalysisCancel = { type: 'cancel' };
