@@ -95,7 +95,7 @@ export const MermaidPreview: React.FC<MermaidPreviewProps> = ({ code }) => {
       }
     };
 
-    renderDiagram();
+    void renderDiagram();
 
     return () => {
       active = false;

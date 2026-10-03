@@ -12,6 +12,7 @@ import { shouldShowInteractiveMainMenu } from './interactive/interactiveMainMenu
 import { askPathWithTabComplete } from './askPathWithTabComplete';
 import { dispatchCliCommand } from './dispatchCliCommand';
 import { runInteractiveMainMenu } from './runInteractiveMainMenu';
+import { settleCliRun } from './settleCliRun';
 
 async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
   const state = await resolveArchitectureState(plan, {
@@ -88,4 +89,4 @@ async function run() {
   await runArchitecture(plan);
 }
 
-run();
+settleCliRun(run());

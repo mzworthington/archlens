@@ -9,6 +9,7 @@ import { DocsFrontmatterMeta } from './DocsFrontmatterMeta';
 type Props = {
   markdown: string;
   fromDir: string;
+  loadLibs?: () => Promise<MarkdownLibs>;
 };
 
 const MermaidPreview = lazy(() =>
@@ -198,18 +199,36 @@ function loadMarkdownLibs(): Promise<MarkdownLibs> {
   return markdownLibs;
 }
 
-export const MarkdownView: React.FC<Props> = ({ markdown, fromDir }) => {
+export const MarkdownView: React.FC<Props> = ({
+  markdown,
+  fromDir,
+  loadLibs = loadMarkdownLibs,
+}) => {
   const [libs, setLibs] = useState<MarkdownLibs | null>(null);
+  const [loadFailed, setLoadFailed] = useState(false);
 
   useEffect(() => {
     let active = true;
-    loadMarkdownLibs().then(loaded => {
-      if (active) setLibs(loaded);
-    });
+    loadLibs().then(
+      loaded => {
+        if (active) setLibs(loaded);
+      },
+      () => {
+        if (active) setLoadFailed(true);
+      }
+    );
     return () => {
       active = false;
     };
-  }, []);
+  }, [loadLibs]);
+
+  if (loadFailed) {
+    return (
+      <div className="docs-prose text-sm font-mono text-slate-500 py-8">
+        Markdown could not be loaded.
+      </div>
+    );
+  }
 
   if (!libs) {
     return (

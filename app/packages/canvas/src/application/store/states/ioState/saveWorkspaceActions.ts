@@ -148,7 +148,7 @@ export function createSaveWorkspaceActions(set: BlueprintStoreSet, get: IoGet) {
             systemId: sysId,
             nodeRefMap: fileRefMap,
           });
-          get().checkPendingChanges?.();
+          await get().checkPendingChanges?.();
           setNotification?.({
             type: 'success',
             title: 'Save Successful',

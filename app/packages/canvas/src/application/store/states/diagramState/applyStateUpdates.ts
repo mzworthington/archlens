@@ -204,9 +204,7 @@ export function applyStateUpdates(
         systemId,
         nodeRefMap: fileRefMap,
       })
-      .then(() => {
-        get().checkPendingChanges?.();
-      })
+      .then(() => get().checkPendingChanges?.())
       .catch((err: unknown) => {
         get().logger?.error?.('Failed to sync working schema to IndexedDB', err);
       });

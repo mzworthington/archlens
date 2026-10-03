@@ -642,6 +642,27 @@ nodes: []`);
       useBlueprintStore.setState({ saveSchema: originalSaveSchema });
     });
 
+    it('finishes the pending-change check before a workspace save resolves', async () => {
+      const store = useBlueprintStore.getState();
+      await store.openWorkspaceDirectory();
+
+      const spyWrite = vi.spyOn(store.workspacePort, 'writeFile');
+      spyWrite.mockResolvedValue(true);
+
+      let pendingSettled = false;
+      useBlueprintStore.setState({
+        checkPendingChanges: async () => {
+          await new Promise(resolve => setTimeout(resolve, 20));
+          pendingSettled = true;
+        },
+      });
+
+      const success = await useBlueprintStore.getState().saveActiveDiagram();
+      expect(success).toBe(true);
+      expect(pendingSettled).toBe(true);
+      spyWrite.mockRestore();
+    });
+
     it('should write to file successfully when workspace is open', async () => {
       const store = useBlueprintStore.getState();
       await store.openWorkspaceDirectory();

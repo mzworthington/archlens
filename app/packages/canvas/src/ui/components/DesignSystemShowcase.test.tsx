@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 import { DesignSystemShowcase } from './DesignSystemShowcase';
@@ -14,6 +14,22 @@ function renderShowcase() {
 }
 
 describe('DesignSystemShowcase Component', () => {
+  it('does not mark a token copied when the clipboard rejects the write', async () => {
+    const writeText = vi.fn().mockRejectedValue(new Error('denied'));
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+
+    renderShowcase();
+    const sidebar = screen.getByRole('complementary', { name: 'Design system sections' });
+    fireEvent.click(within(sidebar).getByRole('button', { name: /Design tokens/i }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'Copy' })[0]);
+
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(screen.queryByText('Copied')).not.toBeInTheDocument();
+  });
+
   it('renders title and navigation', () => {
     renderShowcase();
 

@@ -27,9 +27,13 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    void navigator.clipboard.writeText(text).then(
+      () => {
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 2000);
+      },
+      () => undefined
+    );
   };
 
   const handleDownload = (content: string, filename: string, mimeType: string) => {

@@ -24,4 +24,12 @@ import romini.composition.dashboard.shared as dashboard_shared
       'romini.composition.dashboard.shared',
     ]);
   });
+
+  it('keeps each module when one import line lists several aliases', () => {
+    expect(extractPythonImports('import os, sys as system, pathlib as path\n')).toEqual([
+      'os',
+      'sys',
+      'pathlib',
+    ]);
+  });
 });
