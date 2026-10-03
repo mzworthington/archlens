@@ -190,6 +190,8 @@ export type CollabParticipant = {
   name: string;
   color: string;
   isLocal: boolean;
+  /** Present on the local participant. Stable across refresh. */
+  authorKey?: string;
 };
 
 /** Remote pointer in flow coordinates. Local cursor is never included. */

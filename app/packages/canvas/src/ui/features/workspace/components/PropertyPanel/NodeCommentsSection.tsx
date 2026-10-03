@@ -5,6 +5,7 @@ type NodeCommentsSectionProps = {
   nodeEntityRef: string;
   comments: NodeComment[];
   localClientId: number | null;
+  localAuthorKey: string | null;
   onAdd: (input: { nodeEntityRef: string; body: string }) => void;
   onResolve: (id: string) => void;
   onDelete: (id: string) => void;
@@ -14,6 +15,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
   nodeEntityRef,
   comments,
   localClientId,
+  localAuthorKey,
   onAdd,
   onResolve,
   onDelete,
@@ -38,7 +40,9 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
 
       <ul className="space-y-3 mb-3" aria-label="Open thread">
         {open.map(comment => {
-          const mine = localClientId !== null && comment.authorClientId === localClientId;
+          const mine = comment.authorKey
+            ? localAuthorKey !== null && comment.authorKey === localAuthorKey
+            : localClientId !== null && comment.authorClientId === localClientId;
           return (
             <li
               key={comment.id}

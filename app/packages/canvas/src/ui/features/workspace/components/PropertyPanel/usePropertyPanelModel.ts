@@ -189,6 +189,10 @@ export function usePropertyPanelModel() {
     setResilienceSafeguard(selectedNode.entityRef, key, enabled);
   };
 
+  const localCollabParticipant = collabPresence.participants.find(
+    participant => participant.isLocal
+  );
+
   return {
     schema,
     selectedNodeId,
@@ -254,7 +258,8 @@ export function usePropertyPanelModel() {
     handleSafeguardChange,
     collabRoomActive: collabRoomActive || collabPresence.connectedCount > 0,
     collabComments,
-    localCollabClientId: collabPresence.participants.find(p => p.isLocal)?.clientId ?? null,
+    localCollabClientId: localCollabParticipant?.clientId ?? null,
+    localCollabAuthorKey: localCollabParticipant?.authorKey ?? null,
     addCollabComment,
     resolveCollabComment,
     deleteCollabComment,

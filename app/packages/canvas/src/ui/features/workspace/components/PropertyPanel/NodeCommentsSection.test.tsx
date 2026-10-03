@@ -21,6 +21,7 @@ describe('NodeCommentsSection', () => {
         nodeEntityRef="shop/api"
         comments={[openComment({ body: '<img alt="xss">bold</img>' })]}
         localClientId={7}
+        localAuthorKey={null}
         onAdd={vi.fn()}
         onResolve={vi.fn()}
         onDelete={vi.fn()}
@@ -42,6 +43,7 @@ describe('NodeCommentsSection', () => {
         nodeEntityRef="shop/api"
         comments={[openComment()]}
         localClientId={7}
+        localAuthorKey={null}
         onAdd={onAdd}
         onResolve={onResolve}
         onDelete={onDelete}

@@ -42,6 +42,15 @@ function readCursor(value: unknown): { x: number; y: number } | null {
   return { x: cursor.x, y: cursor.y };
 }
 
+function readAuthorKey(value: unknown): string | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  const key = (value as { authorKey?: unknown }).authorKey;
+  if (typeof key !== 'string') return undefined;
+  const trimmed = key.trim();
+  if (trimmed.length < 1 || trimmed.length > 80) return undefined;
+  return trimmed;
+}
+
 function readNamedState(value: unknown): { name: string; color: string } | null {
   if (!value || typeof value !== 'object') return null;
   const state = value as { name?: unknown; color?: unknown };
@@ -65,11 +74,13 @@ export function presenceFromAwarenessStates(
     if (!named) continue;
     connectedCount += 1;
     const isLocal = clientId === localClientId;
+    const authorKey = isLocal ? readAuthorKey(raw) : undefined;
     participants.push({
       clientId,
       name: named.name,
       color: named.color,
       isLocal,
+      ...(authorKey ? { authorKey } : {}),
     });
     if (isLocal) continue;
     const cursor = readCursor(

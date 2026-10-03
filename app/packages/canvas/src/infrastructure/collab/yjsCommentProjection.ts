@@ -18,6 +18,7 @@ function writeCommentFields(target: Y.Map<unknown>, comment: NodeComment): void 
   target.set('nodeEntityRef', comment.nodeEntityRef);
   target.set('authorName', comment.authorName);
   target.set('authorClientId', comment.authorClientId);
+  if (comment.authorKey) target.set('authorKey', comment.authorKey);
   target.set('body', comment.body);
   target.set('createdAtMs', comment.createdAtMs);
   target.set('status', comment.status);

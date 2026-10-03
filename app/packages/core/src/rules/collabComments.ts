@@ -5,6 +5,8 @@ export type NodeComment = {
   nodeEntityRef: string;
   authorName: string;
   authorClientId: number;
+  /** Stable across refresh. Absent on comments written before author keys existed. */
+  authorKey?: string;
   body: string;
   createdAtMs: number;
   status: NodeCommentStatus;
@@ -22,21 +24,31 @@ export function emptyCommentDocument(): CollabCommentDocument {
   return { comments: {} };
 }
 
+function commentAuthorKey(raw: unknown): string | undefined {
+  if (typeof raw !== 'string') return undefined;
+  const key = raw.trim();
+  if (key.length < 1 || key.length > 80) return undefined;
+  return key;
+}
+
 export function createNodeComment(input: {
   id: string;
   nodeEntityRef: string;
   authorName: string;
   authorClientId: number;
+  authorKey?: string;
   body: string;
   createdAtMs: number;
 }): NodeComment | null {
   const body = commentBodyAsText(input.body);
   if (!body) return null;
+  const authorKey = commentAuthorKey(input.authorKey);
   return {
     id: input.id,
     nodeEntityRef: input.nodeEntityRef,
     authorName: input.authorName,
     authorClientId: input.authorClientId,
+    ...(authorKey ? { authorKey } : {}),
     body,
     createdAtMs: input.createdAtMs,
     status: 'open',
@@ -103,11 +115,13 @@ export function parseNodeComment(raw: unknown): NodeComment | null {
   if (typeof rec.status !== 'string' || !COMMENT_STATUSES.has(rec.status as NodeCommentStatus)) {
     return null;
   }
+  const authorKey = commentAuthorKey(rec.authorKey);
   return createNodeComment({
     id: rec.id,
     nodeEntityRef: rec.nodeEntityRef,
     authorName: rec.authorName,
     authorClientId: rec.authorClientId,
+    authorKey,
     body: rec.body,
     createdAtMs: rec.createdAtMs,
   })
@@ -116,6 +130,7 @@ export function parseNodeComment(raw: unknown): NodeComment | null {
         nodeEntityRef: rec.nodeEntityRef,
         authorName: rec.authorName,
         authorClientId: rec.authorClientId,
+        ...(authorKey ? { authorKey } : {}),
         body: commentBodyAsText(rec.body),
         createdAtMs: rec.createdAtMs,
         status: rec.status as NodeCommentStatus,

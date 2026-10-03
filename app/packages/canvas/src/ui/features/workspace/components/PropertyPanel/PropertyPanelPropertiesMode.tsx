@@ -87,6 +87,7 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
           collabRoomActive={model.collabRoomActive}
           collabComments={model.collabComments}
           localCollabClientId={model.localCollabClientId}
+          localCollabAuthorKey={model.localCollabAuthorKey}
           addCollabComment={model.addCollabComment}
           resolveCollabComment={model.resolveCollabComment}
           deleteCollabComment={model.deleteCollabComment}
@@ -99,6 +100,7 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
               nodeEntityRef={model.entityRefValue}
               comments={model.collabComments}
               localClientId={model.localCollabClientId}
+              localAuthorKey={model.localCollabAuthorKey}
               onAdd={model.addCollabComment}
               onResolve={model.resolveCollabComment}
               onDelete={model.deleteCollabComment}

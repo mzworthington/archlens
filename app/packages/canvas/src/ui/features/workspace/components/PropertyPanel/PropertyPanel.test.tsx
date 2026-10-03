@@ -211,6 +211,37 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
   });
 
+  it('keeps resolve and delete when the client id changes but the author key matches', () => {
+    useBlueprintStore.setState({
+      selectedNodeId: 'gateway-api',
+      collabRoomActive: true,
+      collabPresence: {
+        connectedCount: 1,
+        cursors: [],
+        participants: [
+          { clientId: 4, name: 'Ada', color: '#38bdf8', isLocal: true, authorKey: 'ada-stable' },
+        ],
+      },
+      collabComments: [
+        {
+          id: 'c1',
+          nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
+          authorName: 'Ada',
+          authorClientId: 99,
+          authorKey: 'ada-stable',
+          body: 'still mine',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+    });
+
+    render(<PropertyPanel />);
+
+    expect(screen.getByRole('button', { name: 'Resolve comment' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Delete comment' })).toBeInTheDocument();
+  });
+
   it('should display node attributes editor when a node is selected', () => {
     useBlueprintStore.setState({ selectedNodeId: 'gateway-api' });
 

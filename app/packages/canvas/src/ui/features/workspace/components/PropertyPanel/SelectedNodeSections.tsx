@@ -32,6 +32,7 @@ type SelectedNodeSectionsProps = Pick<
   | 'collabRoomActive'
   | 'collabComments'
   | 'localCollabClientId'
+  | 'localCollabAuthorKey'
   | 'addCollabComment'
   | 'resolveCollabComment'
   | 'deleteCollabComment'
@@ -61,6 +62,7 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
   collabRoomActive,
   collabComments,
   localCollabClientId,
+  localCollabAuthorKey,
   addCollabComment,
   resolveCollabComment,
   deleteCollabComment,
@@ -91,6 +93,7 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
           nodeEntityRef={selectedNode.entityRef}
           comments={collabComments}
           localClientId={localCollabClientId}
+          localAuthorKey={localCollabAuthorKey}
           onAdd={addCollabComment}
           onResolve={resolveCollabComment}
           onDelete={deleteCollabComment}

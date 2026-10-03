@@ -263,6 +263,36 @@ describe('createYjsCollabSession', () => {
     sessionB.leave();
   });
 
+  it('does not rematerialize the schema when only a comment changes', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const schemasB: SystemSchema[] = [];
+
+    await sessionA.join({
+      roomId: 'room-comment-schema',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-comment-schema',
+      seedSchema: seed,
+      displayName: 'Grace',
+      onSchema: schema => schemasB.push(schema),
+      onPresence: () => {},
+    });
+
+    const before = schemasB.length;
+    sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'needs a gateway' });
+
+    expect(schemasB).toHaveLength(before);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
   it('clears an open comment for peers after resolve or delete', async () => {
     const [transportA, transportB] = createLinkedTransports();
     const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
@@ -302,6 +332,102 @@ describe('createYjsCollabSession', () => {
 
     sessionA.leave();
     sessionB.leave();
+  });
+
+  it('lets the same author resolve a comment after the Yjs client id changes', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const authorKeyStore = {
+      current: 'ada-stable',
+      get() {
+        return this.current;
+      },
+      set(value: string) {
+        this.current = value;
+      },
+    };
+    const sessionA = createYjsCollabSession({
+      transport: transportA,
+      syncWaitMs: 0,
+      authorKeyStore,
+    });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsB: NodeComment[][] = [];
+
+    await sessionA.join({
+      roomId: 'room-rejoin',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-rejoin',
+      seedSchema: seed,
+      displayName: 'Grace',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'keep me' });
+    const posted = (commentsB.at(-1) ?? []).find(comment => comment.body === 'keep me');
+    expect(posted).toBeTruthy();
+
+    sessionB.resolveComment(posted!.id);
+    expect((commentsB.at(-1) ?? []).some(comment => comment.status === 'open')).toBe(true);
+
+    sessionA.leave();
+    const rejoined = createYjsCollabSession({
+      transport: transportA,
+      syncWaitMs: 0,
+      authorKeyStore,
+    });
+    await rejoined.join({
+      roomId: 'room-rejoin',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+
+    rejoined.resolveComment(posted!.id);
+    expect((commentsB.at(-1) ?? []).filter(comment => comment.status === 'open')).toEqual([]);
+
+    rejoined.leave();
+    sessionB.leave();
+  });
+
+  it('publishes the stable author key on local presence', async () => {
+    const [transportA] = createLinkedTransports();
+    const authorKeyStore = {
+      current: 'ada-stable',
+      get() {
+        return this.current;
+      },
+      set(value: string) {
+        this.current = value;
+      },
+    };
+    const session = createYjsCollabSession({
+      transport: transportA,
+      syncWaitMs: 0,
+      authorKeyStore,
+    });
+    const presence: CollabPresence[] = [];
+
+    await session.join({
+      roomId: 'room-author-key',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: next => presence.push(next),
+    });
+
+    expect(presence.at(-1)?.participants.find(participant => participant.isLocal)?.authorKey).toBe(
+      'ada-stable'
+    );
+
+    session.leave();
   });
 
   it('does not join without a display name', async () => {
