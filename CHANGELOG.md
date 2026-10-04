@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-03
+
+### 🚀 Features
+
+- _(canvas)_ Opt in to a sandboxed in-tab scan (MZW-47)
+- _(canvas)_ Score in-tab scan complexity from the syntax tree (MZW-47)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Clear default-profile Sonar promise and regex issues
+- _(canvas)_ Keep node comment authorship across reconnect (MZW-50)
+
+## 2026-10-01
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Apply Dependabot bumps and patch open advisories
+- _(deps)_ Raise transitive pins past the remaining advisories
+
 ## 2026-09-22
 
 ### 🧰 Maintenance & Dependencies

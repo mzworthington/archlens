@@ -681,6 +681,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ loads the diagram and navigates to workspace on success
 - ✅ rejects single-member boundaries
 
+### applyStateUpdates
+
+#### applyStateUpdates
+
+- ✅ logs a pending-change failure from the working-copy sync
+
 ### BlankCanvasFileSave
 
 #### BlankCanvasFileSave
@@ -1135,6 +1141,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ classifies a frequently changed complex file as a hotspot
 - ✅ still counts loc when git history is empty so the map matches a gitless CLI scan
+- ✅ scores an in-tab scan from the syntax tree and leaves keyword counts on the lite scan
 
 ### compareOffenders
 
@@ -1275,6 +1282,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### DesignSystemShowcase Component
 
+- ✅ does not mark a token copied when the clipboard rejects the write
 - ✅ renders title and navigation
 - ✅ supports switching tabs
 - ✅ documents product marketing patterns on the components tab
@@ -1472,6 +1480,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### extractPythonImports
 
 - ✅ extracts absolute and relative module specifiers from import lines
+- ✅ keeps each module when one import line lists several aliases
 
 ### extractTsImports
 
@@ -1685,6 +1694,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ emits sha and buildId for live smoke checks
 
+### inTabCliSandbox
+
+#### createInTabCliSandbox
+
+- ✅ stops the session by aborting, terminating the worker, and dropping held source files
+
 ### ioState
 
 #### ioState Actions & State Management
@@ -1692,6 +1707,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should open workspace, read blueprint.yaml and mark workspace as open
 - ✅ runs browser repo scan from a mocked source directory and opens generated blueprints
 - ✅ attaches TraceLens git hotspots when the picked folder has git history
+- ✅ attaches TraceLens git hotspots when an in-tab CLI scan finishes
 - ✅ cancels an in-flight browser lite scan without opening a workspace
 - ✅ recovers when ZIP pick is cancelled after folder pick is unavailable
 - ✅ runs browser repo scan from a ZIP and opens generated blueprints
@@ -1730,6 +1746,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should delegate to saveSchema when workspace is not open
 - ✅ should delegate to saveSchema for bundled sample workspaces
+- ✅ finishes the pending-change check before a workspace save resolves
 - ✅ should write to file successfully when workspace is open
 - ✅ should return false if writeFile fails or throws when workspace is open
 
@@ -1887,6 +1904,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ fetches latest schema and renders pretty JSON
 - ✅ shows an error when the channel is invalid
 - ✅ shows an error when fetch fails
+
+### MarkdownView
+
+#### MarkdownView
+
+- ✅ shows a failure when the markdown libraries do not load
 
 ### materializeCouplingGhost
 
@@ -2067,6 +2090,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows a labelled comment thread on the diagram when a live room is active and no node is selected
 - ✅ shows a labelled comment thread only while a live room is active
 - ✅ shows the comment thread from live presence when the room-active flag lags
+- ✅ keeps resolve and delete when the client id changes but the author key matches
 - ✅ should display node attributes editor when a node is selected
 - ✅ should rename node and metadata attributes when edited in node details
 - ✅ should allow adding custom metadata attributes to the component
@@ -2292,6 +2316,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### runBrowserAnalysisWorker
 
 - ✅ resolves with the worker result and terminates the worker
+- ✅ asks the worker to score complexity from the syntax tree
 - ✅ forwards worker log records to the caller logger
 - ✅ cancels the worker when the scan is aborted
 - ✅ rejects when the worker reports a failure
@@ -2767,6 +2792,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens
 - ✅ shows live scan progress and keeps cancel reachable while other actions are disabled
+- ✅ shows that an in-tab CLI session is experimental, sandboxed, and may be slow when it starts
+- ✅ keeps lite scan and CLI install after an in-tab CLI failure is dismissed
+- ✅ stops the in-tab CLI session from the notice
 - ✅ gives every chooser control an accessible name
 
 ### workspaceOpenSession
@@ -2848,7 +2876,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ broadcasts named cursors and connected count to the other session
 - ✅ does not seed the diagram when the Worker never admits the socket
 - ✅ broadcasts a node comment to the other session without changing the schema
+- ✅ does not rematerialize the schema when only a comment changes
 - ✅ clears an open comment for peers after resolve or delete
+- ✅ lets the same author resolve a comment after the Yjs client id changes
+- ✅ publishes the stable author key on local presence
 - ✅ does not join without a display name
 
 ### yjsSchemaProjection
@@ -3150,6 +3181,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ parses v-prefixed tags
 - ✅ compares patch versions
 - ✅ detects newer versions
+
+### settleCliRun
+
+#### settleCliRun
+
+- ✅ records a failing CLI run on the process exit code
 
 ### sourceFileLister
 
