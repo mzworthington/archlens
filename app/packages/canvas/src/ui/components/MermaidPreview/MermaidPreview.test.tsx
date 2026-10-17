@@ -17,6 +17,25 @@ describe('MermaidPreview Component', () => {
     vi.clearAllMocks();
   });
 
+  it('initializes mermaid in strict mode so imported diagram HTML is sanitized', async () => {
+    vi.resetModules();
+    const { default: mermaidClient } = await import('mermaid');
+    const { MermaidPreview: Preview } = await import('./MermaidPreview');
+    vi.mocked(mermaidClient.render).mockResolvedValue({
+      svg: '<svg data-testid="mock-svg">Mock SVG</svg>',
+      diagramType: 'flowchart',
+    });
+
+    render(<Preview code="graph TD; A-->B;" />);
+
+    await waitFor(() => {
+      expect(mermaidClient.initialize).toHaveBeenCalled();
+    });
+    expect(vi.mocked(mermaidClient.initialize).mock.calls.at(-1)?.[0]).toMatchObject({
+      securityLevel: 'strict',
+    });
+  });
+
   it('renders loading state initially then displays rendered SVG', async () => {
     let resolveRender: (val: MermaidRenderResult) => void = () => {};
     const renderPromise = new Promise<MermaidRenderResult>(resolve => {
