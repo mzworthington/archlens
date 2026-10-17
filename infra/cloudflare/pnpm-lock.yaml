@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  http-cache-semantics: '>=4.3.0'
   undici@6: 6.28.1
   brace-expansion@5: 5.0.12
   '@grpc/grpc-js': 1.14.5
@@ -15,15 +16,15 @@ importers:
   .:
     dependencies:
       '@pulumi/cloudflare':
-        specifier: ^6.21.0
-        version: 6.21.0(typescript@6.0.3)
+        specifier: ^6.22.0
+        version: 6.22.1(typescript@6.0.3)
       '@pulumi/pulumi':
-        specifier: ^3.264.0
-        version: 3.266.0(typescript@6.0.3)
+        specifier: ^3.268.0
+        version: 3.270.0(typescript@6.0.3)
     devDependencies:
       '@types/node':
-        specifier: ^26.6.1
-        version: 26.6.2
+        specifier: ^26.6.4
+        version: 26.6.5
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -262,11 +263,11 @@ packages:
   '@protobufjs/utf8@1.1.2':
     resolution: {integrity: sha512-b1UQwcEZ4yCnMCD8DAL1VlbvBJE9/IX4FTIp7BG1xYpf29SLazLSrqUkj4w7Y5y7cCVP6E5tcqqcI0xemPkHug==}
 
-  '@pulumi/cloudflare@6.21.0':
-    resolution: {integrity: sha512-IW8oBur+LcdXt2/Gv29P8TNxI7ILL+ZC2LKo8QtDcmCjQL5KFuR1A9rh0OxGEn08zPWxpMfHT6o1wZ5s0q3DIw==}
+  '@pulumi/cloudflare@6.22.1':
+    resolution: {integrity: sha512-ZpfS7qct6+1vSRXcuCqnNWwsm+EVGxo+JVJW/s4+6x3xCv5EhG/s/mIj2QWPew93aFSiN3GXu14P5GF7GejCeQ==}
 
-  '@pulumi/pulumi@3.263.0':
-    resolution: {integrity: sha512-ZIWdlwKCSRFkUxRmISu3FT7db7Ac+Hfjh1ta3cyau+QupneuzZ+OFzezM6Var9PeNRaHNyWtSPg7Qjq8CHNzww==}
+  '@pulumi/pulumi@3.266.0':
+    resolution: {integrity: sha512-aM1TzVKR0XkqcvEVT4ewZY6m6c/UHyj0JLy9OuTLzGjLl+OBzrFfS0XM3kEW1RGDG9aEboyTyVrk8Tzs4OLmPA==}
     engines: {node: '>=22'}
     peerDependencies:
       ts-node: '>= 7.0.1 < 12'
@@ -277,8 +278,8 @@ packages:
       typescript:
         optional: true
 
-  '@pulumi/pulumi@3.266.0':
-    resolution: {integrity: sha512-aM1TzVKR0XkqcvEVT4ewZY6m6c/UHyj0JLy9OuTLzGjLl+OBzrFfS0XM3kEW1RGDG9aEboyTyVrk8Tzs4OLmPA==}
+  '@pulumi/pulumi@3.270.0':
+    resolution: {integrity: sha512-k2GSGtoP2yrkIe4r+1YvyKL6k7mM6SYnySv6tSzGrv/oTY7WemEmvNEvn7Qd/JbkCMmYeBhWULDS5qB9qpvgkg==}
     engines: {node: '>=22'}
     peerDependencies:
       ts-node: '>= 7.0.1 < 12'
@@ -326,6 +327,9 @@ packages:
 
   '@types/node@26.6.2':
     resolution: {integrity: sha512-X1P21scMv4zGKLYqjdGjaKa7COa0RKVYYZZN/NfvLQ1JegxFhdhpZG/Lyn8AXx6CDUavKAd11v6BvfpkDByK8g==}
+
+  '@types/node@26.6.5':
+    resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
 
   '@types/semver@7.8.0':
     resolution: {integrity: sha512-1mAINjtQCXXeLkJ9ehXkwOcBpqtLxiVtKhpUf83DdRNdQKV0iXZpaHYqRr7nj+wvxuJzoAmAwXI+sCNMv1CzLQ==}
@@ -476,8 +480,8 @@ packages:
     resolution: {integrity: sha512-Hc+ghLoSt6QaYZUv0WBiIvmMDZuZZ7oaDvdH8MbfOO4lOsxdXLEvuC6ePoGs9H1X9oCLyq6+NVN0MKqD+ydxyg==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  http-cache-semantics@4.2.0:
-    resolution: {integrity: sha512-dTxcvPXqPvXBQpq5dUr6mEMJX4oIEFv6bwom3FDwKRDsuIjjJGANqhBuoAn9c1RQJIdAKav33ED65E2ys+87QQ==}
+  http-cache-semantics@4.3.0:
+    resolution: {integrity: sha512-M5t5LlJpS1UHMjvwRQVdFHvPISGeLAxNcrWuJkeGh0KxsqCHZ1O3NXZU/8x7cD0BDcGW8kapxMKTvwlqrNkHkA==}
 
   http-proxy-agent@7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
@@ -1196,15 +1200,15 @@ snapshots:
 
   '@protobufjs/utf8@1.1.2': {}
 
-  '@pulumi/cloudflare@6.21.0(typescript@6.0.3)':
+  '@pulumi/cloudflare@6.22.1(typescript@6.0.3)':
     dependencies:
-      '@pulumi/pulumi': 3.263.0(typescript@6.0.3)
+      '@pulumi/pulumi': 3.266.0(typescript@6.0.3)
     transitivePeerDependencies:
       - supports-color
       - ts-node
       - typescript
 
-  '@pulumi/pulumi@3.263.0(typescript@6.0.3)':
+  '@pulumi/pulumi@3.266.0(typescript@6.0.3)':
     dependencies:
       '@grpc/grpc-js': 1.14.5
       '@logdna/tail-file': 2.2.0
@@ -1236,7 +1240,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@pulumi/pulumi@3.266.0(typescript@6.0.3)':
+  '@pulumi/pulumi@3.270.0(typescript@6.0.3)':
     dependencies:
       '@grpc/grpc-js': 1.14.5
       '@logdna/tail-file': 2.2.0
@@ -1310,6 +1314,10 @@ snapshots:
   '@types/google-protobuf@3.15.12': {}
 
   '@types/node@26.6.2':
+    dependencies:
+      undici-types: 8.9.0
+
+  '@types/node@26.6.5':
     dependencies:
       undici-types: 8.9.0
 
@@ -1442,7 +1450,7 @@ snapshots:
     dependencies:
       lru-cache: 11.5.2
 
-  http-cache-semantics@4.2.0: {}
+  http-cache-semantics@4.3.0: {}
 
   http-proxy-agent@7.0.2:
     dependencies:
@@ -1517,7 +1525,7 @@ snapshots:
       '@npmcli/agent': 4.0.2
       '@npmcli/redact': 4.0.0
       cacache: 20.0.4
-      http-cache-semantics: 4.2.0
+      http-cache-semantics: 4.3.0
       minipass: 7.1.3
       minipass-fetch: 5.0.2
       minipass-flush: 1.0.7
