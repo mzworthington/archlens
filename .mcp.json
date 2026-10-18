@@ -11,6 +11,13 @@
         "KIT_ROOT": "${userHome}/.agents"
       }
     },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
     "github": {
       "command": "npx",
       "args": [
@@ -33,12 +40,11 @@
         "MEMORY_FILE_PATH": "${userHome}/.agents/sync/mcp-memory.jsonl"
       }
     },
-    "sonarqube": {
-      "url": "https://api.sonarcloud.io/mcp",
-      "headers": {
-        "Authorization": "Bearer ${env:SONARQUBE_TOKEN}",
-        "SONARQUBE_ORG": "${env:SONARQUBE_ORG}"
-      }
+    "linear": {
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "build-monitor": {
+      "url": "https://monitor.mzworthington.co.uk/mcp"
     }
   }
 }

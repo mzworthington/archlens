@@ -35,6 +35,6 @@ For non-trivial feature work, before coding: inventory tests (functional + XFN),
 
 Declared in `mise.toml` (node, bun, pnpm, go). Cloud: `.cursor/environment.json` → `bin/setup-dev-env.sh`. Details: [docs/setup.md](docs/setup.md).
 
-MCP: kit `default` in `.cursor/mcp.json`. Do not stack Cloudflare onto that file. For live CF work, compose `wk mcp cloudflare-ops --project` for that session, then restore `wk mcp default --project`.
+MCP: kit `default` in `.cursor/mcp.json`, including the public build monitor at `https://monitor.mzworthington.co.uk/mcp`. Do not stack Cloudflare onto that file. For live CF work, compose `wk mcp cloudflare-ops --project` for that session, then restore `wk mcp default --project`.
 
 Before handover: `agent-pre-commit` when `.husky/pre-commit` exists. If you touched `app/packages/canvas` or tests under `src/`, also `cd app && pnpm typecheck && pnpm build`.
