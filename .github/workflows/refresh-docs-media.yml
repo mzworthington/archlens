@@ -86,5 +86,6 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DOCS_MEDIA_PUBLISH: ${{ vars.DOCS_MEDIA_PUBLISH }}
+          # Bucket exists. Publish unless the variable is explicitly false.
+          DOCS_MEDIA_PUBLISH: ${{ vars.DOCS_MEDIA_PUBLISH == 'false' && 'false' || 'true' }}
         run: bin/publish-docs-media.sh

@@ -32,7 +32,7 @@ ArchLens Canvas is a **single-page app** served from `app/packages/canvas/`:
 - **Vite** for dev server, production bundle and syncing repo assets into `public/` at build time:
   - `blueprints/` → `/bundled-blueprints/*` (sandbox demo workspace)
   - `schemas/` → `/schemas/*` (public JSON Schema for BlueprintSpec and ChaosSpec)
-  - `docs/screenshots/` → `/docs-assets/*` (GIFs stay here until `VITE_DOCS_MEDIA_BASE_URL` points at `media.archlens.dev`)
+  - `docs/screenshots/` → `/docs-assets/*` (production builds serve GIFs from `media.archlens.dev` instead)
 - **Tailwind CSS 4** (`@tailwindcss/vite`) for styling.
 - **Zustand** store split into `uiState`, `diagramState`, `ioState` and `resilienceState`.
 - **React Flow** for the interactive canvas; **dagre**, **ELK** and **d3-hierarchy** for layout.
