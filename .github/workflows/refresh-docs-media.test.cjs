@@ -38,14 +38,23 @@ describe('Refresh docs & media workflow', () => {
     assert.deepEqual(shaPins, [], 'third-party actions must use @vN, not a commit SHA');
   });
 
-  it('publishes guide GIFs only when DOCS_MEDIA_PUBLISH is set, and rejects oversized Pages files', () => {
+  it('publishes guide GIFs unless DOCS_MEDIA_PUBLISH is false, and rejects oversized Pages files', () => {
     const workflowDir = __dirname;
     const repoRoot = path.join(workflowDir, '..', '..');
     const refresh = fs.readFileSync(path.join(workflowDir, 'refresh-docs-media.yml'), 'utf8');
     const ci = fs.readFileSync(path.join(workflowDir, 'ci.yml'), 'utf8');
     assert.match(refresh, /bin\/publish-docs-media\.sh/);
-    assert.match(refresh, /DOCS_MEDIA_PUBLISH: \$\{\{ vars\.DOCS_MEDIA_PUBLISH \}\}/);
+    assert.match(
+      refresh,
+      /DOCS_MEDIA_PUBLISH: \$\{\{ vars\.DOCS_MEDIA_PUBLISH == 'false' && 'false' \|\| 'true' \}\}/
+    );
     assert.match(ci, /bin\/check-pages-file-size\.sh app\/packages\/canvas\/dist 24/);
+    assert.match(ci, /bin\/publish-docs-media\.sh/);
+    assert.match(ci, /needs: \[build, e2e, publish-docs-media\]/);
+    assert.match(
+      ci,
+      /VITE_DOCS_MEDIA_BASE_URL: \$\{\{ github\.ref == 'refs\/heads\/main' && 'https:\/\/media\.archlens\.dev\/guides' \|\| '' \}\}/
+    );
     assert.match(
       fs.readFileSync(path.join(repoRoot, 'bin/publish-docs-media.sh'), 'utf8'),
       /DOCS_MEDIA_PUBLISH/
