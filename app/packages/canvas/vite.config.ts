@@ -196,6 +196,7 @@ export default defineConfig({
   },
   test: {
     name: 'canvas',
+    ...(process.env.CI ? { maxWorkers: '100%' as const } : {}),
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
     exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
