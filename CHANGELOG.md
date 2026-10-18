@@ -1,5 +1,32 @@
 # Changelog
 
+## 2026-10-18
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Patch source-map-js indexed source-map denial of service
+- _(test)_ Give file vitest projects the same CI worker budget
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-security group across 1 directory with 2 updates
+- _(deps)_ Bump mermaid from 11.17.2 to 12.2.0 in /app
+- Update screenshot assets with new versions
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 22 updates
+
+## 2026-10-17
+
+### 🐛 Bug Fixes
+
+- Security posture for mermaid
+- _(deps)_ Land open dependency updates and patched advisories
+
+### 🧰 Maintenance & Dependencies
+
+- Keep Dependabot lockfile updates with the manifest
+- _(deps-dev)_ Bump vite-plugin-pwa from 1.3.0 to 2.0.0 in /app
+- _(deps)_ Bump actions/setup-go from 6 to 7 in the actions group
+
 ## 2026-10-03
 
 ### 🚀 Features

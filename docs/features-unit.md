@@ -1928,6 +1928,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### MermaidPreview Component
 
+- ✅ initializes mermaid in strict mode so imported diagram HTML is sanitized
 - ✅ renders loading state initially then displays rendered SVG
 - ✅ displays visualization error when render fails
 - ✅ opens and closes expanded portal view
@@ -4876,5 +4877,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ nests output as Package → File → describe
 - ✅ embeds into an existing file between placeholders
 - ✅ marks failed and skipped tests with the correct icons
+
+### vitestWorkspaceWorkers
+
+#### vitest workspace worker budget
+
+- ✅ gives file projects the same CI maxWorkers as the workspace root
 
 <!-- vitest-feature-reporter--end -->
