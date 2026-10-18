@@ -204,7 +204,7 @@ export function createWebsocketCollabTransport(
         reconnectTimer = setTimeoutFn(() => {
           reconnectTimer = null;
           openSocket();
-        }, delay);
+        }, delay) as ReturnType<typeof setTimeout>;
       };
 
       const openSocket = () => {
