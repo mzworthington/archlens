@@ -14,6 +14,8 @@ Pages project, custom domains, catalog R2 and the collab Worker hostname for [ar
 | `R2Bucket`                              | Published blueprint catalog corpus (`archlens-blueprint-catalog`)   |
 | `R2BucketCors`                          | Browser GET/HEAD from `archlens.dev` and local dev                  |
 | `R2CustomDomain`                        | Public read at `blueprints.archlens.dev`                            |
+| `R2Bucket` (`docs-media`)               | Guide GIFs (`archlens-docs-media`), separate from the catalog       |
+| `R2CustomDomain` (`docs-media`)         | Public read at `media.archlens.dev`                                 |
 | `WorkersCustomDomain`                   | `collab.archlens.dev` → Worker `archlens-collab` (DNS + cert)       |
 
 Collab **script** content is not updated by Pulumi. CI job `deploy-collab` runs `pnpm --filter @archlens/collab run deploy` on `main`. Custom domains need that deployment before the first attach — if Pulumi apply races ahead, re-run **Pulumi Cloudflare** after the Worker job is green.
@@ -26,6 +28,8 @@ pulumi import 'cloudflare:index/observatoryScheduledTest:ObservatoryScheduledTes
 ```
 
 Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
+
+Guide GIFs are a separate bucket so they do not share the catalog contract or cache. After this stack is applied, set the GitHub repository variable `DOCS_MEDIA_PUBLISH` to `true`. The **Refresh docs & media** workflow then uploads `docs/screenshots/*.gif` to `guides/<name>.gif` on `media.archlens.dev`. The SPA keeps serving those files from Pages until the production build sets `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides`.
 
 ## Quick setup
 

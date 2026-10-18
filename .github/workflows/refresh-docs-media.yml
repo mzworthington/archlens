@@ -81,3 +81,10 @@ jobs:
 
       - name: Refresh docs & media
         run: bin/sync-derived.sh
+
+      - name: Publish guide GIFs to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DOCS_MEDIA_PUBLISH: ${{ vars.DOCS_MEDIA_PUBLISH }}
+        run: bin/publish-docs-media.sh

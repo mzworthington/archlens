@@ -38,6 +38,20 @@ describe('Refresh docs & media workflow', () => {
     assert.deepEqual(shaPins, [], 'third-party actions must use @vN, not a commit SHA');
   });
 
+  it('publishes guide GIFs only when DOCS_MEDIA_PUBLISH is set, and rejects oversized Pages files', () => {
+    const workflowDir = __dirname;
+    const repoRoot = path.join(workflowDir, '..', '..');
+    const refresh = fs.readFileSync(path.join(workflowDir, 'refresh-docs-media.yml'), 'utf8');
+    const ci = fs.readFileSync(path.join(workflowDir, 'ci.yml'), 'utf8');
+    assert.match(refresh, /bin\/publish-docs-media\.sh/);
+    assert.match(refresh, /DOCS_MEDIA_PUBLISH: \$\{\{ vars\.DOCS_MEDIA_PUBLISH \}\}/);
+    assert.match(ci, /bin\/check-pages-file-size\.sh app\/packages\/canvas\/dist 24/);
+    assert.match(
+      fs.readFileSync(path.join(repoRoot, 'bin/publish-docs-media.sh'), 'utf8'),
+      /DOCS_MEDIA_PUBLISH/
+    );
+  });
+
   it('escapes backslash in the vhs pin so the workflow regex treats it as a literal', () => {
     const pin = '1.0\\2';
     const escaped = escapeRegExpLiteral(pin);

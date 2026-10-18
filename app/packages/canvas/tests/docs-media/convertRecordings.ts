@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
+  assertDocsGifWithinBudget,
   convertWebmToGif,
   docsGifPath,
   readRecordingTrimMarker,
@@ -45,8 +46,11 @@ export function convertAllRecordings(): void {
     }
 
     const trimBeforeSec = readRecordingTrimMarker(dir);
-    convertWebmToGif(webm, docsGifPath(demo.gif), { trimBeforeSec });
-    const sizeKb = Math.round(fs.statSync(docsGifPath(demo.gif)).size / 1024);
+    const gifPath = docsGifPath(demo.gif);
+    convertWebmToGif(webm, gifPath, { trimBeforeSec });
+    const sizeBytes = fs.statSync(gifPath).size;
+    assertDocsGifWithinBudget(gifPath, sizeBytes);
+    const sizeKb = Math.round(sizeBytes / 1024);
     console.log(`docs/screenshots/${demo.gif} (${sizeKb} KiB)`);
   }
 }

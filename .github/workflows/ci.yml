@@ -289,6 +289,9 @@ jobs:
           name: canvas-dist
           path: app/packages/canvas/dist
 
+      - name: Reject oversized Pages files
+        run: bin/check-pages-file-size.sh app/packages/canvas/dist 24
+
       - name: Deploy to Cloudflare Pages
         id: deploy_pages
         uses: cloudflare/wrangler-action@v4

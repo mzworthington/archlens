@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 import { DocsShell } from './DocsShell';
 import { GoldenJourneyTour } from './GoldenJourneyTour';
+import { docsScreenshotSrc } from './docsAssetSrc';
 
 export const JourneysPage: React.FC = () => {
   return (
@@ -40,7 +41,7 @@ export const JourneysPage: React.FC = () => {
                   className="group flex items-center gap-3 rounded-lg border border-[#00f0ff]/10 bg-[#040914]/60 p-3 transition-colors hover:border-[#00f0ff]/30"
                 >
                   <img
-                    src={`/docs-assets/screenshots/${demo.img}`}
+                    src={docsScreenshotSrc(demo.img)}
                     alt=""
                     className="h-12 w-20 rounded object-cover opacity-80 group-hover:opacity-100"
                   />

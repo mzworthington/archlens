@@ -6,6 +6,7 @@ import {
   DOCS_SIDEBAR,
   findDocsPage,
   isDocsNavActive,
+  docsScreenshotSrc,
   resolveDocsAssetSrc,
   resolveDocsHref,
 } from './pages';
@@ -187,6 +188,19 @@ describe('docs link resolution', () => {
 
   it('maps screenshot assets under /docs-assets', () => {
     expect(resolveDocsAssetSrc('./screenshots/1-panels-expanded.png', '')).toBe(
+      '/docs-assets/screenshots/1-panels-expanded.png'
+    );
+  });
+
+  it('serves guide GIFs from the docs-media host when that base is set', () => {
+    const base = 'https://media.archlens.dev/guides/';
+    expect(docsScreenshotSrc('canvas-tour.gif', base)).toBe(
+      'https://media.archlens.dev/guides/canvas-tour.gif'
+    );
+    expect(resolveDocsAssetSrc('./screenshots/chaoslens.gif', 'guide', base)).toBe(
+      'https://media.archlens.dev/guides/chaoslens.gif'
+    );
+    expect(resolveDocsAssetSrc('./screenshots/1-panels-expanded.png', '', base)).toBe(
       '/docs-assets/screenshots/1-panels-expanded.png'
     );
   });

@@ -199,7 +199,7 @@ export default defineConfig({
     ...(process.env.CI ? { maxWorkers: '100%' as const } : {}),
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
-    exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/*.spec.ts'],
     testTimeout: 15000,
     coverage: {
       provider: 'v8',
