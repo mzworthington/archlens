@@ -69,8 +69,40 @@ export function readRecordingTrimMarker(outputDir: string): number | undefined {
   }
 }
 
-/** Max GIF width for product guides (source captures are large-display 2880×1864). */
-const DOCS_GIF_WIDTH = 1920;
+/**
+ * Guide GIF width. Source captures are 2880×1864. 1280 keeps UI text readable
+ * and stays under the Cloudflare Pages 25 MiB per-file limit.
+ */
+export const DOCS_GIF_WIDTH = 1280;
+
+export const DOCS_GIF_FPS = 8;
+
+const DOCS_GIF_MAX_COLORS = 128;
+
+/** Stay under the Pages 25 MiB file cap with room for a longer recording. */
+export const DOCS_GIF_MAX_BYTES = 20 * 1024 * 1024;
+
+/**
+ * Ordered Bayer dither and a diff palette compress flat UI much better than
+ * full-frame sierra2_4a, which turns small capture noise into a new pixel every frame.
+ */
+export function docsGifFilter(width: number): string {
+  return (
+    `[0:v]fps=${DOCS_GIF_FPS},scale=${width}:-1:flags=lanczos,split[s0][s1];` +
+    `[s0]palettegen=stats_mode=diff:max_colors=${DOCS_GIF_MAX_COLORS}[p];` +
+    `[s1][p]paletteuse=dither=bayer:bayer_scale=3`
+  );
+}
+
+export function assertDocsGifWithinBudget(gifPath: string, sizeBytes: number): void {
+  if (sizeBytes <= DOCS_GIF_MAX_BYTES) return;
+  const mib = (sizeBytes / 1024 / 1024).toFixed(1);
+  const budgetMib = DOCS_GIF_MAX_BYTES / 1024 / 1024;
+  throw new Error(
+    `${gifPath} is ${mib} MiB, over the ${budgetMib} MiB guide GIF budget. ` +
+      'Cloudflare Pages rejects a single file over 25 MiB.'
+  );
+}
 
 /** Convert a Playwright WebM capture into a looping GIF for product guides. */
 export function convertWebmToGif(
@@ -84,11 +116,7 @@ export function convertWebmToGif(
   rmSync(gifPath, { force: true });
   const inputArgs =
     trimBeforeSec > 0 ? ['-ss', String(trimBeforeSec), '-i', webmPath] : ['-i', webmPath];
-  // Higher fps + 1920px lanczos + full-palette dither keeps large-display UI readable in docs.
-  const filter =
-    `[0:v]fps=10,scale=${width}:-1:flags=lanczos,split[s0][s1];` +
-    `[s0]palettegen=stats_mode=full:max_colors=256[p];` +
-    `[s1][p]paletteuse=dither=sierra2_4a`;
+  const filter = docsGifFilter(width);
   execFileSync(
     ffmpegBin(),
     ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath],
