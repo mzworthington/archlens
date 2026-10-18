@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { shouldCopyDocsAsset } from '../../vite/syncDocsAssets';
 import {
@@ -23,6 +26,11 @@ describe('guide GIF encode budget', () => {
     expect(() => assertDocsGifWithinBudget('canvas-tour.gif', DOCS_GIF_MAX_BYTES + 1)).toThrow(
       /20 MiB guide GIF budget/
     );
+  });
+
+  it('is ignored by Playwright, which collects every *.test.ts under tests/', () => {
+    const configPath = join(dirname(fileURLToPath(import.meta.url)), '../../playwright.config.ts');
+    expect(readFileSync(configPath, 'utf8')).toContain("'**/*.test.ts'");
   });
 
   it('leaves GIFs out of the Pages dist once the media host is configured', () => {
