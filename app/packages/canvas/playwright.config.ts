@@ -2,7 +2,12 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  testIgnore: ['**/e2e-remote-catalog.spec.ts', '**/docs-media/**'],
+  testIgnore: [
+    '**/e2e-remote-catalog.spec.ts',
+    '**/docs-media/**',
+    // Vitest helpers live under tests/ and match Playwright's default *.test.ts pattern.
+    '**/*.test.ts',
+  ],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
