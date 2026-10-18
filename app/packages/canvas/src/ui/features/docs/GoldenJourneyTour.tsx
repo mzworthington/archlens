@@ -10,6 +10,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { docsScreenshotSrc } from './docsAssetSrc';
 
 const CHECKOUT_API_REF = 'samples/golden-journey/checkout-platform/checkout-api';
 const WORKSPACE_ESTATE = '/workspace/samples/golden-journey';
@@ -208,7 +209,7 @@ export const GoldenJourneyTour: React.FC = () => {
 
       <div className="mb-8 overflow-hidden rounded-xl border border-[#00f0ff]/10 bg-[#061125]/40">
         <img
-          src="/docs-assets/screenshots/golden-journey.gif"
+          src={docsScreenshotSrc('golden-journey.gif')}
           alt="Golden journey estate: Payment Gateway outage across product group boundaries"
           className="w-full"
           onError={e => {

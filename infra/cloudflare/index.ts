@@ -9,6 +9,8 @@ const apexDomain = config.require('apexDomain');
 const wwwDomain = config.require('wwwDomain');
 const catalogBucketName = config.require('catalogBucketName');
 const catalogDomain = config.require('catalogDomain');
+const docsMediaBucketName = config.get('docsMediaBucketName') ?? 'archlens-docs-media';
+const docsMediaDomain = config.get('docsMediaDomain') ?? `media.${apexDomain}`;
 const collabWorkerName = config.get('collabWorkerName') ?? 'archlens-collab';
 const collabDomain = config.get('collabDomain') ?? `collab.${apexDomain}`;
 
@@ -115,6 +117,41 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
   enabled: true,
 });
 
+const docsMediaBucket = new cloudflare.R2Bucket('docs-media', {
+  accountId,
+  name: docsMediaBucketName,
+  location: 'enam',
+});
+
+new cloudflare.R2BucketCors('docs-media-cors', {
+  accountId,
+  bucketName: docsMediaBucket.name,
+  rules: [
+    {
+      allowed: {
+        origins: [
+          `https://${apexDomain}`,
+          `https://${wwwDomain}`,
+          'http://localhost:5173',
+          'http://localhost:5188',
+        ],
+        methods: ['GET', 'HEAD'],
+        headers: ['*'],
+      },
+      id: 'archlens-docs-media-read',
+      maxAgeSeconds: 3600,
+    },
+  ],
+});
+
+const docsMediaCustomDomain = new cloudflare.R2CustomDomain('docs-media-domain', {
+  accountId,
+  bucketName: docsMediaBucket.name,
+  domain: docsMediaDomain,
+  zoneId,
+  enabled: true,
+});
+
 /**
  * Collab share-link rooms. Script + Durable Object ship via Wrangler
  * (`app/packages/collab`); this stack attaches the hostname. Cloudflare
@@ -137,5 +174,7 @@ export const webAnalyticsSiteTag = webAnalytics.siteTag;
 export const webAnalyticsSiteToken = webAnalytics.siteToken;
 export const blueprintCatalogBucketName = catalogBucket.name;
 export const blueprintCatalogDomain = catalogCustomDomain.domain;
+export const docsMediaBucketNameOut = docsMediaBucket.name;
+export const docsMediaDomainOut = docsMediaCustomDomain.domain;
 export const collabWorkerNameOut = collabWorkerName;
 export const collabDomainOut = collabDomain;

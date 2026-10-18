@@ -4,6 +4,8 @@
 interface ImportMetaEnv {
   readonly VITE_REMOTE_CATALOG_BASE_URL?: string;
   readonly VITE_COLLAB_WS_URL?: string;
+  /** Public base for guide GIFs, e.g. https://media.archlens.dev/guides. Unset serves /docs-assets. */
+  readonly VITE_DOCS_MEDIA_BASE_URL?: string;
   readonly POSTHOG_TOKEN?: string;
   readonly POSTHOG_HOST?: string;
 }

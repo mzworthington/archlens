@@ -406,12 +406,4 @@ export function resolveDocsHref(href: string, fromDir: string): string | null {
   return null;
 }
 
-export function resolveDocsAssetSrc(src: string, fromDir: string): string {
-  if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('/')) {
-    return src;
-  }
-  // ./screenshots/foo.png → /docs-assets/screenshots/foo.png (copied in vite)
-  const cleaned = src.replace(/^\.\//, '');
-  const prefix = fromDir ? `${fromDir}/` : '';
-  return `/docs-assets/${prefix}${cleaned}`.replace(/\/+/g, '/');
-}
+export { docsScreenshotSrc, resolveDocsAssetSrc } from './docsAssetSrc';

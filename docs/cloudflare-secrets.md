@@ -90,6 +90,15 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 `CLOUDFLARE_ACCOUNT_ID` is reused as `R2_ACCOUNT_ID` in the publish workflow.
 
+### Guide GIF bucket
+
+Pulumi creates `archlens-docs-media` and `media.archlens.dev` with the same API token (R2 Edit). Upload uses that token through Wrangler, not the catalog S3 keys.
+
+After the first apply that creates the bucket:
+
+1. Set repository variable `DOCS_MEDIA_PUBLISH` to `true`. **Refresh docs & media** then uploads `guides/*.gif`.
+2. When those objects answer at `https://media.archlens.dev/guides/canvas-tour.gif`, set `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides` on the production Canvas build. That build stops copying GIFs into the Pages dist.
+
 ## Deploy
 
 Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab run deploy`) and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
