@@ -49,6 +49,8 @@ describe('Refresh docs & media workflow', () => {
       /DOCS_MEDIA_PUBLISH: \$\{\{ vars\.DOCS_MEDIA_PUBLISH == 'false' && 'false' \|\| 'true' \}\}/
     );
     assert.match(ci, /bin\/check-pages-file-size\.sh app\/packages\/canvas\/dist 24/);
+    assert.match(ci, /bin\/publish-docs-media\.sh/);
+    assert.match(ci, /needs: \[build, e2e, publish-docs-media\]/);
     assert.match(
       ci,
       /VITE_DOCS_MEDIA_BASE_URL: \$\{\{ github\.ref == 'refs\/heads\/main' && 'https:\/\/media\.archlens\.dev\/guides' \|\| '' \}\}/

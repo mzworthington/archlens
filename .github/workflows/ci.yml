@@ -237,8 +237,45 @@ jobs:
           path: app/packages/canvas/dist
           retention-days: 1
 
+  publish-docs-media:
+    name: publish-docs-media
+    if: >-
+      github.ref == 'refs/heads/main'
+      && (
+        github.event_name == 'push'
+        || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
+      )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Publish guide GIFs to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DOCS_MEDIA_PUBLISH: ${{ vars.DOCS_MEDIA_PUBLISH == 'false' && 'false' || 'true' }}
+        run: bin/publish-docs-media.sh
+
   deploy-cloudflare:
-    needs: [build, e2e]
+    needs: [build, e2e, publish-docs-media]
     if: >-
       github.ref == 'refs/heads/main'
       && (

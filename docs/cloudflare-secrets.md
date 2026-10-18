@@ -94,9 +94,9 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 Pulumi creates `archlens-docs-media` and `media.archlens.dev` with the same API token (R2 Edit). Upload uses that token through Wrangler, not the catalog S3 keys.
 
-**Refresh docs & media** uploads `guides/*.gif`. Set the repository variable `DOCS_MEDIA_PUBLISH` to `false` to skip that upload.
+**Refresh docs & media** uploads `guides/*.gif`. The production CI does the same upload before the Pages deploy. Set the repository variable `DOCS_MEDIA_PUBLISH` to `false` to skip either upload.
 
-Production Canvas builds set `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides`, so those GIFs are not copied into the Pages dist. Confirm `https://media.archlens.dev/guides/canvas-tour.gif` answers before that build deploys.
+Production Canvas builds set `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides`, so those GIFs are not copied into the Pages dist.
 
 ## Deploy
 
