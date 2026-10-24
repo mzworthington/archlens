@@ -1,35 +1,9 @@
 import Parser from 'web-tree-sitter';
-import type { CyclomaticAstNode, CyclomaticLanguage } from '@archlens/core/forensics';
-
-const FUNCTION_ROOT_TYPES: Record<CyclomaticLanguage, Set<string>> = {
-  typescript: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  tsx: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  javascript: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  python: new Set(['function_definition']),
-  go: new Set(['function_declaration', 'method_declaration']),
-  java: new Set(['method_declaration', 'constructor_declaration']),
-  c_sharp: new Set([
-    'method_declaration',
-    'constructor_declaration',
-    'local_function_statement',
-    'destructor_declaration',
-  ]),
-};
+import {
+  FUNCTION_ROOT_TYPES,
+  type CyclomaticAstNode,
+  type CyclomaticLanguage,
+} from '@archlens/core/forensics';
 
 export function collectCyclomaticAstNodes(root: Parser.SyntaxNode): CyclomaticAstNode[] {
   const nodes: CyclomaticAstNode[] = [];

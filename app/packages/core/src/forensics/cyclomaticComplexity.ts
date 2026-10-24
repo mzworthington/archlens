@@ -3,6 +3,29 @@ import type { TreeSitterWasmLanguage } from '../lib/treeSitterLanguages';
 /** Languages with forensics cyclomatic rules (excludes IaC highlight-only grammars). */
 export type CyclomaticLanguage = Exclude<TreeSitterWasmLanguage, 'terraform' | 'hcl'>;
 
+const JS_FUNCTION_ROOTS = new Set([
+  'function_declaration',
+  'generator_function',
+  'method_definition',
+  'arrow_function',
+]);
+
+/** Tree-sitter node types that open a function body for per-function complexity. */
+export const FUNCTION_ROOT_TYPES: Record<CyclomaticLanguage, ReadonlySet<string>> = {
+  typescript: JS_FUNCTION_ROOTS,
+  tsx: JS_FUNCTION_ROOTS,
+  javascript: JS_FUNCTION_ROOTS,
+  python: new Set(['function_definition']),
+  go: new Set(['function_declaration', 'method_declaration']),
+  java: new Set(['method_declaration', 'constructor_declaration']),
+  c_sharp: new Set([
+    'method_declaration',
+    'constructor_declaration',
+    'local_function_statement',
+    'destructor_declaration',
+  ]),
+};
+
 export interface CyclomaticAstNode {
   type: string;
   /** Populated for `binary_expression` nodes when the operator is available. */

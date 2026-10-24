@@ -15,6 +15,7 @@ import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { extensionToTreeSitterLanguage } from '@archlens/core';
 import {
   countLocAndSloc,
+  FUNCTION_ROOT_TYPES,
   summarizeFunctionComplexitySlices,
   type CyclomaticAstNode,
   type CyclomaticLanguage,
@@ -126,36 +127,6 @@ type WalkNode = {
   childCount: number;
   child(index: number): WalkNode | null;
   childForFieldName(name: string): WalkNode | null;
-};
-
-const FUNCTION_ROOT_TYPES: Record<CyclomaticLanguage, Set<string>> = {
-  typescript: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  tsx: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  javascript: new Set([
-    'function_declaration',
-    'generator_function',
-    'method_definition',
-    'arrow_function',
-  ]),
-  python: new Set(['function_definition']),
-  go: new Set(['function_declaration', 'method_declaration']),
-  java: new Set(['method_declaration', 'constructor_declaration']),
-  c_sharp: new Set([
-    'method_declaration',
-    'constructor_declaration',
-    'local_function_statement',
-    'destructor_declaration',
-  ]),
 };
 
 function cyclomaticLanguageForPath(relativePath: string): CyclomaticLanguage | null {

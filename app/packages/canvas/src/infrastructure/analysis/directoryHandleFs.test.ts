@@ -1,36 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createDirectoryHandleFs } from './directoryHandleFs';
-
-type Entry = [string, FileSystemHandle];
-
-function file(name: string, content: string): FileSystemFileHandle {
-  return {
-    kind: 'file',
-    name,
-    getFile: async () => new File([content], name),
-  } as unknown as FileSystemFileHandle;
-}
-
-function dir(name: string, entries: Entry[]): FileSystemDirectoryHandle {
-  const handle = {
-    kind: 'directory' as const,
-    name,
-    async *entries() {
-      for (const entry of entries) yield entry;
-    },
-    async getDirectoryHandle(child: string) {
-      const found = entries.find(([n, h]) => n === child && h.kind === 'directory');
-      if (!found) throw new Error('not found');
-      return found[1] as FileSystemDirectoryHandle;
-    },
-    async getFileHandle(child: string) {
-      const found = entries.find(([n, h]) => n === child && h.kind === 'file');
-      if (!found) throw new Error('not found');
-      return found[1] as FileSystemFileHandle;
-    },
-  };
-  return handle as unknown as FileSystemDirectoryHandle;
-}
+import { dir, file } from './test/directoryHandleFixture';
 
 describe('createDirectoryHandleFs', () => {
   it('reads nested files and directories for isomorphic-git', async () => {

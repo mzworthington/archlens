@@ -4,6 +4,28 @@ import { EMPTY_COLLAB_PRESENCE } from '../../../../../core';
 import { PropertyPanel } from './PropertyPanel';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
+function activateLiveComment(comment: { id: string; nodeEntityRef: string; body: string }) {
+  useBlueprintStore.setState({
+    collabRoomActive: true,
+    collabPresence: {
+      connectedCount: 1,
+      cursors: [],
+      participants: [{ clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true }],
+    },
+    collabComments: [
+      {
+        id: comment.id,
+        nodeEntityRef: comment.nodeEntityRef,
+        authorName: 'Ada',
+        authorClientId: 7,
+        body: comment.body,
+        createdAtMs: 1,
+        status: 'open',
+      },
+    ],
+  });
+}
+
 describe('PropertyPanel UI Component', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
@@ -134,25 +156,11 @@ describe('PropertyPanel UI Component', () => {
     const { rerender } = render(<PropertyPanel />);
     expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
 
-    useBlueprintStore.setState({
-      selectedNodeId: null,
-      collabRoomActive: true,
-      collabPresence: {
-        connectedCount: 1,
-        cursors: [],
-        participants: [{ clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true }],
-      },
-      collabComments: [
-        {
-          id: 'c-diagram',
-          nodeEntityRef: 'cloud-infrastructure-workspace',
-          authorName: 'Ada',
-          authorClientId: 7,
-          body: 'walk the map from here',
-          createdAtMs: 1,
-          status: 'open',
-        },
-      ],
+    useBlueprintStore.setState({ selectedNodeId: null });
+    activateLiveComment({
+      id: 'c-diagram',
+      nodeEntityRef: 'cloud-infrastructure-workspace',
+      body: 'walk the map from here',
     });
     rerender(<PropertyPanel />);
 
@@ -166,24 +174,10 @@ describe('PropertyPanel UI Component', () => {
     const { rerender } = render(<PropertyPanel />);
     expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
 
-    useBlueprintStore.setState({
-      collabRoomActive: true,
-      collabPresence: {
-        connectedCount: 1,
-        cursors: [],
-        participants: [{ clientId: 7, name: 'Ada', color: '#38bdf8', isLocal: true }],
-      },
-      collabComments: [
-        {
-          id: 'c1',
-          nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
-          authorName: 'Ada',
-          authorClientId: 7,
-          body: '<b>not html</b>',
-          createdAtMs: 1,
-          status: 'open',
-        },
-      ],
+    activateLiveComment({
+      id: 'c1',
+      nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
+      body: '<b>not html</b>',
     });
     rerender(<PropertyPanel />);
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { countCyclomaticComplexity } from './cyclomaticComplexity';
+import { countCyclomaticComplexity, FUNCTION_ROOT_TYPES } from './cyclomaticComplexity';
 
 describe('countCyclomaticComplexity', () => {
   it('counts TypeScript decision points from a representative fixture', () => {
@@ -70,5 +70,28 @@ describe('countCyclomaticComplexity', () => {
 
   it('returns base complexity for empty walks', () => {
     expect(countCyclomaticComplexity('javascript', [])).toBe(1);
+  });
+
+  it('names the tree-sitter nodes that start a function for each language', () => {
+    expect([...FUNCTION_ROOT_TYPES.typescript]).toEqual([
+      'function_declaration',
+      'generator_function',
+      'method_definition',
+      'arrow_function',
+    ]);
+    expect(FUNCTION_ROOT_TYPES.tsx).toBe(FUNCTION_ROOT_TYPES.typescript);
+    expect(FUNCTION_ROOT_TYPES.javascript).toBe(FUNCTION_ROOT_TYPES.typescript);
+    expect([...FUNCTION_ROOT_TYPES.python]).toEqual(['function_definition']);
+    expect([...FUNCTION_ROOT_TYPES.go]).toEqual(['function_declaration', 'method_declaration']);
+    expect([...FUNCTION_ROOT_TYPES.java]).toEqual([
+      'method_declaration',
+      'constructor_declaration',
+    ]);
+    expect([...FUNCTION_ROOT_TYPES.c_sharp]).toEqual([
+      'method_declaration',
+      'constructor_declaration',
+      'local_function_statement',
+      'destructor_declaration',
+    ]);
   });
 });

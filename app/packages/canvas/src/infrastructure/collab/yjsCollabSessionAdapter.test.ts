@@ -91,6 +91,30 @@ const emptySeed: SystemSchema = {
   dependencies: [],
 };
 
+async function joinCommentRoom(
+  sessionA: ReturnType<typeof createYjsCollabSession>,
+  sessionB: ReturnType<typeof createYjsCollabSession>,
+  roomId: string
+): Promise<NodeComment[][]> {
+  const commentsB: NodeComment[][] = [];
+  await sessionA.join({
+    roomId,
+    seedSchema: seed,
+    displayName: 'Ada',
+    onSchema: () => {},
+    onPresence: () => {},
+  });
+  await sessionB.join({
+    roomId,
+    seedSchema: seed,
+    displayName: 'Grace',
+    onSchema: () => {},
+    onPresence: () => {},
+    onComments: next => commentsB.push(next),
+  });
+  return commentsB;
+}
+
 describe('createYjsCollabSession', () => {
   it('hydrates a late joiner from the seeded room', async () => {
     const [transportA, transportB] = createLinkedTransports();
@@ -297,23 +321,7 @@ describe('createYjsCollabSession', () => {
     const [transportA, transportB] = createLinkedTransports();
     const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
     const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
-    const commentsB: NodeComment[][] = [];
-
-    await sessionA.join({
-      roomId: 'room-resolve',
-      seedSchema: seed,
-      displayName: 'Ada',
-      onSchema: () => {},
-      onPresence: () => {},
-    });
-    await sessionB.join({
-      roomId: 'room-resolve',
-      seedSchema: seed,
-      displayName: 'Grace',
-      onSchema: () => {},
-      onPresence: () => {},
-      onComments: next => commentsB.push(next),
-    });
+    const commentsB = await joinCommentRoom(sessionA, sessionB, 'room-resolve');
 
     sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'first' });
     sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'second' });
@@ -351,23 +359,7 @@ describe('createYjsCollabSession', () => {
       authorKeyStore,
     });
     const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
-    const commentsB: NodeComment[][] = [];
-
-    await sessionA.join({
-      roomId: 'room-rejoin',
-      seedSchema: seed,
-      displayName: 'Ada',
-      onSchema: () => {},
-      onPresence: () => {},
-    });
-    await sessionB.join({
-      roomId: 'room-rejoin',
-      seedSchema: seed,
-      displayName: 'Grace',
-      onSchema: () => {},
-      onPresence: () => {},
-      onComments: next => commentsB.push(next),
-    });
+    const commentsB = await joinCommentRoom(sessionA, sessionB, 'room-rejoin');
 
     sessionA.addComment({ nodeEntityRef: 'shop/api', body: 'keep me' });
     const posted = (commentsB.at(-1) ?? []).find(comment => comment.body === 'keep me');
