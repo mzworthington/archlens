@@ -1,11 +1,35 @@
 # Changelog
 
+## 2026-10-24
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Patch PostCSS selector parsing and KaTeX
+- _(deps)_ Pin undici, Zod, and serialize-javascript past open advisories
+
+### ⚙️ Refactoring & Performance
+
+- Consolidate FUNCTION_ROOT_TYPES and improve test structure
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-security group across 1 directory with 4 updates
+
 ## 2026-10-18
+
+### 🚀 Features
+
+- _(mcp)_ Compose kit default with the build monitor
+- _(infra)_ Host guide GIFs on a docs-media R2 bucket
+- _(docs)_ Serve guide GIFs from the media host
 
 ### 🐛 Bug Fixes
 
 - _(deps)_ Patch source-map-js indexed source-map denial of service
 - _(test)_ Give file vitest projects the same CI worker budget
+- _(canvas)_ Store the collab reconnect timer as a setTimeout handle
+- _(docs)_ Keep guide GIFs under the Pages file limit
+- _(canvas)_ Keep vitest helpers out of the Playwright suite
 
 ### 🧰 Maintenance & Dependencies
 
@@ -13,6 +37,7 @@
 - _(deps)_ Bump mermaid from 11.17.2 to 12.2.0 in /app
 - Update screenshot assets with new versions
 - _(deps)_ Bump the npm-minor-patch group across 1 directory with 22 updates
+- Upload guide GIFs before the Pages deploy
 
 ## 2026-10-17
 

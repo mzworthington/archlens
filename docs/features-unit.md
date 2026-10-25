@@ -1351,6 +1351,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ reads nested files and directories for isomorphic-git
 
+### docsGifEncode
+
+#### guide GIF encode budget
+
+- ✅ scales to 1280 at 8 fps with a diff palette and ordered dither
+- ✅ rejects a GIF over the 20 MiB Pages budget
+- ✅ is ignored by Playwright, which collects every *.test.ts under tests/
+- ✅ leaves GIFs out of the Pages dist once the media host is configured
+
 ### DocsHome
 
 #### DocsHome
@@ -2030,6 +2039,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves in-app TraceLens links
 - ✅ resolves in-app workspace links
 - ✅ maps screenshot assets under /docs-assets
+- ✅ serves guide GIFs from the docs-media host when that base is set
 
 #### stripHtmlComments
 
@@ -3751,6 +3761,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ counts Go cases and logical operators
 - ✅ counts C# conditional expressions and case labels
 - ✅ returns base complexity for empty walks
+- ✅ names the tree-sitter nodes that start a function for each language
 
 ### dependencyCycles
 
