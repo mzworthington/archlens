@@ -8,10 +8,17 @@ const viteConfigPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '
 describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
   it('falls back to / so Workbox never fetches /index.html (Pages pretty-URLs 308 that path)', () => {
     const source = fs.readFileSync(viteConfigPath, 'utf8');
-    expect(source).toMatch(/navigateFallback:\s*'\/'/);
+    expect(source).toMatch(/strategies:\s*'injectManifest'/);
+    expect(source).toMatch(/filename:\s*'sw\.ts'/);
     expect(source).not.toMatch(/navigateFallback:\s*'index\.html'/);
     expect(source).toMatch(/additionalManifestEntries/);
     expect(source).toMatch(/url:\s*'\//);
+
+    const sw = fs.readFileSync(path.join(path.dirname(viteConfigPath), 'src/sw.ts'), 'utf8');
+    expect(sw).toMatch(/createHandlerBoundToURL\('\/'\)/);
+    expect(sw).not.toMatch(/index\.html/);
+    expect(sw).toContain('shellPrecacheRequest');
+    expect(sw).toContain('addPlugins');
   });
 
   it('does not precache *.html — Pages pretty-URLs 308 those paths and fail Firefox install', () => {
@@ -36,6 +43,7 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
     const source = fs.readFileSync(viteConfigPath, 'utf8');
     expect(source).not.toMatch(/\*\*\/\*\.\{[^}]*wasm/);
     expect(source).toMatch(/'\*\*\/\*\.wasm'/);
-    expect(source).toMatch(/pathname\.endsWith\('\.wasm'\)/);
+    const sw = fs.readFileSync(path.join(path.dirname(viteConfigPath), 'src/sw.ts'), 'utf8');
+    expect(sw).toMatch(/pathname\.endsWith\('\.wasm'\)/);
   });
 });

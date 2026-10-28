@@ -45,6 +45,9 @@ export default defineConfig({
     emitVersionJson(deployIdentity),
     emitSiteSeo(),
     VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       registerType: 'prompt',
       includeAssets: ['favicon.svg', 'favicon.png', 'icons/apple-touch-icon-dark.png'],
       manifest: {
@@ -76,7 +79,7 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
+      injectManifest: {
         // App shell + hashed bundles. Precache catalog + ArchLens context + golden/stress
         // demo YAML only (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
         // Remaining /bundled-blueprints/* stay on CacheFirst after first ad-hoc fetch.
@@ -101,68 +104,13 @@ export default defineConfig({
           '**/*.html',
           '**/*.wasm',
         ],
-        // CF Pages 308s /index.html → /. Navigation requests have redirect
-        // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
-        navigateFallback: '/',
+        // Navigation shell is `/` (not index.html). Pages 308s /index.html and a
+        // redirected precache response fails install. src/sw.ts serves that shell
+        // and asks for text/html so Cloudflare can inject the analytics beacon.
         additionalManifestEntries: [{ url: '/', revision: appBuildId }],
         // Pretty-URLs also 308 globbed folder index.html precache entries.
         // Rewrite those to the directory URL that returns 200 so install can cache them.
         manifestTransforms: [async manifest => ({ manifest: sanitizePrecacheManifest(manifest) })],
-        // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/* and /assets/* as real assets.
-        navigateFallbackDenylist: [
-          /^\/schemas\//,
-          /^\/bundled-blueprints\//,
-          /^\/bundled-chaos-specs\//,
-          /^\/assets\//,
-          /^\/sitemap\.xml$/,
-          /^\/robots\.txt$/,
-          /^\/version\.json$/,
-        ],
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => url.pathname.endsWith('.wasm'),
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'wasm-binaries',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-          {
-            urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'bundled-blueprints',
-              expiration: {
-                maxEntries: 2000,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-          {
-            urlPattern: ({ url }) => url.pathname.includes('/bundled-chaos-specs/'),
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'bundled-chaos-specs',
-              expiration: {
-                maxEntries: 200,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
-        cleanupOutdatedCaches: true,
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
       },
     }),
