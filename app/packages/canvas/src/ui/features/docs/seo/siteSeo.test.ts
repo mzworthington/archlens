@@ -48,6 +48,12 @@ describe('siteSeo catalog', () => {
 
     expect(titles.size).toBe(products.length);
     expect(descriptions.size).toBe(products.length);
+
+    const collaborate = resolvePageSeo('/guide/collaborate');
+    expect(collaborate.title.toLowerCase()).toMatch(/share/);
+    expect(collaborate.title.toLowerCase()).toMatch(/room/);
+    expect(collaborate.title.toLowerCase()).toMatch(/comment/);
+    expect(collaborate.canonicalUrl).toBe(`${SITE_ORIGIN}/guide/collaborate`);
   });
 
   it('covers every docs page path with an SEO record', () => {

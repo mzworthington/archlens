@@ -161,7 +161,7 @@ ArchLens Canvas installs as a Progressive Web App. After the first visit, the ap
 
 ## Next
 
-- [Collaborate](./collaborate.md) - live share rooms and who can join
+- [Collaborate](./collaborate.md) - share, rooms and comments
 - [ArchLens CLI](./cli.md) - how diagrams get generated
 - [Design system](/design-system) - visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) - E2E-oriented walkthrough

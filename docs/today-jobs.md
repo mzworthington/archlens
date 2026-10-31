@@ -26,7 +26,7 @@ The hosted canvas loads a demo map. ChaosLens and AdviceLens run on that map. Dr
 
 > Start a room. Send the link. Peers join and edit the same map.
 
-A live room is a shared BlueprintSpec working copy. Optional room secret (not in the URL). Rooms are ephemeral: not a catalog and not a write to disk.
+A live room is a shared BlueprintSpec working copy. Optional room secret (not in the URL). Comments sit on the map for that session and are not written to YAML. Rooms are ephemeral: not a catalog and not a write to disk.
 
 1. **Open** Canvas and pick **Collaborate** (blank room, folder or file).
 2. **Copy** the link after you set your name and who can join.
