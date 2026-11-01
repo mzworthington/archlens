@@ -39,5 +39,8 @@ describe('guide GIF encode budget', () => {
     expect(shouldCopyDocsAsset('1-panels-expanded.png', 'https://media.archlens.dev/guides')).toBe(
       true
     );
+    expect(shouldCopyDocsAsset('tracelens-poster.webp', 'https://media.archlens.dev/guides')).toBe(
+      true
+    );
   });
 });
