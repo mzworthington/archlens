@@ -63,6 +63,8 @@ export interface IoState {
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
+  /** Reload the published catalog onto the canvas. Confirmed replaces local drafts. */
+  refreshRemoteCatalog: (confirmed?: boolean) => Promise<'refreshed' | 'needs-confirm' | 'failed'>;
   openBrowserLiteScan: (source?: { zipFile?: File }) => Promise<boolean>;
   openInTabCliScan: () => Promise<boolean>;
   stopInTabCliSession: () => void;

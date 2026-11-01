@@ -37,6 +37,8 @@ export function resetToEmptyWorkspace(
     loadedSystems: [{ path: EMPTY_WORKSPACE_PATH, name: empty.name, schema: empty }],
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
+    usesRemoteCatalog: false,
+    remoteCatalogRevision: null,
     isBrowserLiteWorkspace: false,
     browserScanGit: null,
     isMemoryScanWorkspace: false,

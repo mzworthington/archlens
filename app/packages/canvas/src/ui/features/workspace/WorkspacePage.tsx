@@ -5,6 +5,7 @@ import { Canvas } from './components/Canvas/Canvas';
 import { TraceLensPanel } from '../tracelens/TraceLensPanel';
 import { PropertyPanel } from './components/PropertyPanel/PropertyPanel';
 import { Header } from './components/Header/Header';
+import { CatalogRefreshOffer } from './components/CatalogRefreshOffer/CatalogRefreshOffer';
 import { useWorkspaceDialogs } from './hooks/useWorkspaceDialogs';
 import { useBundledWorkspaceBootstrap } from './hooks/useBundledWorkspaceBootstrap';
 import { useBlankCanvasUnloadGuard } from './hooks/useBlankCanvasUnloadGuard';
@@ -38,6 +39,7 @@ export const WorkspacePage: React.FC = () => {
     <ReactFlowProvider>
       <div className="flex flex-col h-dvh w-full bg-bp-canvas overflow-hidden text-slate-100">
         <Header />
+        <CatalogRefreshOffer />
         <div className="flex-1 flex overflow-hidden relative min-h-0">
           {showLeftPanel ? <LeftWorkspacePanel /> : null}
           {layout.isTraceLensMode ? <TraceLensPanel /> : <Canvas />}

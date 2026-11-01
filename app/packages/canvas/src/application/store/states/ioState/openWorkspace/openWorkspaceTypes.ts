@@ -36,6 +36,8 @@ export type LoadWorkspaceFromCatalogDeps = {
   initSchema: (schema: SystemSchema) => void;
   set: BlueprintStoreSet;
   isSampleWorkspace?: boolean;
+  usesRemoteCatalog?: boolean;
+  remoteCatalogRevision?: string | null;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
 };

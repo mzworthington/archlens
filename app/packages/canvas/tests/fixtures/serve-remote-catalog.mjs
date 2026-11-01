@@ -19,9 +19,12 @@ const MIME = {
   '.yml': 'text/yaml; charset=utf-8',
 };
 
+/** In-memory latest pointer so e2e can publish a revision without touching files Vite watches. */
+let latestOverride = null;
+
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', '*');
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -30,6 +33,31 @@ const server = http.createServer((req, res) => {
   }
 
   const urlPath = decodeURIComponent((req.url || '/').split('?')[0] || '/');
+  if (urlPath === '/__e2e/latest') {
+    if (req.method === 'POST') {
+      const chunks = [];
+      req.on('data', chunk => chunks.push(chunk));
+      req.on('end', () => {
+        const body = Buffer.concat(chunks).toString('utf8').trim();
+        latestOverride = body.length > 0 ? body : null;
+        res.writeHead(204);
+        res.end();
+      });
+      return;
+    }
+    res.writeHead(405);
+    res.end('Method not allowed');
+    return;
+  }
+
+  if (latestOverride && urlPath === '/latest/manifest.json') {
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+    });
+    res.end(latestOverride);
+    return;
+  }
   const relative = urlPath.replace(/^\/+/, '');
   const filePath = path.normalize(path.join(root, relative));
   if (!filePath.startsWith(root)) {
@@ -45,7 +73,10 @@ const server = http.createServer((req, res) => {
       return;
     }
     const ext = path.extname(filePath);
-    res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': MIME[ext] || 'application/octet-stream',
+      'Cache-Control': 'no-store',
+    });
     res.end(data);
   });
 });

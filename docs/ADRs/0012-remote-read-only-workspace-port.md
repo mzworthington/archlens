@@ -46,7 +46,7 @@ Remote catalog fetches retry in the HTTP object-storage adapter (`HTTP_TRANSIENT
 - Good, because `ioState` and `ensureSystemLoaded` require no changes
 - Good, because PR builds without the env var still use bundled blueprints
 - Bad, because production sandbox requires R2 publish + DNS before cutover works
-- Bad, because catalog revision refresh (slice 1b) is not implemented yet - module cache resets only on full reload
+- Good, because a newer `latest` pointer offers an in-canvas refresh. Confirming loads that snapshot without a full reload, and local drafts stay until the user confirms. The module cache still holds the snapshot the canvas is reading until that refresh.
 - Mitigation: keep bundled tree in deploy until 7 consecutive nightly publishes succeed
 
 ## Architecture sketch

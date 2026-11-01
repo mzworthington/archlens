@@ -81,6 +81,8 @@ export async function restoreEmptyWorkspaceDraft(
     loadedSystems: [{ path: filePath, name: schema.name, schema }],
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
+    usesRemoteCatalog: false,
+    remoteCatalogRevision: null,
     isBrowserLiteWorkspace: false,
     browserScanGit: null,
     isMemoryScanWorkspace: false,

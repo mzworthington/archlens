@@ -1,7 +1,13 @@
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { selectBundledSampleEntryPath } from '../../../samplesWorkspace';
 import { scheduleBundledBlueprintPreload } from '../../../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import {
+  getLoadedRemoteCatalogIdentity,
+  invalidateRemoteCatalogCache,
+} from '../../../../../infrastructure/fileSystem/remoteCatalogWorkspace';
 import { loadSampleWorkspaceSession } from '../../../../../infrastructure/fileSystem/sampleWorkspaceLoader';
+import { runRemoteCatalogRefresh } from '../../../../catalog/remoteCatalogRefresh';
+import { clearSessionLayout } from '../../../sessionLayoutCache';
 import { SANDBOX_LOADING_MESSAGE } from '../../../diagramLoadSession';
 import {
   beginWorkspaceOpen,
@@ -159,6 +165,10 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
           initSchema,
           set,
           isSampleWorkspace: true,
+          usesRemoteCatalog: session.usesRemoteCatalog,
+          remoteCatalogRevision: session.usesRemoteCatalog
+            ? (getLoadedRemoteCatalogIdentity()?.revision ?? null)
+            : null,
           openGeneration,
           committedPorts: {
             workspacePort: session.workspacePort,
@@ -176,6 +186,67 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
       } finally {
         setIsLoading(false);
       }
+    },
+
+    refreshRemoteCatalog: async (confirmed = false) => {
+      const { hasPendingChanges, currentFilePath, workingCopyPort, setNotification } = get();
+      const result = await runRemoteCatalogRefresh({
+        hasPendingChanges,
+        confirmed,
+        currentFilePath,
+        clearDrafts: () => workingCopyPort.clearAllDrafts(),
+        clearSessionLayout: () => clearSessionLayout(),
+        invalidateCache: invalidateRemoteCatalogCache,
+        loadSession: loadSampleWorkspaceSession,
+        readLoadedRevision: () => getLoadedRemoteCatalogIdentity()?.revision ?? null,
+        selectEntryPath: selectBundledSampleEntryPath,
+        openCatalog: async (session, entryPath) => {
+          const {
+            workingCopyPort: workingCopy,
+            logger,
+            setNotification: notify,
+            initSchema,
+            setIsLoading,
+          } = get();
+          const openGeneration = beginWorkspaceOpen();
+          setIsLoading(SANDBOX_LOADING_MESSAGE);
+          try {
+            return await loadWorkspaceFromCatalog({
+              catalog: session.catalog,
+              entryPath,
+              readFile: relativePath => session.workspacePort.readFile(relativePath),
+              getDirectoryName: () => session.workspacePort.getDirectoryName(),
+              workingCopy,
+              logger,
+              setNotification: notify,
+              initSchema,
+              set,
+              isSampleWorkspace: true,
+              usesRemoteCatalog: true,
+              remoteCatalogRevision: getLoadedRemoteCatalogIdentity()?.revision ?? null,
+              openGeneration,
+              committedPorts: {
+                workspacePort: session.workspacePort,
+                sampleWorkspacePort: session.workspacePort,
+              },
+            });
+          } finally {
+            setIsLoading(false);
+          }
+        },
+      });
+      if (result === 'refreshed') {
+        await get().checkPendingChanges();
+      }
+      if (result === 'failed') {
+        setNotification({
+          type: 'error',
+          title: 'Catalog refresh failed',
+          message:
+            'The newer snapshot could not be loaded. This canvas still shows the previous one.',
+        });
+      }
+      return result;
     },
 
     cancelBrowserLiteScan: () => {

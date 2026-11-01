@@ -1,6 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   createRemoteCatalogWorkspaceAdapter,
+  fetchRemoteCatalogLatestPointer,
+  getLoadedRemoteCatalogIdentity,
+  invalidateRemoteCatalogCache,
   loadRemoteWorkspaceCatalog,
 } from './remoteCatalogWorkspace';
 
@@ -30,6 +33,10 @@ const catalog = [
 ];
 
 describe('Feature: Hosted sandbox reads remote catalog', () => {
+  beforeEach(() => {
+    invalidateRemoteCatalogCache();
+  });
+
   it('follows latest pointer → catalog → lazy YAML consume protocol', async () => {
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
       const href = String(input);
@@ -96,5 +103,56 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
       'message',
       expect.stringMatching(/does not contain blueprint path/i)
     );
+  });
+
+  it('checks latest without replacing the snapshot already on the canvas', async () => {
+    let revision = 'rev1';
+    const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
+      const href = String(input);
+      if (href.endsWith('/latest/manifest.json')) {
+        return new Response(
+          JSON.stringify({
+            revision,
+            publishedAt: '2026-08-04T12:00:00.000Z',
+            snapshotPrefix: `snapshots/${revision}/`,
+          }),
+          { status: 200 }
+        );
+      }
+      if (href.endsWith('/snapshots/rev1/catalog.json')) {
+        return new Response(JSON.stringify(catalog), { status: 200 });
+      }
+      if (href.endsWith('/snapshots/rev1/golden-journey/context.yaml')) {
+        return new Response(contextYaml, { status: 200 });
+      }
+      if (href.endsWith('/snapshots/rev2/catalog.json')) {
+        return new Response(JSON.stringify(catalog), { status: 200 });
+      }
+      return new Response('missing', { status: 404 });
+    });
+
+    const options = {
+      baseUrl: 'https://blueprints.example.dev/',
+      workspaceName: 'samples',
+      fetchImpl,
+    };
+
+    await loadRemoteWorkspaceCatalog(options);
+    expect(getLoadedRemoteCatalogIdentity()?.revision).toBe('rev1');
+
+    revision = 'rev2';
+    const latest = await fetchRemoteCatalogLatestPointer(options);
+    expect(latest.revision).toBe('rev2');
+    expect(getLoadedRemoteCatalogIdentity()?.revision).toBe('rev1');
+
+    const adapter = createRemoteCatalogWorkspaceAdapter(options);
+    await adapter.readFile('golden-journey/context.yaml');
+    expect(fetchImpl.mock.calls.some(([input]) => String(input).includes('/snapshots/rev2/'))).toBe(
+      false
+    );
+
+    invalidateRemoteCatalogCache();
+    await loadRemoteWorkspaceCatalog(options);
+    expect(getLoadedRemoteCatalogIdentity()?.revision).toBe('rev2');
   });
 });
