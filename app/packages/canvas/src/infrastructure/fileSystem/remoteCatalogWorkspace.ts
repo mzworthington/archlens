@@ -2,6 +2,7 @@ import {
   parseRemoteCatalogLatestPointer,
   parseWorkspaceCatalogJson,
   remoteCatalogLatestManifestKey,
+  type RemoteCatalogLatestPointer,
   type WorkspaceCatalogEntry,
 } from '@archlens/core';
 import { createHttpObjectStorage } from '@archlens/storage/http';
@@ -17,15 +18,49 @@ export type RemoteCatalogWorkspaceOptions = {
 type ResolvedRemoteCatalog = {
   snapshotPrefix: string;
   revision: string;
+  publishedAt: string;
   catalog: WorkspaceCatalogEntry[];
+};
+
+export type RemoteCatalogIdentity = {
+  revision: string;
+  snapshotPrefix: string;
+  publishedAt: string;
 };
 
 let resolvedCatalogPromise: Promise<ResolvedRemoteCatalog> | null = null;
 let resolvedCatalogBaseUrl: string | null = null;
+let loadedIdentity: RemoteCatalogIdentity | null = null;
 
 function resetRemoteCatalogCache(): void {
   resolvedCatalogPromise = null;
   resolvedCatalogBaseUrl = null;
+  loadedIdentity = null;
+}
+
+/** Drop the cached snapshot so the next catalog read follows `latest` again. */
+export function invalidateRemoteCatalogCache(): void {
+  resetRemoteCatalogCache();
+}
+
+/** Revision currently cached for canvas reads. Null before the first successful load. */
+export function getLoadedRemoteCatalogIdentity(): RemoteCatalogIdentity | null {
+  return loadedIdentity;
+}
+
+/** Read `latest/manifest.json` without replacing the snapshot the canvas is using. */
+export async function fetchRemoteCatalogLatestPointer(
+  options: RemoteCatalogWorkspaceOptions
+): Promise<RemoteCatalogLatestPointer> {
+  const baseUrl = options.baseUrl.trim().replace(/\/$/, '');
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const response = await fetchImpl(`${baseUrl}/${remoteCatalogLatestManifestKey()}`, {
+    cache: 'no-store',
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} for latest catalog pointer`);
+  }
+  return parseRemoteCatalogLatestPointer(JSON.parse(await response.text()));
 }
 
 async function resolveRemoteCatalog(
@@ -50,11 +85,18 @@ async function resolveRemoteCatalog(
       const catalog = parseWorkspaceCatalogJson(
         JSON.parse(await storage.getObjectText(`${pointer.snapshotPrefix}catalog.json`))
       );
-      return {
+      const resolved = {
         snapshotPrefix: pointer.snapshotPrefix,
         revision: pointer.revision,
+        publishedAt: pointer.publishedAt,
         catalog,
       };
+      loadedIdentity = {
+        revision: resolved.revision,
+        snapshotPrefix: resolved.snapshotPrefix,
+        publishedAt: resolved.publishedAt,
+      };
+      return resolved;
     } catch (error) {
       resetRemoteCatalogCache();
       throw error instanceof Error ? error : new Error(String(error));

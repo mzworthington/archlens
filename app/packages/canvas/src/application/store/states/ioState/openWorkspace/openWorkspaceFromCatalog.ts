@@ -15,6 +15,8 @@ export async function loadWorkspaceFromCatalog(
     initSchema,
     set,
     isSampleWorkspace = false,
+    usesRemoteCatalog = false,
+    remoteCatalogRevision = null,
     openGeneration,
     committedPorts,
   } = deps;
@@ -52,6 +54,8 @@ export async function loadWorkspaceFromCatalog(
     workspaceCatalog: catalog,
     workspaceName,
     isSampleWorkspace,
+    usesRemoteCatalog,
+    remoteCatalogRevision,
     openGeneration,
     committedPorts,
     workingCopy: deps.workingCopy,

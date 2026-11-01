@@ -38,6 +38,10 @@ export interface DiagramState {
   isWorkspaceOpen: boolean;
   /** Bundled Samples workspace (read-only; save downloads YAML). */
   isSampleWorkspace: boolean;
+  /** Sample workspace is reading the remote catalog, not the bundled fallback. */
+  usesRemoteCatalog: boolean;
+  /** Revision loaded onto the canvas. Null when the workspace is not a remote catalog. */
+  remoteCatalogRevision: string | null;
   /**
    * Workspace came from an in-browser scan (File System Access). Git hotspots may be
    * attached when `.git` was readable. Cleared when opening a folder, sample or empty workspace.

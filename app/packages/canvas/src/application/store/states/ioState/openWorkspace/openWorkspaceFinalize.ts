@@ -84,6 +84,8 @@ export async function finalizeWorkspaceOpen(args: {
   workspaceCatalog: WorkspaceCatalogEntry[];
   workspaceName: string;
   isSampleWorkspace: boolean;
+  usesRemoteCatalog?: boolean;
+  remoteCatalogRevision?: string | null;
   isBrowserLiteWorkspace?: boolean;
   browserScanGit?: BrowserGitHistoryStatus | null;
   openGeneration?: number;
@@ -100,6 +102,8 @@ export async function finalizeWorkspaceOpen(args: {
     workspaceCatalog,
     workspaceName,
     isSampleWorkspace,
+    usesRemoteCatalog = false,
+    remoteCatalogRevision = null,
     isBrowserLiteWorkspace = false,
     browserScanGit = null,
     openGeneration,
@@ -134,6 +138,8 @@ export async function finalizeWorkspaceOpen(args: {
     ...committedPorts,
     isWorkspaceOpen: true,
     isSampleWorkspace,
+    usesRemoteCatalog,
+    remoteCatalogRevision: usesRemoteCatalog ? remoteCatalogRevision : null,
     isBrowserLiteWorkspace,
     browserScanGit: isBrowserLiteWorkspace ? (browserScanGit ?? 'missing') : null,
     browserLiteBannerOpen: isBrowserLiteWorkspace,

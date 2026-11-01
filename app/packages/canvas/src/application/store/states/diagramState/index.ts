@@ -48,6 +48,8 @@ export const createDiagramState = (
     currentFilePath: initial.currentFilePath,
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
+    usesRemoteCatalog: false,
+    remoteCatalogRevision: null,
     isBrowserLiteWorkspace: false,
     browserScanGit: null,
     isMemoryScanWorkspace: false,
