@@ -16,6 +16,7 @@ import { EmptyDiagramOverlay } from './EmptyDiagramOverlay';
 import { CollabCursors } from './CollabCursors';
 import { useCollabCursorTracking } from './useCollabCursorTracking';
 import { MermaidEnrichBanner } from './MermaidEnrichBanner';
+import { SampleMapScanOffer } from '../../../onboarding/SampleMapScanOffer';
 import { BrowserLiteScanBanner } from './BrowserLiteScanBanner';
 import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
@@ -317,6 +318,7 @@ export const Canvas: React.FC = () => {
           />
         )}
 
+        <SampleMapScanOffer />
         <SchemaImportErrorBanner error={lastError} onDismiss={clearError} />
         <MermaidEnrichBanner
           open={mermaidEnrichBannerOpen}
