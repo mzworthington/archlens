@@ -1,6 +1,12 @@
 # Collaborate
 
-Share a **live editing link** and join a room with your peers on the same BlueprintSpec map. Named cursors show who is looking where. Writing YAML back to disk still goes through **Pending Changes**.
+Collaboration is a live **room** on the map. **Share** copies a link peers open in the browser. **Comments** stay on that session. Send this URL:
+
+```
+https://archlens.dev/guide/collaborate
+```
+
+No ArchLens account. Named cursors show who is looking where. Writing YAML back to disk still goes through **Pending Changes**.
 
 Live share is an opt-in room, not a second source of truth. Folder workspaces stay local-first. Published catalogs stay a CI publish. See [Privacy](../privacy.md) for what a room actually sends.
 
@@ -43,9 +49,26 @@ The toolbar badge is a **connected count that includes you**. Open **Share live 
 
 ![Named peer cursors on a shared canvas](../screenshots/9-collab-cursors.png)
 
+## Comments
+
+Comments belong to the live room. They are not written into BlueprintSpec YAML and they leave with the session.
+
+Open **Properties** while the room is active:
+
+- Click empty canvas so nothing is selected. The **Comments** thread is on the diagram (the map’s `entityRef`).
+- Select a node. The thread is on that entity.
+
+| Control             | What it does                                                               |
+| ------------------- | -------------------------------------------------------------------------- |
+| **Add comment**     | Posts the text. Peers see the body and your display name without a reload. |
+| **Resolve comment** | Drops it from the open thread. Only the author sees this control.          |
+| **Delete comment**  | Drops it from the open thread. Only the author sees this control.          |
+
+The thread stays hidden until a share session is active.
+
 ## What the room syncs
 
-The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Clear the selection (click empty canvas) to leave a **comment** on the diagram itself, or select a node to comment on that entity. Peers see the text and who wrote it without a reload. Resolve or delete your comment and it leaves the open thread. Comments stay in the live session; they are not part of BlueprintSpec YAML. Diagram comments use the map’s `entityRef` (the same identity as the properties panel).
+The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Notes on the map are [comments](#comments).
 
 These stay on each browser, not in the room:
 

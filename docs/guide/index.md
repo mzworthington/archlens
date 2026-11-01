@@ -32,7 +32,7 @@ Use this guide for the product, not the internals.
 - [Getting started](./getting-started.md) - demo → browser scan → CLI install
 - [Jobs for today](./jobs.md) - pick a job: demo, share, Mermaid, scan, catalog, ChaosLens, AdviceLens or CI
 - [ArchLens Canvas](./canvas.md) - startup chooser, panels, Mermaid import, externals, display toggles
-- [Collaborate](./collaborate.md) - live share rooms, named cursors, who can join
+- [Collaborate](./collaborate.md) - share, rooms and comments ([send this page](https://archlens.dev/guide/collaborate))
 - [ArchLens CLI](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan), [meaningful IaC externals](./cli.md#meaningful-external-dependencies)
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry

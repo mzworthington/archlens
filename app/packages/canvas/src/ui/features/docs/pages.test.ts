@@ -42,6 +42,16 @@ describe('docs link resolution', () => {
     });
   });
 
+  it('names share, rooms and comments on a page you can send, with no video embed', () => {
+    const collaborate = DOCS_PAGES.find(p => p.path === '/guide/collaborate');
+    const markdown = collaborate?.markdown ?? '';
+    expect(markdown).toMatch(/\bshare\b/i);
+    expect(markdown).toMatch(/\brooms?\b/i);
+    expect(markdown).toMatch(/\bcomments?\b/i);
+    expect(markdown).toContain('https://archlens.dev/guide/collaborate');
+    expect(markdown).not.toMatch(/<iframe|<video\b|youtube\.com|youtu\.be|loom\.com|vimeo\.com/i);
+  });
+
   it('registers product CTAs for each product guide chapter', () => {
     const canvas = DOCS_PAGES.find(p => p.path === '/guide/canvas');
     const collaborate = DOCS_PAGES.find(p => p.path === '/guide/collaborate');

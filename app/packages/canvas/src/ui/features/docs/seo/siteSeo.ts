@@ -68,9 +68,9 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   },
   '/guide/collaborate': {
     headline: 'Collaborate',
-    title: 'Collaborate - live share rooms on the map | ArchLens',
+    title: 'Collaborate - share, rooms and comments | ArchLens',
     description:
-      'Join a room with your peers on a live ArchLens map: named cursors, optional room secret and a shared BlueprintSpec working copy. Disk commit stays on Pending Changes.',
+      'Share an ArchLens room: copy a live editing link, join with an optional secret and leave comments on the map. Disk commit stays on Pending Changes.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {
