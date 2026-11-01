@@ -84,6 +84,16 @@ function parseFaultsParam(params: URLSearchParams): NodeFaultConfig[] {
     .filter((fault): fault is NodeFaultConfig => fault != null);
 }
 
+export function stripChaosLensSearch(search: string): string {
+  const query = search.startsWith('?') ? search.slice(1) : search;
+  const params = new URLSearchParams(query);
+  for (const key of ['lens', 'resilience', 'fault', 'type', 'severity', 'faults', 'browse']) {
+    params.delete(key);
+  }
+  const next = params.toString();
+  return next ? `?${next}` : '';
+}
+
 export function isChaosLensUrl(pathname: string, search = ''): boolean {
   if (!isWorkspacePath(pathname)) return false;
   const query = search.startsWith('?') ? search.slice(1) : search;

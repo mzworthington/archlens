@@ -259,6 +259,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           }
           scanProgress={liteScanProgress}
           onCancelScan={cancelBrowserLiteScan}
+          onEscape={() => setIsStartupOpen(false)}
         />
       ) : null}
       <NameBlankWorkspaceDialog

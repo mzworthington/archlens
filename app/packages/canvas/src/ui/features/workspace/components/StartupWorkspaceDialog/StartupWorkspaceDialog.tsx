@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { WorkspaceEntryPanel } from '../../../../components/WorkspaceEntryPanel';
 import type { LiteScanProgress } from '../../../../../application/analysis/liteScanProgress';
+import { useModalFocusTrap } from '../../../../a11y/useModalFocusTrap';
 
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
@@ -17,6 +18,8 @@ interface StartupWorkspaceDialogProps {
   loadingMessage?: string | false | null;
   scanProgress?: LiteScanProgress | null;
   onCancelScan?: () => void;
+  /** Leave the chooser keyboard trap. */
+  onEscape?: () => void;
 }
 
 /** First-run gate for bare `/workspace` - intent buckets then leaf actions. */
@@ -35,11 +38,16 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   loadingMessage = null,
   scanProgress = null,
   onCancelScan,
+  onEscape = () => undefined,
 }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useModalFocusTrap(isOpen, dialogRef, onEscape);
+
   if (!isOpen) return null;
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-[100]"
       role="dialog"
       aria-modal="true"

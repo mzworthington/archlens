@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { GitCompare, Check } from 'lucide-react';
+import { useModalFocusTrap } from '../../../../a11y/useModalFocusTrap';
 import { useDiffMenu } from './useDiffMenu';
 import { DiffNodesSection } from './DiffNodesSection';
 import { DiffDepsSection } from './DiffDepsSection';
@@ -10,21 +11,15 @@ interface DiffMenuProps {
 }
 
 export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
   const { diff, loading, hasChanges, handleRevert, handleCommit, previewCollabVsDisk } =
     useDiffMenu(isOpen, onClose);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onClose]);
+  useModalFocusTrap(isOpen, dialogRef, onClose);
 
   return (
     <div
       className={`fixed inset-0 z-[100] pointer-events-none ${isOpen ? 'visible' : 'invisible transition-all delay-300'}`}
+      inert={!isOpen}
     >
       <button
         type="button"
@@ -39,6 +34,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
         <div className="fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none">
           <div className="pointer-events-auto w-screen max-w-2xl">
             <div
+              ref={dialogRef}
               className={`flex h-full flex-col bg-slate-950/80 glass-panel backdrop-blur-md border-l border-slate-900 shadow-2xl transition-all duration-300 ease-in-out transform ${
                 isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
               }`}
@@ -46,6 +42,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
               aria-modal="true"
               aria-labelledby="diff-menu-title"
               data-testid="diff-menu"
+              tabIndex={-1}
             >
               <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40 sticky top-0 z-10 shrink-0">
                 <div className="flex items-center gap-2">
@@ -115,6 +112,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 <button
+                  type="button"
                   onClick={onClose}
                   className="bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-slate-100 px-4.5 py-2 rounded-lg text-xs font-semibold border border-slate-800 hover:border-slate-700 transition cursor-pointer"
                 >

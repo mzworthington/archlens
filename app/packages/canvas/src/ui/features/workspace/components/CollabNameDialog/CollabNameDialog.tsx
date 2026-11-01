@@ -1,6 +1,7 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { Users, X } from 'lucide-react';
 import { normalizeCollabDisplayName } from '../../../../../core';
+import { useModalFocusTrap } from '../../../../a11y/useModalFocusTrap';
 import { CollabDialogPortal } from './CollabDialogPortal';
 
 interface CollabNameDialogProps {
@@ -27,21 +28,14 @@ export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
   const [draft, setDraft] = useState(initialName);
   const [secret, setSecret] = useState('');
   const [showError, setShowError] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useModalFocusTrap(isOpen, dialogRef, onCancel);
 
   useEffect(() => {
     if (!isOpen) return;
     setDraft(initialName);
     setShowError(false);
   }, [isOpen, initialName]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onCancel();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onCancel]);
 
   if (!isOpen) return null;
 
@@ -57,6 +51,7 @@ export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
   return (
     <CollabDialogPortal>
       <div
+        ref={dialogRef}
         className="fixed inset-0 z-[200]"
         role="dialog"
         aria-modal="true"

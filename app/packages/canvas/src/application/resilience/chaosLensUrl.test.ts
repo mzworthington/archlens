@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { buildChaosLensUrl, isChaosLensUrl, parseChaosLensUrl } from './chaosLensUrl';
+import {
+  buildChaosLensUrl,
+  isChaosLensUrl,
+  parseChaosLensUrl,
+  stripChaosLensSearch,
+} from './chaosLensUrl';
 
 describe('chaosLensUrl', () => {
   it('builds workspace chaos lens URLs', () => {
@@ -34,6 +39,13 @@ describe('chaosLensUrl', () => {
     expect(buildChaosLensUrl('samples', { browseChaosSpecs: true })).toBe(
       '/workspace/samples?lens=chaoslens&browse=chaosspecs'
     );
+  });
+
+  it('strips chaos lens params so Escape can leave the resilience panel', () => {
+    expect(stripChaosLensSearch('?lens=chaoslens&fault=shop/api&type=latency&keep=1')).toBe(
+      '?keep=1'
+    );
+    expect(stripChaosLensSearch('lens=chaoslens&browse=chaosspecs')).toBe('');
   });
 
   it('parses workspace chaos lens URLs', () => {
