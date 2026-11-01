@@ -1030,11 +1030,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ shows the current zoom as a percent on the viewport controls
 
+### CatalogRefreshOffer
+
+#### CatalogRefreshOffer
+
+- ✅ names the refresh controls and hides them when the user keeps the current snapshot
+- ✅ asks before replacing drafts, and Escape keeps them
+- ✅ refreshes in place after the user confirms draft replacement
+
 ### chaosLensUrl
 
 #### chaosLensUrl
 
 - ✅ builds workspace chaos lens URLs
+- ✅ strips chaos lens params so Escape can leave the resilience panel
 - ✅ parses workspace chaos lens URLs
 - ✅ detects chaos lens routes
 
@@ -1083,6 +1092,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ sends a labelled room secret so a password manager can fill it
 - ✅ keeps the guest out and names the mismatch
 - ✅ does not render when closed
+- ✅ leaves the join dialog on Escape
 
 ### collabPresence
 
@@ -1127,6 +1137,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ lets the host require a labelled secret instead of anyone-with-the-link
 - ✅ says you will be first when the roster is empty
 - ✅ says the room is only other tabs on this machine when there is no Worker
+- ✅ leaves the share dialog on Escape
 
 ### collabVsDisk
 
@@ -1344,6 +1355,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ triggers revert schema operations and calls initSchema when Revert is confirmed
 - ✅ names live room vs disk and pushes disk back into the room
 - ✅ triggers commit schema operations and calls saveActiveDiagram when Commit is clicked
+- ✅ names pending changes and leaves on Escape
 
 ### directoryHandleFs
 
@@ -1380,6 +1392,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### DocsPage product CTA
 
 - ✅ shows an in-app product button on product guide pages
+
+### DocsPage.tracelens
+
+#### TraceLens guide article
+
+- ✅ shows the sized still on first paint and loads the GIF only when played
+- ✅ routes in-guide links without a document load
 
 ### DocsShell
 
@@ -2023,6 +2042,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ resolves relative markdown links within the guide
 - ✅ registers the BlueprintSpec and ChaosSpec guide pages
+- ✅ names share, rooms and comments on a page you can send, with no video embed
 - ✅ registers product CTAs for each product guide chapter
 - ✅ resolves in-app AdviceLens entry link
 - ✅ resolves absolute docs paths
@@ -2155,12 +2175,36 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders action buttons and handles clicks
 - ✅ renders narration detail and AdviceLens label when present
 
+### remoteCatalogRefresh
+
+#### remote catalog refresh offer
+
+- ✅ stays hidden until a newer revision exists
+- ✅ offers a newer revision and hides it after the user keeps the current snapshot
+- ✅ asks before refresh when drafts exist
+
+#### runRemoteCatalogRefresh
+
+- ✅ does not load a snapshot when drafts are unconfirmed
+- ✅ loads the new snapshot on the current diagram after drafts are cleared
+- ✅ keeps the canvas when the remote catalog falls back to bundled files
+
 ### remoteCatalogWorkspace
 
 #### Feature: Hosted sandbox reads remote catalog
 
 - ✅ follows latest pointer → catalog → lazy YAML consume protocol
 - ✅ rejects diagram paths that are not listed in the remote catalog
+- ✅ checks latest without replacing the snapshot already on the canvas
+
+### renderGuideHtml
+
+#### renderGuideHtml
+
+- ✅ paints the TraceLens guide from a sized still instead of the GIF
+- ✅ numbers a repeated heading the same way the markdown view does
+- ✅ leaves source-file links as written
+- ✅ opens absolute http links in a new tab
 
 ### requestServiceWorkerUpdate
 
@@ -2440,6 +2484,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ stores and retrieves layouts by file path and schema fingerprint
 - ✅ misses when the schema fingerprint changes
 
+### shellPrecacheRequest
+
+#### shellPrecacheRequest
+
+- ✅ requests the navigation shell as HTML so Cloudflare can inject the Web Analytics beacon
+
 ### simulationScopeHighlights
 
 #### applySimulationScopeHighlights
@@ -2486,6 +2536,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### StartupWorkspaceDialog
 
 - ✅ renders intent buckets with sample strip when open
+- ✅ leaves the chooser on Escape
 - ✅ renders nothing when closed
 - ✅ invokes handlers from the embedded entry panel
 - ✅ surfaces sandbox loading feedback while open is in progress
@@ -2719,6 +2770,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should call onRedo when ⌘Shift+Z, Ctrl+Shift+Z, ⌘Y or Ctrl+Y is pressed (not typing)
 - ✅ should call onShortcutsOpen when ? is pressed (not typing)
 - ✅ should cleanup event listener on unmount
+
+### useModalFocusTrap
+
+#### useModalFocusTrap
+
+- ✅ names the surface, wraps Tab, and leaves on Escape
+- ✅ leaves Escape and Tab to an open dialog above a side panel
+- ✅ still leaves a side panel on Escape when the other dialog is closed
 
 ### useSourceCodeDialog
 

@@ -1,5 +1,44 @@
 # Changelog
 
+## 2026-11-01
+
+### 🚀 Features
+
+- _(canvas)_ Refresh a remote catalog snapshot in place (MZW-42)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Trap focus in chooser, drafts, share and resilience (MZW-45)
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Prerender the tracelens guide and defer its demo gif
+
+## 2026-10-31
+
+### 📚 Documentation
+
+- _(guide)_ Name share, rooms and comments (MZW-91)
+
+## 2026-10-28
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Precache the shell as HTML so Cloudflare can inject the beacon
+
+## 2026-10-27
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 18 updates
+
+## 2026-10-25
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump chokidar from 5.0.0 to 6.0.0 in /app
+- _(deps)_ Bump the npm-minor-patch group
+
 ## 2026-10-24
 
 ### 🐛 Bug Fixes
