@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
+import { stripChaosLensSearch } from '../../../../application/resilience/chaosLensUrl';
+import { useModalFocusTrap } from '../../../a11y/useModalFocusTrap';
 import { WorkspacePanelShell } from './WorkspacePanelShell';
 import { LeftPanelTabs } from './LeftPanelTabs';
 import { CodeViewerContent } from '../components/CodeViewer/CodeViewerContent';
@@ -14,7 +17,16 @@ export const LeftWorkspacePanel: React.FC = () => {
     setActiveLeftPanel,
     toggleLeftCollapsed,
     isResilienceMode,
+    setResilienceMode,
   } = useBlueprintStore();
+  const [, setLocation] = useLocation();
+  const resilienceRef = useRef<HTMLDivElement>(null);
+  const resilienceTrapped = isResilienceMode && activeLeftPanel === 'chaosLens' && !leftCollapsed;
+  useModalFocusTrap(resilienceTrapped, resilienceRef, () => {
+    setResilienceMode(false);
+    const search = stripChaosLensSearch(window.location.search);
+    setLocation(`${window.location.pathname}${search}`, { replace: true });
+  });
 
   const model = usePropertyPanelModel();
 
@@ -40,15 +52,17 @@ export const LeftWorkspacePanel: React.FC = () => {
     >
       <LeftPanelTabs activeTab={activeTab} onTabChange={handleTabChange} />
       <div
+        ref={resilienceRef}
         className="flex-1 min-h-0 flex flex-col overflow-hidden"
         role="tabpanel"
         aria-label={
           activeTab === 'chaosLens'
-            ? 'ChaosLens'
+            ? 'Resilience'
             : activeTab === 'traceLens'
               ? 'TraceLens'
               : 'Schema'
         }
+        tabIndex={-1}
       >
         {activeTab === 'chaosLens' ? (
           <div className="flex-1 overflow-y-auto p-4 space-y-6">

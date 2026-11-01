@@ -4,7 +4,10 @@ import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { workspaceEntityRefFromPath } from '../../../../../application/navigation/workspaceUrl';
 import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
-import { buildChaosLensUrl } from '../../../../../application/resilience/chaosLensUrl';
+import {
+  buildChaosLensUrl,
+  stripChaosLensSearch,
+} from '../../../../../application/resilience/chaosLensUrl';
 
 const lensBtnClass =
   'relative px-2 py-1 rounded-md text-[10px] font-bold tracking-wide transition cursor-pointer flex items-center justify-center gap-1.5 min-w-[2rem]';
@@ -37,15 +40,8 @@ function ResilienceLensButton() {
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('lens') === 'chaoslens') params.delete('lens');
-    params.delete('resilience');
-    params.delete('fault');
-    params.delete('type');
-    params.delete('severity');
-    params.delete('faults');
-    const query = params.toString();
-    setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
+    const params = stripChaosLensSearch(window.location.search);
+    setLocation(`${window.location.pathname}${params}`, { replace: true });
   };
 
   return (

@@ -299,4 +299,17 @@ describe('DiffMenu Component', () => {
       });
     });
   });
+
+  it('names pending changes and leaves on Escape', async () => {
+    computeSchemaDiff.mockResolvedValue({
+      nodes: { added: [], modified: [], deleted: [] },
+      dependencies: { added: [], deleted: [] },
+    });
+    render(<DiffMenu isOpen={true} onClose={mockOnClose} />);
+    expect(
+      await screen.findByRole('dialog', { name: 'Pending Draft Changes' })
+    ).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(mockOnClose).toHaveBeenCalled();
+  });
 });

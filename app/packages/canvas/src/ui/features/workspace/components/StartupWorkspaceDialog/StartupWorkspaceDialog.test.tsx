@@ -55,6 +55,22 @@ describe('StartupWorkspaceDialog', () => {
     );
   });
 
+  it('leaves the chooser on Escape', () => {
+    const onEscape = vi.fn();
+    render(
+      <StartupWorkspaceDialog
+        isOpen
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onEscape={onEscape}
+      />
+    );
+
+    expect(screen.getByRole('dialog', { name: 'What do you want to do?' })).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onEscape).toHaveBeenCalledTimes(1);
+  });
+
   it('renders nothing when closed', () => {
     render(
       <StartupWorkspaceDialog isOpen={false} onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} />

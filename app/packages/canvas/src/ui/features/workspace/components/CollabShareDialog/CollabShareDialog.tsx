@@ -1,7 +1,8 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { Users, X } from 'lucide-react';
 import { normalizeCollabDisplayName, type CollabParticipant } from '../../../../../core';
 import { collabShareAudienceCopy } from '../../../../../application/collab/collabShareAudience';
+import { useModalFocusTrap } from '../../../../a11y/useModalFocusTrap';
 import { CollabDialogPortal } from '../CollabNameDialog/CollabDialogPortal';
 
 export type CollabShareCopyOptions = {
@@ -47,6 +48,8 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   const [secret, setSecret] = useState('');
   const [secretError, setSecretError] = useState(false);
   const [expiresInHours, setExpiresInHours] = useState<0 | 8 | 24>(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useModalFocusTrap(isOpen, dialogRef, onCancel);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -54,15 +57,6 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
     setShowError(false);
     setSecretError(false);
   }, [isOpen, initialName]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onCancel();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onCancel]);
 
   if (!isOpen) return null;
 
@@ -78,6 +72,7 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   return (
     <CollabDialogPortal>
       <div
+        ref={dialogRef}
         className="fixed inset-0 z-[200]"
         role="dialog"
         aria-modal="true"

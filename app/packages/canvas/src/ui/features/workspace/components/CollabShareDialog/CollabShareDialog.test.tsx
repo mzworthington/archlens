@@ -92,4 +92,21 @@ describe('CollabShareDialog', () => {
     );
     expect(screen.getByText(/tabs on this machine/i)).toBeInTheDocument();
   });
+
+  it('leaves the share dialog on Escape', () => {
+    const onCancel = vi.fn();
+    render(
+      <CollabShareDialog
+        isOpen
+        initialName="Ada"
+        participants={[]}
+        onCopyLink={vi.fn()}
+        onSaveName={vi.fn()}
+        onCancel={onCancel}
+      />
+    );
+    expect(screen.getByRole('dialog', { name: 'Live diagram' })).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+  });
 });

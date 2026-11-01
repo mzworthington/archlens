@@ -53,4 +53,11 @@ describe('CollabNameDialog', () => {
     );
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
+
+  it('leaves the join dialog on Escape', () => {
+    const onCancel = vi.fn();
+    render(<CollabNameDialog isOpen initialName="Ada" onConfirm={vi.fn()} onCancel={onCancel} />);
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(onCancel).toHaveBeenCalledTimes(1);
+  });
 });
