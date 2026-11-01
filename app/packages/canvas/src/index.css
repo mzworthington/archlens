@@ -439,3 +439,100 @@ body,
   color: #f1f5f9;
   font-weight: 600;
 }
+
+/* Static guide HTML (TraceLens). Tailwind classes on the React markdown view do not apply. */
+.docs-prose-static a {
+  color: var(--color-brand-500);
+  text-underline-offset: 2px;
+}
+
+.docs-prose-static a:hover {
+  color: var(--color-brand-300);
+  text-decoration: underline;
+}
+
+.docs-prose-static .docs-guide-shot {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-brand-500) 20%, transparent);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+}
+
+.docs-prose-static .docs-demo-still {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  margin: 0.75rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.docs-prose-static .docs-demo-play {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  border-radius: 999px;
+  background: rgb(4 9 20 / 0.8);
+  color: var(--color-brand-300);
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  pointer-events: none;
+}
+
+.docs-prose-static pre {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-brand-500) 15%, transparent);
+  background: rgb(2 6 23 / 0.9);
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, monospace;
+  color: #e2e8f0;
+}
+
+.docs-prose-static :not(pre) > code {
+  border-radius: 0.25rem;
+  background: rgb(15 23 42 / 0.8);
+  padding: 0.125rem 0.375rem;
+  font-size: 0.85em;
+  font-family: ui-monospace, monospace;
+  color: var(--color-brand-300);
+  border: 1px solid rgb(255 255 255 / 0.05);
+}
+
+.docs-prose-static .docs-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.docs-prose-static table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.docs-prose-static th,
+.docs-prose-static td {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.docs-prose-static th {
+  background: rgb(15 23 42 / 0.6);
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.docs-prose-static td {
+  color: #cbd5e1;
+}

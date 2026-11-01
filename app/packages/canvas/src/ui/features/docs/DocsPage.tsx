@@ -1,9 +1,11 @@
 import React, { useDeferredValue, useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Search } from 'lucide-react';
+import { tracelensGuideHtml } from 'virtual:tracelens-guide-html';
 import { DocsShell } from './DocsShell';
 import { DocsProductCta } from './DocsProductCta';
 import { MarkdownView } from './MarkdownView';
+import { StaticDocsArticle } from './StaticDocsArticle';
 import {
   countFeatureMatches,
   extractFeatureOutline,
@@ -114,7 +116,11 @@ export const DocsPage: React.FC = () => {
       ) : null}
       {page.productAction ? <DocsProductCta action={page.productAction} /> : null}
       {page.path === '/privacy' ? <AnalyticsPreference /> : null}
-      <MarkdownView markdown={markdown} fromDir={page.dir} />
+      {page.path === '/guide/tracelens' ? (
+        <StaticDocsArticle html={tracelensGuideHtml} />
+      ) : (
+        <MarkdownView markdown={markdown} fromDir={page.dir} />
+      )}
     </DocsShell>
   );
 };

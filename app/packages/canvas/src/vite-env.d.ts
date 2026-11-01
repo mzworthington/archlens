@@ -32,6 +32,10 @@ declare module '@docs/*/*.md?raw' {
   export default content;
 }
 
+declare module 'virtual:tracelens-guide-html' {
+  export const tracelensGuideHtml: string;
+}
+
 /** Minimal File System Access API typings used by browser workspace adapters. */
 interface FileSystemHandlePermissionDescriptor {
   mode?: 'read' | 'readwrite';

@@ -16,6 +16,7 @@ import { syncBundledChaosSpecs } from './vite/syncChaosSpecs';
 import { syncDocsAssets } from './vite/syncDocsAssets';
 import { syncJsonSchemas } from './vite/syncJsonSchemas';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
+import { tracelensGuideHtmlPlugin } from './vite/tracelensGuideHtml';
 import { sanitizePrecacheManifest } from './vite/rewritePrecacheHtmlUrls';
 
 const base = process.env.VITE_BASE || '/';
@@ -41,6 +42,7 @@ export default defineConfig({
     syncDocsAssets(),
     syncJsonSchemas(),
     syncTreeSitterWasms(),
+    tracelensGuideHtmlPlugin(),
     injectBuildIdMeta(appBuildId),
     emitVersionJson(deployIdentity),
     emitSiteSeo(),
