@@ -10,6 +10,8 @@ overrides:
   ip-address: '>=10.7.4'
   # GHSA-rj75-hqrm-r3gf: quadratic complexity in flat selector parsing.
   postcss-selector-parser: '>=7.1.6'
+  # GHSA-3g3m-2fjr-6pw4: an aborted glob walk kept reading the filesystem.
+  "glob@>=9.0.0 <14.0.2": 14.0.3
 allowBuilds:
   protobufjs: true
 onlyBuiltDependencies:
