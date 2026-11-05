@@ -129,7 +129,7 @@ function ProductCard({ product }: { product: Product }) {
       <Link
         href={product.href}
         aria-label={`${product.title}: ${product.tagline}`}
-        className="group flex flex-col gap-4 rounded-xl border border-emerald-400/25 bg-[#040914]/80 p-5 transition-all hover:border-emerald-400/40 hover:bg-[#061125]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 sm:flex-row sm:items-center"
+        className="group flex flex-col gap-4 rounded-xl border border-emerald-400/25 bg-navy/80 p-5 transition-all hover:border-emerald-400/40 hover:bg-surface/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 sm:flex-row sm:items-center"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
           <Icon className="h-5 w-5" aria-hidden />
@@ -160,12 +160,12 @@ function ProductCard({ product }: { product: Product }) {
     <Link
       href={product.href}
       aria-label={`${product.title}: ${product.tagline}`}
-      className={`group flex flex-col rounded-xl border bg-[#040914]/80 p-5 transition-all hover:border-[#00f0ff]/35 hover:bg-[#061125]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/50 ${
-        product.featured ? 'border-[#00f0ff]/25 sm:col-span-1' : 'border-[#00f0ff]/10'
+      className={`group flex flex-col rounded-xl border bg-navy/80 p-5 transition-all hover:border-accent/35 hover:bg-surface/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+        product.featured ? 'border-accent/25 sm:col-span-1' : 'border-accent/10'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#00f0ff]/15 bg-[#00f0ff]/5 text-[#00f0ff]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-accent/15 bg-accent/5 text-accent">
           <Icon className="h-5 w-5" aria-hidden />
         </div>
         <span
@@ -174,12 +174,12 @@ function ProductCard({ product }: { product: Product }) {
           {badge.label}
         </span>
       </div>
-      <h3 className="mt-4 text-base font-semibold text-white group-hover:text-[#00f0ff] transition-colors">
+      <h3 className="mt-4 text-base font-semibold text-white group-hover:text-accent transition-colors">
         {product.title}
       </h3>
       <p className="mt-1 text-xs font-medium text-slate-300">{product.tagline}</p>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed flex-1">{product.details}</p>
-      <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff] group-hover:gap-2 transition-all">
+      <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent group-hover:gap-2 transition-all">
         {productGuideCta(product)}
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </span>
@@ -242,7 +242,7 @@ function ArchitectureAsCode() {
           {FORMAT_POINTS.map(point => (
             <div
               key={point.title}
-              className="rounded-xl border border-emerald-400/20 bg-[#040914]/80 p-5"
+              className="rounded-xl border border-emerald-400/20 bg-navy/80 p-5"
             >
               <h3 className="text-base font-semibold text-white">{point.title}</h3>
               <p className="mt-2 text-sm text-slate-400 leading-relaxed">{point.body}</p>
@@ -256,7 +256,7 @@ function ArchitectureAsCode() {
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </div>
-        <figure className="rounded-xl border border-emerald-400/25 bg-[#040914] p-4 sm:p-5">
+        <figure className="rounded-xl border border-emerald-400/25 bg-navy p-4 sm:p-5">
           <figcaption className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">
             checkout.yaml · BlueprintSpec
           </figcaption>
@@ -280,12 +280,12 @@ export const DocsHome: React.FC = () => {
   return (
     <DocsShell layout="landing">
       <div data-testid="docs-home" className="space-y-14">
-        <section className="relative overflow-hidden rounded-2xl border border-[#00f0ff]/10 bg-[#061125]/50 p-6 sm:p-10">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.12),transparent)]" />
+        <section className="relative overflow-hidden rounded-2xl border border-accent/10 bg-surface/50 p-6 sm:p-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--color-accent)_12%,transparent),transparent)]" />
           <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff]">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
                   ArchLens
                 </p>
                 <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300">
@@ -310,14 +310,14 @@ export const DocsHome: React.FC = () => {
               <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
                 <Link
                   href="/workspace"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#00f0ff]/90 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent/90 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-accent transition-colors"
                 >
                   Open ArchLens Canvas
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
                 <Link
                   href="/journeys"
-                  className="inline-flex items-center justify-center rounded-xl border border-[#00f0ff]/40 px-5 py-3 text-sm font-semibold text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] transition-colors"
+                  className="inline-flex items-center justify-center rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-white hover:bg-accent/10 hover:border-accent transition-colors"
                 >
                   5-minute walkthrough
                 </Link>
@@ -330,10 +330,7 @@ export const DocsHome: React.FC = () => {
               </div>
               <p className="mt-4 text-sm text-slate-500">
                 New to ArchLens?{' '}
-                <Link
-                  href="/guide"
-                  className="text-slate-300 hover:text-[#00f0ff] transition-colors"
-                >
+                <Link href="/guide" className="text-slate-300 hover:text-accent transition-colors">
                   Read the full product guide
                 </Link>
               </p>
@@ -343,7 +340,7 @@ export const DocsHome: React.FC = () => {
                 src="/assets/logo.svg"
                 alt=""
                 role="presentation"
-                className="w-40 sm:w-48 lg:w-56 drop-shadow-[0_0_40px_rgba(0,240,255,0.25)]"
+                className="w-40 sm:w-48 lg:w-56 drop-shadow-[0_0_40px_color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
               />
             </div>
           </div>
@@ -369,7 +366,7 @@ export const DocsHome: React.FC = () => {
             </div>
             <Link
               href="/guide"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff] hover:text-white transition-colors shrink-0"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-accent hover:text-white transition-colors shrink-0"
             >
               Compare in the guide
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -395,9 +392,9 @@ export const DocsHome: React.FC = () => {
           )}
         </section>
 
-        <section className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <section className="rounded-2xl border border-accent/15 bg-gradient-to-br from-accent/10 via-transparent to-transparent p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#00f0ff]/20 bg-[#00f0ff]/10 text-[#00f0ff]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-accent">
               <ScanSearch className="h-5 w-5" aria-hidden />
             </div>
             <div>
@@ -410,7 +407,7 @@ export const DocsHome: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <Link
               href="/workspace"
-              className="inline-flex items-center justify-center rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
+              className="inline-flex items-center justify-center rounded-xl bg-accent/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-accent transition-colors"
             >
               Open canvas
             </Link>

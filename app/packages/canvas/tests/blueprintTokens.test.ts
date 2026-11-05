@@ -57,4 +57,28 @@ describe('blueprint design tokens', () => {
     expect(chrome).not.toContain('#061125');
     expect(chrome).not.toContain('#040914');
   });
+
+  it('paints the homepage from the token set', () => {
+    const homepage = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/features/docs/DocsHome.tsx'),
+      'utf8'
+    );
+
+    expect(homepage).not.toContain('#00f0ff');
+    expect(homepage).not.toContain('#061125');
+    expect(homepage).not.toContain('#040914');
+    expect(homepage).not.toContain('240, 255');
+    expect(homepage).not.toContain('240,255');
+  });
+
+  it('paints the docs chrome from the token set', () => {
+    const chrome = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/features/docs/DocsShell.tsx'),
+      'utf8'
+    );
+
+    expect(chrome).not.toContain('#00f0ff');
+    expect(chrome).not.toContain('#061125');
+    expect(chrome).not.toContain('#040914');
+  });
 });
