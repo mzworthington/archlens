@@ -1,6 +1,6 @@
 # Product guide
 
-ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Scan a repo, overlay git hotspots, simulate a failure and get a ranked list.
+ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**, an opinionated architecture-as-code format. The YAML in git is the map. Scan a repo, overlay git hotspots, simulate a failure and get a ranked list.
 
 Use this guide for the product, not the internals.
 
@@ -13,7 +13,7 @@ Use this guide for the product, not the internals.
 | **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                                                            |
 | **ChaosLens**       | Fault injection, blast-radius heatmap and SLA telemetry on the live diagram                                                                     |
 | **AdviceLens**      | Ranked recommendations from TraceLens + ChaosLens (studio, CLI, CI)                                                                             |
-| **BlueprintSpec**   | Architecture contract: public schema URLs, `entityRef` identity, validation rules                                                               |
+| **BlueprintSpec**   | Architecture as code: opinionated YAML, public schema and `entityRef` identity. Diagrams are a view of the file                                 |
 | **ChaosSpec**       | Failure scenarios: public schema URLs, `diagramRef` binding, faults without duplicating topology                                                |
 
 ## Typical flow

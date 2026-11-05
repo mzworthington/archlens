@@ -1,9 +1,9 @@
-/** Shared outcome copy. Product names first. BlueprintSpec is the architecture contract, not a YAML pitch. */
+/** Shared outcome copy. Product names first. BlueprintSpec is the architecture-as-code format. */
 
 export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
   documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
-  lede: 'Canvas is the map you work on. The CLI builds it from the repo. TraceLens and ChaosLens run on that map. AdviceLens ranks what to change.',
+  lede: 'BlueprintSpec is architecture as code: the YAML in git is the map. Canvas draws it. The CLI writes it from the repo. TraceLens, ChaosLens and AdviceLens run on that file.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Live share rooms talk to a Worker we host for that session. Catalog publish from CI is a separate, explicit step.',
 } as const;

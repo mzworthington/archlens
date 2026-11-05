@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../application/store/samplesWorkspace';
-import { shouldOfferSampleMapScan } from './sampleMapScanOffer';
+import { shouldOfferSampleMapScan } from './shouldOfferSampleMapScan';
 
 describe('shouldOfferSampleMapScan', () => {
   it('offers a scan on the golden-journey map before Chaos', () => {

@@ -49,7 +49,7 @@ const navLinkClass = (active: boolean, mobile = false) => {
   const base = mobile
     ? 'block w-full rounded-lg px-3 py-2.5 text-sm font-mono uppercase tracking-wider transition-colors'
     : 'text-xs font-mono uppercase tracking-wider transition-colors px-2';
-  return `${base} ${active ? 'text-[#00f0ff]' : 'text-slate-400 hover:text-[#00f0ff]'}`;
+  return `${base} ${active ? 'text-accent' : 'text-slate-400 hover:text-accent'}`;
 };
 
 /**
@@ -75,7 +75,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
 
   return (
     <header
-      className={`border-b border-[#00f0ff]/20 bg-[#061125]/90 backdrop-blur-md z-50 shadow-lg shadow-black/30 shrink-0 ${
+      className={`border-b border-accent/20 bg-surface/90 backdrop-blur-md z-50 shadow-lg shadow-black/30 shrink-0 ${
         sticky ? 'sticky top-0' : ''
       }`}
     >
@@ -108,7 +108,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
 
           <button
             type="button"
-            className="sm:hidden shrink-0 flex items-center justify-center w-9 h-9 rounded-lg border border-[#00f0ff]/20 bg-cyan-950/20 text-[#00f0ff] hover:bg-cyan-950/40 transition-colors cursor-pointer"
+            className="sm:hidden shrink-0 flex items-center justify-center w-9 h-9 rounded-lg border border-accent/20 bg-cyan-950/20 text-accent hover:bg-cyan-950/40 transition-colors cursor-pointer"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
             aria-controls="app-header-mobile-nav"
@@ -123,7 +123,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
         <nav
           id="app-header-mobile-nav"
           aria-label="Site menu"
-          className="sm:hidden border-t border-[#00f0ff]/15 px-4 pb-4 pt-2 space-y-1"
+          className="sm:hidden border-t border-accent/15 px-4 pb-4 pt-2 space-y-1"
         >
           {NAV_ITEMS.map(item => {
             const active = item.isActive(location);
@@ -132,9 +132,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
                 key={item.href}
                 href={item.href}
                 className={`${navLinkClass(active, true)} ${
-                  active
-                    ? 'bg-[#00f0ff]/10 border border-[#00f0ff]/25'
-                    : 'border border-transparent'
+                  active ? 'bg-accent/10 border border-accent/25' : 'border border-transparent'
                 }`}
                 onClick={() => setMenuOpen(false)}
               >

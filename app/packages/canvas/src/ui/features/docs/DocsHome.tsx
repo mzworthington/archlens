@@ -78,8 +78,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'BlueprintSpec',
-    tagline: 'What Canvas, CLI and CI share',
-    details: 'The architecture contract every ArchLens surface reads and writes.',
+    tagline: 'Architecture as code',
+    details:
+      'Opinionated YAML every ArchLens surface reads and writes. Typed nodes, stable entityRef and a public schema. The diagram is a view of the file.',
     href: '/guide/schema',
     category: 'Contract',
     icon: FileCode2,
@@ -186,6 +187,91 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
+const FORMAT_POINTS = [
+  {
+    title: 'One shape in git',
+    body: 'Context, container and component views. Nodes are typed (web-app, rest-api, database). Links use entityRef, so renaming a label does not break the map or the lenses on it.',
+  },
+  {
+    title: 'Checked before it ships',
+    body: 'A public JSON Schema and the same rules in the editor, Canvas and archlens validate. A broken entityRef fails the check. It does not wait for a review comment.',
+  },
+  {
+    title: 'The diagram follows the file',
+    body: 'Canvas and Mermaid render BlueprintSpec. Mermaid and infrastructure-as-code imports merge into that file. You do not keep a second editable picture that can drift.',
+  },
+] as const;
+
+const BLUEPRINT_SAMPLE = `level: context
+metadata:
+  entityRef: checkout
+  name: Checkout
+nodes:
+  - entityRef: checkout/ui
+    type: web-app
+    name: Checkout UI
+  - entityRef: checkout/orders
+    type: rest-api
+    name: Orders API
+dependencies:
+  - from: checkout/ui
+    to: checkout/orders
+    type: direct-call`;
+
+function ArchitectureAsCode() {
+  return (
+    <section aria-labelledby="aac-heading" className="space-y-6">
+      <div className="max-w-3xl">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">
+          BlueprintSpec
+        </p>
+        <h2
+          id="aac-heading"
+          className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-white"
+        >
+          Architecture as code
+        </h2>
+        <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+          BlueprintSpec is ArchLens&apos;s architecture-as-code (AaC) format: one opinionated YAML
+          file in git. Canvas, the CLI and CI read and write that file. The narrow shape is the
+          point.
+        </p>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <div className="grid gap-3">
+          {FORMAT_POINTS.map(point => (
+            <div
+              key={point.title}
+              className="rounded-xl border border-emerald-400/20 bg-[#040914]/80 p-5"
+            >
+              <h3 className="text-base font-semibold text-white">{point.title}</h3>
+              <p className="mt-2 text-sm text-slate-400 leading-relaxed">{point.body}</p>
+            </div>
+          ))}
+          <Link
+            href="/guide/schema"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-300 hover:text-white transition-colors"
+          >
+            Read the BlueprintSpec guide
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          </Link>
+        </div>
+        <figure className="rounded-xl border border-emerald-400/25 bg-[#040914] p-4 sm:p-5">
+          <figcaption className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">
+            checkout.yaml · BlueprintSpec
+          </figcaption>
+          <pre className="overflow-x-auto text-xs leading-relaxed text-slate-300">
+            <code>{BLUEPRINT_SAMPLE}</code>
+          </pre>
+          <p className="mt-3 text-xs text-slate-500 leading-relaxed">
+            Canvas draws this file. CI can reject it when an entityRef does not resolve.
+          </p>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
 export const DocsHome: React.FC = () => {
   const featured = PRODUCTS.filter(p => p.featured);
   const foundational = PRODUCTS.filter(p => p.foundational);
@@ -207,6 +293,9 @@ export const DocsHome: React.FC = () => {
                 </span>
                 <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-sky-300">
                   Local first
+                </span>
+                <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-200">
+                  Architecture as code
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
@@ -259,6 +348,8 @@ export const DocsHome: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <ArchitectureAsCode />
 
         <TodayJobs showHeading />
 

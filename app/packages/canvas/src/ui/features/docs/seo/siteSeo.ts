@@ -103,9 +103,9 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   },
   '/guide/schema': {
     headline: 'BlueprintSpec',
-    title: 'BlueprintSpec - architecture contract schema | ArchLens',
+    title: 'BlueprintSpec - architecture as code | ArchLens',
     description:
-      'BlueprintSpec is the ArchLens architecture contract for systems, containers, components and entityRef-linked diagrams.',
+      'BlueprintSpec is ArchLens architecture as code: opinionated YAML for systems, containers and components, linked by entityRef and checked against a public schema.',
     softwareName: 'BlueprintSpec',
   },
   '/guide/chaos-spec': {
