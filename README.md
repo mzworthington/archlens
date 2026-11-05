@@ -6,7 +6,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens?style=for-the-badge)](https://github.com/mzworthington/archlens/commits/main)
 [![Quality gate](https://img.shields.io/sonar/alert_status/mzworthington_archlens?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarqube)](https://sonarcloud.io/summary/new_code?id=mzworthington_archlens)
 
-ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on the same map.
+ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**, an opinionated architecture-as-code format. The YAML in git is the map. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on that file.
 
 **Local authoring:** open a folder in ArchLens Canvas, edit the map, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage and open a shared read-only catalog without redeploying the app.

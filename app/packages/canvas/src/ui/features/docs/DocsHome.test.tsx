@@ -48,7 +48,7 @@ describe('DocsHome', () => {
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
     expect(screen.getAllByText('ChaosLens').length).toBeGreaterThan(0);
-    expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
+    expect(screen.getAllByText('BlueprintSpec').length).toBeGreaterThan(0);
     expect(screen.getByText('ChaosSpec')).toBeInTheDocument();
     expect(screen.getByText('Observes')).toBeInTheDocument();
     expect(screen.getByText('Prescribes')).toBeInTheDocument();
@@ -59,6 +59,21 @@ describe('DocsHome', () => {
     render(<DocsHome />);
     expect(screen.queryByTestId('docs-sidebar')).not.toBeInTheDocument();
     expect(screen.queryByTestId('docs-mobile-start-nav')).not.toBeInTheDocument();
+  });
+
+  it('presents BlueprintSpec as opinionated architecture as code', () => {
+    render(<DocsHome />);
+
+    expect(screen.getByRole('heading', { name: 'Architecture as code' })).toBeInTheDocument();
+    expect(screen.getByText(/one opinionated YAML file/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'One shape in git' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Checked before it ships' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'The diagram follows the file' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'BlueprintSpec: Architecture as code' })
+    ).toHaveAttribute('href', '/guide/schema');
   });
 
   it('links each product card to its guide chapter', () => {

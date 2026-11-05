@@ -1,6 +1,15 @@
 # BlueprintSpec
 
-**BlueprintSpec** is the architecture contract every ArchLens surface reads and writes. This page is for teams integrating with that contract: authoring by hand, generating from **ArchLens CLI** or consuming it in another tool. It covers the **JSON Schema** validation surface and how we name and link parts of an architecture with **`entityRef`**.
+**BlueprintSpec** is ArchLens's architecture-as-code (AaC) format. It is opinionated on purpose: one YAML shape for a context, container or component view, with typed nodes and stable `entityRef` links. Canvas, the CLI and CI read and write that file. Mermaid is a picture of it.
+
+The narrow format is what makes the rest of ArchLens possible:
+
+- **A pull request can show the architecture change.** The file is YAML. Display names can change without breaking links, because identity is `entityRef`.
+- **The diagram follows the file.** You do not maintain a slide and a model. Mermaid and infrastructure-as-code imports merge into BlueprintSpec. Export-only views stay non-editable ([ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md)).
+- **Invalid architecture fails a check.** A public JSON Schema, editor autocomplete and `archlens validate --contract` use the same rules.
+- **The lenses share the nodes.** TraceLens, ChaosLens and AdviceLens attach to `entityRef`. They do not invent a second map.
+
+This page is for teams integrating with that contract: authoring by hand, generating from **ArchLens CLI** or consuming it in another tool. It covers the **JSON Schema** validation surface and how we name and link parts of an architecture with **`entityRef`**.
 
 ---
 
