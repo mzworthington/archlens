@@ -45,7 +45,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               <button
                 type="button"
                 onClick={() => setActiveTab('components')}
-                className="inline-flex items-center gap-2 rounded-lg bg-[#00f0ff]/90 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent/90 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-accent transition-colors cursor-pointer"
               >
                 UI patterns
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -53,7 +53,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               <button
                 type="button"
                 onClick={() => setActiveTab('tokens')}
-                className="rounded-lg border border-[#00f0ff]/40 text-[#00f0ff] hover:bg-[#00f0ff]/10 px-3 py-2 text-sm font-semibold transition-colors cursor-pointer"
+                className="rounded-lg border border-accent/40 text-accent hover:bg-accent/10 px-3 py-2 text-sm font-semibold transition-colors cursor-pointer"
               >
                 Design tokens
               </button>
@@ -77,7 +77,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.10),transparent)]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent mb-3">
               ArchLens design system
             </p>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
@@ -91,7 +91,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               <button
                 type="button"
                 onClick={() => setActiveTab('components')}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-accent transition-colors"
               >
                 UI patterns
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -99,7 +99,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               <button
                 type="button"
                 onClick={() => setActiveTab('tokens')}
-                className="rounded-xl border border-[#00f0ff]/40 text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
+                className="rounded-xl border border-accent/40 text-accent hover:text-white hover:bg-accent/10 hover:border-accent px-4 py-2.5 text-sm font-semibold transition-colors"
               >
                 Design tokens
               </button>
@@ -130,7 +130,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
       {IDENTITY_GUIDELINES.map(guideline => (
         <article
           key={guideline.title}
-          className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/80 p-5"
+          className="rounded-xl border border-accent/10 bg-navy/80 p-5"
         >
           <h3 className="text-base font-semibold text-white">{guideline.title}</h3>
           <p className="mt-2 text-sm text-slate-400 leading-relaxed">{guideline.details}</p>

@@ -81,4 +81,33 @@ describe('blueprint design tokens', () => {
     expect(chrome).not.toContain('#061125');
     expect(chrome).not.toContain('#040914');
   });
+
+  it('paints the design-system token cards from the token set', () => {
+    const section = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/TokensSection.tsx'),
+      'utf8'
+    );
+
+    expect(section).not.toContain('border-[#00f0ff]');
+    expect(section).not.toContain('bg-[#061125]');
+    expect(section).not.toContain('text-[#00f0ff]');
+    expect(section).not.toContain('bg-[#040914]');
+    expect(section).not.toContain('bg-[#00f0ff]');
+    expect(section).not.toContain('divide-[#00f0ff]');
+    expect(section).not.toContain('--color-blueprint-bg');
+    expect(section).toContain('--color-navy');
+    expect(section).toContain('--color-accent');
+  });
+
+  it('paints the design-system identity section from the token set', () => {
+    const section = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/IdentitySection.tsx'),
+      'utf8'
+    );
+
+    expect(section).not.toContain('bg-[#00f0ff]');
+    expect(section).not.toContain('border-[#00f0ff]');
+    expect(section).not.toContain('text-[#00f0ff]');
+    expect(section).not.toContain('bg-[#040914]');
+  });
 });

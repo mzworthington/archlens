@@ -9,9 +9,9 @@ type TokensSectionProps = {
 
 export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToClipboard }) => (
   <div className="space-y-8 animate-fade-in">
-    <div className="border-b border-[#00f0ff]/10 pb-4">
+    <div className="border-b border-accent/10 pb-4">
       <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-        <Palette className="w-5 h-5 text-[#00f0ff]" /> Design Tokens (Theme Variables)
+        <Palette className="w-5 h-5 text-accent" /> Design Tokens (Theme Variables)
       </h2>
       <p className="text-xs text-slate-400 mt-1">
         Standardized CSS variables used by the homepage, docs and canvas.
@@ -23,18 +23,18 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
         Color Palette
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col space-y-3">
-          <div className="h-16 w-full rounded-lg bg-[#00f0ff] shadow-[0_0_12px_rgba(0,240,255,0.7)]" />
+        <div className="border border-accent/15 bg-surface/30 rounded-xl p-3 flex flex-col space-y-3">
+          <div className="h-16 w-full rounded-lg bg-accent shadow-[0_0_12px_color-mix(in_srgb,var(--color-accent)_70%,transparent)]" />
           <div className="flex-1 flex flex-col justify-between">
             <div>
               <div className="text-xs font-bold text-white">Cyan Primary</div>
-              <div className="text-[10px] text-slate-400 font-mono mt-0.5">--color-brand-500</div>
+              <div className="text-[10px] text-slate-400 font-mono mt-0.5">--color-accent</div>
             </div>
             <div className="flex items-center justify-between text-[11px] font-mono text-slate-300 border-t border-slate-900 mt-2 pt-2">
               <span>#00F0FF</span>
               <button
                 onClick={() => copyToClipboard('#00f0ff', 'c-cyan')}
-                className="text-[#00f0ff] hover:underline cursor-pointer flex items-center gap-1"
+                className="text-accent hover:underline cursor-pointer flex items-center gap-1"
               >
                 {copiedId === 'c-cyan' ? (
                   <Check className="w-3 h-3" />
@@ -47,20 +47,18 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
           </div>
         </div>
 
-        <div className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col space-y-3">
-          <div className="h-16 w-full rounded-lg bg-[#040914] border border-slate-900 shadow-inner" />
+        <div className="border border-accent/15 bg-surface/30 rounded-xl p-3 flex flex-col space-y-3">
+          <div className="h-16 w-full rounded-lg bg-navy border border-slate-900 shadow-inner" />
           <div className="flex-1 flex flex-col justify-between">
             <div>
               <div className="text-xs font-bold text-white">Blueprint Navy</div>
-              <div className="text-[10px] text-slate-400 font-mono mt-0.5">
-                --color-blueprint-bg
-              </div>
+              <div className="text-[10px] text-slate-400 font-mono mt-0.5">--color-navy</div>
             </div>
             <div className="flex items-center justify-between text-[11px] font-mono text-slate-300 border-t border-slate-900 mt-2 pt-2">
               <span>#040914</span>
               <button
                 onClick={() => copyToClipboard('#040914', 'c-bg')}
-                className="text-[#00f0ff] hover:underline cursor-pointer flex items-center gap-1"
+                className="text-accent hover:underline cursor-pointer flex items-center gap-1"
               >
                 {copiedId === 'c-bg' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 <span>{copiedId === 'c-bg' ? 'Copied' : 'Copy'}</span>
@@ -69,7 +67,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
           </div>
         </div>
 
-        <div className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col space-y-3">
+        <div className="border border-accent/15 bg-surface/30 rounded-xl p-3 flex flex-col space-y-3">
           <div className="h-16 w-full rounded-lg bg-[#0f172a]" />
           <div className="flex-1 flex flex-col justify-between">
             <div>
@@ -80,7 +78,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
               <span>#0F172A</span>
               <button
                 onClick={() => copyToClipboard('#0f172a', 'c-slate')}
-                className="text-[#00f0ff] hover:underline cursor-pointer flex items-center gap-1"
+                className="text-accent hover:underline cursor-pointer flex items-center gap-1"
               >
                 {copiedId === 'c-slate' ? (
                   <Check className="w-3 h-3" />
@@ -93,8 +91,8 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
           </div>
         </div>
 
-        <div className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col space-y-3">
-          <div className="h-16 w-full rounded-lg bg-[#0b2b3f]/30 border border-[#00f0ff]/20 shadow-inner" />
+        <div className="border border-accent/15 bg-surface/30 rounded-xl p-3 flex flex-col space-y-3">
+          <div className="h-16 w-full rounded-lg bg-[#0b2b3f]/30 border border-accent/20 shadow-inner" />
           <div className="flex-1 flex flex-col justify-between">
             <div>
               <div className="text-xs font-bold text-white">Grid Guideline</div>
@@ -106,7 +104,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
               <span>rgba(0,240,255,0.15)</span>
               <button
                 onClick={() => copyToClipboard('rgba(0, 240, 255, 0.15)', 'c-grid')}
-                className="text-[#00f0ff] hover:underline cursor-pointer flex items-center gap-1"
+                className="text-accent hover:underline cursor-pointer flex items-center gap-1"
               >
                 {copiedId === 'c-grid' ? (
                   <Check className="w-3 h-3" />
@@ -137,7 +135,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
         ).map(([label, className]) => (
           <div
             key={label}
-            className="border border-[#00f0ff]/15 bg-[#061125]/30 rounded-xl p-3 flex flex-col gap-3"
+            className="border border-accent/15 bg-surface/30 rounded-xl p-3 flex flex-col gap-3"
           >
             <span
               className={`self-start rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${className}`}
@@ -154,7 +152,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
       <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
         Typography Scale
       </h3>
-      <div className="border border-[#00f0ff]/10 rounded-xl p-4 bg-[#040914]/40 divide-y divide-[#00f0ff]/5 space-y-4">
+      <div className="border border-accent/10 rounded-xl p-4 bg-navy/40 divide-y divide-accent/5 space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 gap-2">
           <div>
             <div className="text-xs font-semibold text-slate-400 font-mono">UI Title / Heading</div>
@@ -174,7 +172,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
             <div className="text-xs font-semibold text-slate-400 font-mono">
               Code / Node Identifiers
             </div>
-            <div className="text-sm font-semibold text-[#00f0ff] mt-1 font-mono">
+            <div className="text-sm font-semibold text-accent mt-1 font-mono">
               JetBrains Mono - Medium
             </div>
           </div>
@@ -188,23 +186,23 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
         <div className="pt-4 space-y-3 font-sans">
           <div className="flex items-baseline gap-4">
             <span className="text-2xl font-extrabold text-white">Aa</span>
-            <span className="text-xs font-mono text-[#00f0ff]">
+            <span className="text-xs font-mono text-accent">
               H1: 1.5rem (24px) / font-extrabold
             </span>
           </div>
           <div className="flex items-baseline gap-4">
             <span className="text-xl font-bold text-white">Aa</span>
-            <span className="text-xs font-mono text-[#00f0ff]">H2: 1.25rem (20px) / font-bold</span>
+            <span className="text-xs font-mono text-accent">H2: 1.25rem (20px) / font-bold</span>
           </div>
           <div className="flex items-baseline gap-4">
             <span className="text-sm font-medium text-slate-300">Aa</span>
-            <span className="text-xs font-mono text-[#00f0ff]">
+            <span className="text-xs font-mono text-accent">
               Body: 0.875rem (14px) / font-normal
             </span>
           </div>
           <div className="flex items-baseline gap-4">
             <span className="text-xs font-normal text-slate-400">Aa</span>
-            <span className="text-xs font-mono text-[#00f0ff]">
+            <span className="text-xs font-mono text-accent">
               Small: 0.75rem (12px) / text-slate-400
             </span>
           </div>
