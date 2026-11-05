@@ -6,7 +6,7 @@ import { useBlueprintStore } from '../../../application/store/store';
 import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { navigateToActiveWorkspaceEntity } from '../workspace/hooks/navigateToActiveWorkspaceEntity';
 import { useActiveDiagramEntity } from '../workspace/hooks/useActiveDiagramEntity';
-import { shouldOfferSampleMapScan } from './sampleMapScanOffer';
+import { shouldOfferSampleMapScan } from './shouldOfferSampleMapScan';
 
 const ZIP_ACCEPT = '.zip,application/zip,application/x-zip-compressed';
 
