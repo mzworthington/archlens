@@ -7,7 +7,13 @@ import {
   INTEREST_DISCUSSION_URL,
   TELL_US_COPY,
   TRUST_COPY,
+  NO_LOWER_COPY,
   NO_SOURCE_COPY,
+  NOTHING_TO_COPY,
+  blueprintProblems,
+  decideBack,
+  decideCopyMermaid,
+  decideDrill,
   decideOpenMap,
   decideOpenSource,
   generateDecision,
@@ -234,5 +240,156 @@ describe('open source', () => {
         sourceFile: '../secret.ts',
       })
     ).toEqual({ kind: 'missing', message: NO_SOURCE_COPY });
+  });
+});
+
+const cycle = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Checkout
+  entityRef: checkout
+nodes:
+  - entityRef: catalog
+    type: software-system
+    name: Catalog
+  - entityRef: billing
+    type: software-system
+    name: Billing
+dependencies:
+  - from: catalog
+    to: billing
+    type: direct-call
+  - from: billing
+    to: catalog
+    type: direct-call
+`;
+
+const container = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  name: Checkout API
+  entityRef: checkout/api
+nodes:
+  - entityRef: checkout/api/handler
+    type: component
+    name: Handler
+dependencies: []
+`;
+
+describe('blueprint problems', () => {
+  it('names both systems in a cycle and points at the dependency', () => {
+    const problems = blueprintProblems(cycle);
+
+    expect(problems).toEqual([
+      {
+        message: 'Cycle: Catalog calls Billing and Billing calls Catalog.',
+        line: cycle.split('\n').findIndex(line => line.includes('from: catalog')),
+      },
+    ]);
+  });
+
+  it('adds no problem for YAML that is not a blueprint', () => {
+    expect(blueprintProblems('title: meeting notes\n')).toEqual([]);
+  });
+
+  it('reports the first failed check for a broken blueprint', () => {
+    const broken = checkout.replace('    name: Checkout API', '    name:');
+    const problems = blueprintProblems(broken);
+
+    expect(problems).toHaveLength(1);
+    expect(problems[0]?.line).toBe(0);
+    expect(problems[0]?.message.length).toBeGreaterThan(0);
+  });
+
+  it('clears the cycle once the file no longer has one', () => {
+    const fixed = cycle.replace('  - from: billing\n    to: catalog\n    type: direct-call\n', '');
+
+    expect(blueprintProblems(fixed)).toEqual([]);
+  });
+});
+
+describe('diagram navigation', () => {
+  it('drills into the child diagram for the focused system', () => {
+    const decision = decideDrill({
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api.yaml', content: container },
+      ],
+      focusedEntityRef: 'checkout/api',
+      currentPath: '/repo/blueprints/context.yaml',
+    });
+
+    expect(decision.kind).toBe('child');
+    if (decision.kind !== 'child') return;
+    expect(decision.diagram.systems.map(system => system.name)).toEqual(['Handler']);
+    expect(decision.diagram.sourcePath).toBe('/repo/blueprints/api.yaml');
+  });
+
+  it('stays put when the focused system has no child diagram', () => {
+    expect(
+      decideDrill({
+        files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+        focusedEntityRef: 'checkout/billing',
+        currentPath: '/repo/blueprints/context.yaml',
+      })
+    ).toEqual({ kind: 'none', message: NO_LOWER_COPY });
+  });
+
+  it('returns the parent diagram from the breadcrumb', () => {
+    const decision = decideBack({
+      breadcrumb: [
+        { name: 'Checkout', sourcePath: '/repo/blueprints/context.yaml' },
+        { name: 'Checkout API', sourcePath: '/repo/blueprints/api.yaml' },
+      ],
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api.yaml', content: container },
+      ],
+      sourcePath: '/repo/blueprints/context.yaml',
+    });
+
+    expect(decision.kind).toBe('parent');
+    if (decision.kind !== 'parent') return;
+    expect(decision.diagram.systems.map(system => system.name)).toEqual([
+      'Checkout API',
+      'Billing',
+    ]);
+    expect(decision.breadcrumb).toEqual([
+      { name: 'Checkout', sourcePath: '/repo/blueprints/context.yaml' },
+    ]);
+  });
+});
+
+describe('copy diagram as mermaid', () => {
+  it('copies a flowchart of the systems on screen', () => {
+    const decision = decideCopyMermaid({
+      name: 'Checkout',
+      version: 'v4',
+      level: 'context',
+      nodes: [
+        { entityRef: 'checkout/api', name: 'Checkout API', type: 'software-system' },
+        { entityRef: 'checkout/billing', name: 'Billing', type: 'software-system' },
+      ],
+      dependencies: [{ from: 'checkout/api', to: 'checkout/billing', type: 'direct-call' }],
+    });
+
+    expect(decision.kind).toBe('copy');
+    if (decision.kind !== 'copy') return;
+    expect(decision.text).toContain('graph TD');
+    expect(decision.text).toContain('Checkout API');
+    expect(decision.text).toContain('Billing');
+  });
+
+  it('copies nothing when the diagram has no systems', () => {
+    expect(
+      decideCopyMermaid({
+        name: 'Empty',
+        version: 'v4',
+        level: 'context',
+        nodes: [],
+        dependencies: [],
+      })
+    ).toEqual({ kind: 'empty', message: NOTHING_TO_COPY });
+    expect(NOTHING_TO_COPY).toBe('Nothing to copy.');
   });
 });

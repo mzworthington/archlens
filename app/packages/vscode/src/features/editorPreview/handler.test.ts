@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { EMPTY_MAP_COPY, INTEREST_DISCUSSION_URL, NO_SOURCE_COPY, TRUST_COPY } from './domain';
-import { generateFromWorkspace, openArchitectureMap, openSource } from './handler';
+import type { SystemSchema } from '@archlens/core';
+import {
+  EMPTY_MAP_COPY,
+  INTEREST_DISCUSSION_URL,
+  NO_SOURCE_COPY,
+  NOTHING_TO_COPY,
+  TRUST_COPY,
+} from './domain';
+import { copyDiagram, generateFromWorkspace, openArchitectureMap, openSource } from './handler';
 import type { BlueprintFile, EditorHost, FocusedSystem, WorkspaceFolder } from './ports';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -28,6 +35,7 @@ interface RecordedHost extends EditorHost {
   readonly discussions: string[];
   readonly opened: string[];
   readonly statuses: string[];
+  readonly clipboard: string[];
 }
 
 function host(input: {
@@ -41,6 +49,7 @@ function host(input: {
   choice?: 'tell' | 'cancel' | 'escape';
   focused?: FocusedSystem;
   existing?: readonly string[];
+  schema?: SystemSchema;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -48,6 +57,7 @@ function host(input: {
   const discussions: string[] = [];
   const opened: string[] = [];
   const statuses: string[] = [];
+  const clipboard: string[] = [];
   const files = input.files ?? [];
   return {
     calls,
@@ -56,6 +66,7 @@ function host(input: {
     discussions,
     opened,
     statuses,
+    clipboard,
     isTrusted: () => input.trusted,
     generateEnabled: () => {
       calls.push('read-setting');
@@ -97,6 +108,10 @@ function host(input: {
     },
     setStatus: message => {
       statuses.push(message);
+    },
+    visibleSchema: () => input.schema,
+    writeClipboard: async text => {
+      clipboard.push(text);
     },
   };
 }
@@ -205,6 +220,61 @@ describe('open source command', () => {
 
     expect(editor.messages).toEqual([NO_SOURCE_COPY]);
     expect(editor.opened).toEqual([]);
+  });
+});
+
+describe('copy diagram command', () => {
+  it('copies a flowchart and does not change the blueprint', async () => {
+    const editor = host({
+      trusted: true,
+      schema: {
+        name: 'Checkout',
+        version: 'v4',
+        level: 'context',
+        nodes: [
+          { entityRef: 'checkout/api', name: 'Checkout API', type: 'software-system' },
+          { entityRef: 'checkout/billing', name: 'Billing', type: 'software-system' },
+        ],
+        dependencies: [{ from: 'checkout/api', to: 'checkout/billing', type: 'direct-call' }],
+      },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.clipboard[0]).toContain('graph TD');
+    expect(editor.clipboard[0]).toContain('Checkout API');
+    expect(editor.clipboard[0]).toContain('Billing');
+    expect(editor.calls).not.toContain('list:/repo');
+  });
+
+  it('leaves the clipboard alone when the diagram has no systems', async () => {
+    const editor = host({
+      trusted: true,
+      schema: { name: 'Empty', version: 'v4', level: 'context', nodes: [], dependencies: [] },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.messages).toEqual([NOTHING_TO_COPY]);
+    expect(editor.clipboard).toEqual([]);
+  });
+
+  it('does not copy while the workspace is untrusted', async () => {
+    const editor = host({
+      trusted: false,
+      schema: {
+        name: 'Checkout',
+        version: 'v4',
+        level: 'context',
+        nodes: [{ entityRef: 'checkout/api', name: 'Checkout API', type: 'software-system' }],
+        dependencies: [],
+      },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.clipboard).toEqual([]);
   });
 });
 

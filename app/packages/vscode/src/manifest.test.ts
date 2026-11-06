@@ -49,11 +49,14 @@ describe('marketplace pre-release', () => {
       'Open architecture map',
       'Generate diagram from workspace',
       'Open source',
+      'Copy diagram as Mermaid',
     ]);
     expect(manifest.activationEvents).toEqual([
       'onCommand:archlens.openArchitectureMap',
       'onCommand:archlens.generateFromWorkspace',
       'onCommand:archlens.openSource',
+      'onCommand:archlens.copyDiagram',
+      'onLanguage:yaml',
     ]);
   });
 

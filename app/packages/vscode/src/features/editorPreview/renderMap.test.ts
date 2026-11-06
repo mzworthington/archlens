@@ -23,6 +23,8 @@ describe('architecture map panel', () => {
     expect(html).toContain('Checkout API → Billing');
     expect(html).toContain(`script nonce="nonce-1"`);
     expect(html).toContain("script-src 'nonce-nonce-1'");
+    expect(html).toContain("event.key !== 'Enter'");
+    expect(html).toContain("event.key !== 'ArrowLeft'");
     expect(html).not.toContain('onclick');
   });
 

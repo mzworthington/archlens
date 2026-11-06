@@ -1,5 +1,11 @@
 import * as vscode from 'vscode';
-import { generateFromWorkspace, openArchitectureMap, openSource } from './features/editorPreview';
+import {
+  copyDiagram,
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+} from './features/editorPreview';
+import { watchBlueprintProblems } from './infrastructure/blueprintDiagnostics';
 import { createEditorHost, type VsCodeLike } from './infrastructure/vscodeHost';
 
 function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
@@ -40,12 +46,52 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
     },
     env: {
       openExternal: uri => vscode.env.openExternal(uri),
+      clipboard: {
+        writeText: value => vscode.env.clipboard.writeText(value),
+      },
     },
   };
 }
 
 export function activate(context: vscode.ExtensionContext): void {
+  const problems = vscode.languages.createDiagnosticCollection('archlens');
   context.subscriptions.push(
+    problems,
+    watchBlueprintProblems<vscode.Uri>({
+      isTrusted: () => vscode.workspace.isTrusted,
+      onDidOpenTextDocument: listener =>
+        vscode.workspace.onDidOpenTextDocument(document => {
+          listener(document);
+        }),
+      onDidSaveTextDocument: listener =>
+        vscode.workspace.onDidSaveTextDocument(document => {
+          listener(document);
+        }),
+      collection: {
+        set: (uri, items) => {
+          problems.set(
+            uri,
+            items.map(
+              item =>
+                new vscode.Diagnostic(
+                  new vscode.Range(item.line, 0, item.line, 0),
+                  item.message,
+                  vscode.DiagnosticSeverity.Warning
+                )
+            )
+          );
+        },
+        delete: uri => {
+          problems.delete(uri);
+        },
+        clear: () => {
+          problems.clear();
+        },
+        dispose: () => {
+          problems.dispose();
+        },
+      },
+    }),
     vscode.commands.registerCommand('archlens.openArchitectureMap', (resource?: vscode.Uri) => {
       void run(() => openArchitectureMap, resource);
     }),
@@ -54,6 +100,9 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     vscode.commands.registerCommand('archlens.openSource', () => {
       void run(() => openSource, undefined);
+    }),
+    vscode.commands.registerCommand('archlens.copyDiagram', () => {
+      void run(() => copyDiagram, undefined);
     })
   );
 }

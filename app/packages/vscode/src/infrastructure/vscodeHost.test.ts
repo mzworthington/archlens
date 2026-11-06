@@ -142,6 +142,7 @@ function editor(input: {
         opened.push(uri.toString());
         return true;
       },
+      clipboard: { writeText: async () => undefined },
     },
   };
 

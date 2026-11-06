@@ -1,6 +1,7 @@
 import {
   EMPTY_MAP_COPY,
   TRUST_COPY,
+  decideCopyMermaid,
   decideOpenMap,
   decideOpenSource,
   generateDecision,
@@ -92,6 +93,27 @@ export async function openSource(host: EditorHost): Promise<void> {
       host.setStatus(decision.status);
       return;
     case 'missing':
+      host.showMessage(decision.message);
+      return;
+    default: {
+      const unexpected: never = decision;
+      return unexpected;
+    }
+  }
+}
+
+export async function copyDiagram(host: EditorHost): Promise<void> {
+  if (!host.isTrusted()) {
+    host.showMessage(TRUST_COPY);
+    return;
+  }
+
+  const decision = decideCopyMermaid(host.visibleSchema());
+  switch (decision.kind) {
+    case 'copy':
+      await host.writeClipboard(decision.text);
+      return;
+    case 'empty':
       host.showMessage(decision.message);
       return;
     default: {

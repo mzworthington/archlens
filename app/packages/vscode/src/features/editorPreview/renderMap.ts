@@ -19,9 +19,22 @@ export function renderMap(diagram: DiagramView, nonce: string): string {
     .map(link => `<li>${escapeHtml(link.fromName)} → ${escapeHtml(link.toName)}</li>`)
     .join('\n');
   return page(
-    `${systems}\n<ul>\n${links}\n</ul>\n${focusScript(nonce)}`,
+    `${breadcrumbNav(diagram.breadcrumb ?? [])}\n${systems}\n<ul>\n${links}\n</ul>\n${focusScript(nonce)}`,
     `script-src 'nonce-${escapeHtml(nonce)}';`
   );
+}
+
+function breadcrumbNav(breadcrumb: DiagramView['breadcrumb']): string {
+  const crumbs = breadcrumb ?? [];
+  if (crumbs.length < 2) return '';
+  const items = crumbs
+    .map((crumb, index) => {
+      const label = escapeHtml(crumb.name);
+      if (index === crumbs.length - 1) return `<span>${label}</span>`;
+      return `<button type="button" data-crumb="${escapeHtml(crumb.sourcePath)}">${label}</button>`;
+    })
+    .join(' / ');
+  return `<nav aria-label="Diagram">${items}</nav>`;
 }
 
 export function renderEmptyMap(): string {
@@ -43,6 +56,21 @@ for (const article of document.querySelectorAll('article[data-entity-ref]')) {
   article.addEventListener('focus', () => {
     vscode.postMessage({ type: 'focus-system', entityRef: article.getAttribute('data-entity-ref') });
   });
+  article.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    vscode.postMessage({ type: 'drill', entityRef: article.getAttribute('data-entity-ref') });
+  });
+}
+window.addEventListener('keydown', (event) => {
+  if (!event.altKey || event.key !== 'ArrowLeft') return;
+  event.preventDefault();
+  vscode.postMessage({ type: 'back' });
+});
+for (const crumb of document.querySelectorAll('[data-crumb]')) {
+  crumb.addEventListener('click', () => {
+    vscode.postMessage({ type: 'breadcrumb', sourcePath: crumb.getAttribute('data-crumb') });
+  });
 }
 </script>`;
 }
@@ -56,6 +84,8 @@ function page(body: string, scriptSrc = ''): string {
 <title>Architecture map</title>
 <style>
   body { font: 13px/1.4 var(--vscode-font-family); color: var(--vscode-editor-foreground); background: var(--vscode-editor-background); margin: 16px; }
+  nav { margin: 0 0 12px; }
+  button { color: var(--vscode-textLink-foreground); background: none; border: 0; padding: 0; cursor: pointer; }
   article { border: 1px solid var(--vscode-panel-border); padding: 8px 12px; margin: 0 0 8px; }
   article:focus { outline: 1px solid var(--vscode-focusBorder); }
   dt { font-weight: 600; }

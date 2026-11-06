@@ -1,5 +1,10 @@
-import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
-import type { BlueprintFile, DiagramView, GenerateChoice } from './ports';
+import {
+  parseSchemaFromYaml,
+  serializeSchemaToMermaid,
+  validateGraph,
+  type SystemSchema,
+} from '@archlens/core';
+import type { BlueprintFile, DiagramCrumb, DiagramView, GenerateChoice } from './ports';
 
 export const TRUST_COPY = 'ArchLens does not read this folder until the workspace is trusted.';
 export const EMPTY_MAP_COPY = 'No map in this folder.';
@@ -9,6 +14,8 @@ export const TELL_US_COPY = 'Tell us you want this';
 export const CANCEL_COPY = 'Cancel';
 export const INTEREST_DISCUSSION_URL = 'https://github.com/mzworthington/archlens/discussions';
 export const NO_SOURCE_COPY = 'This system has no source file in the workspace.';
+export const NO_LOWER_COPY = 'No lower diagram for this system.';
+export const NOTHING_TO_COPY = 'Nothing to copy.';
 
 const DEFAULT_BLUEPRINTS_FOLDER = 'blueprints';
 
@@ -119,6 +126,101 @@ export function resolveSourceFile(input: {
   return isInsideEditorPath(absolute, root) && absolute !== root ? absolute : undefined;
 }
 
+export interface BlueprintProblem {
+  readonly message: string;
+  readonly line: number;
+}
+
+/** Problems for a blueprint. A YAML file that is not a blueprint contributes none. */
+export function blueprintProblems(content: string): readonly BlueprintProblem[] {
+  let schema: SystemSchema;
+  try {
+    schema = parseSchemaFromYaml(content);
+  } catch (error) {
+    if (!looksLikeBlueprint(content)) return [];
+    return [{ message: plainSchemaMessage(error), line: 0 }];
+  }
+
+  const issues = validateGraph(schema).issues;
+  const cycle = issues.find(issue => issue.type === 'cycle' && issue.path);
+  if (cycle?.path) {
+    return [{ message: cycleSentence(schema, cycle.path), line: lineOf(content, cycle.path[0]) }];
+  }
+
+  const first = issues[0];
+  return first ? [{ message: first.message, line: 0 }] : [];
+}
+
+export type DrillDecision =
+  | { readonly kind: 'child'; readonly diagram: DiagramView; readonly schema: SystemSchema }
+  | { readonly kind: 'none'; readonly message: string };
+
+/** Enter drills into the child diagram whose identity is the focused system. */
+export function decideDrill(input: {
+  files: readonly BlueprintFile[];
+  focusedEntityRef?: string;
+  currentPath: string;
+}): DrillDecision {
+  if (!input.focusedEntityRef) return { kind: 'none', message: NO_LOWER_COPY };
+  const child = input.files
+    .filter(file => !sameEditorPath(file.path, input.currentPath))
+    .map(readBlueprint)
+    .filter((blueprint): blueprint is ParsedBlueprint => blueprint !== undefined)
+    .filter(
+      blueprint =>
+        blueprint.schema.entityRef === input.focusedEntityRef &&
+        blueprint.schema.level !== 'context'
+    )
+    .sort((left, right) => left.diagram.sourcePath.localeCompare(right.diagram.sourcePath))[0];
+  return child
+    ? { kind: 'child', diagram: child.diagram, schema: child.schema }
+    : { kind: 'none', message: NO_LOWER_COPY };
+}
+
+export type BackDecision =
+  | {
+      readonly kind: 'parent';
+      readonly diagram: DiagramView;
+      readonly schema: SystemSchema;
+      readonly breadcrumb: readonly DiagramCrumb[];
+    }
+  | { readonly kind: 'stay' };
+
+/** Alt+Left, or a parent in the breadcrumb, returns that diagram. */
+export function decideBack(input: {
+  breadcrumb: readonly DiagramCrumb[];
+  files: readonly BlueprintFile[];
+  sourcePath?: string;
+}): BackDecision {
+  const index = input.sourcePath
+    ? input.breadcrumb.findIndex(crumb => sameEditorPath(crumb.sourcePath, input.sourcePath ?? ''))
+    : input.breadcrumb.length - 2;
+  if (index < 0 || index >= input.breadcrumb.length - 1) return { kind: 'stay' };
+  const crumb = input.breadcrumb[index];
+  if (!crumb) return { kind: 'stay' };
+  const file = input.files.find(candidate => sameEditorPath(candidate.path, crumb.sourcePath));
+  const blueprint = file ? readBlueprint(file) : undefined;
+  if (!blueprint) return { kind: 'stay' };
+  return {
+    kind: 'parent',
+    diagram: blueprint.diagram,
+    schema: blueprint.schema,
+    breadcrumb: input.breadcrumb.slice(0, index + 1),
+  };
+}
+
+export type CopyDecision =
+  | { readonly kind: 'copy'; readonly text: string }
+  | { readonly kind: 'empty'; readonly message: string };
+
+/** Mermaid is a picture of the systems on screen. It does not change the YAML. */
+export function decideCopyMermaid(schema: SystemSchema | undefined): CopyDecision {
+  if (!schema || schema.nodes.length === 0) {
+    return { kind: 'empty', message: NOTHING_TO_COPY };
+  }
+  return { kind: 'copy', text: serializeSchemaToMermaid(schema) };
+}
+
 export function decideOpenSource(input: {
   systemName?: string;
   sourceFile?: string;
@@ -132,6 +234,21 @@ export function decideOpenSource(input: {
     path: input.resolvedPath,
     status: `Opened ${input.resolvedPath} from ${input.systemName}.`,
   };
+}
+
+interface ParsedBlueprint {
+  readonly diagram: DiagramView;
+  readonly schema: SystemSchema;
+}
+
+function readBlueprint(file: BlueprintFile): ParsedBlueprint | undefined {
+  const diagram = projectFile(file);
+  if (!diagram) return undefined;
+  try {
+    return { diagram, schema: parseSchemaFromYaml(file.content) };
+  } catch {
+    return undefined;
+  }
 }
 
 function projectFile(file: BlueprintFile): DiagramView | undefined {
@@ -188,4 +305,40 @@ function isAbsoluteEditorPath(value: string): boolean {
 
 function isInsideEditorPath(file: string, folder: string): boolean {
   return file === folder || file.startsWith(`${folder}/`);
+}
+
+function sameEditorPath(left: string, right: string): boolean {
+  return normalizeEditorPath(left) === normalizeEditorPath(right);
+}
+
+function looksLikeBlueprint(content: string): boolean {
+  return /\blevel\s*:/.test(content) && /\bnodes\s*:/.test(content);
+}
+
+function plainSchemaMessage(error: unknown): string {
+  const raw = error instanceof Error ? error.message : 'This blueprint could not be read.';
+  const stripped = raw.replace(
+    /^Invalid schema YAML\. (?:Schema Validation Error|YAML Parsing Error): /,
+    ''
+  );
+  return stripped.split('; ')[0] ?? stripped;
+}
+
+function cycleSentence(schema: SystemSchema, path: readonly string[]): string {
+  const refs = path[0] === path[path.length - 1] ? path.slice(0, -1) : [...path];
+  const names = refs.map(ref => nameFor(schema, ref));
+  if (names.length === 2) {
+    return `Cycle: ${names[0]} calls ${names[1]} and ${names[1]} calls ${names[0]}.`;
+  }
+  const calls = names.map((name, index) => `${name} calls ${names[(index + 1) % names.length]}`);
+  const last = calls[calls.length - 1];
+  const head = calls.slice(0, -1).join(', ');
+  return `Cycle: ${head}, and ${last}.`;
+}
+
+function lineOf(content: string, entityRef: string | undefined): number {
+  if (!entityRef) return 0;
+  const lines = content.split(/\r?\n/);
+  const index = lines.findIndex(line => line.includes(`from: ${entityRef}`));
+  return index < 0 ? 0 : index;
 }
