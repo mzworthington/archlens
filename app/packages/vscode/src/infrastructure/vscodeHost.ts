@@ -465,7 +465,8 @@ async function listSourceFiles<Uri extends FileUri>(
   root: string,
   glob: string
 ): Promise<string[]> {
-  const patterns = glob === DEFAULT_SOURCE_GLOB ? [glob, '**/Pulumi*.{yaml,yml}'] : [glob];
+  const patterns =
+    glob === DEFAULT_SOURCE_GLOB ? [glob, '**/*.tf.json', '**/Pulumi*.{yaml,yml}'] : [glob];
   const paths: string[] = [];
   for (const pattern of patterns) {
     const uris = await api.workspace.findFiles({ base: root, pattern });

@@ -120,8 +120,8 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
   }
 
   const rows = reviewRows(
-    systemsInBlueprints(await host.listBlueprintFiles(scanRoot)),
-    systemsFromSourcePaths(scanRoot, files)
+    systemsInBlueprints(await host.listBlueprintFiles(workspaceRoot)),
+    systemsFromSourcePaths(workspaceRoot, files)
   );
   await host.showReview(rows);
 }

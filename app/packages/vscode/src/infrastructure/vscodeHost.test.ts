@@ -216,9 +216,17 @@ function matchesBlueprintSearch(
   if (!file.startsWith(prefix)) return false;
   const relative = file.slice(prefix.length);
   const suffix = '**/*.{yaml,yml}';
-  if (!search.pattern.endsWith(suffix)) {
-    return !relative.split('/').includes('node_modules');
+  if (relative.split('/').includes('node_modules')) return false;
+  if (search.pattern === '**/*.tf.json') return relative.endsWith('.tf.json');
+  if (search.pattern === '**/Pulumi*.{yaml,yml}') {
+    const name = relative.split('/').pop() ?? '';
+    return name === 'Pulumi.yaml' || name === 'Pulumi.yml' || /^Pulumi\..+\.ya?ml$/.test(name);
   }
+  const extensions = /^\*\*\/\*\.\{([^}]+)\}$/.exec(search.pattern)?.[1];
+  if (extensions) {
+    return extensions.split(',').some(extension => relative.endsWith(`.${extension}`));
+  }
+  if (!search.pattern.endsWith(suffix)) return true;
   const folder = search.pattern.slice(0, -suffix.length).replace(/\/$/, '');
   if (folder.length > 0 && !relative.startsWith(`${folder}/`)) return false;
   return relative.endsWith('.yaml') || relative.endsWith('.yml');
@@ -437,6 +445,22 @@ describe('editor host', () => {
     expect(fake.calls).toContain('message:Review blueprint changes');
     expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(true);
     expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
+  });
+
+  it('includes Terraform JSON in a default workspace scan', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirmGenerate: true,
+      files: [{ path: '/repo/infra/stack.tf.json', content: '{}' }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.patterns).toContainEqual({ base: '/repo', pattern: '**/*.tf.json' });
+    expect(fake.calls.some(call => call.includes('Added stack'))).toBe(true);
   });
 
   it('does not scan when the scope picker is dismissed', async () => {

@@ -115,7 +115,8 @@ function host(input: {
     },
     listBlueprintFiles: async folderPath => {
       calls.push(`list:${folderPath}`);
-      return files;
+      const root = folderPath.replaceAll('\\', '/').replace(/\/+$/, '');
+      return files.filter(file => file.path.replaceAll('\\', '/').startsWith(`${root}/`));
     },
     blueprintsFolder: () => 'blueprints',
     showMessage: message => {
@@ -431,6 +432,30 @@ describe('generate diagram command', () => {
 
     expect(editor.messages).toEqual([SCAN_FAILED_COPY]);
     expect(editor.reviews).toEqual([]);
+  });
+
+  it('reviews a nested folder against the workspace map', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'folder',
+      confirm: 'generate',
+      selectedFolder: '/repo/checkout',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      sourceFiles: ['/repo/checkout/api.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.calls).toContain('list:/repo');
+    expect(editor.calls).not.toContain('list:/repo/checkout');
+    expect(editor.calls).toContain('scan:/repo/checkout');
+    expect(editor.reviews).toEqual([
+      [
+        { status: 'Changed', name: 'api' },
+        { status: 'Removed', name: 'Billing' },
+      ],
+    ]);
   });
 
   it('does not scan a custom glob that was dismissed', async () => {
