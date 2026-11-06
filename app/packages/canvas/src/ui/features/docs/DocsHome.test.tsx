@@ -61,6 +61,13 @@ describe('DocsHome', () => {
     expect(screen.queryByTestId('docs-mobile-start-nav')).not.toBeInTheDocument();
   });
 
+  it('names Architecture as Code on the home lede', () => {
+    render(<DocsHome />);
+
+    expect(screen.getByText(PRODUCT_HERO.lede)).toHaveTextContent(/Architecture as Code \(AaC\)/);
+    expect(PRODUCT_HERO.lede).not.toMatch(/YAML/i);
+  });
+
   it('presents BlueprintSpec as opinionated architecture as code', () => {
     render(<DocsHome />);
 

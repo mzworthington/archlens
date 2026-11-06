@@ -3,7 +3,7 @@
 export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
   documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
-  lede: 'BlueprintSpec is architecture as code: the YAML in git is the map. Canvas draws it. The CLI writes it from the repo. TraceLens, ChaosLens and AdviceLens run on that file.',
+  lede: 'BlueprintSpec is Architecture as Code (AaC). Canvas draws it, the CLI writes it from the repo, and TraceLens, ChaosLens and AdviceLens read the same file.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Live share rooms talk to a Worker we host for that session. Catalog publish from CI is a separate, explicit step.',
 } as const;
