@@ -4,8 +4,10 @@ import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
 import {
   cacheBustingReloadPath,
+  pathWithoutRefreshParam,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
+  UPDATE_REFRESH_QUERY_PARAM,
 } from '../../../application/pwa/requestServiceWorkerUpdate';
 import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck';
 
@@ -19,6 +21,12 @@ export function UpdateBanner() {
     updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
+    onNeedReload() {
+      // Workbox sets isUpdate for every controllerchange once a worker was
+      // already in control. unregister() during Refresh is one of those
+      // changes. Reloading here opens the next document still controlled and
+      // still waiting, and that document reloads again.
+    },
     onRegisteredSW(_url, registration) {
       registrationRef.current = registration;
       void requestServiceWorkerUpdate(registration);
@@ -32,6 +40,12 @@ export function UpdateBanner() {
   const checkForRemoteUpdate = useCallback(async () => {
     const updated = await hasRemoteBuildUpdate(import.meta.env.BASE_URL);
     if (updated) setFallbackRefresh(true);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has(UPDATE_REFRESH_QUERY_PARAM)) return;
+    window.history.replaceState(null, '', pathWithoutRefreshParam(window.location));
   }, []);
 
   useEffect(() => {

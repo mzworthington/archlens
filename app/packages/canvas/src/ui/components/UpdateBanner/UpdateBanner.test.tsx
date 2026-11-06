@@ -17,14 +17,17 @@ const {
 }));
 
 let needRefresh = false;
+let onNeedReload: (() => void) | undefined;
 
 vi.mock('virtual:pwa-register/react', () => ({
   useRegisterSW: (options?: {
+    onNeedReload?: () => void;
     onRegisteredSW?: (
       url: string,
       registration?: Pick<ServiceWorkerRegistration, 'update'>
     ) => void;
   }) => {
+    onNeedReload = options?.onNeedReload;
     options?.onRegisteredSW?.('/sw.js', { update: swUpdate });
     return {
       needRefresh: [needRefresh, setNeedRefresh],
@@ -47,6 +50,7 @@ vi.mock('../../../application/pwa/requestServiceWorkerUpdate', async importOrigi
 describe('UpdateBanner', () => {
   beforeEach(() => {
     needRefresh = false;
+    onNeedReload = undefined;
     updateServiceWorker.mockClear();
     setNeedRefresh.mockClear();
     swUpdate.mockClear();
@@ -115,6 +119,28 @@ describe('UpdateBanner', () => {
     fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
     expect(reloadWithoutServiceWorker).toHaveBeenCalled();
     expect(updateServiceWorker).not.toHaveBeenCalledWith(true);
+  });
+
+  it('drops the cache-bust query after load so the next deploy can wait for Refresh', () => {
+    const replaceState = vi.fn();
+    vi.stubGlobal('history', { replaceState });
+    vi.stubGlobal('location', {
+      pathname: '/guide/collaborate',
+      search: '?al_refresh=1700000000000',
+      hash: '',
+    });
+    render(<UpdateBanner />);
+    expect(replaceState).toHaveBeenCalledWith(null, '', '/guide/collaborate');
+    vi.unstubAllGlobals();
+  });
+
+  it('does not navigate when the controlling worker changes, so Refresh cannot reload in a loop', () => {
+    needRefresh = true;
+    render(<UpdateBanner />);
+    expect(onNeedReload).toEqual(expect.any(Function));
+    onNeedReload?.();
+    onNeedReload?.();
+    expect(reloadWithoutServiceWorker).not.toHaveBeenCalled();
   });
 
   it('cache-busts via history.replaceState so location.replace cannot open-redirect', () => {

@@ -1,6 +1,6 @@
 import { isBenignServiceWorkerUpdateFailure } from './benignServiceWorkerUpdateFailure';
 
-const REFRESH_QUERY_PARAM = 'al_refresh';
+export const UPDATE_REFRESH_QUERY_PARAM = 'al_refresh';
 
 /** Stop waiting on a wedged worker so Refresh still navigates. */
 const SERVICE_WORKER_RELOAD_DEADLINE_MS = 1000;
@@ -16,7 +16,7 @@ export type ServiceWorkerReload = {
 /** Cache-bust the next document URL so HTTP cache cannot reuse the old shell. */
 export function cacheBustingReloadUrl(href: string, now: number = Date.now()): string {
   const url = new URL(href);
-  url.searchParams.set(REFRESH_QUERY_PARAM, String(now));
+  url.searchParams.set(UPDATE_REFRESH_QUERY_PARAM, String(now));
   return url.toString();
 }
 
@@ -29,7 +29,19 @@ export function cacheBustingReloadPath(
     `${location.pathname}${location.search}${location.hash}`,
     'https://archlens.invalid'
   );
-  url.searchParams.set(REFRESH_QUERY_PARAM, String(now));
+  url.searchParams.set(UPDATE_REFRESH_QUERY_PARAM, String(now));
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+/** Drop the cache-bust param after a refresh so the next deploy can wait for a click. */
+export function pathWithoutRefreshParam(
+  location: Pick<Location, 'pathname' | 'search' | 'hash'>
+): string {
+  const url = new URL(
+    `${location.pathname}${location.search}${location.hash}`,
+    'https://archlens.invalid'
+  );
+  url.searchParams.delete(UPDATE_REFRESH_QUERY_PARAM);
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
