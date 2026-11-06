@@ -95,7 +95,6 @@ describe('blueprint design tokens', () => {
     expect(section).not.toContain('bg-[#00f0ff]');
     expect(section).not.toContain('divide-[#00f0ff]');
     expect(section).not.toContain('--color-blueprint-bg');
-    expect(section).toContain('--color-navy');
     expect(section).toContain('--color-accent');
   });
 
@@ -148,12 +147,7 @@ describe('blueprint design tokens', () => {
         if (!/\.(tsx|ts|css)$/.test(entry.name)) continue;
         if (entry.name === 'tokens.css') continue;
 
-        let text = fs.readFileSync(full, 'utf8');
-        if (entry.name === 'TokensSection.tsx') {
-          text = text
-            .replaceAll('rgba(0,240,255,0.15)', '')
-            .replaceAll('rgba(0, 240, 255, 0.15)', '');
-        }
+        const text = fs.readFileSync(full, 'utf8');
         const hits = banned.filter(needle => text.toLowerCase().includes(needle));
         if (hits.length > 0) {
           offenders.push(`${path.relative(canvasRoot, full)} (${hits.join(', ')})`);
@@ -174,5 +168,19 @@ describe('blueprint design tokens', () => {
     expect(tokens).toContain('--color-navy: #d7e0e8');
     expect(tokens).toContain('--color-ink: #152033');
     expect(tokens).toContain('--color-accent: #0c6b78');
+  });
+
+  it('labels token swatches as canvas, surface, ink, and accent', () => {
+    const section = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/TokensSection.tsx'),
+      'utf8'
+    );
+
+    expect(section).toContain('--color-canvas');
+    expect(section).toContain('--color-surface');
+    expect(section).toContain('--color-ink');
+    expect(section).toContain('--color-accent');
+    expect(section).not.toContain('Cyan Primary');
+    expect(section).not.toContain('--color-blueprint-border');
   });
 });

@@ -86,6 +86,33 @@ body,
   background-position: center;
 }
 
+html[data-theme='light'] .blueprint-grid {
+  background-color: var(--color-canvas);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-ink) 9%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink) 9%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+  background-position: center;
+}
+
+html[data-theme='light'] ::selection {
+  background-color: color-mix(in srgb, var(--color-accent) 28%, white);
+  color: var(--color-ink);
+}
+
+html[data-theme='light'] ::-moz-selection {
+  background-color: color-mix(in srgb, var(--color-accent) 28%, white);
+  color: var(--color-ink);
+}
+
 /* Neon glow animations & utilities */
 .neon-glow-cyan {
   text-shadow:

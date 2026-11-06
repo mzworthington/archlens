@@ -6,17 +6,20 @@ import { TokensSection } from './designSystem/TokensSection';
 import { AssetsSection } from './designSystem/AssetsSection';
 import { ComponentsSection } from './designSystem/ComponentsSection';
 import { SandboxSection } from './designSystem/SandboxSection';
+import type { DesignThemeId } from '../../infrastructure/theme/designTheme';
 
 type DesignSystemShowcaseProps = {
   embedded?: boolean;
   activeTab?: DesignSystemSectionId;
   onTabChange?: (tab: DesignSystemSectionId) => void;
+  theme?: DesignThemeId;
 };
 
 export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
   embedded = false,
   activeTab: activeTabProp,
   onTabChange,
+  theme = 'blueprint',
 }) => {
   const [internalTab, setInternalTab] = useState<DesignSystemSectionId>('identity');
   const activeTab = activeTabProp ?? internalTab;
@@ -61,8 +64,8 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
     <div
       className={
         embedded
-          ? 'min-w-0 flex flex-col text-slate-100'
-          : 'fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-navy/98 blueprint-grid text-slate-100 overflow-y-auto animate-fade-in pb-safe'
+          ? 'min-w-0 flex flex-col text-ink'
+          : 'fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-navy/98 blueprint-grid text-ink overflow-y-auto animate-fade-in pb-safe'
       }
     >
       {!embedded ? (
@@ -151,7 +154,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
           )}
 
           {activeTab === 'tokens' && (
-            <TokensSection copiedId={copiedId} copyToClipboard={copyToClipboard} />
+            <TokensSection copiedId={copiedId} copyToClipboard={copyToClipboard} theme={theme} />
           )}
 
           {activeTab === 'assets' && (

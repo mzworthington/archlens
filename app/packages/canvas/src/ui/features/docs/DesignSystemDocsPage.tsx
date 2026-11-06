@@ -54,7 +54,8 @@ export const DesignSystemDocsPage: React.FC = () => {
         </p>
         <h1 className="text-2xl font-bold text-ink sm:text-3xl">Design system</h1>
         <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">
-          Tokens, components and visual patterns shared across the homepage, docs and canvas.
+          Tokens, components and visual patterns shared across the homepage, docs and canvas. Light
+          is drafting paper: pale canvas, white surface, dark ink, teal used as a spare accent.
         </p>
         <div
           className="mt-4 flex gap-2"
@@ -85,7 +86,12 @@ export const DesignSystemDocsPage: React.FC = () => {
           ))}
         </div>
       </header>
-      <DesignSystemShowcase embedded activeTab={activeTab} onTabChange={setActiveTab} />
+      <DesignSystemShowcase
+        embedded
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        theme={theme}
+      />
     </DocsShell>
   );
 };

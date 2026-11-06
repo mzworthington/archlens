@@ -36,7 +36,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
       <section className="mb-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <h2 className="text-xl font-bold text-white tracking-tight">Schematic by design</h2>
+            <h2 className="text-xl font-bold text-ink tracking-tight">Schematic by design</h2>
             <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">
               Drafting grids, cyan accents and product-centric patterns for homepage, docs and
               canvas.
@@ -80,7 +80,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent mb-3">
               ArchLens design system
             </p>
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-ink leading-[1.1]">
               Schematic by design
             </h2>
             <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
@@ -99,7 +99,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               <button
                 type="button"
                 onClick={() => setActiveTab('tokens')}
-                className="rounded-xl border border-accent/40 text-accent hover:text-white hover:bg-accent/10 hover:border-accent px-4 py-2.5 text-sm font-semibold transition-colors"
+                className="rounded-xl border border-accent/40 text-accent hover:text-ink hover:bg-accent/10 hover:border-accent px-4 py-2.5 text-sm font-semibold transition-colors"
               >
                 Design tokens
               </button>
@@ -132,7 +132,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
           key={guideline.title}
           className="rounded-xl border border-accent/10 bg-navy/80 p-5"
         >
-          <h3 className="text-base font-semibold text-white">{guideline.title}</h3>
+          <h3 className="text-base font-semibold text-ink">{guideline.title}</h3>
           <p className="mt-2 text-sm text-slate-400 leading-relaxed">{guideline.details}</p>
         </article>
       ))}

@@ -6,7 +6,7 @@ import { PRODUCT_CATEGORY_STYLES } from './shared';
 export const ComponentsSection: React.FC = () => (
   <div className="space-y-8 animate-fade-in">
     <div className="border-b border-accent/10 pb-4 sticky top-0 bg-surface/90 backdrop-blur-md z-10">
-      <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+      <h2 className="text-xl font-bold text-ink tracking-tight flex items-center gap-2">
         <Layers className="w-5 h-5 text-accent" /> UI Component Standards
       </h2>
       <p className="text-xs text-slate-400 mt-1">
@@ -32,7 +32,7 @@ export const ComponentsSection: React.FC = () => (
         </button>
         <button
           type="button"
-          className="rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-white hover:bg-accent/10 hover:border-accent transition-colors cursor-pointer"
+          className="rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-ink hover:bg-accent/10 hover:border-accent transition-colors cursor-pointer"
         >
           Secondary CTA
         </button>
@@ -47,7 +47,7 @@ export const ComponentsSection: React.FC = () => (
         <button className="px-4 py-2 bg-accent/15 hover:bg-accent/25 text-accent border border-accent/40 hover:border-accent rounded-lg text-xs font-bold shadow-[0_0_10px_color-mix(in_srgb,var(--color-accent)_15%,transparent)] hover:shadow-[0_0_15px_color-mix(in_srgb,var(--color-accent)_35%,transparent)] transition cursor-pointer">
           Canvas glow (toolbar)
         </button>
-        <button className="px-4 py-2 border border-dashed border-accent/30 hover:border-brand-500/80 text-slate-400 hover:text-white rounded-lg text-xs font-semibold transition cursor-pointer">
+        <button className="px-4 py-2 border border-dashed border-accent/30 hover:border-brand-500/80 text-slate-400 hover:text-ink rounded-lg text-xs font-semibold transition cursor-pointer">
           Dashed target
         </button>
       </div>
@@ -113,7 +113,7 @@ export const ComponentsSection: React.FC = () => (
               Resilience
             </span>
           </div>
-          <h4 className="mt-4 text-base font-semibold text-white group-hover:text-accent transition-colors">
+          <h4 className="mt-4 text-base font-semibold text-ink group-hover:text-accent transition-colors">
             ChaosLens
           </h4>
           <p className="mt-1 text-xs font-medium text-slate-300">Break a service on the map</p>
@@ -132,7 +132,7 @@ export const ComponentsSection: React.FC = () => (
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-accent/30 bg-accent/10 font-mono text-xs font-bold text-accent">
               2
             </span>
-            <h4 className="mt-3 text-sm font-semibold text-white">Flow step card</h4>
+            <h4 className="mt-3 text-sm font-semibold text-ink">Flow step card</h4>
             <p className="mt-2 text-sm text-slate-400 leading-relaxed">
               Numbered step card for short sequences.
             </p>
@@ -143,7 +143,7 @@ export const ComponentsSection: React.FC = () => (
                 <Terminal className="h-5 w-5" aria-hidden />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-white">CTA strip</h4>
+                <h4 className="text-sm font-semibold text-ink">CTA strip</h4>
                 <p className="text-xs text-slate-400">Closing banner with dual actions</p>
               </div>
             </div>
@@ -194,7 +194,7 @@ export const ComponentsSection: React.FC = () => (
             id="design-system-input-node-name"
             type="text"
             placeholder="MyServiceComponent"
-            className="w-full bg-navy border border-accent/25 focus:border-accent focus:shadow-[0_0_10px_color-mix(in_srgb,var(--color-accent)_15%,transparent)] rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none transition duration-200"
+            className="w-full bg-navy border border-accent/25 focus:border-accent focus:shadow-[0_0_10px_color-mix(in_srgb,var(--color-accent)_15%,transparent)] rounded-lg px-3 py-2 text-xs font-mono text-ink focus:outline-none transition duration-200"
           />
         </div>
         <div className="space-y-1.5">

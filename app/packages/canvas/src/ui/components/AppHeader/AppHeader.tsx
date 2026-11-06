@@ -75,7 +75,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
 
   return (
     <header
-      className={`border-b border-accent/20 bg-surface/90 backdrop-blur-md z-50 shadow-lg shadow-black/30 shrink-0 ${
+      className={`border-b border-ink/10 bg-surface/90 backdrop-blur-md z-50 shadow-[0_1px_0_color-mix(in_srgb,var(--color-ink)_12%,transparent)] shrink-0 ${
         sticky ? 'sticky top-0' : ''
       }`}
     >

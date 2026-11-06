@@ -108,7 +108,7 @@ export const DocsShell: React.FC<Props> = ({
   const showLocalNav = localNav && location === localNav.expandUnderPath;
 
   return (
-    <div className="h-dvh w-full overflow-y-auto blueprint-grid text-slate-100 pb-safe">
+    <div className="h-dvh w-full overflow-y-auto blueprint-grid text-ink pb-safe">
       <AppHeader
         sticky
         badge="DOCS"

@@ -48,8 +48,8 @@ describe('DesignSystemShowcase Component', () => {
     const sidebar = screen.getByRole('complementary', { name: 'Design system sections' });
     fireEvent.click(within(sidebar).getByRole('button', { name: /Design tokens/i }));
 
-    expect(screen.getByText(/Design Tokens \(Theme Variables\)/i)).toBeInTheDocument();
-    expect(screen.getByText('Cyan Primary')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Design tokens' })).toBeInTheDocument();
+    expect(screen.getByText('--color-canvas')).toBeInTheDocument();
     expect(screen.getByText('Product category accents')).toBeInTheDocument();
   });
 

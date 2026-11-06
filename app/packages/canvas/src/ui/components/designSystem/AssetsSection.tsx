@@ -45,7 +45,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
 }) => (
   <div className="space-y-6 animate-fade-in">
     <div className="border-b border-accent/10 pb-4">
-      <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+      <h2 className="text-xl font-bold text-ink tracking-tight flex items-center gap-2">
         <FileCode className="w-5 h-5 text-accent" /> Vector Asset Pack
       </h2>
       <p className="text-xs text-slate-400 mt-1">

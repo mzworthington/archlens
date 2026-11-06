@@ -27,7 +27,7 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
 }) => (
   <div className="space-y-6 animate-fade-in">
     <div className="border-b border-accent/10 pb-4">
-      <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+      <h2 className="text-xl font-bold text-ink tracking-tight flex items-center gap-2">
         <Sliders className="w-5 h-5 text-accent" /> Interactive Component Sandbox
       </h2>
       <p className="text-xs text-slate-400 mt-1">
@@ -51,7 +51,7 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
             type="text"
             value={sandboxTitle}
             onChange={e => setSandboxTitle(e.target.value)}
-            className="w-full bg-navy border border-accent/25 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-white focus:outline-none"
+            className="w-full bg-navy border border-accent/25 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-ink focus:outline-none"
           />
         </div>
 
@@ -87,7 +87,7 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
             value={sandboxDesc}
             onChange={e => setSandboxDesc(e.target.value)}
             rows={2}
-            className="w-full bg-navy border border-accent/25 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-white focus:outline-none resize-none"
+            className="w-full bg-navy border border-accent/25 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-ink focus:outline-none resize-none"
           />
         </div>
 
@@ -145,7 +145,7 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
                   {sandboxNodeType === 'microservice' && <Cpu className="w-4 h-4 text-accent" />}
                 </div>
                 <div>
-                  <h4 className="text-xs font-extrabold text-white font-mono tracking-tight leading-none">
+                  <h4 className="text-xs font-extrabold text-ink font-mono tracking-tight leading-none">
                     {sandboxTitle}
                   </h4>
                   <span className="text-[8px] text-accent font-mono uppercase tracking-wider mt-1 block">
