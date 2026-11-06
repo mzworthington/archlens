@@ -66,7 +66,7 @@ export interface VsCodeLike<
       items: readonly FolderPickItem[],
       options: { title: string }
     ): Thenable<FolderPickItem | undefined>;
-    activeTextEditor?: { document: Document };
+    activeTextEditor: { document: Document } | undefined;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
     createWebviewPanel(
       viewType: string,

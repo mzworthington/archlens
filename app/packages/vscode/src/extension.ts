@@ -31,6 +31,9 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
       showInformationMessage: (message, options, ...items) =>
         vscode.window.showInformationMessage(message, options, ...items),
       showQuickPick: (items, options) => vscode.window.showQuickPick(items, options),
+      get activeTextEditor() {
+        return vscode.window.activeTextEditor;
+      },
       showTextDocument: (document, column) => vscode.window.showTextDocument(document, column),
       createWebviewPanel: (viewType, title, column, options) =>
         vscode.window.createWebviewPanel(viewType, title, column, options),
