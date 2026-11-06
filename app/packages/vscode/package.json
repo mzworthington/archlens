@@ -1,0 +1,105 @@
+{
+  "name": "archlens",
+  "displayName": "ArchLens",
+  "publisher": "mzworthington",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Preview a BlueprintSpec file beside the YAML. Generating a diagram from the open folder is turned off in this preview.",
+  "license": "MIT",
+  "preview": true,
+  "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzworthington/archlens"
+  },
+  "homepage": "https://archlens.dev",
+  "bugs": {
+    "url": "https://github.com/mzworthington/archlens/issues"
+  },
+  "qna": "https://github.com/mzworthington/archlens/discussions",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "architecture",
+    "blueprint",
+    "c4",
+    "diagram"
+  ],
+  "activationEvents": [
+    "onCommand:archlens.openArchitectureMap",
+    "onCommand:archlens.generateFromWorkspace"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "archlens.openArchitectureMap",
+        "title": "Open architecture map",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.generateFromWorkspace",
+        "title": "Generate diagram from workspace",
+        "category": "ArchLens"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "archlens.openArchitectureMap",
+          "when": "resourceExtname == .yaml || resourceExtname == .yml || resourcePath =~ /blueprints$/",
+          "group": "navigation@20"
+        },
+        {
+          "command": "archlens.generateFromWorkspace",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@21"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ArchLens",
+      "properties": {
+        "archlens.generateFromWorkspace.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Off asks you to tell us you want a diagram generated from this workspace, and writes nothing. Scanning is not part of this preview."
+        },
+        "archlens.blueprintsFolder": {
+          "type": "string",
+          "default": "blueprints",
+          "description": "Folder that holds BlueprintSpec files. The preview only reads this folder."
+        }
+      }
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "ArchLens does not read this folder until the workspace is trusted.",
+      "restrictedConfigurations": [
+        "archlens.generateFromWorkspace.enabled",
+        "archlens.blueprintsFolder"
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "pnpm exec esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20 --sourcemap",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "package:pre-release": "pnpm run compile && pnpm exec vsce package --pre-release --no-dependencies --allow-missing-repository",
+    "vscode:prepublish": "pnpm run compile"
+  },
+  "dependencies": {
+    "@archlens/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "3.6.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

@@ -17,6 +17,16 @@ Every workflow under [`.github/workflows/`](../../.github/workflows/).
 
 Customer template files (not enabled here): [`blueprint-contract.yml.example`](../../.github/workflows/blueprint-contract.yml.example), [`advicelens-gate.yml.example`](../../.github/workflows/advicelens-gate.yml.example).
 
+## Visual Studio Marketplace
+
+`publish-vscode-marketplace` is commented out in [`ci.yml`](../../.github/workflows/ci.yml). No workflow runs `vsce publish`. A merge to `main` leaves the Marketplace listing unchanged.
+
+The unit-tests job runs `package:pre-release` and uploads the `archlens-vscode-pre-release` artifact. That file is for sideload. It is not a Marketplace release.
+
+`publish-cli-release` in that same file ships the ArchLens CLI to GitHub Releases. The catalog workflows in the table publish BlueprintSpec to object storage. Those jobs stay enabled. They do not list the editor extension.
+
+Local sandbox, VSIX sideload, and the manual pre-release command: [Editor extension](./vscode.md).
+
 Make **merge-gate** the required status check on `main` (PR and push). Smoke is skipped on PRs; the gate treats that as success and requires smoke only when `main` deploys.
 
 ## Shared samples estate (ADR-0014)

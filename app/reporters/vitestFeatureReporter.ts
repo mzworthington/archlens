@@ -39,6 +39,7 @@ const PACKAGE_LABELS: Record<string, string> = {
   cli: 'CLI',
   core: 'Core',
   reporters: 'Reporters',
+  vscode: 'Editor',
 };
 
 export function packageLabel(projectName: string): string {

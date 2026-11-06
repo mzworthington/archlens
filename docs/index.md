@@ -14,6 +14,7 @@ Product docs are Markdown in this folder. ArchLens Canvas app renders them at:
 | `/guide/schema`                           | BlueprintSpec                               |
 | `/guide/chaos-spec`                       | ChaosSpec                                   |
 | `/guide/ci-workflows`                     | GitHub Actions workflows                    |
+| `/guide/vscode`                           | Editor sandbox and Marketplace pre-release  |
 | `/workspace?lens=tracelens`               | TraceLens rankings (live app)               |
 | `/workspace?lens=advicelens`              | AdviceLens recommendations (live app)       |
 | `/workspace`                              | ArchLens Canvas (live app)                  |

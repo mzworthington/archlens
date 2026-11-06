@@ -6,6 +6,8 @@ For an overview of frameworks and infrastructure (React, Pulumi, Cloudflare, etc
 
 For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) - especially [Getting started](./guide/getting-started.md).
 
+To try the editor extension on your machine before any Marketplace listing, follow [Editor extension](./guide/vscode.md). That page is the Extension Development Host, the VSIX sideload, and the manual pre-release publish. CI does not run it.
+
 ---
 
 ## Environment & Tooling Setup

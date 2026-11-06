@@ -14,6 +14,7 @@ import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 import guideChaosSpecMd from '@docs/guide/chaos-spec.md?raw';
 import guideCiWorkflowsMd from '@docs/guide/ci-workflows.md?raw';
+import guideVsCodeMd from '@docs/guide/vscode.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
 import adrIndexMd from '@docs/ADRs/README.md?raw';
@@ -95,6 +96,7 @@ const TECH_PATH_PREFIXES = [
   '/advicelens-engine',
   '/features-unit',
   '/guide/ci-workflows',
+  '/guide/vscode',
   '/ADRs',
 ];
 
@@ -135,6 +137,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
     items: [
       { label: 'Design system', path: '/design-system' },
       { label: 'GitHub Actions workflows', path: '/guide/ci-workflows' },
+      { label: 'Editor extension', path: '/guide/vscode' },
       { label: 'Setup & local development', path: '/setup' },
       { label: 'Technology stack', path: '/tech-stack' },
       { label: 'Architecture & security', path: '/architecture' },
@@ -294,6 +297,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/guide/ci-workflows',
     title: 'GitHub Actions workflows',
     markdown: guideCiWorkflowsMd,
+    dir: 'guide',
+    group: 'reference',
+  },
+  {
+    path: '/guide/vscode',
+    title: 'Editor extension',
+    markdown: guideVsCodeMd,
     dir: 'guide',
     group: 'reference',
   },

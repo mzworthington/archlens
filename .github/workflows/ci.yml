@@ -1,5 +1,9 @@
 name: CI & Deployment Pipeline
 
+# Visual Studio Marketplace: publish-vscode-marketplace stays commented out below.
+# unit-tests packages a VSIX artifact for sideload. It does not run vsce publish.
+# Editor sandbox and the manual pre-release: docs/guide/vscode.md.
+
 on:
   push:
     branches: [main]
@@ -114,6 +118,17 @@ jobs:
       - name: Run unit tests with coverage and features doc
         run: pnpm test:ci
         working-directory: app
+
+      - name: Package editor pre-release
+        run: pnpm --filter ./packages/vscode package:pre-release
+        working-directory: app
+
+      - name: Upload editor pre-release
+        uses: actions/upload-artifact@v7
+        with:
+          name: archlens-vscode-pre-release
+          path: app/packages/vscode/*.vsix
+          if-no-files-found: error
 
       - name: Report Vitest Coverage
         uses: davelosert/vitest-coverage-report-action@v2
@@ -599,6 +614,19 @@ jobs:
         with:
           name: ts-cli-binaries
           path: dist/archives/
+
+  # publish-vscode-marketplace is commented out on purpose.
+  # Do not enable vsce publish, a VSIX upload, or a Marketplace release from this file.
+  # publish-cli-release below ships the ArchLens CLI to GitHub Releases only.
+  # Local sandbox and the manual Marketplace pre-release: docs/guide/vscode.md
+  #
+  # publish-vscode-marketplace:
+  #   needs: [check-release]
+  #   if: false
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Publish Visual Studio Marketplace pre-release
+  #       run: echo "disabled - see docs/guide/vscode.md"
 
   publish-cli-release:
     needs: [check-release, build-ts-cli-binaries]
