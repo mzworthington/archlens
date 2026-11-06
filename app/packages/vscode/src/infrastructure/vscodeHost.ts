@@ -152,9 +152,10 @@ async function listBlueprintFiles<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   folderPath: string
 ): Promise<readonly BlueprintFile[]> {
+  const blueprintsFolder = configuredBlueprintsFolder(api);
   const uris = await api.workspace.findFiles({
     base: folderPath,
-    pattern: `${configuredBlueprintsFolder(api)}/**/*.{yaml,yml}`,
+    pattern: blueprintSearchPattern(folderPath, blueprintsFolder),
   });
   const files: BlueprintFile[] = [];
   for (const uri of uris) {
@@ -169,6 +170,13 @@ async function readFile<Uri extends FileUri>(
 ): Promise<BlueprintFile> {
   const bytes = await api.workspace.fs.readFile(uri);
   return { path: uri.fsPath, content: new TextDecoder().decode(bytes) };
+}
+
+function blueprintSearchPattern(folderPath: string, blueprintsFolder: string): string {
+  const segments = folderPath.split(/[/\\]/).filter(segment => segment.length > 0);
+  const name = segments[segments.length - 1];
+  if (name === blueprintsFolder) return '**/*.{yaml,yml}';
+  return `${blueprintsFolder}/**/*.{yaml,yml}`;
 }
 
 function configuredBlueprintsFolder<Uri extends FileUri>(api: VsCodeLike<Uri>): string {

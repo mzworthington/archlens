@@ -26,10 +26,12 @@ function editor(input: {
   choice?: string;
   files?: { path: string; content: string }[];
   enabled?: boolean;
+  directory?: string;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
   const opened: string[] = [];
+  const patterns: { base: string; pattern: string }[] = [];
   let onSave: ((document: { uri: { fsPath: string }; getText(): string }) => void) | undefined;
   const files = input.files ?? [];
   const api: VsCodeLike = {
@@ -48,14 +50,17 @@ function editor(input: {
           return defaultValue;
         },
       }),
-      findFiles: async () => {
+      findFiles: async pattern => {
         calls.push('findFiles');
-        return files.map(file => ({ fsPath: file.path, toString: () => file.path }));
+        patterns.push(pattern);
+        return files
+          .filter(file => matchesBlueprintSearch(file.path, pattern))
+          .map(file => ({ fsPath: file.path, toString: () => file.path }));
       },
       fs: {
-        stat: async () => {
+        stat: async uri => {
           calls.push('stat');
-          return { type: 1 };
+          return { type: input.directory === uri.fsPath ? 2 : 1 };
         },
         readFile: async uri => {
           calls.push(`read:${uri.fsPath}`);
@@ -110,10 +115,27 @@ function editor(input: {
     calls,
     html,
     opened,
+    patterns,
     save: (path: string, content: string) => {
       onSave?.({ uri: { fsPath: path }, getText: () => content });
     },
   };
+}
+
+function matchesBlueprintSearch(
+  filePath: string,
+  search: { base: string; pattern: string }
+): boolean {
+  const base = search.base.replace(/\\/g, '/').replace(/\/+$/, '');
+  const file = filePath.replace(/\\/g, '/');
+  const prefix = `${base}/`;
+  if (!file.startsWith(prefix)) return false;
+  const relative = file.slice(prefix.length);
+  const suffix = '**/*.{yaml,yml}';
+  if (!search.pattern.endsWith(suffix)) return false;
+  const folder = search.pattern.slice(0, -suffix.length).replace(/\/$/, '');
+  if (folder.length > 0 && !relative.startsWith(`${folder}/`)) return false;
+  return relative.endsWith('.yaml') || relative.endsWith('.yml');
 }
 
 describe('editor host', () => {
@@ -140,11 +162,28 @@ describe('editor host', () => {
     await openArchitectureMap(host);
 
     expect(fake.calls).toContain('findFiles');
+    expect(fake.patterns).toEqual([{ base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' }]);
     expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
     expect(fake.calls).toContain('text:1');
     expect(fake.calls).toContain('panel:2');
     expect(fake.html[0]).toContain('Checkout API');
     expect(fake.html[0]).toContain('Checkout API → Billing');
+  });
+
+  it('reads blueprints in the folder that was right-clicked', async () => {
+    const folder = '/repo/blueprints';
+    const fake = editor({
+      trusted: true,
+      directory: folder,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api, { fsPath: folder, toString: () => folder });
+
+    await openArchitectureMap(host);
+
+    expect(fake.patterns).toEqual([{ base: folder, pattern: '**/*.{yaml,yml}' }]);
+    expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
+    expect(fake.html[0]).toContain('Checkout API');
   });
 
   it('refreshes the diagram when the blueprint is saved', async () => {
