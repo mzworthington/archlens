@@ -28,19 +28,27 @@ describe('WorkspaceStatusBadges', () => {
     });
 
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByText('component')).toBeInTheDocument();
+    const level = screen.getByTestId('schema-level-badge');
+    expect(level).toHaveTextContent('component');
+    expect(level).toHaveClass('canvas-status-chip');
+    expect(level).toHaveAttribute('data-status-tone', 'level');
   });
 
   it('displays a lite-scan badge when the workspace came from a browser scan', () => {
     useBlueprintStore.setState({ isBrowserLiteWorkspace: true });
 
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByTestId('browser-lite-workspace-badge')).toHaveTextContent(/Lite scan/i);
+    const badge = screen.getByTestId('browser-lite-workspace-badge');
+    expect(badge).toHaveTextContent(/Lite scan/i);
+    expect(badge).toHaveAttribute('data-status-tone', 'warn');
   });
 
   it('displays valid status badge when validation is successful', () => {
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByText('Valid')).toBeInTheDocument();
+    const badge = screen.getByTestId('validation-status-badge');
+    expect(badge).toHaveTextContent('Valid');
+    expect(badge).toHaveClass('canvas-status-chip');
+    expect(badge).toHaveAttribute('data-status-tone', 'ok');
   });
 
   it('does not open the validation dialog from the valid status chip', () => {
@@ -61,6 +69,7 @@ describe('WorkspaceStatusBadges', () => {
     render(<WorkspaceStatusBadges />);
     const badge = screen.getByTestId('validation-status-badge');
     expect(badge).toHaveTextContent('Cycle Detected');
+    expect(badge).toHaveAttribute('data-status-tone', 'alert');
 
     fireEvent.click(badge);
     expect(useBlueprintStore.getState().isValidationOpen).toBe(true);
@@ -81,6 +90,8 @@ describe('WorkspaceStatusBadges', () => {
     });
 
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByTestId('schema-version-warning')).toHaveTextContent('Legacy schema format');
+    const badge = screen.getByTestId('schema-version-warning');
+    expect(badge).toHaveTextContent('Legacy schema format');
+    expect(badge).toHaveAttribute('data-status-tone', 'warn');
   });
 });
