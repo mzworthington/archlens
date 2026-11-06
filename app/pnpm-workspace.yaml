@@ -23,6 +23,11 @@ overrides:
   # GHSA-3g3m-2fjr-6pw4: an aborted glob walk kept reading the filesystem.
   # Scoped so rimraf 3 can keep glob 7.
   "glob@>=9.0.0 <14.0.2": 14.0.3
+  # GHSA-g3hv-75wg-m249: minimatch 10 has no in-range patch. Parents still declare ^10.
+  'minimatch@10': 11.0.5
+  # GHSA-gcqx-w48m-w2h4 has no release after 4.3.1. workbox-build pulls it
+  # through @rollup/plugin-node-resolve.
+  deepmerge: file:vendor/deepmerge
   js-yaml: '>=5.4.1'
   # mermaid 12 pulls katex >=0.18.2 (GHSA-238p-pmpm-9mq7). 11.x stays on katex 0.16.
   mermaid: '>=12.2.0'
@@ -69,3 +74,5 @@ minimumReleaseAgeExclude:
   - miniflare@5.20260910.0-alpha
   - posthog-js@1.430.2
   - zod@4.6.2
+  - '@isaacs/nonrecursive-glob-match@1.1.0'
+  - minimatch@11.0.5
