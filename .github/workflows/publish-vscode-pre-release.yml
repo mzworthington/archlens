@@ -31,7 +31,7 @@ jobs:
         working-directory: app
 
       - name: Publish Marketplace pre-release
-        run: pnpm --filter ./packages/vscode exec vsce publish --pre-release --no-dependencies --allow-missing-repository -p "$VSCE_PAT"
+        run: pnpm --filter ./packages/vscode build && pnpm --filter ./packages/vscode exec vsce publish --pre-release --no-dependencies --allow-missing-repository -p "$VSCE_PAT"
         working-directory: app
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
