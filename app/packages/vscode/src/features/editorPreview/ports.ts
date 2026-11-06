@@ -1,3 +1,5 @@
+import type { SystemSchema } from '@archlens/core';
+
 export interface BlueprintFile {
   readonly path: string;
   readonly content: string;
@@ -14,10 +16,16 @@ export interface DiagramLink {
   readonly toName: string;
 }
 
+export interface DiagramCrumb {
+  readonly name: string;
+  readonly sourcePath: string;
+}
+
 export interface DiagramView {
   readonly sourcePath: string;
   readonly systems: readonly DiagramSystem[];
   readonly links: readonly DiagramLink[];
+  readonly breadcrumb?: readonly DiagramCrumb[];
 }
 
 export interface WorkspaceFolder {
@@ -51,4 +59,6 @@ export interface EditorHost {
   fileExists(path: string): Promise<boolean>;
   openFile(path: string): Promise<void>;
   setStatus(message: string): void;
+  visibleSchema(): SystemSchema | undefined;
+  writeClipboard(text: string): Promise<void>;
 }

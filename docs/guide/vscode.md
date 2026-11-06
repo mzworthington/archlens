@@ -43,6 +43,9 @@ In that window:
 | Interest prompt | Command Palette: **ArchLens: Generate diagram from workspace**.                                          | "Generating a diagram from code is turned off in this preview." **Tell us you want this** opens the discussion. **Cancel** closes the prompt. |
 | Restricted Mode | Command Palette: **Workspaces: Manage Workspace Trust**, then **Don't Trust**. Run either command again. | "ArchLens does not read this folder until the workspace is trusted."                                                                          |
 | Open source     | Focus a system on the diagram, then **ArchLens: Open source**.                                           | The file that system points at opens. The status bar names the path and the system. A system with no file stays on the diagram.               |
+| Drill           | Focus a system and press Enter. Press Alt+Left, or choose the parent in the breadcrumb.                  | The child diagram replaces the canvas. A system with no child diagram stays put.                                                              |
+| Copy            | **ArchLens: Copy diagram as Mermaid**.                                                                   | The clipboard gets a flowchart. The YAML file is unchanged. An empty diagram says nothing to copy.                                            |
+| Problems        | Open a blueprint that contains a cycle, then remove the cycle and save.                                  | Problems names both systems and the file. The problem is gone after the save. A notes file gets no ArchLens problem.                          |
 
 After an edit, compile again and run **Developer: Reload Window** in the host.
 

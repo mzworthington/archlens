@@ -1,4 +1,5 @@
-import type { DiagramView } from '../features/editorPreview/ports';
+import type { SystemSchema } from '@archlens/core';
+import type { DiagramCrumb, DiagramView } from '../features/editorPreview/ports';
 
 export interface FocusedDiagramSystem {
   readonly name: string;
@@ -10,39 +11,91 @@ interface OpenDiagram {
   readonly id: number;
   readonly systems: DiagramView['systems'];
   readonly workspaceRoot?: string;
+  readonly sourcePath: string;
+  readonly breadcrumb: readonly DiagramCrumb[];
+  schema?: SystemSchema;
   focusedEntityRef?: string;
   focusedAt?: number;
+}
+
+export interface VisibleDiagram {
+  readonly id: number;
+  readonly schema?: SystemSchema;
+  readonly breadcrumb: readonly DiagramCrumb[];
+  readonly sourcePath: string;
+  readonly workspaceRoot?: string;
+  readonly systems: DiagramView['systems'];
 }
 
 const sessions = new Map<number, OpenDiagram>();
 let generation = 0;
 let focusClock = 0;
 let activeId: number | undefined;
+let visibleId: number | undefined;
 
 export function openDiagramSession(
   diagram: DiagramView,
-  workspaceRoot: string | undefined
+  workspaceRoot: string | undefined,
+  schema?: SystemSchema
 ): number {
   generation += 1;
-  sessions.set(generation, { id: generation, systems: diagram.systems, workspaceRoot });
+  sessions.set(generation, sessionFrom(generation, diagram, workspaceRoot, schema));
+  visibleId = generation;
   return generation;
 }
 
 export function replaceDiagramSession(
   id: number,
   diagram: DiagramView,
-  workspaceRoot: string | undefined
+  workspaceRoot: string | undefined,
+  schema?: SystemSchema
 ): number {
-  if (!sessions.has(id)) return openDiagramSession(diagram, workspaceRoot);
+  const existing = sessions.get(id);
+  if (!existing) return openDiagramSession(diagram, workspaceRoot, schema);
   const wasActive = activeId === id;
-  sessions.set(id, { id, systems: diagram.systems, workspaceRoot });
+  sessions.set(id, {
+    ...sessionFrom(id, diagram, workspaceRoot, schema ?? existing.schema),
+    breadcrumb: diagram.breadcrumb ?? existing.breadcrumb,
+  });
   if (wasActive) activeId = undefined;
   return id;
 }
 
+export function showInSession(
+  id: number,
+  diagram: DiagramView,
+  schema: SystemSchema,
+  breadcrumb: readonly DiagramCrumb[]
+): void {
+  const existing = sessions.get(id);
+  if (!existing) return;
+  sessions.set(id, {
+    ...sessionFrom(id, diagram, existing.workspaceRoot, schema),
+    breadcrumb,
+  });
+  if (activeId === id) activeId = undefined;
+  visibleId = id;
+}
+
+export function readVisibleDiagram(): VisibleDiagram | undefined {
+  if (visibleId === undefined) return undefined;
+  const session = sessions.get(visibleId);
+  if (!session) return undefined;
+  return {
+    id: session.id,
+    schema: session.schema,
+    breadcrumb: session.breadcrumb,
+    sourcePath: session.sourcePath,
+    workspaceRoot: session.workspaceRoot,
+    systems: session.systems,
+  };
+}
+
 export function closeDiagramSession(id: number): void {
   const wasActive = activeId === id;
+  const wasVisible = visibleId === id;
   sessions.delete(id);
+  if (wasVisible) visibleId = [...sessions.keys()].at(-1);
   if (!wasActive) return;
   activeId = latestFocusedSession();
 }
@@ -54,6 +107,7 @@ export function focusDiagramSystem(sessionId: number, entityRef: string): void {
   session.focusedEntityRef = entityRef;
   session.focusedAt = focusClock;
   activeId = sessionId;
+  visibleId = sessionId;
 }
 
 export function readFocusedSystem(): FocusedDiagramSystem | undefined {
@@ -73,7 +127,29 @@ export function resetDiagramSession(): void {
   generation = 0;
   focusClock = 0;
   activeId = undefined;
+  visibleId = undefined;
   sessions.clear();
+}
+
+function sessionFrom(
+  id: number,
+  diagram: DiagramView,
+  workspaceRoot: string | undefined,
+  schema: SystemSchema | undefined
+): OpenDiagram {
+  return {
+    id,
+    systems: diagram.systems,
+    workspaceRoot,
+    sourcePath: diagram.sourcePath,
+    breadcrumb: diagram.breadcrumb ?? [
+      {
+        name: schema?.name || diagram.systems[0]?.name || 'Diagram',
+        sourcePath: diagram.sourcePath,
+      },
+    ],
+    ...(schema ? { schema } : {}),
+  };
 }
 
 function latestFocusedSession(): number | undefined {

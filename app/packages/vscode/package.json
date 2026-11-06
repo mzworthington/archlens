@@ -32,7 +32,9 @@
   "activationEvents": [
     "onCommand:archlens.openArchitectureMap",
     "onCommand:archlens.generateFromWorkspace",
-    "onCommand:archlens.openSource"
+    "onCommand:archlens.openSource",
+    "onCommand:archlens.copyDiagram",
+    "onLanguage:yaml"
   ],
   "contributes": {
     "commands": [
@@ -49,6 +51,11 @@
       {
         "command": "archlens.openSource",
         "title": "Open source",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.copyDiagram",
+        "title": "Copy diagram as Mermaid",
         "category": "ArchLens"
       }
     ],
@@ -70,6 +77,11 @@
           "command": "archlens.openSource",
           "when": "webviewId == 'archlens.architectureMap'",
           "group": "navigation"
+        },
+        {
+          "command": "archlens.copyDiagram",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation@2"
         }
       ]
     },

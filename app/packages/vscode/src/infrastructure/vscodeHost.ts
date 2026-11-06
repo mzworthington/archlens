@@ -1,9 +1,13 @@
 import { randomBytes } from 'node:crypto';
+import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
 import {
   CANCEL_COPY,
   GENERATE_OFF_COPY,
   GENERATE_TITLE,
+  NO_LOWER_COPY,
   TELL_US_COPY,
+  decideBack,
+  decideDrill,
   decideOpenMap,
   safeBlueprintsFolder,
 } from '../features/editorPreview/domain';
@@ -20,13 +24,17 @@ import {
   focusDiagramSystem,
   openDiagramSession,
   readFocusedSystem,
+  readVisibleDiagram,
   replaceDiagramSession,
+  showInSession,
 } from './diagramSession';
 
 interface WebviewPanel {
   webview: {
     html: string;
-    onDidReceiveMessage(listener: (message: unknown) => void): { dispose(): void };
+    onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
+      dispose(): void;
+    };
   };
   onDidDispose(listener: () => void): void;
 }
@@ -85,6 +93,7 @@ export interface VsCodeLike<
   };
   env: {
     openExternal(uri: Uri): Thenable<boolean>;
+    clipboard: { writeText(value: string): Thenable<void> };
   };
 }
 
@@ -125,6 +134,10 @@ export async function createEditorHost<Uri extends FileUri>(
     },
     setStatus: message => {
       api.window.setStatusBarMessage(message, STATUS_HIDE_MS);
+    },
+    visibleSchema: () => readVisibleDiagram()?.schema,
+    writeClipboard: async text => {
+      await api.env.clipboard.writeText(text);
     },
   };
 }
@@ -221,45 +234,134 @@ async function showDiagram<Uri extends FileUri>(
     api.ViewColumn.Beside,
     { enableScripts: true }
   );
-  let session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath));
-  panel.webview.html = renderMap(diagram, mapNonce());
-  const messages = panel.webview.onDidReceiveMessage(message => {
-    if (!isFocusMessage(message)) return;
-    focusDiagramSystem(session, message.entityRef);
-  });
+  const schema = schemaFrom(document.getText());
+  const shown = { session: 0, path: diagram.sourcePath };
+  shown.session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath), schema);
+  const paint = (next: DiagramView) => {
+    panel.webview.html = renderMap(next, mapNonce());
+  };
+  paint(diagram);
+  const messages = panel.webview.onDidReceiveMessage(message =>
+    onPanelMessage(api, shown, message, paint)
+  );
   const listener = api.workspace.onDidSaveTextDocument(saved => {
-    if (saved.uri.fsPath !== diagram.sourcePath) return;
+    if (saved.uri.fsPath !== shown.path) return;
     const decision = decideOpenMap({
-      files: [{ path: diagram.sourcePath, content: saved.getText() }],
-      selectedPath: diagram.sourcePath,
+      files: [{ path: shown.path, content: saved.getText() }],
+      selectedPath: shown.path,
     });
     if (decision.kind === 'diagram') {
-      session = replaceDiagramSession(
-        session,
+      shown.session = replaceDiagramSession(
+        shown.session,
         decision.diagram,
-        workspaceRootFor(api, decision.diagram.sourcePath)
+        workspaceRootFor(api, decision.diagram.sourcePath),
+        schemaFrom(saved.getText())
       );
-      panel.webview.html = renderMap(decision.diagram, mapNonce());
+      const breadcrumb = readVisibleDiagram()?.breadcrumb;
+      paint(breadcrumb ? { ...decision.diagram, breadcrumb } : decision.diagram);
       return;
     }
-    closeDiagramSession(session);
+    closeDiagramSession(shown.session);
     panel.webview.html = renderEmptyMap();
   });
   panel.onDidDispose(() => {
-    closeDiagramSession(session);
+    closeDiagramSession(shown.session);
     messages.dispose();
     listener.dispose();
   });
 }
 
-function mapNonce(): string {
-  return randomBytes(16).toString('hex');
+async function onPanelMessage<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  shown: { session: number; path: string },
+  message: unknown,
+  paint: (diagram: DiagramView) => void
+): Promise<void> {
+  const focus = focusEntity(message);
+  if (focus) {
+    focusDiagramSystem(shown.session, focus);
+    return;
+  }
+  const action = panelAction(message);
+  if (!action) return;
+  const visible = readVisibleDiagram();
+  if (!visible || visible.id !== shown.session) return;
+  const root = visible.workspaceRoot;
+  if (!root) {
+    if (action.type === 'drill') {
+      void api.window.showInformationMessage(NO_LOWER_COPY, {});
+    }
+    return;
+  }
+  const files = await listBlueprintFiles(api, root);
+  if (action.type === 'drill') {
+    const decision = decideDrill({
+      files,
+      focusedEntityRef: action.entityRef,
+      currentPath: visible.sourcePath,
+    });
+    if (decision.kind === 'none') {
+      void api.window.showInformationMessage(decision.message, {});
+      return;
+    }
+    const system = visible.systems.find(item => item.entityRef === action.entityRef);
+    const breadcrumb = [
+      ...visible.breadcrumb,
+      { name: system?.name ?? decision.schema.name, sourcePath: decision.diagram.sourcePath },
+    ];
+    showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
+    shown.path = decision.diagram.sourcePath;
+    paint({ ...decision.diagram, breadcrumb });
+    return;
+  }
+  const decision = decideBack({
+    breadcrumb: visible.breadcrumb,
+    files,
+    ...(action.type === 'breadcrumb' ? { sourcePath: action.sourcePath } : {}),
+  });
+  if (decision.kind === 'stay') return;
+  showInSession(shown.session, decision.diagram, decision.schema, decision.breadcrumb);
+  shown.path = decision.diagram.sourcePath;
+  paint({ ...decision.diagram, breadcrumb: decision.breadcrumb });
 }
 
-function isFocusMessage(message: unknown): message is { entityRef: string } {
-  if (typeof message !== 'object' || message === null) return false;
-  const record = message as { type?: unknown; entityRef?: unknown };
-  return record.type === 'focus-system' && typeof record.entityRef === 'string';
+function schemaFrom(content: string): SystemSchema | undefined {
+  try {
+    return parseSchemaFromYaml(content);
+  } catch {
+    return undefined;
+  }
+}
+
+function focusEntity(message: unknown): string | undefined {
+  if (!isRecord(message) || message.type !== 'focus-system') return undefined;
+  return typeof message.entityRef === 'string' ? message.entityRef : undefined;
+}
+
+function panelAction(
+  message: unknown
+):
+  | { type: 'drill'; entityRef: string }
+  | { type: 'back' }
+  | { type: 'breadcrumb'; sourcePath: string }
+  | undefined {
+  if (!isRecord(message)) return undefined;
+  if (message.type === 'drill' && typeof message.entityRef === 'string') {
+    return { type: 'drill', entityRef: message.entityRef };
+  }
+  if (message.type === 'back') return { type: 'back' };
+  if (message.type === 'breadcrumb' && typeof message.sourcePath === 'string') {
+    return { type: 'breadcrumb', sourcePath: message.sourcePath };
+  }
+  return undefined;
+}
+
+function isRecord(message: unknown): message is Record<string, unknown> {
+  return typeof message === 'object' && message !== null;
+}
+
+function mapNonce(): string {
+  return randomBytes(16).toString('hex');
 }
 
 function workspaceRootFor<Uri extends FileUri>(
