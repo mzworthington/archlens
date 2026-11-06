@@ -18,6 +18,7 @@ import { syncJsonSchemas } from './vite/syncJsonSchemas';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms';
 import { tracelensGuideHtmlPlugin } from './vite/tracelensGuideHtml';
 import { sanitizePrecacheManifest } from './vite/rewritePrecacheHtmlUrls';
+import { rawDesignTokens } from './vite/rawDesignTokens';
 
 const base = process.env.VITE_BASE || '/';
 const deployIdentity = resolveDeployIdentity();
@@ -37,6 +38,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    rawDesignTokens(),
     syncBundledBlueprints(),
     syncBundledChaosSpecs(),
     syncDocsAssets(),

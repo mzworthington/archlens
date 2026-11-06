@@ -41,7 +41,7 @@ export function blueprintNodeHeatStyle({
     ...(hotspotTint == null
       ? {}
       : {
-          backgroundColor: `color-mix(in srgb, #b42318 ${hotspotTint}%, #061125)`,
+          backgroundColor: `color-mix(in srgb, #b42318 ${hotspotTint}%, var(--color-surface))`,
           '--hotspot-fill': `color-mix(in srgb, #b42318 ${hotspotTint}%, white)`,
         }),
     outline:

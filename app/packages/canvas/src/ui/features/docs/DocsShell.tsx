@@ -51,7 +51,7 @@ function MobileScroller({
             className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 ${
               active
                 ? 'bg-accent/15 text-accent border-accent/30'
-                : 'text-slate-400 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
+                : 'text-ink/55 hover:text-ink/90 bg-transparent border-transparent hover:bg-white/5'
             }`}
           >
             {item.label}
@@ -84,7 +84,7 @@ function MobileLocalNav({ localNav }: { localNav: DocsLocalNav }) {
               className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 cursor-pointer ${
                 active
                   ? 'bg-accent/15 text-accent border-accent/30'
-                  : 'text-slate-400 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
+                  : 'text-ink/55 hover:text-ink/90 bg-transparent border-transparent hover:bg-white/5'
               }`}
             >
               {item.label}
@@ -127,7 +127,7 @@ export const DocsShell: React.FC<Props> = ({
                   className={`rounded-lg px-2.5 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors shrink-0 ${
                     active
                       ? 'bg-accent/15 text-accent border border-accent/30'
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-white/5 border border-transparent'
+                      : 'text-ink/55 hover:text-ink hover:bg-white/5 border border-transparent'
                   }`}
                 >
                   {item.label}
@@ -184,7 +184,7 @@ export const DocsShell: React.FC<Props> = ({
                             className={`block rounded-md px-2 py-1.5 transition-colors ${
                               active
                                 ? 'bg-accent/10 text-accent'
-                                : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                                : 'text-ink/55 hover:text-ink hover:bg-white/5'
                             }`}
                           >
                             {item.label}
@@ -204,7 +204,7 @@ export const DocsShell: React.FC<Props> = ({
                                       className={`w-full text-left rounded-md px-2 py-1.5 text-[13px] transition-colors cursor-pointer ${
                                         subActive
                                           ? 'text-accent bg-accent/10'
-                                          : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                                          : 'text-ink/55 hover:text-ink hover:bg-white/5'
                                       }`}
                                     >
                                       {sub.label}
@@ -247,9 +247,9 @@ export const DocsShell: React.FC<Props> = ({
       </div>
 
       <footer className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6">
-        <div className="flex flex-col items-center gap-2 text-center font-mono text-[11px] tracking-wide text-slate-500">
+        <div className="flex flex-col items-center gap-2 text-center font-mono text-[11px] tracking-wide text-ink/45">
           <nav aria-label="Legal">
-            <Link href="/privacy" className="text-slate-400 transition-colors hover:text-accent">
+            <Link href="/privacy" className="text-ink/55 transition-colors hover:text-accent">
               Privacy policy
             </Link>
           </nav>
@@ -257,7 +257,7 @@ export const DocsShell: React.FC<Props> = ({
             Made by{' '}
             <a
               href="https://mzworthington.co.uk"
-              className="text-slate-400 transition-colors hover:text-accent"
+              className="text-ink/55 transition-colors hover:text-accent"
               rel="noopener noreferrer"
             >
               Matthew Z Worthington

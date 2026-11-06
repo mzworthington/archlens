@@ -7,16 +7,17 @@ ArchLens is built on a custom design language for architecture diagrams and prod
 ## Identity & drafting grid
 
 - **Drafting grid:** Major guidelines at `100px`, micro subdivisions at `20px`.
-- **Electric cyan glow:** Active links and highlights use `#00f0ff` with optional glow.
-- **Monochrome contrast:** Deep navy background (`#040914`) with white/slate typography.
+- **Electric cyan glow:** Active links and highlights use the accent token, with optional glow.
+- **Monochrome contrast:** Navy backgrounds with ink typography.
 - **Product naming:** Official names - ArchLens (company brand), ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens, AdviceLens, BlueprintSpec, ChaosSpec.
 
 ---
 
 ## Design tokens
 
-- **Brand colors:** Cyan primary, blueprint navy, slate surfaces, grid borders.
-- **Product category accents:** Platform (sky), Intelligence (violet), Resilience (amber), Contract (emerald). Used on the homepage and docs.
+- **Semantic colors:** canvas, surface, navy, ink, and accent. Each is defined once in the design token set.
+- **Node status:** healthy, warning, and error.
+- **Product category accents:** Platform, Intelligence, Resilience, and Contract. Used on the homepage and docs.
 - **Typography:** Sans for headings and body. Mono for labels, entity refs and section eyebrows.
 
 ---

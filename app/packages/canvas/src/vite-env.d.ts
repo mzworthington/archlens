@@ -36,6 +36,11 @@ declare module 'virtual:tracelens-guide-html' {
   export const tracelensGuideHtml: string;
 }
 
+declare module 'virtual:archlens-design-tokens' {
+  const source: string;
+  export default source;
+}
+
 /** Minimal File System Access API typings used by browser workspace adapters. */
 interface FileSystemHandlePermissionDescriptor {
   mode?: 'read' | 'readwrite';

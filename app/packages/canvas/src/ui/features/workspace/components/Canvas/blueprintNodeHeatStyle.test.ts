@@ -18,7 +18,7 @@ describe('blueprintNodeHeatStyle', () => {
     });
 
     expect(style.backgroundImage).toBeUndefined();
-    expect(style.backgroundColor).toBe('color-mix(in srgb, #b42318 12%, #061125)');
+    expect(style.backgroundColor).toBe('color-mix(in srgb, #b42318 12%, var(--color-surface))');
     expect(style['--hotspot-fill' as keyof typeof style]).toBe(
       'color-mix(in srgb, #b42318 12%, white)'
     );

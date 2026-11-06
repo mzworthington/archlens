@@ -129,7 +129,7 @@ export function buildCanvasDisplayEdges({
     const stroke = isPropagationRipple
       ? '#f87171'
       : isSelected
-        ? '#00f0ff'
+        ? 'var(--color-accent)'
         : isHiddenExternalGhost
           ? '#22d3ee'
           : isIncoming
