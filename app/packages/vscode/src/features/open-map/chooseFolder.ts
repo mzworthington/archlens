@@ -13,8 +13,21 @@ export function isInsideFolder(file: string, folder: string): boolean {
   return filePath === folderPath || filePath.startsWith(`${folderPath}/`);
 }
 
+export function isSamePath(left: string, right: string): boolean {
+  return normalizePath(left) === normalizePath(right);
+}
+
 export function isYamlPath(file: string): boolean {
   return file.endsWith('.yaml') || file.endsWith('.yml');
+}
+
+export function resourceTarget(resourcePath: string | undefined): {
+  blueprintPath?: string;
+  locatePath?: string;
+} {
+  if (!resourcePath) return {};
+  if (!isYamlPath(resourcePath)) return { locatePath: resourcePath };
+  return { blueprintPath: resourcePath, locatePath: resourcePath };
 }
 
 /** One workspace folder, or a pick. Roots are never merged into one estate. */

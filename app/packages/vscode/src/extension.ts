@@ -11,7 +11,12 @@ import {
   collectBlueprintFiles,
   type WorkspaceFiles,
 } from './features/open-map/collectBlueprintFiles';
-import { isInsideFolder, isYamlPath } from './features/open-map/chooseFolder';
+import {
+  isInsideFolder,
+  isSamePath,
+  isYamlPath,
+  resourceTarget,
+} from './features/open-map/chooseFolder';
 import {
   openArchitectureMap,
   previewAfterSave,
@@ -44,15 +49,15 @@ export function deactivate(): void {
 }
 
 async function runOpen(context: vscode.ExtensionContext, resource?: vscode.Uri): Promise<void> {
-  const invokedPath = yamlPath(resource);
   const activePath = vscode.window.activeTextEditor?.document.uri.fsPath;
-  const selection: MapSelection = { invokedPath, activePath };
+  const target = resourceTarget(resource?.fsPath);
+  const selection: MapSelection = { invokedPath: target.blueprintPath, activePath };
   const result = await openArchitectureMap(
     {
       isTrusted: () => vscode.workspace.isTrusted,
       readCandidates: () =>
         collectBlueprintFiles(workspaceFiles(), {
-          invokedPath,
+          invokedPath: target.locatePath,
           activePath,
           blueprintsFolderSetting: vscode.workspace
             .getConfiguration('archlens')
@@ -141,8 +146,8 @@ function workspaceFiles(): WorkspaceFiles {
 }
 
 async function findYaml(folder: string, blueprintsFolder: string): Promise<string[]> {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.find(
-    item => item.uri.fsPath === folder
+  const workspaceFolder = vscode.workspace.workspaceFolders?.find(item =>
+    isSamePath(item.uri.fsPath, folder)
   );
   if (!workspaceFolder) return [];
   const exclude = '**/{node_modules,dist,build,.git}/**';
@@ -203,11 +208,6 @@ function showPreview(context: vscode.ExtensionContext, title: string, html: stri
     })
   );
   panel.webview.html = html;
-}
-
-function yamlPath(resource: vscode.Uri | undefined): string | undefined {
-  if (!resource || !isYamlPath(resource.fsPath)) return undefined;
-  return resource.fsPath;
 }
 
 function nonce(): string {
