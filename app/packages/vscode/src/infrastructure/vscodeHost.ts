@@ -32,7 +32,9 @@ import {
 interface WebviewPanel {
   webview: {
     html: string;
-    onDidReceiveMessage(listener: (message: unknown) => void): { dispose(): void };
+    onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
+      dispose(): void;
+    };
   };
   onDidDispose(listener: () => void): void;
 }
@@ -239,9 +241,9 @@ async function showDiagram<Uri extends FileUri>(
     panel.webview.html = renderMap(next, mapNonce());
   };
   paint(diagram);
-  const messages = panel.webview.onDidReceiveMessage(message => {
-    void onPanelMessage(api, shown, message, paint);
-  });
+  const messages = panel.webview.onDidReceiveMessage(message =>
+    onPanelMessage(api, shown, message, paint)
+  );
   const listener = api.workspace.onDidSaveTextDocument(saved => {
     if (saved.uri.fsPath !== shown.path) return;
     const decision = decideOpenMap({

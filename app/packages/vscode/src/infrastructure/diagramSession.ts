@@ -143,7 +143,10 @@ function sessionFrom(
     workspaceRoot,
     sourcePath: diagram.sourcePath,
     breadcrumb: diagram.breadcrumb ?? [
-      { name: diagram.systems[0]?.name ?? 'Diagram', sourcePath: diagram.sourcePath },
+      {
+        name: schema?.name || diagram.systems[0]?.name || 'Diagram',
+        sourcePath: diagram.sourcePath,
+      },
     ],
     ...(schema ? { schema } : {}),
   };

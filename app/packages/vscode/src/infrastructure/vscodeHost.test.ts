@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   INTEREST_DISCUSSION_URL,
+  NO_LOWER_COPY,
   NO_SOURCE_COPY,
   TRUST_COPY,
 } from '../features/editorPreview/domain';
 import {
+  copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,
   openSource,
@@ -30,6 +32,18 @@ dependencies:
     type: direct-call
 `;
 
+const container = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  name: Checkout API
+  entityRef: checkout/api
+nodes:
+  - entityRef: checkout/api/handler
+    type: component
+    name: Handler
+dependencies: []
+`;
+
 function editor(input: {
   trusted: boolean;
   choice?: string;
@@ -40,6 +54,7 @@ function editor(input: {
   const calls: string[] = [];
   const html: string[] = [];
   const opened: string[] = [];
+  const copied: string[] = [];
   const statuses: string[] = [];
   const statusTimeouts: number[] = [];
   const patterns: { base: string; pattern: string }[] = [];
@@ -127,7 +142,7 @@ function editor(input: {
               return html[html.length - 1] ?? '';
             },
             onDidReceiveMessage: listener => {
-              panel.onMessage = listener;
+              panel.onMessage = message => listener(message);
               return { dispose: () => undefined };
             },
           },
@@ -142,7 +157,11 @@ function editor(input: {
         opened.push(uri.toString());
         return true;
       },
-      clipboard: { writeText: async () => undefined },
+      clipboard: {
+        writeText: async value => {
+          copied.push(value);
+        },
+      },
     },
   };
 
@@ -151,12 +170,14 @@ function editor(input: {
     calls,
     html,
     opened,
+    copied,
     statuses,
     statusTimeouts,
     patterns,
     focus: (entityRef: string) => {
       panels.at(-1)?.onMessage?.({ type: 'focus-system', entityRef });
     },
+    send: (message: unknown) => panels.at(-1)?.onMessage?.(message),
     focusPanel: (index: number, entityRef: string) => {
       panels[index]?.onMessage?.({ type: 'focus-system', entityRef });
     },
@@ -245,6 +266,63 @@ describe('editor host', () => {
 
     expect(fake.html.at(-1)).toContain('Payments');
     expect(fake.html.at(-1)).not.toContain('>Billing<');
+  });
+
+  it('drills into a child diagram and returns with Alt+Left', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api.yaml', content: container },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await fake.send({ type: 'drill', entityRef: 'checkout/api' });
+
+    expect(fake.html.at(-1)).toContain('Checkout</button>');
+    expect(fake.html.at(-1)).toContain('Checkout API</span>');
+    expect(fake.html.at(-1)).toContain('Handler');
+    expect(fake.html.at(-1)).not.toContain('Billing');
+
+    await fake.send({ type: 'back' });
+
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).toContain('Billing');
+    expect(fake.html.at(-1)).not.toContain('<nav');
+  });
+
+  it('stays on the diagram when Enter has no child', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await fake.send({ type: 'drill', entityRef: 'checkout/billing' });
+
+    expect(fake.calls).toContain(`message:${NO_LOWER_COPY}`);
+    expect(fake.html.at(-1)).toContain('Billing');
+    expect(fake.html.at(-1)).not.toContain('Handler');
+  });
+
+  it('copies the open diagram as Mermaid without writing the YAML', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await copyDiagram(host);
+
+    expect(fake.copied).toHaveLength(1);
+    expect(fake.copied[0]).toContain('graph TD');
+    expect(fake.copied[0]).toContain('Checkout API');
+    expect(fake.copied[0]).toContain('Billing');
+    expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
   });
 
   it('opens the discussion from Tell us you want this and reads no blueprint', async () => {
