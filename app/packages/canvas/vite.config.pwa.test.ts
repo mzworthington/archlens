@@ -19,6 +19,10 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
     expect(sw).not.toMatch(/index\.html/);
     expect(sw).toContain('shellPrecacheRequest');
     expect(sw).toContain('addPlugins');
+    expect(sw).toContain('clientRequestedImmediateUpdate');
+    expect(sw).toContain('isSkipWaitingMessage');
+    expect(sw).toContain('self.skipWaiting()');
+    expect(sw).toContain('self.clients.claim()');
   });
 
   it('does not precache *.html — Pages pretty-URLs 308 those paths and fail Firefox install', () => {
