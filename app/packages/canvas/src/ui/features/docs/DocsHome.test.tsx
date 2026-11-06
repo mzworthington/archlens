@@ -29,6 +29,7 @@ describe('DocsHome', () => {
     expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
     expect(screen.getByText('Open source')).toBeInTheDocument();
     expect(screen.getByText('Local first')).toBeInTheDocument();
+    expect(screen.getByText('VS Code extension coming soon')).toBeInTheDocument();
     expect(screen.getAllByText(/uploaded to ArchLens servers/i).length).toBeGreaterThan(0);
     expect(screen.getByRole('heading', { name: 'What do I do today?' })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { name: 'ChaosLens' }).length).toBeGreaterThan(0);

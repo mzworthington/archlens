@@ -291,6 +291,9 @@ export const DocsHome: React.FC = () => {
                 <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-200">
                   Architecture as code
                 </span>
+                <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-amber-200">
+                  VS Code extension coming soon
+                </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink leading-[1.1]">
                 {PRODUCT_HERO.headline}
