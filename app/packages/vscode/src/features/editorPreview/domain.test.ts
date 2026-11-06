@@ -7,6 +7,7 @@ import {
   INTEREST_DISCUSSION_URL,
   TELL_US_COPY,
   TRUST_COPY,
+  NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
   NOTHING_TO_COPY,
@@ -16,7 +17,9 @@ import {
   decideDrill,
   decideOpenMap,
   decideOpenSource,
+  decideShowHotspots,
   generateDecision,
+  presentHotspots,
   resolveSourceFile,
   safeBlueprintsFolder,
 } from './domain';
@@ -391,5 +394,81 @@ describe('copy diagram as mermaid', () => {
       })
     ).toEqual({ kind: 'empty', message: NOTHING_TO_COPY });
     expect(NOTHING_TO_COPY).toBe('Nothing to copy.');
+  });
+});
+
+const checkoutDiagram = {
+  sourcePath: '/repo/blueprints/context.yaml',
+  systems: [
+    { name: 'Checkout API', entityRef: 'checkout/api' },
+    { name: 'Billing', entityRef: 'checkout/billing' },
+  ],
+  links: [],
+};
+
+describe('show hotspots', () => {
+  it('marks a recorded hotspot with its most recent change count', () => {
+    const shown = presentHotspots(
+      checkoutDiagram,
+      [
+        {
+          entityRef: 'checkout/api',
+          forensics: {
+            classifications: ['hotspot'],
+            churn: 12,
+            churnByWeek: [2, 4, 6],
+          },
+        },
+        { entityRef: 'checkout/billing', forensics: { churn: 9 } },
+      ],
+      true
+    );
+
+    expect(shown.systems).toEqual([
+      { name: 'Checkout API', entityRef: 'checkout/api', hotspotCount: 6 },
+      { name: 'Billing', entityRef: 'checkout/billing' },
+    ]);
+  });
+
+  it('uses the rolled-up hotspot count when the scan stored one', () => {
+    const shown = presentHotspots(
+      checkoutDiagram,
+      [{ entityRef: 'checkout/api', forensics: { hotspotCount: 3 } }],
+      true
+    );
+
+    expect(shown.systems[0]?.hotspotCount).toBe(3);
+    expect(shown.systems[1]?.hotspotCount).toBeUndefined();
+  });
+
+  it('leaves the diagram unmarked when hotspots are off', () => {
+    const shown = presentHotspots(
+      {
+        ...checkoutDiagram,
+        systems: [{ name: 'Checkout API', entityRef: 'checkout/api', hotspotCount: 6 }],
+      },
+      [{ entityRef: 'checkout/api', forensics: { classifications: ['hotspot'], churn: 6 } }],
+      false
+    );
+
+    expect(shown.systems[0]).toEqual({ name: 'Checkout API', entityRef: 'checkout/api' });
+  });
+
+  it('refuses a folder with no git history and an untrusted folder', () => {
+    expect(decideShowHotspots({ trusted: true, hasGitHistory: false, showing: false })).toEqual({
+      kind: 'no-git',
+      message: NO_GIT_HOTSPOTS_COPY,
+    });
+    expect(NO_GIT_HOTSPOTS_COPY).toBe('Hotspots need a git history for this folder.');
+    expect(decideShowHotspots({ trusted: false, hasGitHistory: true, showing: false })).toEqual({
+      kind: 'untrusted',
+      message: TRUST_COPY,
+    });
+    expect(decideShowHotspots({ trusted: true, hasGitHistory: true, showing: false }).kind).toBe(
+      'show'
+    );
+    expect(decideShowHotspots({ trusted: true, hasGitHistory: false, showing: true }).kind).toBe(
+      'hide'
+    );
   });
 });

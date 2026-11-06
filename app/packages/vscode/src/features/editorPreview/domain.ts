@@ -2,6 +2,7 @@ import {
   parseSchemaFromYaml,
   serializeSchemaToMermaid,
   validateGraph,
+  type NodeForensics,
   type SystemSchema,
 } from '@archlens/core';
 import type { BlueprintFile, DiagramCrumb, DiagramView, GenerateChoice } from './ports';
@@ -16,6 +17,7 @@ export const INTEREST_DISCUSSION_URL = 'https://github.com/mzworthington/archlen
 export const NO_SOURCE_COPY = 'This system has no source file in the workspace.';
 export const NO_LOWER_COPY = 'No lower diagram for this system.';
 export const NOTHING_TO_COPY = 'Nothing to copy.';
+export const NO_GIT_HOTSPOTS_COPY = 'Hotspots need a git history for this folder.';
 
 const DEFAULT_BLUEPRINTS_FOLDER = 'blueprints';
 
@@ -213,6 +215,45 @@ export type CopyDecision =
   | { readonly kind: 'copy'; readonly text: string }
   | { readonly kind: 'empty'; readonly message: string };
 
+export type ShowHotspotsDecision =
+  | { readonly kind: 'untrusted'; readonly message: string }
+  | { readonly kind: 'no-git'; readonly message: string }
+  | { readonly kind: 'show' }
+  | { readonly kind: 'hide' };
+
+/** Hotspot marks come from the blueprint. A folder with no git history stays unmarked. */
+export function decideShowHotspots(input: {
+  trusted: boolean;
+  hasGitHistory: boolean;
+  showing: boolean;
+}): ShowHotspotsDecision {
+  if (!input.trusted) return { kind: 'untrusted', message: TRUST_COPY };
+  if (input.showing) return { kind: 'hide' };
+  if (!input.hasGitHistory) return { kind: 'no-git', message: NO_GIT_HOTSPOTS_COPY };
+  return { kind: 'show' };
+}
+
+/** Overlay recorded hotspot signals. Turning them off leaves the systems as they were. */
+export function presentHotspots(
+  diagram: DiagramView,
+  nodes: readonly { entityRef: string; forensics?: NodeForensics }[],
+  on: boolean
+): DiagramView {
+  const counts = on ? hotspotCounts(nodes) : new Map<string, number>();
+  return {
+    ...diagram,
+    systems: diagram.systems.map(system => {
+      const count = counts.get(system.entityRef);
+      const plain = {
+        name: system.name,
+        entityRef: system.entityRef,
+        ...(system.sourceFile ? { sourceFile: system.sourceFile } : {}),
+      };
+      return count === undefined ? plain : { ...plain, hotspotCount: count };
+    }),
+  };
+}
+
 /** Mermaid is a picture of the systems on screen. It does not change the YAML. */
 export function decideCopyMermaid(schema: SystemSchema | undefined): CopyDecision {
   if (!schema || schema.nodes.length === 0) {
@@ -334,6 +375,31 @@ function cycleSentence(schema: SystemSchema, path: readonly string[]): string {
   const last = calls[calls.length - 1];
   const head = calls.slice(0, -1).join(', ');
   return `Cycle: ${head}, and ${last}.`;
+}
+
+function hotspotCounts(
+  nodes: readonly { entityRef: string; forensics?: NodeForensics }[]
+): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const node of nodes) {
+    const count = recordedChangeCount(node.forensics);
+    if (count === undefined) continue;
+    counts.set(node.entityRef, count);
+  }
+  return counts;
+}
+
+function recordedChangeCount(forensics: NodeForensics | undefined): number | undefined {
+  if (!forensics) return undefined;
+  const classified = forensics.classifications?.includes('hotspot') === true;
+  const rolledUp = (forensics.hotspotCount ?? 0) > 0;
+  if (!classified && !rolledUp) return undefined;
+  const weeks = forensics.churnByWeek;
+  const latest = weeks && weeks.length > 0 ? weeks[weeks.length - 1] : undefined;
+  if (latest !== undefined) return latest;
+  if (forensics.churn !== undefined) return forensics.churn;
+  if (forensics.hotspotCount !== undefined) return forensics.hotspotCount;
+  return 0;
 }
 
 function lineOf(content: string, entityRef: string | undefined): number {

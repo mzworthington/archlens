@@ -9,6 +9,7 @@ export interface DiagramSystem {
   readonly name: string;
   readonly entityRef: string;
   readonly sourceFile?: string;
+  readonly hotspotCount?: number;
 }
 
 export interface DiagramLink {
@@ -61,4 +62,7 @@ export interface EditorHost {
   setStatus(message: string): void;
   visibleSchema(): SystemSchema | undefined;
   writeClipboard(text: string): Promise<void>;
+  visibleMap(): { readonly hotspotsOn: boolean; readonly workspaceRoot?: string } | undefined;
+  hasGitHistory(root: string): Promise<boolean>;
+  setHotspots(on: boolean): void;
 }

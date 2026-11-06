@@ -1,1 +1,7 @@
-export { copyDiagram, generateFromWorkspace, openArchitectureMap, openSource } from './handler';
+export {
+  copyDiagram,
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+  showHotspots,
+} from './handler';

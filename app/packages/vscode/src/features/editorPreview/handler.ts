@@ -4,6 +4,7 @@ import {
   decideCopyMermaid,
   decideOpenMap,
   decideOpenSource,
+  decideShowHotspots,
   generateDecision,
   resolveSourceFile,
 } from './domain';
@@ -114,6 +115,43 @@ export async function copyDiagram(host: EditorHost): Promise<void> {
       await host.writeClipboard(decision.text);
       return;
     case 'empty':
+      host.showMessage(decision.message);
+      return;
+    default: {
+      const unexpected: never = decision;
+      return unexpected;
+    }
+  }
+}
+
+export async function showHotspots(host: EditorHost): Promise<void> {
+  const visible = host.visibleMap();
+  if (!visible) return;
+  if (!host.isTrusted()) {
+    host.showMessage(TRUST_COPY);
+    return;
+  }
+
+  const hasGitHistory = visible.hotspotsOn
+    ? true
+    : visible.workspaceRoot
+      ? await host.hasGitHistory(visible.workspaceRoot)
+      : false;
+  const decision = decideShowHotspots({
+    trusted: true,
+    hasGitHistory,
+    showing: visible.hotspotsOn,
+  });
+
+  switch (decision.kind) {
+    case 'show':
+      host.setHotspots(true);
+      return;
+    case 'hide':
+      host.setHotspots(false);
+      return;
+    case 'no-git':
+    case 'untrusted':
       host.showMessage(decision.message);
       return;
     default: {
