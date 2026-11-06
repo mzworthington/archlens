@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
   RECORD_DOCS_MEDIA,
   docsScreenshotPath,
@@ -10,7 +10,7 @@ import {
 } from '../helpers/chaoslens';
 import { loadGoldenJourneyDiagram, runGoldenJourneyOutageDemo } from '../helpers/goldenJourney';
 import { runTraceLensDemo } from '../helpers/tracelensDemo';
-import { loadSandbox } from '../helpers/workspace';
+import { keepStartupChooserOpen, loadSandbox } from '../helpers/workspace';
 import { drillIntoZoomable, expectCanvasReady } from '../helpers/canvas';
 import {
   closeCollabPeers,
@@ -74,6 +74,28 @@ test.describe('docs media recordings', () => {
     test.setTimeout(120_000);
     await runTraceLensDemo(page);
     await page.waitForTimeout(600);
+  });
+
+  test('6-startup-chooser.png', async ({ page }) => {
+    // Chromium in Playwright often lacks the File System Access API. Stub it so the
+    // still matches Chrome and Edge, where Investigate offers a folder pick.
+    await page.addInitScript(() => {
+      if (typeof window.showDirectoryPicker === 'function') return;
+      Object.defineProperty(window, 'showDirectoryPicker', {
+        configurable: true,
+        value: () => Promise.reject(new DOMException('aborted', 'AbortError')),
+      });
+    });
+    await keepStartupChooserOpen(page);
+    const dialog = page.getByTestId('startup-workspace-dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole('heading', { name: 'Collaborate' })).toBeVisible();
+    await expect(dialog.getByText('Share blank room')).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    await dialog.locator('.pointer-events-auto').screenshot({
+      path: docsScreenshotPath('6-startup-chooser.png'),
+      animations: 'disabled',
+    });
   });
 
   test('9-collab-cursors.png', async ({ page, context }) => {
