@@ -20,6 +20,7 @@ import {
   focusDiagramSystem,
   openDiagramSession,
   readFocusedSystem,
+  replaceDiagramSession,
 } from './diagramSession';
 
 interface WebviewPanel {
@@ -74,7 +75,7 @@ export interface VsCodeLike<
       options: { title: string }
     ): Thenable<FolderPickItem | undefined>;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
-    setStatusBarMessage(message: string): void;
+    setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
       viewType: string,
       title: string,
@@ -86,6 +87,8 @@ export interface VsCodeLike<
     openExternal(uri: Uri): Thenable<boolean>;
   };
 }
+
+const STATUS_HIDE_MS = 5000;
 
 export async function createEditorHost<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
@@ -121,7 +124,7 @@ export async function createEditorHost<Uri extends FileUri>(
       await api.window.showTextDocument(document, api.ViewColumn.Active);
     },
     setStatus: message => {
-      api.window.setStatusBarMessage(message);
+      api.window.setStatusBarMessage(message, STATUS_HIDE_MS);
     },
   };
 }
@@ -222,7 +225,7 @@ async function showDiagram<Uri extends FileUri>(
   panel.webview.html = renderMap(diagram, mapNonce());
   const messages = panel.webview.onDidReceiveMessage(message => {
     if (!isFocusMessage(message)) return;
-    focusDiagramSystem(message.entityRef);
+    focusDiagramSystem(session, message.entityRef);
   });
   const listener = api.workspace.onDidSaveTextDocument(saved => {
     if (saved.uri.fsPath !== diagram.sourcePath) return;
@@ -231,7 +234,8 @@ async function showDiagram<Uri extends FileUri>(
       selectedPath: diagram.sourcePath,
     });
     if (decision.kind === 'diagram') {
-      session = openDiagramSession(
+      session = replaceDiagramSession(
+        session,
         decision.diagram,
         workspaceRootFor(api, decision.diagram.sourcePath)
       );

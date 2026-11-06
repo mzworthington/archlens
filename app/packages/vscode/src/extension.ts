@@ -32,8 +32,8 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
         vscode.window.showInformationMessage(message, options, ...items),
       showQuickPick: (items, options) => vscode.window.showQuickPick(items, options),
       showTextDocument: (document, column) => vscode.window.showTextDocument(document, column),
-      setStatusBarMessage: message => {
-        void vscode.window.setStatusBarMessage(message);
+      setStatusBarMessage: (message, hideAfterTimeout) => {
+        void vscode.window.setStatusBarMessage(message, hideAfterTimeout);
       },
       createWebviewPanel: (viewType, title, column, options) =>
         vscode.window.createWebviewPanel(viewType, title, column, options),
