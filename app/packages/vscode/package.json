@@ -1,0 +1,89 @@
+{
+  "name": "archlens",
+  "displayName": "ArchLens",
+  "description": "Preview a BlueprintSpec architecture map beside the YAML. Generating a diagram from the open folder is turned off in this preview.",
+  "version": "0.1.0-preview.1",
+  "publisher": "mzworthington",
+  "license": "MIT",
+  "private": true,
+  "preview": true,
+  "type": "module",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": ["Visualization"],
+  "keywords": ["architecture", "blueprint", "c4", "diagram"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzworthington/archlens"
+  },
+  "bugs": {
+    "url": "https://github.com/mzworthington/archlens/issues"
+  },
+  "main": "./dist/extension.js",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build": "node esbuild.mjs",
+    "package:pre-release": "pnpm build && pnpm exec vsce package --pre-release --no-dependencies --allow-missing-repository"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "archlens.openArchitectureMap",
+        "title": "Open architecture map",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.generateFromWorkspace",
+        "title": "Generate diagram from workspace",
+        "category": "ArchLens"
+      }
+    ],
+    "configuration": {
+      "title": "ArchLens",
+      "properties": {
+        "archlens.generateFromWorkspace.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Generate a diagram from the workspace. Off shows that generation is turned off in this preview. This preview does not scan or write files."
+        }
+      }
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "archlens.openArchitectureMap",
+          "when": "resourceExtname =~ /\\.(yaml|yml)$/ || resourcePath =~ /blueprints$/",
+          "group": "navigation@20"
+        },
+        {
+          "command": "archlens.generateFromWorkspace",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@21"
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "ArchLens does not read this folder until the workspace is trusted.",
+      "restrictedConfigurations": ["archlens.generateFromWorkspace.enabled"]
+    }
+  },
+  "activationEvents": [],
+  "dependencies": {
+    "@archlens/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.0",
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.6.0",
+    "axe-core": "^4.10.3",
+    "esbuild": "^0.25.11",
+    "jsdom": "^30.1.3",
+    "typescript": "7.0.2"
+  }
+}

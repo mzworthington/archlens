@@ -1,0 +1,37 @@
+name: Publish editor pre-release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Publish Marketplace pre-release
+        run: pnpm --filter ./packages/vscode exec vsce publish --pre-release --no-dependencies --allow-missing-repository -p "$VSCE_PAT"
+        working-directory: app
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

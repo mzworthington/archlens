@@ -195,4 +195,4 @@ Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the p
 
 ## Editor plan
 
-The Visual Studio Marketplace bet (preview a blueprint, then ask before generating one from the workspace) is [vscode-marketplace-extension-prd.md](./vscode-marketplace-extension-prd.md). It does not change Canvas or the CLI.
+The Visual Studio Marketplace bet (preview a blueprint, then ask before generating one from the workspace) is [vscode-marketplace-extension-prd.md](./vscode-marketplace-extension-prd.md). The pre-release package is `app/packages/vscode` (`mzworthington.archlens`). It opens an existing map and leaves generate-from-workspace off. It does not change Canvas or the CLI.

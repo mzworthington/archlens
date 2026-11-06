@@ -115,6 +115,17 @@ jobs:
         run: pnpm test:ci
         working-directory: app
 
+      - name: Package editor pre-release
+        run: pnpm --filter ./packages/vscode package:pre-release
+        working-directory: app
+
+      - name: Upload editor pre-release
+        uses: actions/upload-artifact@v7
+        with:
+          name: archlens-vscode-pre-release
+          path: app/packages/vscode/*.vsix
+          if-no-files-found: error
+
       - name: Report Vitest Coverage
         uses: davelosert/vitest-coverage-report-action@v2
         with:

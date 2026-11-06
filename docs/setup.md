@@ -147,6 +147,8 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/` and `resi
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
+The editor pre-release (`app/packages/vscode`) is separate from that YAML extension. Package it with `pnpm --filter ./packages/vscode package:pre-release`. It reads a blueprint only after the workspace is trusted.
+
 ### YAML format (v4)
 
 Each blueprint file is a single YAML **mapping** (not a sequence). `version` is the public JSON Schema URL for this contract; diagram identity lives under `metadata`:
