@@ -71,10 +71,10 @@ describe('collab workspace room', () => {
     expect(schemaFromCollabWorkspace(merged, 'notes.yaml')?.name).toBe('Context');
   });
 
-  it('opens the first room diagram when the joiner has no local file', () => {
+  it('opens the alphabetically first room diagram when the joiner has no local file', () => {
     const remote = collabWorkspaceFromSchemas([
-      { path: 'containers.yaml', schema: containers },
       { path: 'context.yaml', schema: context },
+      { path: 'containers.yaml', schema: containers },
     ]);
 
     expect(collabWorkspaceFocusPath(remote, 'samples/context.yaml', [])).toBe('containers.yaml');

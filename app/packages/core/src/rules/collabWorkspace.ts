@@ -31,7 +31,7 @@ export function collabWorkspaceFromSchemas(
 }
 
 export function collabWorkspacePaths(workspace: CollabWorkspace): string[] {
-  return Object.keys(workspace.diagrams).sort();
+  return Object.keys(workspace.diagrams).sort((left, right) => left.localeCompare(right));
 }
 
 /** The diagram at `path`, or null when that file is not in the room. */
