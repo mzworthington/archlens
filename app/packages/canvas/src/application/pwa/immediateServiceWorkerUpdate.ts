@@ -16,3 +16,12 @@ export function isSkipWaitingMessage(data: unknown): boolean {
   if (typeof data !== 'object' || data === null || !('type' in data)) return false;
   return data.type === 'SKIP_WAITING';
 }
+
+/** Only the app's own pages may ask the worker to take over. */
+export function acceptsServiceWorkerUpdateMessage(
+  origin: string,
+  pageOrigin: string,
+  data: unknown
+): boolean {
+  return origin === pageOrigin && isSkipWaitingMessage(data);
+}

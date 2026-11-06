@@ -9,8 +9,8 @@ import {
 import { NavigationRoute, registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
 import {
+  acceptsServiceWorkerUpdateMessage,
   clientRequestedImmediateUpdate,
-  isSkipWaitingMessage,
 } from './application/pwa/immediateServiceWorkerUpdate';
 import { shellPrecacheRequest } from './application/pwa/shellPrecacheRequest';
 
@@ -33,7 +33,10 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
-  if (isSkipWaitingMessage(event.data)) self.skipWaiting();
+  // Any window can postMessage a worker. Only this origin may activate the update.
+  if (event.origin !== self.location.origin) return;
+  if (!acceptsServiceWorkerUpdateMessage(event.origin, self.location.origin, event.data)) return;
+  self.skipWaiting();
 });
 
 // Register before precacheAndRoute so the install fetch of `/` asks for HTML.

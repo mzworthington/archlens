@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  acceptsServiceWorkerUpdateMessage,
   clientRequestedImmediateUpdate,
   isSkipWaitingMessage,
 } from './immediateServiceWorkerUpdate';
@@ -33,5 +34,23 @@ describe('isSkipWaitingMessage', () => {
     expect(isSkipWaitingMessage({ type: 'OTHER' })).toBe(false);
     expect(isSkipWaitingMessage(null)).toBe(false);
     expect(isSkipWaitingMessage('SKIP_WAITING')).toBe(false);
+  });
+});
+
+describe('acceptsServiceWorkerUpdateMessage', () => {
+  it('accepts a skip-waiting message from this origin', () => {
+    expect(
+      acceptsServiceWorkerUpdateMessage('https://archlens.dev', 'https://archlens.dev', {
+        type: 'SKIP_WAITING',
+      })
+    ).toBe(true);
+  });
+
+  it('rejects a skip-waiting message from another origin', () => {
+    expect(
+      acceptsServiceWorkerUpdateMessage('https://evil.example', 'https://archlens.dev', {
+        type: 'SKIP_WAITING',
+      })
+    ).toBe(false);
   });
 });
