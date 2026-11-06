@@ -10,6 +10,7 @@ export {
   mapDomainNodesToRFNodes,
   mapDomainNodeToRFNode,
   mapDomainDepToRFEdge,
+  relationshipLabelChrome,
   mapDomainDepsToRFEdges,
   getClosestHandles,
   rebuildSchemaFromCanvas,

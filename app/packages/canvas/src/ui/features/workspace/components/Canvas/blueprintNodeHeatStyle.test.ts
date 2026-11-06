@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { blueprintNodeHeatStyle } from './blueprintNodeHeatStyle';
 
 describe('blueprintNodeHeatStyle', () => {
-  it('uses opaque linear gradient base when hotspot heat is active', () => {
+  it('marks hotspot heat with a flat light tint', () => {
     const style = blueprintNodeHeatStyle({
       selected: false,
       external: false,
@@ -17,7 +17,12 @@ describe('blueprintNodeHeatStyle', () => {
       integrityHeat: 0,
     });
 
-    expect(style.backgroundImage).toContain('rgba(15, 23, 42, 1)');
-    expect(style.backgroundImage).not.toContain('rgba(15, 23, 42, 0.96)');
+    expect(style.backgroundImage).toBeUndefined();
+    expect(style.backgroundColor).toBe('color-mix(in srgb, #b42318 12%, #061125)');
+    expect(style['--hotspot-fill' as keyof typeof style]).toBe(
+      'color-mix(in srgb, #b42318 12%, white)'
+    );
+    expect(style.boxShadow ?? '').not.toContain('gradient');
+    expect(style.boxShadow ?? '').not.toContain('inset');
   });
 });

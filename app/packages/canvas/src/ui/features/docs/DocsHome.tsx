@@ -282,7 +282,7 @@ export const DocsHome: React.FC = () => {
       <div data-testid="docs-home" className="space-y-14">
         <section className="relative overflow-hidden rounded-2xl border border-accent/10 bg-surface/50 p-6 sm:p-10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--color-accent)_12%,transparent),transparent)]" />
-          <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_14rem] lg:items-center">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
@@ -301,10 +301,16 @@ export const DocsHome: React.FC = () => {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
                 {PRODUCT_HERO.headline}
               </h1>
-              <p className="mt-4 max-w-xl text-slate-300 text-base sm:text-lg leading-relaxed">
+              <p className="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed">
                 {PRODUCT_HERO.lede}
               </p>
-              <p className="mt-3 max-w-xl text-slate-500 text-sm leading-relaxed">
+              <p className="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed">
+                {PRODUCT_HERO.analysisLine}
+              </p>
+              <p className="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed">
+                {PRODUCT_HERO.collabLine}
+              </p>
+              <p className="mt-3 text-slate-500 text-sm leading-relaxed">
                 {PRODUCT_HERO.trustLine}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">

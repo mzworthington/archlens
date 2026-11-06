@@ -30,7 +30,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/': {
     headline: SITE_NAME,
     title: PRODUCT_HERO.documentTitle,
-    description: `${PRODUCT_HERO.lede} Open source. Canvas, TraceLens, ChaosLens and AdviceLens.`,
+    description: `${PRODUCT_HERO.lede} ${PRODUCT_HERO.analysisLine} ${PRODUCT_HERO.collabLine}`,
     softwareName: SITE_NAME,
   },
   '/journeys': {

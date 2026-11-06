@@ -3,7 +3,11 @@
 export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
   documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
-  lede: 'BlueprintSpec is Architecture as Code (AaC). Canvas draws it, the CLI writes it from the repo, and TraceLens, ChaosLens and AdviceLens read the same file.',
+  lede: 'BlueprintSpec is Architecture as Code (AaC). Canvas draws it and the CLI writes it from the repo.',
+  analysisLine:
+    'On that same map, TraceLens shows where change concentrates, ChaosLens shows what a failure takes down and AdviceLens ranks what to fix first.',
+  collabLine:
+    'Create and refine that map with your peers in real time on a live board. Named cursors, comments on the nodes and edits show up as you make them.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Live share rooms talk to a Worker we host for that session. Catalog publish from CI is a separate, explicit step.',
 } as const;

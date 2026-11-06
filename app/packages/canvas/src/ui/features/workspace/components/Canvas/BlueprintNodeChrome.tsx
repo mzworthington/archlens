@@ -13,54 +13,24 @@ import type { BlueprintNodeTypeConfig } from './blueprintNodeTypeConfigs';
 export const BlueprintNodeHandles: React.FC = () => (
   <>
     {/* Always mount every handle - edges keep layout handle ids; unmounting orphans paths. */}
-    <Handle
-      type="target"
-      position={Position.Left}
-      id="left-target"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
-    <Handle
-      type="source"
-      position={Position.Right}
-      id="right-source"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
-    <Handle
-      type="target"
-      position={Position.Top}
-      id="top-target"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
-    <Handle
-      type="source"
-      position={Position.Top}
-      id="top-source"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
+    <Handle type="target" position={Position.Left} id="left-target" className="blueprint-port" />
+    <Handle type="source" position={Position.Right} id="right-source" className="blueprint-port" />
+    <Handle type="target" position={Position.Top} id="top-target" className="blueprint-port" />
+    <Handle type="source" position={Position.Top} id="top-source" className="blueprint-port" />
     <Handle
       type="target"
       position={Position.Bottom}
       id="bottom-target"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
+      className="blueprint-port"
     />
     <Handle
       type="source"
       position={Position.Bottom}
       id="bottom-source"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
+      className="blueprint-port"
     />
-    <Handle
-      type="source"
-      position={Position.Left}
-      id="left-source"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
-    <Handle
-      type="target"
-      position={Position.Right}
-      id="right-target"
-      className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-    />
+    <Handle type="source" position={Position.Left} id="left-source" className="blueprint-port" />
+    <Handle type="target" position={Position.Right} id="right-target" className="blueprint-port" />
   </>
 );
 
@@ -278,17 +248,12 @@ export const BlueprintNodeExternalSummaryHub: React.FC<ExternalSummaryHubProps> 
           : 'border-cyan-500/60 bg-cyan-950/40 hover:border-cyan-400'
       }`}
     >
-      <Handle
-        type="target"
-        position={Position.Top}
-        id="top-target"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
+      <Handle type="target" position={Position.Top} id="top-target" className="blueprint-port" />
       <Handle
         type="source"
         position={Position.Bottom}
         id="bottom-source"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
+        className="blueprint-port"
       />
       <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">{bandLabel}</p>
       <h4 className="mt-1 text-2xl font-bold text-slate-100 tabular-nums">{count}</h4>

@@ -6,7 +6,7 @@ import type { ComponentNodeData } from '../../../../../application/store/store';
 
 type GroupNode = Node<ComponentNodeData, 'blueprintGroup'>;
 
-const handleClass = '!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950';
+const handleClass = 'blueprint-port';
 
 export const BlueprintGroupNode = memo(({ data, selected }: NodeProps<GroupNode>) => {
   return (

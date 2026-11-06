@@ -14,9 +14,17 @@ vi.mock('wouter', () => ({
 
 vi.mock('@xyflow/react', () => {
   return {
-    Handle: ({ type, position, id }: { type: string; position: string; id?: string }) => (
-      <div data-testid={`handle-${type}-${position}`} id={id} />
-    ),
+    Handle: ({
+      type,
+      position,
+      id,
+      className,
+    }: {
+      type: string;
+      position: string;
+      id?: string;
+      className?: string;
+    }) => <div data-testid={`handle-${type}-${position}`} id={id} className={className} />,
     Position: {
       Left: 'left',
       Right: 'right',
@@ -79,6 +87,14 @@ describe('BlueprintNode Component', () => {
     expect(screen.getByTestId('handle-source-right')).toBeInTheDocument();
     expect(screen.getByTestId('handle-target-top')).toBeInTheDocument();
     expect(screen.getByTestId('blueprint-node')).not.toHaveStyle({ backdropFilter: 'blur(8px)' });
+  });
+
+  it('uses a quiet port instead of a filled connection handle', () => {
+    render(<BlueprintNode {...defaultProps} />);
+
+    const port = screen.getByTestId('handle-target-left');
+    expect(port).toHaveClass('blueprint-port');
+    expect(port.className).not.toMatch(/bg-brand-500/);
   });
 
   it('simplifies chrome when liteCanvas is on but keeps all edge handles mounted', () => {

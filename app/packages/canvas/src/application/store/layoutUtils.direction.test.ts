@@ -20,6 +20,22 @@ describe('dependency edge direction visuals', () => {
     expect((edge.markerEnd as { type: string }).type).toBe('arrowclosed');
   });
 
+  it('paints relationship labels with the map surface and ink', () => {
+    const edge = mapDomainDepToRFEdge({
+      from: 'a',
+      to: 'b',
+      type: 'direct-call',
+      description: 'Renew subscription',
+    });
+
+    expect(edge.label).toBe('Renew subscription');
+    expect(edge.labelStyle).toMatchObject({ fill: 'var(--color-ink)' });
+    expect(edge.labelBgStyle).toMatchObject({
+      fill: 'var(--color-surface)',
+      fillOpacity: 1,
+    });
+  });
+
   it('keeps publish-subscribe edges animated by default', () => {
     const edge = mapDomainDepToRFEdge({
       from: 'a',

@@ -68,6 +68,30 @@ describe('DocsHome', () => {
     expect(PRODUCT_HERO.lede).not.toMatch(/YAML/i);
   });
 
+  it('gives the hero copy the width beside a fixed mark', () => {
+    render(<DocsHome />);
+
+    const hero = screen.getByRole('heading', { name: PRODUCT_HERO.headline }).closest('section');
+    const grid = hero?.firstElementChild?.nextElementSibling;
+    expect(grid).toHaveClass('lg:grid-cols-[minmax(0,1fr)_14rem]');
+    expect(screen.getByText(PRODUCT_HERO.lede)).not.toHaveClass('max-w-xl');
+  });
+
+  it('states what the lenses change and a live board you share with peers', () => {
+    render(<DocsHome />);
+
+    expect(PRODUCT_HERO.lede).not.toMatch(/read the same file/i);
+    const analysis = screen.getByText(PRODUCT_HERO.analysisLine);
+    expect(analysis).toHaveTextContent(/where change concentrates/i);
+    expect(analysis).toHaveTextContent(/what a failure takes down/i);
+    expect(analysis).toHaveTextContent(/what to fix first/i);
+
+    const board = screen.getByText(PRODUCT_HERO.collabLine);
+    expect(board).toHaveTextContent(/live board/i);
+    expect(board).toHaveTextContent(/real time/i);
+    expect(board).toHaveTextContent(/peers/i);
+  });
+
   it('presents BlueprintSpec as opinionated architecture as code', () => {
     render(<DocsHome />);
 

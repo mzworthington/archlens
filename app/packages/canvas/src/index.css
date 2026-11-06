@@ -180,11 +180,9 @@ html[data-theme='light'] .react-flow__node > div {
 }
 
 html[data-theme='light'] .react-flow__node > div:has([data-hotspot-heat]) {
-  background-image: linear-gradient(
-    135deg,
-    color-mix(in srgb, #b42318 14%, white) 0%,
-    white 68%
-  ) !important;
+  background-image: none !important;
+  background-color: var(--hotspot-fill, color-mix(in srgb, #b42318 10%, white)) !important;
+  box-shadow: 0 1px 2px rgb(21 32 51 / 0.06) !important;
 }
 
 html[data-theme='light'] .react-flow__node .text-white,
@@ -557,27 +555,43 @@ html[data-theme='light'] .docs-prose th {
 }
 
 .react-flow .react-flow__handle {
-  width: 4px !important;
-  height: 4px !important;
-  background-color: var(--color-accent) !important;
-  border: 1px solid var(--color-surface) !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: transparent !important;
+  border: 0 !important;
   box-shadow: none !important;
-  opacity: 0.65;
+  opacity: 1;
+}
+
+.blueprint-port::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #00d8ff;
+  border: 1.5px solid var(--color-surface);
+  opacity: 1;
+  transform: translate(-50%, -50%);
   transition:
-    width 0.15s ease,
-    height 0.15s ease,
-    opacity 0.15s ease;
+    background 0.12s ease,
+    transform 0.12s ease;
+  pointer-events: none;
 }
 
-.react-flow__node:hover .react-flow__handle,
-.react-flow__node.selected .react-flow__handle {
-  opacity: 1;
+html[data-theme='light'] .blueprint-port::before {
+  background: color-mix(in srgb, var(--color-ink) 35%, white);
 }
 
-.react-flow .react-flow__handle:hover {
-  width: 12px !important;
-  height: 12px !important;
-  opacity: 1;
+.react-flow__node.selected .blueprint-port::before,
+.blueprint-port.connectingfrom::before,
+.blueprint-port.connectingto::before,
+.blueprint-port.valid::before,
+.blueprint-port:hover::before {
+  background: var(--color-accent);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 /* Blueprint animations */

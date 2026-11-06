@@ -219,6 +219,19 @@ export const mapDomainNodeToRFNode = (n: SystemNode): BlueprintRFNode => {
   return mapped[0]!;
 };
 
+/** Relationship captions follow the active map tokens, same surface and ink as the cards. */
+export const relationshipLabelChrome = {
+  labelStyle: { fill: 'var(--color-ink)', fontSize: 10, fontWeight: 500 },
+  labelBgStyle: {
+    fill: 'var(--color-surface)',
+    fillOpacity: 1,
+    stroke: 'color-mix(in srgb, var(--color-ink) 14%, transparent)',
+    strokeWidth: 1,
+  },
+  labelBgPadding: [6, 4] as [number, number],
+  labelBgBorderRadius: 6,
+};
+
 export const mapDomainDepToRFEdge = (d: SystemDependency): BlueprintRFEdge => ({
   id: `edge-${d.from}-${d.to}`,
   source: d.from,
@@ -231,10 +244,7 @@ export const mapDomainDepToRFEdge = (d: SystemDependency): BlueprintRFEdge => ({
   style: {
     strokeWidth: 2,
   },
-  labelStyle: { fill: '#94a3b8', fontSize: 10, fontWeight: 500 },
-  labelBgStyle: { fill: '#020617', fillOpacity: 0.85 },
-  labelBgPadding: [6, 4] as [number, number],
-  labelBgBorderRadius: 4,
+  ...relationshipLabelChrome,
 });
 
 /** Map deps to RF edges, dropping duplicate from→to pairs (same React key). */

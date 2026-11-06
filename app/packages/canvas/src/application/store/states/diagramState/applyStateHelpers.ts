@@ -4,6 +4,7 @@ import {
   dependencyArrowMarker,
   getClosestHandles,
   rebuildSchemaFromCanvas,
+  relationshipLabelChrome,
 } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import type { ValidationResult } from '@archlens/core';
@@ -102,10 +103,7 @@ export function highlightEdgesForValidation(
       animated: edge.animated || isCycleEdge,
       markerEnd: dependencyArrowMarker(stroke),
       label: edge.data?.description || undefined,
-      labelStyle: { fill: '#94a3b8', fontSize: 10, fontWeight: 500 },
-      labelBgStyle: { fill: '#020617', fillOpacity: 0.85 },
-      labelBgPadding: [6, 4] as [number, number],
-      labelBgBorderRadius: 4,
+      ...relationshipLabelChrome,
       style: {
         ...edge.style,
         stroke,

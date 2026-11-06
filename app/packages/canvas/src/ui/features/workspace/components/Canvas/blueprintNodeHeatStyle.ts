@@ -28,23 +28,27 @@ export function blueprintNodeHeatStyle({
   blastHeat,
   integrityHeat,
 }: HeatStyleInput): CSSProperties {
+  const restShadow =
+    selected || external || couplingHighlight || liteCanvas || isOutOfSimulationScope
+      ? undefined
+      : showAvailabilityRisk
+        ? `0 0 ${8 + blastHeat * 16}px rgba(239, 68, 68, ${0.15 + blastHeat * 0.35})`
+        : '0 4px 12px rgba(0, 0, 0, 0.25)';
+  const hotspotTint = showHotspotHeat ? Math.round(6 + hotspotHeat * 8) : undefined;
+
   return {
-    boxShadow:
-      selected || external || couplingHighlight || liteCanvas || isOutOfSimulationScope
-        ? undefined
-        : showAvailabilityRisk
-          ? `0 0 ${8 + blastHeat * 16}px rgba(239, 68, 68, ${0.15 + blastHeat * 0.35})`
-          : '0 4px 12px rgba(0, 0, 0, 0.25)',
+    boxShadow: restShadow,
+    ...(hotspotTint == null
+      ? {}
+      : {
+          backgroundColor: `color-mix(in srgb, #b42318 ${hotspotTint}%, #061125)`,
+          '--hotspot-fill': `color-mix(in srgb, #b42318 ${hotspotTint}%, white)`,
+        }),
     outline:
       showIntegrityRisk && !liteCanvas
         ? `2px dashed rgba(245, 158, 11, ${0.35 + integrityHeat * 0.45})`
         : undefined,
     outlineOffset: showIntegrityRisk ? '3px' : undefined,
-    ...(showHotspotHeat
-      ? {
-          backgroundImage: `linear-gradient(135deg, rgba(220, 38, 38, ${0.18 + hotspotHeat * 0.35}) 0%, rgba(15, 23, 42, 1) 100%)`,
-        }
-      : {}),
     ...(showAvailabilityRisk
       ? {
           borderColor: `rgba(239, 68, 68, ${0.35 + blastHeat * 0.55})`,

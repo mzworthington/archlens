@@ -1,6 +1,10 @@
 import type { SystemDependency, WorkspaceFilepathIndex } from '@archlens/core';
 import type { BlueprintRFEdge, BlueprintRFNode } from '../../store/layoutUtils';
-import { dependencyArrowMarker, getClosestHandles } from '../../store/layoutUtils';
+import {
+  dependencyArrowMarker,
+  getClosestHandles,
+  relationshipLabelChrome,
+} from '../../store/layoutUtils';
 import { resolveCouplingEdges, type CouplingEdgeRef } from '../resolveCouplingEdges';
 
 export const COUPLING_EDGE_PREFIX = 'coupling-';
@@ -104,9 +108,9 @@ function couplingEdgeFromRef(
       strokeDasharray: '6 4',
     },
     labelStyle: { fill: '#fbbf24', fontSize: 10, fontWeight: 600 },
-    labelBgStyle: { fill: '#020617', fillOpacity: 0.9 },
-    labelBgPadding: [6, 4] as [number, number],
-    labelBgBorderRadius: 4,
+    labelBgStyle: relationshipLabelChrome.labelBgStyle,
+    labelBgPadding: relationshipLabelChrome.labelBgPadding,
+    labelBgBorderRadius: relationshipLabelChrome.labelBgBorderRadius,
   };
 }
 
