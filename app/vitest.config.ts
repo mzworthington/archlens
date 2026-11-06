@@ -36,6 +36,7 @@ export default defineConfig({
         },
       },
       'packages/collab/vitest.config.ts',
+      'packages/vscode/vitest.config.ts',
       {
         test: {
           name: 'reporters',

@@ -357,6 +357,22 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
 
+  packages/vscode:
+    dependencies:
+      '@archlens/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/vscode':
+        specifier: ^1.95.0
+        version: 1.145.0
+      esbuild:
+        specifier: 0.28.2
+        version: 0.28.2
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
 packages:
 
   '@adobe/css-tools@4.5.0':
@@ -2759,6 +2775,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/vscode@1.145.0':
+    resolution: {integrity: sha512-mADZK4SF/j1n0+Qk4bH8NT1qTQGYDAsbhb5hStbzuB3hKP3mRH7xja5yUaIm7ExCh65Ff+C9XGwxcBvSlTCvkQ==}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
@@ -8556,6 +8575,8 @@ snapshots:
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
+
+  '@types/vscode@1.145.0': {}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true

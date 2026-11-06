@@ -1,0 +1,193 @@
+import { describe, expect, it } from 'vitest';
+import { INTEREST_DISCUSSION_URL, TRUST_COPY } from '../features/editorPreview/domain';
+import { generateFromWorkspace, openArchitectureMap } from '../features/editorPreview/handler';
+import { createEditorHost, type VsCodeLike } from './vscodeHost';
+
+const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Checkout
+  entityRef: checkout
+nodes:
+  - entityRef: checkout/api
+    type: software-system
+    name: Checkout API
+  - entityRef: checkout/billing
+    type: software-system
+    name: Billing
+dependencies:
+  - from: checkout/api
+    to: checkout/billing
+    type: direct-call
+`;
+
+function editor(input: {
+  trusted: boolean;
+  choice?: string;
+  files?: { path: string; content: string }[];
+  enabled?: boolean;
+}) {
+  const calls: string[] = [];
+  const html: string[] = [];
+  const opened: string[] = [];
+  let onSave: ((document: { uri: { fsPath: string }; getText(): string }) => void) | undefined;
+  const files = input.files ?? [];
+  const api: VsCodeLike = {
+    FileType: { File: 1, Directory: 2 },
+    ViewColumn: { Active: 1, Beside: 2 },
+    Uri: {
+      file: path => ({ fsPath: path, toString: () => path }),
+      parse: value => ({ fsPath: value, toString: () => value }),
+    },
+    workspace: {
+      isTrusted: input.trusted,
+      workspaceFolders: [{ name: 'repo', uri: { fsPath: '/repo', toString: () => '/repo' } }],
+      getConfiguration: () => ({
+        get: <T>(_key: string, defaultValue: T) => {
+          if (_key === 'generateFromWorkspace.enabled') return (input.enabled ?? false) as T;
+          return defaultValue;
+        },
+      }),
+      findFiles: async () => {
+        calls.push('findFiles');
+        return files.map(file => ({ fsPath: file.path, toString: () => file.path }));
+      },
+      fs: {
+        stat: async () => {
+          calls.push('stat');
+          return { type: 1 };
+        },
+        readFile: async uri => {
+          calls.push(`read:${uri.fsPath}`);
+          const file = files.find(candidate => candidate.path === uri.fsPath);
+          return new TextEncoder().encode(file?.content ?? '');
+        },
+      },
+      openTextDocument: async uri => ({
+        uri,
+        getText: () => files.find(file => file.path === uri.fsPath)?.content ?? '',
+      }),
+      onDidSaveTextDocument: listener => {
+        onSave = listener;
+        return { dispose: () => undefined };
+      },
+    },
+    window: {
+      showInformationMessage: async (message, _options, ...items) => {
+        calls.push(`message:${message}`);
+        if (input.choice === 'escape') return undefined;
+        return input.choice ?? items[1];
+      },
+      showQuickPick: async () => undefined,
+      showTextDocument: async (_document, column) => {
+        calls.push(`text:${column}`);
+      },
+      createWebviewPanel: (_viewType, _title, column) => {
+        calls.push(`panel:${column}`);
+        return {
+          webview: {
+            set html(value: string) {
+              html.push(value);
+            },
+            get html() {
+              return html[html.length - 1] ?? '';
+            },
+          },
+          onDidDispose: () => undefined,
+        };
+      },
+    },
+    env: {
+      openExternal: async uri => {
+        opened.push(uri.toString());
+        return true;
+      },
+    },
+  };
+
+  return {
+    api,
+    calls,
+    html,
+    opened,
+    save: (path: string, content: string) => {
+      onSave?.({ uri: { fsPath: path }, getText: () => content });
+    },
+  };
+}
+
+describe('editor host', () => {
+  it('does not read the folder when Open architecture map runs untrusted', async () => {
+    const fake = editor({
+      trusted: false,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await openArchitectureMap(host);
+
+    expect(fake.calls).toEqual([`message:${TRUST_COPY}`]);
+    expect(fake.html).toEqual([]);
+  });
+
+  it('opens the diagram beside the blueprint in a trusted folder', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await openArchitectureMap(host);
+
+    expect(fake.calls).toContain('findFiles');
+    expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
+    expect(fake.calls).toContain('text:1');
+    expect(fake.calls).toContain('panel:2');
+    expect(fake.html[0]).toContain('Checkout API');
+    expect(fake.html[0]).toContain('Checkout API → Billing');
+  });
+
+  it('refreshes the diagram when the blueprint is saved', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    fake.save('/repo/blueprints/context.yaml', checkout.replace('name: Billing', 'name: Payments'));
+
+    expect(fake.html.at(-1)).toContain('Payments');
+    expect(fake.html.at(-1)).not.toContain('>Billing<');
+  });
+
+  it('opens the discussion from Tell us you want this and reads no blueprint', async () => {
+    const fake = editor({ trusted: true, choice: 'Tell us you want this' });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.opened).toEqual([INTEREST_DISCUSSION_URL]);
+    expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('does not open the discussion when the prompt is dismissed', async () => {
+    const fake = editor({ trusted: true, choice: 'escape' });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.opened).toEqual([]);
+    expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('does not read the folder when Generate runs untrusted', async () => {
+    const fake = editor({ trusted: false, choice: 'Tell us you want this' });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls).toEqual([`message:${TRUST_COPY}`]);
+    expect(fake.opened).toEqual([]);
+  });
+});
