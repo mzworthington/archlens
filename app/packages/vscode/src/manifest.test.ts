@@ -20,7 +20,9 @@ describe('marketplace pre-release', () => {
     displayName: string;
     publisher: string;
     preview: boolean;
+    private: boolean;
     description: string;
+    scripts: Record<string, string>;
     activationEvents: string[];
     contributes: {
       commands: { command: string; title: string }[];
@@ -38,7 +40,11 @@ describe('marketplace pre-release', () => {
     expect(manifest.displayName).toBe('ArchLens');
     expect(manifest.publisher).toBe('mzworthington');
     expect(manifest.preview).toBe(true);
+    expect(manifest.private).toBe(true);
     expect(manifest.description).toContain('Preview a BlueprintSpec file');
+    expect(manifest.description).toContain('turned off in this preview');
+    expect(manifest.scripts['package:pre-release']).toContain('--pre-release');
+    expect(manifest.scripts['package:pre-release']).not.toContain('publish');
     expect(manifest.contributes.commands.map(command => command.title)).toEqual([
       'Open architecture map',
       'Generate diagram from workspace',

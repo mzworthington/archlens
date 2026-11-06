@@ -19,7 +19,9 @@ Customer template files (not enabled here): [`blueprint-contract.yml.example`](.
 
 ## Visual Studio Marketplace
 
-`publish-vscode-marketplace` is commented out in [`ci.yml`](../../.github/workflows/ci.yml). No workflow runs `vsce publish` or uploads a VSIX. A merge to `main` leaves the Marketplace listing unchanged.
+`publish-vscode-marketplace` is commented out in [`ci.yml`](../../.github/workflows/ci.yml). No workflow runs `vsce publish`. A merge to `main` leaves the Marketplace listing unchanged.
+
+The unit-tests job runs `package:pre-release` and uploads the `archlens-vscode-pre-release` artifact. That file is for sideload. It is not a Marketplace release.
 
 `publish-cli-release` in that same file ships the ArchLens CLI to GitHub Releases. The catalog workflows in the table publish BlueprintSpec to object storage. Those jobs stay enabled. They do not list the editor extension.
 

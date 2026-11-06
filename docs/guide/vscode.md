@@ -6,7 +6,7 @@ The package is [app/packages/vscode](../../app/packages/vscode). The publisher i
 
 A merge to `main` leaves the Visual Studio Marketplace listing unchanged. No workflow runs `vsce publish`. The only publish job in CI ships the ArchLens CLI to GitHub Releases. The Marketplace job stays commented out in [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml). See [GitHub Actions workflows](./ci-workflows.md).
 
-The extension needs VS Code or Cursor on `engines.vscode` (`^1.85.0`).
+The extension needs VS Code or Cursor on `engines.vscode` (`^1.95.0`).
 
 ## Local sandbox
 
@@ -50,13 +50,14 @@ To start the same host with F5, open `app/packages/vscode` and use a launch conf
 ### VSIX sideload
 
 ```bash
-cd app/packages/vscode
-pnpm compile
-npx @vscode/vsce package --pre-release
-code --install-extension ./archlens-0.1.0.vsix
+cd app
+pnpm --filter ./packages/vscode package:pre-release
+code --install-extension packages/vscode/archlens-0.1.0.vsix
 ```
 
-The current version is `0.1.0`, so the file name is `archlens-0.1.0.vsix`. In the Extensions view, the `…` menu has **Install from VSIX…**. Reload the window and repeat the three checks above in a normal window, outside the development host.
+The current version is `0.1.0`, so the file name is `archlens-0.1.0.vsix`. `vsce` marks that file as a pre-release with `--pre-release`. A semver tag such as `0.1.0-preview.1` is not a Marketplace version. In the Extensions view, the `…` menu has **Install from VSIX…**. Reload the window and repeat the three checks above in a normal window, outside the development host.
+
+CI uploads the same package as the `archlens-vscode-pre-release` artifact on the unit-tests job. Download that file and install it the same way.
 
 Uninstall **ArchLens** from the Extensions view when you want that copy gone. Package again and reinstall the new VSIX after each change. A Marketplace update will not replace it, because there is no listing yet.
 

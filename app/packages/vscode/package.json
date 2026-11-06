@@ -4,7 +4,7 @@
   "publisher": "mzworthington",
   "private": true,
   "version": "0.1.0",
-  "description": "Preview a BlueprintSpec file and, when generation is on, build a diagram from the open folder.",
+  "description": "Preview a BlueprintSpec file beside the YAML. Generating a diagram from the open folder is turned off in this preview.",
   "license": "MIT",
   "preview": true,
   "main": "./dist/extension.js",
@@ -18,9 +18,17 @@
   },
   "qna": "https://github.com/mzworthington/archlens/discussions",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.95.0"
   },
-  "categories": ["Visualization"],
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "architecture",
+    "blueprint",
+    "c4",
+    "diagram"
+  ],
   "activationEvents": [
     "onCommand:archlens.openArchitectureMap",
     "onCommand:archlens.generateFromWorkspace"
@@ -82,6 +90,7 @@
     "compile": "pnpm exec esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20 --sourcemap",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "package:pre-release": "pnpm run compile && pnpm exec vsce package --pre-release --no-dependencies --allow-missing-repository",
     "vscode:prepublish": "pnpm run compile"
   },
   "dependencies": {
@@ -89,6 +98,7 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "3.6.0",
     "esbuild": "0.28.2",
     "typescript": "7.0.2"
   }
