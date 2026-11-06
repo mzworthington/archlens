@@ -2,15 +2,26 @@ import { randomBytes } from 'node:crypto';
 import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
 import {
   CANCEL_COPY,
+  CUSTOM_FILES_COPY,
+  CUSTOM_GLOB_HINT,
+  DEFAULT_SOURCE_GLOB,
+  GENERATE_DIAGRAM_COPY,
   GENERATE_OFF_COPY,
   GENERATE_TITLE,
+  KEEP_FILES_COPY,
+  NO_CHANGES_COPY,
   NO_LOWER_COPY,
+  REVIEW_NOTE,
+  REVIEW_TITLE,
   TELL_US_COPY,
+  THIS_FOLDER_COPY,
+  WHOLE_WORKSPACE_COPY,
   decideBack,
   decideDrill,
   decideOpenMap,
   presentHotspots,
   safeBlueprintsFolder,
+  type ReviewRow,
 } from '../features/editorPreview/domain';
 import { renderEmptyMap, renderMap } from '../features/editorPreview/renderMap';
 import type {
@@ -18,6 +29,8 @@ import type {
   DiagramView,
   EditorHost,
   GenerateChoice,
+  ScanOutcome,
+  ScanScopeChoice,
   WorkspaceFolder,
 } from '../features/editorPreview/ports';
 import {
@@ -83,8 +96,17 @@ export interface VsCodeLike<
     ): Thenable<string | undefined>;
     showQuickPick(
       items: readonly FolderPickItem[],
-      options: { title: string }
+      options: { title: string; placeHolder?: string }
     ): Thenable<FolderPickItem | undefined>;
+    showInputBox(options: {
+      title: string;
+      prompt: string;
+      value: string;
+    }): Thenable<string | undefined>;
+    withProgress<T>(
+      options: { title: string; cancellable: boolean },
+      task: (token: { isCancellationRequested: boolean }) => Thenable<T>
+    ): Thenable<T>;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
     setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
@@ -158,6 +180,12 @@ export async function createEditorHost<Uri extends FileUri>(
       setSessionHotspots(visible.id, on);
       panelPainters.get(visible.id)?.();
     },
+    listSourceFiles: (root, glob) => listSourceFiles(api, root, glob),
+    askScanScope: found => askScanScope(api, found),
+    askScanGlob: () => askScanGlob(api),
+    confirmGenerate: () => confirmGenerate(api),
+    scanFolder: root => scanFolder(api, root),
+    showReview: rows => showReview(api, rows),
   };
 }
 
@@ -430,6 +458,87 @@ async function fileExists<Uri extends FileUri>(
   } catch {
     return false;
   }
+}
+
+async function listSourceFiles<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  root: string,
+  glob: string
+): Promise<string[]> {
+  const patterns = glob === DEFAULT_SOURCE_GLOB ? [glob, '**/Pulumi*.{yaml,yml}'] : [glob];
+  const paths: string[] = [];
+  for (const pattern of patterns) {
+    const uris = await api.workspace.findFiles({ base: root, pattern });
+    for (const uri of uris) paths.push(uri.fsPath);
+  }
+  return [...new Set(paths)];
+}
+
+async function askScanScope<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  found: string
+): Promise<ScanScopeChoice> {
+  const picked = await api.window.showQuickPick(
+    [
+      { label: WHOLE_WORKSPACE_COPY, description: found, path: 'workspace' },
+      { label: THIS_FOLDER_COPY, description: found, path: 'folder' },
+      { label: CUSTOM_FILES_COPY, description: found, path: 'custom' },
+    ],
+    { title: GENERATE_TITLE, placeHolder: found }
+  );
+  if (picked?.path === 'workspace' || picked?.path === 'folder' || picked?.path === 'custom') {
+    return picked.path;
+  }
+  return 'escape';
+}
+
+async function askScanGlob<Uri extends FileUri>(api: VsCodeLike<Uri>): Promise<string | undefined> {
+  const glob = await api.window.showInputBox({
+    title: CUSTOM_FILES_COPY,
+    prompt: CUSTOM_GLOB_HINT,
+    value: DEFAULT_SOURCE_GLOB,
+  });
+  const trimmed = glob?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+async function confirmGenerate<Uri extends FileUri>(
+  api: VsCodeLike<Uri>
+): Promise<'generate' | 'cancel'> {
+  const choice = await api.window.showInformationMessage(
+    GENERATE_DIAGRAM_COPY,
+    { modal: true },
+    GENERATE_DIAGRAM_COPY,
+    CANCEL_COPY
+  );
+  return choice === GENERATE_DIAGRAM_COPY ? 'generate' : 'cancel';
+}
+
+async function scanFolder<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  root: string
+): Promise<ScanOutcome> {
+  try {
+    return await api.window.withProgress(
+      { title: `Scanning ${root}…`, cancellable: true },
+      async token => (token.isCancellationRequested ? 'cancelled' : 'ready')
+    );
+  } catch {
+    return 'failed';
+  }
+}
+
+async function showReview<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  rows: readonly ReviewRow[]
+): Promise<void> {
+  const lines =
+    rows.length === 0 ? NO_CHANGES_COPY : rows.map(row => `${row.status} ${row.name}`).join('\n');
+  await api.window.showInformationMessage(
+    REVIEW_TITLE,
+    { modal: true, detail: `${lines}\n\n${REVIEW_NOTE}` },
+    KEEP_FILES_COPY
+  );
 }
 
 async function askGenerateInterest<Uri extends FileUri>(

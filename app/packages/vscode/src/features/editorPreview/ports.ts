@@ -1,4 +1,5 @@
 import type { SystemSchema } from '@archlens/core';
+import type { ReviewRow } from './domain';
 
 export interface BlueprintFile {
   readonly path: string;
@@ -35,6 +36,8 @@ export interface WorkspaceFolder {
 }
 
 export type GenerateChoice = 'tell' | 'cancel' | 'escape';
+export type ScanScopeChoice = 'workspace' | 'folder' | 'custom' | 'escape';
+export type ScanOutcome = 'ready' | 'cancelled' | 'failed';
 
 export interface FocusedSystem {
   readonly name: string;
@@ -65,4 +68,10 @@ export interface EditorHost {
   visibleMap(): { readonly hotspotsOn: boolean; readonly workspaceRoot?: string } | undefined;
   hasGitHistory(root: string): Promise<boolean>;
   setHotspots(on: boolean): void;
+  listSourceFiles(root: string, glob: string): Promise<readonly string[]>;
+  askScanScope(found: string): Promise<ScanScopeChoice>;
+  askScanGlob(): Promise<string | undefined>;
+  confirmGenerate(): Promise<'generate' | 'cancel'>;
+  scanFolder(root: string): Promise<ScanOutcome>;
+  showReview(rows: readonly ReviewRow[]): Promise<void>;
 }

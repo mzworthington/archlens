@@ -11,7 +11,7 @@ Site copy of this page: [Editor extension](../../../docs/guide/vscode.md).
 ## Commands
 
 - **Open architecture map** shows the systems and the links in `blueprints/`. An empty folder says **No map in this folder.** The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
-- **Generate diagram from workspace** opens the interest prompt. Turning `archlens.generateFromWorkspace.enabled` on still does not scan or write files in this preview.
+- **Generate diagram from workspace** opens the interest prompt while generation is off. Turning `archlens.generateFromWorkspace.enabled` on asks what to scan and shows **Review blueprint changes**. It still does not write files.
 - **Open source**, with a system focused on the diagram, opens the file that system points at. A system with no file in the workspace stays on the diagram.
 - Enter on a system with a child diagram opens that diagram. Alt+Left, or the parent in the breadcrumb, comes back. A system with no child diagram stays put.
 - **Copy diagram as Mermaid** copies a flowchart of the systems on screen. The YAML file stays as it is. An empty diagram says **Nothing to copy.**
@@ -42,11 +42,12 @@ Cursor: `cursor --extensionDevelopmentPath="$PWD" "$PWD/../../.."`.
 
 The second window opens this repo. `blueprints/` is the fixture.
 
-| Check           | What you do                                                  | What you should see                                                |
-| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Preview         | **ArchLens: Open architecture map**                          | Systems and links. Read only.                                      |
-| Interest prompt | **ArchLens: Generate diagram from workspace**                | Generation is off. **Tell us you want this** opens the discussion. |
-| Restricted Mode | **Workspaces: Manage Workspace Trust**, then **Don't Trust** | ArchLens does not read this folder until the workspace is trusted. |
+| Check           | What you do                                                                                           | What you should see                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Preview         | **ArchLens: Open architecture map**                                                                   | Systems and links. Read only.                                                     |
+| Interest prompt | **ArchLens: Generate diagram from workspace**                                                         | Generation is off. **Tell us you want this** opens the discussion.                |
+| Generate on     | Turn on `archlens.generateFromWorkspace.enabled`, then run the command and choose **Whole workspace** | **Review blueprint changes** lists Added, Changed or Removed. No file is written. |
+| Restricted Mode | **Workspaces: Manage Workspace Trust**, then **Don't Trust**                                          | ArchLens does not read this folder until the workspace is trusted.                |
 
 Compile again and run **Developer: Reload Window** after an edit.
 

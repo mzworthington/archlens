@@ -4,7 +4,10 @@ import {
   EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
   NO_GIT_HOTSPOTS_COPY,
+  NO_SOURCE_FILES_COPY,
   NO_SOURCE_COPY,
+  REVIEW_TITLE,
+  SCAN_FAILED_COPY,
   NOTHING_TO_COPY,
   TRUST_COPY,
 } from './domain';
@@ -15,7 +18,15 @@ import {
   openSource,
   showHotspots,
 } from './handler';
-import type { BlueprintFile, EditorHost, FocusedSystem, WorkspaceFolder } from './ports';
+import type {
+  BlueprintFile,
+  EditorHost,
+  FocusedSystem,
+  ScanOutcome,
+  ScanScopeChoice,
+  WorkspaceFolder,
+} from './ports';
+import type { ReviewRow } from './domain';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
@@ -43,6 +54,7 @@ interface RecordedHost extends EditorHost {
   readonly opened: string[];
   readonly statuses: string[];
   readonly clipboard: string[];
+  readonly reviews: ReviewRow[][];
 }
 
 function host(input: {
@@ -61,6 +73,11 @@ function host(input: {
   workspaceRoot?: string;
   git?: boolean;
   map?: boolean;
+  sourceFiles?: readonly string[];
+  scope?: ScanScopeChoice;
+  glob?: string;
+  confirm?: 'generate' | 'cancel';
+  scan?: ScanOutcome;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -69,6 +86,7 @@ function host(input: {
   const opened: string[] = [];
   const statuses: string[] = [];
   const clipboard: string[] = [];
+  const reviews: ReviewRow[][] = [];
   const files = input.files ?? [];
   return {
     calls,
@@ -78,6 +96,7 @@ function host(input: {
     opened,
     statuses,
     clipboard,
+    reviews,
     isTrusted: () => input.trusted,
     generateEnabled: () => {
       calls.push('read-setting');
@@ -137,6 +156,21 @@ function host(input: {
     },
     setHotspots: on => {
       calls.push(`hotspots:${on}`);
+    },
+    listSourceFiles: async root => {
+      calls.push(`sources:${root}`);
+      return input.sourceFiles ?? [];
+    },
+    askScanScope: async () => input.scope ?? 'escape',
+    askScanGlob: async () => input.glob,
+    confirmGenerate: async () => input.confirm ?? 'cancel',
+    scanFolder: async root => {
+      calls.push(`scan:${root}`);
+      return input.scan ?? 'ready';
+    },
+    showReview: async rows => {
+      reviews.push([...rows]);
+      calls.push(REVIEW_TITLE);
     },
   };
 }
@@ -333,14 +367,84 @@ describe('generate diagram command', () => {
     expect(editor.calls).not.toContain('list:/repo');
   });
 
-  it('does not scan when generate-from-workspace is turned on', async () => {
-    const editor = host({ trusted: true, enabled: true, choice: 'cancel' });
+  it('closes the scope picker on Escape and does not scan', async () => {
+    const editor = host({ trusted: true, enabled: true, scope: 'escape' });
 
     await generateFromWorkspace(editor);
 
     expect(editor.calls).toContain('read-setting');
-    expect(editor.calls).not.toContain('list:/repo');
+    expect(editor.calls).toContain('sources:/repo');
+    expect(editor.calls.some(call => call.startsWith('scan:'))).toBe(false);
+    expect(editor.reviews).toEqual([]);
     expect(editor.discussions).toEqual([]);
+  });
+
+  it('shows added, changed and removed rows and writes nothing', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      sourceFiles: ['/repo/checkout/api.ts', '/repo/src/catalog.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.reviews).toEqual([
+      [
+        { status: 'Changed', name: 'api' },
+        { status: 'Added', name: 'catalog' },
+        { status: 'Removed', name: 'Billing' },
+      ],
+    ]);
+    expect(editor.discussions).toEqual([]);
+  });
+
+  it('reports an empty folder and writes nothing', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      sourceFiles: ['/repo/README.md'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.messages).toEqual([NO_SOURCE_FILES_COPY]);
+    expect(editor.reviews).toEqual([]);
+  });
+
+  it('keeps existing files when the scan is cancelled', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      scan: 'cancelled',
+      sourceFiles: ['/repo/src/api.ts'],
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.messages).toEqual([SCAN_FAILED_COPY]);
+    expect(editor.reviews).toEqual([]);
+  });
+
+  it('does not scan a custom glob that was dismissed', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'custom',
+      sourceFiles: ['/repo/src/api.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.calls.filter(call => call.startsWith('scan:'))).toEqual([]);
+    expect(editor.reviews).toEqual([]);
   });
 });
 
