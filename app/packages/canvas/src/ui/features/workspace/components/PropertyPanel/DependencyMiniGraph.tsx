@@ -141,7 +141,7 @@ export const DependencyMiniGraph: React.FC<DependencyMiniGraphProps> = ({
           cy={CENTER_Y}
           r={NODE_R + 2}
           fill="rgb(15 23 42)"
-          stroke="rgb(0 240 255)"
+          stroke="var(--color-accent)"
         />
         <text
           x={CENTER_X}

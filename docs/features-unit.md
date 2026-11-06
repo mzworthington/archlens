@@ -793,6 +793,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ paints every remaining screen from the token set
 - ✅ defines the light paper token set on the light theme
 - ✅ labels token swatches as canvas, surface, ink, and accent
+- ✅ names status and category colors in the same token set
+- ✅ paints node status and product categories from those tokens
+- ✅ paints a docs guide from ink, navy, and accent
+- ✅ reads swatch hex from the token stylesheet
 
 ### BrandMark
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NODE_STATUS_MARKERS, NODE_STATUS_STYLES } from './shared';
 import { Sliders, Cpu, Monitor, Database } from 'lucide-react';
 
 type SandboxNodeType = 'person' | 'software-system' | 'web-app' | 'database' | 'microservice';
@@ -107,12 +108,8 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
                 onClick={() => setSandboxStatus(s)}
                 className={`flex-1 py-1 rounded text-[10px] font-mono capitalize border transition ${
                   sandboxStatus === s
-                    ? s === 'healthy'
-                      ? 'bg-emerald-950/80 border-emerald-500 text-emerald-400'
-                      : s === 'warning'
-                        ? 'bg-amber-950/80 border-amber-500 text-amber-400'
-                        : 'bg-red-950/80 border-red-500 text-red-400'
-                    : 'border-accent/10 text-slate-500 hover:bg-slate-900/40'
+                    ? NODE_STATUS_STYLES[s]
+                    : 'border-accent/10 text-ink/45 hover:bg-surface'
                 }`}
               >
                 {s}
@@ -155,15 +152,7 @@ export const SandboxSection: React.FC<SandboxSectionProps> = ({
               </div>
 
               {/* Status Marker */}
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  sandboxStatus === 'healthy'
-                    ? 'bg-emerald-400 shadow-[0_0_8px_#10b981]'
-                    : sandboxStatus === 'warning'
-                      ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]'
-                      : 'bg-red-500 shadow-[0_0_8px_#f43f5e]'
-                }`}
-              />
+              <span className={`w-2 h-2 rounded-full ${NODE_STATUS_MARKERS[sandboxStatus]}`} />
             </div>
 
             {/* Description */}

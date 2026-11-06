@@ -11,6 +11,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { PRODUCT_CATEGORY_STYLES } from '../../components/designSystem/shared';
 import { DocsShell } from './DocsShell';
 import { TodayJobs } from './TodayJobs';
 import { PRODUCT_HERO } from '../../content/productOutcomes';
@@ -97,15 +98,8 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-const CATEGORY_STYLES: Record<Product['category'], string> = {
-  Platform: 'text-sky-300 border-sky-500/20 bg-sky-500/10',
-  Intelligence: 'text-violet-300 border-violet-500/20 bg-violet-500/10',
-  Resilience: 'text-amber-300 border-amber-500/20 bg-amber-500/10',
-  Contract: 'text-emerald-300 border-emerald-500/20 bg-emerald-500/10',
-};
-
 const ROLE_STYLES: Record<NonNullable<Product['role']>, string> = {
-  Observes: 'text-violet-300 border-violet-500/20 bg-violet-500/10',
+  Observes: PRODUCT_CATEGORY_STYLES.Intelligence,
   Prescribes: 'text-rose-300 border-rose-500/20 bg-rose-500/10',
 };
 
@@ -113,7 +107,7 @@ function productBadge(product: Product): { label: string; className: string } {
   if (product.role) {
     return { label: product.role, className: ROLE_STYLES[product.role] };
   }
-  return { label: product.category, className: CATEGORY_STYLES[product.category] };
+  return { label: product.category, className: PRODUCT_CATEGORY_STYLES[product.category] };
 }
 
 function productGuideCta(product: Product): string {
@@ -129,14 +123,14 @@ function ProductCard({ product }: { product: Product }) {
       <Link
         href={product.href}
         aria-label={`${product.title}: ${product.tagline}`}
-        className="group flex flex-col gap-4 rounded-xl border border-emerald-400/25 bg-navy/80 p-5 transition-all hover:border-emerald-400/40 hover:bg-surface/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 sm:flex-row sm:items-center"
+        className="group flex flex-col gap-4 rounded-xl border border-category-contract/25 bg-navy/80 p-5 transition-all hover:border-category-contract/40 hover:bg-surface/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-category-contract/50 sm:flex-row sm:items-center"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-category-contract/20 bg-category-contract/10 text-category-contract">
           <Icon className="h-5 w-5" aria-hidden />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="text-base font-semibold text-white group-hover:text-emerald-300 transition-colors">
+            <h3 className="text-base font-semibold text-ink group-hover:text-category-contract transition-colors">
               {product.title}
             </h3>
             <span
@@ -148,7 +142,7 @@ function ProductCard({ product }: { product: Product }) {
           <p className="mt-1 text-xs font-medium text-slate-300">{product.tagline}</p>
           <p className="mt-1 text-sm text-slate-400 leading-relaxed">{product.details}</p>
         </div>
-        <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-emerald-300 group-hover:gap-2 transition-all sm:self-center">
+        <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-category-contract group-hover:gap-2 transition-all sm:self-center">
           {productGuideCta(product)}
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </span>
@@ -174,7 +168,7 @@ function ProductCard({ product }: { product: Product }) {
           {badge.label}
         </span>
       </div>
-      <h3 className="mt-4 text-base font-semibold text-white group-hover:text-accent transition-colors">
+      <h3 className="mt-4 text-base font-semibold text-ink group-hover:text-accent transition-colors">
         {product.title}
       </h3>
       <p className="mt-1 text-xs font-medium text-slate-300">{product.tagline}</p>
@@ -222,12 +216,12 @@ function ArchitectureAsCode() {
   return (
     <section aria-labelledby="aac-heading" className="space-y-6">
       <div className="max-w-3xl">
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-category-contract">
           BlueprintSpec
         </p>
         <h2
           id="aac-heading"
-          className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-white"
+          className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-ink"
         >
           Architecture as code
         </h2>
@@ -242,22 +236,22 @@ function ArchitectureAsCode() {
           {FORMAT_POINTS.map(point => (
             <div
               key={point.title}
-              className="rounded-xl border border-emerald-400/20 bg-navy/80 p-5"
+              className="rounded-xl border border-category-contract/20 bg-navy/80 p-5"
             >
-              <h3 className="text-base font-semibold text-white">{point.title}</h3>
+              <h3 className="text-base font-semibold text-ink">{point.title}</h3>
               <p className="mt-2 text-sm text-slate-400 leading-relaxed">{point.body}</p>
             </div>
           ))}
           <Link
             href="/guide/schema"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-300 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-category-contract hover:text-ink transition-colors"
           >
             Read the BlueprintSpec guide
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </div>
-        <figure className="rounded-xl border border-emerald-400/25 bg-navy p-4 sm:p-5">
-          <figcaption className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">
+        <figure className="rounded-xl border border-category-contract/25 bg-navy p-4 sm:p-5">
+          <figcaption className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-category-contract">
             checkout.yaml · BlueprintSpec
           </figcaption>
           <pre className="overflow-x-auto text-xs leading-relaxed text-slate-300">
@@ -288,17 +282,17 @@ export const DocsHome: React.FC = () => {
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
                   ArchLens
                 </p>
-                <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300">
+                <span className="rounded-full border border-category-contract/30 bg-category-contract/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-category-contract">
                   Open source
                 </span>
-                <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-sky-300">
+                <span className="rounded-full border border-category-platform/30 bg-category-platform/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-category-platform">
                   Local first
                 </span>
                 <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-200">
                   Architecture as code
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink leading-[1.1]">
                 {PRODUCT_HERO.headline}
               </h1>
               <p className="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed">
@@ -323,7 +317,7 @@ export const DocsHome: React.FC = () => {
                 </Link>
                 <Link
                   href="/journeys"
-                  className="inline-flex items-center justify-center rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-white hover:bg-accent/10 hover:border-accent transition-colors"
+                  className="inline-flex items-center justify-center rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-ink hover:bg-accent/10 hover:border-accent transition-colors"
                 >
                   5-minute walkthrough
                 </Link>
@@ -361,18 +355,18 @@ export const DocsHome: React.FC = () => {
             <div>
               <h2
                 id="products-heading"
-                className="text-xs font-mono uppercase tracking-[0.16em] text-slate-200"
+                className="text-xs font-mono uppercase tracking-[0.16em] text-ink/90"
               >
                 The tools
               </h2>
-              <p className="mt-1 text-sm text-slate-100">
+              <p className="mt-1 text-sm text-ink">
                 Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map. Share a
                 live room so peers can join.
               </p>
             </div>
             <Link
               href="/guide"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-accent hover:text-white transition-colors shrink-0"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-accent hover:text-ink transition-colors shrink-0"
             >
               Compare in the guide
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -404,7 +398,7 @@ export const DocsHome: React.FC = () => {
               <ScanSearch className="h-5 w-5" aria-hidden />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">Open the sandbox</h2>
+              <h2 className="text-lg font-semibold text-ink">Open the sandbox</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
                 Load the demo, fault a service, read the AdviceLens ranking. No sign-up.
               </p>

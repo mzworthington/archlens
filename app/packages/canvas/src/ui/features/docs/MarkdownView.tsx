@@ -62,10 +62,7 @@ function buildComponents(fromDir: string): Components {
       const resolved = href ? resolveDocsHref(href, fromDir) : null;
       if (resolved) {
         return (
-          <Link
-            href={resolved}
-            className="text-brand-500 hover:text-brand-300 underline-offset-2 hover:underline"
-          >
+          <Link href={resolved} className="text-accent underline-offset-2 hover:underline">
             {children}
           </Link>
         );
@@ -75,7 +72,7 @@ function buildComponents(fromDir: string): Components {
           href={href}
           target={href?.startsWith('http') ? '_blank' : undefined}
           rel={href?.startsWith('http') ? 'noreferrer' : undefined}
-          className="text-brand-500 hover:text-brand-300 underline-offset-2 hover:underline"
+          className="text-accent underline-offset-2 hover:underline"
         >
           {children}
         </a>
@@ -85,7 +82,7 @@ function buildComponents(fromDir: string): Components {
       <img
         src={src ? resolveDocsAssetSrc(src, fromDir) : undefined}
         alt={alt ?? ''}
-        className="rounded-xl border border-brand-500/20 shadow-lg shadow-black/40 max-w-full"
+        className="rounded-xl border border-accent/20 shadow-lg shadow-black/40 max-w-full"
       />
     ),
     code: ({ className, children, ...props }) => {
@@ -93,7 +90,7 @@ function buildComponents(fromDir: string): Components {
       if (!isBlock) {
         return (
           <code
-            className="rounded bg-slate-900/80 px-1.5 py-0.5 text-[0.85em] font-mono text-brand-300 border border-white/5"
+            className="rounded bg-navy/80 px-1.5 py-0.5 text-[0.85em] font-mono text-accent border border-ink/10"
             {...props}
           >
             {children}
@@ -118,7 +115,7 @@ function buildComponents(fromDir: string): Components {
           <div className="my-6">
             <Suspense
               fallback={
-                <div className="text-xs font-mono text-slate-500 py-6 text-center">
+                <div className="text-xs font-mono text-ink/50 py-6 text-center">
                   Loading diagram…
                 </div>
               }
@@ -133,7 +130,7 @@ function buildComponents(fromDir: string): Components {
         return (
           <Suspense
             fallback={
-              <div className="my-6 text-xs font-mono text-slate-500 py-6 text-center">
+              <div className="my-6 text-xs font-mono text-ink/50 py-6 text-center">
                 Loading schema…
               </div>
             }
@@ -149,7 +146,7 @@ function buildComponents(fromDir: string): Components {
             <div className="my-6">
               <Suspense
                 fallback={
-                  <div className="text-xs font-mono text-slate-500 py-6 text-center">
+                  <div className="text-xs font-mono text-ink/50 py-6 text-center">
                     Loading jobs…
                   </div>
                 }
@@ -161,7 +158,7 @@ function buildComponents(fromDir: string): Components {
         }
       }
       return (
-        <pre className="overflow-x-auto rounded-xl border border-brand-500/15 bg-slate-950/90 p-4 text-sm font-mono text-slate-200 shadow-inner">
+        <pre className="overflow-x-auto rounded-xl border border-accent/15 bg-navy/90 p-4 text-sm font-mono text-ink/90 shadow-inner">
           {children}
         </pre>
       );
@@ -172,12 +169,12 @@ function buildComponents(fromDir: string): Components {
       </div>
     ),
     th: ({ children }) => (
-      <th className="border border-white/10 bg-slate-900/60 px-3 py-2 text-left font-semibold text-slate-100">
+      <th className="border border-ink/10 bg-navy/60 px-3 py-2 text-left font-semibold text-ink">
         {children}
       </th>
     ),
     td: ({ children }) => (
-      <td className="border border-white/10 px-3 py-2 text-slate-300 align-top">{children}</td>
+      <td className="border border-ink/10 px-3 py-2 text-ink/80 align-top">{children}</td>
     ),
   };
 }
@@ -224,16 +221,14 @@ export const MarkdownView: React.FC<Props> = ({
 
   if (loadFailed) {
     return (
-      <div className="docs-prose text-sm font-mono text-slate-500 py-8">
+      <div className="docs-prose text-sm font-mono text-ink/50 py-8">
         Markdown could not be loaded.
       </div>
     );
   }
 
   if (!libs) {
-    return (
-      <div className="docs-prose text-sm font-mono text-slate-500 py-8">Loading markdown…</div>
-    );
+    return <div className="docs-prose text-sm font-mono text-ink/50 py-8">Loading markdown…</div>;
   }
 
   const { ReactMarkdown, remarkGfm } = libs;
