@@ -31,6 +31,6 @@ if git diff --staged --quiet; then
 fi
 
 git commit -m "chore(artifacts): sync derived outputs"
-git push origin HEAD
+"$ROOT/bin/push-current-branch.sh"
 
 echo "Synced derived outputs on main."
