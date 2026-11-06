@@ -2,14 +2,14 @@
 
 ## Metadata
 
-| Field | Value |
-|-------|-------|
-| **Project** | archlens |
-| **Kind** | bet |
-| **Status** | ready |
-| **Date** | 2026-11-06 |
-| **Owner** | ArchLens maintainers |
-| **Linear** | [MZW-159](https://linear.app/mzworthington/issue/MZW-159/preview-and-generate-architecture-diagrams-in-the-editor). The open-map slice already exists as [MZW-152](https://linear.app/mzworthington/issue/MZW-152/open-this-folders-architecture-map-in-visual-studio-code). |
+| Field       | Value                                                                                                                                                                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Project** | archlens                                                                                                                                                                                                                                                                     |
+| **Kind**    | bet                                                                                                                                                                                                                                                                          |
+| **Status**  | ready                                                                                                                                                                                                                                                                        |
+| **Date**    | 2026-11-06                                                                                                                                                                                                                                                                   |
+| **Owner**   | ArchLens maintainers                                                                                                                                                                                                                                                         |
+| **Linear**  | [MZW-159](https://linear.app/mzworthington/issue/MZW-159/preview-and-generate-architecture-diagrams-in-the-editor). The open-map slice already exists as [MZW-152](https://linear.app/mzworthington/issue/MZW-152/open-this-folders-architecture-map-in-visual-studio-code). |
 
 ## Problem
 
@@ -23,12 +23,12 @@ We believe that **a Visual Studio Marketplace extension that previews BlueprintS
 
 ## Leading indicator
 
-| Field | Value |
-|-------|-------|
-| **Signal** | Share of Marketplace pre-release installs that open the GitHub discussion from **Tell us you want this** |
-| **Baseline** | Unknown. Instrument first. No listing exists. |
-| **Success** | At least 20% of installs open that discussion, and there are at least 30 installs |
-| **Window** | Decide on 2027-02-06 |
+| Field        | Value                                                                                                    |
+| ------------ | -------------------------------------------------------------------------------------------------------- |
+| **Signal**   | Share of Marketplace pre-release installs that open the GitHub discussion from **Tell us you want this** |
+| **Baseline** | Unknown. Instrument first. No listing exists.                                                            |
+| **Success**  | At least 20% of installs open that discussion, and there are at least 30 installs                        |
+| **Window**   | Decide on 2027-02-06                                                                                     |
 
 Count an install from the Marketplace pre-release report. Count a discussion open from the link the extension shows. Do not count a local click that never opens the discussion.
 
@@ -49,14 +49,14 @@ No source, paths or file names leave the machine for this test. The discussion c
 
 ## Feature flag
 
-| Field | Value |
-|-------|-------|
-| **Needed?** | yes |
-| **Name** | `archlens.generateFromWorkspace.enabled` |
-| **Default** | off |
+| Field        | Value                                                                                        |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| **Needed?**  | yes                                                                                          |
+| **Name**     | `archlens.generateFromWorkspace.enabled`                                                     |
+| **Default**  | off                                                                                          |
 | **Audience** | Pre-release installs. On is a manual opt-in for a design partner after the indicator passes. |
-| **Owner** | ArchLens maintainers |
-| **Expiry** | 2027-02-06 |
+| **Owner**    | ArchLens maintainers                                                                         |
+| **Expiry**   | 2027-02-06                                                                                   |
 
 Off shows the interest prompt and writes nothing. On runs generate and review. This setting is not a canvas flag. MZW-152 has no flag: opening an existing map stays available either way.
 
@@ -85,11 +85,11 @@ Recommended YAML schema support stays a separate editor recommendation, as in MZ
 
 ### Workspace trust
 
-| Situation | What you see | What happens |
-|-----------|----------------|--------------|
-| Restricted Mode | ArchLens does not read this folder until the workspace is trusted. | No blueprint read, no scan, no write. |
-| Trusted, no blueprint | No map in this folder. | Preview opens empty. No systems. |
-| Trusted, blueprint present | The diagram for that file. | Read only. |
+| Situation                  | What you see                                                       | What happens                          |
+| -------------------------- | ------------------------------------------------------------------ | ------------------------------------- |
+| Restricted Mode            | ArchLens does not read this folder until the workspace is trusted. | No blueprint read, no scan, no write. |
+| Trusted, no blueprint      | No map in this folder.                                             | Preview opens empty. No systems.      |
+| Trusted, blueprint present | The diagram for that file.                                         | Read only.                            |
 
 ### Preview a blueprint
 
@@ -109,11 +109,11 @@ Recommended YAML schema support stays a separate editor recommendation, as in MZ
 
 Blueprint files link by `entityRef`. A child diagram's identity is the parent system.
 
-| Action | Result |
-|--------|--------|
-| Enter on a system that has a child diagram | Breadcrumb gains that system and the child diagram replaces the canvas. |
-| Choose a parent in the breadcrumb, or Alt+Left | That diagram returns. |
-| Enter on a system with no child diagram | Stay put. Note: No lower diagram for this system. |
+| Action                                         | Result                                                                  |
+| ---------------------------------------------- | ----------------------------------------------------------------------- |
+| Enter on a system that has a child diagram     | Breadcrumb gains that system and the child diagram replaces the canvas. |
+| Choose a parent in the breadcrumb, or Alt+Left | That diagram returns.                                                   |
+| Enter on a system with no child diagram        | Stay put. Note: No lower diagram for this system.                       |
 
 ### Generate from the workspace
 
@@ -128,21 +128,21 @@ When `archlens.generateFromWorkspace.enabled` is off:
 
 When it is on, a quick pick asks what to scan:
 
-| Choice | Meaning |
-|--------|---------|
+| Choice          | Meaning                                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------------------- |
 | Whole workspace | The trusted folder you have open. If several folders are open, a previous step asks you to pick one. |
-| This folder | The folder you invoked the command on. |
-| Custom files | A glob you type. The hint lists TypeScript, JavaScript, C#, Python, Go, Java, Terraform and Pulumi. |
+| This folder     | The folder you invoked the command on.                                                               |
+| Custom files    | A glob you type. The hint lists TypeScript, JavaScript, C#, Python, Go, Java, Terraform and Pulumi.  |
 
 Under the choices, a line reports what the folder actually contains, for example `Found: TypeScript, Go, Terraform`. **Cancel** starts nothing. **Generate diagram** scans on the machine.
 
 Progress copy: `Scanning {folder}…` with **Cancel**. Cancel leaves existing blueprint files untouched.
 
-| Outcome | Copy | Write |
-|---------|------|-------|
-| No supported source | No supported source files in this folder. | Nothing |
-| Scan fails | The scan did not finish. No blueprint files were written. | Nothing |
-| Scan finishes | Review blueprint changes | Nothing until you choose Write blueprint |
+| Outcome             | Copy                                                      | Write                                    |
+| ------------------- | --------------------------------------------------------- | ---------------------------------------- |
+| No supported source | No supported source files in this folder.                 | Nothing                                  |
+| Scan fails          | The scan did not finish. No blueprint files were written. | Nothing                                  |
+| Scan finishes       | Review blueprint changes                                  | Nothing until you choose Write blueprint |
 
 The scan covers the same languages as the CLI. Dependency folders and build output stay out. Hand-written notes already stored on a system survive a later scan when the system is still there.
 
@@ -152,11 +152,11 @@ Title: **Review blueprint changes**.
 
 Each row is **Added**, **Changed** or **Removed**, plus the system name. The note under the list: Nothing is written until you choose Write blueprint.
 
-| Choice | Result |
-|--------|--------|
-| Keep current files | Disk unchanged. Preview unchanged. |
-| Write blueprint | Files under the blueprints folder match the review. The preview shows the new diagram. |
-| Escape or close | Same as Keep current files. |
+| Choice             | Result                                                                                 |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Keep current files | Disk unchanged. Preview unchanged.                                                     |
+| Write blueprint    | Files under the blueprints folder match the review. The preview shows the new diagram. |
+| Escape or close    | Same as Keep current files.                                                            |
 
 A failed write reports: Could not write the blueprint. Your previous files are unchanged. Then it stops.
 
@@ -166,32 +166,32 @@ The extension writes only inside the configured blueprints folder (default `blue
 
 **Compare with a fresh scan** uses the same scope picker, the same off-switch prompt and the same review dialog.
 
-| Situation | Result |
-|-----------|--------|
-| Code and blueprint disagree | Review lists the difference. Nothing is written until Write blueprint. |
-| They match | No changes. |
+| Situation                              | Result                                                                               |
+| -------------------------------------- | ------------------------------------------------------------------------------------ |
+| Code and blueprint disagree            | Review lists the difference. Nothing is written until Write blueprint.               |
+| They match                             | No changes.                                                                          |
 | The open YAML editor has unsaved edits | This blueprint has unsaved editor changes. Save or revert before a compare. No scan. |
-| Generation is off | Same interest prompt as Generate. No scan. |
+| Generation is off                      | Same interest prompt as Generate. No scan.                                           |
 
 ### Open source
 
 With a system focused, **Open source** is in the command palette and on the system context menu.
 
-| Situation | Result |
-|-----------|--------|
-| The system points at a file in the workspace | That file opens. Status bar: `Opened {path} from {system name}`. |
-| It points nowhere, or the file is missing | This system has no source file in the workspace. The diagram stays put. |
+| Situation                                    | Result                                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| The system points at a file in the workspace | That file opens. Status bar: `Opened {path} from {system name}`.        |
+| It points nowhere, or the file is missing    | This system has no source file in the workspace. The diagram stays put. |
 
 ### Problems
 
 Opening or saving a blueprint file updates the editor Problems list.
 
-| Situation | Result |
-|-----------|--------|
-| A dependency cycle | One problem names the systems and the file. Example: `Cycle: Catalog calls Billing and Billing calls Catalog.` |
-| Broken blueprint structure | One problem names the file and the first failed check in plain language. |
-| YAML that is not a blueprint | No ArchLens problem. |
-| You fix the file and save | That problem clears. |
+| Situation                    | Result                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| A dependency cycle           | One problem names the systems and the file. Example: `Cycle: Catalog calls Billing and Billing calls Catalog.` |
+| Broken blueprint structure   | One problem names the file and the first failed check in plain language.                                       |
+| YAML that is not a blueprint | No ArchLens problem.                                                                                           |
+| You fix the file and save    | That problem clears.                                                                                           |
 
 Problems are markers. They do not rewrite the file.
 
@@ -211,12 +211,12 @@ If the diagram has no systems: Nothing to copy. The clipboard does not change.
 
 ### Settings
 
-| Setting | Default | Effect |
-|---------|---------|--------|
-| Generate a diagram from the workspace | Off | Off is the interest prompt. On scans and reviews. |
-| Blueprints folder | `blueprints` | Where a write is allowed to land. |
-| Extra ignore patterns | Empty | Folders left out of a scan, on top of dependency and build output. |
-| Share anonymous usage | Off | Counts only, and only after you turn it on. |
+| Setting                               | Default      | Effect                                                             |
+| ------------------------------------- | ------------ | ------------------------------------------------------------------ |
+| Generate a diagram from the workspace | Off          | Off is the interest prompt. On scans and reviews.                  |
+| Blueprints folder                     | `blueprints` | Where a write is allowed to land.                                  |
+| Extra ignore patterns                 | Empty        | Folders left out of a scan, on top of dependency and build output. |
+| Share anonymous usage                 | Off          | Counts only, and only after you turn it on.                        |
 
 ### Journey
 
@@ -252,6 +252,7 @@ flowchart TD
 
 ## Next
 
+- Install and publish: [Editor extension](./guide/vscode.md). A merge to `main` leaves the Marketplace listing unchanged. The pre-release publish is a manual `vsce publish --pre-release`.
 - Stories: the Linear epic for this card, plus the existing open-map story MZW-152.
 - Spec: Gherkin for flag off, flag on and kill after the stories are settled.
 - Memory: n/a for this session. The memory store was not available. Persist the belief, the discussion-open rate, the 2027-02-06 window and `archlens.generateFromWorkspace.enabled` when it is.

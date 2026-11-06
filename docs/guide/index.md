@@ -50,6 +50,7 @@ For building ArchLens or extending the engine - still Markdown in this repo.
 - [Design system](../design-system.md) - visual assets & identity sandbox
 - [Setup & local development](../setup.md)
 - [GitHub Actions workflows](./ci-workflows.md) - every workflow, purpose and trigger
+- [Editor extension](./vscode.md) - local sandbox, VSIX sideload, and the manual Marketplace pre-release
 - [Technology stack](../tech-stack.md) - React, Pulumi, Cloudflare, CI and toolchain
 - [Architecture & security](../architecture.md)
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM core, local build, contributor API

@@ -41,14 +41,14 @@ CLI reference: [app/packages/cli/README.md](./app/packages/cli/README.md) · [Ge
 
 ## Workspace Component Catalog
 
-| Component                                                                             | Path                                             | Language/Framework                       | Description                                                         |
-| :------------------------------------------------------------------------------------ | :----------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------ |
-| **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/)   | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                 |
-| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)         | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)    |
-| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)       | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)    |
-| **ArchLens editor**                                                                   | [app/packages/vscode/](./app/packages/vscode/)   | TypeScript / VS Code                     | Marketplace pre-release: preview a blueprint, ask before generating |
-| **`@archlens/storage`**                                                               | [app/packages/storage/](./app/packages/storage/) | TypeScript                               | Object-storage port (R2/S3/Azure/HTTP) for publish + remote catalog |
-| **ChaosLens engine**                                                                  | [resilience-engine/](./resilience-engine/)       | Go / WASM                                | Monte Carlo blast-radius sim for Canvas (WASM) + TS fallback        |
+| Component                                                                             | Path                                             | Language/Framework                       | Description                                                                    |
+| :------------------------------------------------------------------------------------ | :----------------------------------------------- | :--------------------------------------- | :----------------------------------------------------------------------------- |
+| **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/)   | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                            |
+| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)         | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)               |
+| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)       | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)               |
+| **ArchLens editor**                                                                   | [app/packages/vscode/](./app/packages/vscode/)   | TypeScript / VS Code                     | Local sandbox. Marketplace publish is manual. [Guide](./docs/guide/vscode.md). |
+| **`@archlens/storage`**                                                               | [app/packages/storage/](./app/packages/storage/) | TypeScript                               | Object-storage port (R2/S3/Azure/HTTP) for publish + remote catalog            |
+| **ChaosLens engine**                                                                  | [resilience-engine/](./resilience-engine/)       | Go / WASM                                | Monte Carlo blast-radius sim for Canvas (WASM) + TS fallback                   |
 | Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers). |
 
 ## C# and .NET analysis
@@ -102,6 +102,7 @@ Product guide and reference live as Markdown under [`docs/`](./docs/) (same file
 - **[Unit test features](./docs/features-unit.md)** - generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
 - **[Setup & Local Development](./docs/setup.md)**
+- **[Editor extension](./docs/guide/vscode.md)** - local sandbox and manual Marketplace pre-release
 
 ```bash
 cd app

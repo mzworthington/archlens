@@ -52,6 +52,7 @@ Docs and the live product share one build - Markdown under `docs/` is imported a
 | `@archlens/canvas` | Canvas PWA, docs site, workspace adapters                                                       |
 | `@archlens/cli`    | Static analysis CLI, blueprint writers, AdviceLens estate runner                                |
 | `@archlens/collab` | Cloudflare Worker + Durable Object for Yjs share-link rooms (Wrangler; not in the Pages bundle) |
+| editor             | VS Code extension in `app/packages/vscode`. Marketplace publish stays manual.                   |
 
 **pnpm** workspaces (`app/pnpm-workspace.yaml`). **Vitest** for unit tests; **oxlint** + **Prettier** for lint/format. **Knip** for unused-code checks in CI.
 
@@ -122,6 +123,8 @@ Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows]
 8. **merge-gate** - required-check aggregator (verify on every run; smoke on main deploys)
 
 CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog publish and `samples/` publish live in sibling workflows (see the map above).
+
+The editor extension is not in that chain. `publish-vscode-marketplace` stays commented out in `ci.yml`. Sandbox and the manual pre-release: [Editor extension](./guide/vscode.md).
 
 ---
 

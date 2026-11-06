@@ -120,6 +120,11 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     description:
       'Canonical map of ArchLens GitHub Actions workflows for CI, deploy, catalog publish and quality gates.',
   },
+  '/guide/vscode': {
+    headline: 'Editor extension',
+    description:
+      'Run the ArchLens editor extension locally, sideload a VSIX, and publish a Marketplace pre-release by hand.',
+  },
   '/setup': {
     headline: 'Setup & local development',
     description:

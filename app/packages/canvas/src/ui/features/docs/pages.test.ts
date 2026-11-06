@@ -97,6 +97,18 @@ describe('docs link resolution', () => {
     expect(DOCS_SIDEBAR.flatMap(s => s.items).some(i => i.path === '/privacy')).toBe(false);
   });
 
+  it('registers the editor extension guide on the Tech sidebar', () => {
+    const page = findDocsPage('/guide/vscode');
+    expect(page?.title).toBe('Editor extension');
+    expect(page?.markdown).toMatch(/extensionDevelopmentPath/);
+    expect(page?.markdown).toMatch(/vsce publish --pre-release/);
+    expect(page?.markdown).toMatch(/Marketplace listing unchanged/);
+    expect(
+      DOCS_SIDEBAR.flatMap(section => section.items).some(item => item.path === '/guide/vscode')
+    ).toBe(true);
+    expect(resolveDocsHref('./vscode.md', 'guide')).toBe('/guide/vscode');
+  });
+
   it('registers CI workflows and Tech sidebar pages', () => {
     expect(DOCS_PAGES.some(p => p.path === '/guide/ci-workflows')).toBe(true);
     expect(DOCS_PAGES.some(p => p.path === '/guide/ci-blueprints')).toBe(false);

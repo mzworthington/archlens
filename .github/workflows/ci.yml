@@ -1,5 +1,8 @@
 name: CI & Deployment Pipeline
 
+# Visual Studio Marketplace: publish-vscode-marketplace stays commented out below.
+# A push to main does not run vsce. Editor sandbox and the manual pre-release: docs/guide/vscode.md.
+
 on:
   push:
     branches: [main]
@@ -599,6 +602,19 @@ jobs:
         with:
           name: ts-cli-binaries
           path: dist/archives/
+
+  # publish-vscode-marketplace is commented out on purpose.
+  # Do not enable vsce publish, a VSIX upload, or a Marketplace release from this file.
+  # publish-cli-release below ships the ArchLens CLI to GitHub Releases only.
+  # Local sandbox and the manual Marketplace pre-release: docs/guide/vscode.md
+  #
+  # publish-vscode-marketplace:
+  #   needs: [check-release]
+  #   if: false
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Publish Visual Studio Marketplace pre-release
+  #       run: echo "disabled - see docs/guide/vscode.md"
 
   publish-cli-release:
     needs: [check-release, build-ts-cli-binaries]
