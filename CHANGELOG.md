@@ -1,10 +1,48 @@
 # Changelog
 
+## 2026-11-06
+
+### 🚀 Features
+
+- Token sweep for theme
+- _(canvas)_ Paint Light across the workspace and docs (MZW-154)
+- _(canvas)_ Pack diagram layout and shrink connection handles
+- _(canvas)_ Open on Light unless Blueprint was chosen
+- _(canvas)_ Name Architecture as Code on the home lede
+- _(canvas)_ Align the home hero and light map chrome
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Reload when a service worker update hangs
+- _(deps)_ Pin minimatch 11 and a patched deepmerge
+- _(ci)_ Rebase derived docs onto main before pushing
+
+## 2026-11-05
+
+### 🚀 Features
+
+- _(canvas)_ Paint the shell from one design-token set (MZW-158)
+- _(canvas)_ Paint the homepage and docs chrome from the token set (MZW-158)
+- _(canvas)_ Paint design-system tokens and identity from the token set (MZW-158)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Resolve the scan offer on case-insensitive disks (MZW-151)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Pin glob and qs past open advisories
+
+### 📚 Documentation
+
+- _(canvas)_ Present BlueprintSpec as architecture as code
+
 ## 2026-11-01
 
 ### 🚀 Features
 
 - _(canvas)_ Refresh a remote catalog snapshot in place (MZW-42)
+- _(canvas)_ Offer a repo scan on the golden-journey map (MZW-151)
 
 ### 🐛 Bug Fixes
 
@@ -13,6 +51,12 @@
 ### ⚙️ Refactoring & Performance
 
 - _(canvas)_ Prerender the tracelens guide and defer its demo gif
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-minor-patch group
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 10 updates
+- _(deps)_ Bump qs
 
 ## 2026-10-31
 

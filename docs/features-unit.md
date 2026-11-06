@@ -652,6 +652,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows a burger menu on mobile and reveals navigation links
 - ✅ closes the mobile menu when a link is selected
 - ✅ closes the mobile menu when Escape is pressed
+- ✅ toggles Blueprint from a moon button on the right of the header
 
 ### applyDependencyHighlights
 
@@ -745,6 +746,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### BlueprintNode Component
 
 - ✅ renders correctly with basic node details
+- ✅ uses a quiet port instead of a filled connection handle
 - ✅ simplifies chrome when liteCanvas is on but keeps all edge handles mounted
 - ✅ keeps full chrome when zoomed out unless liteCanvas is on
 - ✅ shows HOT and SILO badges for concerning forensics
@@ -774,7 +776,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### blueprintNodeHeatStyle
 
-- ✅ uses opaque linear gradient base when hotspot heat is active
+- ✅ marks hotspot heat with a flat light tint
+
+### blueprintTokens
+
+#### blueprint design tokens
+
+- ✅ defines canvas, surface, navy, ink, and accent once
+- ✅ points the shell canvas, ink, and accent at that token set
+- ✅ paints the site header from the token set
+- ✅ paints the homepage from the token set
+- ✅ paints the docs chrome from the token set
+- ✅ paints the design-system token cards from the token set
+- ✅ paints the design-system identity section from the token set
+- ✅ paints the design-system asset pack from the token set
+- ✅ paints every remaining screen from the token set
+- ✅ defines the light paper token set on the light theme
+- ✅ labels token swatches as canvas, surface, ink, and accent
 
 ### BrandMark
 
@@ -1288,6 +1306,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### DesignSystemDocsPage
 
 - ✅ renders the showcase inside the docs shell
+- ✅ names Blueprint and Light as the design choices
+- ✅ applies Blueprint to the page and remembers the choice
+- ✅ keeps Light selected after the design system remounts
+- ✅ activates Light from the keyboard and names it as selected
 
 ### DesignSystemShowcase
 
@@ -1297,6 +1319,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders title and navigation
 - ✅ supports switching tabs
 - ✅ documents product marketing patterns on the components tab
+
+### designTheme
+
+#### designTheme
+
+- ✅ selects Light when the saved choice is missing or unknown
+- ✅ round-trips Light and Blueprint choices
+- ✅ applies Light as a document theme attribute
 
 ### diagramLoadSession
 
@@ -1378,6 +1408,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders product suite and primary calls to action
 - ✅ uses landing layout without docs sidebar
+- ✅ names Architecture as Code on the home lede
+- ✅ gives the hero copy the width beside a fixed mark
+- ✅ states what the lenses change and a live board you share with peers
+- ✅ presents BlueprintSpec as opinionated architecture as code
 - ✅ links each product card to its guide chapter
 
 ### DocsPage
@@ -1872,6 +1906,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### dependency edge direction visuals
 
 - ✅ maps domain deps with a closed arrow marker toward the target
+- ✅ paints relationship labels with the map surface and ink
 - ✅ keeps publish-subscribe edges animated by default
 - ✅ animates edges incident to the selected node
 - ✅ animates all edges when selected-dependencies focus mode is on
@@ -2222,6 +2257,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ clears Cache Storage before reload so a controlling worker cannot serve the old shell
 - ✅ still reloads when skipWaiting throws because the waiting worker never installed
 - ✅ still reloads when unregister rejects
+- ✅ reloads when service worker cleanup never settles
 - ✅ still reloads when listing registrations throws
 
 #### requestServiceWorkerUpdate
@@ -2393,6 +2429,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ marks nodes with persisted or session safeguards when resilience mode is on
 - ✅ clears safeguard styling when resilience mode is off
+
+### sampleMapScanOffer
+
+#### shouldOfferSampleMapScan
+
+- ✅ offers a scan on the golden-journey map before Chaos
+- ✅ keeps the offer on a diagram inside the golden-journey estate
+- ✅ stays off other samples, a real workspace, and the Chaos lens
+
+### SampleMapScanOffer
+
+#### SampleMapScanOffer
+
+- ✅ shows a keyboard-reachable scan control on the sample map and does not scan until used
+- ✅ starts a folder scan from the control and leaves the sample when the picker is cancelled
+- ✅ starts a ZIP scan from the upload control and opens the scanned map
+- ✅ is hidden off the golden-journey sample
 
 ### sampleWorkspaceLoader
 
@@ -2671,6 +2724,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows refresh prompt when the service worker reports an update
 - ✅ dismisses the banner when Later is clicked
 - ✅ drops a stale service worker when Refresh is only from a remote build mismatch
+- ✅ shows Refreshing and ignores a second click while the reload is in progress
 - ✅ hard-reloads even when the waiting worker never takes control
 - ✅ cache-busts via history.replaceState so location.replace cannot open-redirect
 
