@@ -2,15 +2,16 @@
 export const LAYOUT_ORIGIN = { x: 40, y: 40 } as const;
 
 /**
- * Dagre graph spacing. Wider nodesep/edgesep separates sibling fan-ins (actors → system)
- * so edge midpoints (and RF labels) collide less; ranksep leaves room between layers.
+ * Dagre graph spacing. nodesep/edgesep keep sibling cards and parallel edge labels
+ * from touching; ranksep is only enough for a label between layers so a fitted
+ * view can zoom in on the cards.
  */
 export const DAGRE_SPACING = {
-  nodesep: 200,
-  edgesep: 120,
-  ranksep: 320,
-  marginx: 80,
-  marginy: 96,
+  nodesep: 64,
+  edgesep: 40,
+  ranksep: 96,
+  marginx: 40,
+  marginy: 48,
 } as const;
 
 /** Approximate RF edge-label box so dagre can reserve horizontal room between parallel edges. */
@@ -23,4 +24,4 @@ export function estimateEdgeLabelSize(label: string | undefined): {
   return { width, height: 28 };
 }
 
-export const D3_FOREST_GAP = 260;
+export const D3_FOREST_GAP = 120;

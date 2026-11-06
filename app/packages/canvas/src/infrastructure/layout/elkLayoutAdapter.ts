@@ -22,8 +22,8 @@ export class ElkLayoutAdapter implements LayoutEnginePort {
       layoutOptions: {
         'elk.algorithm': 'layered',
         'elk.direction': 'DOWN',
-        'elk.spacing.nodeNode': '100',
-        'elk.layered.spacing.nodeNodeBetweenLayers': '200',
+        'elk.spacing.nodeNode': '48',
+        'elk.layered.spacing.nodeNodeBetweenLayers': '96',
         'elk.padding': '[top=48,left=48,bottom=48,right=48]',
       },
       children: [...nodes]

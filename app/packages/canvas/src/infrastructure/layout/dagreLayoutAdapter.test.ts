@@ -18,6 +18,9 @@ describe('DagreLayoutAdapter', () => {
 
     expect(positions.size).toBe(3);
     expect(positions.get('a')!.y).toBeLessThan(positions.get('c')!.y);
+    const rankStep = positions.get('b')!.y - positions.get('a')!.y;
+    expect(rankStep).toBeGreaterThan(120);
+    expect(rankStep).toBeLessThan(280);
   });
 
   it('spreads siblings so fan-in labels have horizontal room', async () => {

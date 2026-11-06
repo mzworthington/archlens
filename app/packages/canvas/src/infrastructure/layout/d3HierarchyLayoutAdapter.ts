@@ -32,7 +32,7 @@ export class D3HierarchyLayoutAdapter implements LayoutEnginePort {
       const nodeH = sizeById.get(root.id)?.height ?? 120;
 
       const layout = tree<TreeDatum>()
-        .nodeSize([nodeW + 80, nodeH + 160])
+        .nodeSize([nodeW + 40, nodeH + 72])
         .separation(() => 1);
 
       layout(rootHierarchy);
