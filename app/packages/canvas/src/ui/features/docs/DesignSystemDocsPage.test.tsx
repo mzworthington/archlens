@@ -52,8 +52,8 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    expect(screen.getByRole('radio', { name: 'Blueprint' })).toBeChecked();
-    expect(screen.getByRole('radio', { name: 'Light' })).not.toBeChecked();
+    expect(screen.getByRole('button', { name: 'Switch to Light' })).toBeInTheDocument();
+    expect(screen.queryByRole('radio', { name: 'Light' })).not.toBeInTheDocument();
   });
 
   it('applies Light to the page and remembers the choice', () => {
@@ -66,9 +66,9 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    fireEvent.click(screen.getByRole('radio', { name: 'Light' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Switch to Light' }));
 
-    expect(screen.getByRole('radio', { name: 'Light' })).toBeChecked();
+    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toBeInTheDocument();
     expect(document.documentElement.dataset.theme).toBe('light');
     expect(localStorage.getItem(DESIGN_THEME_KEY)).toBe('light');
   });
@@ -83,7 +83,7 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    expect(screen.getByRole('radio', { name: 'Light' })).toBeChecked();
+    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toBeInTheDocument();
     expect(document.documentElement.dataset.theme).toBe('light');
   });
 
@@ -97,10 +97,10 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    screen.getByRole('radio', { name: 'Light' }).focus();
-    fireEvent.click(screen.getByRole('radio', { name: 'Light' }));
+    const toggle = screen.getByRole('button', { name: 'Switch to Light' });
+    toggle.focus();
+    fireEvent.click(toggle);
 
-    expect(screen.getByRole('radiogroup', { name: /Light is selected/i })).toBeInTheDocument();
-    expect(screen.getByRole('radio', { name: 'Light' })).toBeChecked();
+    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toHaveFocus();
   });
 });

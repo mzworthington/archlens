@@ -113,6 +113,295 @@ html[data-theme='light'] ::-moz-selection {
   color: var(--color-ink);
 }
 
+/* Light workspace: paper canvas, ink type, quiet edges. Blueprint chrome stays dark. */
+html[data-theme='light'] [data-testid='product-stage-badge'] {
+  color: #9a3412;
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+html[data-theme='light'] .border-slate-900,
+html[data-theme='light'] .border-slate-800 {
+  border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+html[data-theme='light'] .react-flow__background {
+  background-color: var(--color-canvas) !important;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-ink) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink) 8%, transparent) 1px,
+      transparent 1px
+    ) !important;
+  background-size: 28px 28px !important;
+}
+
+html[data-theme='light'] .react-flow__edge-path {
+  stroke: color-mix(in srgb, var(--color-ink) 35%, transparent) !important;
+  stroke-width: 1.5 !important;
+}
+
+html[data-theme='light'] .react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--color-accent) !important;
+  filter: none;
+}
+
+html[data-theme='light'] .react-flow__controls {
+  border-color: color-mix(in srgb, var(--color-ink) 14%, transparent) !important;
+  background: var(--color-surface) !important;
+  box-shadow: 0 8px 24px rgb(21 32 51 / 0.08) !important;
+}
+
+html[data-theme='light'] .canvas-zoom-readout,
+html[data-theme='light'] .react-flow__controls-button {
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent) !important;
+  color: var(--color-ink) !important;
+}
+
+html[data-theme='light'] .react-flow__controls-button:hover {
+  background: color-mix(in srgb, var(--color-ink) 6%, white) !important;
+  color: var(--color-ink) !important;
+}
+
+html[data-theme='light'] .react-flow__handle {
+  border-color: white !important;
+}
+
+html[data-theme='light'] .react-flow__node > div {
+  background-color: var(--color-surface) !important;
+  background-image: none !important;
+  color: var(--color-ink) !important;
+  box-shadow: 0 1px 2px rgb(21 32 51 / 0.06) !important;
+}
+
+html[data-theme='light'] .react-flow__node > div:has([data-hotspot-heat]) {
+  background-image: linear-gradient(
+    135deg,
+    color-mix(in srgb, #b42318 14%, white) 0%,
+    white 68%
+  ) !important;
+}
+
+html[data-theme='light'] .react-flow__node .text-white,
+html[data-theme='light'] .react-flow__node [class*='text-slate-'] {
+  color: var(--color-ink) !important;
+}
+
+html[data-theme='light'] .react-flow__panel.bottom,
+html[data-theme='light'] .react-flow__panel.top [class*='bg-slate-950'] {
+  background-color: var(--color-surface) !important;
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent) !important;
+  color: var(--color-ink);
+  box-shadow: 0 10px 28px rgb(21 32 51 / 0.1) !important;
+}
+
+html[data-theme='light'] .react-flow__panel.bottom [class*='text-slate-'],
+html[data-theme='light'] .react-flow__panel.bottom input,
+html[data-theme='light'] .react-flow__panel.top [class*='text-slate-'] {
+  color: var(--color-ink) !important;
+}
+
+html[data-theme='light'] .react-flow__panel.bottom [class*='bg-slate-9'],
+html[data-theme='light'] .react-flow__panel.bottom kbd {
+  background-color: color-mix(in srgb, var(--color-ink) 5%, white) !important;
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent) !important;
+}
+
+html[data-theme='light'] .text-slate-100,
+html[data-theme='light'] .text-white {
+  color: var(--color-ink);
+}
+
+html[data-theme='light'] .text-slate-200,
+html[data-theme='light'] .text-slate-300 {
+  color: color-mix(in srgb, var(--color-ink) 84%, white);
+}
+
+html[data-theme='light'] .text-slate-400,
+html[data-theme='light'] .text-slate-500,
+html[data-theme='light'] .text-slate-600 {
+  color: color-mix(in srgb, var(--color-ink) 62%, white);
+}
+
+html[data-theme='light'] .placeholder\:text-slate-500::placeholder,
+html[data-theme='light'] .placeholder\:text-slate-600::placeholder {
+  color: color-mix(in srgb, var(--color-ink) 45%, white);
+}
+
+html[data-theme='light'] .glass-panel {
+  background: color-mix(in srgb, white 94%, var(--color-canvas));
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+  box-shadow: 0 10px 28px rgb(21 32 51 / 0.06);
+}
+
+html[data-theme='light'] .bg-slate-950,
+html[data-theme='light'] .bg-slate-950\/20,
+html[data-theme='light'] .bg-slate-950\/30,
+html[data-theme='light'] .bg-slate-950\/40,
+html[data-theme='light'] .bg-slate-950\/50,
+html[data-theme='light'] .bg-slate-950\/60,
+html[data-theme='light'] .bg-slate-950\/70,
+html[data-theme='light'] .bg-slate-950\/80,
+html[data-theme='light'] .bg-slate-950\/90,
+html[data-theme='light'] .bg-slate-950\/95,
+html[data-theme='light'] .bg-slate-900,
+html[data-theme='light'] .bg-slate-900\/40,
+html[data-theme='light'] .bg-slate-900\/50,
+html[data-theme='light'] .bg-slate-900\/60,
+html[data-theme='light'] .bg-slate-900\/80 {
+  background-color: color-mix(in srgb, var(--color-ink) 4%, white);
+}
+
+html[data-theme='light'] .bg-cyan-950,
+html[data-theme='light'] .bg-cyan-950\/20,
+html[data-theme='light'] .bg-cyan-950\/30,
+html[data-theme='light'] .bg-cyan-950\/40 {
+  background-color: color-mix(in srgb, var(--color-accent) 8%, white);
+  color: var(--color-ink);
+}
+
+html[data-theme='light'] .text-cyan-100,
+html[data-theme='light'] .text-cyan-100\/90,
+html[data-theme='light'] .text-cyan-200,
+html[data-theme='light'] .text-cyan-300,
+html[data-theme='light'] .text-cyan-300\/90,
+html[data-theme='light'] .text-cyan-400,
+html[data-theme='light'] .text-cyan-400\/90,
+html[data-theme='light'] .text-brand-200,
+html[data-theme='light'] .text-brand-300,
+html[data-theme='light'] .text-brand-400,
+html[data-theme='light'] .text-brand-400\/80,
+html[data-theme='light'] .text-brand-400\/90 {
+  color: var(--color-accent) !important;
+}
+
+html[data-theme='light'] .border-cyan-900,
+html[data-theme='light'] .border-cyan-900\/40,
+html[data-theme='light'] .border-cyan-800 {
+  border-color: color-mix(in srgb, var(--color-accent) 35%, white);
+}
+
+html[data-theme='light'] input,
+html[data-theme='light'] textarea,
+html[data-theme='light'] select {
+  background-color: white;
+  color: var(--color-ink);
+  border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+}
+
+html[data-theme='light'] .react-flow__node [class*='text-cyan'],
+html[data-theme='light'] .react-flow__node [class*='text-brand'] {
+  color: var(--color-accent) !important;
+}
+
+html[data-theme='light'] .border-slate-700,
+html[data-theme='light'] .border-slate-700\/80,
+html[data-theme='light'] .border-slate-600 {
+  border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+}
+
+html[data-theme='light'] .bg-accent .text-white,
+html[data-theme='light'] .bg-brand-500,
+html[data-theme='light'] [class*='bg-emerald-6'] {
+  color: white;
+}
+
+html[data-theme='light'] .bg-accent,
+html[data-theme='light'] .bg-accent\/90 {
+  color: #fff;
+}
+
+html[data-theme='light'] .border-white\/5,
+html[data-theme='light'] .border-white\/10,
+html[data-theme='light'] .border-white\/15 {
+  border-color: color-mix(in srgb, var(--color-ink) 16%, transparent);
+}
+
+html[data-theme='light'] .text-emerald-200,
+html[data-theme='light'] .text-emerald-300,
+html[data-theme='light'] .text-emerald-300\/90,
+html[data-theme='light'] .text-emerald-400 {
+  color: #047857 !important;
+}
+
+html[data-theme='light'] .text-sky-300,
+html[data-theme='light'] .text-sky-400 {
+  color: #0369a1 !important;
+}
+
+html[data-theme='light'] .text-violet-300,
+html[data-theme='light'] .text-violet-400 {
+  color: #6d28d9 !important;
+}
+
+html[data-theme='light'] .text-amber-200,
+html[data-theme='light'] .text-amber-300,
+html[data-theme='light'] .text-amber-300\/90,
+html[data-theme='light'] .text-amber-400 {
+  color: #b45309 !important;
+}
+
+html[data-theme='light'] .text-rose-300,
+html[data-theme='light'] .text-rose-400 {
+  color: #be123c !important;
+}
+
+html[data-theme='light'] .bg-cyan-950\/95,
+html[data-theme='light'] .bg-emerald-950\/95,
+html[data-theme='light'] .bg-amber-950\/95,
+html[data-theme='light'] .bg-red-950\/95 {
+  background-color: #fff;
+  color: var(--color-ink);
+  border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+html[data-theme='light'] .docs-prose {
+  color: color-mix(in srgb, var(--color-ink) 88%, white);
+}
+
+html[data-theme='light'] .docs-prose h1,
+html[data-theme='light'] .docs-prose h2,
+html[data-theme='light'] .docs-prose h3,
+html[data-theme='light'] .docs-prose strong {
+  color: var(--color-ink);
+}
+
+html[data-theme='light'] .docs-prose blockquote {
+  color: color-mix(in srgb, var(--color-ink) 72%, white);
+}
+
+html[data-theme='light'] .docs-prose-static :not(pre) > code,
+html[data-theme='light'] .docs-prose code {
+  background: color-mix(in srgb, var(--color-ink) 6%, white);
+  color: var(--color-ink);
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+html[data-theme='light'] .docs-prose-static pre,
+html[data-theme='light'] .docs-prose pre {
+  background: color-mix(in srgb, var(--color-ink) 4%, white);
+  color: var(--color-ink);
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+html[data-theme='light'] .docs-prose-static th,
+html[data-theme='light'] .docs-prose-static td,
+html[data-theme='light'] .docs-prose th,
+html[data-theme='light'] .docs-prose td {
+  color: var(--color-ink);
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+html[data-theme='light'] .docs-prose-static th,
+html[data-theme='light'] .docs-prose th {
+  background: color-mix(in srgb, var(--color-ink) 5%, white);
+}
+
 /* Neon glow animations & utilities */
 .neon-glow-cyan {
   text-shadow:

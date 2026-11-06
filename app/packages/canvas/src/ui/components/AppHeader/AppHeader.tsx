@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import { BrandMark } from './BrandMark';
+import { useDesignTheme } from '../../theme/useDesignTheme';
 import { isWorkspacePath } from '../../../application/navigation/workspaceUrl';
 import { isAdviceLensUrl } from '../../features/forensics/adviceLensUrl';
 import { isTraceLensUrl } from '../../features/forensics/traceLensUrl';
@@ -59,6 +60,7 @@ const navLinkClass = (active: boolean, mobile = false) => {
 export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky = false }) => {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useDesignTheme();
 
   useEffect(() => {
     setMenuOpen(false);
@@ -105,6 +107,19 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
           >
             Beta
           </span>
+
+          <button
+            type="button"
+            aria-label={theme === 'light' ? 'Switch to Blueprint' : 'Switch to Light'}
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-9 h-9 rounded-lg border border-ink/15 text-ink hover:bg-accent/10 transition-colors cursor-pointer"
+          >
+            {theme === 'light' ? (
+              <Moon className="w-4 h-4" aria-hidden />
+            ) : (
+              <Sun className="w-4 h-4" aria-hidden />
+            )}
+          </button>
 
           <button
             type="button"
