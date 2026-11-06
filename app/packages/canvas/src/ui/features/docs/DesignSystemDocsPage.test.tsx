@@ -52,11 +52,11 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    expect(screen.getByRole('button', { name: 'Switch to Light' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toBeInTheDocument();
     expect(screen.queryByRole('radio', { name: 'Light' })).not.toBeInTheDocument();
   });
 
-  it('applies Light to the page and remembers the choice', () => {
+  it('applies Blueprint to the page and remembers the choice', () => {
     localStorage.clear();
     delete document.documentElement.dataset.theme;
     const { hook } = memoryLocation({ path: '/design-system' });
@@ -66,11 +66,11 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to Light' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Switch to Blueprint' }));
 
-    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toBeInTheDocument();
-    expect(document.documentElement.dataset.theme).toBe('light');
-    expect(localStorage.getItem(DESIGN_THEME_KEY)).toBe('light');
+    expect(screen.getByRole('button', { name: 'Switch to Light' })).toBeInTheDocument();
+    expect(document.documentElement.dataset.theme).toBe('blueprint');
+    expect(localStorage.getItem(DESIGN_THEME_KEY)).toBe('blueprint');
   });
 
   it('keeps Light selected after the design system remounts', () => {
@@ -97,10 +97,10 @@ describe('DesignSystemDocsPage', () => {
       </Router>
     );
 
-    const toggle = screen.getByRole('button', { name: 'Switch to Light' });
+    const toggle = screen.getByRole('button', { name: 'Switch to Blueprint' });
     toggle.focus();
     fireEvent.click(toggle);
 
-    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Switch to Light' })).toHaveFocus();
   });
 });

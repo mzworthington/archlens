@@ -25,10 +25,10 @@ function memoryStorage(initial?: Record<string, string>): Storage {
 }
 
 describe('designTheme', () => {
-  it('selects Blueprint when the saved choice is missing or unknown', () => {
-    expect(readDesignTheme(null)).toBe('blueprint');
-    expect(readDesignTheme(memoryStorage())).toBe('blueprint');
-    expect(readDesignTheme(memoryStorage({ [DESIGN_THEME_KEY]: 'sepia' }))).toBe('blueprint');
+  it('selects Light when the saved choice is missing or unknown', () => {
+    expect(readDesignTheme(null)).toBe('light');
+    expect(readDesignTheme(memoryStorage())).toBe('light');
+    expect(readDesignTheme(memoryStorage({ [DESIGN_THEME_KEY]: 'sepia' }))).toBe('light');
   });
 
   it('round-trips Light and Blueprint choices', () => {

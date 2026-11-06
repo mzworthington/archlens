@@ -30,7 +30,7 @@ export function readDesignTheme(storage: ReadableStorage | null): DesignThemeId 
   if (raw === 'light' || raw === 'blueprint') {
     return raw;
   }
-  return 'blueprint';
+  return 'light';
 }
 
 export function writeDesignTheme(storage: WritableStorage | null, theme: DesignThemeId): void {

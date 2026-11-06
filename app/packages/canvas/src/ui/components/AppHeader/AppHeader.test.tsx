@@ -63,19 +63,19 @@ describe('AppHeader', () => {
     expect(document.getElementById('app-header-mobile-nav')).toBeNull();
   });
 
-  it('toggles Light from a sun button on the right of the header', () => {
+  it('toggles Blueprint from a moon button on the right of the header', () => {
     localStorage.clear();
     delete document.documentElement.dataset.theme;
     renderHeader();
 
-    const toggle = screen.getByRole('button', { name: 'Switch to Light' });
+    const toggle = screen.getByRole('button', { name: 'Switch to Blueprint' });
     const badge = screen.getByTestId('product-stage-badge');
     expect(badge.compareDocumentPosition(toggle) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 
     fireEvent.click(toggle);
 
-    expect(document.documentElement.dataset.theme).toBe('light');
-    expect(localStorage.getItem(DESIGN_THEME_KEY)).toBe('light');
-    expect(screen.getByRole('button', { name: 'Switch to Blueprint' })).toBeInTheDocument();
+    expect(document.documentElement.dataset.theme).toBe('blueprint');
+    expect(localStorage.getItem(DESIGN_THEME_KEY)).toBe('blueprint');
+    expect(screen.getByRole('button', { name: 'Switch to Light' })).toBeInTheDocument();
   });
 });
