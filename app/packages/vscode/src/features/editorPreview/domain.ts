@@ -8,6 +8,7 @@ export const GENERATE_OFF_COPY = 'Generating a diagram from code is turned off i
 export const TELL_US_COPY = 'Tell us you want this';
 export const CANCEL_COPY = 'Cancel';
 export const INTEREST_DISCUSSION_URL = 'https://github.com/mzworthington/archlens/discussions';
+export const NO_SOURCE_COPY = 'This system has no source file in the workspace.';
 
 const DEFAULT_BLUEPRINTS_FOLDER = 'blueprints';
 
@@ -101,15 +102,51 @@ function decisionForChoice(choice: GenerateChoice | undefined): GenerateDecision
   }
 }
 
+export type OpenSourceDecision =
+  | { readonly kind: 'open'; readonly path: string; readonly status: string }
+  | { readonly kind: 'missing'; readonly message: string };
+
+/** A source path is usable only when it stays inside the workspace root. */
+export function resolveSourceFile(input: {
+  sourceFile: string;
+  workspaceRoot: string;
+}): string | undefined {
+  const root = normalizeEditorPath(input.workspaceRoot);
+  const requested = normalizeEditorPath(input.sourceFile.trim());
+  if (root.length === 0 || requested.length === 0) return undefined;
+  if (requested.split('/').includes('..')) return undefined;
+  const absolute = isAbsoluteEditorPath(requested) ? requested : `${root}/${requested}`;
+  return isInsideEditorPath(absolute, root) && absolute !== root ? absolute : undefined;
+}
+
+export function decideOpenSource(input: {
+  systemName?: string;
+  sourceFile?: string;
+  resolvedPath?: string;
+}): OpenSourceDecision {
+  if (!input.systemName || !input.sourceFile || !input.resolvedPath) {
+    return { kind: 'missing', message: NO_SOURCE_COPY };
+  }
+  return {
+    kind: 'open',
+    path: input.resolvedPath,
+    status: `Opened ${input.resolvedPath} from ${input.systemName}.`,
+  };
+}
+
 function projectFile(file: BlueprintFile): DiagramView | undefined {
   try {
     const schema = parseSchemaFromYaml(file.content);
     return {
       sourcePath: file.path,
-      systems: schema.nodes.map(node => ({
-        name: node.name,
-        entityRef: node.entityRef,
-      })),
+      systems: schema.nodes.map(node => {
+        const sourceFile = sourceFileOf(node.properties?.filepath);
+        return {
+          name: node.name,
+          entityRef: node.entityRef,
+          ...(sourceFile ? { sourceFile } : {}),
+        };
+      }),
       links: schema.dependencies.map(dependency => ({
         fromName: nameFor(schema, dependency.from),
         toName: nameFor(schema, dependency.to),
@@ -131,4 +168,24 @@ function pathHasSegment(filePath: string, segment: string): boolean {
 function isContextFile(filePath: string): boolean {
   const name = filePath.split(/[/\\]/).pop();
   return name === 'context.yaml' || name === 'context.yml';
+}
+
+function sourceFileOf(value: string | number | boolean | undefined): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function normalizeEditorPath(value: string): string {
+  let path = value.replaceAll('\\', '/');
+  while (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
+  return path;
+}
+
+function isAbsoluteEditorPath(value: string): boolean {
+  return value.startsWith('/') || /^[A-Za-z]:\//.test(value);
+}
+
+function isInsideEditorPath(file: string, folder: string): boolean {
+  return file === folder || file.startsWith(`${folder}/`);
 }

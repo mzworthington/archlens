@@ -1,4 +1,11 @@
-import { EMPTY_MAP_COPY, TRUST_COPY, decideOpenMap, generateDecision } from './domain';
+import {
+  EMPTY_MAP_COPY,
+  TRUST_COPY,
+  decideOpenMap,
+  decideOpenSource,
+  generateDecision,
+  resolveSourceFile,
+} from './domain';
 import type { BlueprintFile, EditorHost } from './ports';
 
 export async function openArchitectureMap(host: EditorHost): Promise<void> {
@@ -50,6 +57,42 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
     case 'prompt':
     case 'closed':
     case 'untrusted':
+      return;
+    default: {
+      const unexpected: never = decision;
+      return unexpected;
+    }
+  }
+}
+
+export async function openSource(host: EditorHost): Promise<void> {
+  if (!host.isTrusted()) {
+    host.showMessage(TRUST_COPY);
+    return;
+  }
+
+  const focused = host.focusedSystem();
+  const resolved =
+    focused?.sourceFile && focused.workspaceRoot
+      ? resolveSourceFile({
+          sourceFile: focused.sourceFile,
+          workspaceRoot: focused.workspaceRoot,
+        })
+      : undefined;
+  const exists = resolved ? await host.fileExists(resolved) : false;
+  const decision = decideOpenSource({
+    systemName: focused?.name,
+    sourceFile: focused?.sourceFile,
+    resolvedPath: exists ? resolved : undefined,
+  });
+
+  switch (decision.kind) {
+    case 'open':
+      await host.openFile(decision.path);
+      host.setStatus(decision.status);
+      return;
+    case 'missing':
+      host.showMessage(decision.message);
       return;
     default: {
       const unexpected: never = decision;

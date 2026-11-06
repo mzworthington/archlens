@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { INTEREST_DISCUSSION_URL, TRUST_COPY } from '../features/editorPreview/domain';
-import { generateFromWorkspace, openArchitectureMap } from '../features/editorPreview/handler';
+import {
+  INTEREST_DISCUSSION_URL,
+  NO_SOURCE_COPY,
+  TRUST_COPY,
+} from '../features/editorPreview/domain';
+import {
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+} from '../features/editorPreview/handler';
+import { resetDiagramSession } from './diagramSession';
 import { createEditorHost, type VsCodeLike } from './vscodeHost';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -31,8 +40,15 @@ function editor(input: {
   const calls: string[] = [];
   const html: string[] = [];
   const opened: string[] = [];
+  const statuses: string[] = [];
+  const statusTimeouts: number[] = [];
   const patterns: { base: string; pattern: string }[] = [];
+  const panels: {
+    onMessage?: (message: unknown) => void;
+    onDispose?: () => void;
+  }[] = [];
   let onSave: ((document: { uri: { fsPath: string }; getText(): string }) => void) | undefined;
+  resetDiagramSession();
   const files = input.files ?? [];
   const api: VsCodeLike = {
     FileType: { File: 1, Directory: 2 },
@@ -60,7 +76,9 @@ function editor(input: {
       fs: {
         stat: async uri => {
           calls.push('stat');
-          return { type: input.directory === uri.fsPath ? 2 : 1 };
+          if (input.directory === uri.fsPath) return { type: 2 };
+          if (files.some(file => file.path === uri.fsPath)) return { type: 1 };
+          throw new Error(`missing ${uri.fsPath}`);
         },
         readFile: async uri => {
           calls.push(`read:${uri.fsPath}`);
@@ -84,11 +102,22 @@ function editor(input: {
         return input.choice ?? items[1];
       },
       showQuickPick: async () => undefined,
-      showTextDocument: async (_document, column) => {
+      showTextDocument: async (document, column) => {
         calls.push(`text:${column}`);
+        calls.push(`show:${document.uri.fsPath}`);
       },
-      createWebviewPanel: (_viewType, _title, column) => {
+      setStatusBarMessage: (message, hideAfterTimeout) => {
+        statuses.push(message);
+        statusTimeouts.push(hideAfterTimeout);
+      },
+      createWebviewPanel: (_viewType, _title, column, options) => {
         calls.push(`panel:${column}`);
+        calls.push(`scripts:${options.enableScripts}`);
+        const panel: {
+          onMessage?: (message: unknown) => void;
+          onDispose?: () => void;
+        } = {};
+        panels.push(panel);
         return {
           webview: {
             set html(value: string) {
@@ -97,8 +126,14 @@ function editor(input: {
             get html() {
               return html[html.length - 1] ?? '';
             },
+            onDidReceiveMessage: listener => {
+              panel.onMessage = listener;
+              return { dispose: () => undefined };
+            },
           },
-          onDidDispose: () => undefined,
+          onDidDispose: listener => {
+            panel.onDispose = listener;
+          },
         };
       },
     },
@@ -115,7 +150,18 @@ function editor(input: {
     calls,
     html,
     opened,
+    statuses,
+    statusTimeouts,
     patterns,
+    focus: (entityRef: string) => {
+      panels.at(-1)?.onMessage?.({ type: 'focus-system', entityRef });
+    },
+    focusPanel: (index: number, entityRef: string) => {
+      panels[index]?.onMessage?.({ type: 'focus-system', entityRef });
+    },
+    closePanel: (index: number) => {
+      panels[index]?.onDispose?.();
+    },
     save: (path: string, content: string) => {
       onSave?.({ uri: { fsPath: path }, getText: () => content });
     },
@@ -218,6 +264,108 @@ describe('editor host', () => {
 
     expect(fake.opened).toEqual([]);
     expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('opens the source file for the focused system', async () => {
+    const source = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
+    );
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: source },
+        { path: '/repo/src/api.ts', content: 'export {}' },
+      ],
+    });
+    await openArchitectureMap(await createEditorHost(fake.api));
+    fake.focus('checkout/api');
+
+    await openSource(await createEditorHost(fake.api));
+
+    expect(fake.calls).toContain('scripts:true');
+    expect(fake.calls).toContain('show:/repo/src/api.ts');
+    expect(fake.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
+    expect(fake.statusTimeouts).toEqual([5000]);
+  });
+
+  it('opens the source for the map that was focused when another map is open', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/src/checkout.ts', content: 'export {}' },
+        { path: '/repo/src/billing.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/checkout.yaml',
+      systems: [{ name: 'Checkout API', entityRef: 'shared', sourceFile: 'src/checkout.ts' }],
+      links: [],
+    });
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/billing.yaml',
+      systems: [{ name: 'Billing API', entityRef: 'shared', sourceFile: 'src/billing.ts' }],
+      links: [],
+    });
+
+    fake.focusPanel(0, 'shared');
+    await openSource(host);
+    fake.focusPanel(1, 'shared');
+    await openSource(host);
+    fake.closePanel(1);
+    await openSource(host);
+
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([
+      'show:/repo/src/checkout.ts',
+      'show:/repo/src/billing.ts',
+      'show:/repo/src/checkout.ts',
+    ]);
+  });
+
+  it('does not open a stale source after the focused blueprint is saved', async () => {
+    const source = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
+    );
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: source },
+        { path: '/repo/src/api.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    fake.focus('checkout/api');
+    fake.save(
+      '/repo/blueprints/context.yaml',
+      source
+        .replace('name: Checkout API', 'name: Payments API')
+        .replace('filepath: src/api.ts', 'filepath: src/next.ts')
+    );
+
+    await openSource(host);
+
+    expect(fake.html.at(-1)).toContain('Payments API');
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
+  });
+
+  it('does not open a file when the focused system has none', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    await openArchitectureMap(await createEditorHost(fake.api));
+    fake.focus('checkout/billing');
+
+    await openSource(await createEditorHost(fake.api));
+
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:'))).toEqual([
+      'show:/repo/blueprints/context.yaml',
+    ]);
   });
 
   it('does not read the folder when Generate runs untrusted', async () => {

@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import {
   CANCEL_COPY,
   GENERATE_OFF_COPY,
@@ -14,9 +15,19 @@ import type {
   GenerateChoice,
   WorkspaceFolder,
 } from '../features/editorPreview/ports';
+import {
+  closeDiagramSession,
+  focusDiagramSystem,
+  openDiagramSession,
+  readFocusedSystem,
+  replaceDiagramSession,
+} from './diagramSession';
 
 interface WebviewPanel {
-  webview: { html: string };
+  webview: {
+    html: string;
+    onDidReceiveMessage(listener: (message: unknown) => void): { dispose(): void };
+  };
   onDidDispose(listener: () => void): void;
 }
 
@@ -64,6 +75,7 @@ export interface VsCodeLike<
       options: { title: string }
     ): Thenable<FolderPickItem | undefined>;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
+    setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
       viewType: string,
       title: string,
@@ -75,6 +87,8 @@ export interface VsCodeLike<
     openExternal(uri: Uri): Thenable<boolean>;
   };
 }
+
+const STATUS_HIDE_MS = 5000;
 
 export async function createEditorHost<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
@@ -102,6 +116,15 @@ export async function createEditorHost<Uri extends FileUri>(
     askGenerateInterest: () => askGenerateInterest(api),
     openDiscussion: async url => {
       await api.env.openExternal(api.Uri.parse(url));
+    },
+    focusedSystem: () => readFocusedSystem(),
+    fileExists: path => fileExists(api, path),
+    openFile: async path => {
+      const document = await api.workspace.openTextDocument(api.Uri.file(path));
+      await api.window.showTextDocument(document, api.ViewColumn.Active);
+    },
+    setStatus: message => {
+      api.window.setStatusBarMessage(message, STATUS_HIDE_MS);
     },
   };
 }
@@ -196,21 +219,75 @@ async function showDiagram<Uri extends FileUri>(
     'archlens.architectureMap',
     'Architecture map',
     api.ViewColumn.Beside,
-    { enableScripts: false }
+    { enableScripts: true }
   );
-  panel.webview.html = renderMap(diagram);
+  let session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath));
+  panel.webview.html = renderMap(diagram, mapNonce());
+  const messages = panel.webview.onDidReceiveMessage(message => {
+    if (!isFocusMessage(message)) return;
+    focusDiagramSystem(session, message.entityRef);
+  });
   const listener = api.workspace.onDidSaveTextDocument(saved => {
     if (saved.uri.fsPath !== diagram.sourcePath) return;
     const decision = decideOpenMap({
       files: [{ path: diagram.sourcePath, content: saved.getText() }],
       selectedPath: diagram.sourcePath,
     });
-    panel.webview.html =
-      decision.kind === 'diagram' ? renderMap(decision.diagram) : renderEmptyMap();
+    if (decision.kind === 'diagram') {
+      session = replaceDiagramSession(
+        session,
+        decision.diagram,
+        workspaceRootFor(api, decision.diagram.sourcePath)
+      );
+      panel.webview.html = renderMap(decision.diagram, mapNonce());
+      return;
+    }
+    closeDiagramSession(session);
+    panel.webview.html = renderEmptyMap();
   });
   panel.onDidDispose(() => {
+    closeDiagramSession(session);
+    messages.dispose();
     listener.dispose();
   });
+}
+
+function mapNonce(): string {
+  return randomBytes(16).toString('hex');
+}
+
+function isFocusMessage(message: unknown): message is { entityRef: string } {
+  if (typeof message !== 'object' || message === null) return false;
+  const record = message as { type?: unknown; entityRef?: unknown };
+  return record.type === 'focus-system' && typeof record.entityRef === 'string';
+}
+
+function workspaceRootFor<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  blueprintPath: string
+): string | undefined {
+  const file = blueprintPath.replaceAll('\\', '/').replace(/\/+$/, '');
+  const folders = api.workspace.workspaceFolders ?? [];
+  const matches = folders
+    .map(folder => folder.uri.fsPath)
+    .filter(folder => {
+      const root = folder.replaceAll('\\', '/').replace(/\/+$/, '');
+      return file === root || file.startsWith(`${root}/`);
+    })
+    .sort((left, right) => right.length - left.length);
+  return matches[0];
+}
+
+async function fileExists<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  path: string
+): Promise<boolean> {
+  try {
+    const stat = await api.workspace.fs.stat(api.Uri.file(path));
+    return (stat.type & api.FileType.File) !== 0;
+  } catch {
+    return false;
+  }
 }
 
 async function askGenerateInterest<Uri extends FileUri>(

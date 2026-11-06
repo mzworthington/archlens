@@ -6,6 +6,7 @@ export interface BlueprintFile {
 export interface DiagramSystem {
   readonly name: string;
   readonly entityRef: string;
+  readonly sourceFile?: string;
 }
 
 export interface DiagramLink {
@@ -26,6 +27,12 @@ export interface WorkspaceFolder {
 
 export type GenerateChoice = 'tell' | 'cancel' | 'escape';
 
+export interface FocusedSystem {
+  readonly name: string;
+  readonly sourceFile?: string;
+  readonly workspaceRoot?: string;
+}
+
 export interface EditorHost {
   isTrusted(): boolean;
   generateEnabled(): boolean;
@@ -40,4 +47,8 @@ export interface EditorHost {
   showDiagram(diagram: DiagramView): Promise<void>;
   askGenerateInterest(): Promise<GenerateChoice>;
   openDiscussion(url: string): Promise<void>;
+  focusedSystem(): FocusedSystem | undefined;
+  fileExists(path: string): Promise<boolean>;
+  openFile(path: string): Promise<void>;
+  setStatus(message: string): void;
 }

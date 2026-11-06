@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { EMPTY_MAP_COPY, INTEREST_DISCUSSION_URL, TRUST_COPY } from './domain';
-import { generateFromWorkspace, openArchitectureMap } from './handler';
-import type { BlueprintFile, EditorHost, WorkspaceFolder } from './ports';
+import { EMPTY_MAP_COPY, INTEREST_DISCUSSION_URL, NO_SOURCE_COPY, TRUST_COPY } from './domain';
+import { generateFromWorkspace, openArchitectureMap, openSource } from './handler';
+import type { BlueprintFile, EditorHost, FocusedSystem, WorkspaceFolder } from './ports';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
@@ -26,6 +26,8 @@ interface RecordedHost extends EditorHost {
   readonly messages: string[];
   readonly diagrams: string[];
   readonly discussions: string[];
+  readonly opened: string[];
+  readonly statuses: string[];
 }
 
 function host(input: {
@@ -37,17 +39,23 @@ function host(input: {
   selectedFolder?: string;
   picked?: string;
   choice?: 'tell' | 'cancel' | 'escape';
+  focused?: FocusedSystem;
+  existing?: readonly string[];
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
   const diagrams: string[] = [];
   const discussions: string[] = [];
+  const opened: string[] = [];
+  const statuses: string[] = [];
   const files = input.files ?? [];
   return {
     calls,
     messages,
     diagrams,
     discussions,
+    opened,
+    statuses,
     isTrusted: () => input.trusted,
     generateEnabled: () => {
       calls.push('read-setting');
@@ -81,6 +89,14 @@ function host(input: {
     },
     openDiscussion: async url => {
       discussions.push(url);
+    },
+    focusedSystem: () => input.focused,
+    fileExists: async path => (input.existing ?? []).includes(path),
+    openFile: async path => {
+      opened.push(path);
+    },
+    setStatus: message => {
+      statuses.push(message);
     },
   };
 }
@@ -136,6 +152,59 @@ describe('open architecture map command', () => {
     expect(editor.calls).toContain('pick-folder');
     expect(editor.calls).toContain('list:/web');
     expect(editor.calls).not.toContain('list:/api');
+  });
+});
+
+describe('open source command', () => {
+  it('does not open a file while the workspace is untrusted', async () => {
+    const editor = host({
+      trusted: false,
+      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
+      existing: ['/repo/src/api.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.opened).toEqual([]);
+  });
+
+  it('opens the file the focused system points at and names it in the status', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
+      existing: ['/repo/src/api.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.opened).toEqual(['/repo/src/api.ts']);
+    expect(editor.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
+  });
+
+  it('leaves the diagram in place when the focused system has no source file', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Billing', workspaceRoot: '/repo' },
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
+    expect(editor.opened).toEqual([]);
+  });
+
+  it('does not open a path outside the workspace', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Checkout API', sourceFile: '../secret.ts', workspaceRoot: '/repo' },
+      existing: ['/secret.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
+    expect(editor.opened).toEqual([]);
   });
 });
 
