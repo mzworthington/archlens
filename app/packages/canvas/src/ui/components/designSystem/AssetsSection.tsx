@@ -44,9 +44,9 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
   handleDownload,
 }) => (
   <div className="space-y-6 animate-fade-in">
-    <div className="border-b border-[#00f0ff]/10 pb-4">
+    <div className="border-b border-accent/10 pb-4">
       <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-        <FileCode className="w-5 h-5 text-[#00f0ff]" /> Vector Asset Pack
+        <FileCode className="w-5 h-5 text-accent" /> Vector Asset Pack
       </h2>
       <p className="text-xs text-slate-400 mt-1">
         Exposes vector graphic source codes directly. Use these files in HTML markup, React
@@ -55,13 +55,13 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="border border-[#00f0ff]/10 rounded-xl p-4 bg-[#040914]/40 flex flex-col justify-between space-y-4">
+      <div className="border border-accent/10 rounded-xl p-4 bg-navy/40 flex flex-col justify-between space-y-4">
         <div>
           <div className="flex items-center justify-between">
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono">
               1. Favicon (favicon.svg)
             </h4>
-            <div className="p-1 border border-[#00f0ff]/20 bg-[#040914] rounded">
+            <div className="p-1 border border-accent/20 bg-navy rounded">
               <svg viewBox="0 0 32 32" className="w-6 h-6">
                 <path
                   d="M 16 5 V 27 M 5 16 H 27"
@@ -90,7 +90,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
         <div className="flex gap-2">
           <button
             onClick={() => copyToClipboard(faviconSvg, 'asset-fav')}
-            className="flex-1 py-1.5 border border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/10 rounded-lg text-xs font-semibold font-mono flex items-center justify-center gap-1.5 cursor-pointer"
+            className="flex-1 py-1.5 border border-accent/30 text-accent hover:bg-accent/10 rounded-lg text-xs font-semibold font-mono flex items-center justify-center gap-1.5 cursor-pointer"
           >
             {copiedId === 'asset-fav' ? (
               <Check className="w-3.5 h-3.5" />
@@ -101,7 +101,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
           </button>
           <button
             onClick={() => handleDownload(faviconSvg, 'favicon.svg', 'image/svg+xml')}
-            className="py-1.5 px-3 bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 text-[#00f0ff] rounded-lg text-xs font-semibold flex items-center justify-center cursor-pointer"
+            className="py-1.5 px-3 bg-accent/15 hover:bg-accent/25 text-accent rounded-lg text-xs font-semibold flex items-center justify-center cursor-pointer"
             title="Download SVG"
           >
             <Download className="w-3.5 h-3.5" />
@@ -109,13 +109,13 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
         </div>
       </div>
 
-      <div className="border border-[#00f0ff]/10 rounded-xl p-4 bg-[#040914]/40 flex flex-col justify-between space-y-4">
+      <div className="border border-accent/10 rounded-xl p-4 bg-navy/40 flex flex-col justify-between space-y-4">
         <div>
           <div className="flex items-center justify-between">
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider font-mono">
               2. Blueprint Grid (grid.svg)
             </h4>
-            <div className="w-8 h-8 rounded border border-[#00f0ff]/20 bg-[#040914] bg-[linear-gradient(rgba(0,240,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.1)_1px,transparent_1px)] bg-[size:10px_10px]" />
+            <div className="w-8 h-8 rounded border border-accent/20 bg-navy bg-[linear-gradient(color-mix(in_srgb,var(--color-accent)_10%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_srgb,var(--color-accent)_10%,transparent)_1px,transparent_1px)] bg-[size:10px_10px]" />
           </div>
           <p className="text-xs text-slate-400 mt-2 font-sans">
             Repeating pattern forming seamless blueprint graph grids. Ideal as a repeatable CSS
@@ -125,7 +125,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
         <div className="flex gap-2">
           <button
             onClick={() => copyToClipboard(gridSvg, 'asset-grid')}
-            className="flex-1 py-1.5 border border-[#00f0ff]/30 text-[#00f0ff] hover:bg-[#00f0ff]/10 rounded-lg text-xs font-semibold font-mono flex items-center justify-center gap-1.5 cursor-pointer"
+            className="flex-1 py-1.5 border border-accent/30 text-accent hover:bg-accent/10 rounded-lg text-xs font-semibold font-mono flex items-center justify-center gap-1.5 cursor-pointer"
           >
             {copiedId === 'asset-grid' ? (
               <Check className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
           </button>
           <button
             onClick={() => handleDownload(gridSvg, 'grid.svg', 'image/svg+xml')}
-            className="py-1.5 px-3 bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 text-[#00f0ff] rounded-lg text-xs font-semibold flex items-center justify-center cursor-pointer"
+            className="py-1.5 px-3 bg-accent/15 hover:bg-accent/25 text-accent rounded-lg text-xs font-semibold flex items-center justify-center cursor-pointer"
             title="Download SVG"
           >
             <Download className="w-3.5 h-3.5" />
@@ -163,9 +163,9 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({
         ].map((node, i) => (
           <div
             key={i}
-            className="border border-[#00f0ff]/10 rounded-xl p-3 bg-[#040914]/60 text-center flex flex-col items-center justify-center space-y-2"
+            className="border border-accent/10 rounded-xl p-3 bg-navy/60 text-center flex flex-col items-center justify-center space-y-2"
           >
-            <node.icon className="w-7 h-7 text-[#00f0ff] filter drop-shadow-[0_0_4px_rgba(0,240,255,0.5)]" />
+            <node.icon className="w-7 h-7 text-accent filter drop-shadow-[0_0_4px_color-mix(in_srgb,var(--color-accent)_50%,transparent)]" />
             <div className="text-[10px] font-mono text-slate-300">{node.label}</div>
           </div>
         ))}

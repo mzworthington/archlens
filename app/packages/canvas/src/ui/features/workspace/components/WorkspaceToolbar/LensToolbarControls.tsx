@@ -68,7 +68,7 @@ function ResilienceLensButton() {
         unavailable && !isResilienceMode
           ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-900'
           : isResilienceMode
-            ? 'bg-[#00f0ff]/20 text-[#00f0ff]'
+            ? 'bg-accent/20 text-accent'
             : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
       }`}
     >
@@ -89,7 +89,7 @@ function SimulateButton() {
       onClick={() => runResilienceSimulation()}
       disabled={!canSimulate || resilienceSimulationRunning}
       data-testid="toolbar-resilience-simulate"
-      className={`${lensBtnClass} border border-[#00f0ff]/25 text-[#00f0ff] hover:bg-[#00f0ff]/10 disabled:opacity-40`}
+      className={`${lensBtnClass} border border-accent/25 text-accent hover:bg-accent/10 disabled:opacity-40`}
       aria-label="Run resilience simulation"
       title="Run resilience simulation"
     >

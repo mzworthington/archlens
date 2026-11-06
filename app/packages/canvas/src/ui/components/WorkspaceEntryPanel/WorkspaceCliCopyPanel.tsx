@@ -50,7 +50,7 @@ export const WorkspaceCliCopyPanel: React.FC<WorkspaceCliCopyPanelProps> = ({
           <CliCommandCopyStrip />
           <Link
             href={CLI_GETTING_STARTED_PATH}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-cyan-300 transition"
             data-testid="workspace-cli-install-guide"
           >
             Install guide

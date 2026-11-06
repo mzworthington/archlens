@@ -172,10 +172,10 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
         >
           <div className="flex items-center justify-between gap-3 p-4 border-b border-slate-800 shrink-0">
             <div className="flex items-center gap-2 min-w-0">
-              <ListTree className="w-4 h-4 text-[#00f0ff] shrink-0" />
+              <ListTree className="w-4 h-4 text-accent shrink-0" />
               <h2
                 id="chaos-spec-picker-title"
-                className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs"
+                className="font-bold text-accent uppercase tracking-wider font-mono text-xs"
               >
                 Browse ChaosSpecs
               </h2>
@@ -203,7 +203,7 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
                 value={filter}
                 onChange={event => setFilter(event.target.value)}
                 placeholder="Filter by name or diagram…"
-                className="w-full rounded-md border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-[#00f0ff]/50"
+                className="w-full rounded-md border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-accent/50"
                 data-testid="chaos-spec-picker-filter"
               />
             </label>
@@ -242,7 +242,7 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 space-y-1">
                       <div className="flex items-center gap-2">
-                        <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+                        <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
                         <p className="text-sm font-semibold text-slate-100 truncate">
                           {entry.name}
                         </p>
@@ -267,7 +267,7 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
                         type="button"
                         disabled={unavailable || busy}
                         onClick={() => void openEntry(entry, false)}
-                        className="px-2.5 py-1.5 text-[11px] font-semibold rounded-md bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/30 hover:bg-[#00f0ff]/15 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        className="px-2.5 py-1.5 text-[11px] font-semibold rounded-md bg-accent/10 text-accent border border-accent/30 hover:bg-accent/15 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                         data-testid={`chaos-spec-picker-open-${entry.id}`}
                       >
                         {busy ? 'Opening…' : 'Open'}

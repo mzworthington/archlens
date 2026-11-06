@@ -34,7 +34,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
 
   return (
     <div className="border-t border-slate-900 pt-4" data-testid="node-comments-section">
-      <h4 className="text-[10px] font-bold font-mono text-[#00f0ff] uppercase tracking-wider mb-3">
+      <h4 className="text-[10px] font-bold font-mono text-accent uppercase tracking-wider mb-3">
         Comments
       </h4>
 

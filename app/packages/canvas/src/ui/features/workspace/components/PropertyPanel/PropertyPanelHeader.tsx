@@ -7,7 +7,7 @@ export const PropertyPanelHeader: React.FC<PropertyPanelHeaderProps> = ({
   toggleRightCollapsed,
 }) => (
   <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40">
-    <h3 className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs">
+    <h3 className="font-bold text-accent uppercase tracking-wider font-mono text-xs">
       Properties Panel
     </h3>
     <div className="flex items-center gap-2">

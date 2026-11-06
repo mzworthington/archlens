@@ -46,10 +46,10 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
             >
               <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40 sticky top-0 z-10 shrink-0">
                 <div className="flex items-center gap-2">
-                  <GitCompare className="w-4 h-4 text-[#00f0ff] filter drop-shadow-[0_0_4px_rgba(0,240,255,0.4)]" />
+                  <GitCompare className="w-4 h-4 text-accent filter drop-shadow-[0_0_4px_color-mix(in_srgb,var(--color-accent)_40%,transparent)]" />
                   <h2
                     id="diff-menu-title"
-                    className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs"
+                    className="font-bold text-accent uppercase tracking-wider font-mono text-xs"
                   >
                     {previewCollabVsDisk ? 'Live room vs disk' : 'Pending Draft Changes'}
                   </h2>

@@ -53,7 +53,7 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href={CLI_GETTING_STARTED_PATH}
-              className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
+              className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-accent hover:underline"
               data-testid="browser-lite-scan-banner-cli"
             >
               <Terminal className="w-3 h-3" aria-hidden />

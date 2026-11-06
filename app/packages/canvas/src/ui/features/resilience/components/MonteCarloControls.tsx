@@ -14,9 +14,7 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
   return (
     <div className="space-y-4" data-testid="monte-carlo-controls">
       <div>
-        <h2 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-1">
-          Monte Carlo
-        </h2>
+        <h2 className="text-xs font-mono uppercase tracking-wider text-accent mb-1">Monte Carlo</h2>
         <p className="text-xs text-slate-500">
           Jittered trials for P5 / mean / P95 SLA bands. Requires the WASM engine.
         </p>
@@ -77,7 +75,7 @@ export const MonteCarloControls: React.FC<Props> = ({ config, onChange }) => {
           value={jitterPercent}
           onChange={e => onChange({ severityJitter: Number(e.target.value) / 100 })}
           aria-labelledby="monte-carlo-jitter-legend"
-          className="w-full accent-[#00f0ff]"
+          className="w-full accent-accent"
           data-testid="monte-carlo-jitter"
         />
       </fieldset>

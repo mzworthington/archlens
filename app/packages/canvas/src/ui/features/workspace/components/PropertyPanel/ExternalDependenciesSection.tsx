@@ -109,7 +109,7 @@ export const ExternalDependenciesSection: React.FC = () => {
 function SectionHeader() {
   return (
     <div className="flex items-center gap-2 mb-3">
-      <Link className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+      <Link className="w-3.5 h-3.5 text-accent shrink-0" />
       <h4 className="text-[10px] font-bold font-mono text-brand-400 uppercase tracking-wider">
         External Dependencies
       </h4>

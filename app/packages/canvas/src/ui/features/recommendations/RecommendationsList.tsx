@@ -68,7 +68,7 @@ export const RecommendationsList: React.FC<Props> = ({
                 type={interactive ? 'button' : undefined}
                 onClick={interactive ? () => onSelect?.(recommendation) : undefined}
                 className={`w-full text-left rounded-lg border px-3 py-2.5 ${kindAccent(recommendation.kind)} ${
-                  interactive ? 'cursor-pointer transition-colors hover:border-[#00f0ff]/30' : ''
+                  interactive ? 'cursor-pointer transition-colors hover:border-accent/30' : ''
                 }`}
                 data-testid={`recommendation-${recommendation.kind}`}
               >
@@ -111,7 +111,7 @@ export const RecommendationsList: React.FC<Props> = ({
                           event.stopPropagation();
                           onAction(action, recommendation);
                         }}
-                        className="rounded-md border border-[#00f0ff]/20 bg-[#061125]/80 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[#00f0ff] hover:border-[#00f0ff]/40"
+                        className="rounded-md border border-accent/20 bg-surface/80 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-accent hover:border-accent/40"
                         data-testid={`recommendation-action-${action.kind}`}
                       >
                         {action.label}

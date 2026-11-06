@@ -34,7 +34,7 @@ function TrendCard({
           <span className="text-[10px] font-semibold text-slate-400">{summary}</span>
         ) : null}
       </div>
-      <div className="flex items-end justify-end text-[#00f0ff]/80 min-h-[24px]">{children}</div>
+      <div className="flex items-end justify-end text-accent/80 min-h-[24px]">{children}</div>
       <p className="mt-1 text-[10px] leading-snug text-slate-500">{help}</p>
     </div>
   );

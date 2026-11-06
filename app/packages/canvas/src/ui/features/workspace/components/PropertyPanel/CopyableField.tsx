@@ -19,7 +19,7 @@ export const CopyableField: React.FC<{ label: string; value: string; id: string 
         readOnly
         value={value}
         onClick={e => (e.target as HTMLInputElement).select()}
-        className="w-full bg-[#040914]/40 border border-slate-800/80 focus:border-brand-500/50 focus:shadow-[0_0_8px_rgba(139,92,246,0.05)] rounded-lg px-3 py-2 text-xs font-mono text-brand-400 cursor-text transition duration-200 select-all focus:outline-none"
+        className="w-full bg-navy/40 border border-slate-800/80 focus:border-brand-500/50 focus:shadow-[0_0_8px_rgba(139,92,246,0.05)] rounded-lg px-3 py-2 text-xs font-mono text-brand-400 cursor-text transition duration-200 select-all focus:outline-none"
         title="Click to select all and copy"
       />
     </div>

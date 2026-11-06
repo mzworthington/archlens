@@ -58,7 +58,7 @@ export const DiagramExportMenuItems: React.FC<Props> = ({ menuItemClass, onClose
         title="Export the visible diagram as PNG for slides and docs"
         data-testid="export-diagram-png"
       >
-        <Image className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <Image className="w-3.5 h-3.5 text-accent shrink-0" />
         Export PNG
       </button>
       <button
@@ -70,7 +70,7 @@ export const DiagramExportMenuItems: React.FC<Props> = ({ menuItemClass, onClose
         title="Export the visible diagram as SVG"
         data-testid="export-diagram-svg"
       >
-        <FileImage className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <FileImage className="w-3.5 h-3.5 text-accent shrink-0" />
         Export SVG
       </button>
     </>

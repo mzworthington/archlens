@@ -32,7 +32,7 @@ export const ExecutiveTelemetryPanel: React.FC<Props> = ({ result }) => {
   return (
     <div className="space-y-5" data-testid="executive-telemetry-panel">
       <div>
-        <h2 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-accent mb-2">
           Business continuity
         </h2>
         <div

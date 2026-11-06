@@ -68,13 +68,13 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
           <img
             src="/assets/logo.svg"
             alt="ArchLens logo"
-            className="w-20 sm:w-24 shrink-0 drop-shadow-[0_0_30px_rgba(0,240,255,0.2)]"
+            className="w-20 sm:w-24 shrink-0 drop-shadow-[0_0_30px_color-mix(in_srgb,var(--color-accent)_20%,transparent)]"
           />
         </div>
       </section>
     ) : (
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.10),transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--color-accent)_10%,transparent),transparent)]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent mb-3">
@@ -115,7 +115,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
             <img
               src="/assets/logo.svg"
               alt="ArchLens logo"
-              className="w-48 sm:w-56 drop-shadow-[0_0_40px_rgba(0,240,255,0.25)]"
+              className="w-48 sm:w-56 drop-shadow-[0_0_40px_color-mix(in_srgb,var(--color-accent)_25%,transparent)]"
             />
           </div>
         </div>

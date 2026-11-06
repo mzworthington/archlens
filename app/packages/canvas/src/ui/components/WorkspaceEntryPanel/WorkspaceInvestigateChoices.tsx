@@ -102,7 +102,7 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
             disabled={actionsDisabled}
             className={optionClass}
             ariaLabel={directoryPickerSupported ? undefined : ZIP_LITE_SCAN_ACCESSIBLE_NAME}
-            icon={<ScanSearch className="w-4 h-4 shrink-0 mt-0.5 text-[#00f0ff]" />}
+            icon={<ScanSearch className="w-4 h-4 shrink-0 mt-0.5 text-accent" />}
             title="Browser lite scan"
             titleExtra={
               <span
@@ -126,7 +126,7 @@ export const WorkspaceInvestigateChoices: React.FC<WorkspaceInvestigateChoicesPr
               onClick={openZipPicker}
               disabled={actionsDisabled}
               aria-label={ZIP_LITE_SCAN_ACCESSIBLE_NAME}
-              className="mt-1 w-full px-1 text-left text-[11px] text-slate-500 underline-offset-2 hover:text-slate-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 rounded disabled:opacity-50 disabled:pointer-events-none"
+              className="mt-1 w-full px-1 text-left text-[11px] text-slate-500 underline-offset-2 hover:text-slate-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded disabled:opacity-50 disabled:pointer-events-none"
             >
               Or upload a ZIP of the repo
             </button>

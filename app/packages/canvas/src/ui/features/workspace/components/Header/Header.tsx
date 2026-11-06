@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
 
   return (
     <AppHeader badge={badge}>
-      <div className="min-w-0 flex-1 border-l border-[#00f0ff]/15 pl-3 lg:pl-4">
+      <div className="min-w-0 flex-1 border-l border-accent/15 pl-3 lg:pl-4">
         <Breadcrumbs />
       </div>
     </AppHeader>

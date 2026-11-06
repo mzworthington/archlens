@@ -22,7 +22,7 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
   onDeleteProperty,
 }) => (
   <div className="border-t border-slate-900 pt-4">
-    <h4 className="text-[10px] font-bold font-mono text-[#00f0ff] uppercase tracking-wider mb-3">
+    <h4 className="text-[10px] font-bold font-mono text-accent uppercase tracking-wider mb-3">
       Metadata Attributes
     </h4>
 

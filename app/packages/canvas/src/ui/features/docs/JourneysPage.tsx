@@ -18,10 +18,7 @@ export const JourneysPage: React.FC = () => {
 
         <GoldenJourneyTour />
 
-        <section
-          aria-labelledby="other-demos-heading"
-          className="border-t border-[#00f0ff]/10 pt-10"
-        >
+        <section aria-labelledby="other-demos-heading" className="border-t border-accent/10 pt-10">
           <h2
             id="other-demos-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500"
@@ -38,14 +35,14 @@ export const JourneysPage: React.FC = () => {
               <li key={demo.href}>
                 <Link
                   href={demo.href}
-                  className="group flex items-center gap-3 rounded-lg border border-[#00f0ff]/10 bg-[#040914]/60 p-3 transition-colors hover:border-[#00f0ff]/30"
+                  className="group flex items-center gap-3 rounded-lg border border-accent/10 bg-navy/60 p-3 transition-colors hover:border-accent/30"
                 >
                   <img
                     src={docsScreenshotSrc(demo.img)}
                     alt=""
                     className="h-12 w-20 rounded object-cover opacity-80 group-hover:opacity-100"
                   />
-                  <span className="text-sm font-medium text-slate-300 group-hover:text-[#00f0ff]">
+                  <span className="text-sm font-medium text-slate-300 group-hover:text-accent">
                     {demo.label}
                   </span>
                 </Link>
@@ -59,7 +56,7 @@ export const JourneysPage: React.FC = () => {
             Refresh GIFs locally:{' '}
             <code className="text-slate-400">mise install && cd app && pnpm record:docs-media</code>
             . See{' '}
-            <Link href="/setup" className="text-[#00f0ff] hover:text-white">
+            <Link href="/setup" className="text-accent hover:text-white">
               Setup
             </Link>{' '}
             for ffmpeg, vhs and E2E details.

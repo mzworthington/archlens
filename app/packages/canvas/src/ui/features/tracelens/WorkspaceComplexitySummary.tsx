@@ -8,7 +8,7 @@ function formatCount(value: number): string {
 
 function SummaryStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-[#00f0ff]/10 bg-[#040914]/70 px-3 py-2">
+    <div className="rounded-lg border border-accent/10 bg-navy/70 px-3 py-2">
       <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500">{label}</p>
       <p className="mt-0.5 text-lg font-semibold text-slate-100 tabular-nums">{value}</p>
     </div>

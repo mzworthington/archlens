@@ -94,10 +94,10 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
         aria-label="Close refactor plan"
         onClick={onClose}
       />
-      <aside className="relative w-full max-w-md h-full overflow-y-auto border-l border-[#00f0ff]/15 bg-[#040914] shadow-2xl">
-        <div className="sticky top-0 z-10 border-b border-[#00f0ff]/10 bg-[#040914]/95 backdrop-blur px-5 py-4 flex items-start justify-between gap-3">
+      <aside className="relative w-full max-w-md h-full overflow-y-auto border-l border-accent/15 bg-navy shadow-2xl">
+        <div className="sticky top-0 z-10 border-b border-accent/10 bg-navy/95 backdrop-blur px-5 py-4 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">
               Refactor plan
             </p>
             <h2 className="text-lg font-bold text-white truncate">{offender.name}</h2>
@@ -117,7 +117,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
             <h3 className="font-mono text-[10px] uppercase tracking-wider text-slate-500 mb-2">
               Summary
             </h3>
-            <div className="rounded-xl border border-[#00f0ff]/10 bg-[#061125]/60 p-4 space-y-3">
+            <div className="rounded-xl border border-accent/10 bg-surface/60 p-4 space-y-3">
               <div className="flex flex-wrap gap-1.5">
                 {boundary.signals.map(signal => (
                   <span
@@ -197,7 +197,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                             key={`${suggestion.kind}-${section}`}
                             type="button"
                             onClick={() => scrollToSection(`refactor-section-${section}`)}
-                            className="rounded border border-slate-800 bg-slate-950/60 px-2 py-0.5 text-[10px] font-mono text-[#00f0ff] hover:border-[#00f0ff]/40 transition-colors"
+                            className="rounded border border-slate-800 bg-slate-950/60 px-2 py-0.5 text-[10px] font-mono text-accent hover:border-accent/40 transition-colors"
                             data-testid={`refactor-link-${suggestion.kind}-${section}`}
                           >
                             {section === 'coupled-files'
@@ -233,7 +233,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                     <button
                       type="button"
                       onClick={() => openSource(member.filepath!, member.entityRef)}
-                      className="mt-1 inline-flex max-w-full items-center gap-1 rounded border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-1.5 py-0.5 text-[10px] font-mono text-[#00f0ff] hover:bg-[#00f0ff]/20 transition-colors"
+                      className="mt-1 inline-flex max-w-full items-center gap-1 rounded border border-accent/30 bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono text-accent hover:bg-accent/20 transition-colors"
                       title="View source code"
                       data-testid={`view-source-${member.entityRef}`}
                     >
@@ -269,7 +269,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
                       </div>
                       <div className="h-1.5 rounded-full bg-slate-900 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-[#00f0ff]/70"
+                          className="h-full rounded-full bg-accent/70"
                           style={{ width: `${Math.round(author.percent * 100)}%` }}
                         />
                       </div>
@@ -317,7 +317,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
             <button
               type="button"
               onClick={onOpenCanvas}
-              className="w-full rounded-xl border border-[#00f0ff]/40 bg-[#00f0ff]/10 text-[#00f0ff] hover:bg-[#00f0ff]/20 px-4 py-2.5 text-sm font-semibold transition-colors"
+              className="w-full rounded-xl border border-accent/40 bg-accent/10 text-accent hover:bg-accent/20 px-4 py-2.5 text-sm font-semibold transition-colors"
               data-testid="open-refactor-on-canvas"
             >
               Open on canvas
@@ -341,7 +341,7 @@ export const RefactorPlanSlideOver: React.FC<RefactorPlanSlideOverProps> = ({
               <button
                 type="button"
                 onClick={() => openSource(offenderFilepath, offender.entityRef)}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 text-slate-200 hover:border-[#00f0ff]/35 hover:text-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 text-slate-200 hover:border-accent/35 hover:text-accent px-4 py-2.5 text-sm font-semibold transition-colors"
                 data-testid="view-offender-source"
               >
                 <Code className="w-4 h-4" />

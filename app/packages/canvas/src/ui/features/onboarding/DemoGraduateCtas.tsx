@@ -18,7 +18,7 @@ export const DemoGraduateCtas: React.FC<DemoGraduateCtasProps> = ({
 
   return (
     <div
-      className="mt-4 space-y-3 rounded-xl border border-[#00f0ff]/20 bg-[#040914]/80 p-4"
+      className="mt-4 space-y-3 rounded-xl border border-accent/20 bg-navy/80 p-4"
       data-testid={testId}
     >
       <p className="text-xs font-mono uppercase tracking-wider text-slate-400">Next</p>
@@ -30,7 +30,7 @@ export const DemoGraduateCtas: React.FC<DemoGraduateCtasProps> = ({
         <button
           type="button"
           onClick={() => void openBrowserLiteScan()}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-2 text-sm font-semibold text-[#00f0ff] hover:border-[#00f0ff]/50 cursor-pointer"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-accent/30 bg-accent/10 px-3 py-2 text-sm font-semibold text-accent hover:border-accent/50 cursor-pointer"
           data-testid={`${testId}-scan`}
         >
           <ScanSearch className="w-4 h-4" aria-hidden />

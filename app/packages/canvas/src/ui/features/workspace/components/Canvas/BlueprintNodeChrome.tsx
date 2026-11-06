@@ -178,7 +178,7 @@ export const BlueprintNodeHeaderChrome: React.FC<HeaderChromeProps> = ({
               e.stopPropagation();
               onViewSource(sourceFilepath, diagramSource);
             }}
-            className="flex items-center gap-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 hover:bg-[#00f0ff]/20 active:bg-[#00f0ff]/30 text-[#00f0ff] px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
+            className="flex items-center gap-1 bg-accent/10 border border-accent/30 hover:bg-accent/20 active:bg-accent/30 text-accent px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
             title="View source code"
             aria-label="View source code"
             data-testid="view-source-button"

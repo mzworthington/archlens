@@ -63,10 +63,10 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
         >
           <div className="flex items-center justify-between p-4 border-b border-slate-800 shrink-0">
             <div className="flex items-center gap-2">
-              <GitMerge className="w-4 h-4 text-[#00f0ff]" />
+              <GitMerge className="w-4 h-4 text-accent" />
               <h2
                 id="import-mermaid-title"
-                className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs"
+                className="font-bold text-accent uppercase tracking-wider font-mono text-xs"
               >
                 Import Mermaid
               </h2>

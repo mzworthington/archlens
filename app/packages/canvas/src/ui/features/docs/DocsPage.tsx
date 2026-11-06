@@ -75,7 +75,7 @@ export const DocsPage: React.FC = () => {
                 onChange={e => setQuery(e.target.value)}
                 placeholder="Filter features…"
                 data-testid="docs-feature-filter"
-                className="w-full rounded-lg border border-[#00f0ff]/20 bg-slate-950/70 py-2 pl-9 pr-3 font-mono text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-[#00f0ff]/50 focus:ring-1 focus:ring-[#00f0ff]/30"
+                className="w-full rounded-lg border border-accent/20 bg-slate-950/70 py-2 pl-9 pr-3 font-mono text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30"
               />
             </label>
             <p
@@ -102,8 +102,8 @@ export const DocsPage: React.FC = () => {
                     onClick={() => setPackageFilter(active ? null : heading)}
                     className={`rounded-md border px-2.5 py-1 font-mono text-[11px] transition-colors ${
                       active
-                        ? 'border-[#00f0ff]/50 bg-[#00f0ff]/20 text-[#00f0ff]'
-                        : 'border-[#00f0ff]/20 bg-[#00f0ff]/5 text-[#00f0ff] hover:bg-[#00f0ff]/15'
+                        ? 'border-accent/50 bg-accent/20 text-accent'
+                        : 'border-accent/20 bg-accent/5 text-accent hover:bg-accent/15'
                     }`}
                   >
                     {heading}

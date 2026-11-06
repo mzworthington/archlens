@@ -62,7 +62,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
       className={
         embedded
           ? 'min-w-0 flex flex-col text-slate-100'
-          : 'fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-[#040914]/98 blueprint-grid text-slate-100 overflow-y-auto animate-fade-in pb-safe'
+          : 'fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-navy/98 blueprint-grid text-slate-100 overflow-y-auto animate-fade-in pb-safe'
       }
     >
       {!embedded ? (
@@ -74,7 +74,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
       ) : null}
 
       {!embedded ? (
-        <div className="md:hidden border-b border-[#00f0ff]/10 bg-[#061125]/60 backdrop-blur-sm sticky z-40 top-[73px]">
+        <div className="md:hidden border-b border-accent/10 bg-surface/60 backdrop-blur-sm sticky z-40 top-[73px]">
           <div className="flex gap-2 items-center p-3 overflow-x-auto scrollbar-none min-w-0">
             {DESIGN_SYSTEM_SECTIONS.map(item => {
               const active = activeTab === item.id;
@@ -85,7 +85,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
                   onClick={() => setActiveTab(item.id)}
                   className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 cursor-pointer ${
                     active
-                      ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/30'
+                      ? 'bg-accent/15 text-accent border-accent/30'
                       : 'text-slate-500 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
                   }`}
                 >
@@ -111,7 +111,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
           >
             <div className="sticky top-28 space-y-6 text-sm">
               <div>
-                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
                   Design system
                 </p>
                 <ul className="space-y-1">
@@ -124,7 +124,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
                           onClick={() => setActiveTab(item.id)}
                           className={`w-full text-left block rounded-md px-2 py-1.5 transition-colors cursor-pointer ${
                             active
-                              ? 'bg-[#00f0ff]/10 text-[#00f0ff]'
+                              ? 'bg-accent/10 text-accent'
                               : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
                           }`}
                         >
@@ -143,7 +143,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
           className={
             embedded
               ? 'min-w-0 w-full'
-              : 'min-w-0 w-full bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm'
+              : 'min-w-0 w-full bg-surface/40 border border-accent/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm'
           }
         >
           {activeTab === 'identity' && (

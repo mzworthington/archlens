@@ -9,7 +9,7 @@ type Props = {
 const buttonClass = (active: boolean) =>
   `flex-1 px-2 py-1.5 text-[10px] font-mono uppercase tracking-wider transition cursor-pointer ${
     active
-      ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/40'
+      ? 'bg-accent/15 text-accent border-accent/40'
       : 'bg-slate-950 text-slate-500 hover:text-slate-300 hover:bg-slate-900'
   }`;
 

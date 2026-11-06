@@ -45,7 +45,7 @@ export const FaultScenarioList: React.FC<Props> = ({
             <div
               className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 transition ${
                 isActive
-                  ? 'border-[#00f0ff]/40 bg-[#00f0ff]/10'
+                  ? 'border-accent/40 bg-accent/10'
                   : 'border-slate-800 bg-slate-950/40 hover:border-slate-700'
               }`}
             >

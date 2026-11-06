@@ -16,7 +16,7 @@ function scoreBarColor(level: ConcernLevel): string {
     case 'info':
       return 'bg-slate-400';
     default:
-      return 'bg-[#00f0ff]/70';
+      return 'bg-accent/70';
   }
 }
 
@@ -27,7 +27,7 @@ function rowBorder(level: ConcernLevel): string {
     case 'warning':
       return 'border-amber-900/40 hover:border-amber-700/50';
     default:
-      return 'border-[#00f0ff]/10 hover:border-[#00f0ff]/25';
+      return 'border-accent/10 hover:border-accent/25';
   }
 }
 
@@ -69,7 +69,7 @@ export function EstateRankedRow({
 
   return (
     <div
-      className={`w-full grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)_5.5rem] gap-3 items-center rounded-xl border bg-[#040914]/60 px-3 py-3 transition-colors ${rowBorder(concernLevel)}`}
+      className={`w-full grid grid-cols-[2.5rem_minmax(0,1.4fr)_minmax(0,1fr)_7rem_minmax(0,1fr)_5.5rem] gap-3 items-center rounded-xl border bg-navy/60 px-3 py-3 transition-colors ${rowBorder(concernLevel)}`}
       data-testid={`estate-row-${recommendation.id}`}
     >
       <button
@@ -106,7 +106,7 @@ export function EstateRankedRow({
             />
           </div>
           {offender?.hotspotScoreByWeek && offender.hotspotScoreByWeek.length > 1 ? (
-            <div className="flex items-center justify-end gap-1.5 text-[#00f0ff]/70">
+            <div className="flex items-center justify-end gap-1.5 text-accent/70">
               {hotspotTrend ? (
                 <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400">
                   {formatHotspotScoreTrend(hotspotTrend)}
@@ -120,7 +120,7 @@ export function EstateRankedRow({
               />
             </div>
           ) : offender?.churnByWeek && offender.churnByWeek.length > 0 ? (
-            <div className="flex justify-end text-[#00f0ff]/70">
+            <div className="flex justify-end text-accent/70">
               <ChurnSparkline data={offender.churnByWeek} width={72} height={20} />
             </div>
           ) : null}
@@ -180,7 +180,7 @@ export function EstateRankedRow({
                 event.stopPropagation();
                 onAction(action, item);
               }}
-              className="rounded-md border border-[#00f0ff]/20 bg-[#061125]/80 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[#00f0ff] hover:border-[#00f0ff]/40"
+              className="rounded-md border border-accent/20 bg-surface/80 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-accent hover:border-accent/40"
             >
               {action.label}
             </button>

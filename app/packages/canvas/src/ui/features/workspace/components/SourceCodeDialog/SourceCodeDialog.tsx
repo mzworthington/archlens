@@ -155,7 +155,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
           {/* Dialog Header */}
           <div className="p-4 border-b border-slate-800 flex items-start justify-between gap-3 shrink-0 bg-slate-950/80">
             <div className="flex items-start gap-2 min-w-0 flex-1">
-              <Code2 className="w-4 h-4 text-[#00f0ff] mt-0.5 shrink-0" />
+              <Code2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
               <div className="min-w-0 flex-1">
                 <h2 id="source-code-dialog-title" className="text-base font-bold text-white">
                   Source code
@@ -166,7 +166,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                 {viewerUrl ? (
                   <ExternalHttpLink
                     href={viewerUrl}
-                    className="inline-flex items-center gap-1.5 text-xs text-[#00f0ff] hover:underline font-mono mt-1 font-semibold cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline font-mono mt-1 font-semibold cursor-pointer"
                     title="Open in repository browser / GitHub"
                   >
                     <ExternalLink className="w-3.5 h-3.5 shrink-0" />
@@ -198,7 +198,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                 title="Configure GitHub Personal Access Token (PAT)"
                 aria-label="GitHub PAT token settings"
               >
-                <Key className="w-3.5 h-3.5 text-[#00f0ff]" />
+                <Key className="w-3.5 h-3.5 text-accent" />
                 <span>{githubPat ? 'PAT Active' : 'Add PAT'}</span>
               </button>
 
@@ -216,7 +216,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
               {viewerUrl ? (
                 <ExternalHttpLink
                   href={viewerUrl}
-                  className="p-2 rounded-lg text-slate-400 hover:text-[#00f0ff] hover:bg-slate-900 transition"
+                  className="p-2 rounded-lg text-slate-400 hover:text-accent hover:bg-slate-900 transition"
                   aria-label="Open in repository browser"
                   title="Open in repository browser"
                 >
@@ -240,7 +240,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
             <div className="p-4 bg-slate-900/90 border-b border-slate-800 flex flex-col gap-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Key className="w-4 h-4 text-[#00f0ff]" />
+                  <Key className="w-4 h-4 text-accent" />
                   <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
                     GitHub Personal Access Token (PAT)
                   </h3>
@@ -257,7 +257,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                     value={tokenInput}
                     onChange={e => setTokenInput(e.target.value)}
                     placeholder="ghp_... or github_pat_..."
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-[#00f0ff] rounded-lg px-3 py-1.5 text-xs font-mono text-white focus:outline-none pr-8"
+                    className="w-full bg-slate-950 border border-slate-700 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-white focus:outline-none pr-8"
                   />
                   <button
                     type="button"
@@ -273,7 +273,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                 </div>
                 <button
                   type="submit"
-                  className="px-3 py-1.5 rounded-lg bg-[#00f0ff]/15 border border-[#00f0ff]/40 text-[#00f0ff] font-semibold text-xs hover:bg-[#00f0ff]/25 transition cursor-pointer shrink-0"
+                  className="px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/40 text-accent font-semibold text-xs hover:bg-accent/25 transition cursor-pointer shrink-0"
                 >
                   Save & Retry
                 </button>
@@ -299,7 +299,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
             ) : result && !result.ok ? (
               <div className="flex-1 flex flex-col items-center justify-center p-6 min-h-0 overflow-y-auto">
                 <div className="w-full max-w-lg bg-slate-900/80 border border-slate-800 rounded-xl p-6 text-center shadow-lg flex flex-col items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-[#00f0ff]">
+                  <div className="w-10 h-10 rounded-full bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-accent">
                     <Lock className="w-5 h-5" />
                   </div>
 
@@ -314,7 +314,7 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                       <button
                         type="button"
                         onClick={() => setShowPatDrawer(true)}
-                        className="text-[#00f0ff] font-semibold underline hover:text-white cursor-pointer"
+                        className="text-accent font-semibold underline hover:text-white cursor-pointer"
                       >
                         Add PAT
                       </button>{' '}
@@ -326,9 +326,9 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                   {viewerUrl ? (
                     <ExternalHttpLink
                       href={viewerUrl}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 border border-[#00f0ff]/40 text-[#00f0ff] font-bold text-xs transition cursor-pointer shadow-md"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/15 hover:bg-accent/25 border border-accent/40 text-accent font-bold text-xs transition cursor-pointer shadow-md"
                     >
-                      <ExternalLink className="w-4 h-4 shrink-0 text-[#00f0ff]" />
+                      <ExternalLink className="w-4 h-4 shrink-0 text-accent" />
                       <span>Open in GitHub</span>
                     </ExternalHttpLink>
                   ) : (
@@ -358,11 +358,11 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                           value={repoUrlInput}
                           onChange={e => setRepoUrlInput(e.target.value)}
                           placeholder="https://github.com/owner/repo"
-                          className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white focus:outline-none focus:border-[#00f0ff]"
+                          className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white focus:outline-none focus:border-accent"
                         />
                         <button
                           type="submit"
-                          className="px-3 py-1.5 rounded-lg bg-[#00f0ff]/15 border border-[#00f0ff]/30 text-[#00f0ff] font-semibold text-xs hover:bg-[#00f0ff]/25 transition cursor-pointer shrink-0"
+                          className="px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/30 text-accent font-semibold text-xs hover:bg-accent/25 transition cursor-pointer shrink-0"
                         >
                           Save & View Link
                         </button>

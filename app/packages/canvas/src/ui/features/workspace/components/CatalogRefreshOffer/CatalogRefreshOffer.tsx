@@ -122,15 +122,15 @@ export const CatalogRefreshOffer: React.FC = () => {
       <div
         role="status"
         aria-label="Newer snapshot available"
-        className="shrink-0 flex flex-wrap items-center justify-between gap-3 border-b border-[#00f0ff]/20 bg-[#061018] px-4 py-2"
+        className="shrink-0 flex flex-wrap items-center justify-between gap-3 border-b border-accent/20 bg-[#061018] px-4 py-2"
         data-testid="catalog-refresh-offer"
       >
-        <p className="text-xs font-semibold text-[#00f0ff]">Newer snapshot available</p>
+        <p className="text-xs font-semibold text-accent">Newer snapshot available</p>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => void requestRefresh()}
-            className="rounded-md bg-[#00f0ff]/15 px-3 py-1.5 text-[11px] font-semibold text-[#00f0ff] border border-[#00f0ff]/30 cursor-pointer"
+            className="rounded-md bg-accent/15 px-3 py-1.5 text-[11px] font-semibold text-accent border border-accent/30 cursor-pointer"
           >
             Refresh in place
           </button>
@@ -176,7 +176,7 @@ export const CatalogRefreshOffer: React.FC = () => {
               <button
                 type="button"
                 onClick={() => void confirmRefresh()}
-                className="rounded-md bg-[#00f0ff]/15 px-3 py-1.5 text-[11px] font-semibold text-[#00f0ff] border border-[#00f0ff]/30 cursor-pointer"
+                className="rounded-md bg-accent/15 px-3 py-1.5 text-[11px] font-semibold text-accent border border-accent/30 cursor-pointer"
               >
                 Refresh in place
               </button>

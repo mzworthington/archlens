@@ -12,7 +12,7 @@ export function AnalyticsPreference() {
     <section
       aria-labelledby="analytics-preference-heading"
       data-testid="analytics-preference"
-      className="mb-8 rounded-xl border border-[#00f0ff]/20 bg-slate-950/60 p-4"
+      className="mb-8 rounded-xl border border-accent/20 bg-slate-950/60 p-4"
     >
       <h2 id="analytics-preference-heading" className="text-sm font-semibold text-white">
         Product analytics
@@ -25,7 +25,7 @@ export function AnalyticsPreference() {
       <button
         type="button"
         onClick={helping ? analytics.deny : analytics.grant}
-        className="mt-3 rounded-md border border-[#00f0ff]/40 bg-[#00f0ff]/10 px-3 py-1.5 text-xs font-semibold text-[#00f0ff] hover:bg-[#00f0ff]/20"
+        className="mt-3 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/20"
       >
         {helping ? 'Stop tracking' : 'Help improve ArchLens'}
       </button>

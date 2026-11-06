@@ -12,7 +12,7 @@ interface ChaosSpecDialogProps {
 const tabClass = (active: boolean) =>
   `px-3 py-1.5 text-[11px] font-semibold rounded-md transition cursor-pointer ${
     active
-      ? 'bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/30'
+      ? 'bg-accent/10 text-accent border border-accent/30'
       : 'text-slate-400 hover:text-slate-200 border border-transparent'
   }`;
 
@@ -71,10 +71,10 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
           <div className="flex items-center justify-between gap-3 p-4 border-b border-slate-800 shrink-0">
             <div className="flex items-center gap-3 min-w-0">
               <div className="flex items-center gap-2 shrink-0">
-                <ShieldAlert className="w-4 h-4 text-[#00f0ff]" />
+                <ShieldAlert className="w-4 h-4 text-accent" />
                 <h2
                   id="chaos-spec-dialog-title"
-                  className="font-bold text-[#00f0ff] uppercase tracking-wider font-mono text-xs"
+                  className="font-bold text-accent uppercase tracking-wider font-mono text-xs"
                 >
                   ChaosSpec
                 </h2>
@@ -232,7 +232,7 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
                 <button
                   onClick={() => void handleApply(false)}
                   disabled={!canApply || applying}
-                  className="px-4 py-2 text-xs font-semibold border border-[#00f0ff]/30 text-[#00f0ff] rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                  className="px-4 py-2 text-xs font-semibold border border-accent/30 text-accent rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
                 >
                   {applying ? 'Applying…' : 'Load scenario'}
                 </button>
@@ -249,7 +249,7 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
                 <button
                   onClick={() => void handleCopy()}
                   disabled={!canCopyOrDownload || copying}
-                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold border border-[#00f0ff]/30 text-[#00f0ff] rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold border border-accent/30 text-accent rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
                   data-testid="chaos-spec-copy"
                 >
                   <Copy className="w-3.5 h-3.5" />

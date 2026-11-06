@@ -121,7 +121,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   return (
     <div className="border-t border-slate-900 pt-4" data-testid="forensics-section">
       <div className="flex items-center justify-between gap-2 mb-1">
-        <h4 className="text-[10px] font-bold font-mono text-[#00f0ff] uppercase tracking-wider">
+        <h4 className="text-[10px] font-bold font-mono text-accent uppercase tracking-wider">
           TraceLens
         </h4>
         <div className="flex items-center gap-2 shrink-0">
@@ -177,7 +177,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
                 </div>
                 <div className="h-1.5 rounded-full bg-slate-900 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-[#00f0ff]/70"
+                    className="h-full rounded-full bg-accent/70"
                     style={{ width: `${Math.round(author.percent * 100)}%` }}
                   />
                 </div>

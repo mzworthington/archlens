@@ -45,7 +45,7 @@ export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant 
         className={`${panelToggleClass} flex-1 justify-center`}
         aria-label="Open Explorer"
       >
-        <Braces className="w-4 h-4 text-[#00f0ff] shrink-0" aria-hidden />
+        <Braces className="w-4 h-4 text-accent shrink-0" aria-hidden />
         Explorer
       </button>
       <button
@@ -54,7 +54,7 @@ export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant 
         className={`${panelToggleClass} flex-1 justify-center`}
         aria-label="Open Properties Panel"
       >
-        <SlidersHorizontal className="w-4 h-4 text-[#00f0ff] shrink-0" aria-hidden />
+        <SlidersHorizontal className="w-4 h-4 text-accent shrink-0" aria-hidden />
         Props
       </button>
     </div>

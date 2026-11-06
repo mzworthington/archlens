@@ -17,12 +17,12 @@ export const DiagramLoadingOverlay: React.FC = () => {
       aria-busy="true"
       data-testid="diagram-loading-overlay"
     >
-      <div className="p-4 rounded-2xl bg-[#061125]/85 border border-[#00f0ff]/20 shadow-[0_0_30px_rgba(0,240,255,0.15)] flex flex-col items-center gap-3 min-w-[180px] max-w-[280px] text-center">
+      <div className="p-4 rounded-2xl bg-surface/85 border border-accent/20 shadow-[0_0_30px_color-mix(in_srgb,var(--color-accent)_15%,transparent)] flex flex-col items-center gap-3 min-w-[180px] max-w-[280px] text-center">
         {liteScanProgress ? (
           <BrowserLiteScanProgress progress={liteScanProgress} onCancel={cancelBrowserLiteScan} />
         ) : (
           <>
-            <Loader2 className="w-8 h-8 animate-spin text-[#00f0ff]" aria-hidden />
+            <Loader2 className="w-8 h-8 animate-spin text-accent" aria-hidden />
             <span className="text-xs font-mono tracking-wider text-slate-350 uppercase">
               {typeof isLoading === 'string' ? isLoading : 'Loading diagram...'}
             </span>

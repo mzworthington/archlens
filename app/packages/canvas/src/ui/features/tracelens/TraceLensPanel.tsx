@@ -62,7 +62,7 @@ export const TraceLensPanel: React.FC = () => {
   return (
     <div className="flex-1 min-h-0 overflow-y-auto blueprint-grid text-slate-100">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
-        <div className="bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-5 md:p-7 backdrop-blur-sm">
+        <div className="bg-surface/40 border border-accent/10 rounded-2xl p-5 md:p-7 backdrop-blur-sm">
           <TraceLensHero traceLensView={traceLensView} lookback={lookback} />
 
           <div className="mb-6">
@@ -114,7 +114,7 @@ export const TraceLensPanel: React.FC = () => {
               />
 
               {offenders.length === 0 ? (
-                <div className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/80 px-5 py-10 text-center">
+                <div className="rounded-xl border border-accent/10 bg-navy/80 px-5 py-10 text-center">
                   <p className="text-sm text-slate-300">
                     {searchQuery.trim()
                       ? 'No offenders match this search.'

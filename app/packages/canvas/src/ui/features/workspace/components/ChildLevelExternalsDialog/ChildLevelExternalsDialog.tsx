@@ -63,7 +63,7 @@ export const ChildLevelExternalsDialog: React.FC = () => {
         <div className="pointer-events-auto w-full max-w-md bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl">
           <div className="p-4 border-b border-slate-800 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
-              <Link2 className="w-4 h-4 text-[#00f0ff] shrink-0" />
+              <Link2 className="w-4 h-4 text-accent shrink-0" />
               <h2
                 id="child-level-externals-title"
                 className="text-base font-bold text-white truncate"

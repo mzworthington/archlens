@@ -56,7 +56,7 @@ export const DiffNodesSection: React.FC<DiffNodesSectionProps> = ({ diff }) => {
               </span>
             </div>
 
-            <div className="pl-3.5 border-l-2 border-amber-500/35 space-y-2 text-[11px] font-mono text-slate-400 bg-[#040914] p-3 rounded-lg border border-slate-900">
+            <div className="pl-3.5 border-l-2 border-amber-500/35 space-y-2 text-[11px] font-mono text-slate-400 bg-navy p-3 rounded-lg border border-slate-900">
               {original.name !== current.name && (
                 <div className="flex flex-wrap gap-x-2">
                   <span className="text-slate-500 font-semibold">Name:</span>

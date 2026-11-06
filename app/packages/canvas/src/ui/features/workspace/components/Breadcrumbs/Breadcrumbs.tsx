@@ -362,8 +362,8 @@ export const Breadcrumbs: React.FC = () => {
           onClick={() => setOpenDropdownIdx(menuOpen ? null : -1)}
           className={`flex items-center gap-2 min-w-0 w-full max-w-full rounded-lg border px-2.5 py-1.5 text-left transition-colors cursor-pointer ${
             menuOpen
-              ? 'border-[#00f0ff]/30 bg-cyan-950/25 text-[#00f0ff]'
-              : 'border-[#00f0ff]/15 bg-[#040914]/50 text-slate-200 hover:border-[#00f0ff]/25'
+              ? 'border-accent/30 bg-cyan-950/25 text-accent'
+              : 'border-accent/15 bg-navy/50 text-slate-200 hover:border-accent/25'
           }`}
           aria-expanded={menuOpen}
           aria-controls="breadcrumb-mobile-menu"
@@ -373,7 +373,7 @@ export const Breadcrumbs: React.FC = () => {
           <span className="min-w-0 flex-1 truncate text-xs font-medium">{mobileSummary}</span>
           <ChevronDown
             className={`w-3.5 h-3.5 shrink-0 transition-transform ${
-              menuOpen ? 'rotate-180 text-[#00f0ff]' : 'text-slate-500'
+              menuOpen ? 'rotate-180 text-accent' : 'text-slate-500'
             }`}
           />
         </button>

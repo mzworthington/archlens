@@ -65,7 +65,7 @@ export const CompareDialog: React.FC<CompareDialogProps> = ({ isOpen, onClose })
         <div className="pointer-events-auto w-full max-w-2xl bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl max-h-[min(85vh,720px)] flex flex-col">
           <div className="p-4 border-b border-slate-800 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
-              <GitCompare className="w-4 h-4 text-[#00f0ff]" />
+              <GitCompare className="w-4 h-4 text-accent" />
               <div>
                 <h2 id="compare-dialog-title" className="text-base font-bold text-white">
                   Compare systems

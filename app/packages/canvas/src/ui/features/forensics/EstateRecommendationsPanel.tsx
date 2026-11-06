@@ -36,7 +36,7 @@ function Segmented<T extends string>({
   options: { id: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex rounded-lg border border-[#00f0ff]/15 bg-[#040914]/80 p-0.5">
+    <div className="inline-flex rounded-lg border border-accent/15 bg-navy/80 p-0.5">
       {options.map(opt => {
         const active = value === opt.id;
         return (
@@ -46,7 +46,7 @@ function Segmented<T extends string>({
             onClick={() => onChange(opt.id)}
             className={`rounded-md px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
               active
-                ? 'bg-[#00f0ff]/15 text-[#00f0ff] border border-[#00f0ff]/30'
+                ? 'bg-accent/15 text-accent border border-accent/30'
                 : 'text-slate-400 hover:text-slate-100 border border-transparent'
             }`}
           >
@@ -60,7 +60,7 @@ function Segmented<T extends string>({
 
 function SummaryStat({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-lg border border-[#00f0ff]/10 bg-[#040914]/70 px-3 py-2">
+    <div className="rounded-lg border border-accent/10 bg-navy/70 px-3 py-2">
       <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500">{label}</p>
       <p className="mt-0.5 text-lg font-semibold text-slate-100 tabular-nums">{value}</p>
     </div>
@@ -95,7 +95,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
   if (items.length === 0) {
     return (
       <div
-        className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/80 px-5 py-10 text-center"
+        className="rounded-xl border border-accent/10 bg-navy/80 px-5 py-10 text-center"
         data-testid="estate-recommendations-empty"
       >
         <p className="text-sm text-slate-300">
@@ -129,7 +129,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
             type="button"
             onClick={() => void handleCopy()}
             disabled={!canExport || copying}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#00f0ff]/20 bg-[#040914]/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-[#00f0ff] transition-colors hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-accent/20 bg-navy/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-accent transition-colors hover:border-accent/40 disabled:opacity-40 disabled:cursor-not-allowed"
             data-testid="advicelens-export-copy"
           >
             <Copy className="w-3.5 h-3.5" />
@@ -139,7 +139,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
             type="button"
             onClick={() => void handleDownload()}
             disabled={!canExport || downloading}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#00f0ff]/20 bg-[#040914]/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-[#00f0ff] transition-colors hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-accent/20 bg-navy/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-accent transition-colors hover:border-accent/40 disabled:opacity-40 disabled:cursor-not-allowed"
             data-testid="advicelens-export-download"
           >
             <Download className="w-3.5 h-3.5" />
@@ -150,7 +150,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
             value={searchQuery}
             onChange={event => setSearchQuery(event.target.value)}
             placeholder="Search recommendations…"
-            className="w-full sm:w-64 rounded-lg border border-[#00f0ff]/15 bg-[#040914]/80 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-[#00f0ff]/40 focus:outline-none"
+            className="w-full sm:w-64 rounded-lg border border-accent/15 bg-navy/80 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-accent/40 focus:outline-none"
             data-testid="estate-recommendations-search"
           />
           <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 whitespace-nowrap">
@@ -160,7 +160,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
       </div>
 
       {visible.length === 0 ? (
-        <div className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/80 px-5 py-10 text-center">
+        <div className="rounded-xl border border-accent/10 bg-navy/80 px-5 py-10 text-center">
           <p className="text-sm text-slate-300">
             {searchQuery.trim() || sourceFilter !== 'all' || scopeEntityRef
               ? 'No recommendations match the current filters.'

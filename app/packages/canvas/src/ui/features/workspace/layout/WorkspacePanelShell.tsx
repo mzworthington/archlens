@@ -46,7 +46,7 @@ export const WorkspacePanelShell: React.FC<WorkspacePanelShellProps> = ({
     >
       <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40 gap-2">
         <div className="flex items-center gap-2.5 min-w-0">
-          <h3 className="font-bold text-[#00f0ff] tracking-wider text-xs uppercase truncate font-mono">
+          <h3 className="font-bold text-accent tracking-wider text-xs uppercase truncate font-mono">
             {title}
           </h3>
         </div>

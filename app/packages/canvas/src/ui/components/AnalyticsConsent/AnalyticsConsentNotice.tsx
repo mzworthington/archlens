@@ -38,7 +38,7 @@ export function AnalyticsConsentNotice({ onGrant, onDeny }: Props) {
       onCancel={event => event.preventDefault()}
       className="fixed inset-auto bottom-0 left-0 right-0 z-[70] m-0 w-full max-w-none border-0 bg-transparent p-0 text-slate-100 open:flex open:justify-center [&::backdrop]:bg-slate-950/55"
     >
-      <div className="w-full border-t border-[#00f0ff]/25 bg-[#061125]/95 px-4 py-4 backdrop-blur-md pb-[max(1rem,env(safe-area-inset-bottom))]">
+      <div className="w-full border-t border-accent/25 bg-surface/95 px-4 py-4 backdrop-blur-md pb-[max(1rem,env(safe-area-inset-bottom))]">
         <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0 space-y-1.5">
             <h2 id="analytics-consent-title" className="text-sm font-semibold text-white">
@@ -49,7 +49,7 @@ export function AnalyticsConsentNotice({ onGrant, onDeny }: Props) {
               people open, how Canvas is used, errors and session replay of the UI. Diagrams stay on
               your machine. If you opt in we use a cookie so repeat visits can be told apart. We do
               not look up your name or email.{' '}
-              <Link href="/privacy" className="text-[#00f0ff] underline-offset-2 hover:underline">
+              <Link href="/privacy" className="text-accent underline-offset-2 hover:underline">
                 Privacy policy
               </Link>
             </p>
@@ -58,7 +58,7 @@ export function AnalyticsConsentNotice({ onGrant, onDeny }: Props) {
             <button
               type="button"
               onClick={onGrant}
-              className="rounded-md border border-[#00f0ff]/40 bg-[#00f0ff]/90 px-3 py-1.5 text-xs font-semibold text-slate-950 hover:bg-[#00f0ff]"
+              className="rounded-md border border-accent/40 bg-accent/90 px-3 py-1.5 text-xs font-semibold text-slate-950 hover:bg-accent"
             >
               Help improve ArchLens
             </button>

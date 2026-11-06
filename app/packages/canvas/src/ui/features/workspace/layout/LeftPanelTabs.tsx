@@ -9,7 +9,7 @@ type Props = {
 const tabClass = (active: boolean) =>
   `flex-1 px-3 py-2 text-[10px] font-mono uppercase tracking-wider transition cursor-pointer border-b-2 ${
     active
-      ? 'border-[#00f0ff] text-[#00f0ff] bg-[#00f0ff]/5'
+      ? 'border-accent text-accent bg-accent/5'
       : 'border-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/60'
   }`;
 

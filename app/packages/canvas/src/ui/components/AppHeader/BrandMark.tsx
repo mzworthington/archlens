@@ -31,7 +31,7 @@ type BrandMarkProps = {
  */
 export const BrandMark: React.FC<BrandMarkProps> = ({ badge, subtitle }) => (
   <Link href="/" className="flex items-center gap-3 min-w-0 group">
-    <div className="p-1 border border-accent/40 rounded bg-cyan-950/20 shadow-[0_0_8px_rgba(0,240,255,0.2)] shrink-0 group-hover:border-accent/70 transition-colors">
+    <div className="p-1 border border-accent/40 rounded bg-cyan-950/20 shadow-[0_0_8px_color-mix(in_srgb,var(--color-accent)_20%,transparent)] shrink-0 group-hover:border-accent/70 transition-colors">
       <BrandIcon />
     </div>
     <div className="min-w-0 hidden sm:block">

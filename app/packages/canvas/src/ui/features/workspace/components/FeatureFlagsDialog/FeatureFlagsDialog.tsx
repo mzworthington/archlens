@@ -80,7 +80,7 @@ export const FeatureFlagsDialog: React.FC<FeatureFlagsDialogProps> = ({ isOpen, 
         <div className="pointer-events-auto w-full max-w-md bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl">
           <div className="p-4 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Flag className="w-4 h-4 text-[#00f0ff]" aria-hidden="true" />
+              <Flag className="w-4 h-4 text-accent" aria-hidden="true" />
               <h2 id="feature-flags-title" className="text-base font-bold text-white">
                 Feature flags
               </h2>

@@ -159,7 +159,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
                     }}
                     className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between gap-3 font-mono text-xs transition-colors cursor-pointer focus:outline-none ${
                       isActive
-                        ? 'bg-brand-950/40 text-[#00f0ff] border border-brand-500/20'
+                        ? 'bg-brand-950/40 text-accent border border-brand-500/20'
                         : 'text-slate-300 hover:bg-slate-900/60 border border-transparent'
                     }`}
                   >

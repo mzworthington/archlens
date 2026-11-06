@@ -46,7 +46,7 @@ export const BrowserLiteScanProgress: React.FC<BrowserLiteScanProgressProps> = (
         data-testid="browser-lite-scan-progress-bar"
       >
         <div
-          className="h-full rounded-full bg-[#00f0ff] transition-[width]"
+          className="h-full rounded-full bg-accent transition-[width]"
           style={{ width: `${Math.min(100, (valueNow / valueMax) * 100)}%` }}
         />
       </div>
@@ -70,7 +70,7 @@ export const BrowserLiteScanProgress: React.FC<BrowserLiteScanProgressProps> = (
       <button
         type="button"
         onClick={onCancel}
-        className="mt-1 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-900 transition cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40"
+        className="mt-1 rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:bg-slate-900 transition cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
         data-testid="browser-lite-scan-cancel"
       >
         Cancel scan

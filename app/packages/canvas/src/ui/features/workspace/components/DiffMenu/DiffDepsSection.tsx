@@ -38,7 +38,7 @@ export const DiffDepsSection: React.FC<DiffDepsSectionProps> = ({ diff }) => {
                 {dep.toRef.split('/').pop()}
               </span>
               {dep.type && (
-                <span className="text-[9px] text-[#00f0ff] bg-[#00f0ff]/5 border border-[#00f0ff]/15 px-2 py-0.5 rounded-md ml-2 font-mono uppercase tracking-wider">
+                <span className="text-[9px] text-accent bg-accent/5 border border-accent/15 px-2 py-0.5 rounded-md ml-2 font-mono uppercase tracking-wider">
                   {dep.type}
                 </span>
               )}

@@ -17,7 +17,7 @@ export function TraceLensHero({
 
   return (
     <section className="relative overflow-hidden mb-6">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.08),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--color-accent)_8%,transparent),transparent)]" />
       <div className="relative">
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-[1.1]">
           {TRACE_LENS_HERO.pageTitle}

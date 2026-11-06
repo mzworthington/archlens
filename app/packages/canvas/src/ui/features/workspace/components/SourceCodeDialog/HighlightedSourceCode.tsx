@@ -31,7 +31,7 @@ export const HighlightedSourceCode: React.FC<HighlightedSourceCodeProps> = ({
 
   return (
     <div
-      className="flex-1 min-h-0 flex overflow-hidden rounded-xl border border-[#00f0ff]/10 bg-[#040914]/60"
+      className="flex-1 min-h-0 flex overflow-hidden rounded-xl border border-accent/10 bg-navy/60"
       data-testid="source-code-content"
     >
       <div

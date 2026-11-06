@@ -110,4 +110,69 @@ describe('blueprint design tokens', () => {
     expect(section).not.toContain('text-[#00f0ff]');
     expect(section).not.toContain('bg-[#040914]');
   });
+
+  it('paints the design-system asset pack from the token set', () => {
+    const section = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/AssetsSection.tsx'),
+      'utf8'
+    );
+
+    expect(section).not.toContain('border-[#00f0ff]');
+    expect(section).not.toContain('bg-[#00f0ff]');
+    expect(section).not.toContain('text-[#00f0ff]');
+    expect(section).not.toContain('bg-[#040914]');
+  });
+
+  it('paints every remaining screen from the token set', () => {
+    const banned = [
+      '[#00f0ff]',
+      '[#040914]',
+      '[#061125]',
+      '[#173453]',
+      '_#00f0ff',
+      'rgba(0, 240, 255',
+      'rgba(0,240,255',
+      'rgba(6, 17, 37',
+      '23 52 83',
+      'rgb(4 9 20',
+    ];
+    const offenders: string[] = [];
+
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          walk(full);
+          continue;
+        }
+        if (!/\.(tsx|ts|css)$/.test(entry.name)) continue;
+        if (entry.name === 'tokens.css') continue;
+
+        let text = fs.readFileSync(full, 'utf8');
+        if (entry.name === 'TokensSection.tsx') {
+          text = text
+            .replaceAll('rgba(0,240,255,0.15)', '')
+            .replaceAll('rgba(0, 240, 255, 0.15)', '');
+        }
+        const hits = banned.filter(needle => text.toLowerCase().includes(needle));
+        if (hits.length > 0) {
+          offenders.push(`${path.relative(canvasRoot, full)} (${hits.join(', ')})`);
+        }
+      }
+    };
+
+    walk(path.join(canvasRoot, 'src'));
+    expect(offenders).toEqual([]);
+  });
+
+  it('defines the light paper token set on the light theme', () => {
+    const tokens = fs.readFileSync(tokensPath, 'utf8');
+
+    expect(tokens).toContain("html[data-theme='light']");
+    expect(tokens).toContain('--color-canvas: #e8eef3');
+    expect(tokens).toContain('--color-surface: #ffffff');
+    expect(tokens).toContain('--color-navy: #d7e0e8');
+    expect(tokens).toContain('--color-ink: #152033');
+    expect(tokens).toContain('--color-accent: #0c6b78');
+  });
 });

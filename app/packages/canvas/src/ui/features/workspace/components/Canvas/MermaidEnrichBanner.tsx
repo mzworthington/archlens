@@ -25,7 +25,7 @@ export const MermaidEnrichBanner: React.FC<MermaidEnrichBannerProps> = ({ open, 
           </p>
           <a
             href="/guide/cli"
-            className="inline-flex text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
+            className="inline-flex text-[10px] font-mono font-semibold text-accent hover:underline"
           >
             See CLI scan guide
           </a>

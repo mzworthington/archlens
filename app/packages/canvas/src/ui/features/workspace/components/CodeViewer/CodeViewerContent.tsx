@@ -40,7 +40,7 @@ export const CodeViewerContent: React.FC = () => {
             }}
             className={`flex-1 text-center py-1.5 text-xs font-semibold rounded-lg capitalize transition cursor-pointer ${
               activeTab === tab
-                ? 'bg-[#00f0ff]/15 border border-[#00f0ff]/30 text-[#00f0ff] font-bold shadow-[0_0_8px_rgba(0,240,255,0.15)]'
+                ? 'bg-accent/15 border border-accent/30 text-accent font-bold shadow-[0_0_8px_color-mix(in_srgb,var(--color-accent)_15%,transparent)]'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -61,7 +61,7 @@ export const CodeViewerContent: React.FC = () => {
 
               <button
                 onClick={handleCopy}
-                className="px-2.5 py-1 rounded-lg bg-[#040914] border border-[#00f0ff]/20 hover:border-[#00f0ff]/50 hover:bg-[#00f0ff]/5 text-slate-300 hover:text-white transition flex items-center gap-1 text-[11px] font-semibold shadow-md cursor-pointer z-10"
+                className="px-2.5 py-1 rounded-lg bg-navy border border-accent/20 hover:border-accent/50 hover:bg-accent/5 text-slate-300 hover:text-white transition flex items-center gap-1 text-[11px] font-semibold shadow-md cursor-pointer z-10"
               >
                 {copied ? (
                   <>
@@ -91,7 +91,7 @@ export const CodeViewerContent: React.FC = () => {
                   ? 'name: My System\nversion: 1.0.0...'
                   : '{\n  "name": "My System",\n  "version": "1.0.0"...\n}'
               }
-              className="flex-1 bg-[#040914]/60 border border-[#00f0ff]/15 focus:border-[#00f0ff] focus:shadow-[0_0_10px_rgba(0,240,255,0.10)] rounded-xl p-3 text-xs font-mono text-white focus:outline-none resize-none transition duration-200"
+              className="flex-1 bg-navy/60 border border-accent/15 focus:border-accent focus:shadow-[0_0_10px_color-mix(in_srgb,var(--color-accent)_10%,transparent)] rounded-xl p-3 text-xs font-mono text-white focus:outline-none resize-none transition duration-200"
             />
 
             {lastError && (
@@ -103,7 +103,7 @@ export const CodeViewerContent: React.FC = () => {
 
             <button
               onClick={activeTab === 'yaml' ? handleSaveYaml : handleSaveJson}
-              className="w-full flex items-center justify-center gap-2 bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 text-[#00f0ff] border border-[#00f0ff]/40 hover:border-[#00f0ff] rounded-lg py-2 text-xs font-bold shadow-[0_0_10px_rgba(0,240,255,0.15)] hover:shadow-[0_0_15px_rgba(0,240,255,0.35)] transition cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-accent/15 hover:bg-accent/25 text-accent border border-accent/40 hover:border-accent rounded-lg py-2 text-xs font-bold shadow-[0_0_10px_color-mix(in_srgb,var(--color-accent)_15%,transparent)] hover:shadow-[0_0_15px_color-mix(in_srgb,var(--color-accent)_35%,transparent)] transition cursor-pointer"
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
               Apply {activeTab.toUpperCase()} Changes
@@ -113,12 +113,12 @@ export const CodeViewerContent: React.FC = () => {
           <div className="flex-1 flex flex-col overflow-hidden relative group">
             <div className="flex items-center justify-between mb-3 shrink-0">
               {activeTab === 'mermaid' ? (
-                <div className="flex bg-[#040914]/80 p-0.5 rounded-lg border border-[#00f0ff]/15">
+                <div className="flex bg-navy/80 p-0.5 rounded-lg border border-accent/15">
                   <button
                     onClick={() => setMermaidMode('preview')}
                     className={`px-3 py-1 text-[11px] font-semibold rounded-md transition cursor-pointer ${
                       mermaidMode === 'preview'
-                        ? 'bg-[#00f0ff]/15 border border-[#00f0ff]/30 text-[#00f0ff] font-bold shadow-[0_0_8px_rgba(0,240,255,0.15)]'
+                        ? 'bg-accent/15 border border-accent/30 text-accent font-bold shadow-[0_0_8px_color-mix(in_srgb,var(--color-accent)_15%,transparent)]'
                         : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
@@ -128,7 +128,7 @@ export const CodeViewerContent: React.FC = () => {
                     onClick={() => setMermaidMode('code')}
                     className={`px-3 py-1 text-[11px] font-semibold rounded-md transition cursor-pointer ${
                       mermaidMode === 'code'
-                        ? 'bg-[#00f0ff]/15 border border-[#00f0ff]/30 text-[#00f0ff] font-bold shadow-[0_0_8px_rgba(0,240,255,0.15)]'
+                        ? 'bg-accent/15 border border-accent/30 text-accent font-bold shadow-[0_0_8px_color-mix(in_srgb,var(--color-accent)_15%,transparent)]'
                         : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
@@ -142,7 +142,7 @@ export const CodeViewerContent: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleOpenMermaidImport}
-                  className="px-3 py-1.5 rounded-lg bg-[#040914] border border-[#00f0ff]/20 hover:border-[#00f0ff]/50 hover:bg-[#00f0ff]/5 text-[#00f0ff] hover:text-cyan-300 transition flex items-center gap-1.5 text-xs font-semibold shadow-md cursor-pointer z-10"
+                  className="px-3 py-1.5 rounded-lg bg-navy border border-accent/20 hover:border-accent/50 hover:bg-accent/5 text-accent hover:text-cyan-300 transition flex items-center gap-1.5 text-xs font-semibold shadow-md cursor-pointer z-10"
                   title="Import Mermaid diagram into the active schema"
                   id="import-mermaid-action"
                 >
@@ -152,7 +152,7 @@ export const CodeViewerContent: React.FC = () => {
 
                 <button
                   onClick={handleCopy}
-                  className="px-3 py-1.5 rounded-lg bg-[#040914] border border-[#00f0ff]/20 hover:border-[#00f0ff]/50 hover:bg-[#00f0ff]/5 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold shadow-md cursor-pointer z-10"
+                  className="px-3 py-1.5 rounded-lg bg-navy border border-accent/20 hover:border-accent/50 hover:bg-accent/5 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold shadow-md cursor-pointer z-10"
                 >
                   {copied ? (
                     <>
@@ -180,7 +180,7 @@ export const CodeViewerContent: React.FC = () => {
                 <MermaidPreview code={getCodeContent()} />
               </Suspense>
             ) : (
-              <pre className="flex-1 bg-[#040914]/60 border border-[#00f0ff]/10 rounded-xl p-4 overflow-auto text-xs font-mono text-slate-300 leading-relaxed select-all">
+              <pre className="flex-1 bg-navy/60 border border-accent/10 rounded-xl p-4 overflow-auto text-xs font-mono text-slate-300 leading-relaxed select-all">
                 <code>{getCodeContent()}</code>
               </pre>
             )}

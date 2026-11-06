@@ -23,7 +23,7 @@ export const EmptyDiagramOverlay: React.FC = () => {
       aria-live="polite"
       data-testid="empty-diagram-overlay"
     >
-      <div className="p-5 rounded-2xl bg-[#061125]/90 border border-[#00f0ff]/20 shadow-[0_0_30px_rgba(0,240,255,0.12)] flex flex-col items-center gap-3 max-w-[280px] text-center pointer-events-none">
+      <div className="p-5 rounded-2xl bg-surface/90 border border-accent/20 shadow-[0_0_30px_color-mix(in_srgb,var(--color-accent)_12%,transparent)] flex flex-col items-center gap-3 max-w-[280px] text-center pointer-events-none">
         <Inbox className="w-8 h-8 text-slate-400" aria-hidden />
         <div className="space-y-1.5">
           <p className="text-sm font-semibold text-slate-200">No nodes in this diagram</p>

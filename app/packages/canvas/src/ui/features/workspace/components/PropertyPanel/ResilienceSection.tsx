@@ -72,7 +72,7 @@ export const ResilienceSection: React.FC<Props> = props => {
           <div data-testid="loaded-chaos-spec-banner" className="space-y-2">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-[#00f0ff]">
+                <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-accent">
                   Loaded scenario
                 </p>
                 <p className="text-sm font-semibold text-slate-100">
@@ -118,7 +118,7 @@ export const ResilienceSection: React.FC<Props> = props => {
               <button
                 type="button"
                 onClick={props.onBrowseChaosSpecs}
-                className="text-[11px] font-semibold text-[#00f0ff] hover:text-cyan-300 transition cursor-pointer"
+                className="text-[11px] font-semibold text-accent hover:text-cyan-300 transition cursor-pointer"
                 data-testid="browse-chaos-specs-button"
               >
                 Browse
@@ -138,7 +138,7 @@ export const ResilienceSection: React.FC<Props> = props => {
 
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff]">Scenario</h2>
+          <h2 className="text-xs font-mono uppercase tracking-wider text-accent">Scenario</h2>
           {props.faults.length > 0 && !props.chaosSpecMetadata ? (
             <button
               type="button"

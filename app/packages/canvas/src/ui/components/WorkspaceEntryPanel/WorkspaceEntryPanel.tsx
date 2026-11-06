@@ -75,27 +75,25 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
 
   return (
     <section className={className} data-testid={testId}>
-      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-2">
-        {badge}
-      </p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent mb-2">{badge}</p>
       <h2 id={titleId} className="text-lg font-bold text-white tracking-tight">
         {title}
       </h2>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">{description}</p>
 
       {scanProgress && onCancelScan ? (
-        <div className="mt-4 rounded-xl border border-[#00f0ff]/25 bg-[#061125]/70 px-4 py-3">
+        <div className="mt-4 rounded-xl border border-accent/25 bg-surface/70 px-4 py-3">
           <BrowserLiteScanProgress progress={scanProgress} onCancel={onCancelScan} />
         </div>
       ) : statusMessage ? (
         <div
-          className="mt-4 flex items-center gap-2 rounded-xl border border-[#00f0ff]/25 bg-[#061125]/70 px-4 py-3"
+          className="mt-4 flex items-center gap-2 rounded-xl border border-accent/25 bg-surface/70 px-4 py-3"
           role="status"
           aria-live="polite"
           aria-busy="true"
           data-testid="workspace-entry-loading"
         >
-          <Loader2 className="w-4 h-4 animate-spin text-[#00f0ff] shrink-0" aria-hidden />
+          <Loader2 className="w-4 h-4 animate-spin text-accent shrink-0" aria-hidden />
           <span className="text-xs font-mono tracking-wider text-slate-300 uppercase">
             {statusMessage}
           </span>

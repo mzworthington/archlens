@@ -50,9 +50,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }
   return (
     <div className="space-y-5" data-testid="telemetry-panel">
       <div>
-        <h2 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-2">
-          SLA / SLO
-        </h2>
+        <h2 className="text-xs font-mono uppercase tracking-wider text-accent mb-2">SLA / SLO</h2>
         <div
           className={`text-3xl font-mono ${slaColor(result.overallSla)}`}
           data-testid="overall-sla"
@@ -88,7 +86,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }
 
       {result.monteCarlo ? (
         <div>
-          <h3 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-2">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-accent mb-2">
             Monte Carlo ({result.monteCarlo.iterations.toLocaleString()} runs)
           </h3>
           <ul className="space-y-1 text-sm text-slate-200">
@@ -184,7 +182,7 @@ export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }
           <DemoGraduateCtas testId="telemetry-demo-graduate" />
           <Link
             href={buildAdviceLensUrl()}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-cyan-300 transition"
             data-testid="telemetry-open-advicelens"
           >
             Open AdviceLens for the full ranked list

@@ -51,7 +51,7 @@ export const SampleMapScanOffer: React.FC = () => {
       className="z-40 !mb-52 w-[min(42rem,calc(100%-1.5rem))] pointer-events-auto sm:!mb-28"
     >
       <div
-        className="flex flex-col gap-3 rounded-xl border border-[#00f0ff]/25 bg-[#040914]/95 px-4 py-3 shadow-2xl backdrop-blur-md sm:flex-row sm:items-center"
+        className="flex flex-col gap-3 rounded-xl border border-accent/25 bg-navy/95 px-4 py-3 shadow-2xl backdrop-blur-md sm:flex-row sm:items-center"
         data-testid="sample-map-scan-offer"
       >
         <p className="min-w-0 flex-1 text-sm leading-relaxed text-slate-200">
@@ -61,7 +61,7 @@ export const SampleMapScanOffer: React.FC = () => {
           <button
             type="button"
             onClick={handleFolderScan}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-2 text-sm font-semibold text-[#00f0ff] hover:border-[#00f0ff]/50 cursor-pointer"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-accent/30 bg-accent/10 px-3 py-2 text-sm font-semibold text-accent hover:border-accent/50 cursor-pointer"
             data-testid="sample-map-scan-folder"
           >
             <ScanSearch className="h-4 w-4" aria-hidden />

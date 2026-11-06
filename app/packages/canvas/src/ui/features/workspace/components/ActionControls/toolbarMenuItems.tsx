@@ -93,7 +93,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         id={`browser-lite-scan-action${idSuffix}`}
         data-testid={`browser-lite-scan-action${idSuffix}`}
       >
-        <ScanSearch className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <ScanSearch className="w-3.5 h-3.5 text-accent shrink-0" />
         Browser lite scan
       </button>
       <button
@@ -136,7 +136,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         title="Import Mermaid diagram into the active schema"
         id="import-mermaid-action"
       >
-        <GitMerge className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <GitMerge className="w-3.5 h-3.5 text-accent shrink-0" />
         Import Mermaid
       </button>
       <button
@@ -152,7 +152,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         id={`browse-chaos-spec-action${idSuffix}`}
         data-testid={browseTestId}
       >
-        <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
         Browse ChaosSpecs
       </button>
       <button
@@ -168,7 +168,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         title="Load a ChaosSpec YAML scenario for ChaosLens"
         id={`import-chaos-spec-action${idSuffix}`}
       >
-        <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
         Load ChaosSpec
       </button>
       <button
@@ -184,7 +184,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         title="Export the active ChaosLens scenario as ChaosSpec YAML"
         id={`export-chaos-spec-action${idSuffix}`}
       >
-        <Download className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        <Download className="w-3.5 h-3.5 text-accent shrink-0" />
         Export ChaosSpec
       </button>
     </>

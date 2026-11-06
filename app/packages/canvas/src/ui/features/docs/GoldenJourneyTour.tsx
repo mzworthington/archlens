@@ -120,18 +120,18 @@ function StepCard({ step }: { step: JourneyStep }) {
 
   return (
     <li
-      className="rounded-xl border border-[#00f0ff]/12 bg-[#040914]/70 p-5 sm:p-6"
+      className="rounded-xl border border-accent/12 bg-navy/70 p-5 sm:p-6"
       data-testid={`journey-step-${step.step}`}
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
         <div className="flex items-center gap-3 sm:flex-col sm:items-center sm:gap-2 sm:w-14 shrink-0">
           <span
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 font-mono text-sm font-bold text-[#00f0ff]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-accent/10 font-mono text-sm font-bold text-accent"
             aria-hidden
           >
             {step.step}
           </span>
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#00f0ff]/15 bg-[#00f0ff]/5 text-[#00f0ff] sm:mt-1">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent/15 bg-accent/5 text-accent sm:mt-1">
             <Icon className="h-5 w-5" aria-hidden />
           </div>
         </div>
@@ -154,7 +154,7 @@ function StepCard({ step }: { step: JourneyStep }) {
           {step.tryHref && step.tryLabel ? (
             <Link
               href={step.tryHref}
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00f0ff] hover:text-white transition-colors"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-white transition-colors"
               data-testid={`journey-step-${step.step}-cta`}
             >
               {step.tryLabel}
@@ -171,9 +171,7 @@ export const GoldenJourneyTour: React.FC = () => {
   return (
     <section aria-labelledby="golden-journey-heading" data-testid="golden-journey-tour">
       <div className="mb-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff]">
-          ~5 minutes
-        </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">~5 minutes</p>
         <h2 id="golden-journey-heading" className="mt-1 text-2xl font-bold text-white">
           Day in the life: Payment Gateway outage
         </h2>
@@ -185,7 +183,7 @@ export const GoldenJourneyTour: React.FC = () => {
       </div>
 
       <div
-        className="mb-8 rounded-xl border border-[#00f0ff]/10 bg-[#061125]/40 p-4 sm:p-5"
+        className="mb-8 rounded-xl border border-accent/10 bg-surface/40 p-4 sm:p-5"
         data-testid="golden-journey-estate-map"
       >
         <h3 className="text-xs font-mono uppercase tracking-[0.14em] text-slate-500">
@@ -195,10 +193,10 @@ export const GoldenJourneyTour: React.FC = () => {
           {ESTATE_PRODUCTS.map(product => (
             <li
               key={product.name}
-              className="rounded-lg border border-[#00f0ff]/10 bg-[#040914]/60 px-3 py-2.5"
+              className="rounded-lg border border-accent/10 bg-navy/60 px-3 py-2.5"
             >
               <p className="text-sm font-semibold text-slate-200">{product.name}</p>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-[#00f0ff]/80">
+              <p className="text-[10px] font-mono uppercase tracking-wider text-accent/80">
                 {product.role}
               </p>
               <p className="mt-1 text-xs text-slate-500 leading-relaxed">{product.detail}</p>
@@ -207,7 +205,7 @@ export const GoldenJourneyTour: React.FC = () => {
         </ul>
       </div>
 
-      <div className="mb-8 overflow-hidden rounded-xl border border-[#00f0ff]/10 bg-[#061125]/40">
+      <div className="mb-8 overflow-hidden rounded-xl border border-accent/10 bg-surface/40">
         <img
           src={docsScreenshotSrc('golden-journey.gif')}
           alt="Golden journey estate: Payment Gateway outage across product group boundaries"

@@ -129,11 +129,11 @@ export const TraceLensScopePicker: React.FC<Props> = ({
             disabled
               ? 'border-slate-800 bg-slate-950/40 text-slate-600 cursor-not-allowed'
               : value
-                ? 'border-[#00f0ff]/25 bg-[#040914]/80 text-white hover:border-[#00f0ff]/40 cursor-pointer'
-                : 'border-[#00f0ff]/10 bg-[#040914]/60 text-slate-300 hover:border-[#00f0ff]/25 cursor-pointer'
+                ? 'border-accent/25 bg-navy/80 text-white hover:border-accent/40 cursor-pointer'
+                : 'border-accent/10 bg-navy/60 text-slate-300 hover:border-accent/25 cursor-pointer'
           }`}
         >
-          <Filter className="w-3.5 h-3.5 shrink-0 text-[#00f0ff]/80" aria-hidden />
+          <Filter className="w-3.5 h-3.5 shrink-0 text-accent/80" aria-hidden />
           <span className="min-w-0 flex-1">
             <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-500">
               Entity scope
@@ -150,7 +150,7 @@ export const TraceLensScopePicker: React.FC<Props> = ({
             disabled={disabled}
             onClick={() => selectOption(null)}
             data-testid="tracelens-scope-picker-clear"
-            className="shrink-0 rounded-xl border border-[#00f0ff]/25 bg-[#040914]/80 px-2 text-slate-500 hover:text-slate-300 hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            className="shrink-0 rounded-xl border border-accent/25 bg-navy/80 px-2 text-slate-500 hover:text-slate-300 hover:border-accent/40 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             aria-label="Clear entity scope"
           >
             <X className="w-3.5 h-3.5" />
@@ -187,9 +187,7 @@ export const TraceLensScopePicker: React.FC<Props> = ({
               aria-selected={!value}
               onClick={() => selectOption(null)}
               className={`w-full rounded-lg px-2.5 py-2 text-left transition-colors cursor-pointer ${
-                activeIndex === 0
-                  ? 'bg-[#00f0ff]/10 text-white'
-                  : 'text-slate-300 hover:bg-slate-900'
+                activeIndex === 0 ? 'bg-accent/10 text-white' : 'text-slate-300 hover:bg-slate-900'
               }`}
               data-testid="tracelens-scope-option-all"
             >
@@ -214,7 +212,7 @@ export const TraceLensScopePicker: React.FC<Props> = ({
                     onClick={() => selectOption(option.entityRef)}
                     data-testid={`tracelens-scope-option-${option.entityRef}`}
                     className={`w-full rounded-lg px-2.5 py-2 text-left transition-colors cursor-pointer ${
-                      isActive ? 'bg-[#00f0ff]/10 text-white' : 'text-slate-300 hover:bg-slate-900'
+                      isActive ? 'bg-accent/10 text-white' : 'text-slate-300 hover:bg-slate-900'
                     }`}
                     style={{ paddingLeft: `${10 + Math.max(0, option.depth - 1) * 10}px` }}
                   >

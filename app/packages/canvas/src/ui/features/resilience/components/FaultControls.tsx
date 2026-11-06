@@ -41,7 +41,7 @@ export const FaultControls: React.FC<Props> = ({
   return (
     <div className="space-y-5" data-testid="fault-controls">
       <div>
-        <h2 className="text-xs font-mono uppercase tracking-wider text-[#00f0ff] mb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-accent mb-2">
           Fault injection
         </h2>
         <p className="text-sm text-slate-400">
@@ -62,7 +62,7 @@ export const FaultControls: React.FC<Props> = ({
               name="fault-type"
               checked={faultType === type.id}
               onChange={() => onFaultTypeChange(type.id)}
-              className="accent-[#00f0ff]"
+              className="accent-accent"
             />
             {type.label}
           </label>
@@ -83,7 +83,7 @@ export const FaultControls: React.FC<Props> = ({
           value={Math.round(severity * 100)}
           onChange={e => onSeverityChange(Number(e.target.value) / 100)}
           aria-labelledby="fault-severity-legend"
-          className="w-full accent-[#00f0ff]"
+          className="w-full accent-accent"
         />
       </fieldset>
 
@@ -91,7 +91,7 @@ export const FaultControls: React.FC<Props> = ({
         type="button"
         disabled={!selectedNodeLabel}
         onClick={onAddToScenario}
-        className="w-full rounded-lg border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-3 py-2 text-xs font-semibold text-[#00f0ff] hover:bg-[#00f0ff]/15 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+        className="w-full rounded-lg border border-accent/30 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent hover:bg-accent/15 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
         data-testid="add-fault-to-scenario"
       >
         {isFaultInScenario ? 'Update scenario fault' : 'Add to scenario'}
@@ -107,7 +107,7 @@ export const FaultControls: React.FC<Props> = ({
               type="checkbox"
               checked={Boolean(safeguards[toggle.key])}
               onChange={e => onSafeguardChange(toggle.key, e.target.checked)}
-              className="accent-[#00f0ff]"
+              className="accent-accent"
             />
             {toggle.label}
           </label>

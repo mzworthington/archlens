@@ -76,15 +76,15 @@ export function UpdateBanner() {
       role="status"
       aria-live="polite"
       data-testid="update-banner"
-      className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-[#00f0ff]/25 bg-[#061125]/95 px-4 py-2 text-xs font-mono text-slate-100 backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
+      className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-accent/25 bg-surface/95 px-4 py-2 text-xs font-mono text-slate-100 backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
     >
-      <RefreshCw className="size-3.5 shrink-0 text-[#00f0ff]" aria-hidden />
+      <RefreshCw className="size-3.5 shrink-0 text-accent" aria-hidden />
       <span>A new version of ArchLens is available.</span>
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={refresh}
-          className="rounded-md border border-[#00f0ff]/40 bg-[#00f0ff]/10 px-2.5 py-1 text-[#00f0ff] hover:bg-[#00f0ff]/20 transition-colors"
+          className="rounded-md border border-accent/40 bg-accent/10 px-2.5 py-1 text-accent hover:bg-accent/20 transition-colors"
         >
           Refresh
         </button>
