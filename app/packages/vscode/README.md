@@ -12,6 +12,7 @@ Site copy of this page: [Editor extension](../../../docs/guide/vscode.md).
 
 - **Open architecture map** shows the systems and the links in `blueprints/`. An empty folder says **No map in this folder.** The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
 - **Generate diagram from workspace** opens the interest prompt. Turning `archlens.generateFromWorkspace.enabled` on still does not scan or write files in this preview.
+- **Open source**, with a system focused on the diagram, opens the file that system points at. A system with no file in the workspace stays on the diagram.
 
 ## A merge does not publish
 
@@ -53,7 +54,7 @@ pnpm --filter ./packages/vscode package:pre-release
 code --install-extension packages/vscode/archlens-0.1.0.vsix
 ```
 
-Version `0.1.0` produces `archlens-0.1.0.vsix`. The Extensions view `…` menu has **Install from VSIX…**. Repeat the three checks in a normal window. Uninstall **ArchLens** from that view when you want the copy gone, then reinstall the new VSIX after the next package.
+Version `0.1.0` produces `archlens-0.1.0.vsix`. The Extensions view `…` menu has **Install from VSIX…**. Repeat the checks in a normal window. Uninstall **ArchLens** from that view when you want the copy gone, then reinstall the new VSIX after the next package.
 
 ## Marketplace, when you choose to publish
 

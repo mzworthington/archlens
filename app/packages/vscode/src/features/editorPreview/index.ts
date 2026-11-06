@@ -1,1 +1,1 @@
-export { generateFromWorkspace, openArchitectureMap } from './handler';
+export { generateFromWorkspace, openArchitectureMap, openSource } from './handler';

@@ -31,7 +31,8 @@
   ],
   "activationEvents": [
     "onCommand:archlens.openArchitectureMap",
-    "onCommand:archlens.generateFromWorkspace"
+    "onCommand:archlens.generateFromWorkspace",
+    "onCommand:archlens.openSource"
   ],
   "contributes": {
     "commands": [
@@ -43,6 +44,11 @@
       {
         "command": "archlens.generateFromWorkspace",
         "title": "Generate diagram from workspace",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.openSource",
+        "title": "Open source",
         "category": "ArchLens"
       }
     ],
@@ -57,6 +63,13 @@
           "command": "archlens.generateFromWorkspace",
           "when": "explorerResourceIsFolder",
           "group": "navigation@21"
+        }
+      ],
+      "webview/context": [
+        {
+          "command": "archlens.openSource",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation"
         }
       ]
     },

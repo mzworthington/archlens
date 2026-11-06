@@ -48,10 +48,12 @@ describe('marketplace pre-release', () => {
     expect(manifest.contributes.commands.map(command => command.title)).toEqual([
       'Open architecture map',
       'Generate diagram from workspace',
+      'Open source',
     ]);
     expect(manifest.activationEvents).toEqual([
       'onCommand:archlens.openArchitectureMap',
       'onCommand:archlens.generateFromWorkspace',
+      'onCommand:archlens.openSource',
     ]);
   });
 

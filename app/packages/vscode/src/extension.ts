@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { generateFromWorkspace, openArchitectureMap } from './features/editorPreview';
+import { generateFromWorkspace, openArchitectureMap, openSource } from './features/editorPreview';
 import { createEditorHost, type VsCodeLike } from './infrastructure/vscodeHost';
 
 function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
@@ -32,6 +32,9 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
         vscode.window.showInformationMessage(message, options, ...items),
       showQuickPick: (items, options) => vscode.window.showQuickPick(items, options),
       showTextDocument: (document, column) => vscode.window.showTextDocument(document, column),
+      setStatusBarMessage: message => {
+        void vscode.window.setStatusBarMessage(message);
+      },
       createWebviewPanel: (viewType, title, column, options) =>
         vscode.window.createWebviewPanel(viewType, title, column, options),
     },
@@ -48,6 +51,9 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     vscode.commands.registerCommand('archlens.generateFromWorkspace', (resource?: vscode.Uri) => {
       void run(() => generateFromWorkspace, resource);
+    }),
+    vscode.commands.registerCommand('archlens.openSource', () => {
+      void run(() => openSource, undefined);
     })
   );
 }
