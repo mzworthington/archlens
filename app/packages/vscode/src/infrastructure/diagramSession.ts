@@ -34,10 +34,13 @@ export function replaceDiagramSession(
   workspaceRoot: string | undefined
 ): number {
   if (!sessions.has(id)) return openDiagramSession(diagram, workspaceRoot);
-  const wasActive = activeId === id;
   sessions.set(id, { id, systems: diagram.systems, workspaceRoot });
-  if (wasActive) activeId = undefined;
   return id;
+}
+
+export function clearDiagramSession(id: number): void {
+  if (!sessions.has(id)) return;
+  sessions.set(id, { id, systems: [] });
 }
 
 export function closeDiagramSession(id: number): void {

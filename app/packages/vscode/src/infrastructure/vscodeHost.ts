@@ -16,6 +16,7 @@ import type {
   WorkspaceFolder,
 } from '../features/editorPreview/ports';
 import {
+  clearDiagramSession,
   closeDiagramSession,
   focusDiagramSystem,
   openDiagramSession,
@@ -242,7 +243,7 @@ async function showDiagram<Uri extends FileUri>(
       panel.webview.html = renderMap(decision.diagram, mapNonce());
       return;
     }
-    closeDiagramSession(session);
+    clearDiagramSession(session);
     panel.webview.html = renderEmptyMap();
   });
   panel.onDidDispose(() => {

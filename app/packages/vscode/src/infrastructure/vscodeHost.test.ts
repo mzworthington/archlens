@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
   NO_SOURCE_COPY,
   TRUST_COPY,
@@ -28,6 +29,20 @@ dependencies:
   - from: checkout/api
     to: checkout/billing
     type: direct-call
+`;
+
+const billingBlueprint = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Billing
+  entityRef: billing
+nodes:
+  - entityRef: billing/api
+    type: software-system
+    name: Billing API
+    properties:
+      filepath: src/next.ts
+dependencies: []
 `;
 
 function editor(input: {
@@ -350,6 +365,80 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).toContain('Payments API');
     expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
     expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
+  });
+
+  it('opens the remaining map after a saved map is closed', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/src/checkout.ts', content: 'export {}' },
+        { path: '/repo/src/billing.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/checkout.yaml',
+      systems: [{ name: 'Checkout API', entityRef: 'checkout/api', sourceFile: 'src/checkout.ts' }],
+      links: [],
+    });
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/billing.yaml',
+      systems: [{ name: 'Billing API', entityRef: 'billing/api', sourceFile: 'src/billing.ts' }],
+      links: [],
+    });
+    fake.focusPanel(0, 'checkout/api');
+    fake.focusPanel(1, 'billing/api');
+    fake.save('/repo/blueprints/billing.yaml', billingBlueprint);
+
+    await openSource(host);
+
+    expect(fake.html.at(-1)).toContain('Billing API');
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
+
+    fake.closePanel(1);
+    await openSource(host);
+
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([
+      'show:/repo/src/checkout.ts',
+    ]);
+  });
+
+  it('does not open another map when the visible blueprint stops projecting', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/src/checkout.ts', content: 'export {}' },
+        { path: '/repo/src/billing.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/checkout.yaml',
+      systems: [{ name: 'Checkout API', entityRef: 'checkout/api', sourceFile: 'src/checkout.ts' }],
+      links: [],
+    });
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/billing.yaml',
+      systems: [{ name: 'Billing API', entityRef: 'billing/api', sourceFile: 'src/billing.ts' }],
+      links: [],
+    });
+    fake.focusPanel(0, 'checkout/api');
+    fake.focusPanel(1, 'billing/api');
+    fake.save('/repo/blueprints/billing.yaml', 'title: meeting notes\n');
+
+    await openSource(host);
+
+    expect(fake.html.at(-1)).toContain(EMPTY_MAP_COPY);
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
+
+    fake.closePanel(1);
+    await openSource(host);
+
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([
+      'show:/repo/src/checkout.ts',
+    ]);
   });
 
   it('does not open a file when the focused system has none', async () => {

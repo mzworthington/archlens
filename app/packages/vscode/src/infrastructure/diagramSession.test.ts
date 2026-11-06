@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { DiagramView } from '../features/editorPreview/ports';
 import {
+  clearDiagramSession,
   closeDiagramSession,
   focusDiagramSystem,
   openDiagramSession,
@@ -98,6 +99,57 @@ describe('diagram session', () => {
     expect(readFocusedSystem()).toBeUndefined();
 
     focusDiagramSystem(checkout, 'shared');
+
+    expect(readFocusedSystem()).toEqual({
+      name: 'Checkout API',
+      sourceFile: 'src/checkout.ts',
+      workspaceRoot: '/repo',
+    });
+  });
+
+  it('restores the other open map when a saved map is closed', () => {
+    const checkout = openDiagramSession(
+      diagram('Checkout API', 'checkout/api', 'src/checkout.ts'),
+      '/repo'
+    );
+    const billing = openDiagramSession(
+      diagram('Billing API', 'billing/api', 'src/billing.ts'),
+      '/repo'
+    );
+    focusDiagramSystem(checkout, 'checkout/api');
+    focusDiagramSystem(billing, 'billing/api');
+
+    replaceDiagramSession(billing, diagram('Billing API', 'billing/api', 'src/next.ts'), '/repo');
+
+    expect(readFocusedSystem()).toBeUndefined();
+
+    closeDiagramSession(billing);
+
+    expect(readFocusedSystem()).toEqual({
+      name: 'Checkout API',
+      sourceFile: 'src/checkout.ts',
+      workspaceRoot: '/repo',
+    });
+  });
+
+  it('stays on an open map that no longer projects instead of another map', () => {
+    const checkout = openDiagramSession(
+      diagram('Checkout API', 'checkout/api', 'src/checkout.ts'),
+      '/repo'
+    );
+    const billing = openDiagramSession(
+      diagram('Billing API', 'billing/api', 'src/billing.ts'),
+      '/repo'
+    );
+    focusDiagramSystem(checkout, 'checkout/api');
+    focusDiagramSystem(billing, 'billing/api');
+
+    clearDiagramSession(billing);
+    focusDiagramSystem(billing, 'billing/api');
+
+    expect(readFocusedSystem()).toBeUndefined();
+
+    closeDiagramSession(billing);
 
     expect(readFocusedSystem()).toEqual({
       name: 'Checkout API',
