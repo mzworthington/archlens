@@ -6,6 +6,7 @@ describe('architecture map panel', () => {
   it('names each system so keyboard focus lands on that name', () => {
     const html = renderMap({
       sourcePath: '/repo/blueprints/context.yaml',
+      level: 'context',
       systems: [
         { name: 'Checkout API', entityRef: 'checkout/api' },
         { name: 'Billing', entityRef: 'checkout/billing' },
@@ -23,6 +24,7 @@ describe('architecture map panel', () => {
   it('escapes a system name before putting it in the panel', () => {
     const html = renderMap({
       sourcePath: '/repo/blueprints/context.yaml',
+      level: 'context',
       systems: [{ name: '<img onerror="alert(1)">', entityRef: 'checkout/api' }],
       links: [],
     });

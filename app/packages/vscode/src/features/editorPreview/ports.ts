@@ -15,6 +15,7 @@ export interface DiagramLink {
 
 export interface DiagramView {
   readonly sourcePath: string;
+  readonly level: 'context' | 'container' | 'component' | 'code';
   readonly systems: readonly DiagramSystem[];
   readonly links: readonly DiagramLink[];
 }
@@ -31,6 +32,8 @@ export interface EditorHost {
   generateEnabled(): boolean;
   selectedPath(): string | undefined;
   selectedFolder(): string | undefined;
+  /** Path of the focused editor when the command was not aimed at a file or folder. */
+  hintPath(): string | undefined;
   workspaceFolders(): readonly WorkspaceFolder[];
   pickFolder(folders: readonly WorkspaceFolder[]): Promise<string | undefined>;
   readSelectedFile(): Promise<readonly BlueprintFile[]>;

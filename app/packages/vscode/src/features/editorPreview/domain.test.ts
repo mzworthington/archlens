@@ -7,9 +7,12 @@ import {
   INTEREST_DISCUSSION_URL,
   TELL_US_COPY,
   TRUST_COPY,
+  chooseWorkspaceFolder,
   decideOpenMap,
   generateDecision,
+  isInsideEditorPath,
   safeBlueprintsFolder,
+  sameEditorPath,
 } from './domain';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -43,6 +46,7 @@ describe('open architecture map', () => {
       kind: 'diagram',
       diagram: {
         sourcePath: '/repo/blueprints/context.yaml',
+        level: 'context',
         systems: [
           { name: 'Checkout API', entityRef: 'checkout/api' },
           { name: 'Billing', entityRef: 'checkout/billing' },
@@ -50,6 +54,51 @@ describe('open architecture map', () => {
         links: [{ fromName: 'Checkout API', toName: 'Billing' }],
       },
     });
+  });
+
+  it('treats Windows and forward-slash paths as the same file', () => {
+    const decision = decideOpenMap({
+      files: [{ path: 'C:/repo/blueprints/context.yaml', content: checkout }],
+      selectedPath: 'C:\\repo\\blueprints\\context.yaml',
+    });
+
+    expect(decision.kind).toBe('diagram');
+    expect(sameEditorPath('C:\\repo\\', 'C:/repo')).toBe(true);
+    expect(isInsideEditorPath('C:\\repo\\blueprints\\context.yaml', 'C:/repo')).toBe(true);
+    expect(isInsideEditorPath('C:/other/context.yaml', 'C:/repo')).toBe(false);
+  });
+
+  it('prefers a context-level diagram over a file named context.yaml', () => {
+    const component = checkout
+      .replace('level: context', 'level: component')
+      .replace('name: Checkout API', 'name: Inner API');
+    const estate = checkout.replace('name: Checkout API', 'name: Estate API');
+    const decision = decideOpenMap({
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: component },
+        { path: '/repo/blueprints/estate.yaml', content: estate },
+      ],
+    });
+
+    expect(decision.kind === 'diagram' && decision.diagram.systems[0]?.name).toBe('Estate API');
+  });
+
+  it('opens the workspace root that contains the focused file', () => {
+    expect(
+      chooseWorkspaceFolder({
+        folders: ['C:\\billing', 'C:\\checkout'],
+        hintPath: 'C:\\checkout\\src\\api.ts',
+      })
+    ).toEqual({ kind: 'folder', path: 'C:/checkout' });
+  });
+
+  it('asks for a folder when several roots are open and none contains the hint', () => {
+    expect(
+      chooseWorkspaceFolder({
+        folders: ['/billing', '/checkout'],
+        hintPath: '/other/notes.md',
+      })
+    ).toEqual({ kind: 'pick', paths: ['/billing', '/checkout'] });
   });
 
   it('prefers context.yaml over another blueprint in the folder', () => {
