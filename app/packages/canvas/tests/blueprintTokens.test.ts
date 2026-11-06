@@ -159,6 +159,20 @@ describe('blueprint design tokens', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('paints canvas status chips with the light paper palette', () => {
+    const stylesheet = fs.readFileSync(path.join(canvasRoot, 'src/index.css'), 'utf8');
+
+    for (const tone of ['level', 'ok', 'warn', 'alert']) {
+      expect(stylesheet).toContain(
+        `html[data-theme='light'] .canvas-status-chip[data-status-tone='${tone}']`
+      );
+    }
+    expect(stylesheet).toContain('background: #eff6ff');
+    expect(stylesheet).toContain('background: #ecfdf5');
+    expect(stylesheet).toContain('background: #fff7ed');
+    expect(stylesheet).toContain('background: #fef2f2');
+  });
+
   it('defines the light paper token set on the light theme', () => {
     const tokens = fs.readFileSync(tokensPath, 'utf8');
 

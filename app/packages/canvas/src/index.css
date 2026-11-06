@@ -120,6 +120,46 @@ html[data-theme='light'] [data-testid='product-stage-badge'] {
   border-color: #fdba74;
 }
 
+/* Canvas status chips follow the same paper treatment as the Beta badge. */
+html[data-theme='light'] .canvas-status-chip {
+  box-shadow: 0 1px 2px rgb(21 32 51 / 0.06);
+  backdrop-filter: none;
+}
+
+html[data-theme='light'] .canvas-status-chip[data-status-tone='level'] {
+  color: #1e40af !important;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+html[data-theme='light'] .canvas-status-chip[data-status-tone='ok'] {
+  color: #047857 !important;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+html[data-theme='light'] .canvas-status-chip[data-status-tone='warn'] {
+  color: #9a3412 !important;
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+html[data-theme='light'] .canvas-status-chip[data-status-tone='alert'] {
+  color: #b91c1c !important;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+html[data-theme='light'] .canvas-status-chip[data-status-tone='alert']:hover {
+  background: #fee2e2;
+}
+
+html[data-theme='light'] .canvas-status-chip svg {
+  color: inherit !important;
+  background: transparent;
+  border-color: transparent;
+}
+
 html[data-theme='light'] .border-slate-900,
 html[data-theme='light'] .border-slate-800 {
   border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
