@@ -52,6 +52,7 @@ Docs and the live product share one build - Markdown under `docs/` is imported a
 | `@archlens/canvas` | Canvas PWA, docs site, workspace adapters                                                       |
 | `@archlens/cli`    | Static analysis CLI, blueprint writers, AdviceLens estate runner                                |
 | `@archlens/collab` | Cloudflare Worker + Durable Object for Yjs share-link rooms (Wrangler; not in the Pages bundle) |
+| `@archlens/vscode` | Visual Studio Code pre-release: BlueprintSpec preview and the generate interest prompt          |
 
 **pnpm** workspaces (`app/pnpm-workspace.yaml`). **Vitest** for unit tests; **oxlint** + **Prettier** for lint/format. **Knip** for unused-code checks in CI.
 

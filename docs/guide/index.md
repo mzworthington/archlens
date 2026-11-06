@@ -34,6 +34,7 @@ Use this guide for the product, not the internals.
 - [ArchLens Canvas](./canvas.md) - startup chooser, panels, Mermaid import, externals, display toggles
 - [Collaborate](./collaborate.md) - share, rooms and comments ([send this page](https://archlens.dev/guide/collaborate))
 - [ArchLens CLI](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan), [meaningful IaC externals](./cli.md#meaningful-external-dependencies)
+- [Visual Studio Code](./vscode.md) - Marketplace pre-release: preview a blueprint, then say if you want one generated
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
 - [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, studio export, narration stub (Phase 5)

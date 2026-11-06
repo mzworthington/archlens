@@ -1,0 +1,104 @@
+{
+  "name": "@archlens/vscode",
+  "displayName": "ArchLens",
+  "description": "Preview a BlueprintSpec file and, when generation is on, build a diagram from the open folder.",
+  "version": "0.1.0-preview.1",
+  "publisher": "mzworthington",
+  "private": true,
+  "preview": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/extension.cjs",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "architecture",
+    "blueprint",
+    "c4"
+  ],
+  "homepage": "https://archlens.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzworthington/archlens",
+    "directory": "app/packages/vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/mzworthington/archlens/issues"
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "ArchLens does not read this folder until the workspace is trusted.",
+      "restrictedConfigurations": [
+        "archlens.generateFromWorkspace.enabled",
+        "archlens.blueprintsFolder"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "node esbuild.mjs"
+  },
+  "dependencies": {
+    "@archlens/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsdom": "21.1.7",
+    "@types/node": "^26.6.6",
+    "@types/vscode": "1.95.0",
+    "esbuild": "0.28.2",
+    "jsdom": "30.1.3"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "archlens.openArchitectureMap",
+        "title": "Open architecture map",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.generateDiagramFromWorkspace",
+        "title": "Generate diagram from workspace",
+        "category": "ArchLens"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "archlens.openArchitectureMap",
+          "when": "resourceExtname == .yaml || resourceExtname == .yml || explorerResourceIsFolder",
+          "group": "navigation@50"
+        },
+        {
+          "command": "archlens.generateDiagramFromWorkspace",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@51"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ArchLens",
+      "properties": {
+        "archlens.generateFromWorkspace.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Generate a diagram from the workspace. Off shows the interest prompt and writes nothing. Expires 2027-02-06."
+        },
+        "archlens.blueprintsFolder": {
+          "type": "string",
+          "default": "blueprints",
+          "description": "Folder the preview reads for BlueprintSpec files."
+        }
+      }
+    }
+  }
+}

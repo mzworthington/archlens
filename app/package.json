@@ -11,7 +11,7 @@
     "build:resilience-engine": "make -C ../resilience-engine copy-wasm",
     "build": "pnpm build:resilience-engine && pnpm --filter @archlens/canvas build && pnpm --filter @archlens/cli build",
     "lint": "oxlint -c .oxlintrc.json --deny-warnings",
-    "typecheck": "pnpm --filter @archlens/canvas exec tsc -b && pnpm --filter @archlens/collab typecheck",
+    "typecheck": "pnpm --filter @archlens/canvas exec tsc -b && pnpm --filter @archlens/collab typecheck && pnpm --filter @archlens/vscode typecheck",
     "preview": "pnpm --filter @archlens/canvas preview",
     "test": "pnpm -r test",
     "test:core": "pnpm --filter @archlens/core test",

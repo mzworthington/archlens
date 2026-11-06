@@ -145,7 +145,7 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/` and `resi
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet` and `go test`
 - ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git - CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
 
-Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
+Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation. The diagram preview is a separate extension: [Visual Studio Code](./guide/vscode.md).
 
 ### YAML format (v4)
 

@@ -39,6 +39,14 @@ CLI reference: [app/packages/cli/README.md](./app/packages/cli/README.md) · [Ge
 
 ---
 
+## Visual Studio Code
+
+A Marketplace pre-release previews a BlueprintSpec file beside the YAML. **Generate diagram from workspace** explains that generation is off and opens a GitHub discussion if you want a diagram from the folder. It does not scan and it does not write files. In Restricted Mode it does not read the folder.
+
+Guide: [docs/guide/vscode.md](./docs/guide/vscode.md).
+
+---
+
 ## Workspace Component Catalog
 
 | Component                                                                             | Path                                             | Language/Framework                       | Description                                                         |
@@ -46,6 +54,7 @@ CLI reference: [app/packages/cli/README.md](./app/packages/cli/README.md) · [Ge
 | **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/)   | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                 |
 | **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)         | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)    |
 | **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)       | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)    |
+| **`@archlens/vscode`**                                                                | [app/packages/vscode/](./app/packages/vscode/)   | TypeScript / VS Code                     | Editor pre-release: blueprint preview and interest prompt           |
 | **`@archlens/storage`**                                                               | [app/packages/storage/](./app/packages/storage/) | TypeScript                               | Object-storage port (R2/S3/Azure/HTTP) for publish + remote catalog |
 | **ChaosLens engine**                                                                  | [resilience-engine/](./resilience-engine/)       | Go / WASM                                | Monte Carlo blast-radius sim for Canvas (WASM) + TS fallback        |
 | Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers). |

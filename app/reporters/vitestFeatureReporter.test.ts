@@ -56,6 +56,7 @@ describe('VitestFeatureReporter', () => {
     expect(packageLabel('canvas')).toBe('Canvas');
     expect(packageLabel('core')).toBe('Core');
     expect(packageLabel('cli')).toBe('CLI');
+    expect(packageLabel('vscode')).toBe('Editor');
     expect(fileLabel('/x/src/entityRef.test.ts', 'src/entityRef.test.ts')).toBe('entityRef');
   });
 

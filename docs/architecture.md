@@ -193,6 +193,19 @@ Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the p
 
 - Circular dependency loops are flagged and highlighted on the canvas.
 
-## Editor plan
+## Editor extension
 
-The Visual Studio Marketplace bet (preview a blueprint, then ask before generating one from the workspace) is [vscode-marketplace-extension-prd.md](./vscode-marketplace-extension-prd.md). It does not change Canvas or the CLI.
+The Marketplace pre-release is `app/packages/vscode`. It reads BlueprintSpec through `@archlens/core/blueprint` and draws a read-only preview beside the YAML. Workspace trust gates every read. **Generate diagram from workspace** shows the interest prompt and does not scan or write. The setting `archlens.generateFromWorkspace.enabled` stays off until the 2027-02-06 indicator. The bet card is [vscode-marketplace-extension-prd.md](./vscode-marketplace-extension-prd.md). Canvas and the CLI are unchanged.
+
+```mermaid
+graph TD
+  cmd[Open architecture map or Generate]
+  trust{Workspace trusted?}
+  blocked[Trust message. No read.]
+  preview[Diagram beside the YAML]
+  interest[Tell us you want this]
+  cmd --> trust
+  trust -->|no| blocked
+  trust -->|yes| preview
+  trust -->|yes| interest
+```
