@@ -21,6 +21,7 @@ export function rawDesignTokens(): Plugin {
     },
     load(id) {
       if (id !== RESOLVED_ID) return null;
+      this.addWatchFile(tokensPath);
       return `export default ${JSON.stringify(fs.readFileSync(tokensPath, 'utf8'))};`;
     },
   };
