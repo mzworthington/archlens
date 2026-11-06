@@ -67,7 +67,7 @@ mise install
 pnpm record:docs-media
 ```
 
-Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif` and `canvas-tour.gif` at 1280px / 8 fps (20 MiB budget). Named collab cursors are a PNG (`9-collab-cursors.png`) from `e2e-collab-cursors.spec.ts` when `RECORD_DOCS_MEDIA=1`. Static PNGs for dense UI (chooser, Mermaid merge) remain in `docs/screenshots/` and are referenced from [canvas.md](../../../docs/guide/canvas.md).
+Writes `docs/screenshots/chaoslens.gif`, `tracelens.gif` and `canvas-tour.gif` at 1280px / 8 fps (20 MiB budget). The same run writes two stills: the startup chooser (`6-startup-chooser.png`) and named collab cursors (`9-collab-cursors.png`). The cursor still is also written by `e2e-collab-cursors.spec.ts` when `RECORD_DOCS_MEDIA=1`. Regenerate the chooser still on its own with `RECORD_DOCS_MEDIA=1 DOCS_MEDIA_SKIP_GIF=1 pnpm exec playwright test --config playwright.docs-media.config.ts -g 6-startup-chooser.png` from this package. Other static PNGs (Mermaid merge, panels) stay in `docs/screenshots/` and are referenced from [canvas.md](../../../docs/guide/canvas.md).
 
 ---
 
