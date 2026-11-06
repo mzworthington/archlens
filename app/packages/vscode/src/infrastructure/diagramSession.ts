@@ -10,10 +10,12 @@ export interface FocusedDiagramSystem {
 interface OpenDiagram {
   readonly id: number;
   readonly systems: DiagramView['systems'];
+  readonly links: DiagramView['links'];
   readonly workspaceRoot?: string;
   readonly sourcePath: string;
   readonly breadcrumb: readonly DiagramCrumb[];
   schema?: SystemSchema;
+  hotspotsOn: boolean;
   focusedEntityRef?: string;
   focusedAt?: number;
 }
@@ -25,6 +27,13 @@ export interface VisibleDiagram {
   readonly sourcePath: string;
   readonly workspaceRoot?: string;
   readonly systems: DiagramView['systems'];
+  readonly hotspotsOn: boolean;
+}
+
+export interface SessionView {
+  readonly diagram: DiagramView;
+  readonly schema?: SystemSchema;
+  readonly hotspotsOn: boolean;
 }
 
 const sessions = new Map<number, OpenDiagram>();
@@ -56,6 +65,7 @@ export function replaceDiagramSession(
   sessions.set(id, {
     ...sessionFrom(id, diagram, workspaceRoot, schema ?? existing.schema),
     breadcrumb: diagram.breadcrumb ?? existing.breadcrumb,
+    hotspotsOn: existing.hotspotsOn,
   });
   if (wasActive) activeId = undefined;
   return id;
@@ -72,6 +82,7 @@ export function showInSession(
   sessions.set(id, {
     ...sessionFrom(id, diagram, existing.workspaceRoot, schema),
     breadcrumb,
+    hotspotsOn: existing.hotspotsOn,
   });
   if (activeId === id) activeId = undefined;
   visibleId = id;
@@ -88,7 +99,29 @@ export function readVisibleDiagram(): VisibleDiagram | undefined {
     sourcePath: session.sourcePath,
     workspaceRoot: session.workspaceRoot,
     systems: session.systems,
+    hotspotsOn: session.hotspotsOn,
   };
+}
+
+export function readSessionView(id: number): SessionView | undefined {
+  const session = sessions.get(id);
+  if (!session) return undefined;
+  return {
+    hotspotsOn: session.hotspotsOn,
+    schema: session.schema,
+    diagram: {
+      sourcePath: session.sourcePath,
+      systems: session.systems,
+      links: session.links,
+      breadcrumb: session.breadcrumb,
+    },
+  };
+}
+
+export function setSessionHotspots(id: number, on: boolean): void {
+  const session = sessions.get(id);
+  if (!session) return;
+  session.hotspotsOn = on;
 }
 
 export function closeDiagramSession(id: number): void {
@@ -142,6 +175,8 @@ function sessionFrom(
     systems: diagram.systems,
     workspaceRoot,
     sourcePath: diagram.sourcePath,
+    links: diagram.links,
+    hotspotsOn: false,
     breadcrumb: diagram.breadcrumb ?? [
       {
         name: schema?.name || diagram.systems[0]?.name || 'Diagram',

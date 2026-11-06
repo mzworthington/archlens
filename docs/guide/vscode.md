@@ -46,6 +46,7 @@ In that window:
 | Drill           | Focus a system and press Enter. Press Alt+Left, or choose the parent in the breadcrumb.                  | The child diagram replaces the canvas. A system with no child diagram stays put.                                                              |
 | Copy            | **ArchLens: Copy diagram as Mermaid**.                                                                   | The clipboard gets a flowchart. The YAML file is unchanged. An empty diagram says nothing to copy.                                            |
 | Problems        | Open a blueprint that contains a cycle, then remove the cycle and save.                                  | Problems names both systems and the file. The problem is gone after the save. A notes file gets no ArchLens problem.                          |
+| Hotspots        | **ArchLens: Show hotspots** on a map that already has hotspot signals, in a folder with git history.     | Marked systems say Hotspot and properties include a change count. No git history leaves the diagram as it is.                                 |
 
 After an edit, compile again and run **Developer: Reload Window** in the host.
 

@@ -3,11 +3,18 @@ import type { SystemSchema } from '@archlens/core';
 import {
   EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
+  NO_GIT_HOTSPOTS_COPY,
   NO_SOURCE_COPY,
   NOTHING_TO_COPY,
   TRUST_COPY,
 } from './domain';
-import { copyDiagram, generateFromWorkspace, openArchitectureMap, openSource } from './handler';
+import {
+  copyDiagram,
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+  showHotspots,
+} from './handler';
 import type { BlueprintFile, EditorHost, FocusedSystem, WorkspaceFolder } from './ports';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -50,6 +57,10 @@ function host(input: {
   focused?: FocusedSystem;
   existing?: readonly string[];
   schema?: SystemSchema;
+  hotspotsOn?: boolean;
+  workspaceRoot?: string;
+  git?: boolean;
+  map?: boolean;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -112,6 +123,20 @@ function host(input: {
     visibleSchema: () => input.schema,
     writeClipboard: async text => {
       clipboard.push(text);
+    },
+    visibleMap: () =>
+      input.map
+        ? {
+            hotspotsOn: input.hotspotsOn ?? false,
+            ...(input.workspaceRoot ? { workspaceRoot: input.workspaceRoot } : {}),
+          }
+        : undefined,
+    hasGitHistory: async root => {
+      calls.push(`git:${root}`);
+      return input.git ?? false;
+    },
+    setHotspots: on => {
+      calls.push(`hotspots:${on}`);
     },
   };
 }
@@ -316,5 +341,51 @@ describe('generate diagram command', () => {
     expect(editor.calls).toContain('read-setting');
     expect(editor.calls).not.toContain('list:/repo');
     expect(editor.discussions).toEqual([]);
+  });
+});
+
+describe('show hotspots command', () => {
+  it('does not look for git history while the workspace is untrusted', async () => {
+    const editor = host({ trusted: false, map: true, workspaceRoot: '/repo', git: true });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.calls).not.toContain('git:/repo');
+    expect(editor.calls).not.toContain('hotspots:true');
+  });
+
+  it('leaves the diagram alone when the folder has no git history', async () => {
+    const editor = host({ trusted: true, map: true, workspaceRoot: '/repo', git: false });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([NO_GIT_HOTSPOTS_COPY]);
+    expect(editor.calls).toContain('git:/repo');
+    expect(editor.calls).not.toContain('hotspots:true');
+  });
+
+  it('turns hotspot marks on when the folder has git history', async () => {
+    const editor = host({ trusted: true, map: true, workspaceRoot: '/repo', git: true });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([]);
+    expect(editor.calls).toContain('hotspots:true');
+  });
+
+  it('turns hotspot marks off without reading git again', async () => {
+    const editor = host({
+      trusted: true,
+      map: true,
+      workspaceRoot: '/repo',
+      git: true,
+      hotspotsOn: true,
+    });
+
+    await showHotspots(editor);
+
+    expect(editor.calls).toContain('hotspots:false');
+    expect(editor.calls).not.toContain('git:/repo');
   });
 });

@@ -26,6 +26,26 @@ describe('architecture map panel', () => {
     expect(html).toContain("event.key !== 'Enter'");
     expect(html).toContain("event.key !== 'ArrowLeft'");
     expect(html).not.toContain('onclick');
+    expect(html).not.toContain('Hotspot');
+  });
+
+  it('shows a hotspot mark and a change count on a marked system', () => {
+    const html = renderMap(
+      {
+        sourcePath: '/repo/blueprints/context.yaml',
+        systems: [
+          { name: 'Checkout API', entityRef: 'checkout/api', hotspotCount: 6 },
+          { name: 'Billing', entityRef: 'checkout/billing' },
+        ],
+        links: [],
+      },
+      'nonce-1'
+    );
+
+    expect(html).toContain('<p>Hotspot</p>');
+    expect(html).toContain('<dt>Changes</dt>');
+    expect(html).toContain('<dd>6</dd>');
+    expect(html.match(/<p>Hotspot<\/p>/g)).toHaveLength(1);
   });
 
   it('escapes a system name before putting it in the panel', () => {

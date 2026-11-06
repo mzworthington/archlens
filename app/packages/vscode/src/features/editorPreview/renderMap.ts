@@ -2,19 +2,7 @@ import { EMPTY_MAP_COPY } from './domain';
 import type { DiagramView } from './ports';
 
 export function renderMap(diagram: DiagramView, nonce: string): string {
-  const systems = diagram.systems
-    .map(
-      system => `<article tabindex="0" data-entity-ref="${escapeHtml(system.entityRef)}" aria-label="${escapeHtml(system.name)}">
-  <h2>${escapeHtml(system.name)}</h2>
-  <dl>
-    <dt>Name</dt>
-    <dd>${escapeHtml(system.name)}</dd>
-    <dt>entityRef</dt>
-    <dd>${escapeHtml(system.entityRef)}</dd>
-  </dl>
-</article>`
-    )
-    .join('\n');
+  const systems = diagram.systems.map(systemArticle).join('\n');
   const links = diagram.links
     .map(link => `<li>${escapeHtml(link.fromName)} → ${escapeHtml(link.toName)}</li>`)
     .join('\n');
@@ -22,6 +10,25 @@ export function renderMap(diagram: DiagramView, nonce: string): string {
     `${breadcrumbNav(diagram.breadcrumb ?? [])}\n${systems}\n<ul>\n${links}\n</ul>\n${focusScript(nonce)}`,
     `script-src 'nonce-${escapeHtml(nonce)}';`
   );
+}
+
+function systemArticle(system: DiagramView['systems'][number]): string {
+  const mark = system.hotspotCount === undefined ? '' : `<p>Hotspot</p>\n  `;
+  const changes =
+    system.hotspotCount === undefined
+      ? ''
+      : `<dt>Changes</dt>
+    <dd>${system.hotspotCount}</dd>
+    `;
+  return `<article tabindex="0" data-entity-ref="${escapeHtml(system.entityRef)}" aria-label="${escapeHtml(system.name)}">
+  <h2>${escapeHtml(system.name)}</h2>
+  ${mark}<dl>
+    <dt>Name</dt>
+    <dd>${escapeHtml(system.name)}</dd>
+    <dt>entityRef</dt>
+    <dd>${escapeHtml(system.entityRef)}</dd>
+    ${changes}</dl>
+</article>`;
 }
 
 function breadcrumbNav(breadcrumb: DiagramView['breadcrumb']): string {

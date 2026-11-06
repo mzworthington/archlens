@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   INTEREST_DISCUSSION_URL,
+  NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
   TRUST_COPY,
@@ -10,6 +11,7 @@ import {
   generateFromWorkspace,
   openArchitectureMap,
   openSource,
+  showHotspots,
 } from '../features/editorPreview/handler';
 import { resetDiagramSession } from './diagramSession';
 import { createEditorHost, type VsCodeLike } from './vscodeHost';
@@ -50,6 +52,7 @@ function editor(input: {
   files?: { path: string; content: string }[];
   enabled?: boolean;
   directory?: string;
+  git?: boolean;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
@@ -91,6 +94,7 @@ function editor(input: {
       fs: {
         stat: async uri => {
           calls.push('stat');
+          if (input.git && uri.fsPath === '/repo/.git') return { type: 2 };
           if (input.directory === uri.fsPath) return { type: 2 };
           if (files.some(file => file.path === uri.fsPath)) return { type: 1 };
           throw new Error(`missing ${uri.fsPath}`);
@@ -323,6 +327,49 @@ describe('editor host', () => {
     expect(fake.copied[0]).toContain('Checkout API');
     expect(fake.copied[0]).toContain('Billing');
     expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
+  });
+
+  it('marks a recorded hotspot when the folder has git history', async () => {
+    const withHotspot = checkout.replace(
+      '    name: Checkout API',
+      `    name: Checkout API
+    forensics:
+      classifications:
+        - hotspot
+      churn: 12
+      churnByWeek:
+        - 2
+        - 6`
+    );
+    const fake = editor({
+      trusted: true,
+      git: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: withHotspot }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await showHotspots(host);
+
+    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
+    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
+    expect(fake.html[0]).not.toContain('<p>Hotspot</p>');
+  });
+
+  it('leaves the diagram unchanged when the folder has no git history', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    const before = fake.html.at(-1);
+
+    await showHotspots(host);
+
+    expect(fake.calls).toContain(`message:${NO_GIT_HOTSPOTS_COPY}`);
+    expect(fake.html.at(-1)).toBe(before);
+    expect(fake.html.at(-1)).not.toContain('Hotspot');
   });
 
   it('opens the discussion from Tell us you want this and reads no blueprint', async () => {

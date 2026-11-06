@@ -34,6 +34,7 @@
     "onCommand:archlens.generateFromWorkspace",
     "onCommand:archlens.openSource",
     "onCommand:archlens.copyDiagram",
+    "onCommand:archlens.showHotspots",
     "onLanguage:yaml"
   ],
   "contributes": {
@@ -56,6 +57,11 @@
       {
         "command": "archlens.copyDiagram",
         "title": "Copy diagram as Mermaid",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.showHotspots",
+        "title": "Show hotspots",
         "category": "ArchLens"
       }
     ],
@@ -82,6 +88,11 @@
           "command": "archlens.copyDiagram",
           "when": "webviewId == 'archlens.architectureMap'",
           "group": "navigation@2"
+        },
+        {
+          "command": "archlens.showHotspots",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation@3"
         }
       ]
     },

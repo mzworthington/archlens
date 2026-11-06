@@ -9,6 +9,7 @@ import {
   decideBack,
   decideDrill,
   decideOpenMap,
+  presentHotspots,
   safeBlueprintsFolder,
 } from '../features/editorPreview/domain';
 import { renderEmptyMap, renderMap } from '../features/editorPreview/renderMap';
@@ -24,8 +25,10 @@ import {
   focusDiagramSystem,
   openDiagramSession,
   readFocusedSystem,
+  readSessionView,
   readVisibleDiagram,
   replaceDiagramSession,
+  setSessionHotspots,
   showInSession,
 } from './diagramSession';
 
@@ -98,6 +101,7 @@ export interface VsCodeLike<
 }
 
 const STATUS_HIDE_MS = 5000;
+const panelPainters = new Map<number, () => void>();
 
 export async function createEditorHost<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
@@ -138,6 +142,21 @@ export async function createEditorHost<Uri extends FileUri>(
     visibleSchema: () => readVisibleDiagram()?.schema,
     writeClipboard: async text => {
       await api.env.clipboard.writeText(text);
+    },
+    visibleMap: () => {
+      const visible = readVisibleDiagram();
+      if (!visible) return undefined;
+      return {
+        hotspotsOn: visible.hotspotsOn,
+        ...(visible.workspaceRoot ? { workspaceRoot: visible.workspaceRoot } : {}),
+      };
+    },
+    hasGitHistory: root => hasGitHistory(api, root),
+    setHotspots: on => {
+      const visible = readVisibleDiagram();
+      if (!visible) return;
+      setSessionHotspots(visible.id, on);
+      panelPainters.get(visible.id)?.();
     },
   };
 }
@@ -237,10 +256,16 @@ async function showDiagram<Uri extends FileUri>(
   const schema = schemaFrom(document.getText());
   const shown = { session: 0, path: diagram.sourcePath };
   shown.session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath), schema);
-  const paint = (next: DiagramView) => {
-    panel.webview.html = renderMap(next, mapNonce());
+  const paint = () => {
+    const view = readSessionView(shown.session);
+    if (!view) return;
+    panel.webview.html = renderMap(
+      presentHotspots(view.diagram, view.schema?.nodes ?? [], view.hotspotsOn),
+      mapNonce()
+    );
   };
-  paint(diagram);
+  panelPainters.set(shown.session, paint);
+  paint();
   const messages = panel.webview.onDidReceiveMessage(message =>
     onPanelMessage(api, shown, message, paint)
   );
@@ -257,14 +282,15 @@ async function showDiagram<Uri extends FileUri>(
         workspaceRootFor(api, decision.diagram.sourcePath),
         schemaFrom(saved.getText())
       );
-      const breadcrumb = readVisibleDiagram()?.breadcrumb;
-      paint(breadcrumb ? { ...decision.diagram, breadcrumb } : decision.diagram);
+      paint();
       return;
     }
     closeDiagramSession(shown.session);
+    panelPainters.delete(shown.session);
     panel.webview.html = renderEmptyMap();
   });
   panel.onDidDispose(() => {
+    panelPainters.delete(shown.session);
     closeDiagramSession(shown.session);
     messages.dispose();
     listener.dispose();
@@ -275,7 +301,7 @@ async function onPanelMessage<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   shown: { session: number; path: string },
   message: unknown,
-  paint: (diagram: DiagramView) => void
+  paint: () => void
 ): Promise<void> {
   const focus = focusEntity(message);
   if (focus) {
@@ -311,7 +337,7 @@ async function onPanelMessage<Uri extends FileUri>(
     ];
     showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
     shown.path = decision.diagram.sourcePath;
-    paint({ ...decision.diagram, breadcrumb });
+    paint();
     return;
   }
   const decision = decideBack({
@@ -322,7 +348,20 @@ async function onPanelMessage<Uri extends FileUri>(
   if (decision.kind === 'stay') return;
   showInSession(shown.session, decision.diagram, decision.schema, decision.breadcrumb);
   shown.path = decision.diagram.sourcePath;
-  paint({ ...decision.diagram, breadcrumb: decision.breadcrumb });
+  paint();
+}
+
+async function hasGitHistory<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  root: string
+): Promise<boolean> {
+  const folder = root.replaceAll('\\', '/').replace(/\/+$/, '');
+  try {
+    await api.workspace.fs.stat(api.Uri.file(`${folder}/.git`));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function schemaFrom(content: string): SystemSchema | undefined {

@@ -4,6 +4,7 @@ import {
   generateFromWorkspace,
   openArchitectureMap,
   openSource,
+  showHotspots,
 } from './features/editorPreview';
 import { watchBlueprintProblems } from './infrastructure/blueprintDiagnostics';
 import { createEditorHost, type VsCodeLike } from './infrastructure/vscodeHost';
@@ -103,6 +104,9 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     vscode.commands.registerCommand('archlens.copyDiagram', () => {
       void run(() => copyDiagram, undefined);
+    }),
+    vscode.commands.registerCommand('archlens.showHotspots', () => {
+      void run(() => showHotspots, undefined);
     })
   );
 }
