@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
   NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
@@ -354,6 +355,39 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
     expect(fake.html.at(-1)).toContain('<dd>6</dd>');
     expect(fake.html[0]).not.toContain('<p>Hotspot</p>');
+  });
+
+  it('marks hotspots again after a broken blueprint save is fixed', async () => {
+    const withHotspot = checkout.replace(
+      '    name: Checkout API',
+      `    name: Checkout API
+    forensics:
+      classifications:
+        - hotspot
+      churn: 12
+      churnByWeek:
+        - 2
+        - 6`
+    );
+    const fake = editor({
+      trusted: true,
+      git: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: withHotspot }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    fake.save('/repo/blueprints/context.yaml', 'notes: not a blueprint');
+    expect(fake.html.at(-1)).toContain(EMPTY_MAP_COPY);
+
+    fake.save('/repo/blueprints/context.yaml', withHotspot);
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).not.toContain('<p>Hotspot</p>');
+
+    await showHotspots(host);
+
+    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
+    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
   });
 
   it('leaves the diagram unchanged when the folder has no git history', async () => {

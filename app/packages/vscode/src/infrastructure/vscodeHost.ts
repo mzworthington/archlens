@@ -282,6 +282,7 @@ async function showDiagram<Uri extends FileUri>(
         workspaceRootFor(api, decision.diagram.sourcePath),
         schemaFrom(saved.getText())
       );
+      panelPainters.set(shown.session, paint);
       paint();
       return;
     }
