@@ -51,7 +51,7 @@ describe('UpdateBanner', () => {
     setNeedRefresh.mockClear();
     swUpdate.mockClear();
     hasRemoteBuildUpdate.mockReset().mockResolvedValue(false);
-    reloadWithoutServiceWorker.mockClear();
+    reloadWithoutServiceWorker.mockReset().mockResolvedValue(undefined);
   });
 
   it('is hidden when no update is pending', () => {
@@ -89,6 +89,24 @@ describe('UpdateBanner', () => {
     fireEvent.click(await screen.findByRole('button', { name: /^Refresh$/i }));
     expect(reloadWithoutServiceWorker).toHaveBeenCalled();
     expect(updateServiceWorker).toHaveBeenCalledWith(false);
+  });
+
+  it('shows Refreshing and ignores a second click while the reload is in progress', async () => {
+    needRefresh = true;
+    let release: () => void = () => {};
+    reloadWithoutServiceWorker.mockImplementation(
+      () =>
+        new Promise<void>(resolve => {
+          release = resolve;
+        })
+    );
+    render(<UpdateBanner />);
+    fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
+    const refreshing = await screen.findByRole('button', { name: /Refreshing/i });
+    expect(refreshing).toBeDisabled();
+    fireEvent.click(refreshing);
+    expect(reloadWithoutServiceWorker).toHaveBeenCalledTimes(1);
+    release();
   });
 
   it('hard-reloads even when the waiting worker never takes control', () => {

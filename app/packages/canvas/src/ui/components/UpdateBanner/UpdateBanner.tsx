@@ -26,6 +26,8 @@ export function UpdateBanner() {
   });
 
   const [fallbackRefresh, setFallbackRefresh] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const refreshingRef = useRef(false);
 
   const checkForRemoteUpdate = useCallback(async () => {
     const updated = await hasRemoteBuildUpdate(import.meta.env.BASE_URL);
@@ -50,6 +52,9 @@ export function UpdateBanner() {
   if (!show) return null;
 
   const refresh = () => {
+    if (refreshingRef.current) return;
+    refreshingRef.current = true;
+    setRefreshing(true);
     try {
       updateServiceWorker(false);
     } catch {
@@ -75,18 +80,24 @@ export function UpdateBanner() {
     <div
       role="status"
       aria-live="polite"
+      aria-busy={refreshing}
       data-testid="update-banner"
       className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-accent/25 bg-surface/95 px-4 py-2 text-xs font-mono text-slate-100 backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
     >
-      <RefreshCw className="size-3.5 shrink-0 text-accent" aria-hidden />
+      <RefreshCw
+        className={`size-3.5 shrink-0 text-accent ${refreshing ? 'animate-spin' : ''}`}
+        aria-hidden
+      />
       <span>A new version of ArchLens is available.</span>
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={refresh}
-          className="rounded-md border border-accent/40 bg-accent/10 px-2.5 py-1 text-accent hover:bg-accent/20 transition-colors"
+          disabled={refreshing}
+          aria-busy={refreshing}
+          className="rounded-md border border-accent/40 bg-accent/10 px-2.5 py-1 text-accent hover:bg-accent/20 transition-colors disabled:cursor-wait disabled:opacity-80"
         >
-          Refresh
+          {refreshing ? 'Refreshing…' : 'Refresh'}
         </button>
         <button
           type="button"

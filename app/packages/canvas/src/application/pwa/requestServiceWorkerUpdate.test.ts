@@ -140,6 +140,21 @@ describe('reloadWithoutServiceWorker', () => {
     expect(reload).toHaveBeenCalledTimes(1);
   });
 
+  it('reloads when service worker cleanup never settles', async () => {
+    vi.useFakeTimers();
+    const reload = vi.fn();
+    const pending = reloadWithoutServiceWorker({
+      getRegistrations: () => new Promise(() => {}),
+      reload,
+    });
+    await vi.advanceTimersByTimeAsync(999);
+    expect(reload).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(1);
+    expect(reload).toHaveBeenCalledTimes(1);
+    await pending;
+    vi.useRealTimers();
+  });
+
   it('still reloads when listing registrations throws', async () => {
     const reload = vi.fn();
     await reloadWithoutServiceWorker({

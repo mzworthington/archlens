@@ -2,6 +2,9 @@ import { isBenignServiceWorkerUpdateFailure } from './benignServiceWorkerUpdateF
 
 const REFRESH_QUERY_PARAM = 'al_refresh';
 
+/** Stop waiting on a wedged worker so Refresh still navigates. */
+const SERVICE_WORKER_RELOAD_DEADLINE_MS = 1000;
+
 export type ServiceWorkerReload = {
   getRegistrations: () => Promise<ReadonlyArray<{ unregister: () => Promise<boolean> }>>;
   cacheKeys?: () => Promise<readonly string[]>;
@@ -38,28 +41,35 @@ export async function reloadWithoutServiceWorker({
   reload,
   skipWaiting,
 }: ServiceWorkerReload): Promise<void> {
-  try {
-    skipWaiting?.();
-  } catch {
-    // Waiting worker may be missing or broken (install TypeError).
-  }
-
-  try {
-    const registrations = await getRegistrations();
-    await Promise.all(registrations.map(registration => registration.unregister()));
-  } catch {
-    // Unregister can fail when the worker is wedged; still drop caches and reload.
-  }
-
-  try {
-    if (cacheKeys && deleteCache) {
-      const keys = await cacheKeys();
-      await Promise.all(keys.map(cacheName => deleteCache(cacheName)));
+  const cleanup = (async () => {
+    try {
+      skipWaiting?.();
+    } catch {
+      // Waiting worker may be missing or broken (install TypeError).
     }
-  } catch {
-    // Cache Storage may be unavailable; reload anyway.
-  }
 
+    try {
+      const registrations = await getRegistrations();
+      await Promise.all(registrations.map(registration => registration.unregister()));
+    } catch {
+      // Unregister can fail when the worker is wedged; still drop caches and reload.
+    }
+
+    try {
+      if (cacheKeys && deleteCache) {
+        const keys = await cacheKeys();
+        await Promise.all(keys.map(cacheName => deleteCache(cacheName)));
+      }
+    } catch {
+      // Cache Storage may be unavailable; reload anyway.
+    }
+  })();
+
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<void>(resolve => {
+    timer = setTimeout(resolve, SERVICE_WORKER_RELOAD_DEADLINE_MS);
+  });
+  await Promise.race([cleanup.finally(() => clearTimeout(timer)), deadline]);
   reload();
 }
 
