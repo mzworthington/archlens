@@ -51,6 +51,15 @@ function readAuthorKey(value: unknown): string | undefined {
   return trimmed;
 }
 
+function readDiagramPath(value: unknown): string | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  const path = (value as { diagramPath?: unknown }).diagramPath;
+  if (typeof path !== 'string') return undefined;
+  const trimmed = path.trim();
+  if (trimmed.length < 1 || trimmed.length > 240) return undefined;
+  return trimmed;
+}
+
 function readNamedState(value: unknown): { name: string; color: string } | null {
   if (!value || typeof value !== 'object') return null;
   const state = value as { name?: unknown; color?: unknown };
@@ -60,10 +69,19 @@ function readNamedState(value: unknown): { name: string; color: string } | null 
   return { name, color: color ?? '#38bdf8' };
 }
 
+export type CollabPresenceScope = {
+  /**
+   * When set, cursors are limited to peers on this diagram.
+   * Connected count still includes everyone in the room.
+   */
+  activeDiagramPath?: string | null;
+};
+
 /** Map awareness client states to UI presence. Local cursor is omitted. */
 export function presenceFromAwarenessStates(
   states: ReadonlyMap<number, unknown>,
-  localClientId: number
+  localClientId: number,
+  scope?: CollabPresenceScope
 ): CollabPresence {
   const cursors: CollabPeerCursor[] = [];
   const participants: CollabParticipant[] = [];
@@ -75,14 +93,18 @@ export function presenceFromAwarenessStates(
     connectedCount += 1;
     const isLocal = clientId === localClientId;
     const authorKey = isLocal ? readAuthorKey(raw) : undefined;
+    const diagramPath = readDiagramPath(raw);
     participants.push({
       clientId,
       name: named.name,
       color: named.color,
       isLocal,
       ...(authorKey ? { authorKey } : {}),
+      ...(diagramPath ? { diagramPath } : {}),
     });
     if (isLocal) continue;
+    const activeDiagram = scope?.activeDiagramPath?.trim() ?? '';
+    if (activeDiagram && diagramPath !== activeDiagram) continue;
     const cursor = readCursor(
       raw && typeof raw === 'object' ? (raw as { cursor?: unknown }).cursor : null
     );

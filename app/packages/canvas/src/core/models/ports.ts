@@ -192,6 +192,8 @@ export type CollabParticipant = {
   isLocal: boolean;
   /** Present on the local participant. Stable across refresh. */
   authorKey?: string;
+  /** Diagram path this person has open, when the room holds more than one file. */
+  diagramPath?: string;
 };
 
 /** Remote pointer in flow coordinates. Local cursor is never included. */
@@ -223,6 +225,17 @@ export const EMPTY_COLLAB_PRESENCE: CollabPresence = {
   participants: [],
 };
 
+export type CollabDiagramSeed = {
+  path: string;
+  schema: import('@archlens/core').SystemSchema;
+};
+
+/** Diagrams currently held in the room, independent of which one is on the canvas. */
+export type CollabWorkspaceUpdate = {
+  activePath: string | null;
+  diagrams: CollabDiagramSeed[];
+};
+
 /**
  * Driven outbound port for an optional realtime collaboration session.
  * Implementations must not leak CRDT types into the application store.
@@ -231,8 +244,15 @@ export interface CollabSessionPort {
   join(args: {
     roomId: string;
     seedSchema: import('@archlens/core').SystemSchema;
+    /** Every diagram to publish. Omit for a single-diagram room (`seedSchema`). */
+    seedDiagrams?: CollabDiagramSeed[];
+    /** File the local user has open. */
+    activePath?: string;
     displayName: string;
     onSchema: (schema: import('@archlens/core').SystemSchema) => void;
+    /** Active diagram in a workspace room, including the path it belongs to. */
+    onDiagram?: (path: string, schema: import('@archlens/core').SystemSchema) => void;
+    onWorkspace?: (update: CollabWorkspaceUpdate) => void;
     onPresence: (presence: CollabPresence) => void;
     onComments?: (comments: import('@archlens/core').NodeComment[]) => void;
     credentials?: {
@@ -246,8 +266,13 @@ export interface CollabSessionPort {
     };
     onRoomControl?: (event: 'admitted' | 'need-secret' | 'denied' | 'ended' | 'unclaimed') => void;
   }): Promise<void>;
-  /** Apply a local schema mutation. No-op when not in a room. */
+  /** Apply a local schema mutation to the open diagram. No-op when not in a room. */
   pushSchema(schema: import('@archlens/core').SystemSchema): void;
+  /**
+   * Show another diagram in this same room.
+   * Returns false when the session cannot show that file.
+   */
+  focusDiagram(path: string, seedSchema?: import('@archlens/core').SystemSchema): boolean;
   /** Publish the local pointer in flow coordinates, or hide it. */
   setCursor(position: { x: number; y: number } | null): void;
   /** Update the local display name while a room is active. */
@@ -266,6 +291,7 @@ export interface CollabSessionPort {
 export const noopCollabSession: CollabSessionPort = {
   join: async () => {},
   pushSchema: () => {},
+  focusDiagram: () => false,
   setCursor: () => {},
   setDisplayName: () => {},
   endRoom: () => {},

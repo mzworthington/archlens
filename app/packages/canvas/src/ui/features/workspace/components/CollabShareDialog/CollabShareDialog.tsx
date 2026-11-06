@@ -11,13 +11,20 @@ export type CollabShareCopyOptions = {
   expiresInHours: 0 | 8 | 24;
 };
 
+export type CollabShareDiagram = {
+  path: string;
+  name: string;
+};
+
 interface CollabShareDialogProps {
   isOpen: boolean;
   initialName?: string;
   participants: CollabParticipant[];
+  diagrams?: CollabShareDiagram[];
   canEndRoom?: boolean;
   audience?: 'same-browser' | 'joinable-link';
   onCopyLink: (name: string, options: CollabShareCopyOptions) => void;
+  onOpenDiagram?: (path: string) => void;
   onSaveName: (name: string) => boolean;
   onEndRoom?: () => void;
   onCancel: () => void;
@@ -27,9 +34,11 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   isOpen,
   initialName = '',
   participants,
+  diagrams = [],
   canEndRoom = false,
   audience = 'joinable-link',
   onCopyLink,
+  onOpenDiagram,
   onSaveName,
   onEndRoom,
   onCancel,
@@ -59,6 +68,9 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   }, [isOpen, initialName]);
 
   if (!isOpen) return null;
+
+  const workspaceShare = diagrams.length > 1;
+  const title = workspaceShare ? 'Live workspace' : 'Live diagram';
 
   const validName = () => {
     const name = normalizeCollabDisplayName(draft);
@@ -92,14 +104,14 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
               <div className="flex items-center gap-2">
                 <Users className="w-4 h-4 text-sky-300" aria-hidden="true" />
                 <h2 id={titleId} className="text-base font-bold text-white">
-                  Live diagram
+                  {title}
                 </h2>
               </div>
               <button
                 type="button"
                 onClick={onCancel}
                 className="p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition cursor-pointer"
-                aria-label="Close live diagram"
+                aria-label={workspaceShare ? 'Close live workspace' : 'Close live diagram'}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -108,7 +120,29 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
             <div className="p-4 space-y-4">
               <p className="text-sm text-slate-400 leading-relaxed">
                 {collabShareAudienceCopy(audience)}
+                {workspaceShare
+                  ? ' This link covers every open diagram. Switching files stays in this room.'
+                  : ''}
               </p>
+
+              {workspaceShare ? (
+                <nav aria-label="Diagrams in this room" data-testid="collab-diagram-list">
+                  <p className="text-xs font-semibold text-slate-300 mb-2">Diagrams in this room</p>
+                  <ul className="space-y-1">
+                    {diagrams.map(diagram => (
+                      <li key={diagram.path}>
+                        <button
+                          type="button"
+                          onClick={() => onOpenDiagram?.(diagram.path)}
+                          className="w-full text-left px-3 py-2 rounded-lg text-sm text-slate-100 hover:bg-slate-900 transition cursor-pointer"
+                        >
+                          {diagram.name || diagram.path}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              ) : null}
 
               <form
                 className="space-y-2"

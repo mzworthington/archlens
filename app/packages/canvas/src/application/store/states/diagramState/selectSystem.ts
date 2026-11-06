@@ -24,7 +24,27 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);
     await yieldToUi();
 
+    const showInsideRoom = () => {
+      set({
+        currentFilePath: path,
+        selectedNodeId: null,
+        selectedEdgeId: null,
+        focusedCyclePath: null,
+      });
+      get().clearHistory();
+      logger.info('Switching active system inside the live room', { path });
+    };
+
     try {
+      const collab = get().collabSessionPort;
+      if (collab.isActive()) {
+        const known = get().loadedSystems.find(s => s.path === path);
+        if (collab.focusDiagram(path, known?.schema)) {
+          showInsideRoom();
+          return;
+        }
+      }
+
       if (!get().loadedSystems.some(s => s.path === path)) {
         const ok = await ensureSystemLoaded(path, {
           workspacePort: activeWorkspacePort,
@@ -42,6 +62,13 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
       const system = get().loadedSystems.find(s => s.path === path);
       if (!system) {
         logger.warn('System path not found in loaded systems', { path });
+        return;
+      }
+      if (
+        get().collabSessionPort.isActive() &&
+        get().collabSessionPort.focusDiagram(path, system.schema)
+      ) {
+        showInsideRoom();
         return;
       }
       logger.info('Switching active system', { name: system.name, path });

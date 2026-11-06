@@ -54,6 +54,29 @@ describe('presenceFromAwarenessStates', () => {
     });
   });
 
+  it('hides cursors from peers on another diagram and still counts them in the room', () => {
+    const states = new Map<number, unknown>([
+      [1, { name: 'Ada', color: '#38bdf8', cursor: { x: 1, y: 2 }, diagramPath: 'context.yaml' }],
+      [
+        2,
+        { name: 'Grace', color: '#a78bfa', cursor: { x: 3, y: 4 }, diagramPath: 'containers.yaml' },
+      ],
+      [3, { name: 'Lin', color: '#34d399', cursor: { x: 5, y: 6 }, diagramPath: 'context.yaml' }],
+    ]);
+
+    const presence = presenceFromAwarenessStates(states, 1, {
+      activeDiagramPath: 'context.yaml',
+    });
+
+    expect(presence.connectedCount).toBe(3);
+    expect(presence.cursors).toEqual([{ clientId: 3, name: 'Lin', color: '#34d399', x: 5, y: 6 }]);
+    expect(presence.participants.map(person => person.diagramPath)).toEqual([
+      'context.yaml',
+      'containers.yaml',
+      'context.yaml',
+    ]);
+  });
+
   it('assigns a stable palette color per client id', () => {
     expect(colorForClientId(0)).toBe(colorForClientId(8));
     expect(colorForClientId(1)).not.toBe(colorForClientId(2));

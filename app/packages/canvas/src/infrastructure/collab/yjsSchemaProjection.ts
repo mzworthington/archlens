@@ -18,8 +18,29 @@ function cloneJson<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
 }
 
-function yMap(doc: Y.Doc, name: string): Y.Map<unknown> {
-  return doc.getMap(name);
+type MapHost = {
+  getMap(name: string): Y.Map<unknown>;
+};
+
+function docHost(ydoc: Y.Doc): MapHost {
+  return { getMap: name => ydoc.getMap(name) };
+}
+
+function nestedWriteHost(container: Y.Map<unknown>): MapHost {
+  return {
+    getMap(name: string) {
+      const existing = container.get(name);
+      if (existing instanceof Y.Map) return existing;
+      const next = new Y.Map<unknown>();
+      container.set(name, next);
+      return next;
+    },
+  };
+}
+
+function jsonMap(value: unknown): Record<string, unknown> {
+  if (value instanceof Y.Map) return value.toJSON() as Record<string, unknown>;
+  return {};
 }
 
 function ensureNodeMap(nodes: Y.Map<unknown>, ref: string): Y.Map<unknown> {
@@ -46,14 +67,10 @@ function applyFields(target: Y.Map<unknown>, fields: Record<string, unknown>): v
   }
 }
 
-export function applyCollabPatch(
-  ydoc: Y.Doc,
-  patch: CollabPatch,
-  origin: unknown = YJS_LOCAL_ORIGIN
-): void {
-  ydoc.transact(() => {
+function applyCollabPatchOn(host: MapHost, doc: Y.Doc, patch: CollabPatch, origin: unknown): void {
+  doc.transact(() => {
     if (patch.meta) {
-      const meta = yMap(ydoc, 'meta');
+      const meta = host.getMap('meta');
       applyFields(meta, patch.meta as unknown as Record<string, unknown>);
       for (const key of Array.from(meta.keys())) {
         if (!(key in patch.meta) || (patch.meta as Record<string, unknown>)[key] === undefined) {
@@ -62,7 +79,7 @@ export function applyCollabPatch(
       }
     }
 
-    const nodes = yMap(ydoc, 'nodes');
+    const nodes = host.getMap('nodes');
     for (const [ref, node] of Object.entries(patch.nodesAdd)) {
       applyFields(ensureNodeMap(nodes, ref), node as unknown as Record<string, unknown>);
     }
@@ -78,7 +95,7 @@ export function applyCollabPatch(
       nodes.delete(ref);
     }
 
-    const deps = yMap(ydoc, 'dependencies');
+    const deps = host.getMap('dependencies');
     for (const [key, dep] of Object.entries(patch.depsAdd)) {
       applyFields(ensureNodeMap(deps, key), dep as unknown as Record<string, unknown>);
     }
@@ -86,6 +103,25 @@ export function applyCollabPatch(
       deps.delete(key);
     }
   }, origin);
+}
+
+export function applyCollabPatch(
+  ydoc: Y.Doc,
+  patch: CollabPatch,
+  origin: unknown = YJS_LOCAL_ORIGIN
+): void {
+  applyCollabPatchOn(docHost(ydoc), ydoc, patch, origin);
+}
+
+/** Apply a patch to one diagram nested under a workspace room. */
+export function applyCollabPatchToMap(
+  container: Y.Map<unknown>,
+  patch: CollabPatch,
+  origin: unknown = YJS_LOCAL_ORIGIN
+): void {
+  const doc = container.doc;
+  if (!doc) return;
+  applyCollabPatchOn(nestedWriteHost(container), doc, patch, origin);
 }
 
 function readC4Level(value: unknown): C4Level {
@@ -113,9 +149,11 @@ function readDep(raw: unknown): SystemDependency | null {
   return rec as unknown as SystemDependency;
 }
 
-export function readCollabDocument(ydoc: Y.Doc): CollabDocument {
+function readCollabDocumentFromJson(
+  readMap: (name: string) => Record<string, unknown>
+): CollabDocument {
   const empty = emptyCollabDocument();
-  const metaRaw = yMap(ydoc, 'meta').toJSON() as Record<string, unknown>;
+  const metaRaw = readMap('meta');
   const meta: CollabSchemaMeta = {
     name: typeof metaRaw.name === 'string' ? metaRaw.name : empty.meta.name,
     version: typeof metaRaw.version === 'string' ? metaRaw.version : empty.meta.version,
@@ -127,18 +165,26 @@ export function readCollabDocument(ydoc: Y.Doc): CollabDocument {
   }
 
   const nodes: CollabDocument['nodes'] = {};
-  const nodesJson = yMap(ydoc, 'nodes').toJSON() as Record<string, unknown>;
+  const nodesJson = readMap('nodes');
   for (const [ref, raw] of Object.entries(nodesJson)) {
     const node = readNode(raw, ref);
     if (node) nodes[ref] = node;
   }
 
   const dependencies: CollabDocument['dependencies'] = {};
-  const depsJson = yMap(ydoc, 'dependencies').toJSON() as Record<string, unknown>;
+  const depsJson = readMap('dependencies');
   for (const [key, raw] of Object.entries(depsJson)) {
     const dep = readDep(raw);
     if (dep) dependencies[key] = dep;
   }
 
   return { meta, nodes, dependencies };
+}
+
+export function readCollabDocument(ydoc: Y.Doc): CollabDocument {
+  return readCollabDocumentFromJson(name => ydoc.getMap(name).toJSON() as Record<string, unknown>);
+}
+
+export function readCollabDocumentFromMap(container: Y.Map<unknown>): CollabDocument {
+  return readCollabDocumentFromJson(name => jsonMap(container.get(name)));
 }

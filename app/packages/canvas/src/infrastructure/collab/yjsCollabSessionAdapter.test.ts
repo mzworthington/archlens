@@ -436,4 +436,89 @@ describe('createYjsCollabSession', () => {
 
     expect(sessionA.isActive()).toBe(false);
   });
+
+  it('keeps a folder share in one room and scopes edits to the open diagram', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const diagramsB: string[][] = [];
+    const nodesB: Array<Record<string, string[]>> = [];
+    const openedB: string[] = [];
+    const presenceB: CollabPresence[] = [];
+
+    const context = {
+      ...seed,
+      name: 'Context',
+      nodes: [{ entityRef: 'shop', type: 'software-system' as const, name: 'Shop' }],
+    };
+    const containers = {
+      ...seed,
+      name: 'Containers',
+      level: 'container' as const,
+      nodes: [{ entityRef: 'shop/api', type: 'rest-api' as const, name: 'API' }],
+    };
+
+    await sessionA.join({
+      roomId: 'room-workspace',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: containers },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-workspace',
+      seedSchema: context,
+      seedDiagrams: [{ path: 'context.yaml', schema: context }],
+      activePath: 'context.yaml',
+      displayName: 'Grace',
+      onSchema: () => {},
+      onDiagram: path => openedB.push(path),
+      onWorkspace: update => {
+        diagramsB.push(update.diagrams.map(diagram => diagram.path));
+        const nodes: Record<string, string[]> = {};
+        for (const diagram of update.diagrams) {
+          nodes[diagram.path] = diagram.schema.nodes.map(node => node.entityRef);
+        }
+        nodesB.push(nodes);
+      },
+      onPresence: presence => presenceB.push(presence),
+    });
+
+    expect(sessionA.roomId()).toBe('room-workspace');
+    expect(diagramsB.at(-1)?.slice().sort()).toEqual(['containers.yaml', 'context.yaml']);
+    expect(openedB.at(-1)).toBe('context.yaml');
+
+    sessionA.pushSchema({
+      ...context,
+      nodes: [...context.nodes, { entityRef: 'shop/web', type: 'web-app', name: 'Web' }],
+    });
+    expect(sessionB.focusDiagram('containers.yaml')).toBe(true);
+    expect(sessionB.roomId()).toBe(sessionA.roomId());
+    expect(sessionB.isActive()).toBe(true);
+    expect(openedB.at(-1)).toBe('containers.yaml');
+
+    sessionA.setCursor({ x: 12, y: 24 });
+    expect(presenceB.at(-1)?.connectedCount).toBe(2);
+    expect(presenceB.at(-1)?.cursors.some(cursor => cursor.name === 'Ada')).toBe(false);
+
+    sessionA.pushSchema({
+      ...context,
+      nodes: [
+        ...context.nodes,
+        { entityRef: 'shop/web', type: 'web-app', name: 'Web' },
+        { entityRef: 'shop/db', type: 'relational-database', name: 'DB' },
+      ],
+    });
+    expect(openedB.at(-1)).toBe('containers.yaml');
+    expect(nodesB.at(-1)?.['containers.yaml']).toEqual(['shop/api']);
+    expect(nodesB.at(-1)?.['context.yaml']).toEqual(['shop', 'shop/web', 'shop/db']);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
 });

@@ -77,6 +77,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     dismissScanMapPersist,
     isScanMapPersistOpen,
     setNotification,
+    loadedSystems,
+    selectSystem,
   } = useBlueprintStore();
 
   const handleOpenSample = useCallback(async () => {
@@ -298,6 +300,10 @@ export function useWorkspaceDialogs(): React.ReactNode {
         participants={collabShare.participants}
         canEndRoom={collabShare.canEndRoom}
         audience={collabShareAudience(import.meta.env.VITE_COLLAB_WS_URL)}
+        diagrams={loadedSystems.map(system => ({ path: system.path, name: system.name }))}
+        onOpenDiagram={path => {
+          void selectSystem(path);
+        }}
         onCopyLink={collabShare.handleCopyLink}
         onSaveName={collabShare.onSaveName}
         onEndRoom={collabShare.handleEndRoom}

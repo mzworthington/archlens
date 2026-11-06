@@ -21,6 +21,7 @@ describe('ToolbarShareButton', () => {
     useBlueprintStore.setState({
       isLoading: false,
       isWorkspaceOpen: true,
+      loadedSystems: [],
       setNotification: vi.fn(),
       collabSessionPort: { ...noopCollabSession, isActive: () => true, setDisplayName: vi.fn() },
       collabPresence: {

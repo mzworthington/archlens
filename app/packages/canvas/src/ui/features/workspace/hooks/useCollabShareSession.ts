@@ -11,6 +11,7 @@ import {
   readCollabHostToken,
   stageCollabHostShare,
 } from '../../../../application/collab/collabRoomCredentials';
+import { collabShareLinkCopiedMessage } from '../../../../application/collab/collabShareAudience';
 import type { CollabShareCopyOptions } from '../components/CollabShareDialog/CollabShareDialog';
 
 /** Share-dialog state shared by toolbar and startup Collaborate intent. */
@@ -38,7 +39,7 @@ export function useCollabShareSession() {
         setNotification({
           type: 'success',
           title: 'Share link copied',
-          message: 'Open this link in another tab to edit the diagram together.',
+          message: collabShareLinkCopiedMessage(useBlueprintStore.getState().loadedSystems.length),
         });
       } catch {
         setNotification({
