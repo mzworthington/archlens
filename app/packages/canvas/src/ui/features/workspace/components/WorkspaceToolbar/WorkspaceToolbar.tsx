@@ -10,6 +10,7 @@ import {
 import { LayoutEngineControls } from '../LayoutEngineControls/LayoutEngineControls';
 import { LensToolbarControls } from './LensToolbarControls';
 import { LiteCanvasButton } from './LiteCanvasButton';
+import { CollabDiagramSwitcher } from './CollabDiagramSwitcher';
 import { ToolbarShareButton } from './ToolbarShareButton';
 
 const toolbarActions = (
@@ -41,6 +42,7 @@ export const WorkspaceToolbar: React.FC = () => {
 
       {/* Row 2: layout + lenses - horizontal scroll on narrow viewports */}
       <div className="flex items-center gap-2 w-full min-w-0 overflow-x-auto flex-nowrap [scrollbar-width:thin]">
+        <CollabDiagramSwitcher />
         <LayoutEngineControls />
         <LiteCanvasButton />
         <div className="h-6 w-px bg-slate-800 shrink-0" aria-hidden />

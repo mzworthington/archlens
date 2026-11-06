@@ -1,3 +1,4 @@
+import { buildWorkspaceCatalog } from '@archlens/core';
 import type { DiagramState } from '../diagramState';
 import type { UiState } from '../uiState';
 import {
@@ -23,6 +24,7 @@ import {
 } from '../../../../core';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../../collab/collabDisplayName';
 import { readCollabHostToken } from '../../../collab/collabRoomCredentials';
+import { mergeLoadedSystemsWithRoom } from '../../../collab/mergeCollabWorkspaceSystems';
 import type { LiteScanProgress } from '../../../analysis/liteScanProgress';
 import type { BlueprintStoreSet } from '../../store';
 import { createOpenWorkspaceStoreActions } from './openWorkspace/openWorkspaceStoreActions';
@@ -130,15 +132,44 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   },
 
   joinCollabRoom: async (roomId, displayName, credentials) => {
-    const { collabSessionPort, schema, applyRemoteCollabSchema, logger, setNotification } = get();
+    const {
+      collabSessionPort,
+      schema,
+      loadedSystems,
+      currentFilePath,
+      applyRemoteCollabSchema,
+      logger,
+      setNotification,
+    } = get();
+    const seedDiagrams = loadedSystems.map(system => ({
+      path: system.path,
+      schema: system.schema,
+    }));
     try {
       set({ collabJoinError: null, collabRoomActive: false });
       await collabSessionPort.join({
         roomId,
         seedSchema: schema,
+        seedDiagrams: seedDiagrams.length > 0 ? seedDiagrams : undefined,
+        activePath: currentFilePath,
         displayName,
         credentials,
         onSchema: applyRemoteCollabSchema,
+        onDiagram: (path, next) => get().applyRemoteCollabDiagram(path, next),
+        onWorkspace: update => {
+          const merged = mergeLoadedSystemsWithRoom(
+            get().loadedSystems,
+            update.diagrams,
+            update.activePath ?? get().currentFilePath
+          );
+          set({
+            loadedSystems: merged,
+            workspaceCatalog: buildWorkspaceCatalog(
+              merged.map(system => ({ path: system.path, schema: system.schema })),
+              get().workspaceName
+            ),
+          });
+        },
         onPresence: presence =>
           set({
             collabPresence: presence,

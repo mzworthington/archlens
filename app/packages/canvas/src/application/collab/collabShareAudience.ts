@@ -10,3 +10,10 @@ export function collabShareAudienceCopy(audience: CollabShareAudience): string {
   }
   return 'Anyone with this link can join from another machine.';
 }
+
+export function collabShareLinkCopiedMessage(diagramCount: number): string {
+  if (diagramCount > 1) {
+    return 'Open this link in another tab. Everyone stays in this room and can switch diagrams.';
+  }
+  return 'Open this link in another tab to edit the diagram together.';
+}

@@ -93,6 +93,32 @@ describe('CollabShareDialog', () => {
     expect(screen.getByText(/tabs on this machine/i)).toBeInTheDocument();
   });
 
+  it('lists every diagram in the room and opens the one you pick', () => {
+    const onOpenDiagram = vi.fn();
+    render(
+      <CollabShareDialog
+        isOpen
+        initialName="Ada"
+        participants={[]}
+        diagrams={[
+          { path: 'context.yaml', name: 'Context' },
+          { path: 'containers.yaml', name: 'Containers' },
+        ]}
+        onOpenDiagram={onOpenDiagram}
+        onCopyLink={vi.fn()}
+        onSaveName={vi.fn()}
+        onCancel={() => undefined}
+      />
+    );
+
+    expect(screen.getByRole('dialog', { name: 'Live workspace' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Diagrams in this room' })).toHaveTextContent(
+      'Containers'
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Containers' }));
+    expect(onOpenDiagram).toHaveBeenCalledWith('containers.yaml');
+  });
+
   it('leaves the share dialog on Escape', () => {
     const onCancel = vi.fn();
     render(

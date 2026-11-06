@@ -68,7 +68,7 @@ The thread stays hidden until a share session is active.
 
 ## What the room syncs
 
-The room is a shared **working copy** of the active diagram: nodes, dependencies, identity and layout. Peers see structural edits as they land. Notes on the map are [comments](#comments).
+The room is a shared **working copy** of the workspace: every open diagram, with its nodes, dependencies, identity and layout. Peers stay in that one room and switch diagrams from **Diagrams in this room**. An edit lands on the diagram you have open. A peer on another diagram keeps their own file. A link still works when you only have one of the files — the missing siblings are not an error, and the file you do have still opens. Notes on the map are [comments](#comments).
 
 These stay on each browser, not in the room:
 
@@ -82,7 +82,7 @@ These stay on each browser, not in the room:
 
 - Not a published catalog. Pipeline → object storage → Canvas is still [CLI publish](./cli.md).
 - Not disk. Folder **Commit** remains the only write back to YAML.
-- Not Linear tickets, voice/video or multi-file workspace rooms.
+- Not Linear tickets or voice/video. A workspace share is one room for the diagrams you have open, not a second copy of the folder on disk.
 - Not product sign-in. Treat an open link like a meeting URL.
 
 On the hosted app, peers on other machines join through the collab Worker (`collab.archlens.dev`). Local builds without a collab WebSocket URL only share across **tabs on the same machine**.

@@ -18,7 +18,7 @@ import { createCheckPendingChanges } from './pendingChanges';
 import { createSelectSystem } from './selectSystem';
 import { createInitSchema } from './initSchema';
 import { createApplyClientLayout } from './applyClientLayout';
-import { applyRemoteCollabSchema } from './applyRemoteCollabSchema';
+import { applyRemoteCollabDiagram, applyRemoteCollabSchema } from './applyRemoteCollabSchema';
 import { createCanvasGraphActions } from './canvasGraphActions';
 import { blankCanvasEntityRefFromName } from '../ioState/blankCanvasSession';
 import type { BlueprintStoreSet } from '../../store';
@@ -73,6 +73,7 @@ export const createDiagramState = (
 
     applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
     applyRemoteCollabSchema: schema => applyRemoteCollabSchema(set, get, schema),
+    applyRemoteCollabDiagram: (path, schema) => applyRemoteCollabDiagram(set, get, path, schema),
 
     markLayoutCustomized: () => {
       if (!get().layoutCustomized) {

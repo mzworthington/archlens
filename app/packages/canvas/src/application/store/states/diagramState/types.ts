@@ -120,6 +120,8 @@ export interface DiagramState {
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
   /** Apply a schema from the collab session without pushing it back to the room. */
   applyRemoteCollabSchema: (schema: SystemSchema) => void;
+  /** Apply one diagram from a workspace room onto its own file. */
+  applyRemoteCollabDiagram: (path: string, schema: SystemSchema) => void;
 }
 
 export type DiagramStateDeps = DiagramState & UiState & IoState;

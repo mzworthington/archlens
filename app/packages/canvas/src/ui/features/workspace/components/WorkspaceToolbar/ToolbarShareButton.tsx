@@ -4,7 +4,10 @@ import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { readBlankCanvasSession } from '../../../../../application/store/states/ioState/blankCanvasSession';
 import { shouldPromptSaveBeforeShare } from '../../../../../application/store/states/ioState/blankWorkspacePlacement';
-import { collabShareAudience } from '../../../../../application/collab/collabShareAudience';
+import {
+  collabShareAudience,
+  collabShareLinkCopiedMessage,
+} from '../../../../../application/collab/collabShareAudience';
 import {
   createCollabRoomId,
   parseCollabRoomId,
@@ -35,6 +38,10 @@ export const ToolbarShareButton: React.FC = () => {
   const endCollabRoom = useBlueprintStore(s => s.endCollabRoom);
   const roomFromUrl = parseCollabRoomId(search);
   const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
+  const loadedSystems = useBlueprintStore(s => s.loadedSystems);
+  const selectSystem = useBlueprintStore(s => s.selectSystem);
+  const roomDiagrams = loadedSystems.map(system => ({ path: system.path, name: system.name }));
+  const sharingWorkspace = roomDiagrams.length > 1;
   const [shareOpen, setShareOpen] = useState(false);
 
   const copyShareLink = useCallback(
@@ -47,7 +54,7 @@ export const ToolbarShareButton: React.FC = () => {
         setNotification({
           type: 'success',
           title: 'Share link copied',
-          message: 'Open this link in another tab to edit the diagram together.',
+          message: collabShareLinkCopiedMessage(useBlueprintStore.getState().loadedSystems.length),
         });
       } catch {
         setNotification({
@@ -72,8 +79,8 @@ export const ToolbarShareButton: React.FC = () => {
 
   const peopleLabel =
     connectedCount === 1 ? '1 person editing' : `${connectedCount} people editing`;
-  const ariaLabel =
-    isActive && connectedCount > 0 ? `Share live diagram, ${peopleLabel}` : 'Share live diagram';
+  const shareLabel = sharingWorkspace ? 'Share live workspace' : 'Share live diagram';
+  const ariaLabel = isActive && connectedCount > 0 ? `${shareLabel}, ${peopleLabel}` : shareLabel;
 
   return (
     <>
@@ -96,7 +103,7 @@ export const ToolbarShareButton: React.FC = () => {
           className={`${iconBtnClass} ${isActive || roomFromUrl ? 'text-sky-300 hover:text-sky-200 border-sky-900/40' : ''}`}
           title={
             isActive && connectedCount > 0
-              ? `Live diagram · ${peopleLabel}`
+              ? `${sharingWorkspace ? 'Live workspace' : 'Live diagram'} · ${peopleLabel}`
               : 'Share a live editing link'
           }
           aria-label={ariaLabel}
@@ -123,6 +130,10 @@ export const ToolbarShareButton: React.FC = () => {
         participants={participants}
         canEndRoom={Boolean(roomFromUrl && readCollabHostToken(roomFromUrl))}
         audience={collabShareAudience(import.meta.env.VITE_COLLAB_WS_URL)}
+        diagrams={roomDiagrams}
+        onOpenDiagram={path => {
+          void selectSystem(path);
+        }}
         onCopyLink={handleCopyLink}
         onSaveName={updateCollabDisplayName}
         onEndRoom={() => {
