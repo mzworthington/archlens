@@ -10,6 +10,7 @@ import {
   NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_SOURCE_FILES_COPY,
+  REVIEW_NOTE,
   SCAN_FAILED_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
@@ -247,6 +248,7 @@ describe('generate diagram from workspace', () => {
 
     expect(languages).toEqual(['TypeScript', 'Go', 'Terraform']);
     expect(foundLine(languages)).toBe('Found: TypeScript, Go, Terraform');
+    expect(foundLine(languagesInPaths(['/repo/README.md']))).toBe('Found: no supported languages');
     expect(supportedSourcePaths(['/repo/node_modules/leftpad/index.js'])).toEqual([]);
   });
 
@@ -267,6 +269,7 @@ describe('generate diagram from workspace', () => {
     expect(NO_SOURCE_FILES_COPY).toBe('No supported source files in this folder.');
     expect(SCAN_FAILED_COPY).toBe('The scan did not finish. No blueprint files were written.');
     expect(NO_CHANGES_COPY).toBe('No changes.');
+    expect(REVIEW_NOTE).toBe('Nothing is written. Keep current files leaves the folder unchanged.');
   });
 });
 

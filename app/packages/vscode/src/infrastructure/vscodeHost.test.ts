@@ -5,6 +5,7 @@ import {
   NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
+  REVIEW_NOTE,
   TRUST_COPY,
 } from '../features/editorPreview/domain';
 import {
@@ -518,6 +519,8 @@ describe('editor host', () => {
 
     expect(fake.calls).toContain('message:Review blueprint changes');
     expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(true);
+    expect(fake.calls.some(call => call.includes(REVIEW_NOTE))).toBe(true);
+    expect(fake.calls.some(call => call.includes('Write blueprint'))).toBe(false);
     expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
   });
 

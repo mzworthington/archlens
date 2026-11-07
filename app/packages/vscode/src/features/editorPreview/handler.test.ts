@@ -10,6 +10,7 @@ import {
   SCAN_FAILED_COPY,
   NOTHING_TO_COPY,
   TRUST_COPY,
+  foundLine,
 } from './domain';
 import {
   copyDiagram,
@@ -164,7 +165,10 @@ function host(input: {
       calls.push(`sources:${root}`);
       return input.sourceFiles ?? [];
     },
-    askScanScope: async () => input.scope ?? 'escape',
+    askScanScope: async found => {
+      calls.push(`found:${found}`);
+      return input.scope ?? 'escape';
+    },
     askScanGlob: async () => input.glob,
     confirmGenerate: async () => input.confirm ?? 'cancel',
     scanFolder: async root => {
@@ -433,6 +437,7 @@ describe('generate diagram command', () => {
     await generateFromWorkspace(editor);
 
     expect(editor.messages).toEqual([NO_SOURCE_FILES_COPY]);
+    expect(editor.calls).toContain(`found:${foundLine([])}`);
     expect(editor.reviews).toEqual([]);
   });
 

@@ -21,7 +21,7 @@ export const NO_GIT_HOTSPOTS_COPY = 'Hotspots need a git history for this folder
 export const NO_SOURCE_FILES_COPY = 'No supported source files in this folder.';
 export const SCAN_FAILED_COPY = 'The scan did not finish. No blueprint files were written.';
 export const REVIEW_TITLE = 'Review blueprint changes';
-export const REVIEW_NOTE = 'Nothing is written until you choose Write blueprint.';
+export const REVIEW_NOTE = 'Nothing is written. Keep current files leaves the folder unchanged.';
 export const KEEP_FILES_COPY = 'Keep current files';
 export const GENERATE_DIAGRAM_COPY = 'Generate diagram';
 export const WHOLE_WORKSPACE_COPY = 'Whole workspace';
@@ -192,6 +192,7 @@ export function languagesInPaths(paths: readonly string[]): readonly string[] {
 }
 
 export function foundLine(languages: readonly string[]): string {
+  if (languages.length === 0) return 'Found: no supported languages';
   return `Found: ${languages.join(', ')}`;
 }
 
