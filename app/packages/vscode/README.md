@@ -10,7 +10,7 @@ Site copy of this page: [Editor extension](../../../docs/guide/vscode.md).
 
 ## Commands
 
-- **Open architecture map** shows the systems and the links in `blueprints/`. An empty folder says **No map in this folder.** The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
+- **Open architecture map** shows the systems and the links in `blueprints/`. From the command palette, the focused YAML file is the map. A focused source file picks that workspace folder when several roots are open. An empty folder says **No map in this folder.** The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
 - **Generate diagram from workspace** opens the interest prompt. Turning `archlens.generateFromWorkspace.enabled` on still does not scan or write files in this preview.
 - **Open source**, with a system focused on the diagram, opens the file that system points at. A system with no file in the workspace stays on the diagram.
 - Enter on a system with a child diagram opens that diagram. Alt+Left, or the parent in the breadcrumb, comes back. A system with no child diagram stays put.

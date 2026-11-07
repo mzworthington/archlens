@@ -51,8 +51,10 @@ function editor(input: {
   trusted: boolean;
   choice?: string;
   files?: { path: string; content: string }[];
+  leaked?: { path: string; content: string }[];
   enabled?: boolean;
   directory?: string;
+  activePath?: string;
   git?: boolean;
 }) {
   const calls: string[] = [];
@@ -88,9 +90,11 @@ function editor(input: {
       findFiles: async pattern => {
         calls.push('findFiles');
         patterns.push(pattern);
-        return files
-          .filter(file => matchesBlueprintSearch(file.path, pattern))
-          .map(file => ({ fsPath: file.path, toString: () => file.path }));
+        const matched = files.filter(file => matchesBlueprintSearch(file.path, pattern));
+        return [...matched, ...(input.leaked ?? [])].map(file => ({
+          fsPath: file.path,
+          toString: () => file.path,
+        }));
       },
       fs: {
         stat: async uri => {
@@ -116,6 +120,14 @@ function editor(input: {
       },
     },
     window: {
+      activeTextEditor: input.activePath
+        ? {
+            document: {
+              uri: { fsPath: input.activePath, toString: () => input.activePath ?? '' },
+              getText: () => '',
+            },
+          }
+        : undefined,
       showInformationMessage: async (message, _options, ...items) => {
         calls.push(`message:${message}`);
         if (input.choice === 'escape') return undefined;
@@ -259,6 +271,67 @@ describe('editor host', () => {
     expect(fake.html[0]).toContain('Checkout API');
   });
 
+  it('opens the YAML file that is already focused', async () => {
+    const fake = editor({
+      trusted: true,
+      activePath: '/repo/blueprints/context.yaml',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await openArchitectureMap(host);
+
+    expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
+    expect(fake.calls).not.toContain('findFiles');
+    expect(fake.html[0]).toContain('Checkout API');
+  });
+
+  it('ignores a blueprint path outside the chosen folder', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      leaked: [{ path: '/other/secret.yaml', content: checkout.replace('Checkout API', 'Secret') }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await openArchitectureMap(host);
+
+    expect(fake.calls).not.toContain('read:/other/secret.yaml');
+    expect(fake.html[0]).not.toContain('Secret');
+    expect(fake.html[0]).toContain('Checkout API');
+  });
+
+  it('refreshes the diagram when the save path uses backslashes', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    fake.save(
+      '\\repo\\blueprints\\context.yaml',
+      checkout.replace('name: Billing', 'name: Payments')
+    );
+
+    expect(fake.html.at(-1)).toContain('Payments');
+  });
+
+  it('keeps the diagram when a save is no longer a blueprint', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    const before = fake.html.length;
+
+    fake.save('/repo/blueprints/context.yaml', 'title: notes\n');
+
+    expect(fake.html).toHaveLength(before);
+    expect(fake.html.at(-1)).toContain('Checkout API');
+  });
+
   it('refreshes the diagram when the blueprint is saved', async () => {
     const fake = editor({
       trusted: true,
@@ -378,7 +451,8 @@ describe('editor host', () => {
     await openArchitectureMap(host);
 
     fake.save('/repo/blueprints/context.yaml', 'notes: not a blueprint');
-    expect(fake.html.at(-1)).toContain(EMPTY_MAP_COPY);
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).not.toContain(EMPTY_MAP_COPY);
 
     fake.save('/repo/blueprints/context.yaml', withHotspot);
     expect(fake.html.at(-1)).toContain('Checkout API');
@@ -460,11 +534,13 @@ describe('editor host', () => {
     const host = await createEditorHost(fake.api);
     await host.showDiagram({
       sourcePath: '/repo/blueprints/checkout.yaml',
+      level: 'context',
       systems: [{ name: 'Checkout API', entityRef: 'shared', sourceFile: 'src/checkout.ts' }],
       links: [],
     });
     await host.showDiagram({
       sourcePath: '/repo/blueprints/billing.yaml',
+      level: 'context',
       systems: [{ name: 'Billing API', entityRef: 'shared', sourceFile: 'src/billing.ts' }],
       links: [],
     });

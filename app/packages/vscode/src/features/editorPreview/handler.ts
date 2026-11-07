@@ -1,12 +1,14 @@
 import {
   EMPTY_MAP_COPY,
   TRUST_COPY,
+  chooseWorkspaceFolder,
   decideCopyMermaid,
   decideOpenMap,
   decideOpenSource,
   decideShowHotspots,
   generateDecision,
   resolveSourceFile,
+  sameEditorPath,
 } from './domain';
 import type { BlueprintFile, EditorHost } from './ports';
 
@@ -168,13 +170,26 @@ async function filesForChosenFolder(
   if (selectedFolder) return host.listBlueprintFiles(selectedFolder);
 
   const folders = host.workspaceFolders();
-  if (folders.length === 0) return [];
-  if (folders.length === 1) {
-    const only = folders[0];
-    return only ? host.listBlueprintFiles(only.path) : [];
+  const choice = chooseWorkspaceFolder({
+    folders: folders.map(folder => folder.path),
+    hintPath: host.hintPath(),
+  });
+  switch (choice.kind) {
+    case 'none':
+      return [];
+    case 'folder': {
+      const original =
+        folders.find(folder => sameEditorPath(folder.path, choice.path))?.path ?? choice.path;
+      return host.listBlueprintFiles(original);
+    }
+    case 'pick': {
+      const picked = await host.pickFolder(folders);
+      if (!picked) return undefined;
+      return host.listBlueprintFiles(picked);
+    }
+    default: {
+      const unexpected: never = choice;
+      return unexpected;
+    }
   }
-
-  const picked = await host.pickFolder(folders);
-  if (!picked) return undefined;
-  return host.listBlueprintFiles(picked);
 }
