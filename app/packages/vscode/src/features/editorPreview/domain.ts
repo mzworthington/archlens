@@ -1,6 +1,10 @@
 import {
+  blueprintYamlLanguageServerDirective,
   parseSchemaFromYaml,
   serializeSchemaToMermaid,
+  serializeSchemaToYaml,
+  slugify,
+  systemSchemaPublicUrl,
   validateGraph,
   type NodeForensics,
   type SystemSchema,
@@ -21,8 +25,11 @@ export const NO_GIT_HOTSPOTS_COPY = 'Hotspots need a git history for this folder
 export const NO_SOURCE_FILES_COPY = 'No supported source files in this folder.';
 export const SCAN_FAILED_COPY = 'The scan did not finish. No blueprint files were written.';
 export const REVIEW_TITLE = 'Review blueprint changes';
-export const REVIEW_NOTE = 'Nothing is written. Keep current files leaves the folder unchanged.';
+export const REVIEW_NOTE = 'Nothing is written until you choose Write blueprint.';
 export const KEEP_FILES_COPY = 'Keep current files';
+export const WRITE_BLUEPRINT_COPY = 'Write blueprint';
+export const WRITE_FAILED_COPY =
+  'Could not write the blueprint. Your previous files are unchanged.';
 export const GENERATE_DIAGRAM_COPY = 'Generate diagram';
 export const WHOLE_WORKSPACE_COPY = 'Whole workspace';
 export const THIS_FOLDER_COPY = 'This folder';
@@ -174,6 +181,13 @@ const SKIPPED_SOURCE_SEGMENTS = new Set([
 export interface NamedSystem {
   readonly entityRef: string;
   readonly name: string;
+  readonly sourceFile?: string;
+}
+
+export interface BlueprintDocument {
+  readonly path: string;
+  /** Absent when the blueprint file should be removed. */
+  readonly content?: string;
 }
 
 export interface ReviewRow {
@@ -212,7 +226,7 @@ export function systemsFromSourcePaths(root: string, files: readonly string[]): 
         : normalized.split('/').pop() || normalized;
       const entityRef = stripSourceSuffix(relative);
       const name = entityRef.split('/').pop() || entityRef;
-      return { entityRef, name };
+      return { entityRef, name, sourceFile: relative };
     })
     .sort((left, right) => left.entityRef.localeCompare(right.entityRef));
 }
@@ -253,6 +267,54 @@ export function reviewRows(
     if (!scannedByRef.has(system.entityRef)) rows.push({ status: 'Removed', name: system.name });
   }
   return rows;
+}
+
+/** Files under the blueprints folder that make the review true. Other folders are left alone. */
+export function blueprintWritePlan(input: {
+  root: string;
+  blueprintsFolder: string;
+  files: readonly BlueprintFile[];
+  scanned: readonly NamedSystem[];
+}): { documents: readonly BlueprintDocument[]; diagram: DiagramView } {
+  const folderPath = joinEditorPath(input.root, safeBlueprintsFolder(input.blueprintsFolder));
+  const parsed = input.files.flatMap(file => {
+    if (!isInsideEditorPath(file.path, folderPath)) return [];
+    try {
+      return [
+        { path: file.path, original: file.content, schema: parseSchemaFromYaml(file.content) },
+      ];
+    } catch {
+      return [];
+    }
+  });
+  const targetPath =
+    parsed.find(file => file.schema.level === 'context')?.path ??
+    parsed.find(file => isContextFile(file.path))?.path ??
+    joinEditorPath(folderPath, 'context.yaml');
+  const documents: BlueprintDocument[] = [];
+  let diagram: DiagramView | undefined;
+
+  for (const file of parsed) {
+    const next = editedSchema(file.schema, input.scanned, file.path === targetPath);
+    if (next.nodes.length === 0) {
+      documents.push({ path: file.path });
+      continue;
+    }
+    if (file.path === targetPath) diagram = diagramFrom(file.path, next);
+    if (sameShape(file.schema, next)) continue;
+    documents.push({ path: file.path, content: renderBlueprint(next, file.original) });
+  }
+
+  if (!parsed.some(file => file.path === targetPath)) {
+    const next = editedSchema(freshSchema(input.root), input.scanned, true);
+    diagram = diagramFrom(targetPath, next);
+    documents.push({ path: targetPath, content: renderBlueprint(next, undefined) });
+  }
+
+  return {
+    documents,
+    diagram: diagram ?? diagramFrom(targetPath, freshSchema(input.root)),
+  };
 }
 
 export function workspaceRootForSelection(input: {
@@ -516,6 +578,101 @@ function pathHasSegment(filePath: string, segment: string): boolean {
 function isContextFile(filePath: string): boolean {
   const name = filePath.split(/[/\\]/).pop();
   return name === 'context.yaml' || name === 'context.yml';
+}
+
+function joinEditorPath(root: string, ...parts: string[]): string {
+  const slash = root.includes('\\') ? '\\' : '/';
+  return [root.replace(/[/\\]+$/, ''), ...parts].join(slash);
+}
+
+function freshSchema(root: string): SystemSchema {
+  const folder =
+    root
+      .replace(/[/\\]+$/, '')
+      .split(/[/\\]/)
+      .pop() || 'workspace';
+  return {
+    name: folder,
+    entityRef: slugify(folder) || 'workspace',
+    version: systemSchemaPublicUrl(),
+    level: 'context',
+    nodes: [],
+    dependencies: [],
+  };
+}
+
+function editedSchema(
+  schema: SystemSchema,
+  scanned: readonly NamedSystem[],
+  acceptNew: boolean
+): SystemSchema {
+  const byRef = new Map(scanned.map(system => [system.entityRef, system]));
+  const nodes = schema.nodes.flatMap(node => {
+    const next = byRef.get(node.entityRef);
+    if (!next) return [];
+    return [{ ...node, name: next.name }];
+  });
+  if (acceptNew) {
+    const present = new Set(nodes.map(node => node.entityRef));
+    for (const system of scanned) {
+      if (present.has(system.entityRef)) continue;
+      nodes.push({
+        entityRef: system.entityRef,
+        type: 'software-system',
+        name: system.name,
+        ...(system.sourceFile ? { properties: { filepath: system.sourceFile } } : {}),
+      });
+    }
+  }
+  const present = new Set(nodes.map(node => node.entityRef));
+  return {
+    ...schema,
+    nodes,
+    dependencies: schema.dependencies.filter(
+      dependency => present.has(dependency.from) && present.has(dependency.to)
+    ),
+  };
+}
+
+function sameShape(before: SystemSchema, after: SystemSchema): boolean {
+  if (before.nodes.length !== after.nodes.length) return false;
+  if (before.dependencies.length !== after.dependencies.length) return false;
+  const nodesMatch = before.nodes.every(
+    (node, index) =>
+      node.entityRef === after.nodes[index]?.entityRef && node.name === after.nodes[index]?.name
+  );
+  const linksMatch = before.dependencies.every(
+    (dependency, index) =>
+      dependency.from === after.dependencies[index]?.from &&
+      dependency.to === after.dependencies[index]?.to
+  );
+  return nodesMatch && linksMatch;
+}
+
+function renderBlueprint(schema: SystemSchema, original: string | undefined): string {
+  const body = serializeSchemaToYaml(schema);
+  const comment = original ? original.split(/\r?\n/, 1)[0] : blueprintYamlLanguageServerDirective();
+  return comment?.startsWith('# yaml-language-server:') ? `${comment}\n${body}` : body;
+}
+
+function diagramFrom(path: string, schema: SystemSchema): DiagramView {
+  return {
+    sourcePath: path,
+    level: schema.level,
+    systems: schema.nodes.map(node => {
+      const sourceFile = node.properties?.filepath;
+      return {
+        name: node.name,
+        entityRef: node.entityRef,
+        ...(typeof sourceFile === 'string' ? { sourceFile } : {}),
+      };
+    }),
+    links: schema.dependencies.map(dependency => ({
+      fromName:
+        schema.nodes.find(node => node.entityRef === dependency.from)?.name ?? dependency.from,
+      toName: schema.nodes.find(node => node.entityRef === dependency.to)?.name ?? dependency.to,
+    })),
+  };
 }
 
 function sourceFileOf(value: string | number | boolean | undefined): string | undefined {

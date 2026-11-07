@@ -4,6 +4,7 @@ import {
   NO_SOURCE_FILES_COPY,
   SCAN_FAILED_COPY,
   TRUST_COPY,
+  WRITE_FAILED_COPY,
   chooseWorkspaceFolder,
   decideCopyMermaid,
   decideOpenMap,
@@ -12,6 +13,7 @@ import {
   foundLine,
   generateDecision,
   languagesInPaths,
+  blueprintWritePlan,
   resolveSourceFile,
   reviewRows,
   sameEditorPath,
@@ -121,11 +123,22 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
     return;
   }
 
-  const rows = reviewRows(
-    systemsInBlueprints(await host.listBlueprintFiles(workspaceRoot)),
-    systemsFromSourcePaths(workspaceRoot, files)
-  );
-  await host.showReview(rows);
+  const existing = await host.listBlueprintFiles(workspaceRoot);
+  const scanned = systemsFromSourcePaths(workspaceRoot, files);
+  const rows = reviewRows(systemsInBlueprints(existing), scanned);
+  if ((await host.showReview(rows)) !== 'write') return;
+
+  const plan = blueprintWritePlan({
+    root: workspaceRoot,
+    blueprintsFolder: host.blueprintsFolder(),
+    files: existing,
+    scanned,
+  });
+  if ((await host.applyBlueprintWrite(plan.documents)) === 'failed') {
+    host.showMessage(WRITE_FAILED_COPY);
+    return;
+  }
+  await host.showDiagram(plan.diagram);
 }
 
 export async function openSource(host: EditorHost): Promise<void> {

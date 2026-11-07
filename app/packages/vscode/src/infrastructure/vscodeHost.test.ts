@@ -60,6 +60,8 @@ function editor(input: {
   scope?: 'workspace';
   confirmGenerate?: boolean;
   cancelScan?: boolean;
+  writeBlueprint?: boolean;
+  failWrite?: boolean;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
@@ -111,7 +113,24 @@ function editor(input: {
         readFile: async uri => {
           calls.push(`read:${uri.fsPath}`);
           const file = files.find(candidate => candidate.path === uri.fsPath);
-          return new TextEncoder().encode(file?.content ?? '');
+          if (!file) throw new Error(`missing ${uri.fsPath}`);
+          return new TextEncoder().encode(file.content);
+        },
+        writeFile: async (uri, content) => {
+          calls.push(`blueprint:${uri.fsPath}`);
+          if (input.failWrite) throw new Error('disk');
+          const text = new TextDecoder().decode(content);
+          const found = files.find(file => file.path === uri.fsPath);
+          if (found) found.content = text;
+          else files.push({ path: uri.fsPath, content: text });
+        },
+        delete: async uri => {
+          calls.push(`delete:${uri.fsPath}`);
+          const index = files.findIndex(file => file.path === uri.fsPath);
+          if (index >= 0) files.splice(index, 1);
+        },
+        createDirectory: async uri => {
+          calls.push(`mkdir:${uri.fsPath}`);
         },
       },
       openTextDocument: async uri => ({
@@ -136,6 +155,9 @@ function editor(input: {
         calls.push(`message:${message}`);
         if (options.detail) calls.push(`detail:${options.detail}`);
         if (message === 'Generate diagram' && input.confirmGenerate) return items[0];
+        if (message === 'Review blueprint changes') {
+          return input.writeBlueprint ? items[1] : items[0];
+        }
         if (input.choice === 'escape') return undefined;
         return input.choice ?? items[1];
       },
@@ -198,6 +220,7 @@ function editor(input: {
     api,
     calls,
     html,
+    files,
     opened,
     copied,
     statuses,
@@ -520,8 +543,52 @@ describe('editor host', () => {
     expect(fake.calls).toContain('message:Review blueprint changes');
     expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(true);
     expect(fake.calls.some(call => call.includes(REVIEW_NOTE))).toBe(true);
-    expect(fake.calls.some(call => call.includes('Write blueprint'))).toBe(false);
-    expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
+    expect(fake.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
+  });
+
+  it('writes the blueprint when the review is accepted and shows the new systems', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirmGenerate: true,
+      writeBlueprint: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/src/catalog.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls).toContain('blueprint:/repo/blueprints/context.yaml');
+    expect(fake.html.at(-1)).toContain('catalog');
+    expect(fake.html.at(-1)).not.toContain('Billing');
+  });
+
+  it('restores the previous blueprint when the write fails', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirmGenerate: true,
+      writeBlueprint: true,
+      failWrite: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/src/catalog.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls.some(call => call.startsWith('message:Could not write'))).toBe(true);
+    expect(fake.files.find(file => file.path === '/repo/blueprints/context.yaml')?.content).toBe(
+      checkout
+    );
+    expect(fake.html).toEqual([]);
   });
 
   it('includes Terraform JSON in a default workspace scan', async () => {

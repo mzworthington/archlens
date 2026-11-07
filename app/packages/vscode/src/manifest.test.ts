@@ -72,12 +72,11 @@ describe('marketplace pre-release', () => {
     );
   });
 
-  it('has no file writer in the extension source', () => {
-    const source = sourceFiles(path.join(packageRoot, 'src'))
-      .map(file => readFileSync(file, 'utf8'))
-      .join('\n');
+  it('writes blueprint files only from the review host', () => {
+    const files = sourceFiles(path.join(packageRoot, 'src'));
+    const writers = files.filter(file => readFileSync(file, 'utf8').includes('writeFile'));
 
-    expect(source).not.toContain('writeFile');
-    expect(source).not.toContain('writeFileSync');
+    expect(writers.map(file => path.basename(file))).toEqual(['vscodeHost.ts']);
+    expect(files.some(file => readFileSync(file, 'utf8').includes('writeFileSync'))).toBe(false);
   });
 });
