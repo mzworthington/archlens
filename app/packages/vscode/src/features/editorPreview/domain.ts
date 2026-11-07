@@ -18,6 +18,19 @@ export const NO_SOURCE_COPY = 'This system has no source file in the workspace.'
 export const NO_LOWER_COPY = 'No lower diagram for this system.';
 export const NOTHING_TO_COPY = 'Nothing to copy.';
 export const NO_GIT_HOTSPOTS_COPY = 'Hotspots need a git history for this folder.';
+export const NO_SOURCE_FILES_COPY = 'No supported source files in this folder.';
+export const SCAN_FAILED_COPY = 'The scan did not finish. No blueprint files were written.';
+export const REVIEW_TITLE = 'Review blueprint changes';
+export const REVIEW_NOTE = 'Nothing is written. Keep current files leaves the folder unchanged.';
+export const KEEP_FILES_COPY = 'Keep current files';
+export const GENERATE_DIAGRAM_COPY = 'Generate diagram';
+export const WHOLE_WORKSPACE_COPY = 'Whole workspace';
+export const THIS_FOLDER_COPY = 'This folder';
+export const CUSTOM_FILES_COPY = 'Custom files';
+export const CUSTOM_GLOB_HINT =
+  'TypeScript, JavaScript, C#, Python, Go, Java, Terraform and Pulumi.';
+export const NO_CHANGES_COPY = 'No changes.';
+export const DEFAULT_SOURCE_GLOB = '**/*.{ts,tsx,js,jsx,mjs,cjs,cs,py,go,java,tf}';
 
 const DEFAULT_BLUEPRINTS_FOLDER = 'blueprints';
 
@@ -134,6 +147,130 @@ export function generateDecision(input: {
   }
 
   return decisionForChoice(input.choice);
+}
+
+const LANGUAGE_ORDER = [
+  'TypeScript',
+  'JavaScript',
+  'C#',
+  'Python',
+  'Go',
+  'Java',
+  'Terraform',
+  'Pulumi',
+] as const;
+
+const SKIPPED_SOURCE_SEGMENTS = new Set([
+  'node_modules',
+  'dist',
+  'build',
+  'out',
+  'coverage',
+  'vendor',
+  'target',
+  '.git',
+]);
+
+export interface NamedSystem {
+  readonly entityRef: string;
+  readonly name: string;
+}
+
+export interface ReviewRow {
+  readonly status: 'Added' | 'Changed' | 'Removed';
+  readonly name: string;
+}
+
+/** Languages present in the file list, in the CLI's order. */
+export function languagesInPaths(paths: readonly string[]): readonly string[] {
+  const present = new Set<string>();
+  for (const file of supportedSourcePaths(paths)) {
+    const language = languageOf(file);
+    if (language) present.add(language);
+  }
+  return LANGUAGE_ORDER.filter(language => present.has(language));
+}
+
+export function foundLine(languages: readonly string[]): string {
+  if (languages.length === 0) return 'Found: no supported languages';
+  return `Found: ${languages.join(', ')}`;
+}
+
+/** Drop dependency folders, build output, and files the CLI languages do not cover. */
+export function supportedSourcePaths(paths: readonly string[]): string[] {
+  return paths.filter(file => !isSkippedSourcePath(file) && languageOf(file) !== undefined);
+}
+
+/** One system per supported file. The YAML file is not written here. */
+export function systemsFromSourcePaths(root: string, files: readonly string[]): NamedSystem[] {
+  const normalizedRoot = root.replaceAll('\\', '/').replace(/\/+$/, '');
+  return supportedSourcePaths(files)
+    .map(file => {
+      const normalized = file.replaceAll('\\', '/');
+      const relative = normalized.startsWith(`${normalizedRoot}/`)
+        ? normalized.slice(normalizedRoot.length + 1)
+        : normalized.split('/').pop() || normalized;
+      const entityRef = stripSourceSuffix(relative);
+      const name = entityRef.split('/').pop() || entityRef;
+      return { entityRef, name };
+    })
+    .sort((left, right) => left.entityRef.localeCompare(right.entityRef));
+}
+
+export function systemsInBlueprints(files: readonly BlueprintFile[]): NamedSystem[] {
+  const systems: NamedSystem[] = [];
+  const seen = new Set<string>();
+  for (const file of files) {
+    let schema: SystemSchema;
+    try {
+      schema = parseSchemaFromYaml(file.content);
+    } catch {
+      continue;
+    }
+    for (const node of schema.nodes) {
+      if (seen.has(node.entityRef)) continue;
+      seen.add(node.entityRef);
+      systems.push({ entityRef: node.entityRef, name: node.name });
+    }
+  }
+  return systems;
+}
+
+/** Added, changed and removed systems. An equal name is not a row. */
+export function reviewRows(
+  existing: readonly NamedSystem[],
+  scanned: readonly NamedSystem[]
+): ReviewRow[] {
+  const existingByRef = new Map(existing.map(system => [system.entityRef, system]));
+  const scannedByRef = new Map(scanned.map(system => [system.entityRef, system]));
+  const rows: ReviewRow[] = [];
+  for (const system of scanned) {
+    const prior = existingByRef.get(system.entityRef);
+    if (!prior) rows.push({ status: 'Added', name: system.name });
+    else if (prior.name !== system.name) rows.push({ status: 'Changed', name: system.name });
+  }
+  for (const system of existing) {
+    if (!scannedByRef.has(system.entityRef)) rows.push({ status: 'Removed', name: system.name });
+  }
+  return rows;
+}
+
+export function workspaceRootForSelection(input: {
+  folders: readonly { path: string }[];
+  selectedFolder?: string;
+  picked?: string;
+}): string | undefined {
+  if (input.picked) return input.picked;
+  if (input.folders.length === 1) return input.folders[0]?.path;
+  if (!input.selectedFolder) return undefined;
+  const selected = input.selectedFolder.replaceAll('\\', '/');
+  return input.folders
+    .map(folder => folder.path)
+    .filter(folder => {
+      const root = folder.replaceAll('\\', '/').replace(/\/+$/, '');
+      return selected === root || selected.startsWith(`${root}/`);
+    })
+    .sort((left, right) => right.length - left.length)[0];
 }
 
 function decisionForChoice(choice: GenerateChoice | undefined): GenerateDecision {
@@ -439,6 +576,49 @@ function recordedChangeCount(forensics: NodeForensics | undefined): number | und
   if (forensics.churn !== undefined) return forensics.churn;
   if (forensics.hotspotCount !== undefined) return forensics.hotspotCount;
   return 0;
+}
+
+function languageOf(file: string): string | undefined {
+  const base = file.replaceAll('\\', '/').split('/').pop() ?? '';
+  if (base === 'Pulumi.yaml' || base === 'Pulumi.yml' || /^Pulumi\..+\.ya?ml$/.test(base)) {
+    return 'Pulumi';
+  }
+  if (base.endsWith('.tf') || base.endsWith('.tf.json')) return 'Terraform';
+  if (base.endsWith('.ts') || base.endsWith('.tsx')) return 'TypeScript';
+  if (/\.(js|jsx|mjs|cjs)$/.test(base)) return 'JavaScript';
+  if (base.endsWith('.cs')) return 'C#';
+  if (base.endsWith('.py')) return 'Python';
+  if (base.endsWith('.go')) return 'Go';
+  if (base.endsWith('.java')) return 'Java';
+  return undefined;
+}
+
+function isSkippedSourcePath(file: string): boolean {
+  return file
+    .replaceAll('\\', '/')
+    .split('/')
+    .some(segment => SKIPPED_SOURCE_SEGMENTS.has(segment));
+}
+
+function stripSourceSuffix(relative: string): string {
+  const suffixes = [
+    '.tf.json',
+    '.tsx',
+    '.ts',
+    '.jsx',
+    '.js',
+    '.mjs',
+    '.cjs',
+    '.cs',
+    '.py',
+    '.go',
+    '.java',
+    '.tf',
+    '.yaml',
+    '.yml',
+  ];
+  const match = suffixes.find(suffix => relative.endsWith(suffix));
+  return match ? relative.slice(0, -match.length) : relative;
 }
 
 function lineOf(content: string, entityRef: string | undefined): number {

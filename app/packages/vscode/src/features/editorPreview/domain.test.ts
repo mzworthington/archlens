@@ -7,7 +7,11 @@ import {
   INTEREST_DISCUSSION_URL,
   TELL_US_COPY,
   TRUST_COPY,
+  NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
+  NO_SOURCE_FILES_COPY,
+  REVIEW_NOTE,
+  SCAN_FAILED_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
   NOTHING_TO_COPY,
@@ -19,9 +23,14 @@ import {
   decideOpenMap,
   decideOpenSource,
   decideShowHotspots,
+  foundLine,
   generateDecision,
   isInsideEditorPath,
+  languagesInPaths,
   presentHotspots,
+  reviewRows,
+  supportedSourcePaths,
+  systemsFromSourcePaths,
   resolveSourceFile,
   safeBlueprintsFolder,
   sameEditorPath,
@@ -225,6 +234,42 @@ describe('generate diagram from workspace', () => {
       message: TRUST_COPY,
     });
     expect(TRUST_COPY).toBe('ArchLens does not read this folder until the workspace is trusted.');
+  });
+
+  it('names the languages in the folder and ignores dependency output', () => {
+    const languages = languagesInPaths([
+      '/repo/src/api.ts',
+      '/repo/main.go',
+      '/repo/infra/main.tf',
+      '/repo/node_modules/leftpad/index.js',
+      '/repo/dist/app.js',
+      '/repo/notes.md',
+    ]);
+
+    expect(languages).toEqual(['TypeScript', 'Go', 'Terraform']);
+    expect(foundLine(languages)).toBe('Found: TypeScript, Go, Terraform');
+    expect(foundLine(languagesInPaths(['/repo/README.md']))).toBe('Found: no supported languages');
+    expect(supportedSourcePaths(['/repo/node_modules/leftpad/index.js'])).toEqual([]);
+  });
+
+  it('reviews added, changed and removed systems without treating equal names as changes', () => {
+    const rows = reviewRows(
+      [
+        { entityRef: 'checkout/api', name: 'Checkout API' },
+        { entityRef: 'checkout/billing', name: 'Billing' },
+      ],
+      systemsFromSourcePaths('/repo', ['/repo/checkout/api.ts', '/repo/src/catalog.ts'])
+    );
+
+    expect(rows).toEqual([
+      { status: 'Changed', name: 'api' },
+      { status: 'Added', name: 'catalog' },
+      { status: 'Removed', name: 'Billing' },
+    ]);
+    expect(NO_SOURCE_FILES_COPY).toBe('No supported source files in this folder.');
+    expect(SCAN_FAILED_COPY).toBe('The scan did not finish. No blueprint files were written.');
+    expect(NO_CHANGES_COPY).toBe('No changes.');
+    expect(REVIEW_NOTE).toBe('Nothing is written. Keep current files leaves the folder unchanged.');
   });
 });
 

@@ -5,6 +5,7 @@ import {
   NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
+  REVIEW_NOTE,
   TRUST_COPY,
 } from '../features/editorPreview/domain';
 import {
@@ -56,6 +57,9 @@ function editor(input: {
   directory?: string;
   activePath?: string;
   git?: boolean;
+  scope?: 'workspace';
+  confirmGenerate?: boolean;
+  cancelScan?: boolean;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
@@ -128,12 +132,20 @@ function editor(input: {
             },
           }
         : undefined,
-      showInformationMessage: async (message, _options, ...items) => {
+      showInformationMessage: async (message, options, ...items) => {
         calls.push(`message:${message}`);
+        if (options.detail) calls.push(`detail:${options.detail}`);
+        if (message === 'Generate diagram' && input.confirmGenerate) return items[0];
         if (input.choice === 'escape') return undefined;
         return input.choice ?? items[1];
       },
-      showQuickPick: async () => undefined,
+      showQuickPick: async items => {
+        if (input.scope === 'workspace') return items.find(item => item.path === 'workspace');
+        return undefined;
+      },
+      showInputBox: async () => undefined,
+      withProgress: async (_options, task) =>
+        task({ isCancellationRequested: input.cancelScan ?? false }),
       showTextDocument: async (document, column) => {
         calls.push(`text:${column}`);
         calls.push(`show:${document.uri.fsPath}`);
@@ -217,7 +229,17 @@ function matchesBlueprintSearch(
   if (!file.startsWith(prefix)) return false;
   const relative = file.slice(prefix.length);
   const suffix = '**/*.{yaml,yml}';
-  if (!search.pattern.endsWith(suffix)) return false;
+  if (relative.split('/').includes('node_modules')) return false;
+  if (search.pattern === '**/*.tf.json') return relative.endsWith('.tf.json');
+  if (search.pattern === '**/Pulumi*.{yaml,yml}') {
+    const name = relative.split('/').pop() ?? '';
+    return name === 'Pulumi.yaml' || name === 'Pulumi.yml' || /^Pulumi\..+\.ya?ml$/.test(name);
+  }
+  const extensions = /^\*\*\/\*\.\{([^}]+)\}$/.exec(search.pattern)?.[1];
+  if (extensions) {
+    return extensions.split(',').some(extension => relative.endsWith(`.${extension}`));
+  }
+  if (!search.pattern.endsWith(suffix)) return true;
   const folder = search.pattern.slice(0, -suffix.length).replace(/\/$/, '');
   if (folder.length > 0 && !relative.startsWith(`${folder}/`)) return false;
   return relative.endsWith('.yaml') || relative.endsWith('.yml');
@@ -478,6 +500,58 @@ describe('editor host', () => {
     expect(fake.calls).toContain(`message:${NO_GIT_HOTSPOTS_COPY}`);
     expect(fake.html.at(-1)).toBe(before);
     expect(fake.html.at(-1)).not.toContain('Hotspot');
+  });
+
+  it('reviews source files when generation is on and writes nothing', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirmGenerate: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/src/catalog.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls).toContain('message:Review blueprint changes');
+    expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(true);
+    expect(fake.calls.some(call => call.includes(REVIEW_NOTE))).toBe(true);
+    expect(fake.calls.some(call => call.includes('Write blueprint'))).toBe(false);
+    expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
+  });
+
+  it('includes Terraform JSON in a default workspace scan', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirmGenerate: true,
+      files: [{ path: '/repo/infra/stack.tf.json', content: '{}' }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.patterns).toContainEqual({ base: '/repo', pattern: '**/*.tf.json' });
+    expect(fake.calls.some(call => call.includes('Added stack'))).toBe(true);
+  });
+
+  it('does not scan when the scope picker is dismissed', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      files: [{ path: '/repo/src/api.ts', content: 'export {}' }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls.some(call => call.startsWith('message:Scanning'))).toBe(false);
+    expect(fake.calls.some(call => call.startsWith('message:Review'))).toBe(false);
   });
 
   it('opens the discussion from Tell us you want this and reads no blueprint', async () => {

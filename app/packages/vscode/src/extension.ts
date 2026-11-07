@@ -38,6 +38,16 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
       showInformationMessage: (message, options, ...items) =>
         vscode.window.showInformationMessage(message, options, ...items),
       showQuickPick: (items, options) => vscode.window.showQuickPick(items, options),
+      showInputBox: options => vscode.window.showInputBox(options),
+      withProgress: (options, task) =>
+        vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title: options.title,
+            cancellable: options.cancellable,
+          },
+          (_progress, token) => task(token)
+        ),
       get activeTextEditor() {
         return vscode.window.activeTextEditor;
       },
