@@ -209,10 +209,19 @@ export function languagesInPaths(paths: readonly string[]): readonly string[] {
 
 /** A dirty open blueprint blocks compare. A dirty source file does not. */
 export function hasUnsavedBlueprint(
-  documents: readonly { path: string; dirty: boolean; content: string }[]
+  documents: readonly { path: string; dirty: boolean; content: string }[],
+  scope?: { readonly roots: readonly string[]; readonly blueprintsFolder?: string }
 ): boolean {
+  const folder = safeBlueprintsFolder(scope?.blueprintsFolder ?? DEFAULT_BLUEPRINTS_FOLDER);
+  const blueprintFolders = (scope?.roots ?? []).map(root => joinEditorPath(root, folder));
   return documents.some(
-    document => document.dirty && isYamlPath(document.path) && looksLikeBlueprint(document.content)
+    document =>
+      document.dirty &&
+      isYamlPath(document.path) &&
+      (looksLikeBlueprint(document.content) ||
+        blueprintFolders.some(blueprintFolder =>
+          isInsideEditorPath(document.path, blueprintFolder)
+        ))
   );
 }
 

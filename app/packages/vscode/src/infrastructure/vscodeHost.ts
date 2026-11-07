@@ -204,7 +204,11 @@ export async function createEditorHost<Uri extends FileUri>(
           path: document.uri.fsPath,
           dirty: document.isDirty,
           content: document.getText(),
-        }))
+        })),
+        {
+          roots: workspaceFolders(api).map(folder => folder.path),
+          blueprintsFolder: configuredBlueprintsFolder(api),
+        }
       ),
     showReview: rows => showReview(api, rows),
     applyBlueprintWrite: documents => applyBlueprintWrite(api, documents),

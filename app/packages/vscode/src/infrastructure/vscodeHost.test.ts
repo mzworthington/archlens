@@ -66,6 +66,7 @@ function editor(input: {
   writeBlueprint?: boolean;
   failWrite?: boolean;
   dirtyBlueprint?: boolean;
+  dirtyText?: string;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
@@ -153,7 +154,7 @@ function editor(input: {
                 toString: () => '/repo/blueprints/context.yaml',
               },
               isDirty: true,
-              getText: () => checkout,
+              getText: () => input.dirtyText ?? checkout,
             },
           ]
         : [],
@@ -630,6 +631,26 @@ describe('editor host', () => {
 
     expect(fake.calls).toContain(`message:${UNSAVED_BLUEPRINT_COPY}`);
     expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('does not scan a compare while a blueprints file is half edited', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      dirtyBlueprint: true,
+      dirtyText: 'name: Checkout\n',
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/src/catalog.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await compareWithScan(host);
+
+    expect(fake.calls).toContain(`message:${UNSAVED_BLUEPRINT_COPY}`);
+    expect(fake.calls).not.toContain('findFiles');
+    expect(fake.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
   });
 
   it('says there are no changes when the compare matches the blueprint', async () => {

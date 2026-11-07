@@ -290,6 +290,39 @@ describe('generate diagram from workspace', () => {
     expect(REVIEW_NOTE).toBe('Nothing is written until you choose Write blueprint.');
   });
 
+  it('treats a half-edited file in the blueprints folder as unsaved', () => {
+    const halfEdited = 'name: Checkout\n';
+    const scope = { roots: ['/repo'], blueprintsFolder: 'blueprints' };
+
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/context.yaml', dirty: true, content: halfEdited }],
+        scope
+      )
+    ).toBe(true);
+    expect(
+      hasUnsavedBlueprint([{ path: '/repo/notes.yaml', dirty: true, content: halfEdited }], scope)
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/context.yaml', dirty: false, content: halfEdited }],
+        scope
+      )
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/api.ts', dirty: true, content: 'export {}' }],
+        scope
+      )
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint([{ path: '/repo/maps/context.yml', dirty: true, content: halfEdited }], {
+        roots: ['/repo'],
+        blueprintsFolder: 'maps',
+      })
+    ).toBe(true);
+  });
+
   it('writes the review into the blueprints folder and keeps a hand-written note', () => {
     const noted = checkout.replace(
       'name: Checkout API',
