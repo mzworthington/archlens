@@ -13,6 +13,7 @@ interface OpenDiagram {
   readonly links: DiagramView['links'];
   readonly workspaceRoot?: string;
   readonly sourcePath: string;
+  readonly level: DiagramView['level'];
   readonly breadcrumb: readonly DiagramCrumb[];
   schema?: SystemSchema;
   hotspotsOn: boolean;
@@ -111,6 +112,7 @@ export function readSessionView(id: number): SessionView | undefined {
     schema: session.schema,
     diagram: {
       sourcePath: session.sourcePath,
+      level: session.level,
       systems: session.systems,
       links: session.links,
       breadcrumb: session.breadcrumb,
@@ -175,6 +177,7 @@ function sessionFrom(
     systems: diagram.systems,
     workspaceRoot,
     sourcePath: diagram.sourcePath,
+    level: diagram.level,
     links: diagram.links,
     hotspotsOn: false,
     breadcrumb: diagram.breadcrumb ?? [

@@ -48,6 +48,9 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
           },
           (_progress, token) => task(token)
         ),
+      get activeTextEditor() {
+        return vscode.window.activeTextEditor;
+      },
       showTextDocument: (document, column) => vscode.window.showTextDocument(document, column),
       setStatusBarMessage: (message, hideAfterTimeout) => {
         void vscode.window.setStatusBarMessage(message, hideAfterTimeout);

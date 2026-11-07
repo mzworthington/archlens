@@ -7,6 +7,7 @@ describe('architecture map panel', () => {
     const html = renderMap(
       {
         sourcePath: '/repo/blueprints/context.yaml',
+        level: 'context',
         systems: [
           { name: 'Checkout API', entityRef: 'checkout/api' },
           { name: 'Billing', entityRef: 'checkout/billing' },
@@ -33,6 +34,7 @@ describe('architecture map panel', () => {
     const html = renderMap(
       {
         sourcePath: '/repo/blueprints/context.yaml',
+        level: 'context',
         systems: [
           { name: 'Checkout API', entityRef: 'checkout/api', hotspotCount: 6 },
           { name: 'Billing', entityRef: 'checkout/billing' },
@@ -52,6 +54,7 @@ describe('architecture map panel', () => {
     const html = renderMap(
       {
         sourcePath: '/repo/blueprints/context.yaml',
+        level: 'context',
         systems: [{ name: '<img onerror="alert(1)">', entityRef: 'checkout/api' }],
         links: [],
       },

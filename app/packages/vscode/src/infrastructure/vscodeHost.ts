@@ -19,11 +19,14 @@ import {
   decideBack,
   decideDrill,
   decideOpenMap,
+  isInsideEditorPath,
+  isYamlPath,
   presentHotspots,
   safeBlueprintsFolder,
+  sameEditorPath,
   type ReviewRow,
 } from '../features/editorPreview/domain';
-import { renderEmptyMap, renderMap } from '../features/editorPreview/renderMap';
+import { renderMap } from '../features/editorPreview/renderMap';
 import type {
   BlueprintFile,
   DiagramView,
@@ -107,6 +110,7 @@ export interface VsCodeLike<
       options: { title: string; cancellable: boolean },
       task: (token: { isCancellationRequested: boolean }) => Thenable<T>
     ): Thenable<T>;
+    activeTextEditor: { document: Document } | undefined;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
     setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
@@ -139,6 +143,7 @@ export async function createEditorHost<Uri extends FileUri>(
         .get<boolean>('generateFromWorkspace.enabled', false) === true,
     selectedPath: () => selection.filePath,
     selectedFolder: () => selection.folderPath,
+    hintPath: () => selection.hintPath,
     workspaceFolders: () => workspaceFolders(api),
     pickFolder: folders => pickFolder(api, folders),
     readSelectedFile: () => readSelected(api, selection.filePath),
@@ -192,13 +197,20 @@ export async function createEditorHost<Uri extends FileUri>(
 async function describeResource<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   resource: Uri | undefined
-): Promise<{ filePath?: string; folderPath?: string }> {
-  if (!resource) return {};
-  const stat = await api.workspace.fs.stat(resource);
+): Promise<{ filePath?: string; folderPath?: string; hintPath?: string }> {
+  const target = resource ?? activeEditorUri(api);
+  if (!target) return {};
+  if (!resource && isYamlPath(target.fsPath)) return { filePath: target.fsPath };
+  if (!resource) return { hintPath: target.fsPath };
+  const stat = await api.workspace.fs.stat(target);
   if ((stat.type & api.FileType.Directory) !== 0) {
-    return { folderPath: resource.fsPath };
+    return { folderPath: target.fsPath };
   }
-  return { filePath: resource.fsPath };
+  return { filePath: target.fsPath };
+}
+
+function activeEditorUri<Uri extends FileUri>(api: VsCodeLike<Uri>): Uri | undefined {
+  return api.window.activeTextEditor?.document.uri;
 }
 
 function workspaceFolders<Uri extends FileUri>(api: VsCodeLike<Uri>): WorkspaceFolder[] {
@@ -242,6 +254,7 @@ async function listBlueprintFiles<Uri extends FileUri>(
   });
   const files: BlueprintFile[] = [];
   for (const uri of uris) {
+    if (!isInsideEditorPath(uri.fsPath, folderPath)) continue;
     files.push(await readFile(api, uri));
   }
   return files;
@@ -298,25 +311,20 @@ async function showDiagram<Uri extends FileUri>(
     onPanelMessage(api, shown, message, paint)
   );
   const listener = api.workspace.onDidSaveTextDocument(saved => {
-    if (saved.uri.fsPath !== shown.path) return;
+    if (!sameEditorPath(saved.uri.fsPath, shown.path)) return;
     const decision = decideOpenMap({
       files: [{ path: shown.path, content: saved.getText() }],
       selectedPath: shown.path,
     });
-    if (decision.kind === 'diagram') {
-      shown.session = replaceDiagramSession(
-        shown.session,
-        decision.diagram,
-        workspaceRootFor(api, decision.diagram.sourcePath),
-        schemaFrom(saved.getText())
-      );
-      panelPainters.set(shown.session, paint);
-      paint();
-      return;
-    }
-    closeDiagramSession(shown.session);
-    panelPainters.delete(shown.session);
-    panel.webview.html = renderEmptyMap();
+    if (decision.kind !== 'diagram') return;
+    shown.session = replaceDiagramSession(
+      shown.session,
+      decision.diagram,
+      workspaceRootFor(api, decision.diagram.sourcePath),
+      schemaFrom(saved.getText())
+    );
+    panelPainters.set(shown.session, paint);
+    paint();
   });
   panel.onDidDispose(() => {
     panelPainters.delete(shown.session);

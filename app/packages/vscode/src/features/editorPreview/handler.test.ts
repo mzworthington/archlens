@@ -64,6 +64,7 @@ function host(input: {
   folders?: readonly WorkspaceFolder[];
   selectedPath?: string;
   selectedFolder?: string;
+  hintPath?: string;
   picked?: string;
   choice?: 'tell' | 'cancel' | 'escape';
   focused?: FocusedSystem;
@@ -104,6 +105,7 @@ function host(input: {
     },
     selectedPath: () => input.selectedPath,
     selectedFolder: () => input.selectedFolder,
+    hintPath: () => input.hintPath,
     workspaceFolders: () => input.folders ?? [{ name: 'repo', path: '/repo' }],
     pickFolder: async () => {
       calls.push('pick-folder');
@@ -347,6 +349,23 @@ describe('generate diagram command', () => {
     expect(editor.messages).toEqual([TRUST_COPY]);
     expect(editor.calls).toEqual([]);
     expect(editor.discussions).toEqual([]);
+  });
+
+  it('lists the workspace root that contains the focused file', async () => {
+    const editor = host({
+      trusted: true,
+      hintPath: 'C:\\checkout\\src\\api.ts',
+      folders: [
+        { name: 'billing', path: 'C:\\billing' },
+        { name: 'checkout', path: 'C:\\checkout' },
+      ],
+      files: [],
+    });
+
+    await openArchitectureMap(editor);
+
+    expect(editor.calls).toContain('list:C:\\checkout');
+    expect(editor.calls).not.toContain('pick-folder');
   });
 
   it('opens the discussion from Tell us you want this and lists no files', async () => {

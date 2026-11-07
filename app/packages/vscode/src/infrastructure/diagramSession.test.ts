@@ -12,6 +12,7 @@ import {
 function diagram(name: string, entityRef: string, sourceFile: string): DiagramView {
   return {
     sourcePath: `/repo/blueprints/${name}.yaml`,
+    level: 'context',
     systems: [{ name, entityRef, sourceFile }],
     links: [],
   };
