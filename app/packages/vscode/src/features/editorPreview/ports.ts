@@ -77,6 +77,7 @@ export interface EditorHost {
   askScanGlob(): Promise<string | undefined>;
   confirmGenerate(): Promise<'generate' | 'cancel'>;
   scanFolder(root: string): Promise<ScanOutcome>;
+  unsavedBlueprint(): boolean;
   showReview(rows: readonly ReviewRow[]): Promise<ReviewChoice>;
   applyBlueprintWrite(documents: readonly BlueprintDocument[]): Promise<'written' | 'failed'>;
 }

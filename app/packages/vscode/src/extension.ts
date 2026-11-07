@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import {
+  compareWithScan,
   copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,
@@ -33,6 +34,9 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
       fs: vscode.workspace.fs,
       openTextDocument: uri => vscode.workspace.openTextDocument(uri),
       onDidSaveTextDocument: listener => vscode.workspace.onDidSaveTextDocument(listener),
+      get textDocuments() {
+        return vscode.workspace.textDocuments;
+      },
     },
     window: {
       showInformationMessage: (message, options, ...items) =>
@@ -111,6 +115,9 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     vscode.commands.registerCommand('archlens.generateFromWorkspace', (resource?: vscode.Uri) => {
       void run(() => generateFromWorkspace, resource);
+    }),
+    vscode.commands.registerCommand('archlens.compareWithScan', (resource?: vscode.Uri) => {
+      void run(() => compareWithScan, resource);
     }),
     vscode.commands.registerCommand('archlens.openSource', () => {
       void run(() => openSource, undefined);

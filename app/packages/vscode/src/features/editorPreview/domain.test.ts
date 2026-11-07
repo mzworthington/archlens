@@ -9,6 +9,7 @@ import {
   TELL_US_COPY,
   TRUST_COPY,
   NO_CHANGES_COPY,
+  UNSAVED_BLUEPRINT_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_SOURCE_FILES_COPY,
   REVIEW_NOTE,
@@ -26,6 +27,7 @@ import {
   decideShowHotspots,
   foundLine,
   generateDecision,
+  hasUnsavedBlueprint,
   isInsideEditorPath,
   languagesInPaths,
   presentHotspots,
@@ -271,7 +273,54 @@ describe('generate diagram from workspace', () => {
     expect(NO_SOURCE_FILES_COPY).toBe('No supported source files in this folder.');
     expect(SCAN_FAILED_COPY).toBe('The scan did not finish. No blueprint files were written.');
     expect(NO_CHANGES_COPY).toBe('No changes.');
+    expect(UNSAVED_BLUEPRINT_COPY).toBe(
+      'This blueprint has unsaved editor changes. Save or revert before a compare.'
+    );
+    expect(
+      hasUnsavedBlueprint([
+        { path: '/repo/blueprints/context.yaml', dirty: true, content: checkout },
+        { path: '/repo/src/api.ts', dirty: true, content: 'export {}' },
+      ])
+    ).toBe(true);
+    expect(
+      hasUnsavedBlueprint([
+        { path: '/repo/blueprints/context.yaml', dirty: false, content: checkout },
+      ])
+    ).toBe(false);
     expect(REVIEW_NOTE).toBe('Nothing is written until you choose Write blueprint.');
+  });
+
+  it('treats a half-edited file in the blueprints folder as unsaved', () => {
+    const halfEdited = 'name: Checkout\n';
+    const scope = { roots: ['/repo'], blueprintsFolder: 'blueprints' };
+
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/context.yaml', dirty: true, content: halfEdited }],
+        scope
+      )
+    ).toBe(true);
+    expect(
+      hasUnsavedBlueprint([{ path: '/repo/notes.yaml', dirty: true, content: halfEdited }], scope)
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/context.yaml', dirty: false, content: halfEdited }],
+        scope
+      )
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint(
+        [{ path: '/repo/blueprints/api.ts', dirty: true, content: 'export {}' }],
+        scope
+      )
+    ).toBe(false);
+    expect(
+      hasUnsavedBlueprint([{ path: '/repo/maps/context.yml', dirty: true, content: halfEdited }], {
+        roots: ['/repo'],
+        blueprintsFolder: 'maps',
+      })
+    ).toBe(true);
   });
 
   it('writes the review into the blueprints folder and keeps a hand-written note', () => {

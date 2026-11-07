@@ -3,6 +3,7 @@ import type { SystemSchema } from '@archlens/core';
 import {
   EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
+  NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_SOURCE_FILES_COPY,
   NO_SOURCE_COPY,
@@ -11,9 +12,11 @@ import {
   WRITE_FAILED_COPY,
   NOTHING_TO_COPY,
   TRUST_COPY,
+  UNSAVED_BLUEPRINT_COPY,
   foundLine,
 } from './domain';
 import {
+  compareWithScan,
   copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,
@@ -84,6 +87,7 @@ function host(input: {
   scan?: ScanOutcome;
   review?: ReviewChoice;
   writeResult?: 'written' | 'failed';
+  unsaved?: boolean;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -179,6 +183,7 @@ function host(input: {
       calls.push(`scan:${root}`);
       return input.scan ?? 'ready';
     },
+    unsavedBlueprint: () => input.unsaved ?? false,
     showReview: async rows => {
       reviews.push([...rows]);
       calls.push(REVIEW_TITLE);
@@ -557,6 +562,82 @@ describe('generate diagram command', () => {
     await generateFromWorkspace(editor);
 
     expect(editor.calls.filter(call => call.startsWith('scan:'))).toEqual([]);
+    expect(editor.reviews).toEqual([]);
+  });
+});
+
+describe('compare with a fresh scan', () => {
+  it('uses the interest prompt while generation is off and does not scan', async () => {
+    const editor = host({ trusted: true, enabled: false, choice: 'cancel' });
+
+    await compareWithScan(editor);
+
+    expect(editor.calls).toContain('prompt');
+    expect(editor.calls.some(call => call.startsWith('sources:'))).toBe(false);
+    expect(editor.reviews).toEqual([]);
+  });
+
+  it('stops before a scan when the open blueprint is unsaved', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      unsaved: true,
+      sourceFiles: ['/repo/src/catalog.ts'],
+    });
+
+    await compareWithScan(editor);
+
+    expect(editor.messages).toEqual([UNSAVED_BLUEPRINT_COPY]);
+    expect(editor.calls.some(call => call.startsWith('sources:'))).toBe(false);
+    expect(editor.reviews).toEqual([]);
+  });
+
+  it('shows an added system in the same review and writes nothing until Write blueprint', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      review: 'keep',
+      files: [
+        {
+          path: '/repo/blueprints/context.yaml',
+          content: checkout
+            .replace('name: Checkout API', 'name: api')
+            .replace('name: Billing', 'name: billing'),
+        },
+      ],
+      sourceFiles: ['/repo/src/catalog.ts', '/repo/checkout/api.ts', '/repo/checkout/billing.ts'],
+    });
+
+    await compareWithScan(editor);
+
+    expect(editor.reviews).toEqual([[{ status: 'Added', name: 'catalog' }]]);
+    expect(editor.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
+  });
+
+  it('says there are no changes when the blueprint already matches', async () => {
+    const matching = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Repo
+  entityRef: repo
+nodes:
+  - entityRef: src/catalog
+    type: software-system
+    name: catalog
+dependencies: []
+`;
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      files: [{ path: '/repo/blueprints/context.yaml', content: matching }],
+      sourceFiles: ['/repo/src/catalog.ts'],
+    });
+
+    await compareWithScan(editor);
+
+    expect(editor.messages).toEqual([NO_CHANGES_COPY]);
     expect(editor.reviews).toEqual([]);
   });
 });
