@@ -2,14 +2,17 @@ import { describe, expect, it } from 'vitest';
 import {
   EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
+  NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
   NO_SOURCE_COPY,
   REVIEW_NOTE,
   TRUST_COPY,
+  UNSAVED_BLUEPRINT_COPY,
 } from '../features/editorPreview/domain';
 import {
   copyDiagram,
+  compareWithScan,
   generateFromWorkspace,
   openArchitectureMap,
   openSource,
@@ -62,6 +65,7 @@ function editor(input: {
   cancelScan?: boolean;
   writeBlueprint?: boolean;
   failWrite?: boolean;
+  dirtyBlueprint?: boolean;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
@@ -141,6 +145,18 @@ function editor(input: {
         onSave = listener;
         return { dispose: () => undefined };
       },
+      textDocuments: input.dirtyBlueprint
+        ? [
+            {
+              uri: {
+                fsPath: '/repo/blueprints/context.yaml',
+                toString: () => '/repo/blueprints/context.yaml',
+              },
+              isDirty: true,
+              getText: () => checkout,
+            },
+          ]
+        : [],
     },
     window: {
       activeTextEditor: input.activePath
@@ -589,6 +605,60 @@ describe('editor host', () => {
       checkout
     );
     expect(fake.html).toEqual([]);
+  });
+
+  it('asks the interest prompt for compare while generation is off', async () => {
+    const fake = editor({ trusted: true, enabled: false, choice: 'escape' });
+    const host = await createEditorHost(fake.api);
+
+    await compareWithScan(host);
+
+    expect(fake.calls).toContain('message:Generate diagram from workspace');
+    expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('does not scan a compare while the open blueprint is unsaved', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      dirtyBlueprint: true,
+      files: [{ path: '/repo/src/catalog.ts', content: 'export {}' }],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await compareWithScan(host);
+
+    expect(fake.calls).toContain(`message:${UNSAVED_BLUEPRINT_COPY}`);
+    expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('says there are no changes when the compare matches the blueprint', async () => {
+    const matching = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Checkout
+  entityRef: checkout
+nodes:
+  - entityRef: checkout/api
+    type: software-system
+    name: api
+dependencies: []
+`;
+    const fake = editor({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: matching },
+        { path: '/repo/checkout/api.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await compareWithScan(host);
+
+    expect(fake.calls).toContain(`message:${NO_CHANGES_COPY}`);
+    expect(fake.calls.some(call => call.startsWith('message:Review'))).toBe(false);
   });
 
   it('includes Terraform JSON in a default workspace scan', async () => {

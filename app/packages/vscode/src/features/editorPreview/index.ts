@@ -1,4 +1,5 @@
 export {
+  compareWithScan,
   copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,

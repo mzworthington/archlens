@@ -37,6 +37,8 @@ export const CUSTOM_FILES_COPY = 'Custom files';
 export const CUSTOM_GLOB_HINT =
   'TypeScript, JavaScript, C#, Python, Go, Java, Terraform and Pulumi.';
 export const NO_CHANGES_COPY = 'No changes.';
+export const UNSAVED_BLUEPRINT_COPY =
+  'This blueprint has unsaved editor changes. Save or revert before a compare.';
 export const DEFAULT_SOURCE_GLOB = '**/*.{ts,tsx,js,jsx,mjs,cjs,cs,py,go,java,tf}';
 
 const DEFAULT_BLUEPRINTS_FOLDER = 'blueprints';
@@ -203,6 +205,15 @@ export function languagesInPaths(paths: readonly string[]): readonly string[] {
     if (language) present.add(language);
   }
   return LANGUAGE_ORDER.filter(language => present.has(language));
+}
+
+/** A dirty open blueprint blocks compare. A dirty source file does not. */
+export function hasUnsavedBlueprint(
+  documents: readonly { path: string; dirty: boolean; content: string }[]
+): boolean {
+  return documents.some(
+    document => document.dirty && isYamlPath(document.path) && looksLikeBlueprint(document.content)
+  );
 }
 
 export function foundLine(languages: readonly string[]): string {

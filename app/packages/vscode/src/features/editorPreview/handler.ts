@@ -1,9 +1,11 @@
 import {
   DEFAULT_SOURCE_GLOB,
   EMPTY_MAP_COPY,
+  NO_CHANGES_COPY,
   NO_SOURCE_FILES_COPY,
   SCAN_FAILED_COPY,
   TRUST_COPY,
+  UNSAVED_BLUEPRINT_COPY,
   WRITE_FAILED_COPY,
   chooseWorkspaceFolder,
   decideCopyMermaid,
@@ -61,25 +63,52 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
     host.showMessage(TRUST_COPY);
     return;
   }
-
   if (!host.generateEnabled()) {
-    const choice = await host.askGenerateInterest();
-    const decision = generateDecision({ trusted: true, enabled: false, choice });
-    switch (decision.kind) {
-      case 'open-discussion':
-        await host.openDiscussion(decision.url);
-        return;
-      case 'prompt':
-      case 'closed':
-      case 'untrusted':
-        return;
-      default: {
-        const unexpected: never = decision;
-        return unexpected;
-      }
+    await offerGenerateInterest(host);
+    return;
+  }
+  await reviewWorkspaceScan(host, 'review', true);
+}
+
+export async function compareWithScan(host: EditorHost): Promise<void> {
+  if (!host.isTrusted()) {
+    host.showMessage(TRUST_COPY);
+    return;
+  }
+  if (!host.generateEnabled()) {
+    await offerGenerateInterest(host);
+    return;
+  }
+  if (host.unsavedBlueprint()) {
+    host.showMessage(UNSAVED_BLUEPRINT_COPY);
+    return;
+  }
+  await reviewWorkspaceScan(host, 'message', false);
+}
+
+async function offerGenerateInterest(host: EditorHost): Promise<void> {
+  const choice = await host.askGenerateInterest();
+  const decision = generateDecision({ trusted: true, enabled: false, choice });
+  switch (decision.kind) {
+    case 'open-discussion':
+      await host.openDiscussion(decision.url);
+      return;
+    case 'prompt':
+    case 'closed':
+    case 'untrusted':
+      return;
+    default: {
+      const unexpected: never = decision;
+      return unexpected;
     }
   }
+}
 
+async function reviewWorkspaceScan(
+  host: EditorHost,
+  empty: 'review' | 'message',
+  confirm: boolean
+): Promise<void> {
   const folders = host.workspaceFolders();
   const selectedFolder = host.selectedFolder();
   const picked = folders.length > 1 && !selectedFolder ? await host.pickFolder(folders) : undefined;
@@ -101,7 +130,7 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
   const files = await filesForScope(host, scope, workspaceRoot, selectedFolder, discovered);
   if (!files) return;
 
-  if ((await host.confirmGenerate()) !== 'generate') return;
+  if (confirm && (await host.confirmGenerate()) !== 'generate') return;
 
   const scanRoot = scope === 'folder' ? (selectedFolder ?? workspaceRoot) : workspaceRoot;
   const outcome = await host.scanFolder(scanRoot);
@@ -126,6 +155,20 @@ export async function generateFromWorkspace(host: EditorHost): Promise<void> {
   const existing = await host.listBlueprintFiles(workspaceRoot);
   const scanned = systemsFromSourcePaths(workspaceRoot, files);
   const rows = reviewRows(systemsInBlueprints(existing), scanned);
+  switch (empty) {
+    case 'message':
+      if (rows.length === 0) {
+        host.showMessage(NO_CHANGES_COPY);
+        return;
+      }
+      break;
+    case 'review':
+      break;
+    default: {
+      const unexpected: never = empty;
+      return unexpected;
+    }
+  }
   if ((await host.showReview(rows)) !== 'write') return;
 
   const plan = blueprintWritePlan({

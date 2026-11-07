@@ -20,6 +20,7 @@ import {
   decideBack,
   decideDrill,
   decideOpenMap,
+  hasUnsavedBlueprint,
   isInsideEditorPath,
   isYamlPath,
   presentHotspots,
@@ -96,6 +97,7 @@ export interface VsCodeLike<
     };
     openTextDocument(uri: Uri): Thenable<Document>;
     onDidSaveTextDocument(listener: (document: Document) => void): { dispose(): void };
+    readonly textDocuments?: readonly { uri: Uri; isDirty: boolean; getText(): string }[];
   };
   window: {
     showInformationMessage(
@@ -196,6 +198,14 @@ export async function createEditorHost<Uri extends FileUri>(
     askScanGlob: () => askScanGlob(api),
     confirmGenerate: () => confirmGenerate(api),
     scanFolder: root => scanFolder(api, root),
+    unsavedBlueprint: () =>
+      hasUnsavedBlueprint(
+        (api.workspace.textDocuments ?? []).map(document => ({
+          path: document.uri.fsPath,
+          dirty: document.isDirty,
+          content: document.getText(),
+        }))
+      ),
     showReview: rows => showReview(api, rows),
     applyBlueprintWrite: documents => applyBlueprintWrite(api, documents),
   };
