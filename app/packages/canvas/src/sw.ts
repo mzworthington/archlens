@@ -12,6 +12,10 @@ import {
   acceptsServiceWorkerUpdateMessage,
   clientRequestedImmediateUpdate,
 } from './application/pwa/immediateServiceWorkerUpdate';
+import {
+  refreshNetworkUrl,
+  UPDATE_REFRESH_QUERY_PARAM,
+} from './application/pwa/requestServiceWorkerUpdate';
 import { shellPrecacheRequest } from './application/pwa/shellPrecacheRequest';
 
 // A page already reloading for Refresh is stuck on the previous script. Take
@@ -46,6 +50,18 @@ addPlugins([
     requestWillFetch: async ({ request }: { request: Request }) => shellPrecacheRequest(request),
   },
 ]);
+
+// Before the precache. Workbox ignores search params, so /workspace?al_refresh=
+// would otherwise boot the cached shell and the Refresh button would return.
+registerRoute(
+  ({ request, url }) =>
+    request.mode === 'navigate' && url.searchParams.has(UPDATE_REFRESH_QUERY_PARAM),
+  ({ url }) =>
+    fetch(refreshNetworkUrl(url), {
+      cache: 'reload',
+      headers: { Accept: 'text/html' },
+    })
+);
 
 precacheAndRoute(self.__WB_MANIFEST);
 cleanupOutdatedCaches();

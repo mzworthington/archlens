@@ -143,7 +143,7 @@ describe('UpdateBanner', () => {
     expect(reloadWithoutServiceWorker).not.toHaveBeenCalled();
   });
 
-  it('cache-busts via history.replaceState so location.replace cannot open-redirect', () => {
+  it('navigates the app with location.replace so a query-only reload cannot reuse the shell', () => {
     needRefresh = true;
     render(<UpdateBanner />);
     fireEvent.click(screen.getByRole('button', { name: /^Refresh$/i }));
@@ -162,12 +162,11 @@ describe('UpdateBanner', () => {
       reload: reloadLocation,
     });
     reload();
-    expect(replaceState).toHaveBeenCalledWith(
-      null,
-      '',
+    expect(replace).toHaveBeenCalledWith(
       expect.stringMatching(/^\/workspace\?room=abc&al_refresh=\d+#x$/)
     );
-    expect(reloadLocation).toHaveBeenCalled();
-    expect(replace).not.toHaveBeenCalled();
+    expect(replace.mock.calls[0]?.[0]).not.toContain('evil.example');
+    expect(reloadLocation).not.toHaveBeenCalled();
+    expect(replaceState).not.toHaveBeenCalled();
   });
 });

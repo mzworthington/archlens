@@ -8,6 +8,7 @@ import {
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
   UPDATE_REFRESH_QUERY_PARAM,
+  waitForControllerChange,
 } from '../../../application/pwa/requestServiceWorkerUpdate';
 import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck';
 
@@ -15,7 +16,9 @@ import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck'
  * Prompt when a new production build is available (service worker or index.html build id).
  */
 export function UpdateBanner() {
-  const registrationRef = useRef<Pick<ServiceWorkerRegistration, 'update'> | undefined>(undefined);
+  const registrationRef = useRef<Pick<ServiceWorkerRegistration, 'update' | 'waiting'> | undefined>(
+    undefined
+  );
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
@@ -65,24 +68,50 @@ export function UpdateBanner() {
   const show = needRefresh || fallbackRefresh;
   if (!show) return null;
 
-  const refresh = () => {
-    if (refreshingRef.current) return;
-    refreshingRef.current = true;
-    setRefreshing(true);
-    try {
-      updateServiceWorker(false);
-    } catch {
-      // Waiting worker may never activate; hard reload is the source of truth.
-    }
+  const openFreshDocument = () => {
+    // replace (not reload) so an installed app navigates to this URL. reload()
+    // after replaceState only changes al_refresh and boots the cached shell.
+    window.location.replace(cacheBustingReloadPath(window.location));
+  };
+
+  const dropWorkerAndOpen = () => {
     void reloadWithoutServiceWorker({
       getRegistrations: () => navigator.serviceWorker?.getRegistrations() ?? Promise.resolve([]),
       cacheKeys: () => (typeof caches === 'undefined' ? Promise.resolve([]) : caches.keys()),
       deleteCache: cacheName => caches.delete(cacheName),
-      reload: () => {
-        window.history.replaceState(null, '', cacheBustingReloadPath(window.location));
-        window.location.reload();
-      },
+      reload: openFreshDocument,
+      deadlineMs: 5000,
     });
+  };
+
+  const refresh = () => {
+    if (refreshingRef.current) return;
+    refreshingRef.current = true;
+    setRefreshing(true);
+    const waiting = registrationRef.current?.waiting;
+    const container = navigator.serviceWorker;
+    if (waiting && container) {
+      const tookOver = waitForControllerChange(container, 1500);
+      try {
+        updateServiceWorker(false);
+      } catch {
+        // Waiting worker may never activate; unregister still navigates.
+      }
+      void tookOver.then(changed => {
+        if (changed) {
+          openFreshDocument();
+          return;
+        }
+        dropWorkerAndOpen();
+      });
+      return;
+    }
+    try {
+      updateServiceWorker(false);
+    } catch {
+      // Waiting worker may never activate; hard navigation is the source of truth.
+    }
+    dropWorkerAndOpen();
   };
 
   const dismiss = () => {

@@ -3,8 +3,10 @@ import {
   cacheBustingReloadPath,
   cacheBustingReloadUrl,
   pathWithoutRefreshParam,
+  refreshNetworkUrl,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
+  waitForControllerChange,
 } from './requestServiceWorkerUpdate';
 
 describe('requestServiceWorkerUpdate', () => {
@@ -87,6 +89,75 @@ describe('cacheBustingReloadPath', () => {
         1700000000000
       )
     ).toBe('/workspace?room=abc&al_refresh=1700000000000#x');
+  });
+});
+
+describe('refreshNetworkUrl', () => {
+  it('fetches the site shell for an app route so the precache cannot answer Refresh', () => {
+    expect(
+      refreshNetworkUrl(
+        new URL('https://archlens.dev/workspace/application?room=abc&al_refresh=1700000000000#x')
+      )
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+  });
+
+  it('fetches the website page itself so a guide refresh stays on that document', () => {
+    expect(
+      refreshNetworkUrl(
+        new URL('https://archlens.dev/guide/collaborate?al_refresh=1700000000000#x')
+      )
+    ).toBe('https://archlens.dev/guide/collaborate?al_refresh=1700000000000');
+  });
+
+  it('fetches the site shell for client-only routes that are not prerendered', () => {
+    expect(
+      refreshNetworkUrl(new URL('https://archlens.dev/design-system?al_refresh=1700000000000'))
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+    expect(
+      refreshNetworkUrl(
+        new URL('https://archlens.dev/features-unit?al_refresh=1700000000000#report')
+      )
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+    expect(
+      refreshNetworkUrl(new URL('https://archlens.dev/ADRs/0001-example?al_refresh=1700000000000'))
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+  });
+
+  it('fetches the prerendered ADR index instead of the shell', () => {
+    expect(refreshNetworkUrl(new URL('https://archlens.dev/ADRs?al_refresh=1700000000000'))).toBe(
+      'https://archlens.dev/ADRs?al_refresh=1700000000000'
+    );
+  });
+});
+
+describe('waitForControllerChange', () => {
+  it('resolves when the waiting worker takes control', async () => {
+    let listener: (() => void) | undefined;
+    const source = {
+      addEventListener: (_type: 'controllerchange', next: () => void) => {
+        listener = next;
+      },
+      removeEventListener: () => {
+        listener = undefined;
+      },
+    };
+    const pending = waitForControllerChange(source, 1500, () => () => undefined);
+    listener?.();
+    await expect(pending).resolves.toBe(true);
+  });
+
+  it('resolves false when the waiting worker never takes control', async () => {
+    const source = {
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+    };
+    let fire: (() => void) | undefined;
+    const pending = waitForControllerChange(source, 1500, (_ms, next) => {
+      fire = next;
+      return () => undefined;
+    });
+    fire?.();
+    await expect(pending).resolves.toBe(false);
   });
 });
 
