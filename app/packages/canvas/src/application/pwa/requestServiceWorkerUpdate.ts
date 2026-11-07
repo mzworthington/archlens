@@ -11,6 +11,7 @@ export type ServiceWorkerReload = {
   deleteCache?: (cacheName: string) => Promise<boolean>;
   reload: () => void;
   skipWaiting?: () => void;
+  deadlineMs?: number;
 };
 
 /** Cache-bust the next document URL so HTTP cache cannot reuse the old shell. */
@@ -33,6 +34,58 @@ export function cacheBustingReloadPath(
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
+/** Canvas routes are client-side. The real document is the site shell. */
+function isWorkspaceAppPath(pathname: string): boolean {
+  return pathname === '/workspace' || pathname.startsWith('/workspace/');
+}
+
+/**
+ * Network URL for a Refresh navigation.
+ * The app has no HTML file, so the worker must fetch `/` or the precached shell
+ * is served again and the banner returns. Website pages are real files.
+ */
+export function refreshNetworkUrl(url: URL): string {
+  const token = url.searchParams.get(UPDATE_REFRESH_QUERY_PARAM) ?? '';
+  if (isWorkspaceAppPath(url.pathname)) {
+    const shell = new URL('/', url.origin);
+    if (token) shell.searchParams.set(UPDATE_REFRESH_QUERY_PARAM, token);
+    return shell.toString();
+  }
+  const page = new URL(url.toString());
+  page.hash = '';
+  return page.toString();
+}
+
+export type ControllerChangeSource = {
+  addEventListener(type: 'controllerchange', listener: () => void): void;
+  removeEventListener(type: 'controllerchange', listener: () => void): void;
+};
+
+/** Resolves true when a waiting worker takes control, false when `timeoutMs` elapses. */
+export function waitForControllerChange(
+  source: ControllerChangeSource,
+  timeoutMs: number,
+  schedule: (ms: number, fire: () => void) => () => void = (ms, fire) => {
+    const id = setTimeout(fire, ms);
+    return () => clearTimeout(id);
+  }
+): Promise<boolean> {
+  return new Promise(resolve => {
+    let settled = false;
+    let cancel = () => {};
+    const finish = (changed: boolean) => {
+      if (settled) return;
+      settled = true;
+      cancel();
+      source.removeEventListener('controllerchange', onChange);
+      resolve(changed);
+    };
+    const onChange = () => finish(true);
+    source.addEventListener('controllerchange', onChange);
+    cancel = schedule(timeoutMs, () => finish(false));
+  });
+}
+
 /** Drop the cache-bust param after a refresh so the next deploy can wait for a click. */
 export function pathWithoutRefreshParam(
   location: Pick<Location, 'pathname' | 'search' | 'hash'>
@@ -52,6 +105,7 @@ export async function reloadWithoutServiceWorker({
   deleteCache,
   reload,
   skipWaiting,
+  deadlineMs = SERVICE_WORKER_RELOAD_DEADLINE_MS,
 }: ServiceWorkerReload): Promise<void> {
   const cleanup = (async () => {
     try {
@@ -79,7 +133,7 @@ export async function reloadWithoutServiceWorker({
 
   let timer: ReturnType<typeof setTimeout> | undefined;
   const deadline = new Promise<void>(resolve => {
-    timer = setTimeout(resolve, SERVICE_WORKER_RELOAD_DEADLINE_MS);
+    timer = setTimeout(resolve, deadlineMs);
   });
   await Promise.race([cleanup.finally(() => clearTimeout(timer)), deadline]);
   reload();

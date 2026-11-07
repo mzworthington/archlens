@@ -20,6 +20,10 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
     expect(sw).toContain('shellPrecacheRequest');
     expect(sw).toContain('addPlugins');
     expect(sw).toContain('clientRequestedImmediateUpdate');
+    expect(sw.indexOf('refreshNetworkUrl(url)')).toBeGreaterThan(-1);
+    expect(sw.indexOf('refreshNetworkUrl(url)')).toBeLessThan(
+      sw.indexOf('precacheAndRoute(self.__WB_MANIFEST)')
+    );
     expect(sw).toContain('event.origin !== self.location.origin');
     expect(sw).toContain('acceptsServiceWorkerUpdateMessage');
     expect(sw).toContain('self.skipWaiting()');

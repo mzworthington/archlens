@@ -2730,7 +2730,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ drops a stale service worker when Refresh is only from a remote build mismatch
 - ✅ shows Refreshing and ignores a second click while the reload is in progress
 - ✅ hard-reloads even when the waiting worker never takes control
-- ✅ cache-busts via history.replaceState so location.replace cannot open-redirect
+- ✅ navigates the app with location.replace so a query-only reload cannot reuse the shell
 
 ### updateCheck
 
