@@ -8,6 +8,7 @@ import {
   NO_SOURCE_COPY,
   REVIEW_TITLE,
   SCAN_FAILED_COPY,
+  WRITE_FAILED_COPY,
   NOTHING_TO_COPY,
   TRUST_COPY,
   foundLine,
@@ -23,6 +24,7 @@ import type {
   BlueprintFile,
   EditorHost,
   FocusedSystem,
+  ReviewChoice,
   ScanOutcome,
   ScanScopeChoice,
   WorkspaceFolder,
@@ -80,6 +82,8 @@ function host(input: {
   glob?: string;
   confirm?: 'generate' | 'cancel';
   scan?: ScanOutcome;
+  review?: ReviewChoice;
+  writeResult?: 'written' | 'failed';
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -178,6 +182,11 @@ function host(input: {
     showReview: async rows => {
       reviews.push([...rows]);
       calls.push(REVIEW_TITLE);
+      return input.review ?? 'keep';
+    },
+    applyBlueprintWrite: async documents => {
+      calls.push(`blueprint:${documents.map(document => document.path).join(',')}`);
+      return input.writeResult ?? 'written';
     },
   };
 }
@@ -423,6 +432,61 @@ describe('generate diagram command', () => {
       ],
     ]);
     expect(editor.discussions).toEqual([]);
+    expect(editor.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
+    expect(editor.diagrams).toEqual([]);
+  });
+
+  it('keeps the current files when the review is dismissed', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      review: 'escape',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      sourceFiles: ['/repo/src/catalog.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
+    expect(editor.diagrams).toEqual([]);
+  });
+
+  it('writes the review and shows those systems', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      review: 'write',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      sourceFiles: ['/repo/checkout/api.ts', '/repo/src/catalog.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.calls).toContain('blueprint:/repo/blueprints/context.yaml');
+    expect(editor.diagrams).toEqual(['api, catalog']);
+    expect(editor.messages).toEqual([]);
+  });
+
+  it('leaves the previous files when the write fails', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      review: 'write',
+      writeResult: 'failed',
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+      sourceFiles: ['/repo/src/catalog.ts'],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.messages).toEqual([WRITE_FAILED_COPY]);
+    expect(editor.diagrams).toEqual([]);
   });
 
   it('reports an empty folder and writes nothing', async () => {

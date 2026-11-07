@@ -9,6 +9,7 @@ import {
   GENERATE_OFF_COPY,
   GENERATE_TITLE,
   KEEP_FILES_COPY,
+  WRITE_BLUEPRINT_COPY,
   NO_CHANGES_COPY,
   NO_LOWER_COPY,
   REVIEW_NOTE,
@@ -24,6 +25,7 @@ import {
   presentHotspots,
   safeBlueprintsFolder,
   sameEditorPath,
+  type BlueprintDocument,
   type ReviewRow,
 } from '../features/editorPreview/domain';
 import { renderMap } from '../features/editorPreview/renderMap';
@@ -32,6 +34,7 @@ import type {
   DiagramView,
   EditorHost,
   GenerateChoice,
+  ReviewChoice,
   ScanOutcome,
   ScanScopeChoice,
   WorkspaceFolder,
@@ -87,6 +90,9 @@ export interface VsCodeLike<
     fs: {
       stat(uri: Uri): Thenable<{ type: number }>;
       readFile(uri: Uri): Thenable<Uint8Array>;
+      writeFile(uri: Uri, content: Uint8Array): Thenable<void>;
+      delete(uri: Uri): Thenable<void>;
+      createDirectory(uri: Uri): Thenable<void>;
     };
     openTextDocument(uri: Uri): Thenable<Document>;
     onDidSaveTextDocument(listener: (document: Document) => void): { dispose(): void };
@@ -191,6 +197,7 @@ export async function createEditorHost<Uri extends FileUri>(
     confirmGenerate: () => confirmGenerate(api),
     scanFolder: root => scanFolder(api, root),
     showReview: rows => showReview(api, rows),
+    applyBlueprintWrite: documents => applyBlueprintWrite(api, documents),
   };
 }
 
@@ -540,14 +547,93 @@ async function scanFolder<Uri extends FileUri>(
 async function showReview<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   rows: readonly ReviewRow[]
-): Promise<void> {
+): Promise<ReviewChoice> {
   const lines =
     rows.length === 0 ? NO_CHANGES_COPY : rows.map(row => `${row.status} ${row.name}`).join('\n');
-  await api.window.showInformationMessage(
+  const choice = await api.window.showInformationMessage(
     REVIEW_TITLE,
     { modal: true, detail: `${lines}\n\n${REVIEW_NOTE}` },
-    KEEP_FILES_COPY
+    KEEP_FILES_COPY,
+    ...(rows.length > 0 ? [WRITE_BLUEPRINT_COPY] : [])
   );
+  if (choice === WRITE_BLUEPRINT_COPY) return 'write';
+  if (choice === KEEP_FILES_COPY) return 'keep';
+  return 'escape';
+}
+
+async function applyBlueprintWrite<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  documents: readonly BlueprintDocument[]
+): Promise<'written' | 'failed'> {
+  const originals: { path: string; bytes?: Uint8Array }[] = [];
+  try {
+    for (const document of documents) {
+      originals.push({ path: document.path, bytes: await readBytes(api, document.path) });
+    }
+    for (const document of documents) {
+      await writeBlueprintDocument(api, document);
+    }
+    return 'written';
+  } catch {
+    for (const original of originals) {
+      await restoreBlueprintDocument(api, original.path, original.bytes);
+    }
+    return 'failed';
+  }
+}
+
+async function readBytes<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  path: string
+): Promise<Uint8Array | undefined> {
+  try {
+    return await api.workspace.fs.readFile(api.Uri.file(path));
+  } catch {
+    return undefined;
+  }
+}
+
+async function writeBlueprintDocument<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  document: BlueprintDocument
+): Promise<void> {
+  const uri = api.Uri.file(document.path);
+  if (document.content === undefined) {
+    await api.workspace.fs.delete(uri);
+    return;
+  }
+  await ensureParentDirectory(api, document.path);
+  await api.workspace.fs.writeFile(uri, new TextEncoder().encode(document.content));
+}
+
+async function restoreBlueprintDocument<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  path: string,
+  bytes: Uint8Array | undefined
+): Promise<void> {
+  try {
+    if (bytes === undefined) {
+      await api.workspace.fs.delete(api.Uri.file(path));
+      return;
+    }
+    await api.workspace.fs.writeFile(api.Uri.file(path), bytes);
+  } catch {
+    return;
+  }
+}
+
+async function ensureParentDirectory<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  path: string
+): Promise<void> {
+  const parent = path.replace(/[/\\][^/\\]+$/, '');
+  if (!parent || parent === path) return;
+  try {
+    const stat = await api.workspace.fs.stat(api.Uri.file(parent));
+    if ((stat.type & api.FileType.Directory) !== 0) return;
+  } catch {
+    await api.workspace.fs.createDirectory(api.Uri.file(parent));
+  }
 }
 
 async function askGenerateInterest<Uri extends FileUri>(

@@ -1,3 +1,4 @@
+import { parseSchemaFromYaml } from '@archlens/core';
 import { describe, expect, it } from 'vitest';
 import {
   CANCEL_COPY,
@@ -28,6 +29,7 @@ import {
   isInsideEditorPath,
   languagesInPaths,
   presentHotspots,
+  blueprintWritePlan,
   reviewRows,
   supportedSourcePaths,
   systemsFromSourcePaths,
@@ -269,7 +271,52 @@ describe('generate diagram from workspace', () => {
     expect(NO_SOURCE_FILES_COPY).toBe('No supported source files in this folder.');
     expect(SCAN_FAILED_COPY).toBe('The scan did not finish. No blueprint files were written.');
     expect(NO_CHANGES_COPY).toBe('No changes.');
-    expect(REVIEW_NOTE).toBe('Nothing is written. Keep current files leaves the folder unchanged.');
+    expect(REVIEW_NOTE).toBe('Nothing is written until you choose Write blueprint.');
+  });
+
+  it('writes the review into the blueprints folder and keeps a hand-written note', () => {
+    const noted = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      notes: hand written'
+    );
+    const component = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  name: Billing only
+  entityRef: checkout/billing
+nodes:
+  - entityRef: checkout/billing
+    type: software-system
+    name: Billing
+dependencies: []
+`;
+    const plan = blueprintWritePlan({
+      root: '/repo',
+      blueprintsFolder: 'blueprints',
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: noted },
+        { path: '/repo/blueprints/billing.yaml', content: component },
+        { path: '/other/secret.yaml', content: noted },
+      ],
+      scanned: systemsFromSourcePaths('/repo', ['/repo/checkout/api.ts', '/repo/src/catalog.ts']),
+    });
+
+    const written = plan.documents.find(
+      document => document.path === '/repo/blueprints/context.yaml'
+    );
+    const schema = parseSchemaFromYaml(written?.content ?? '');
+    expect(schema.nodes.map(node => node.name)).toEqual(['api', 'catalog']);
+    expect(schema.nodes[0]?.properties?.notes).toBe('hand written');
+    expect(schema.nodes[1]?.properties?.filepath).toBe('src/catalog.ts');
+    expect(schema.dependencies).toEqual([]);
+    expect(plan.documents.some(document => document.path === '/other/secret.yaml')).toBe(false);
+    expect(
+      plan.documents.some(
+        document =>
+          document.path === '/repo/blueprints/billing.yaml' && document.content === undefined
+      )
+    ).toBe(true);
+    expect(plan.diagram.systems.map(system => system.name)).toEqual(['api', 'catalog']);
   });
 });
 
