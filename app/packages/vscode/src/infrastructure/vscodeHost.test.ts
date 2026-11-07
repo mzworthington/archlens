@@ -1,6 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { INTEREST_DISCUSSION_URL, TRUST_COPY } from '../features/editorPreview/domain';
-import { generateFromWorkspace, openArchitectureMap } from '../features/editorPreview/handler';
+import {
+  EMPTY_MAP_COPY,
+  INTEREST_DISCUSSION_URL,
+  NO_GIT_HOTSPOTS_COPY,
+  NO_LOWER_COPY,
+  NO_SOURCE_COPY,
+  TRUST_COPY,
+} from '../features/editorPreview/domain';
+import {
+  copyDiagram,
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+  showHotspots,
+} from '../features/editorPreview/handler';
+import { resetDiagramSession } from './diagramSession';
 import { createEditorHost, type VsCodeLike } from './vscodeHost';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -21,6 +35,18 @@ dependencies:
     type: direct-call
 `;
 
+const container = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  name: Checkout API
+  entityRef: checkout/api
+nodes:
+  - entityRef: checkout/api/handler
+    type: component
+    name: Handler
+dependencies: []
+`;
+
 function editor(input: {
   trusted: boolean;
   choice?: string;
@@ -29,12 +55,21 @@ function editor(input: {
   enabled?: boolean;
   directory?: string;
   activePath?: string;
+  git?: boolean;
 }) {
   const calls: string[] = [];
   const html: string[] = [];
   const opened: string[] = [];
+  const copied: string[] = [];
+  const statuses: string[] = [];
+  const statusTimeouts: number[] = [];
   const patterns: { base: string; pattern: string }[] = [];
+  const panels: {
+    onMessage?: (message: unknown) => void;
+    onDispose?: () => void;
+  }[] = [];
   let onSave: ((document: { uri: { fsPath: string }; getText(): string }) => void) | undefined;
+  resetDiagramSession();
   const files = input.files ?? [];
   const api: VsCodeLike = {
     FileType: { File: 1, Directory: 2 },
@@ -64,7 +99,10 @@ function editor(input: {
       fs: {
         stat: async uri => {
           calls.push('stat');
-          return { type: input.directory === uri.fsPath ? 2 : 1 };
+          if (input.git && uri.fsPath === '/repo/.git') return { type: 2 };
+          if (input.directory === uri.fsPath) return { type: 2 };
+          if (files.some(file => file.path === uri.fsPath)) return { type: 1 };
+          throw new Error(`missing ${uri.fsPath}`);
         },
         readFile: async uri => {
           calls.push(`read:${uri.fsPath}`);
@@ -96,11 +134,22 @@ function editor(input: {
         return input.choice ?? items[1];
       },
       showQuickPick: async () => undefined,
-      showTextDocument: async (_document, column) => {
+      showTextDocument: async (document, column) => {
         calls.push(`text:${column}`);
+        calls.push(`show:${document.uri.fsPath}`);
       },
-      createWebviewPanel: (_viewType, _title, column) => {
+      setStatusBarMessage: (message, hideAfterTimeout) => {
+        statuses.push(message);
+        statusTimeouts.push(hideAfterTimeout);
+      },
+      createWebviewPanel: (_viewType, _title, column, options) => {
         calls.push(`panel:${column}`);
+        calls.push(`scripts:${options.enableScripts}`);
+        const panel: {
+          onMessage?: (message: unknown) => void;
+          onDispose?: () => void;
+        } = {};
+        panels.push(panel);
         return {
           webview: {
             set html(value: string) {
@@ -109,8 +158,14 @@ function editor(input: {
             get html() {
               return html[html.length - 1] ?? '';
             },
+            onDidReceiveMessage: listener => {
+              panel.onMessage = message => listener(message);
+              return { dispose: () => undefined };
+            },
           },
-          onDidDispose: () => undefined,
+          onDidDispose: listener => {
+            panel.onDispose = listener;
+          },
         };
       },
     },
@@ -118,6 +173,11 @@ function editor(input: {
       openExternal: async uri => {
         opened.push(uri.toString());
         return true;
+      },
+      clipboard: {
+        writeText: async value => {
+          copied.push(value);
+        },
       },
     },
   };
@@ -127,7 +187,20 @@ function editor(input: {
     calls,
     html,
     opened,
+    copied,
+    statuses,
+    statusTimeouts,
     patterns,
+    focus: (entityRef: string) => {
+      panels.at(-1)?.onMessage?.({ type: 'focus-system', entityRef });
+    },
+    send: (message: unknown) => panels.at(-1)?.onMessage?.(message),
+    focusPanel: (index: number, entityRef: string) => {
+      panels[index]?.onMessage?.({ type: 'focus-system', entityRef });
+    },
+    closePanel: (index: number) => {
+      panels[index]?.onDispose?.();
+    },
     save: (path: string, content: string) => {
       onSave?.({ uri: { fsPath: path }, getText: () => content });
     },
@@ -273,6 +346,140 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).not.toContain('>Billing<');
   });
 
+  it('drills into a child diagram and returns with Alt+Left', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api.yaml', content: container },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await fake.send({ type: 'drill', entityRef: 'checkout/api' });
+
+    expect(fake.html.at(-1)).toContain('Checkout</button>');
+    expect(fake.html.at(-1)).toContain('Checkout API</span>');
+    expect(fake.html.at(-1)).toContain('Handler');
+    expect(fake.html.at(-1)).not.toContain('Billing');
+
+    await fake.send({ type: 'back' });
+
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).toContain('Billing');
+    expect(fake.html.at(-1)).not.toContain('<nav');
+  });
+
+  it('stays on the diagram when Enter has no child', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await fake.send({ type: 'drill', entityRef: 'checkout/billing' });
+
+    expect(fake.calls).toContain(`message:${NO_LOWER_COPY}`);
+    expect(fake.html.at(-1)).toContain('Billing');
+    expect(fake.html.at(-1)).not.toContain('Handler');
+  });
+
+  it('copies the open diagram as Mermaid without writing the YAML', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await copyDiagram(host);
+
+    expect(fake.copied).toHaveLength(1);
+    expect(fake.copied[0]).toContain('graph TD');
+    expect(fake.copied[0]).toContain('Checkout API');
+    expect(fake.copied[0]).toContain('Billing');
+    expect(fake.calls.some(call => call.startsWith('write'))).toBe(false);
+  });
+
+  it('marks a recorded hotspot when the folder has git history', async () => {
+    const withHotspot = checkout.replace(
+      '    name: Checkout API',
+      `    name: Checkout API
+    forensics:
+      classifications:
+        - hotspot
+      churn: 12
+      churnByWeek:
+        - 2
+        - 6`
+    );
+    const fake = editor({
+      trusted: true,
+      git: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: withHotspot }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    await showHotspots(host);
+
+    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
+    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
+    expect(fake.html[0]).not.toContain('<p>Hotspot</p>');
+  });
+
+  it('marks hotspots again after a broken blueprint save is fixed', async () => {
+    const withHotspot = checkout.replace(
+      '    name: Checkout API',
+      `    name: Checkout API
+    forensics:
+      classifications:
+        - hotspot
+      churn: 12
+      churnByWeek:
+        - 2
+        - 6`
+    );
+    const fake = editor({
+      trusted: true,
+      git: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: withHotspot }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+
+    fake.save('/repo/blueprints/context.yaml', 'notes: not a blueprint');
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).not.toContain(EMPTY_MAP_COPY);
+
+    fake.save('/repo/blueprints/context.yaml', withHotspot);
+    expect(fake.html.at(-1)).toContain('Checkout API');
+    expect(fake.html.at(-1)).not.toContain('<p>Hotspot</p>');
+
+    await showHotspots(host);
+
+    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
+    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
+  });
+
+  it('leaves the diagram unchanged when the folder has no git history', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    const before = fake.html.at(-1);
+
+    await showHotspots(host);
+
+    expect(fake.calls).toContain(`message:${NO_GIT_HOTSPOTS_COPY}`);
+    expect(fake.html.at(-1)).toBe(before);
+    expect(fake.html.at(-1)).not.toContain('Hotspot');
+  });
+
   it('opens the discussion from Tell us you want this and reads no blueprint', async () => {
     const fake = editor({ trusted: true, choice: 'Tell us you want this' });
     const host = await createEditorHost(fake.api);
@@ -291,6 +498,110 @@ describe('editor host', () => {
 
     expect(fake.opened).toEqual([]);
     expect(fake.calls).not.toContain('findFiles');
+  });
+
+  it('opens the source file for the focused system', async () => {
+    const source = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
+    );
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: source },
+        { path: '/repo/src/api.ts', content: 'export {}' },
+      ],
+    });
+    await openArchitectureMap(await createEditorHost(fake.api));
+    fake.focus('checkout/api');
+
+    await openSource(await createEditorHost(fake.api));
+
+    expect(fake.calls).toContain('scripts:true');
+    expect(fake.calls).toContain('show:/repo/src/api.ts');
+    expect(fake.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
+    expect(fake.statusTimeouts).toEqual([5000]);
+  });
+
+  it('opens the source for the map that was focused when another map is open', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/src/checkout.ts', content: 'export {}' },
+        { path: '/repo/src/billing.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/checkout.yaml',
+      level: 'context',
+      systems: [{ name: 'Checkout API', entityRef: 'shared', sourceFile: 'src/checkout.ts' }],
+      links: [],
+    });
+    await host.showDiagram({
+      sourcePath: '/repo/blueprints/billing.yaml',
+      level: 'context',
+      systems: [{ name: 'Billing API', entityRef: 'shared', sourceFile: 'src/billing.ts' }],
+      links: [],
+    });
+
+    fake.focusPanel(0, 'shared');
+    await openSource(host);
+    fake.focusPanel(1, 'shared');
+    await openSource(host);
+    fake.closePanel(1);
+    await openSource(host);
+
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([
+      'show:/repo/src/checkout.ts',
+      'show:/repo/src/billing.ts',
+      'show:/repo/src/checkout.ts',
+    ]);
+  });
+
+  it('does not open a stale source after the focused blueprint is saved', async () => {
+    const source = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
+    );
+    const fake = editor({
+      trusted: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: source },
+        { path: '/repo/src/api.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    fake.focus('checkout/api');
+    fake.save(
+      '/repo/blueprints/context.yaml',
+      source
+        .replace('name: Checkout API', 'name: Payments API')
+        .replace('filepath: src/api.ts', 'filepath: src/next.ts')
+    );
+
+    await openSource(host);
+
+    expect(fake.html.at(-1)).toContain('Payments API');
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
+  });
+
+  it('does not open a file when the focused system has none', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    await openArchitectureMap(await createEditorHost(fake.api));
+    fake.focus('checkout/billing');
+
+    await openSource(await createEditorHost(fake.api));
+
+    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
+    expect(fake.calls.filter(call => call.startsWith('show:'))).toEqual([
+      'show:/repo/blueprints/context.yaml',
+    ]);
   });
 
   it('does not read the folder when Generate runs untrusted', async () => {

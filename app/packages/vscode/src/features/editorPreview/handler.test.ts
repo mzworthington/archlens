@@ -1,7 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { EMPTY_MAP_COPY, INTEREST_DISCUSSION_URL, TRUST_COPY } from './domain';
-import { generateFromWorkspace, openArchitectureMap } from './handler';
-import type { BlueprintFile, EditorHost, WorkspaceFolder } from './ports';
+import type { SystemSchema } from '@archlens/core';
+import {
+  EMPTY_MAP_COPY,
+  INTEREST_DISCUSSION_URL,
+  NO_GIT_HOTSPOTS_COPY,
+  NO_SOURCE_COPY,
+  NOTHING_TO_COPY,
+  TRUST_COPY,
+} from './domain';
+import {
+  copyDiagram,
+  generateFromWorkspace,
+  openArchitectureMap,
+  openSource,
+  showHotspots,
+} from './handler';
+import type { BlueprintFile, EditorHost, FocusedSystem, WorkspaceFolder } from './ports';
 
 const checkout = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
@@ -26,6 +40,9 @@ interface RecordedHost extends EditorHost {
   readonly messages: string[];
   readonly diagrams: string[];
   readonly discussions: string[];
+  readonly opened: string[];
+  readonly statuses: string[];
+  readonly clipboard: string[];
 }
 
 function host(input: {
@@ -38,17 +55,30 @@ function host(input: {
   hintPath?: string;
   picked?: string;
   choice?: 'tell' | 'cancel' | 'escape';
+  focused?: FocusedSystem;
+  existing?: readonly string[];
+  schema?: SystemSchema;
+  hotspotsOn?: boolean;
+  workspaceRoot?: string;
+  git?: boolean;
+  map?: boolean;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
   const diagrams: string[] = [];
   const discussions: string[] = [];
+  const opened: string[] = [];
+  const statuses: string[] = [];
+  const clipboard: string[] = [];
   const files = input.files ?? [];
   return {
     calls,
     messages,
     diagrams,
     discussions,
+    opened,
+    statuses,
+    clipboard,
     isTrusted: () => input.trusted,
     generateEnabled: () => {
       calls.push('read-setting');
@@ -83,6 +113,32 @@ function host(input: {
     },
     openDiscussion: async url => {
       discussions.push(url);
+    },
+    focusedSystem: () => input.focused,
+    fileExists: async path => (input.existing ?? []).includes(path),
+    openFile: async path => {
+      opened.push(path);
+    },
+    setStatus: message => {
+      statuses.push(message);
+    },
+    visibleSchema: () => input.schema,
+    writeClipboard: async text => {
+      clipboard.push(text);
+    },
+    visibleMap: () =>
+      input.map
+        ? {
+            hotspotsOn: input.hotspotsOn ?? false,
+            ...(input.workspaceRoot ? { workspaceRoot: input.workspaceRoot } : {}),
+          }
+        : undefined,
+    hasGitHistory: async root => {
+      calls.push(`git:${root}`);
+      return input.git ?? false;
+    },
+    setHotspots: on => {
+      calls.push(`hotspots:${on}`);
     },
   };
 }
@@ -141,6 +197,114 @@ describe('open architecture map command', () => {
   });
 });
 
+describe('open source command', () => {
+  it('does not open a file while the workspace is untrusted', async () => {
+    const editor = host({
+      trusted: false,
+      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
+      existing: ['/repo/src/api.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.opened).toEqual([]);
+  });
+
+  it('opens the file the focused system points at and names it in the status', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
+      existing: ['/repo/src/api.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.opened).toEqual(['/repo/src/api.ts']);
+    expect(editor.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
+  });
+
+  it('leaves the diagram in place when the focused system has no source file', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Billing', workspaceRoot: '/repo' },
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
+    expect(editor.opened).toEqual([]);
+  });
+
+  it('does not open a path outside the workspace', async () => {
+    const editor = host({
+      trusted: true,
+      focused: { name: 'Checkout API', sourceFile: '../secret.ts', workspaceRoot: '/repo' },
+      existing: ['/secret.ts'],
+    });
+
+    await openSource(editor);
+
+    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
+    expect(editor.opened).toEqual([]);
+  });
+});
+
+describe('copy diagram command', () => {
+  it('copies a flowchart and does not change the blueprint', async () => {
+    const editor = host({
+      trusted: true,
+      schema: {
+        name: 'Checkout',
+        version: 'v4',
+        level: 'context',
+        nodes: [
+          { entityRef: 'checkout/api', name: 'Checkout API', type: 'software-system' },
+          { entityRef: 'checkout/billing', name: 'Billing', type: 'software-system' },
+        ],
+        dependencies: [{ from: 'checkout/api', to: 'checkout/billing', type: 'direct-call' }],
+      },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.clipboard[0]).toContain('graph TD');
+    expect(editor.clipboard[0]).toContain('Checkout API');
+    expect(editor.clipboard[0]).toContain('Billing');
+    expect(editor.calls).not.toContain('list:/repo');
+  });
+
+  it('leaves the clipboard alone when the diagram has no systems', async () => {
+    const editor = host({
+      trusted: true,
+      schema: { name: 'Empty', version: 'v4', level: 'context', nodes: [], dependencies: [] },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.messages).toEqual([NOTHING_TO_COPY]);
+    expect(editor.clipboard).toEqual([]);
+  });
+
+  it('does not copy while the workspace is untrusted', async () => {
+    const editor = host({
+      trusted: false,
+      schema: {
+        name: 'Checkout',
+        version: 'v4',
+        level: 'context',
+        nodes: [{ entityRef: 'checkout/api', name: 'Checkout API', type: 'software-system' }],
+        dependencies: [],
+      },
+    });
+
+    await copyDiagram(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.clipboard).toEqual([]);
+  });
+});
+
 describe('generate diagram command', () => {
   it('does not read the folder while the workspace is untrusted', async () => {
     const editor = host({ trusted: false, choice: 'tell' });
@@ -196,5 +360,51 @@ describe('generate diagram command', () => {
     expect(editor.calls).toContain('read-setting');
     expect(editor.calls).not.toContain('list:/repo');
     expect(editor.discussions).toEqual([]);
+  });
+});
+
+describe('show hotspots command', () => {
+  it('does not look for git history while the workspace is untrusted', async () => {
+    const editor = host({ trusted: false, map: true, workspaceRoot: '/repo', git: true });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([TRUST_COPY]);
+    expect(editor.calls).not.toContain('git:/repo');
+    expect(editor.calls).not.toContain('hotspots:true');
+  });
+
+  it('leaves the diagram alone when the folder has no git history', async () => {
+    const editor = host({ trusted: true, map: true, workspaceRoot: '/repo', git: false });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([NO_GIT_HOTSPOTS_COPY]);
+    expect(editor.calls).toContain('git:/repo');
+    expect(editor.calls).not.toContain('hotspots:true');
+  });
+
+  it('turns hotspot marks on when the folder has git history', async () => {
+    const editor = host({ trusted: true, map: true, workspaceRoot: '/repo', git: true });
+
+    await showHotspots(editor);
+
+    expect(editor.messages).toEqual([]);
+    expect(editor.calls).toContain('hotspots:true');
+  });
+
+  it('turns hotspot marks off without reading git again', async () => {
+    const editor = host({
+      trusted: true,
+      map: true,
+      workspaceRoot: '/repo',
+      git: true,
+      hotspotsOn: true,
+    });
+
+    await showHotspots(editor);
+
+    expect(editor.calls).toContain('hotspots:false');
+    expect(editor.calls).not.toContain('git:/repo');
   });
 });

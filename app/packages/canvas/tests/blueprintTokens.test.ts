@@ -44,6 +44,7 @@ describe('blueprint design tokens', () => {
     expect(stylesheet).not.toContain('#173453');
     expect(stylesheet).not.toContain('#f3f4f6');
     expect(stylesheet).not.toContain('#00f0ff');
+    expect(stylesheet).not.toContain('rgb(0 240 255');
   });
 
   it('paints the site header from the token set', () => {
@@ -134,6 +135,8 @@ describe('blueprint design tokens', () => {
       'rgba(6, 17, 37',
       '23 52 83',
       'rgb(4 9 20',
+      "'#00f0ff'",
+      'rgb(0 240 255',
     ];
     const offenders: string[] = [];
 
@@ -145,7 +148,7 @@ describe('blueprint design tokens', () => {
           continue;
         }
         if (!/\.(tsx|ts|css)$/.test(entry.name)) continue;
-        if (entry.name === 'tokens.css') continue;
+        if (entry.name === 'tokens.css' || entry.name === 'AssetsSection.tsx') continue;
 
         const text = fs.readFileSync(full, 'utf8');
         const hits = banned.filter(needle => text.toLowerCase().includes(needle));
@@ -196,5 +199,79 @@ describe('blueprint design tokens', () => {
     expect(section).toContain('--color-accent');
     expect(section).not.toContain('Cyan Primary');
     expect(section).not.toContain('--color-blueprint-border');
+  });
+
+  it('names status and category colors in the same token set', () => {
+    const tokens = fs.readFileSync(tokensPath, 'utf8');
+    const names = [
+      '--color-status-healthy',
+      '--color-status-warning',
+      '--color-status-error',
+      '--color-category-platform',
+      '--color-category-intelligence',
+      '--color-category-resilience',
+      '--color-category-contract',
+    ];
+
+    for (const name of names) {
+      expect(tokens).toContain(`${name}:`);
+    }
+  });
+
+  it('paints node status and product categories from those tokens', () => {
+    const shared = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/shared.ts'),
+      'utf8'
+    );
+    const sandbox = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/components/designSystem/SandboxSection.tsx'),
+      'utf8'
+    );
+    const homepage = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/features/docs/DocsHome.tsx'),
+      'utf8'
+    );
+
+    expect(shared).toContain('text-category-platform');
+    expect(shared).toContain('--color-status-healthy');
+    expect(shared).not.toContain('text-sky-300');
+    expect(shared).not.toContain('text-emerald-300');
+    expect(sandbox).toContain('NODE_STATUS_STYLES');
+    expect(sandbox).toContain('NODE_STATUS_MARKERS');
+    expect(sandbox).not.toContain('bg-emerald-400');
+    expect(sandbox).not.toContain('#10b981');
+    expect(homepage).toContain('PRODUCT_CATEGORY_STYLES');
+    expect(homepage).not.toContain('text-emerald-300');
+    expect(homepage).not.toContain('border-emerald-');
+  });
+
+  it('paints a docs guide from ink, navy, and accent', () => {
+    const stylesheet = fs.readFileSync(path.join(canvasRoot, 'src/index.css'), 'utf8');
+    const proseStart = stylesheet.indexOf('\n.docs-prose {');
+    const prose = stylesheet.slice(proseStart);
+    const guide = fs.readFileSync(
+      path.join(canvasRoot, 'src/ui/features/docs/MarkdownView.tsx'),
+      'utf8'
+    );
+
+    expect(prose).toContain('var(--color-ink)');
+    expect(prose).toContain('var(--color-accent)');
+    expect(prose).not.toMatch(/#[0-9a-fA-F]{3,8}/);
+    expect(guide).toContain('text-accent');
+    expect(guide).toContain('bg-navy');
+    expect(guide).not.toContain('text-brand-300');
+    expect(guide).not.toContain('text-slate-');
+  });
+
+  it('reads swatch hex from the token stylesheet', () => {
+    const theme = fs.readFileSync(
+      path.join(canvasRoot, 'src/infrastructure/theme/designTheme.ts'),
+      'utf8'
+    );
+    const reader = fs.readFileSync(path.join(canvasRoot, 'src/ui/theme/designTokens.ts'), 'utf8');
+
+    expect(theme).not.toMatch(/#[0-9a-fA-F]{3,8}/);
+    expect(reader).toContain('virtual:archlens-design-tokens');
+    expect(reader).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 });

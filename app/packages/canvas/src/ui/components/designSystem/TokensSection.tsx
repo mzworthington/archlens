@@ -1,7 +1,13 @@
 import React from 'react';
 import { Copy, Check, Palette } from 'lucide-react';
-import { DESIGN_THEME_TOKENS, type DesignThemeId } from '../../../infrastructure/theme/designTheme';
-import { PRODUCT_CATEGORY_STYLES } from './shared';
+import type { DesignThemeId } from '../../../infrastructure/theme/designTheme';
+import { DESIGN_THEME_TOKENS } from '../../theme/designTokens';
+import {
+  NODE_STATUS_MARKERS,
+  NODE_STATUS_TOKENS,
+  PRODUCT_CATEGORY_STYLES,
+  PRODUCT_CATEGORY_TOKENS,
+} from './shared';
 
 type TokensSectionProps = {
   copiedId: string | null;
@@ -113,7 +119,32 @@ export const TokensSection: React.FC<TokensSectionProps> = ({
               >
                 {label}
               </span>
-              <p className="text-[10px] text-ink/55 font-mono break-all">{className}</p>
+              <p className="text-[10px] text-ink/55 font-mono break-all">
+                {PRODUCT_CATEGORY_TOKENS[label]}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-ink/55 font-mono">
+          Node status
+        </h3>
+        <p className="text-xs text-ink/60">Healthy, warning and error markers on a node.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {(Object.keys(NODE_STATUS_TOKENS) as (keyof typeof NODE_STATUS_TOKENS)[]).map(status => (
+            <div
+              key={status}
+              className="border border-ink/10 bg-surface rounded-xl p-3 flex items-center justify-between gap-3"
+            >
+              <div>
+                <div className="text-xs font-bold text-ink capitalize">{status}</div>
+                <div className="text-[10px] text-ink/55 font-mono mt-0.5">
+                  {NODE_STATUS_TOKENS[status]}
+                </div>
+              </div>
+              <span className={`h-3 w-3 rounded-full ${NODE_STATUS_MARKERS[status]}`} />
             </div>
           ))}
         </div>

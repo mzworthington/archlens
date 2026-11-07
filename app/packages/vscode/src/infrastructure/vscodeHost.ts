@@ -1,11 +1,17 @@
+import { randomBytes } from 'node:crypto';
+import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
 import {
   CANCEL_COPY,
   GENERATE_OFF_COPY,
   GENERATE_TITLE,
+  NO_LOWER_COPY,
   TELL_US_COPY,
+  decideBack,
+  decideDrill,
   decideOpenMap,
   isInsideEditorPath,
   isYamlPath,
+  presentHotspots,
   safeBlueprintsFolder,
   sameEditorPath,
 } from '../features/editorPreview/domain';
@@ -17,9 +23,25 @@ import type {
   GenerateChoice,
   WorkspaceFolder,
 } from '../features/editorPreview/ports';
+import {
+  closeDiagramSession,
+  focusDiagramSystem,
+  openDiagramSession,
+  readFocusedSystem,
+  readSessionView,
+  readVisibleDiagram,
+  replaceDiagramSession,
+  setSessionHotspots,
+  showInSession,
+} from './diagramSession';
 
 interface WebviewPanel {
-  webview: { html: string };
+  webview: {
+    html: string;
+    onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
+      dispose(): void;
+    };
+  };
   onDidDispose(listener: () => void): void;
 }
 
@@ -68,6 +90,7 @@ export interface VsCodeLike<
     ): Thenable<FolderPickItem | undefined>;
     activeTextEditor: { document: Document } | undefined;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
+    setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
       viewType: string,
       title: string,
@@ -77,8 +100,12 @@ export interface VsCodeLike<
   };
   env: {
     openExternal(uri: Uri): Thenable<boolean>;
+    clipboard: { writeText(value: string): Thenable<void> };
   };
 }
+
+const STATUS_HIDE_MS = 5000;
+const panelPainters = new Map<number, () => void>();
 
 export async function createEditorHost<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
@@ -107,6 +134,34 @@ export async function createEditorHost<Uri extends FileUri>(
     askGenerateInterest: () => askGenerateInterest(api),
     openDiscussion: async url => {
       await api.env.openExternal(api.Uri.parse(url));
+    },
+    focusedSystem: () => readFocusedSystem(),
+    fileExists: path => fileExists(api, path),
+    openFile: async path => {
+      const document = await api.workspace.openTextDocument(api.Uri.file(path));
+      await api.window.showTextDocument(document, api.ViewColumn.Active);
+    },
+    setStatus: message => {
+      api.window.setStatusBarMessage(message, STATUS_HIDE_MS);
+    },
+    visibleSchema: () => readVisibleDiagram()?.schema,
+    writeClipboard: async text => {
+      await api.env.clipboard.writeText(text);
+    },
+    visibleMap: () => {
+      const visible = readVisibleDiagram();
+      if (!visible) return undefined;
+      return {
+        hotspotsOn: visible.hotspotsOn,
+        ...(visible.workspaceRoot ? { workspaceRoot: visible.workspaceRoot } : {}),
+      };
+    },
+    hasGitHistory: root => hasGitHistory(api, root),
+    setHotspots: on => {
+      const visible = readVisibleDiagram();
+      if (!visible) return;
+      setSessionHotspots(visible.id, on);
+      panelPainters.get(visible.id)?.();
     },
   };
 }
@@ -209,21 +264,180 @@ async function showDiagram<Uri extends FileUri>(
     'archlens.architectureMap',
     'Architecture map',
     api.ViewColumn.Beside,
-    { enableScripts: false }
+    { enableScripts: true }
   );
-  panel.webview.html = renderMap(diagram);
+  const schema = schemaFrom(document.getText());
+  const shown = { session: 0, path: diagram.sourcePath };
+  shown.session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath), schema);
+  const paint = () => {
+    const view = readSessionView(shown.session);
+    if (!view) return;
+    panel.webview.html = renderMap(
+      presentHotspots(view.diagram, view.schema?.nodes ?? [], view.hotspotsOn),
+      mapNonce()
+    );
+  };
+  panelPainters.set(shown.session, paint);
+  paint();
+  const messages = panel.webview.onDidReceiveMessage(message =>
+    onPanelMessage(api, shown, message, paint)
+  );
   const listener = api.workspace.onDidSaveTextDocument(saved => {
-    if (!sameEditorPath(saved.uri.fsPath, diagram.sourcePath)) return;
+    if (!sameEditorPath(saved.uri.fsPath, shown.path)) return;
     const decision = decideOpenMap({
-      files: [{ path: diagram.sourcePath, content: saved.getText() }],
-      selectedPath: diagram.sourcePath,
+      files: [{ path: shown.path, content: saved.getText() }],
+      selectedPath: shown.path,
     });
     if (decision.kind !== 'diagram') return;
-    panel.webview.html = renderMap(decision.diagram);
+    shown.session = replaceDiagramSession(
+      shown.session,
+      decision.diagram,
+      workspaceRootFor(api, decision.diagram.sourcePath),
+      schemaFrom(saved.getText())
+    );
+    panelPainters.set(shown.session, paint);
+    paint();
   });
   panel.onDidDispose(() => {
+    panelPainters.delete(shown.session);
+    closeDiagramSession(shown.session);
+    messages.dispose();
     listener.dispose();
   });
+}
+
+async function onPanelMessage<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  shown: { session: number; path: string },
+  message: unknown,
+  paint: () => void
+): Promise<void> {
+  const focus = focusEntity(message);
+  if (focus) {
+    focusDiagramSystem(shown.session, focus);
+    return;
+  }
+  const action = panelAction(message);
+  if (!action) return;
+  const visible = readVisibleDiagram();
+  if (!visible || visible.id !== shown.session) return;
+  const root = visible.workspaceRoot;
+  if (!root) {
+    if (action.type === 'drill') {
+      void api.window.showInformationMessage(NO_LOWER_COPY, {});
+    }
+    return;
+  }
+  const files = await listBlueprintFiles(api, root);
+  if (action.type === 'drill') {
+    const decision = decideDrill({
+      files,
+      focusedEntityRef: action.entityRef,
+      currentPath: visible.sourcePath,
+    });
+    if (decision.kind === 'none') {
+      void api.window.showInformationMessage(decision.message, {});
+      return;
+    }
+    const system = visible.systems.find(item => item.entityRef === action.entityRef);
+    const breadcrumb = [
+      ...visible.breadcrumb,
+      { name: system?.name ?? decision.schema.name, sourcePath: decision.diagram.sourcePath },
+    ];
+    showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
+    shown.path = decision.diagram.sourcePath;
+    paint();
+    return;
+  }
+  const decision = decideBack({
+    breadcrumb: visible.breadcrumb,
+    files,
+    ...(action.type === 'breadcrumb' ? { sourcePath: action.sourcePath } : {}),
+  });
+  if (decision.kind === 'stay') return;
+  showInSession(shown.session, decision.diagram, decision.schema, decision.breadcrumb);
+  shown.path = decision.diagram.sourcePath;
+  paint();
+}
+
+async function hasGitHistory<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  root: string
+): Promise<boolean> {
+  const folder = root.replaceAll('\\', '/').replace(/\/+$/, '');
+  try {
+    await api.workspace.fs.stat(api.Uri.file(`${folder}/.git`));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function schemaFrom(content: string): SystemSchema | undefined {
+  try {
+    return parseSchemaFromYaml(content);
+  } catch {
+    return undefined;
+  }
+}
+
+function focusEntity(message: unknown): string | undefined {
+  if (!isRecord(message) || message.type !== 'focus-system') return undefined;
+  return typeof message.entityRef === 'string' ? message.entityRef : undefined;
+}
+
+function panelAction(
+  message: unknown
+):
+  | { type: 'drill'; entityRef: string }
+  | { type: 'back' }
+  | { type: 'breadcrumb'; sourcePath: string }
+  | undefined {
+  if (!isRecord(message)) return undefined;
+  if (message.type === 'drill' && typeof message.entityRef === 'string') {
+    return { type: 'drill', entityRef: message.entityRef };
+  }
+  if (message.type === 'back') return { type: 'back' };
+  if (message.type === 'breadcrumb' && typeof message.sourcePath === 'string') {
+    return { type: 'breadcrumb', sourcePath: message.sourcePath };
+  }
+  return undefined;
+}
+
+function isRecord(message: unknown): message is Record<string, unknown> {
+  return typeof message === 'object' && message !== null;
+}
+
+function mapNonce(): string {
+  return randomBytes(16).toString('hex');
+}
+
+function workspaceRootFor<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  blueprintPath: string
+): string | undefined {
+  const file = blueprintPath.replaceAll('\\', '/').replace(/\/+$/, '');
+  const folders = api.workspace.workspaceFolders ?? [];
+  const matches = folders
+    .map(folder => folder.uri.fsPath)
+    .filter(folder => {
+      const root = folder.replaceAll('\\', '/').replace(/\/+$/, '');
+      return file === root || file.startsWith(`${root}/`);
+    })
+    .sort((left, right) => right.length - left.length);
+  return matches[0];
+}
+
+async function fileExists<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  path: string
+): Promise<boolean> {
+  try {
+    const stat = await api.workspace.fs.stat(api.Uri.file(path));
+    return (stat.type & api.FileType.File) !== 0;
+  } catch {
+    return false;
+  }
 }
 
 async function askGenerateInterest<Uri extends FileUri>(

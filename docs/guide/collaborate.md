@@ -10,7 +10,7 @@ No ArchLens account. Named cursors show who is looking where. Writing YAML back 
 
 Live share is an opt-in room, not a second source of truth. Folder workspaces stay local-first. Published catalogs stay a CI publish. See [Privacy](../privacy.md) for what a room actually sends.
 
-![Startup chooser with Collaborate](../screenshots/9-collab-cursors.png)
+![Startup chooser with Collaborate](../screenshots/6-startup-chooser.png)
 
 ## Why it is on the chooser
 

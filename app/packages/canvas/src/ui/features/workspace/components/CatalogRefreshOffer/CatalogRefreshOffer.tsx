@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { remoteCatalogRefreshOffer } from '../../../../../application/catalog/remoteCatalogRefresh';
 import { BUNDLED_WORKSPACE_NAME } from '../../../../../application/store/samplesWorkspace';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -60,12 +60,9 @@ export const CatalogRefreshOffer: React.FC = () => {
     };
   }, [usesRemoteCatalog, loadedRevision]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!confirmOpen) return;
     const container = confirmRef.current;
-    if (!container) return;
-    const items = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
-    items[0]?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -75,7 +72,9 @@ export const CatalogRefreshOffer: React.FC = () => {
         if (latestRevision) setDismissedRevision(latestRevision);
         return;
       }
-      if (event.key !== 'Tab' || items.length === 0) return;
+      if (!container || event.key !== 'Tab') return;
+      const items = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+      if (items.length === 0) return;
       const first = items[0]!;
       const last = items[items.length - 1]!;
       const focused = document.activeElement;
@@ -91,6 +90,10 @@ export const CatalogRefreshOffer: React.FC = () => {
     };
 
     document.addEventListener('keydown', onKeyDown);
+    if (container) {
+      const items = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+      items[0]?.focus();
+    }
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [confirmOpen, latestRevision]);
 

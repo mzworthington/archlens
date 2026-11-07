@@ -34,13 +34,13 @@
 
 /* White glyphs on a denser cyan fill so muted slate copy stays readable when selected. */
 ::selection {
-  background-color: rgb(0 240 255 / 0.55);
-  color: #f8fafc;
+  background-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  color: var(--color-ink);
 }
 
 ::-moz-selection {
-  background-color: rgb(0 240 255 / 0.55);
-  color: #f8fafc;
+  background-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  color: var(--color-ink);
 }
 
 html,
@@ -743,7 +743,7 @@ html[data-theme='light'] .blueprint-port::before {
 
 /* In-app documentation (Markdown) */
 .docs-prose {
-  color: #cbd5e1;
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
   font-size: 0.95rem;
   line-height: 1.7;
 }
@@ -753,7 +753,7 @@ html[data-theme='light'] .blueprint-port::before {
   font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #f8fafc;
+  color: var(--color-ink);
   line-height: 1.15;
 }
 
@@ -771,7 +771,7 @@ html[data-theme='light'] .blueprint-port::before {
   margin: 2rem 0 0.75rem;
   font-size: 1.35rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: color-mix(in srgb, var(--color-ink) 96%, transparent);
   padding-bottom: 0.35rem;
   border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
 }
@@ -780,7 +780,7 @@ html[data-theme='light'] .blueprint-port::before {
   margin: 1.5rem 0 0.5rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: color-mix(in srgb, var(--color-ink) 88%, transparent);
 }
 
 .docs-prose p,
@@ -807,17 +807,17 @@ html[data-theme='light'] .blueprint-port::before {
 .docs-prose blockquote {
   border-left: 3px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
   padding-left: 1rem;
-  color: #94a3b8;
+  color: color-mix(in srgb, var(--color-ink) 62%, transparent);
 }
 
 .docs-prose hr {
   margin: 1.75rem 0;
   border: none;
-  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
 }
 
 .docs-prose strong {
-  color: #f1f5f9;
+  color: var(--color-ink);
   font-weight: 600;
 }
 
@@ -828,7 +828,7 @@ html[data-theme='light'] .blueprint-port::before {
 }
 
 .docs-prose-static a:hover {
-  color: var(--color-brand-300);
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
@@ -858,7 +858,7 @@ html[data-theme='light'] .blueprint-port::before {
   bottom: 0.75rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-navy) 80%, transparent);
-  color: var(--color-brand-300);
+  color: var(--color-accent);
   font-family: ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
@@ -871,22 +871,22 @@ html[data-theme='light'] .blueprint-port::before {
   overflow-x: auto;
   margin: 1rem 0;
   border-radius: 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--color-brand-500) 15%, transparent);
-  background: rgb(2 6 23 / 0.9);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+  background: color-mix(in srgb, var(--color-navy) 90%, transparent);
   padding: 1rem;
   font-size: 0.875rem;
   font-family: ui-monospace, monospace;
-  color: #e2e8f0;
+  color: color-mix(in srgb, var(--color-ink) 88%, transparent);
 }
 
 .docs-prose-static :not(pre) > code {
   border-radius: 0.25rem;
-  background: rgb(15 23 42 / 0.8);
+  background: color-mix(in srgb, var(--color-navy) 80%, transparent);
   padding: 0.125rem 0.375rem;
   font-size: 0.85em;
   font-family: ui-monospace, monospace;
-  color: var(--color-brand-300);
-  border: 1px solid rgb(255 255 255 / 0.05);
+  color: var(--color-accent);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
 }
 
 .docs-prose-static .docs-table-wrap {
@@ -902,18 +902,18 @@ html[data-theme='light'] .blueprint-port::before {
 
 .docs-prose-static th,
 .docs-prose-static td {
-  border: 1px solid rgb(255 255 255 / 0.1);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
   padding: 0.5rem 0.75rem;
   vertical-align: top;
   text-align: left;
 }
 
 .docs-prose-static th {
-  background: rgb(15 23 42 / 0.6);
+  background: color-mix(in srgb, var(--color-navy) 60%, transparent);
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--color-ink);
 }
 
 .docs-prose-static td {
-  color: #cbd5e1;
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
 }

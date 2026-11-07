@@ -8,7 +8,36 @@ import {
 } from 'workbox-precaching';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
+import {
+  acceptsServiceWorkerUpdateMessage,
+  clientRequestedImmediateUpdate,
+} from './application/pwa/immediateServiceWorkerUpdate';
 import { shellPrecacheRequest } from './application/pwa/shellPrecacheRequest';
+
+// A page already reloading for Refresh is stuck on the previous script. Take
+// control so that navigation can load this build once, instead of another loop.
+self.addEventListener('install', event => {
+  event.waitUntil(
+    self.clients
+      .matchAll({ includeUncontrolled: true, type: 'window' })
+      .then(clients => {
+        if (!clientRequestedImmediateUpdate(clients.map(client => client.url))) return;
+        return self.skipWaiting();
+      })
+      .catch(() => undefined)
+  );
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('message', event => {
+  // Any window can postMessage a worker. Only this origin may activate the update.
+  if (event.origin !== self.location.origin) return;
+  if (!acceptsServiceWorkerUpdateMessage(event.origin, self.location.origin, event.data)) return;
+  self.skipWaiting();
+});
 
 // Register before precacheAndRoute so the install fetch of `/` asks for HTML.
 // Cloudflare injects the Web Analytics beacon only when Accept includes text/html.

@@ -31,7 +31,11 @@
   ],
   "activationEvents": [
     "onCommand:archlens.openArchitectureMap",
-    "onCommand:archlens.generateFromWorkspace"
+    "onCommand:archlens.generateFromWorkspace",
+    "onCommand:archlens.openSource",
+    "onCommand:archlens.copyDiagram",
+    "onCommand:archlens.showHotspots",
+    "onLanguage:yaml"
   ],
   "contributes": {
     "commands": [
@@ -43,6 +47,21 @@
       {
         "command": "archlens.generateFromWorkspace",
         "title": "Generate diagram from workspace",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.openSource",
+        "title": "Open source",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.copyDiagram",
+        "title": "Copy diagram as Mermaid",
+        "category": "ArchLens"
+      },
+      {
+        "command": "archlens.showHotspots",
+        "title": "Show hotspots",
         "category": "ArchLens"
       }
     ],
@@ -57,6 +76,23 @@
           "command": "archlens.generateFromWorkspace",
           "when": "explorerResourceIsFolder",
           "group": "navigation@21"
+        }
+      ],
+      "webview/context": [
+        {
+          "command": "archlens.openSource",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation"
+        },
+        {
+          "command": "archlens.copyDiagram",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "archlens.showHotspots",
+          "when": "webviewId == 'archlens.architectureMap'",
+          "group": "navigation@3"
         }
       ]
     },

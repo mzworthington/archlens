@@ -29,9 +29,9 @@ export const DocsPage: React.FC = () => {
   if (!page) {
     return (
       <DocsShell>
-        <h1 className="text-2xl font-bold text-white">Page not found</h1>
-        <p className="mt-2 text-slate-400">That documentation URL is missing.</p>
-        <Link href="/" className="mt-6 inline-flex text-brand-400 hover:text-brand-300">
+        <h1 className="text-2xl font-bold text-ink">Page not found</h1>
+        <p className="mt-2 text-ink/60">That documentation URL is missing.</p>
+        <Link href="/" className="mt-6 inline-flex text-accent hover:underline">
           Back to docs
         </Link>
       </DocsShell>
@@ -66,7 +66,7 @@ export const DocsPage: React.FC = () => {
             <label className="relative block min-w-0 flex-1">
               <span className="sr-only">Filter features</span>
               <Search
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/50"
                 aria-hidden
               />
               <input
@@ -75,13 +75,10 @@ export const DocsPage: React.FC = () => {
                 onChange={e => setQuery(e.target.value)}
                 placeholder="Filter features…"
                 data-testid="docs-feature-filter"
-                className="w-full rounded-lg border border-accent/20 bg-slate-950/70 py-2 pl-9 pr-3 font-mono text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30"
+                className="w-full rounded-lg border border-accent/20 bg-navy/70 py-2 pl-9 pr-3 font-mono text-sm text-ink placeholder:text-ink/45 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30"
               />
             </label>
-            <p
-              className="shrink-0 font-mono text-xs text-slate-500"
-              data-testid="docs-feature-count"
-            >
+            <p className="shrink-0 font-mono text-xs text-ink/50" data-testid="docs-feature-count">
               {matchCount} feature{matchCount === 1 ? '' : 's'}
             </p>
           </div>

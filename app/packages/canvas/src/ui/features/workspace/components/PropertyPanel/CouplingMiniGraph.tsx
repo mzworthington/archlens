@@ -66,7 +66,7 @@ export const CouplingMiniGraph: React.FC<CouplingMiniGraphProps> = ({
           cy={CENTER}
           r={NODE_R + 2}
           fill="rgb(15 23 42)"
-          stroke="rgb(0 240 255)"
+          stroke="var(--color-accent)"
         />
         <text
           x={CENTER}

@@ -42,6 +42,11 @@ In that window:
 | Preview         | Command Palette: **ArchLens: Open architecture map**. Or right-click `blueprints/` or a `.yaml` file.    | Systems and links from the file. The diagram is read only.                                                                                    |
 | Interest prompt | Command Palette: **ArchLens: Generate diagram from workspace**.                                          | "Generating a diagram from code is turned off in this preview." **Tell us you want this** opens the discussion. **Cancel** closes the prompt. |
 | Restricted Mode | Command Palette: **Workspaces: Manage Workspace Trust**, then **Don't Trust**. Run either command again. | "ArchLens does not read this folder until the workspace is trusted."                                                                          |
+| Open source     | Focus a system on the diagram, then **ArchLens: Open source**.                                           | The file that system points at opens. The status bar names the path and the system. A system with no file stays on the diagram.               |
+| Drill           | Focus a system and press Enter. Press Alt+Left, or choose the parent in the breadcrumb.                  | The child diagram replaces the canvas. A system with no child diagram stays put.                                                              |
+| Copy            | **ArchLens: Copy diagram as Mermaid**.                                                                   | The clipboard gets a flowchart. The YAML file is unchanged. An empty diagram says nothing to copy.                                            |
+| Problems        | Open a blueprint that contains a cycle, then remove the cycle and save.                                  | Problems names both systems and the file. The problem is gone after the save. A notes file gets no ArchLens problem.                          |
+| Hotspots        | **ArchLens: Show hotspots** on a map that already has hotspot signals, in a folder with git history.     | Marked systems say Hotspot and properties include a change count. No git history leaves the diagram as it is.                                 |
 
 After an edit, compile again and run **Developer: Reload Window** in the host.
 
@@ -55,7 +60,7 @@ pnpm --filter ./packages/vscode package:pre-release
 code --install-extension packages/vscode/archlens-0.1.0.vsix
 ```
 
-The current version is `0.1.0`, so the file name is `archlens-0.1.0.vsix`. `vsce` marks that file as a pre-release with `--pre-release`. A semver tag such as `0.1.0-preview.1` is not a Marketplace version. In the Extensions view, the `…` menu has **Install from VSIX…**. Reload the window and repeat the three checks above in a normal window, outside the development host.
+The current version is `0.1.0`, so the file name is `archlens-0.1.0.vsix`. `vsce` marks that file as a pre-release with `--pre-release`. A semver tag such as `0.1.0-preview.1` is not a Marketplace version. In the Extensions view, the `…` menu has **Install from VSIX…**. Reload the window and repeat the checks above in a normal window, outside the development host.
 
 CI uploads the same package as the `archlens-vscode-pre-release` artifact on the unit-tests job. Download that file and install it the same way.
 

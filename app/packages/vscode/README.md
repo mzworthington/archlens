@@ -12,6 +12,11 @@ Site copy of this page: [Editor extension](../../../docs/guide/vscode.md).
 
 - **Open architecture map** shows the systems and the links in `blueprints/`. From the command palette, the focused YAML file is the map. A focused source file picks that workspace folder when several roots are open. An empty folder says **No map in this folder.** The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
 - **Generate diagram from workspace** opens the interest prompt. Turning `archlens.generateFromWorkspace.enabled` on still does not scan or write files in this preview.
+- **Open source**, with a system focused on the diagram, opens the file that system points at. A system with no file in the workspace stays on the diagram.
+- Enter on a system with a child diagram opens that diagram. Alt+Left, or the parent in the breadcrumb, comes back. A system with no child diagram stays put.
+- **Copy diagram as Mermaid** copies a flowchart of the systems on screen. The YAML file stays as it is. An empty diagram says **Nothing to copy.**
+- Opening or saving a blueprint puts a cycle, or the first failed check, in Problems. YAML that is not a blueprint gets no ArchLens problem. Restricted Mode adds none.
+- **Show hotspots** marks systems that a scan already recorded as hotspots, and properties include the change count. A folder with no git history says **Hotspots need a git history for this folder.** and the diagram stays as it is.
 
 ## A merge does not publish
 
@@ -53,7 +58,7 @@ pnpm --filter ./packages/vscode package:pre-release
 code --install-extension packages/vscode/archlens-0.1.0.vsix
 ```
 
-Version `0.1.0` produces `archlens-0.1.0.vsix`. The Extensions view `…` menu has **Install from VSIX…**. Repeat the three checks in a normal window. Uninstall **ArchLens** from that view when you want the copy gone, then reinstall the new VSIX after the next package.
+Version `0.1.0` produces `archlens-0.1.0.vsix`. The Extensions view `…` menu has **Install from VSIX…**. Repeat the checks in a normal window. Uninstall **ArchLens** from that view when you want the copy gone, then reinstall the new VSIX after the next package.
 
 ## Marketplace, when you choose to publish
 

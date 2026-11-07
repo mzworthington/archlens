@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   cacheBustingReloadPath,
   cacheBustingReloadUrl,
+  pathWithoutRefreshParam,
   reloadWithoutServiceWorker,
   requestServiceWorkerUpdate,
 } from './requestServiceWorkerUpdate';
@@ -86,6 +87,18 @@ describe('cacheBustingReloadPath', () => {
         1700000000000
       )
     ).toBe('/workspace?room=abc&al_refresh=1700000000000#x');
+  });
+});
+
+describe('pathWithoutRefreshParam', () => {
+  it('removes the cache-bust param so a later deploy can wait for Refresh', () => {
+    expect(
+      pathWithoutRefreshParam({
+        pathname: '/guide/collaborate',
+        search: '?room=abc&al_refresh=1700000000000',
+        hash: '#x',
+      })
+    ).toBe('/guide/collaborate?room=abc#x');
   });
 });
 
