@@ -1,3 +1,4 @@
+import { resolvePageSeo } from '../../ui/features/docs/seo/siteSeo';
 import { isBenignServiceWorkerUpdateFailure } from './benignServiceWorkerUpdateFailure';
 
 export const UPDATE_REFRESH_QUERY_PARAM = 'al_refresh';
@@ -34,19 +35,22 @@ export function cacheBustingReloadPath(
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
-/** Canvas routes are client-side. The real document is the site shell. */
-function isWorkspaceAppPath(pathname: string): boolean {
-  return pathname === '/workspace' || pathname.startsWith('/workspace/');
+/**
+ * Client-only routes are not prerendered (`emitSiteSeo` writes indexable pages
+ * only, and Pages has no SPA fallback). The real document is the site shell.
+ */
+function isShellOnlyPath(pathname: string): boolean {
+  return !resolvePageSeo(pathname).indexable;
 }
 
 /**
  * Network URL for a Refresh navigation.
- * The app has no HTML file, so the worker must fetch `/` or the precached shell
- * is served again and the banner returns. Website pages are real files.
+ * Shell-only routes must fetch `/` or the request 404s and the precached shell
+ * would bring the banner back. Prerendered website pages are real files.
  */
 export function refreshNetworkUrl(url: URL): string {
   const token = url.searchParams.get(UPDATE_REFRESH_QUERY_PARAM) ?? '';
-  if (isWorkspaceAppPath(url.pathname)) {
+  if (isShellOnlyPath(url.pathname)) {
     const shell = new URL('/', url.origin);
     if (token) shell.searchParams.set(UPDATE_REFRESH_QUERY_PARAM, token);
     return shell.toString();

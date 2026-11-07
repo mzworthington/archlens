@@ -108,6 +108,26 @@ describe('refreshNetworkUrl', () => {
       )
     ).toBe('https://archlens.dev/guide/collaborate?al_refresh=1700000000000');
   });
+
+  it('fetches the site shell for client-only routes that are not prerendered', () => {
+    expect(
+      refreshNetworkUrl(new URL('https://archlens.dev/design-system?al_refresh=1700000000000'))
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+    expect(
+      refreshNetworkUrl(
+        new URL('https://archlens.dev/features-unit?al_refresh=1700000000000#report')
+      )
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+    expect(
+      refreshNetworkUrl(new URL('https://archlens.dev/ADRs/0001-example?al_refresh=1700000000000'))
+    ).toBe('https://archlens.dev/?al_refresh=1700000000000');
+  });
+
+  it('fetches the prerendered ADR index instead of the shell', () => {
+    expect(refreshNetworkUrl(new URL('https://archlens.dev/ADRs?al_refresh=1700000000000'))).toBe(
+      'https://archlens.dev/ADRs?al_refresh=1700000000000'
+    );
+  });
 });
 
 describe('waitForControllerChange', () => {
