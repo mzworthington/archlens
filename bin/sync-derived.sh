@@ -30,6 +30,10 @@ if git diff --staged --quiet; then
   exit 0
 fi
 
+# pnpm format:write may touch source files outside the committed set;
+# discard those unstaged changes so push-current-branch.sh can rebase cleanly.
+git restore .
+
 git commit -m "chore(artifacts): sync derived outputs"
 "$ROOT/bin/push-current-branch.sh"
 
