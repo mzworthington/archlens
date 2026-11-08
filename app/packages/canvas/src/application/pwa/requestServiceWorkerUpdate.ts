@@ -60,6 +60,65 @@ export function refreshNetworkUrl(url: URL): string {
   return page.toString();
 }
 
+/**
+ * Pages pretty-URLs 308 `/guide/collaborate` to `/guide/collaborate/`.
+ * Chrome fails a navigation with ERR_FAILED when a service worker responds
+ * with that redirected response, so copy the final body into a new response.
+ */
+export async function navigationBody(response: Response): Promise<Response> {
+  if (!response.redirected) return response;
+  const headers = new Headers(response.headers);
+  headers.delete('content-encoding');
+  headers.delete('content-length');
+  return new Response(await response.arrayBuffer(), {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+function refreshFallbackDocument(url: URL): Response {
+  const path = pathWithoutRefreshParam({
+    pathname: url.pathname,
+    search: url.search,
+    hash: url.hash,
+  });
+  const target = path.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const html = `<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${target}"></head><body></body></html>`;
+  return new Response(html, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
+/** Fetch the fresh document. Never reject: a thrown fetch becomes ERR_FAILED. */
+export async function freshNavigationResponse(
+  url: URL,
+  fetchImpl: (input: string, init: RequestInit) => Promise<Response>,
+  matchCachedShell: () => Promise<Response | undefined>
+): Promise<Response> {
+  try {
+    const response = await fetchImpl(refreshNetworkUrl(url), {
+      cache: 'reload',
+      redirect: 'follow',
+      headers: { Accept: 'text/html' },
+    });
+    if (response.ok) return await navigationBody(response);
+  } catch {
+    // Network failed, or the redirected body could not be copied.
+  }
+  try {
+    const cached = await matchCachedShell();
+    if (cached) return cached;
+  } catch {
+    // Cache Storage can be missing after Refresh clears it.
+  }
+  return refreshFallbackDocument(url);
+}
+
 export type ControllerChangeSource = {
   addEventListener(type: 'controllerchange', listener: () => void): void;
   removeEventListener(type: 'controllerchange', listener: () => void): void;
