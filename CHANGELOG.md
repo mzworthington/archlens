@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-11-08
+
+### 🚀 Features
+
+- _(comments)_ Persist node comments to YAML sidecar (#262)
+
+### 🐛 Bug Fixes
+
+- _(resilience)_ Avoid let reassignment in RAF tick callback (#263)
+- _(quality)_ Remove unused exports; fix sync-derived rebase (#265)
+- _(quality)_ Format treeSitterHighlight.ts per prettier config (#266)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps-dev)_ Bump @vscode/vsce from 3.6.0 to 4.1.0 in /app
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 20 updates (#261)
+- _(deps)_ Bump @pulumi/pulumi
+
+## 2026-11-07
+
+### 🚀 Features
+
+- _(vscode)_ Write the reviewed blueprint when asked
+
+### 🐛 Bug Fixes
+
+- _(vscode)_ Correct review note and empty scan label
+
 ## 2026-11-06
 
 ### 🚀 Features
@@ -10,12 +38,42 @@
 - _(canvas)_ Open on Light unless Blueprint was chosen
 - _(canvas)_ Name Architecture as Code on the home lede
 - _(canvas)_ Align the home hero and light map chrome
+- _(canvas)_ Share one room across every open diagram (MZW-49)
+- _(canvas)_ Paint guides from one design-token set (MZW-158)
+- _(vscode)_ Preview a blueprint and ask before generating (MZW-160)
+- _(canvas)_ Announce the VS Code extension on the homepage
+- _(vscode)_ Open the source file for a focused system
+- _(vscode)_ Navigate diagrams, copy Mermaid, and show blueprint problems
+- _(vscode)_ Show recorded hotspot marks on the diagram
+- _(vscode)_ Review a workspace scan without writing files
 
 ### 🐛 Bug Fixes
 
 - _(canvas)_ Reload when a service worker update hangs
 - _(deps)_ Pin minimatch 11 and a patched deepmerge
 - _(ci)_ Rebase derived docs onto main before pushing
+- _(canvas)_ Paint status chips with the light paper palette
+- _(core)_ Sort workspace diagram paths with localeCompare
+- _(vscode)_ Open the map from the blueprints folder
+- _(vscode)_ Keep open-source focus on each map and hide the status
+- _(canvas)_ Stop the update refresh from reloading in a loop
+- _(canvas)_ Ignore service worker update messages from other origins
+- _(canvas)_ Close the catalog refresh dialog when Escape is pressed
+- _(vscode)_ Name the parent crumb from the diagram
+- _(vscode)_ Redraw hotspots after a recovered diagram
+- _(vscode)_ Match folder scans and include Terraform JSON
+- _(vscode)_ Choose the map folder on Windows and from the focused file
+- _(vscode)_ Pass the focused editor into the map host
+
+### 🧰 Maintenance & Dependencies
+
+- _(vscode)_ Package a pre-release VSIX for sideload
+
+### 📚 Documentation
+
+- _(prd)_ Add the editor marketplace bet
+- _(guide)_ Show the current startup chooser on Collaborate
+- _(vscode)_ Describe the local sandbox and keep Marketplace publish off
 
 ## 2026-11-05
 

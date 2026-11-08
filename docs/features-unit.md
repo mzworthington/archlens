@@ -791,6 +791,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ paints the design-system identity section from the token set
 - ✅ paints the design-system asset pack from the token set
 - ✅ paints every remaining screen from the token set
+- ✅ paints canvas status chips with the light paper palette
 - ✅ defines the light paper token set on the light theme
 - ✅ labels token swatches as canvas, surface, ink, and accent
 - ✅ names status and category colors in the same token set
@@ -1098,6 +1099,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders peer names as text so markup stays literal
 
+### CollabDiagramSwitcher
+
+#### CollabDiagramSwitcher
+
+- ✅ switches diagrams inside the room
+- ✅ stays hidden when the room has one file
+
 ### collabDisplayName
 
 #### collabDisplayName
@@ -1128,6 +1136,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ counts named peers including self and omits the local cursor
 - ✅ counts a named peer without a cursor and ignores unnamed states
+- ✅ hides cursors from peers on another diagram and still counts them in the room
 - ✅ assigns a stable palette color per client id
 
 ### collabRoomCredentials
@@ -1150,6 +1159,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ treats a missing Worker URL as same-browser tabs
 - ✅ treats a configured Worker URL as a joinable room
+- ✅ tells a workspace share that peers can switch diagrams in the same room
 
 ### CollabShareDialog
 
@@ -1159,6 +1169,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ lets the host require a labelled secret instead of anyone-with-the-link
 - ✅ says you will be first when the roster is empty
 - ✅ says the room is only other tabs on this machine when there is no Worker
+- ✅ lists every diagram in the room and opens the one you pick
 - ✅ leaves the share dialog on Escape
 
 ### collabVsDisk
@@ -1175,6 +1186,27 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ classifies a frequently changed complex file as a hotspot
 - ✅ still counts loc when git history is empty so the map matches a gitless CLI scan
 - ✅ scores an in-tab scan from the syntax tree and leaves keyword counts on the lite scan
+
+### commentSidecarActions
+
+#### mergeCommentDocuments (via commentSidecarActions re-export)
+
+- ✅ merges two disjoint sets
+
+#### standaloneAddComment
+
+- ✅ creates a comment owned by the author
+- ✅ returns null comment for blank body
+
+#### standaloneDeleteComment
+
+- ✅ deletes a comment owned by the author
+- ✅ ignores delete from a different author
+
+#### standaloneResolveComment
+
+- ✅ resolves a comment owned by the author
+- ✅ ignores resolve from a different author
 
 ### compareOffenders
 
@@ -1724,6 +1756,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns null for zero intensity
 - ✅ returns a red-scale hex for positive intensity
 
+### immediateServiceWorkerUpdate
+
+#### acceptsServiceWorkerUpdateMessage
+
+- ✅ accepts a skip-waiting message from this origin
+- ✅ rejects a skip-waiting message from another origin
+
+#### clientRequestedImmediateUpdate
+
+- ✅ is true when a controlled page already reloaded for Refresh
+- ✅ stays false for an ordinary visit so the banner can wait
+- ✅ ignores a client url that cannot be parsed
+
+#### isSkipWaitingMessage
+
+- ✅ recognises the message workbox sends when Refresh is accepted
+- ✅ rejects other messages
+
 ### importMermaid
 
 #### previewMermaidImport
@@ -1829,6 +1879,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ marks the room active after join so the comment thread can render
 - ✅ marks the room active when presence arrives before join resolves
+- ✅ passes persisted comments into the room and drops a room delete from the sidecar
+- ✅ keeps a sidecar comment the room never had when leaving
+- ✅ loads the sidecar for the diagram that was just opened
+- ✅ does not seed a room-deleted comment back when the sidecar write is still stale
+- ✅ does not write another diagram’s threads into the open sidecar
+- ✅ writes a peer comment to its sidecar when the room switches files
+
+### ioState.collabWorkspace
+
+#### workspace collab room
+
+- ✅ shares every open diagram and switches files without leaving the room
+- ✅ keeps a joiner file that the room does not have and still lists the sibling
 
 ### isomorphicGitHistory
 
@@ -1991,6 +2054,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ serves YAML from memory and reports directory name
 
+### mergeCollabWorkspaceSystems
+
+#### mergeLoadedSystemsWithRoom
+
+- ✅ adds a sibling from the room without replacing the open file
+- ✅ keeps the joiner file when that path is absent from the room
+
 ### MermaidPreview
 
 #### MermaidPreview Component
@@ -2037,6 +2107,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### NodeCommentsSection
 
 - ✅ labels the comment field and renders bodies as text, not HTML
+- ✅ shows read-only hint and hides the form in sandbox/sample mode
 - ✅ adds, resolves, and deletes the local author comment
 
 ### OfflineBanner
@@ -2086,6 +2157,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves in-app AdviceLens entry link
 - ✅ resolves absolute docs paths
 - ✅ registers the privacy policy page without putting it in the Tech sidebar
+- ✅ registers the editor extension guide on the Tech sidebar
 - ✅ registers CI workflows and Tech sidebar pages
 - ✅ groups docs nav into Start/Surfaces/Tech hubs and sidebar
 - ✅ marks Start vs Surfaces vs Tech hubs active without colliding on CI workflows
@@ -2157,9 +2229,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should render read-only Diagram entityRef from workspaceName or schema.name
 - ✅ should trigger node creation when catalog component is clicked in Catalog tab
 - ✅ should trigger group node creation when Group / Boundary component is clicked in Catalog tab
-- ✅ shows a labelled comment thread on the diagram when a live room is active and no node is selected
-- ✅ shows a labelled comment thread only while a live room is active
+- ✅ always shows a labelled comment thread on the diagram when no node is selected
+- ✅ always shows a labelled comment thread on a node, with live comments when the room is active
 - ✅ shows the comment thread from live presence when the room-active flag lags
+- ✅ shows resolve and delete for a sidecar comment outside a room
 - ✅ keeps resolve and delete when the client id changes but the author key matches
 - ✅ should display node attributes editor when a node is selected
 - ✅ should rename node and metadata attributes when edited in node details
@@ -2255,6 +2328,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ adds a unique query param so the next navigation is not a cached shell
 
+#### pathWithoutRefreshParam
+
+- ✅ removes the cache-bust param so a later deploy can wait for Refresh
+
+#### refreshNetworkUrl
+
+- ✅ fetches the site shell for an app route so the precache cannot answer Refresh
+- ✅ fetches the website page itself so a guide refresh stays on that document
+- ✅ fetches the site shell for client-only routes that are not prerendered
+- ✅ fetches the prerendered ADR index instead of the shell
+
 #### reloadWithoutServiceWorker
 
 - ✅ unregisters every worker then reloads so the next document is not a stale shell
@@ -2276,6 +2360,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ propagates a genuine update failure
 - ✅ propagates a TypeError that is not a script-fetch failure
 - ✅ propagates a Chrome ServiceWorker TypeError that is not a fetch failure
+
+#### waitForControllerChange
+
+- ✅ resolves when the waiting worker takes control
+- ✅ resolves false when the waiting worker never takes control
 
 ### resetToEmptyWorkspace
 
@@ -2730,6 +2819,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ drops a stale service worker when Refresh is only from a remote build mismatch
 - ✅ shows Refreshing and ignores a second click while the reload is in progress
 - ✅ hard-reloads even when the waiting worker never takes control
+- ✅ drops the cache-bust query after load so the next deploy can wait for Refresh
+- ✅ does not navigate when the controlling worker changes, so Refresh cannot reload in a loop
 - ✅ navigates the app with location.replace so a query-only reload cannot reuse the shell
 
 ### updateCheck
@@ -3006,9 +3097,26 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ broadcasts a node comment to the other session without changing the schema
 - ✅ does not rematerialize the schema when only a comment changes
 - ✅ clears an open comment for peers after resolve or delete
+- ✅ seeds sidecar comments into the room without overwriting an existing id
 - ✅ lets the same author resolve a comment after the Yjs client id changes
 - ✅ publishes the stable author key on local presence
 - ✅ does not join without a display name
+- ✅ keeps a folder share in one room and scopes edits to the open diagram
+- ✅ keeps comments on the diagram that owns them when the room switches files
+- ✅ does not seed a comment the room has already deleted
+- ✅ drops a nested comment when an older client deletes the flat row
+- ✅ shows a nested-only comment to a client that still reads the flat map
+
+### yjsCommentProjection
+
+#### yjs comment projection
+
+- ✅ copies a nested-only row onto the flat root older clients parse
+- ✅ reads a flat comment row from an already-open room
+- ✅ mirrors a nested comment onto the flat root older clients still parse
+- ✅ keeps an unscoped flat comment visible beside a newer per-diagram thread
+- ✅ follows an older client resolve and delete of the flat row
+- ✅ removes the flat row when this client resolves or deletes
 
 ### yjsSchemaProjection
 
@@ -3776,6 +3884,47 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ round-trips SystemSchema including position as one object and source
 - ✅ omits undefined optional node fields instead of storing them as keys
 - ✅ keeps last-write-wins position as a single {x,y} record, not split axes
+
+### collabWorkspace
+
+#### collab workspace room
+
+- ✅ keeps an edit on diagram A from replacing diagram B
+- ✅ gives a one-file joiner that file and does not drop or require siblings
+- ✅ stays on the joiner file when the room has never seen it
+- ✅ opens the alphabetically first room diagram when the joiner has no local file
+
+### commentSidecar
+
+#### commentSidecarPath
+
+- ✅ replaces .yaml extension
+- ✅ replaces .yml extension
+- ✅ handles nested paths
+- ✅ appends when no known extension
+
+#### mergeCommentDocuments
+
+- ✅ adds incoming comments absent from persisted
+- ✅ last-write-wins: incoming wins when createdAtMs is higher
+- ✅ keeps persisted when it has a higher createdAtMs
+- ✅ incoming wins on tie (resolve/delete propagates)
+- ✅ keeps all persisted comments not present in incoming
+
+#### projectRoomComments
+
+- ✅ drops a comment that was in the room and is now missing
+- ✅ keeps a sidecar comment that was never in the room
+- ✅ removes the last room comment when the live snapshot is empty
+
+#### serializeCommentDocument + parseCommentDocument round-trip
+
+- ✅ round-trips an open comment
+- ✅ preserves resolved status for audit
+- ✅ omits authorClientId from YAML (session-ephemeral)
+- ✅ returns empty document for blank input
+- ✅ returns empty document for malformed YAML
+- ✅ round-trips multiple comments
 
 ### compareBlueprintTrees
 
@@ -4994,6 +5143,186 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ restores the captured identity when smoke fails and a previous identity exists
 - ✅ does not restore when smoke passed
 - ✅ fails loud when smoke failed and there is no previous identity
+
+## Editor
+
+### blueprintDiagnostics
+
+#### blueprint diagnostics
+
+- ✅ publishes a cycle on open and clears it after the file is fixed
+- ✅ adds nothing for YAML that is not a blueprint and nothing while untrusted
+
+### diagramSession
+
+#### diagram session
+
+- ✅ keeps an older map focused when a newer map opens and closes
+- ✅ follows the map that received a shared entity ref
+- ✅ ignores focus sent to a closed map
+- ✅ clears focus for a map whose blueprint was replaced
+
+### domain
+
+#### blueprint problems
+
+- ✅ names both systems in a cycle and points at the dependency
+- ✅ adds no problem for YAML that is not a blueprint
+- ✅ reports the first failed check for a broken blueprint
+- ✅ clears the cycle once the file no longer has one
+
+#### copy diagram as mermaid
+
+- ✅ copies a flowchart of the systems on screen
+- ✅ copies nothing when the diagram has no systems
+
+#### diagram navigation
+
+- ✅ drills into the child diagram for the focused system
+- ✅ stays put when the focused system has no child diagram
+- ✅ returns the parent diagram from the breadcrumb
+
+#### generate diagram from workspace
+
+- ✅ asks the engineer to open the discussion when generation is off
+- ✅ opens the GitHub discussion and does not read source when they ask
+- ✅ closes on Escape or Cancel and does not read source
+- ✅ still does not read source when the setting is turned on
+- ✅ does not offer the discussion while the workspace is untrusted
+- ✅ names the languages in the folder and ignores dependency output
+- ✅ reviews added, changed and removed systems without treating equal names as changes
+- ✅ treats a half-edited file in the blueprints folder as unsaved
+- ✅ writes the review into the blueprints folder and keeps a hand-written note
+
+#### open architecture map
+
+- ✅ shows the systems and the link between them
+- ✅ treats Windows and forward-slash paths as the same file
+- ✅ prefers a context-level diagram over a file named context.yaml
+- ✅ opens the workspace root that contains the focused file
+- ✅ asks for a folder when several roots are open and none contains the hint
+- ✅ prefers context.yaml over another blueprint in the folder
+- ✅ reports an empty folder when nothing in blueprints validates
+- ✅ leaves a selected file that is not a blueprint in the text editor
+- ✅ ignores a blueprint folder name that could escape the workspace
+
+#### open source
+
+- ✅ keeps the filepath a scan stored on the system
+- ✅ resolves a source file inside the workspace and rejects one that leaves it
+- ✅ names the opened file and the system
+- ✅ stays on the diagram when the system has no file in the workspace
+
+#### show hotspots
+
+- ✅ marks a recorded hotspot with its most recent change count
+- ✅ uses the rolled-up hotspot count when the scan stored one
+- ✅ leaves the diagram unmarked when hotspots are off
+- ✅ refuses a folder with no git history and an untrusted folder
+
+### handler
+
+#### compare with a fresh scan
+
+- ✅ uses the interest prompt while generation is off and does not scan
+- ✅ stops before a scan when the open blueprint is unsaved
+- ✅ shows an added system in the same review and writes nothing until Write blueprint
+- ✅ says there are no changes when the blueprint already matches
+
+#### copy diagram command
+
+- ✅ copies a flowchart and does not change the blueprint
+- ✅ leaves the clipboard alone when the diagram has no systems
+- ✅ does not copy while the workspace is untrusted
+
+#### generate diagram command
+
+- ✅ does not read the folder while the workspace is untrusted
+- ✅ lists the workspace root that contains the focused file
+- ✅ opens the discussion from Tell us you want this and lists no files
+- ✅ writes nothing when the prompt is dismissed
+- ✅ closes the scope picker on Escape and does not scan
+- ✅ shows added, changed and removed rows and writes nothing
+- ✅ keeps the current files when the review is dismissed
+- ✅ writes the review and shows those systems
+- ✅ leaves the previous files when the write fails
+- ✅ reports an empty folder and writes nothing
+- ✅ keeps existing files when the scan is cancelled
+- ✅ reviews a nested folder against the workspace map
+- ✅ does not scan a custom glob that was dismissed
+
+#### open architecture map command
+
+- ✅ does not read a blueprint while the workspace is untrusted
+- ✅ shows the systems from the blueprint in a trusted folder
+- ✅ says there is no map when the trusted folder has no blueprint
+- ✅ does not merge several workspace folders into one map
+
+#### open source command
+
+- ✅ does not open a file while the workspace is untrusted
+- ✅ opens the file the focused system points at and names it in the status
+- ✅ leaves the diagram in place when the focused system has no source file
+- ✅ does not open a path outside the workspace
+
+#### show hotspots command
+
+- ✅ does not look for git history while the workspace is untrusted
+- ✅ leaves the diagram alone when the folder has no git history
+- ✅ turns hotspot marks on when the folder has git history
+- ✅ turns hotspot marks off without reading git again
+
+### manifest
+
+#### marketplace pre-release
+
+- ✅ lists ArchLens as a Marketplace pre-release with the preview commands
+- ✅ ships generate-from-workspace off and refuses to read an untrusted folder
+- ✅ writes blueprint files only from the review host
+
+### renderMap
+
+#### architecture map panel
+
+- ✅ names each system so keyboard focus lands on that name
+- ✅ shows a hotspot mark and a change count on a marked system
+- ✅ escapes a system name before putting it in the panel
+- ✅ shows the empty sentence and no systems
+
+### vscodeHost
+
+#### editor host
+
+- ✅ does not read the folder when Open architecture map runs untrusted
+- ✅ opens the diagram beside the blueprint in a trusted folder
+- ✅ reads blueprints in the folder that was right-clicked
+- ✅ opens the YAML file that is already focused
+- ✅ ignores a blueprint path outside the chosen folder
+- ✅ refreshes the diagram when the save path uses backslashes
+- ✅ keeps the diagram when a save is no longer a blueprint
+- ✅ refreshes the diagram when the blueprint is saved
+- ✅ drills into a child diagram and returns with Alt+Left
+- ✅ stays on the diagram when Enter has no child
+- ✅ copies the open diagram as Mermaid without writing the YAML
+- ✅ marks a recorded hotspot when the folder has git history
+- ✅ marks hotspots again after a broken blueprint save is fixed
+- ✅ leaves the diagram unchanged when the folder has no git history
+- ✅ reviews source files when generation is on and writes nothing
+- ✅ writes the blueprint when the review is accepted and shows the new systems
+- ✅ restores the previous blueprint when the write fails
+- ✅ asks the interest prompt for compare while generation is off
+- ✅ does not scan a compare while the open blueprint is unsaved
+- ✅ does not scan a compare while a blueprints file is half edited
+- ✅ says there are no changes when the compare matches the blueprint
+- ✅ includes Terraform JSON in a default workspace scan
+- ✅ does not scan when the scope picker is dismissed
+- ✅ opens the discussion from Tell us you want this and reads no blueprint
+- ✅ does not open the discussion when the prompt is dismissed
+- ✅ opens the source file for the focused system
+- ✅ opens the source for the map that was focused when another map is open
+- ✅ does not open a stale source after the focused blueprint is saved
+- ✅ does not open a file when the focused system has none
+- ✅ does not read the folder when Generate runs untrusted
 
 ## Reporters
 
