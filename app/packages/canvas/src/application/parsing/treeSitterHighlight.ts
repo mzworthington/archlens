@@ -15,10 +15,7 @@ type IndexedCapture = {
   className: string;
 };
 
-function indexedCapturesFromQuery(
-  root: Parser.SyntaxNode,
-  query: Parser.Query
-): IndexedCapture[] {
+function indexedCapturesFromQuery(root: Parser.SyntaxNode, query: Parser.Query): IndexedCapture[] {
   const captures: IndexedCapture[] = [];
   for (const capture of query.captures(root)) {
     const className = highlightClassForCapture(capture.name);
