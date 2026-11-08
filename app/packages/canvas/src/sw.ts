@@ -4,6 +4,7 @@ import {
   addPlugins,
   cleanupOutdatedCaches,
   createHandlerBoundToURL,
+  matchPrecache,
   precacheAndRoute,
 } from 'workbox-precaching';
 import { NavigationRoute, registerRoute } from 'workbox-routing';
@@ -61,7 +62,7 @@ registerRoute(
     freshNavigationResponse(
       url,
       (input, init) => fetch(input, init),
-      () => caches.match('/')
+      () => matchPrecache('/')
     )
 );
 

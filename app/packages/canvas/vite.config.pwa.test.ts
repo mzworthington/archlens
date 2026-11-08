@@ -16,6 +16,8 @@ describe('PWA Workbox navigation fallback (Cloudflare Pages)', () => {
 
     const sw = fs.readFileSync(path.join(path.dirname(viteConfigPath), 'src/sw.ts'), 'utf8');
     expect(sw).toMatch(/createHandlerBoundToURL\('\/'\)/);
+    expect(sw).toContain("matchPrecache('/')");
+    expect(sw).not.toContain('caches.match');
     expect(sw).not.toMatch(/index\.html/);
     expect(sw).toContain('shellPrecacheRequest');
     expect(sw).toContain('addPlugins');
