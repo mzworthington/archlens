@@ -9,6 +9,11 @@ type NodeCommentsSectionProps = {
   onAdd: (input: { nodeEntityRef: string; body: string }) => void;
   onResolve: (id: string) => void;
   onDelete: (id: string) => void;
+  /**
+   * When true, the textarea and submit button are disabled and a hint is shown
+   * explaining that comments require a folder workspace.
+   */
+  readOnly?: boolean;
 };
 
 export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
@@ -19,6 +24,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
   onAdd,
   onResolve,
   onDelete,
+  readOnly = false,
 }) => {
   const [draft, setDraft] = useState('');
   const commentInputId = `node-comment-${nodeEntityRef}`;
@@ -26,6 +32,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
+    if (readOnly) return;
     const body = draft.trim();
     if (!body) return;
     onAdd({ nodeEntityRef, body });
@@ -55,7 +62,7 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
               <p className="text-xs text-slate-200 whitespace-pre-wrap break-words">
                 {comment.body}
               </p>
-              {mine ? (
+              {mine && !readOnly ? (
                 <div className="mt-2 flex gap-2">
                   <button
                     type="button"
@@ -78,27 +85,37 @@ export const NodeCommentsSection: React.FC<NodeCommentsSectionProps> = ({
         })}
       </ul>
 
-      <form onSubmit={submit} className="space-y-2">
-        <label
-          htmlFor={commentInputId}
-          className="block text-[10px] font-bold font-mono text-slate-400 uppercase tracking-wider"
+      {readOnly ? (
+        <p
+          className="text-[10px] font-mono text-slate-500 italic"
+          data-testid="node-comments-readonly-hint"
         >
-          Comment
-        </label>
-        <textarea
-          id={commentInputId}
-          value={draft}
-          onChange={event => setDraft(event.target.value)}
-          rows={3}
-          className="w-full bg-slate-950/60 border border-slate-800 focus:border-brand-500 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none transition"
-        />
-        <button
-          type="submit"
-          className="w-full rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2 text-xs font-semibold text-cyan-300 hover:bg-cyan-950/40 cursor-pointer"
-        >
-          Add comment
-        </button>
-      </form>
+          Comments are saved when a folder workspace is open. Open a folder or use the CLI to
+          persist this thread.
+        </p>
+      ) : (
+        <form onSubmit={submit} className="space-y-2">
+          <label
+            htmlFor={commentInputId}
+            className="block text-[10px] font-bold font-mono text-slate-400 uppercase tracking-wider"
+          >
+            Comment
+          </label>
+          <textarea
+            id={commentInputId}
+            value={draft}
+            onChange={event => setDraft(event.target.value)}
+            rows={3}
+            className="w-full bg-slate-950/60 border border-slate-800 focus:border-brand-500 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none transition"
+          />
+          <button
+            type="submit"
+            className="w-full rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2 text-xs font-semibold text-cyan-300 hover:bg-cyan-950/40 cursor-pointer"
+          >
+            Add comment
+          </button>
+        </form>
+      )}
     </div>
   );
 };

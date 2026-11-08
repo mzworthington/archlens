@@ -85,6 +85,7 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
           handleDeleteSelectedNode={model.handleDeleteSelectedNode}
           titleType={model.titleType}
           visibleComments={model.visibleComments}
+          commentsReadOnly={model.commentsReadOnly}
           localCollabClientId={model.localCollabClientId}
           localCollabAuthorKey={model.localCollabAuthorKey}
           addComment={model.addComment}
@@ -102,6 +103,7 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
             onAdd={model.addComment}
             onResolve={model.resolveComment}
             onDelete={model.deleteComment}
+            readOnly={model.commentsReadOnly}
           />
         </div>
       )}

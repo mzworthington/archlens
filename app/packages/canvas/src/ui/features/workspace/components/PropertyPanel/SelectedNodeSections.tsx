@@ -30,6 +30,7 @@ type SelectedNodeSectionsProps = Pick<
   | 'handleDeleteSelectedNode'
   | 'titleType'
   | 'visibleComments'
+  | 'commentsReadOnly'
   | 'localCollabClientId'
   | 'localCollabAuthorKey'
   | 'addComment'
@@ -59,6 +60,7 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
   handleDeleteSelectedNode,
   titleType,
   visibleComments,
+  commentsReadOnly,
   localCollabClientId,
   localCollabAuthorKey,
   addComment,
@@ -94,6 +96,7 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
         onAdd={addComment}
         onResolve={resolveComment}
         onDelete={deleteComment}
+        readOnly={commentsReadOnly}
       />
 
       <ConnectionsSection

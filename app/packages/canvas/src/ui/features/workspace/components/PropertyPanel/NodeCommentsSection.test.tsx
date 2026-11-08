@@ -34,6 +34,29 @@ describe('NodeCommentsSection', () => {
     expect(screen.getByText('Ada')).toBeInTheDocument();
   });
 
+  it('shows read-only hint and hides the form in sandbox/sample mode', () => {
+    const onAdd = vi.fn();
+    render(
+      <NodeCommentsSection
+        nodeEntityRef="shop/api"
+        comments={[openComment()]}
+        localClientId={7}
+        localAuthorKey={null}
+        onAdd={onAdd}
+        onResolve={vi.fn()}
+        onDelete={vi.fn()}
+        readOnly
+      />
+    );
+
+    expect(screen.queryByLabelText('Comment')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Add comment' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Resolve comment' })).not.toBeInTheDocument();
+    expect(screen.getByTestId('node-comments-readonly-hint')).toBeInTheDocument();
+    // Existing comments are still visible
+    expect(screen.getByText('needs a gateway')).toBeInTheDocument();
+  });
+
   it('adds, resolves, and deletes the local author comment', () => {
     const onAdd = vi.fn();
     const onResolve = vi.fn();

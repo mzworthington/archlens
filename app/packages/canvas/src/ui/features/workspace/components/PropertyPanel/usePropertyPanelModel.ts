@@ -52,6 +52,7 @@ export function usePropertyPanelModel() {
     openChaosSpecPicker,
     clearResilienceScenario,
     isSampleWorkspace,
+    isMemoryScanWorkspace,
     collabRoomActive,
     collabPresence,
     collabSessionPort,
@@ -201,6 +202,8 @@ export function usePropertyPanelModel() {
   const isInRoom = collabRoomActive || collabPresence.connectedCount > 0;
   // When in a room, Yjs is the live source of truth; outside a room use the persisted sidecar.
   const visibleComments = isInRoom ? collabComments : persistedComments;
+  // Comments cannot be persisted in sample or memory-scan workspaces; show read-only hint.
+  const commentsReadOnly = isSampleWorkspace || isMemoryScanWorkspace;
 
   return {
     schema,
@@ -268,6 +271,7 @@ export function usePropertyPanelModel() {
     collabRoomActive: isInRoom,
     collabComments,
     visibleComments,
+    commentsReadOnly,
     localCollabClientId: localCollabParticipant?.clientId ?? null,
     localCollabAuthorKey: localCollabParticipant?.authorKey ?? collabSessionPort.localAuthorKey(),
     addCollabComment,
