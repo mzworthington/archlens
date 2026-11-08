@@ -15,7 +15,7 @@ type IndexedCapture = {
   className: string;
 };
 
-export function indexedCapturesFromQuery(
+function indexedCapturesFromQuery(
   root: Parser.SyntaxNode,
   query: Parser.Query
 ): IndexedCapture[] {
@@ -70,7 +70,7 @@ export function compressToSpans(source: string, classes: (string | null)[]): Hig
   return spans;
 }
 
-export function highlightSource(
+function highlightSource(
   source: string,
   language: Parser.Language,
   langKey: TreeSitterWasmLanguage
