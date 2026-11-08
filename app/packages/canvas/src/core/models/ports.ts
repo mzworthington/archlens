@@ -255,6 +255,11 @@ export interface CollabSessionPort {
     onWorkspace?: (update: CollabWorkspaceUpdate) => void;
     onPresence: (presence: CollabPresence) => void;
     onComments?: (comments: import('@archlens/core').NodeComment[]) => void;
+    /**
+     * Comments already stored for the active diagram. Missing ids are inserted
+     * into the room after remote state is known; existing ids are left alone.
+     */
+    seedComments?: import('@archlens/core').NodeComment[];
     credentials?: {
       hostToken?: string;
       secret?: string;
@@ -283,6 +288,11 @@ export interface CollabSessionPort {
   addComment(input: AddCollabCommentInput): void;
   resolveComment(id: string): void;
   deleteComment(id: string): void;
+  /**
+   * Insert comments the room does not already have.
+   * No-op when the session is not active. Does not overwrite an existing id.
+   */
+  seedComments(comments: readonly import('@archlens/core').NodeComment[]): void;
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
@@ -300,6 +310,7 @@ export const noopCollabSession: CollabSessionPort = {
   addComment: () => {},
   resolveComment: () => {},
   deleteComment: () => {},
+  seedComments: () => {},
   leave: () => {},
   isActive: () => false,
   roomId: () => null,

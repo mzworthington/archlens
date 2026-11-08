@@ -1,6 +1,12 @@
-import { describe, expect, it } from 'vitest';
-import type { NodeComment, SystemSchema } from '@archlens/core';
-import { noopCollabSession, type CollabPresence, type CollabSessionPort } from '../../../core';
+import { describe, expect, it, vi } from 'vitest';
+import { serializeCommentDocument, type NodeComment, type SystemSchema } from '@archlens/core';
+import {
+  noopCollabSession,
+  noopWorkspace,
+  type CollabPresence,
+  type CollabSessionPort,
+  type WorkspacePort,
+} from '../../../core';
 import { useBlueprintStore } from '../store';
 
 const seed: SystemSchema = {
@@ -93,5 +99,194 @@ describe('ioState collab comments', () => {
 
     releaseJoin();
     await joining;
+  });
+
+  it('passes persisted comments into the room and drops a room delete from the sidecar', async () => {
+    const existing: NodeComment = {
+      id: 'c1',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 0,
+      authorKey: 'ada-stable',
+      body: 'needs a gateway',
+      createdAtMs: 1,
+      status: 'open',
+    };
+    let live = [existing];
+    let onComments: ((comments: NodeComment[]) => void) | undefined;
+    const writeFile = vi.fn<WorkspacePort['writeFile']>(async () => true);
+    const port: CollabSessionPort = {
+      ...noopCollabSession,
+      isActive: () => true,
+      localAuthorKey: () => 'ada-stable',
+      join: async args => {
+        onComments = args.onComments;
+        expect(args.seedComments).toEqual([existing]);
+        args.onComments?.(live);
+      },
+      deleteComment: id => {
+        live = live.filter(comment => comment.id !== id);
+        onComments?.(live);
+      },
+      leave: () => {
+        onComments?.([]);
+      },
+    };
+
+    useBlueprintStore.setState({
+      schema: seed,
+      collabSessionPort: port,
+      collabRoomActive: false,
+      collabComments: [],
+      persistedComments: [existing],
+      currentFilePath: 'blueprint.yaml',
+      isWorkspaceOpen: true,
+      isSampleWorkspace: false,
+      workspacePort: { ...noopWorkspace, writeFile },
+      applyRemoteCollabSchema: () => {},
+    });
+
+    await useBlueprintStore.getState().joinCollabRoom('room-1', 'Ada');
+    useBlueprintStore.getState().deleteComment('c1');
+    useBlueprintStore.getState().leaveCollabRoom();
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(useBlueprintStore.getState().persistedComments).toEqual([]);
+    expect(writeFile).toHaveBeenCalled();
+    expect(String(writeFile.mock.calls.at(-1)?.[1])).not.toContain('needs a gateway');
+
+    useBlueprintStore.setState({ isWorkspaceOpen: false, persistedComments: [] });
+  });
+
+  it('keeps a sidecar comment the room never had when leaving', async () => {
+    const diskOnly: NodeComment = {
+      id: 'c-disk',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 0,
+      authorKey: 'ada-stable',
+      body: 'only on disk',
+      createdAtMs: 1,
+      status: 'open',
+    };
+    const inRoom: NodeComment = {
+      id: 'c-room',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 7,
+      authorKey: 'ada-stable',
+      body: 'in the room',
+      createdAtMs: 2,
+      status: 'open',
+    };
+    let onComments: ((comments: NodeComment[]) => void) | undefined;
+    const writeFile = vi.fn<WorkspacePort['writeFile']>(async () => true);
+    const port: CollabSessionPort = {
+      ...noopCollabSession,
+      isActive: () => true,
+      join: async args => {
+        onComments = args.onComments;
+        args.onComments?.([inRoom]);
+      },
+      leave: () => {
+        onComments?.([]);
+      },
+    };
+
+    useBlueprintStore.setState({
+      schema: seed,
+      collabSessionPort: port,
+      collabComments: [],
+      persistedComments: [diskOnly],
+      currentFilePath: 'blueprint.yaml',
+      isWorkspaceOpen: true,
+      isSampleWorkspace: false,
+      workspacePort: { ...noopWorkspace, writeFile },
+      applyRemoteCollabSchema: () => {},
+    });
+
+    await useBlueprintStore.getState().joinCollabRoom('room-1', 'Ada');
+    useBlueprintStore.getState().leaveCollabRoom();
+
+    expect(
+      useBlueprintStore
+        .getState()
+        .persistedComments.map(comment => comment.id)
+        .sort()
+    ).toEqual(['c-disk', 'c-room']);
+    useBlueprintStore.setState({ isWorkspaceOpen: false, persistedComments: [] });
+  });
+
+  it('loads the sidecar for the diagram that was just opened', async () => {
+    const containers: SystemSchema = {
+      name: 'Containers',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [{ entityRef: 'shop/api', type: 'rest-api', name: 'API' }],
+      dependencies: [],
+    };
+    const onContainers: NodeComment = {
+      id: 'c-containers',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 0,
+      authorKey: 'ada-stable',
+      body: 'on containers',
+      createdAtMs: 5,
+      status: 'open',
+    };
+    const files: Record<string, string> = {
+      'containers.comments.yaml': serializeCommentDocument({
+        comments: { 'c-containers': onContainers },
+      }),
+    };
+    const workspacePort: WorkspacePort = {
+      ...noopWorkspace,
+      readFile: async path => {
+        const contents = files[path];
+        if (contents === undefined) throw new Error(`missing ${path}`);
+        return contents;
+      },
+      writeFile: async (path, contents) => {
+        files[path] = contents;
+        return true;
+      },
+    };
+
+    useBlueprintStore.setState({
+      schema: seed,
+      currentFilePath: 'context.yaml',
+      isWorkspaceOpen: true,
+      isSampleWorkspace: false,
+      collabRoomActive: false,
+      collabSessionPort: noopCollabSession,
+      persistedComments: [
+        {
+          id: 'c-context',
+          nodeEntityRef: 'shop',
+          authorName: 'Ada',
+          authorClientId: 0,
+          authorKey: 'ada-stable',
+          body: 'on context',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+      loadedSystems: [
+        { path: 'context.yaml', name: 'Context', schema: seed },
+        { path: 'containers.yaml', name: 'Containers', schema: containers },
+      ],
+      workspacePort,
+    });
+
+    await useBlueprintStore.getState().selectSystem('containers.yaml');
+
+    expect(useBlueprintStore.getState().currentFilePath).toBe('containers.yaml');
+    expect(useBlueprintStore.getState().persistedComments.map(comment => comment.body)).toEqual([
+      'on containers',
+    ]);
+    expect(files['containers.comments.yaml']).not.toContain('on context');
+
+    useBlueprintStore.setState({ isWorkspaceOpen: false, persistedComments: [] });
   });
 });

@@ -24,6 +24,8 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);
     await yieldToUi();
 
+    const previousPath = get().currentFilePath;
+
     const showInsideRoom = () => {
       set({
         currentFilePath: path,
@@ -35,12 +37,20 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
       logger.info('Switching active system inside the live room', { path });
     };
 
+    const reloadComments = async () => {
+      if (previousPath === path || !get().isWorkspaceOpen || get().isSampleWorkspace) return;
+      await get().loadPersistedComments(path);
+      if (get().currentFilePath !== path || !get().collabSessionPort.isActive()) return;
+      get().collabSessionPort.seedComments(get().persistedComments);
+    };
+
     try {
       const collab = get().collabSessionPort;
       if (collab.isActive()) {
         const known = get().loadedSystems.find(s => s.path === path);
         if (collab.focusDiagram(path, known?.schema)) {
           showInsideRoom();
+          await reloadComments();
           return;
         }
       }
@@ -69,6 +79,7 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
         get().collabSessionPort.focusDiagram(path, system.schema)
       ) {
         showInsideRoom();
+        await reloadComments();
         return;
       }
       logger.info('Switching active system', { name: system.name, path });
@@ -79,8 +90,10 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
         focusedCyclePath: null,
       });
       get().clearHistory();
+      const commentsReady = reloadComments();
       await yieldToUi();
       get().initSchema(system.schema);
+      await commentsReady;
     } finally {
       endDiagramLoad(get, set);
       if (get().systemSelectInFlight === path) {

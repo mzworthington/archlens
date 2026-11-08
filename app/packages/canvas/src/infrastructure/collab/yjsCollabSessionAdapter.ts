@@ -144,6 +144,16 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       ? comment.authorKey === author.key
       : comment.authorClientId === author.clientId;
 
+  const importMissingComments = (comments: readonly NodeComment[]) => {
+    if (!ydoc || comments.length === 0) return;
+    const existing = new Set(readComments(ydoc).map(comment => comment.id));
+    for (const comment of comments) {
+      if (existing.has(comment.id)) continue;
+      writeComment(ydoc, comment, YJS_LOCAL_ORIGIN);
+      existing.add(comment.id);
+    }
+  };
+
   const observeComments = (doc: Y.Doc) => {
     unobserveComments?.();
     const comments = doc.getMap(YJS_COMMENTS_MAP);
@@ -347,6 +357,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
         if (focus && latest.diagrams[focus]) emitActive(focus, latest.diagrams[focus]);
         emitWorkspace();
         publishPresence();
+        importMissingComments(args.seedComments ?? []);
         emitComments();
         return;
       }
@@ -363,6 +374,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
         onSchema?.(collabDocumentToSchema(lastLocal));
       }
       ready = true;
+      importMissingComments(args.seedComments ?? []);
       emitComments();
     },
 
@@ -480,6 +492,12 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       const existing = readComments(ydoc).find(comment => comment.id === id);
       if (!existing || !authoredByMe(existing, author)) return;
       deleteStoredComment(ydoc, id, YJS_LOCAL_ORIGIN);
+      emitComments();
+    },
+
+    seedComments(comments) {
+      if (!ydoc || !activeRoom) return;
+      importMissingComments(comments);
       emitComments();
     },
 

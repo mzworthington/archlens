@@ -207,6 +207,37 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
   });
 
+  it('shows resolve and delete for a sidecar comment outside a room', () => {
+    useBlueprintStore.setState({
+      selectedNodeId: 'gateway-api',
+      collabRoomActive: false,
+      collabPresence: EMPTY_COLLAB_PRESENCE,
+      collabComments: [],
+      persistedComments: [
+        {
+          id: 'c-side',
+          nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
+          authorName: 'Ada',
+          authorClientId: 0,
+          authorKey: 'ada-stable',
+          body: 'saved locally',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        localAuthorKey: () => 'ada-stable',
+      },
+    });
+
+    render(<PropertyPanel />);
+
+    expect(screen.getByText('saved locally')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Resolve comment' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Delete comment' })).toBeInTheDocument();
+  });
+
   it('keeps resolve and delete when the client id changes but the author key matches', () => {
     useBlueprintStore.setState({
       selectedNodeId: 'gateway-api',

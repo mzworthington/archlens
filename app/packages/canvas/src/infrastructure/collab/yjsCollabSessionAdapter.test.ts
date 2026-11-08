@@ -342,6 +342,58 @@ describe('createYjsCollabSession', () => {
     sessionB.leave();
   });
 
+  it('seeds sidecar comments into the room without overwriting an existing id', async () => {
+    const sidecar: NodeComment = {
+      id: 'side-1',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 0,
+      authorKey: 'ada-stable',
+      body: 'from disk',
+      createdAtMs: 10,
+      status: 'open',
+    };
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsB: NodeComment[][] = [];
+
+    await sessionA.join({
+      roomId: 'room-seed',
+      seedSchema: seed,
+      displayName: 'Ada',
+      seedComments: [sidecar],
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-seed',
+      seedSchema: seed,
+      displayName: 'Grace',
+      seedComments: [
+        { ...sidecar, body: 'stale duplicate' },
+        {
+          ...sidecar,
+          id: 'side-2',
+          authorName: 'Grace',
+          authorKey: 'grace-stable',
+          body: 'grace disk',
+        },
+      ],
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    expect((commentsB.at(-1) ?? []).map(comment => comment.body).sort()).toEqual([
+      'from disk',
+      'grace disk',
+    ]);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
   it('lets the same author resolve a comment after the Yjs client id changes', async () => {
     const [transportA, transportB] = createLinkedTransports();
     const authorKeyStore = {

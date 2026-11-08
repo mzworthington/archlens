@@ -5,6 +5,7 @@ import {
   commentSidecarPath,
   mergeCommentDocuments,
   parseCommentDocument,
+  projectRoomComments,
   serializeCommentDocument,
 } from './commentSidecar';
 
@@ -142,5 +143,45 @@ describe('mergeCommentDocuments', () => {
     const result = mergeCommentDocuments(persisted, [makeComment({ id: 'c-new' })]);
     expect('c-keep' in result.comments).toBe(true);
     expect('c-new' in result.comments).toBe(true);
+  });
+});
+
+describe('projectRoomComments', () => {
+  it('drops a comment that was in the room and is now missing', () => {
+    const persisted = emptyCommentDocument();
+    persisted.comments['c-gone'] = makeComment({ id: 'c-gone', body: 'deleted in room' });
+    persisted.comments['c-stay'] = makeComment({ id: 'c-stay', body: 'still open' });
+
+    const result = projectRoomComments(
+      persisted,
+      [persisted.comments['c-stay']!],
+      new Set(['c-gone', 'c-stay'])
+    );
+
+    expect('c-gone' in result.comments).toBe(false);
+    expect(result.comments['c-stay']?.body).toBe('still open');
+  });
+
+  it('keeps a sidecar comment that was never in the room', () => {
+    const persisted = emptyCommentDocument();
+    persisted.comments['c-disk'] = makeComment({ id: 'c-disk', body: 'only on disk' });
+
+    const result = projectRoomComments(
+      persisted,
+      [makeComment({ id: 'c-room', body: 'from the room' })],
+      new Set(['c-room'])
+    );
+
+    expect(result.comments['c-disk']?.body).toBe('only on disk');
+    expect(result.comments['c-room']?.body).toBe('from the room');
+  });
+
+  it('removes the last room comment when the live snapshot is empty', () => {
+    const persisted = emptyCommentDocument();
+    persisted.comments['c-last'] = makeComment({ id: 'c-last' });
+
+    const result = projectRoomComments(persisted, [], new Set(['c-last']));
+
+    expect(result.comments).toEqual({});
   });
 });

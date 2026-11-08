@@ -26,13 +26,15 @@ export function commentSidecarPath(diagramPath: string): string {
 /**
  * Merge live (collab/standalone) comments into a persisted document.
  *
- * Last-write-wins by `createdAtMs`.  Resolved comments are kept for audit.
+ * Last-write-wins by `createdAtMs`. Resolved comments are kept for audit.
  * A comment that exists in both uses the one with the higher `createdAtMs`
- * (or the incoming one on a tie, so a resolve/delete always propagates).
+ * (incoming wins a tie, so a resolve propagates). Comments present only in
+ * `persisted` are kept. A room delete drops the row, so it is absent from
+ * `incoming` — mirror a live room with `projectRoomComments` instead.
  */
 export function mergeCommentDocuments(
   persisted: CollabCommentDocument,
-  incoming: NodeComment[]
+  incoming: readonly NodeComment[]
 ): CollabCommentDocument {
   let result = persisted;
   for (const comment of incoming) {
@@ -42,6 +44,27 @@ export function mergeCommentDocuments(
     }
   }
   return result;
+}
+
+/**
+ * Project a live room snapshot onto a sidecar document.
+ *
+ * `incoming` is the full room set. An id in `seenRoomIds` that is missing from
+ * `incoming` was deleted in the room and is removed. Sidecar comments that
+ * never appeared in the room are kept, so an unseeded document is not wiped.
+ */
+export function projectRoomComments(
+  persisted: CollabCommentDocument,
+  incoming: readonly NodeComment[],
+  seenRoomIds: ReadonlySet<string>
+): CollabCommentDocument {
+  const incomingIds = new Set(incoming.map(comment => comment.id));
+  let kept = emptyCommentDocument();
+  for (const comment of Object.values(persisted.comments)) {
+    if (seenRoomIds.has(comment.id) && !incomingIds.has(comment.id)) continue;
+    kept = addComment(kept, comment);
+  }
+  return mergeCommentDocuments(kept, incoming);
 }
 
 // ---------------------------------------------------------------------------
