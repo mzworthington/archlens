@@ -29,6 +29,7 @@ import { applyCollabPatch, readCollabDocument, YJS_LOCAL_ORIGIN } from './yjsSch
 import { readCollabWorkspace, writeCollabDiagram } from './yjsWorkspaceProjection';
 import {
   deleteStoredComment,
+  isDeletedComment,
   readComments,
   resolveStoredComment,
   writeComment,
@@ -119,8 +120,8 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
   let unobserveComments: (() => void) | null = null;
 
   const emitComments = () => {
-    if (!ydoc || !onComments) return;
-    onComments(readComments(ydoc));
+    if (!ydoc || !onComments || !activePath) return;
+    onComments(readComments(ydoc, activePath));
   };
 
   const newCommentId = (): string => crypto.randomUUID();
@@ -145,11 +146,11 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       : comment.authorClientId === author.clientId;
 
   const importMissingComments = (comments: readonly NodeComment[]) => {
-    if (!ydoc || comments.length === 0) return;
-    const existing = new Set(readComments(ydoc).map(comment => comment.id));
+    if (!ydoc || !activePath || comments.length === 0) return;
+    const existing = new Set(readComments(ydoc, activePath).map(comment => comment.id));
     for (const comment of comments) {
-      if (existing.has(comment.id)) continue;
-      writeComment(ydoc, comment, YJS_LOCAL_ORIGIN);
+      if (existing.has(comment.id) || isDeletedComment(ydoc, comment.id)) continue;
+      writeComment(ydoc, activePath, comment, YJS_LOCAL_ORIGIN);
       existing.add(comment.id);
     }
   };
@@ -419,6 +420,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       if (!workspaceMode) {
         if (!activePath || nextPath === activePath) {
           activePath = nextPath;
+          emitComments();
           return true;
         }
         const root = readCollabDocument(ydoc);
@@ -442,6 +444,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       emitActive(nextPath, document);
       emitWorkspace();
       publishPresence();
+      emitComments();
       return true;
     },
 
@@ -472,26 +475,26 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
         body: input.body,
         createdAtMs: Date.now(),
       });
-      if (!created) return;
-      writeComment(ydoc, created, YJS_LOCAL_ORIGIN);
+      if (!created || !activePath) return;
+      writeComment(ydoc, activePath, created, YJS_LOCAL_ORIGIN);
       emitComments();
     },
 
     resolveComment(id) {
       const author = localAuthor();
-      if (!ydoc || !activeRoom || !author) return;
-      const existing = readComments(ydoc).find(comment => comment.id === id);
+      if (!ydoc || !activeRoom || !activePath || !author) return;
+      const existing = readComments(ydoc, activePath).find(comment => comment.id === id);
       if (!existing || !authoredByMe(existing, author)) return;
-      resolveStoredComment(ydoc, id, YJS_LOCAL_ORIGIN);
+      resolveStoredComment(ydoc, activePath, id, YJS_LOCAL_ORIGIN);
       emitComments();
     },
 
     deleteComment(id) {
       const author = localAuthor();
-      if (!ydoc || !activeRoom || !author) return;
-      const existing = readComments(ydoc).find(comment => comment.id === id);
+      if (!ydoc || !activeRoom || !activePath || !author) return;
+      const existing = readComments(ydoc, activePath).find(comment => comment.id === id);
       if (!existing || !authoredByMe(existing, author)) return;
-      deleteStoredComment(ydoc, id, YJS_LOCAL_ORIGIN);
+      deleteStoredComment(ydoc, activePath, id, YJS_LOCAL_ORIGIN);
       emitComments();
     },
 

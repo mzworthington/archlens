@@ -257,7 +257,8 @@ export interface CollabSessionPort {
     onComments?: (comments: import('@archlens/core').NodeComment[]) => void;
     /**
      * Comments already stored for the active diagram. Missing ids are inserted
-     * into the room after remote state is known; existing ids are left alone.
+     * into that diagram after remote state is known. Existing ids are left
+     * alone, and ids deleted in this room are not inserted again.
      */
     seedComments?: import('@archlens/core').NodeComment[];
     credentials?: {
@@ -289,8 +290,9 @@ export interface CollabSessionPort {
   resolveComment(id: string): void;
   deleteComment(id: string): void;
   /**
-   * Insert comments the room does not already have.
-   * No-op when the session is not active. Does not overwrite an existing id.
+   * Insert comments the open diagram does not already have.
+   * No-op when the session is not active. Does not overwrite an existing id
+   * or restore one this room has deleted.
    */
   seedComments(comments: readonly import('@archlens/core').NodeComment[]): void;
   leave(): void;

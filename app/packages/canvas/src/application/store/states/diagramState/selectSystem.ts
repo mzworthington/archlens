@@ -44,11 +44,19 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
       get().collabSessionPort.seedComments(get().persistedComments);
     };
 
+    // Publish the path before focus emits comments, so those rows bind to this file.
+    const focusLiveDiagram = (schema: DiagramStateDeps['schema'] | undefined): boolean => {
+      set({ currentFilePath: path });
+      const focused = get().collabSessionPort.focusDiagram(path, schema);
+      if (!focused) set({ currentFilePath: previousPath });
+      return focused;
+    };
+
     try {
       const collab = get().collabSessionPort;
       if (collab.isActive()) {
         const known = get().loadedSystems.find(s => s.path === path);
-        if (collab.focusDiagram(path, known?.schema)) {
+        if (focusLiveDiagram(known?.schema)) {
           showInsideRoom();
           await reloadComments();
           return;
@@ -74,10 +82,7 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
         logger.warn('System path not found in loaded systems', { path });
         return;
       }
-      if (
-        get().collabSessionPort.isActive() &&
-        get().collabSessionPort.focusDiagram(path, system.schema)
-      ) {
+      if (get().collabSessionPort.isActive() && focusLiveDiagram(system.schema)) {
         showInsideRoom();
         await reloadComments();
         return;

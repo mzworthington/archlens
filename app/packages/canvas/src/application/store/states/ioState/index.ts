@@ -129,6 +129,8 @@ type IoStateDeps = IoState & DiagramState & UiState;
 export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): IoState => {
   /** Ids observed in the live room. Absence after that means the row was deleted. */
   const roomCommentIdsSeen = new Set<string>();
+  /** Comment ids that belong to each diagram file. A room shares one map per file. */
+  const commentIdsByDiagram = new Map<string, Set<string>>();
   /** Bumped on local comment edits so an in-flight sidecar load cannot clobber them. */
   let commentsEpoch = 0;
   /** Bumped on leave so a queued room flush cannot rewrite the sidecar after it. */
@@ -138,25 +140,63 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     for (const comment of comments) roomCommentIdsSeen.add(comment.id);
   };
 
+  const idsForDiagram = (path: string): Set<string> => {
+    let ids = commentIdsByDiagram.get(path);
+    if (!ids) {
+      ids = new Set();
+      commentIdsByDiagram.set(path, ids);
+    }
+    return ids;
+  };
+
+  const ownsComment = (path: string, id: string): boolean => {
+    for (const [other, ids] of commentIdsByDiagram) {
+      if (other !== path && ids.has(id)) return true;
+    }
+    return false;
+  };
+
+  /** `exclusive` moves sidecar ids onto this file. Otherwise only unowned ids are claimed. */
+  const claimDiagramComments = (path: string, ids: readonly string[], exclusive: boolean) => {
+    if (!path || ids.length === 0) return;
+    if (exclusive) {
+      for (const [other, owned] of commentIdsByDiagram) {
+        if (other === path) continue;
+        for (const id of ids) owned.delete(id);
+      }
+    }
+    const target = idsForDiagram(path);
+    for (const id of ids) {
+      if (!exclusive && ownsComment(path, id)) continue;
+      target.add(id);
+    }
+  };
+
+  const commentsForDiagram = (path: string, comments: readonly NodeComment[]): NodeComment[] => {
+    const ids = commentIdsByDiagram.get(path);
+    if (!ids) return [];
+    return comments.filter(comment => ids.has(comment.id));
+  };
+
   const scheduleRoomSidecarSync = () => {
     const generation = roomSyncGeneration;
     const flushPath = get().currentFilePath;
     const persistedAtSchedule = get().persistedComments;
+    const liveAtSchedule = get().collabComments;
     const seenAtSchedule = new Set(roomCommentIdsSeen);
     setTimeout(() => {
-      if (generation !== roomSyncGeneration) return;
-      const { collabComments, isWorkspaceOpen, isSampleWorkspace, workspacePort, logger } = get();
-      if (!isWorkspaceOpen || isSampleWorkspace || !flushPath) return;
-      if (collabComments.length === 0 && seenAtSchedule.size === 0) return;
-      const base =
-        get().currentFilePath === flushPath ? get().persistedComments : persistedAtSchedule;
+      if (generation !== roomSyncGeneration || !flushPath) return;
+      const { isWorkspaceOpen, isSampleWorkspace, workspacePort, logger } = get();
+      if (!isWorkspaceOpen || isSampleWorkspace) return;
+      const stillHere = get().currentFilePath === flushPath;
+      const live = commentsForDiagram(flushPath, stillHere ? get().collabComments : liveAtSchedule);
+      if (live.length === 0 && seenAtSchedule.size === 0) return;
+      const base = stillHere ? get().persistedComments : persistedAtSchedule;
       const persistedDoc: CollabCommentDocument = {
         comments: Object.fromEntries(base.map(comment => [comment.id, comment])),
       };
-      const merged = projectRoomComments(persistedDoc, collabComments, seenAtSchedule);
-      if (get().currentFilePath === flushPath) {
-        set({ persistedComments: Object.values(merged.comments) });
-      }
+      const merged = projectRoomComments(persistedDoc, live, seenAtSchedule);
+      if (stillHere) set({ persistedComments: Object.values(merged.comments) });
       void flushCommentSidecar(flushPath, merged, workspacePort, logger);
     }, 0);
   };
@@ -194,6 +234,14 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
 
     joinCollabRoom: async (roomId, displayName, credentials) => {
       roomCommentIdsSeen.clear();
+      commentIdsByDiagram.clear();
+      if (get().currentFilePath) {
+        claimDiagramComments(
+          get().currentFilePath,
+          get().persistedComments.map(comment => comment.id),
+          true
+        );
+      }
       const {
         collabSessionPort,
         schema,
@@ -239,6 +287,14 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
             }),
           onComments: comments => {
             rememberRoomComments(comments);
+            const path = get().currentFilePath;
+            if (path) {
+              claimDiagramComments(
+                path,
+                comments.map(comment => comment.id),
+                false
+              );
+            }
             set({ collabComments: comments });
           },
           seedComments: get().persistedComments,
@@ -283,9 +339,9 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     },
 
     leaveCollabRoom: () => {
-      const snapshot = get().collabComments;
-      const seen = new Set(roomCommentIdsSeen);
       const flushPath = get().currentFilePath;
+      const snapshot = flushPath ? commentsForDiagram(flushPath, get().collabComments) : [];
+      const seen = new Set(roomCommentIdsSeen);
       roomSyncGeneration += 1;
       get().collabSessionPort.leave();
 
@@ -307,6 +363,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         void flushCommentSidecar(flushPath, merged, workspacePort, logger);
       }
       roomCommentIdsSeen.clear();
+      commentIdsByDiagram.clear();
 
       set({
         collabPresence: EMPTY_COLLAB_PRESENCE,
@@ -456,6 +513,10 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       const doc = await loadCommentSidecar(diagramPath, workspacePort);
       if (get().currentFilePath !== diagramPath) return;
 
+      const inRoom = collabSessionPort.isActive();
+      if (inRoom) {
+        claimDiagramComments(diagramPath, Object.keys(doc.comments), true);
+      }
       let next = doc;
       if (commentsEpoch !== epochAtStart) {
         const liveDoc: CollabCommentDocument = {
@@ -464,14 +525,33 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
           ),
         };
         const merged = mergeCommentDocuments(doc, Object.values(liveDoc.comments));
-        next = collabSessionPort.isActive()
-          ? projectRoomComments(merged, get().collabComments, roomCommentIdsSeen)
+        next = inRoom
+          ? projectRoomComments(
+              merged,
+              commentsForDiagram(diagramPath, get().collabComments),
+              roomCommentIdsSeen
+            )
           : merged;
         if (get().persistedComments.length > 0) {
           void flushCommentSidecar(diagramPath, next, get().workspacePort, get().logger);
         }
+      } else if (inRoom) {
+        // A delete bumps the epoch before this read, so compare the room set even
+        // when nothing else changed while the sidecar was loading.
+        next = projectRoomComments(
+          doc,
+          commentsForDiagram(diagramPath, get().collabComments),
+          roomCommentIdsSeen
+        );
       }
       if (get().currentFilePath !== diagramPath) return;
+      if (inRoom) {
+        claimDiagramComments(
+          diagramPath,
+          Object.values(next.comments).map(comment => comment.id),
+          true
+        );
+      }
       set({ persistedComments: Object.values(next.comments) });
     },
   };
