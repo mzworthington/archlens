@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   cacheBustingReloadPath,
   cacheBustingReloadUrl,
+  freshNavigationResponse,
+  navigationBody,
   pathWithoutRefreshParam,
   refreshNetworkUrl,
   reloadWithoutServiceWorker,
@@ -127,6 +129,100 @@ describe('refreshNetworkUrl', () => {
     expect(refreshNetworkUrl(new URL('https://archlens.dev/ADRs?al_refresh=1700000000000'))).toBe(
       'https://archlens.dev/ADRs?al_refresh=1700000000000'
     );
+  });
+});
+
+describe('navigationBody', () => {
+  it('copies a redirected guide response so Chrome does not fail the navigation', async () => {
+    const bytes = new TextEncoder().encode('<p>guide</p>');
+    const redirected = {
+      redirected: true,
+      ok: true,
+      status: 200,
+      statusText: 'OK',
+      headers: new Headers({
+        'content-type': 'text/html; charset=utf-8',
+        'content-encoding': 'gzip',
+        'content-length': '4',
+      }),
+      arrayBuffer: async () =>
+        bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+    } as Response;
+
+    const body = await navigationBody(redirected);
+
+    expect(body.redirected).toBe(false);
+    expect(body.headers.get('content-encoding')).toBeNull();
+    expect(body.headers.get('content-type')).toBe('text/html; charset=utf-8');
+    expect(await body.text()).toBe('<p>guide</p>');
+  });
+
+  it('returns a direct shell response unchanged', async () => {
+    const direct = new Response('<p>home</p>', {
+      status: 200,
+      headers: { 'content-type': 'text/html' },
+    });
+
+    await expect(navigationBody(direct)).resolves.toBe(direct);
+  });
+});
+
+describe('freshNavigationResponse', () => {
+  const guide = new URL('https://archlens.dev/guide/collaborate?al_refresh=1794169882279');
+
+  it('follows the pretty-URL redirect and returns the final page', async () => {
+    const fetched: string[] = [];
+    const bytes = new TextEncoder().encode('<p>collaborate</p>');
+    const result = await freshNavigationResponse(
+      guide,
+      async input => {
+        fetched.push(input);
+        return {
+          redirected: true,
+          ok: true,
+          status: 200,
+          statusText: 'OK',
+          headers: new Headers({ 'content-type': 'text/html' }),
+          arrayBuffer: async () =>
+            bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+        } as Response;
+      },
+      async () => {
+        throw new Error('cache should not be used');
+      }
+    );
+
+    expect(fetched).toEqual(['https://archlens.dev/guide/collaborate?al_refresh=1794169882279']);
+    expect(result.redirected).toBe(false);
+    expect(await result.text()).toBe('<p>collaborate</p>');
+  });
+
+  it('serves the cached shell when the network fetch fails', async () => {
+    const cached = new Response('cached shell', { status: 200 });
+    const result = await freshNavigationResponse(
+      guide,
+      async () => {
+        throw new TypeError('Failed to fetch');
+      },
+      async () => cached
+    );
+
+    expect(result).toBe(cached);
+  });
+
+  it('sends the browser to the same page without al_refresh when nothing else can load', async () => {
+    const result = await freshNavigationResponse(
+      new URL('https://archlens.dev/guide/collaborate?room=abc&al_refresh=1794169882279#notes'),
+      async () => {
+        throw new TypeError('Failed to fetch');
+      },
+      async () => undefined
+    );
+
+    expect(result.status).toBe(200);
+    const html = await result.text();
+    expect(html).toContain('url=/guide/collaborate?room=abc#notes');
+    expect(html).not.toContain('al_refresh');
   });
 });
 

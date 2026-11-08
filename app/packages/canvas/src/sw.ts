@@ -13,7 +13,7 @@ import {
   clientRequestedImmediateUpdate,
 } from './application/pwa/immediateServiceWorkerUpdate';
 import {
-  refreshNetworkUrl,
+  freshNavigationResponse,
   UPDATE_REFRESH_QUERY_PARAM,
 } from './application/pwa/requestServiceWorkerUpdate';
 import { shellPrecacheRequest } from './application/pwa/shellPrecacheRequest';
@@ -53,14 +53,16 @@ addPlugins([
 
 // Before the precache. Workbox ignores search params, so /workspace?al_refresh=
 // would otherwise boot the cached shell and the Refresh button would return.
+// The handler must not return Pages' 308: Chrome reports that as ERR_FAILED.
 registerRoute(
   ({ request, url }) =>
     request.mode === 'navigate' && url.searchParams.has(UPDATE_REFRESH_QUERY_PARAM),
   ({ url }) =>
-    fetch(refreshNetworkUrl(url), {
-      cache: 'reload',
-      headers: { Accept: 'text/html' },
-    })
+    freshNavigationResponse(
+      url,
+      (input, init) => fetch(input, init),
+      () => caches.match('/')
+    )
 );
 
 precacheAndRoute(self.__WB_MANIFEST);
