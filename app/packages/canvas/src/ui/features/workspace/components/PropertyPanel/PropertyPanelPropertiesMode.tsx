@@ -84,28 +84,25 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
           childExternalsCount={model.childExternalsCount}
           handleDeleteSelectedNode={model.handleDeleteSelectedNode}
           titleType={model.titleType}
-          collabRoomActive={model.collabRoomActive}
-          collabComments={model.collabComments}
+          visibleComments={model.visibleComments}
           localCollabClientId={model.localCollabClientId}
           localCollabAuthorKey={model.localCollabAuthorKey}
-          addCollabComment={model.addCollabComment}
-          resolveCollabComment={model.resolveCollabComment}
-          deleteCollabComment={model.deleteCollabComment}
+          addComment={model.addComment}
+          resolveComment={model.resolveComment}
+          deleteComment={model.deleteComment}
         />
       ) : (
         <div className="flex flex-col gap-6 w-full min-w-0">
           {loadedSystems.length > 0 ? <ExternalDependenciesSection /> : null}
-          {model.collabRoomActive ? (
-            <NodeCommentsSection
-              nodeEntityRef={model.entityRefValue}
-              comments={model.collabComments}
-              localClientId={model.localCollabClientId}
-              localAuthorKey={model.localCollabAuthorKey}
-              onAdd={model.addCollabComment}
-              onResolve={model.resolveCollabComment}
-              onDelete={model.deleteCollabComment}
-            />
-          ) : null}
+          <NodeCommentsSection
+            nodeEntityRef={model.entityRefValue}
+            comments={model.visibleComments}
+            localClientId={model.localCollabClientId}
+            localAuthorKey={model.localCollabAuthorKey}
+            onAdd={model.addComment}
+            onResolve={model.resolveComment}
+            onDelete={model.deleteComment}
+          />
         </div>
       )}
     </>

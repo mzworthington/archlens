@@ -255,6 +255,12 @@ export interface CollabSessionPort {
     onWorkspace?: (update: CollabWorkspaceUpdate) => void;
     onPresence: (presence: CollabPresence) => void;
     onComments?: (comments: import('@archlens/core').NodeComment[]) => void;
+    /**
+     * Comments already stored for the active diagram. Missing ids are inserted
+     * into that diagram after remote state is known. Existing ids are left
+     * alone, and ids deleted in this room are not inserted again.
+     */
+    seedComments?: import('@archlens/core').NodeComment[];
     credentials?: {
       hostToken?: string;
       secret?: string;
@@ -283,9 +289,17 @@ export interface CollabSessionPort {
   addComment(input: AddCollabCommentInput): void;
   resolveComment(id: string): void;
   deleteComment(id: string): void;
+  /**
+   * Insert comments the open diagram does not already have.
+   * No-op when the session is not active. Does not overwrite an existing id
+   * or restore one this room has deleted.
+   */
+  seedComments(comments: readonly import('@archlens/core').NodeComment[]): void;
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
+  /** Stable author key stored in localStorage; available even outside a room. */
+  localAuthorKey(): string | null;
 }
 
 export const noopCollabSession: CollabSessionPort = {
@@ -298,9 +312,11 @@ export const noopCollabSession: CollabSessionPort = {
   addComment: () => {},
   resolveComment: () => {},
   deleteComment: () => {},
+  seedComments: () => {},
   leave: () => {},
   isActive: () => false,
   roomId: () => null,
+  localAuthorKey: () => null,
 };
 
 /** Opaque canvas graph change payloads (React Flow NodeChange / EdgeChange at the adapter). */

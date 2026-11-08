@@ -29,13 +29,12 @@ type SelectedNodeSectionsProps = Pick<
   | 'childExternalsCount'
   | 'handleDeleteSelectedNode'
   | 'titleType'
-  | 'collabRoomActive'
-  | 'collabComments'
+  | 'visibleComments'
   | 'localCollabClientId'
   | 'localCollabAuthorKey'
-  | 'addCollabComment'
-  | 'resolveCollabComment'
-  | 'deleteCollabComment'
+  | 'addComment'
+  | 'resolveComment'
+  | 'deleteComment'
 >;
 
 export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
@@ -59,13 +58,12 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
   childExternalsCount,
   handleDeleteSelectedNode,
   titleType,
-  collabRoomActive,
-  collabComments,
+  visibleComments,
   localCollabClientId,
   localCollabAuthorKey,
-  addCollabComment,
-  resolveCollabComment,
-  deleteCollabComment,
+  addComment,
+  resolveComment,
+  deleteComment,
 }) => {
   if (!selectedNode || !selectedNodeId) return null;
 
@@ -88,17 +86,15 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
         onDeleteProperty={handleDeleteProperty}
       />
 
-      {collabRoomActive ? (
-        <NodeCommentsSection
-          nodeEntityRef={selectedNode.entityRef}
-          comments={collabComments}
-          localClientId={localCollabClientId}
-          localAuthorKey={localCollabAuthorKey}
-          onAdd={addCollabComment}
-          onResolve={resolveCollabComment}
-          onDelete={deleteCollabComment}
-        />
-      ) : null}
+      <NodeCommentsSection
+        nodeEntityRef={selectedNode.entityRef}
+        comments={visibleComments}
+        localClientId={localCollabClientId}
+        localAuthorKey={localCollabAuthorKey}
+        onAdd={addComment}
+        onResolve={resolveComment}
+        onDelete={deleteComment}
+      />
 
       <ConnectionsSection
         selectedNodeId={selectedNodeId}

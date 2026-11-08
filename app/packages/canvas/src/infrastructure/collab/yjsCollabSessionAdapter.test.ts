@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import * as Y from 'yjs';
 import { Awareness, applyAwarenessUpdate, encodeAwarenessUpdate } from 'y-protocols/awareness';
-import type { NodeComment, SystemSchema } from '@archlens/core';
+import { commentsFromRecord, type NodeComment, type SystemSchema } from '@archlens/core';
 import type { CollabPresence } from '../../core';
 import type { CollabTransport } from './collabTransport';
 import { createYjsCollabSession } from './yjsCollabSessionAdapter';
+import { YJS_COMMENTS_MAP } from './yjsCommentProjection';
 
 function createLinkedTransports(): [CollabTransport, CollabTransport] {
   const docs: Array<Y.Doc | null> = [null, null];
@@ -342,6 +343,58 @@ describe('createYjsCollabSession', () => {
     sessionB.leave();
   });
 
+  it('seeds sidecar comments into the room without overwriting an existing id', async () => {
+    const sidecar: NodeComment = {
+      id: 'side-1',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 0,
+      authorKey: 'ada-stable',
+      body: 'from disk',
+      createdAtMs: 10,
+      status: 'open',
+    };
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsB: NodeComment[][] = [];
+
+    await sessionA.join({
+      roomId: 'room-seed',
+      seedSchema: seed,
+      displayName: 'Ada',
+      seedComments: [sidecar],
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    await sessionB.join({
+      roomId: 'room-seed',
+      seedSchema: seed,
+      displayName: 'Grace',
+      seedComments: [
+        { ...sidecar, body: 'stale duplicate' },
+        {
+          ...sidecar,
+          id: 'side-2',
+          authorName: 'Grace',
+          authorKey: 'grace-stable',
+          body: 'grace disk',
+        },
+      ],
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    expect((commentsB.at(-1) ?? []).map(comment => comment.body).sort()).toEqual([
+      'from disk',
+      'grace disk',
+    ]);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
   it('lets the same author resolve a comment after the Yjs client id changes', async () => {
     const [transportA, transportB] = createLinkedTransports();
     const authorKeyStore = {
@@ -520,5 +573,184 @@ describe('createYjsCollabSession', () => {
 
     sessionA.leave();
     sessionB.leave();
+  });
+
+  it('keeps comments on the diagram that owns them when the room switches files', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsA: NodeComment[][] = [];
+    const commentsB: NodeComment[][] = [];
+    const context = {
+      ...seed,
+      name: 'Context',
+      level: 'context' as const,
+      nodes: [{ entityRef: 'shop', type: 'software-system' as const, name: 'Shop' }],
+    };
+    const containers = {
+      ...seed,
+      name: 'Containers',
+      nodes: [{ entityRef: 'shop/api', type: 'rest-api' as const, name: 'API' }],
+    };
+
+    await sessionA.join({
+      roomId: 'room-comment-diagrams',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: containers },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsA.push(next),
+    });
+    await sessionB.join({
+      roomId: 'room-comment-diagrams',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: containers },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Grace',
+      onSchema: () => {},
+      onDiagram: () => {},
+      onPresence: () => {},
+      onComments: next => commentsB.push(next),
+    });
+
+    sessionA.addComment({ nodeEntityRef: 'shop', body: 'on context' });
+    expect(sessionB.focusDiagram('containers.yaml', containers)).toBe(true);
+    sessionB.addComment({ nodeEntityRef: 'shop/api', body: 'on containers' });
+
+    expect((commentsA.at(-1) ?? []).map(comment => comment.body)).toEqual(['on context']);
+    expect((commentsB.at(-1) ?? []).map(comment => comment.body)).toEqual(['on containers']);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
+  it('does not seed a comment the room has already deleted', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionB = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const commentsA: NodeComment[][] = [];
+    const context = {
+      ...seed,
+      name: 'Context',
+      level: 'context' as const,
+      nodes: [{ entityRef: 'shop', type: 'software-system' as const, name: 'Shop' }],
+    };
+
+    await sessionA.join({
+      roomId: 'room-comment-tombstone',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: { ...seed, name: 'Containers' } },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => commentsA.push(next),
+    });
+    await sessionB.join({
+      roomId: 'room-comment-tombstone',
+      seedSchema: context,
+      activePath: 'context.yaml',
+      displayName: 'Grace',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+
+    sessionA.addComment({ nodeEntityRef: 'shop', body: 'deleted in the room' });
+    const posted = (commentsA.at(-1) ?? []).find(comment => comment.body === 'deleted in the room');
+    expect(posted).toBeTruthy();
+    sessionA.deleteComment(posted!.id);
+    expect(commentsA.at(-1) ?? []).toEqual([]);
+
+    expect(sessionB.focusDiagram('context.yaml', context)).toBe(true);
+    sessionB.seedComments([posted!]);
+    expect((commentsA.at(-1) ?? []).map(comment => comment.id)).not.toContain(posted!.id);
+
+    sessionA.leave();
+    sessionB.leave();
+  });
+
+  it('drops a nested comment when an older client deletes the flat row', async () => {
+    const room: { doc: Y.Doc | null } = { doc: null };
+    const transport: CollabTransport = {
+      connect: (_roomId, ydoc) => {
+        room.doc = ydoc;
+        return { dispose: () => {}, sendControl: () => {} };
+      },
+    };
+    const session = createYjsCollabSession({ transport, syncWaitMs: 0 });
+    const seen: NodeComment[][] = [];
+    await session.join({
+      roomId: 'room-legacy-delete',
+      seedSchema: seed,
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => seen.push(next),
+    });
+
+    session.addComment({ nodeEntityRef: 'shop/api', body: 'shipped layout' });
+    const posted = (seen.at(-1) ?? []).find(row => row.body === 'shipped layout');
+    const live = room.doc;
+    if (!live || !posted) throw new Error('room comment was not stored');
+    live.transact(() => live.getMap(YJS_COMMENTS_MAP).delete(posted.id));
+
+    expect(seen.at(-1) ?? []).toEqual([]);
+    session.leave();
+  });
+
+  it('shows a nested-only comment to a client that still reads the flat map', async () => {
+    const room: { doc: Y.Doc | null } = { doc: null };
+    const transport: CollabTransport = {
+      connect: (_roomId, ydoc) => {
+        room.doc = ydoc;
+        return { dispose: () => {}, sendControl: () => {} };
+      },
+    };
+    const session = createYjsCollabSession({ transport, syncWaitMs: 0 });
+    const seen: NodeComment[][] = [];
+    await session.join({
+      roomId: 'room-legacy-nested',
+      seedSchema: seed,
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+      onComments: next => seen.push(next),
+    });
+
+    const live = room.doc;
+    if (!live) throw new Error('room doc missing');
+    live.transact(() => {
+      const diagram = new Y.Map<unknown>();
+      const row = new Y.Map<unknown>();
+      row.set('id', 'c-nested');
+      row.set('nodeEntityRef', 'shop/api');
+      row.set('authorName', 'Grace');
+      row.set('authorClientId', 8);
+      row.set('body', 'nested only');
+      row.set('createdAtMs', 4);
+      row.set('status', 'open');
+      diagram.set('c-nested', row);
+      live.getMap(YJS_COMMENTS_MAP).set('context.yaml', diagram);
+    });
+
+    expect((seen.at(-1) ?? []).map(row => row.body)).toEqual(['nested only']);
+    const flat = commentsFromRecord(
+      live.getMap(YJS_COMMENTS_MAP).toJSON() as Record<string, unknown>
+    );
+    expect(flat.map(row => row.body)).toEqual(['nested only']);
+    session.leave();
   });
 });

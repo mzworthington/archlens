@@ -152,11 +152,13 @@ describe('PropertyPanel UI Component', () => {
     expect(groupNode).toBeDefined();
   });
 
-  it('shows a labelled comment thread on the diagram when a live room is active and no node is selected', () => {
-    const { rerender } = render(<PropertyPanel />);
-    expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
-
+  it('always shows a labelled comment thread on the diagram when no node is selected', () => {
     useBlueprintStore.setState({ selectedNodeId: null });
+    const { rerender } = render(<PropertyPanel />);
+    // Comment section is always rendered — it starts empty outside a room.
+    expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
+    expect(screen.getByLabelText('Comment')).toBeInTheDocument();
+
     activateLiveComment({
       id: 'c-diagram',
       nodeEntityRef: 'cloud-infrastructure-workspace',
@@ -165,14 +167,14 @@ describe('PropertyPanel UI Component', () => {
     rerender(<PropertyPanel />);
 
     expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
-    expect(screen.getByLabelText('Comment')).toBeInTheDocument();
     expect(screen.getByText('walk the map from here')).toBeInTheDocument();
   });
 
-  it('shows a labelled comment thread only while a live room is active', () => {
+  it('always shows a labelled comment thread on a node, with live comments when the room is active', () => {
     useBlueprintStore.setState({ selectedNodeId: 'gateway-api' });
     const { rerender } = render(<PropertyPanel />);
-    expect(screen.queryByTestId('node-comments-section')).not.toBeInTheDocument();
+    // Comment section is always rendered — it starts empty outside a room.
+    expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
 
     activateLiveComment({
       id: 'c1',
@@ -203,6 +205,37 @@ describe('PropertyPanel UI Component', () => {
     render(<PropertyPanel />);
 
     expect(screen.getByTestId('node-comments-section')).toBeInTheDocument();
+  });
+
+  it('shows resolve and delete for a sidecar comment outside a room', () => {
+    useBlueprintStore.setState({
+      selectedNodeId: 'gateway-api',
+      collabRoomActive: false,
+      collabPresence: EMPTY_COLLAB_PRESENCE,
+      collabComments: [],
+      persistedComments: [
+        {
+          id: 'c-side',
+          nodeEntityRef: 'cloud-infrastructure-workspace/gateway-api',
+          authorName: 'Ada',
+          authorClientId: 0,
+          authorKey: 'ada-stable',
+          body: 'saved locally',
+          createdAtMs: 1,
+          status: 'open',
+        },
+      ],
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        localAuthorKey: () => 'ada-stable',
+      },
+    });
+
+    render(<PropertyPanel />);
+
+    expect(screen.getByText('saved locally')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Resolve comment' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Delete comment' })).toBeInTheDocument();
   });
 
   it('keeps resolve and delete when the client id changes but the author key matches', () => {

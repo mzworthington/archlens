@@ -54,10 +54,15 @@ export function usePropertyPanelModel() {
     isSampleWorkspace,
     collabRoomActive,
     collabPresence,
+    collabSessionPort,
     collabComments,
+    persistedComments,
     addCollabComment,
     resolveCollabComment,
     deleteCollabComment,
+    addComment,
+    resolveComment,
+    deleteComment,
   } = useBlueprintStore();
 
   const [propKey, setPropKey] = useState('');
@@ -193,6 +198,10 @@ export function usePropertyPanelModel() {
     participant => participant.isLocal
   );
 
+  const isInRoom = collabRoomActive || collabPresence.connectedCount > 0;
+  // When in a room, Yjs is the live source of truth; outside a room use the persisted sidecar.
+  const visibleComments = isInRoom ? collabComments : persistedComments;
+
   return {
     schema,
     selectedNodeId,
@@ -256,13 +265,17 @@ export function usePropertyPanelModel() {
     handleDeleteSelectedNode,
     handleExternalChange,
     handleSafeguardChange,
-    collabRoomActive: collabRoomActive || collabPresence.connectedCount > 0,
+    collabRoomActive: isInRoom,
     collabComments,
+    visibleComments,
     localCollabClientId: localCollabParticipant?.clientId ?? null,
-    localCollabAuthorKey: localCollabParticipant?.authorKey ?? null,
+    localCollabAuthorKey: localCollabParticipant?.authorKey ?? collabSessionPort.localAuthorKey(),
     addCollabComment,
     resolveCollabComment,
     deleteCollabComment,
+    addComment,
+    resolveComment,
+    deleteComment,
   };
 }
 

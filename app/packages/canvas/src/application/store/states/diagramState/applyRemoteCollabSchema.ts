@@ -35,6 +35,9 @@ export function applyRemoteCollabDiagram(
       selectedEdgeId: null,
       focusedCyclePath: null,
     });
+    if (get().isWorkspaceOpen && !get().isSampleWorkspace) {
+      void get().loadPersistedComments(path);
+    }
   }
   applyRemoteCollabSchema(set, get, schema);
 }
