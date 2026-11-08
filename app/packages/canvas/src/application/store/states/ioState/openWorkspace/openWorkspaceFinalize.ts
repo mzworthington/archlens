@@ -1,6 +1,6 @@
 import type { SystemSchema, WorkspaceCatalogEntry } from '@archlens/core';
 import { assessSchemaVersion, resolveWorkspaceEntityRefs } from '@archlens/core';
-import type { WorkingCopyPort } from '../../../../../core';
+import type { WorkingCopyPort, WorkspacePort } from '../../../../../core';
 import { resolveSchemaOnWorkspaceOpen } from '../../../../workspace/schemaCompare';
 import {
   isWorkspaceOpenCurrent,
@@ -11,6 +11,7 @@ import type { ToastNotification } from '../../uiState';
 import type { BrowserGitHistoryStatus } from '../../../../analysis/browserGitStatus';
 import type { BlueprintStoreSet } from '../../../store';
 import type { LoadedSystem, WorkspaceOpenLogger } from './openWorkspaceTypes';
+import { loadCommentSidecar } from '../commentSidecarActions';
 
 export async function applyDiskFirstDraftResolution(
   resolvedSystems: LoadedSystem[],
@@ -91,6 +92,8 @@ export async function finalizeWorkspaceOpen(args: {
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   workingCopy: WorkingCopyPort;
+  /** When provided and not a sample workspace, comments are loaded from the sidecar. */
+  workspacePort?: WorkspacePort;
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
@@ -109,11 +112,23 @@ export async function finalizeWorkspaceOpen(args: {
     openGeneration,
     committedPorts,
     workingCopy,
+    workspacePort: explicitWorkspacePort,
     logger,
     setNotification,
     initSchema,
     set,
   } = args;
+
+  // Fall back to the port embedded in committedPorts when not passed explicitly.
+  const workspacePort: WorkspacePort | undefined =
+    explicitWorkspacePort ??
+    (committedPorts &&
+    typeof committedPorts === 'object' &&
+    'workspacePort' in committedPorts &&
+    committedPorts.workspacePort &&
+    typeof (committedPorts.workspacePort as WorkspacePort).readFile === 'function'
+      ? (committedPorts.workspacePort as WorkspacePort)
+      : undefined);
 
   if (openGeneration != null && !isWorkspaceOpenCurrent(openGeneration)) return false;
 
@@ -134,6 +149,12 @@ export async function finalizeWorkspaceOpen(args: {
 
   const entry = systems[0] ?? entryCandidate;
 
+  // Load persisted comments from the sidecar alongside the workspace open.
+  const sidecarDoc =
+    !isSampleWorkspace && workspacePort
+      ? await loadCommentSidecar(entry.path, workspacePort)
+      : null;
+
   set({
     ...committedPorts,
     isWorkspaceOpen: true,
@@ -151,6 +172,7 @@ export async function finalizeWorkspaceOpen(args: {
       [entry.path]: resolved.nodeRefMap[entry.path] || {},
     },
     currentFilePath: entry.path,
+    persistedComments: sidecarDoc ? Object.values(sidecarDoc.comments) : [],
   });
   initSchema(entry.schema);
 

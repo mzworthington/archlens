@@ -19,6 +19,7 @@ export * from './rules/dependencyCycles';
 export * from './rules/collabDocument';
 export * from './rules/collabWorkspace';
 export * from './rules/collabComments';
+export * from './rules/commentSidecar';
 export * from './rules/context';
 export * from './rules/iacImport/iacExternalSignificance';
 export * from './rules/workspaceExternals';

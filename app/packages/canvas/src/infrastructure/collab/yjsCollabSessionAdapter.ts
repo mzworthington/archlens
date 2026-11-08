@@ -492,6 +492,10 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     roomId() {
       return activeRoom;
     },
+
+    localAuthorKey() {
+      return authorKey;
+    },
   };
 
   return port;

@@ -286,6 +286,8 @@ export interface CollabSessionPort {
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
+  /** Stable author key stored in localStorage; available even outside a room. */
+  localAuthorKey(): string | null;
 }
 
 export const noopCollabSession: CollabSessionPort = {
@@ -301,6 +303,7 @@ export const noopCollabSession: CollabSessionPort = {
   leave: () => {},
   isActive: () => false,
   roomId: () => null,
+  localAuthorKey: () => null,
 };
 
 /** Opaque canvas graph change payloads (React Flow NodeChange / EdgeChange at the adapter). */
