@@ -202,8 +202,9 @@ export function usePropertyPanelModel() {
   const isInRoom = collabRoomActive || collabPresence.connectedCount > 0;
   // When in a room, Yjs is the live source of truth; outside a room use the persisted sidecar.
   const visibleComments = isInRoom ? collabComments : persistedComments;
-  // Comments cannot be persisted in sample or memory-scan workspaces; show read-only hint.
-  const commentsReadOnly = isSampleWorkspace || isMemoryScanWorkspace;
+  // Sample and memory-scan workspaces have no sidecar. A live room still syncs
+  // threads through Yjs, so the form stays open while the room is active.
+  const commentsReadOnly = !isInRoom && (isSampleWorkspace || isMemoryScanWorkspace);
 
   return {
     schema,
