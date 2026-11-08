@@ -60,19 +60,19 @@ export function useBlastRippleAnimation(
     }
     const totalDuration = (maxHop + 1) * BLAST_WAVE_MS + 50;
     const start = performance.now();
-    let raf = 0;
+    const raf = { id: 0 };
 
     const tick = (now: number) => {
       if (runIdRef.current !== runId) return;
       const elapsed = now - start;
       setElapsedMs(elapsed);
       if (elapsed < totalDuration) {
-        raf = requestAnimationFrame(tick);
+        raf.id = requestAnimationFrame(tick);
       }
     };
 
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    raf.id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf.id);
   }, [result, options.enabled, options.preferReducedMotion, options.liteCanvas]);
 
   return useMemo(() => {
