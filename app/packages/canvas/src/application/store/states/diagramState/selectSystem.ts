@@ -46,6 +46,7 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
 
     // Publish the path before focus emits comments, so those rows bind to this file.
     const focusLiveDiagram = (schema: DiagramStateDeps['schema'] | undefined): boolean => {
+      if (previousPath !== path) get().flushOpenRoomComments();
       set({ currentFilePath: path });
       const focused = get().collabSessionPort.focusDiagram(path, schema);
       if (!focused) set({ currentFilePath: previousPath });

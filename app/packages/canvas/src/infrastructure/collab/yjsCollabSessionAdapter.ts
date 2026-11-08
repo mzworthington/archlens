@@ -30,8 +30,10 @@ import { readCollabWorkspace, writeCollabDiagram } from './yjsWorkspaceProjectio
 import {
   deleteStoredComment,
   isDeletedComment,
+  mirrorNestedComments,
   readComments,
   resolveStoredComment,
+  syncLegacyCommentDeletes,
   writeComment,
   YJS_COMMENTS_MAP,
 } from './yjsCommentProjection';
@@ -158,7 +160,11 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
   const observeComments = (doc: Y.Doc) => {
     unobserveComments?.();
     const comments = doc.getMap(YJS_COMMENTS_MAP);
-    const listener = () => emitComments();
+    const listener: Parameters<Y.Map<unknown>['observeDeep']>[0] = (events, transaction) => {
+      syncLegacyCommentDeletes(doc, events, transaction.origin);
+      mirrorNestedComments(doc);
+      emitComments();
+    };
     comments.observeDeep(listener);
     unobserveComments = () => comments.unobserveDeep(listener);
   };

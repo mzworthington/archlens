@@ -512,4 +512,105 @@ describe('ioState collab comments', () => {
 
     useBlueprintStore.setState({ isWorkspaceOpen: false, persistedComments: [] });
   });
+
+  it('writes a peer comment to its sidecar when the room switches files', async () => {
+    const onContext: NodeComment = {
+      id: 'c-context',
+      nodeEntityRef: 'shop',
+      authorName: 'Ada',
+      authorClientId: 7,
+      authorKey: 'ada-stable',
+      body: 'on context',
+      createdAtMs: 1,
+      status: 'open',
+    };
+    const fromPeer: NodeComment = {
+      id: 'c-peer',
+      nodeEntityRef: 'shop',
+      authorName: 'Grace',
+      authorClientId: 8,
+      authorKey: 'grace-stable',
+      body: 'from a peer',
+      createdAtMs: 2,
+      status: 'open',
+    };
+    const onContainers: NodeComment = {
+      id: 'c-containers',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorClientId: 7,
+      authorKey: 'ada-stable',
+      body: 'on containers',
+      createdAtMs: 3,
+      status: 'open',
+    };
+    let onComments: ((comments: NodeComment[]) => void) | undefined;
+    const files: Record<string, string> = {
+      'context.comments.yaml': serializeCommentDocument({
+        comments: { 'c-context': onContext },
+      }),
+    };
+    const port: CollabSessionPort = {
+      ...noopCollabSession,
+      isActive: () => true,
+      localAuthorKey: () => 'ada-stable',
+      join: async args => {
+        onComments = args.onComments;
+        args.onPresence({ connectedCount: 2, cursors: [], participants: [] });
+        args.onComments?.([onContext]);
+      },
+      focusDiagram: next => {
+        onComments?.(next === 'containers.yaml' ? [onContainers] : [onContext, fromPeer]);
+        return true;
+      },
+      leave: () => {
+        onComments?.([]);
+      },
+    };
+    const containers: SystemSchema = {
+      ...seed,
+      name: 'Containers',
+      nodes: [{ entityRef: 'shop/api', type: 'rest-api', name: 'API' }],
+    };
+
+    useBlueprintStore.setState({
+      schema: seed,
+      currentFilePath: 'context.yaml',
+      isWorkspaceOpen: true,
+      isSampleWorkspace: false,
+      collabRoomActive: false,
+      collabComments: [],
+      persistedComments: [onContext],
+      loadedSystems: [
+        { path: 'context.yaml', name: 'Context', schema: seed },
+        { path: 'containers.yaml', name: 'Containers', schema: containers },
+      ],
+      workspacePort: {
+        ...noopWorkspace,
+        readFile: async path => {
+          const contents = files[path];
+          if (contents === undefined) throw new Error(`missing ${path}`);
+          return contents;
+        },
+        writeFile: async (path, contents) => {
+          files[path] = contents;
+          return true;
+        },
+      },
+      collabSessionPort: port,
+      applyRemoteCollabSchema: () => {},
+    });
+
+    await useBlueprintStore.getState().joinCollabRoom('room-1', 'Ada');
+    onComments?.([onContext, fromPeer]);
+    await useBlueprintStore.getState().selectSystem('containers.yaml');
+    useBlueprintStore.getState().leaveCollabRoom();
+
+    expect(files['context.comments.yaml']).toContain('from a peer');
+    expect(files['context.comments.yaml']).toContain('on context');
+    expect(files['containers.comments.yaml'] ?? '').not.toContain('from a peer');
+    expect(useBlueprintStore.getState().collabComments).toEqual([]);
+
+    useBlueprintStore.setState({ isWorkspaceOpen: false, persistedComments: [] });
+  });
 });

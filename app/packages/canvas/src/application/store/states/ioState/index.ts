@@ -122,6 +122,11 @@ export interface IoState {
   deleteComment: (id: string) => void;
   /** Load comments from the sidecar file for the given diagram path. */
   loadPersistedComments: (diagramPath: string) => Promise<void>;
+  /**
+   * Write the open diagram's live threads before a file switch replaces them.
+   * Remote rows never schedule their own sidecar flush.
+   */
+  flushOpenRoomComments: () => void;
 }
 
 type IoStateDeps = IoState & DiagramState & UiState;
@@ -336,6 +341,31 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       const roomId = collabSessionPort.roomId();
       const hostToken = roomId ? readCollabHostToken(roomId) : null;
       collabSessionPort.endRoom(hostToken);
+    },
+
+    flushOpenRoomComments: () => {
+      const flushPath = get().currentFilePath;
+      if (!flushPath || !get().collabSessionPort.isActive()) return;
+      const {
+        isWorkspaceOpen,
+        isSampleWorkspace,
+        workspacePort,
+        logger,
+        persistedComments,
+        collabComments,
+      } = get();
+      if (!isWorkspaceOpen || isSampleWorkspace) return;
+      const snapshot = commentsForDiagram(flushPath, collabComments);
+      const seen = new Set(roomCommentIdsSeen);
+      if (snapshot.length === 0 && seen.size === 0) return;
+      // Drop a queued flush that still holds the pre-switch snapshot.
+      roomSyncGeneration += 1;
+      const existingDoc: CollabCommentDocument = {
+        comments: Object.fromEntries(persistedComments.map(comment => [comment.id, comment])),
+      };
+      const merged = projectRoomComments(existingDoc, snapshot, seen);
+      set({ persistedComments: Object.values(merged.comments) });
+      void flushCommentSidecar(flushPath, merged, workspacePort, logger);
     },
 
     leaveCollabRoom: () => {
