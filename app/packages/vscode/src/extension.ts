@@ -4,7 +4,6 @@ import {
   copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,
-  openSource,
   showHotspots,
 } from './features/editorPreview';
 import { watchBlueprintProblems } from './infrastructure/blueprintDiagnostics';
@@ -56,9 +55,6 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
         return vscode.window.activeTextEditor;
       },
       showTextDocument: (document, column) => vscode.window.showTextDocument(document, column),
-      setStatusBarMessage: (message, hideAfterTimeout) => {
-        void vscode.window.setStatusBarMessage(message, hideAfterTimeout);
-      },
       createWebviewPanel: (viewType, title, column, options) =>
         vscode.window.createWebviewPanel(viewType, title, column, options),
     },
@@ -118,9 +114,6 @@ export function activate(context: vscode.ExtensionContext): void {
     }),
     vscode.commands.registerCommand('archlens.compareWithScan', (resource?: vscode.Uri) => {
       void run(() => compareWithScan, resource);
-    }),
-    vscode.commands.registerCommand('archlens.openSource', () => {
-      void run(() => openSource, undefined);
     }),
     vscode.commands.registerCommand('archlens.copyDiagram', () => {
       void run(() => copyDiagram, undefined);

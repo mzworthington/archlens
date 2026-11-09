@@ -1,0 +1,30 @@
+name: Lint Documentation
+
+on:
+  pull_request:
+    paths:
+      - '**.md'
+      - '.vale.ini'
+      - '.github/styles/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  vale:
+    name: Runner / Vale
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Run Vale Linter
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          version: 3.26.0
+          files: docs/tutorials,docs/how-to,docs/reference,docs/explanation,docs/guide/advicelens.md,docs/guide/chaos-spec.md,docs/guide/ci-workflows.md,docs/guide/collaborate.md,docs/guide/index.md,docs/guide/jobs.md,docs/guide/vscode.md,docs/advicelens-engine.md,docs/chaoslens-engine.md,docs/design-system.md,docs/journeys.md,docs/privacy.md
+          separator: ','
+          config: .vale.ini
+          reporter: github-pr-review
+          fail_on_error: true

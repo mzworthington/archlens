@@ -4,7 +4,7 @@
   "publisher": "mzworthington",
   "private": true,
   "version": "0.1.0",
-  "description": "Preview a BlueprintSpec file beside the YAML. Generating a diagram from the open folder is turned off in this preview.",
+  "description": "Preview a BlueprintSpec file beside the YAML. Generate diagram from workspace reviews Added, Changed and Removed systems before it writes.",
   "license": "MIT",
   "preview": true,
   "main": "./dist/extension.js",
@@ -33,7 +33,6 @@
     "onCommand:archlens.openArchitectureMap",
     "onCommand:archlens.generateFromWorkspace",
     "onCommand:archlens.compareWithScan",
-    "onCommand:archlens.openSource",
     "onCommand:archlens.copyDiagram",
     "onCommand:archlens.showHotspots",
     "onLanguage:yaml"
@@ -53,11 +52,6 @@
       {
         "command": "archlens.compareWithScan",
         "title": "Compare with a fresh scan",
-        "category": "ArchLens"
-      },
-      {
-        "command": "archlens.openSource",
-        "title": "Open source",
         "category": "ArchLens"
       },
       {
@@ -86,11 +80,6 @@
       ],
       "webview/context": [
         {
-          "command": "archlens.openSource",
-          "when": "webviewId == 'archlens.architectureMap'",
-          "group": "navigation"
-        },
-        {
           "command": "archlens.copyDiagram",
           "when": "webviewId == 'archlens.architectureMap'",
           "group": "navigation@2"
@@ -105,11 +94,6 @@
     "configuration": {
       "title": "ArchLens",
       "properties": {
-        "archlens.generateFromWorkspace.enabled": {
-          "type": "boolean",
-          "default": false,
-          "description": "Off asks you to tell us you want a diagram generated from this workspace. On reviews Added, Changed and Removed systems. Write blueprint saves that review. Keep current files writes nothing."
-        },
         "archlens.blueprintsFolder": {
           "type": "string",
           "default": "blueprints",
@@ -123,7 +107,6 @@
       "supported": "limited",
       "description": "ArchLens does not read this folder until the workspace is trusted.",
       "restrictedConfigurations": [
-        "archlens.generateFromWorkspace.enabled",
         "archlens.blueprintsFolder"
       ]
     }

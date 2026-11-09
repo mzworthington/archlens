@@ -15,7 +15,6 @@ import {
   REVIEW_NOTE,
   SCAN_FAILED_COPY,
   NO_LOWER_COPY,
-  NO_SOURCE_COPY,
   NOTHING_TO_COPY,
   blueprintProblems,
   chooseWorkspaceFolder,
@@ -23,7 +22,6 @@ import {
   decideCopyMermaid,
   decideDrill,
   decideOpenMap,
-  decideOpenSource,
   decideShowHotspots,
   foundLine,
   generateDecision,
@@ -35,7 +33,6 @@ import {
   reviewRows,
   supportedSourcePaths,
   systemsFromSourcePaths,
-  resolveSourceFile,
   safeBlueprintsFolder,
   sameEditorPath,
 } from './domain';
@@ -164,6 +161,22 @@ describe('open architecture map', () => {
     expect(safeBlueprintsFolder('../secrets')).toBe('blueprints');
     expect(safeBlueprintsFolder('nested/name')).toBe('blueprints');
     expect(safeBlueprintsFolder('')).toBe('blueprints');
+  });
+
+  it('keeps the filepath a scan stored on the system', () => {
+    const withFile = checkout.replace(
+      'name: Checkout API',
+      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
+    );
+    const decision = decideOpenMap({
+      files: [{ path: '/repo/blueprints/context.yaml', content: withFile }],
+    });
+
+    expect(decision.kind === 'diagram' && decision.diagram.systems[0]).toEqual({
+      name: 'Checkout API',
+      entityRef: 'checkout/api',
+      sourceFile: 'src/api.ts',
+    });
   });
 });
 
@@ -366,73 +379,6 @@ dependencies: []
       )
     ).toBe(true);
     expect(plan.diagram.systems.map(system => system.name)).toEqual(['api', 'catalog']);
-  });
-});
-
-describe('open source', () => {
-  it('keeps the filepath a scan stored on the system', () => {
-    const withFile = checkout.replace(
-      'name: Checkout API',
-      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
-    );
-    const decision = decideOpenMap({
-      files: [{ path: '/repo/blueprints/context.yaml', content: withFile }],
-    });
-
-    expect(decision.kind === 'diagram' && decision.diagram.systems[0]).toEqual({
-      name: 'Checkout API',
-      entityRef: 'checkout/api',
-      sourceFile: 'src/api.ts',
-    });
-  });
-
-  it('resolves a source file inside the workspace and rejects one that leaves it', () => {
-    expect(resolveSourceFile({ sourceFile: 'src/api.ts', workspaceRoot: '/repo' })).toBe(
-      '/repo/src/api.ts'
-    );
-    expect(resolveSourceFile({ sourceFile: 'src\\api.ts', workspaceRoot: 'C:\\repo' })).toBe(
-      'C:/repo/src/api.ts'
-    );
-    expect(resolveSourceFile({ sourceFile: '/repo/src/api.ts', workspaceRoot: '/repo' })).toBe(
-      '/repo/src/api.ts'
-    );
-    expect(
-      resolveSourceFile({ sourceFile: '../secret.ts', workspaceRoot: '/repo' })
-    ).toBeUndefined();
-    expect(resolveSourceFile({ sourceFile: '/other/secret.ts', workspaceRoot: '/repo' })).toBe(
-      undefined
-    );
-    expect(
-      resolveSourceFile({ sourceFile: '/repo-other/secret.ts', workspaceRoot: '/repo' })
-    ).toBeUndefined();
-  });
-
-  it('names the opened file and the system', () => {
-    expect(
-      decideOpenSource({
-        systemName: 'Checkout API',
-        sourceFile: 'src/api.ts',
-        resolvedPath: '/repo/src/api.ts',
-      })
-    ).toEqual({
-      kind: 'open',
-      path: '/repo/src/api.ts',
-      status: 'Opened /repo/src/api.ts from Checkout API.',
-    });
-  });
-
-  it('stays on the diagram when the system has no file in the workspace', () => {
-    expect(decideOpenSource({ systemName: 'Billing' })).toEqual({
-      kind: 'missing',
-      message: NO_SOURCE_COPY,
-    });
-    expect(NO_SOURCE_COPY).toBe('This system has no source file in the workspace.');
-    expect(
-      decideOpenSource({
-        systemName: 'Checkout API',
-        sourceFile: '../secret.ts',
-      })
-    ).toEqual({ kind: 'missing', message: NO_SOURCE_COPY });
   });
 });
 

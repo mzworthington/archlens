@@ -9,13 +9,11 @@ import {
   chooseWorkspaceFolder,
   decideCopyMermaid,
   decideOpenMap,
-  decideOpenSource,
   decideShowHotspots,
   foundLine,
   generateDecision,
   languagesInPaths,
   blueprintWritePlan,
-  resolveSourceFile,
   reviewRows,
   sameEditorPath,
   supportedSourcePaths,
@@ -181,42 +179,6 @@ async function reviewWorkspaceScan(
     return;
   }
   await host.showDiagram(plan.diagram);
-}
-
-export async function openSource(host: EditorHost): Promise<void> {
-  if (!host.isTrusted()) {
-    host.showMessage(TRUST_COPY);
-    return;
-  }
-
-  const focused = host.focusedSystem();
-  const resolved =
-    focused?.sourceFile && focused.workspaceRoot
-      ? resolveSourceFile({
-          sourceFile: focused.sourceFile,
-          workspaceRoot: focused.workspaceRoot,
-        })
-      : undefined;
-  const exists = resolved ? await host.fileExists(resolved) : false;
-  const decision = decideOpenSource({
-    systemName: focused?.name,
-    sourceFile: focused?.sourceFile,
-    resolvedPath: exists ? resolved : undefined,
-  });
-
-  switch (decision.kind) {
-    case 'open':
-      await host.openFile(decision.path);
-      host.setStatus(decision.status);
-      return;
-    case 'missing':
-      host.showMessage(decision.message);
-      return;
-    default: {
-      const unexpected: never = decision;
-      return unexpected;
-    }
-  }
 }
 
 export async function copyDiagram(host: EditorHost): Promise<void> {

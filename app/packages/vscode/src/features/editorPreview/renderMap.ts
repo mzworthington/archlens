@@ -60,9 +60,6 @@ function focusScript(nonce: string): string {
   return `<script nonce="${escapeHtml(nonce)}">
 const vscode = acquireVsCodeApi();
 for (const article of document.querySelectorAll('article[data-entity-ref]')) {
-  article.addEventListener('focus', () => {
-    vscode.postMessage({ type: 'focus-system', entityRef: article.getAttribute('data-entity-ref') });
-  });
   article.addEventListener('keydown', (event) => {
     if (event.key !== 'Enter') return;
     event.preventDefault();

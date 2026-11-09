@@ -10,18 +10,18 @@ For using ChaosLens in ArchLens Canvas, see the [product guide](./guide/chaoslen
 
 | Layer           | Location                            | Role                                                                                    |
 | --------------- | ----------------------------------- | --------------------------------------------------------------------------------------- |
-| **Go engine**   | `resilience-engine/`                | Blast radius, SPOF detection, Monte Carlo (P5/mean/P95)                                 |
+| **Go engine**   | `resilience-engine/`                | Blast radius, single point of failure detection, Monte Carlo P5, mean, and P95          |
 | **WASM bridge** | `resilience-engine/wasm/`           | `chaosLensSimulate` export for the browser                                              |
 | **TypeScript**  | `app/packages/core/src/resilience/` | `runResilienceSimulation`, WASM client, deterministic fallback when WASM is unavailable |
 
-When WASM is built and served from ArchLens Canvas (`/resilience-engine/chaoslens.wasm`), simulations run 1,000 jittered trials and report P5/P95 SLA bands. Without WASM, deterministic TypeScript propagation still runs.
+When ArchLens Canvas serves a built WASM module from `/resilience-engine/chaoslens.wasm`, simulations run 1,000 jittered trials and report P5 and P95 SLA bands. Without WASM, deterministic TypeScript propagation still runs.
 
 ---
 
 ## Prerequisites
 
-- Go 1.22+ (1.26 recommended)
-- Mise (repo root) - `mise run build-wasm` and `mise run test-go`
+- Go 1.22 or newer. Prefer Go 1.26.
+- Mise at the repo root, with `mise run build-wasm` and `mise run test-go`.
 
 ---
 
@@ -39,7 +39,7 @@ Or from `resilience-engine/`:
 make copy-wasm
 ```
 
-This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/canvas/public/resilience-engine/`. These artifacts are gitignored and built by CI (`pnpm build`) or on first `pnpm dev`. Restart or refresh ArchLens Canvas dev server after rebuilding.
+This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/canvas/public/resilience-engine/`. Git ignores these artifacts. CI builds them with `pnpm build`, or the first `pnpm dev` builds them. Restart or refresh the ArchLens Canvas dev server after rebuilding.
 
 ---
 
@@ -56,7 +56,7 @@ make build         # copy-wasm (WASM path used by Canvas)
 make all           # test + build
 ```
 
-`go test ./internal/sim` loads `blueprints/chaoslens-stress/large-graph-containers.yaml` and asserts default WASM Monte Carlo settings (`1000` iterations, `availabilityJitter` `0.12`) finish in under 5 seconds via both `sim.RunMonteCarlo` and `api.RunRequest` (the WASM bridge path).
+`go test ./internal/sim` loads `blueprints/chaoslens-stress/large-graph-containers.yaml` and asserts default WASM Monte Carlo settings, `1000` iterations and `availabilityJitter` `0.12`, finish in under 5 seconds. The check runs through both `sim.RunMonteCarlo` and `api.RunRequest`, which is the WASM bridge path.
 
 ---
 
@@ -68,17 +68,17 @@ The browser loads `wasm_exec.js` + `chaoslens.wasm` and calls:
 const json = chaosLensSimulate(JSON.stringify(request));
 ```
 
-Returns a JSON `SimulationResult` string (or `{"error":"..."}` on failure).
+Returns a JSON `SimulationResult` string, or `{"error":"..."}` on failure.
 
-Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schema + fault spec + optional `monteCarlo`).
+Request shape matches `@archlens/core/resilience` `WasmSimulationRequest`: schema, fault spec, and optional `monteCarlo`.
 
 ---
 
 ## CLI
 
-**Product headless path:** use ArchLens CLI AdviceLens - `archlens resilience` and `.github/actions/advicelens-gate` (see [AdviceLens](./guide/advicelens.md)). That runs ChaosLens simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise).
+**Product headless path:** use ArchLens CLI AdviceLens, `archlens resilience` and `.github/actions/advicelens-gate`. See [AdviceLens](./guide/advicelens.md). That runs ChaosLens simulation rules via `@archlens/core`. WASM runs when it's available, and TypeScript is the fallback.
 
-**Go stdin `chaoslens` binary:** planned (`make build-cli` / `cmd/chaoslens`) - not present in this repo yet. Do not treat it as shipping.
+**Go stdin `chaoslens` binary:** planned as `make build-cli` and `cmd/chaoslens`. It isn't in this repo yet. Don't treat it as shipping.
 
 ## Go package layout
 
@@ -105,9 +105,9 @@ const result = runResilienceSimulation(schema, {
 });
 ```
 
-Exports: `computeBlastRadius`, `computeIntegrityRadius`, `detectSpofs`, `faultSpec` types, `runResilienceSimulationAsync` (WASM path).
+Exports: `computeBlastRadius`, `computeIntegrityRadius`, `detectSpofs`, `faultSpec` types, and `runResilienceSimulationAsync` on the WASM path.
 
-`SimulationResult` includes availability (`heat`, `overallSla`) and data integrity (`integrityHeat`, `overallIntegrity`) as separate tracks. Monte Carlo jitter applies to availability only.
+`SimulationResult` includes availability, `heat` and `overallSla`, and data integrity, `integrityHeat` and `overallIntegrity`, as separate tracks. Monte Carlo jitter applies to availability only.
 
 Canvas state: `app/packages/canvas/src/application/store/states/resilienceState.ts`.
 

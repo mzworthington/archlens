@@ -41,12 +41,6 @@ export type ScanScopeChoice = 'workspace' | 'folder' | 'custom' | 'escape';
 export type ScanOutcome = 'ready' | 'cancelled' | 'failed';
 export type ReviewChoice = 'keep' | 'write' | 'escape';
 
-export interface FocusedSystem {
-  readonly name: string;
-  readonly sourceFile?: string;
-  readonly workspaceRoot?: string;
-}
-
 export interface EditorHost {
   isTrusted(): boolean;
   generateEnabled(): boolean;
@@ -64,10 +58,6 @@ export interface EditorHost {
   showEmptyMap(): void;
   askGenerateInterest(): Promise<GenerateChoice>;
   openDiscussion(url: string): Promise<void>;
-  focusedSystem(): FocusedSystem | undefined;
-  fileExists(path: string): Promise<boolean>;
-  openFile(path: string): Promise<void>;
-  setStatus(message: string): void;
   visibleSchema(): SystemSchema | undefined;
   writeClipboard(text: string): Promise<void>;
   visibleMap(): { readonly hotspotsOn: boolean; readonly workspaceRoot?: string } | undefined;

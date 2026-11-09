@@ -43,3 +43,23 @@ if [ "$NEEDS_APP_CHECKS" = true ] || [ "$NEEDS_DOCS_FORMAT" = true ]; then
   fi
   cd ..
 fi
+
+# Prose lint for staged Markdown. CI enforces the same config when Vale is absent locally.
+docs=$(git diff --cached --name-only --diff-filter=ACM | grep '\.md$' || true)
+
+if [ -n "$docs" ]; then
+  echo "Running Vale against staged documentation..."
+  if command -v vale >/dev/null 2>&1; then
+    printf '%s\n' "$docs" | tr '\n' '\0' | xargs -0 vale || {
+      echo "Vale linting failed. Fix style issues before committing."
+      exit 1
+    }
+  elif command -v mise >/dev/null 2>&1; then
+    printf '%s\n' "$docs" | tr '\n' '\0' | xargs -0 mise exec -- vale || {
+      echo "Vale linting failed. Fix style issues before committing."
+      exit 1
+    }
+  else
+    echo "Vale is not installed; prose lint skipped. CI still runs it."
+  fi
+fi

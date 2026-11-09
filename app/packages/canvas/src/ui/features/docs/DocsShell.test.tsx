@@ -27,7 +27,7 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
-  it('shows mobile section scrollers for Start, Surfaces and Tech', () => {
+  it('shows mobile section scrollers for Start, Learn, Surfaces and Tech', () => {
     render(
       <DocsShell>
         <p>content</p>
@@ -37,7 +37,15 @@ describe('DocsShell', () => {
     const startNav = screen.getByTestId('docs-mobile-start-nav');
     expect(startNav.parentElement).toHaveTextContent('Start');
     expect(within(startNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
-    expect(within(startNav).getByRole('link', { name: 'Getting started' })).toBeInTheDocument();
+    expect(
+      within(startNav).queryByRole('link', { name: 'Getting started' })
+    ).not.toBeInTheDocument();
+    const learnNav = screen.getByTestId('docs-mobile-learn-nav');
+    expect(learnNav.parentElement).toHaveTextContent('Learn');
+    expect(within(learnNav).getByRole('link', { name: 'Getting started' })).toHaveAttribute(
+      'href',
+      '/tutorials/getting-started'
+    );
     expect(within(startNav).getByRole('link', { name: 'Jobs for today' })).toBeInTheDocument();
     expect(
       within(startNav).getByRole('link', { name: 'Interface tour & journeys' })
@@ -77,7 +85,7 @@ describe('DocsShell', () => {
     expect(screen.queryByTestId('docs-mobile-guide-nav')).not.toBeInTheDocument();
   });
 
-  it('shows header hubs for Start, Surfaces and Tech', () => {
+  it('shows header hubs for Start, Learn, Surfaces and Tech', () => {
     render(
       <DocsShell>
         <p>content</p>
@@ -85,6 +93,10 @@ describe('DocsShell', () => {
     );
 
     expect(screen.getByRole('link', { name: 'Start' })).toHaveAttribute('href', '/guide');
+    expect(screen.getByRole('link', { name: 'Learn' })).toHaveAttribute(
+      'href',
+      '/tutorials/getting-started'
+    );
     expect(screen.getByRole('link', { name: 'Surfaces' })).toHaveAttribute('href', '/guide/canvas');
     expect(screen.getByRole('link', { name: 'Tech' })).toHaveAttribute('href', '/setup');
   });

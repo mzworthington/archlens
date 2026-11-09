@@ -1,12 +1,6 @@
 import type { SystemSchema } from '@archlens/core';
 import type { DiagramCrumb, DiagramView } from '../features/editorPreview/ports';
 
-export interface FocusedDiagramSystem {
-  readonly name: string;
-  readonly sourceFile?: string;
-  readonly workspaceRoot?: string;
-}
-
 interface OpenDiagram {
   readonly id: number;
   readonly systems: DiagramView['systems'];
@@ -17,8 +11,6 @@ interface OpenDiagram {
   readonly breadcrumb: readonly DiagramCrumb[];
   schema?: SystemSchema;
   hotspotsOn: boolean;
-  focusedEntityRef?: string;
-  focusedAt?: number;
 }
 
 export interface VisibleDiagram {
@@ -35,12 +27,11 @@ export interface SessionView {
   readonly diagram: DiagramView;
   readonly schema?: SystemSchema;
   readonly hotspotsOn: boolean;
+  readonly workspaceRoot?: string;
 }
 
 const sessions = new Map<number, OpenDiagram>();
 let generation = 0;
-let focusClock = 0;
-let activeId: number | undefined;
 let visibleId: number | undefined;
 
 export function openDiagramSession(
@@ -62,13 +53,11 @@ export function replaceDiagramSession(
 ): number {
   const existing = sessions.get(id);
   if (!existing) return openDiagramSession(diagram, workspaceRoot, schema);
-  const wasActive = activeId === id;
   sessions.set(id, {
     ...sessionFrom(id, diagram, workspaceRoot, schema ?? existing.schema),
     breadcrumb: diagram.breadcrumb ?? existing.breadcrumb,
     hotspotsOn: existing.hotspotsOn,
   });
-  if (wasActive) activeId = undefined;
   return id;
 }
 
@@ -85,7 +74,6 @@ export function showInSession(
     breadcrumb,
     hotspotsOn: existing.hotspotsOn,
   });
-  if (activeId === id) activeId = undefined;
   visibleId = id;
 }
 
@@ -110,6 +98,7 @@ export function readSessionView(id: number): SessionView | undefined {
   return {
     hotspotsOn: session.hotspotsOn,
     schema: session.schema,
+    ...(session.workspaceRoot ? { workspaceRoot: session.workspaceRoot } : {}),
     diagram: {
       sourcePath: session.sourcePath,
       level: session.level,
@@ -127,41 +116,13 @@ export function setSessionHotspots(id: number, on: boolean): void {
 }
 
 export function closeDiagramSession(id: number): void {
-  const wasActive = activeId === id;
   const wasVisible = visibleId === id;
   sessions.delete(id);
   if (wasVisible) visibleId = [...sessions.keys()].at(-1);
-  if (!wasActive) return;
-  activeId = latestFocusedSession();
-}
-
-export function focusDiagramSystem(sessionId: number, entityRef: string): void {
-  const session = sessions.get(sessionId);
-  if (!session?.systems.some(system => system.entityRef === entityRef)) return;
-  focusClock += 1;
-  session.focusedEntityRef = entityRef;
-  session.focusedAt = focusClock;
-  activeId = sessionId;
-  visibleId = sessionId;
-}
-
-export function readFocusedSystem(): FocusedDiagramSystem | undefined {
-  if (activeId === undefined) return undefined;
-  const session = sessions.get(activeId);
-  if (!session?.focusedEntityRef) return undefined;
-  const system = session.systems.find(item => item.entityRef === session.focusedEntityRef);
-  if (!system) return undefined;
-  return {
-    name: system.name,
-    ...(system.sourceFile ? { sourceFile: system.sourceFile } : {}),
-    ...(session.workspaceRoot ? { workspaceRoot: session.workspaceRoot } : {}),
-  };
 }
 
 export function resetDiagramSession(): void {
   generation = 0;
-  focusClock = 0;
-  activeId = undefined;
   visibleId = undefined;
   sessions.clear();
 }
@@ -188,17 +149,4 @@ function sessionFrom(
     ],
     ...(schema ? { schema } : {}),
   };
-}
-
-function latestFocusedSession(): number | undefined {
-  let bestId: number | undefined;
-  let bestAt = 0;
-  for (const session of sessions.values()) {
-    if (session.focusedEntityRef === undefined || session.focusedAt === undefined) continue;
-    if (bestId === undefined || session.focusedAt > bestAt) {
-      bestId = session.id;
-      bestAt = session.focusedAt;
-    }
-  }
-  return bestId;
 }

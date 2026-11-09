@@ -42,14 +42,13 @@ describe('marketplace pre-release', () => {
     expect(manifest.preview).toBe(true);
     expect(manifest.private).toBe(true);
     expect(manifest.description).toContain('Preview a BlueprintSpec file');
-    expect(manifest.description).toContain('turned off in this preview');
+    expect(manifest.description).not.toContain('turned off');
     expect(manifest.scripts['package:pre-release']).toContain('--pre-release');
     expect(manifest.scripts['package:pre-release']).not.toContain('publish');
     expect(manifest.contributes.commands.map(command => command.title)).toEqual([
       'Open architecture map',
       'Generate diagram from workspace',
       'Compare with a fresh scan',
-      'Open source',
       'Copy diagram as Mermaid',
       'Show hotspots',
     ]);
@@ -57,17 +56,17 @@ describe('marketplace pre-release', () => {
       'onCommand:archlens.openArchitectureMap',
       'onCommand:archlens.generateFromWorkspace',
       'onCommand:archlens.compareWithScan',
-      'onCommand:archlens.openSource',
       'onCommand:archlens.copyDiagram',
       'onCommand:archlens.showHotspots',
       'onLanguage:yaml',
     ]);
   });
 
-  it('ships generate-from-workspace off and refuses to read an untrusted folder', () => {
+  it('ships no generate-from-workspace setting and refuses to read an untrusted folder', () => {
     expect(
       manifest.contributes.configuration.properties['archlens.generateFromWorkspace.enabled']
-    ).toEqual(expect.objectContaining({ type: 'boolean', default: false }));
+    ).toBeUndefined();
+    expect(JSON.stringify(manifest.capabilities)).not.toContain('generateFromWorkspace.enabled');
     expect(manifest.capabilities.untrustedWorkspaces.supported).toBe('limited');
     expect(manifest.capabilities.untrustedWorkspaces.description).toBe(
       'ArchLens does not read this folder until the workspace is trusted.'

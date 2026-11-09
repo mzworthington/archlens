@@ -1,11 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
   EMPTY_MAP_COPY,
-  INTEREST_DISCUSSION_URL,
   NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_LOWER_COPY,
-  NO_SOURCE_COPY,
   REVIEW_NOTE,
   TRUST_COPY,
   UNSAVED_BLUEPRINT_COPY,
@@ -15,7 +13,6 @@ import {
   compareWithScan,
   generateFromWorkspace,
   openArchitectureMap,
-  openSource,
   showHotspots,
 } from '../features/editorPreview/handler';
 import { resetDiagramSession } from './diagramSession';
@@ -72,8 +69,6 @@ function editor(input: {
   const html: string[] = [];
   const opened: string[] = [];
   const copied: string[] = [];
-  const statuses: string[] = [];
-  const statusTimeouts: number[] = [];
   const patterns: { base: string; pattern: string }[] = [];
   const panels: {
     onMessage?: (message: unknown) => void;
@@ -189,10 +184,6 @@ function editor(input: {
         calls.push(`text:${column}`);
         calls.push(`show:${document.uri.fsPath}`);
       },
-      setStatusBarMessage: (message, hideAfterTimeout) => {
-        statuses.push(message);
-        statusTimeouts.push(hideAfterTimeout);
-      },
       createWebviewPanel: (_viewType, _title, column, options) => {
         calls.push(`panel:${column}`);
         calls.push(`scripts:${options.enableScripts}`);
@@ -240,19 +231,8 @@ function editor(input: {
     files,
     opened,
     copied,
-    statuses,
-    statusTimeouts,
     patterns,
-    focus: (entityRef: string) => {
-      panels.at(-1)?.onMessage?.({ type: 'focus-system', entityRef });
-    },
     send: (message: unknown) => panels.at(-1)?.onMessage?.(message),
-    focusPanel: (index: number, entityRef: string) => {
-      panels[index]?.onMessage?.({ type: 'focus-system', entityRef });
-    },
-    closePanel: (index: number) => {
-      panels[index]?.onDispose?.();
-    },
     save: (path: string, content: string) => {
       onSave?.({ uri: { fsPath: path }, getText: () => content });
     },
@@ -555,6 +535,25 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).not.toContain('Hotspot');
   });
 
+  it('reviews the workspace when a generate setting would say off', async () => {
+    const fake = editor({
+      trusted: true,
+      enabled: false,
+      scope: 'workspace',
+      confirmGenerate: true,
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/src/catalog.ts', content: 'export {}' },
+      ],
+    });
+    const host = await createEditorHost(fake.api);
+
+    await generateFromWorkspace(host);
+
+    expect(fake.calls).toContain('message:Review blueprint changes');
+    expect(fake.opened).toEqual([]);
+  });
+
   it('reviews source files when generation is on and writes nothing', async () => {
     const fake = editor({
       trusted: true,
@@ -621,14 +620,14 @@ describe('editor host', () => {
     expect(fake.html).toEqual([]);
   });
 
-  it('asks the interest prompt for compare while generation is off', async () => {
+  it('compares with a fresh scan when a generate setting would say off', async () => {
     const fake = editor({ trusted: true, enabled: false, choice: 'escape' });
     const host = await createEditorHost(fake.api);
 
     await compareWithScan(host);
 
-    expect(fake.calls).toContain('message:Generate diagram from workspace');
-    expect(fake.calls).not.toContain('findFiles');
+    expect(fake.calls).toContain('findFiles');
+    expect(fake.calls).not.toContain('message:Generate diagram from workspace');
   });
 
   it('does not scan a compare while the open blueprint is unsaved', async () => {
@@ -725,128 +724,24 @@ dependencies: []
     expect(fake.calls.some(call => call.startsWith('message:Review'))).toBe(false);
   });
 
-  it('opens the discussion from Tell us you want this and reads no blueprint', async () => {
+  it('does not open the interest discussion when generating', async () => {
     const fake = editor({ trusted: true, choice: 'Tell us you want this' });
     const host = await createEditorHost(fake.api);
 
     await generateFromWorkspace(host);
 
-    expect(fake.opened).toEqual([INTEREST_DISCUSSION_URL]);
-    expect(fake.calls).not.toContain('findFiles');
+    expect(fake.opened).toEqual([]);
+    expect(fake.calls).toContain('findFiles');
   });
 
-  it('does not open the discussion when the prompt is dismissed', async () => {
+  it('does not open the interest discussion when the scope picker is dismissed', async () => {
     const fake = editor({ trusted: true, choice: 'escape' });
     const host = await createEditorHost(fake.api);
 
     await generateFromWorkspace(host);
 
     expect(fake.opened).toEqual([]);
-    expect(fake.calls).not.toContain('findFiles');
-  });
-
-  it('opens the source file for the focused system', async () => {
-    const source = checkout.replace(
-      'name: Checkout API',
-      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
-    );
-    const fake = editor({
-      trusted: true,
-      files: [
-        { path: '/repo/blueprints/context.yaml', content: source },
-        { path: '/repo/src/api.ts', content: 'export {}' },
-      ],
-    });
-    await openArchitectureMap(await createEditorHost(fake.api));
-    fake.focus('checkout/api');
-
-    await openSource(await createEditorHost(fake.api));
-
-    expect(fake.calls).toContain('scripts:true');
-    expect(fake.calls).toContain('show:/repo/src/api.ts');
-    expect(fake.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
-    expect(fake.statusTimeouts).toEqual([5000]);
-  });
-
-  it('opens the source for the map that was focused when another map is open', async () => {
-    const fake = editor({
-      trusted: true,
-      files: [
-        { path: '/repo/src/checkout.ts', content: 'export {}' },
-        { path: '/repo/src/billing.ts', content: 'export {}' },
-      ],
-    });
-    const host = await createEditorHost(fake.api);
-    await host.showDiagram({
-      sourcePath: '/repo/blueprints/checkout.yaml',
-      level: 'context',
-      systems: [{ name: 'Checkout API', entityRef: 'shared', sourceFile: 'src/checkout.ts' }],
-      links: [],
-    });
-    await host.showDiagram({
-      sourcePath: '/repo/blueprints/billing.yaml',
-      level: 'context',
-      systems: [{ name: 'Billing API', entityRef: 'shared', sourceFile: 'src/billing.ts' }],
-      links: [],
-    });
-
-    fake.focusPanel(0, 'shared');
-    await openSource(host);
-    fake.focusPanel(1, 'shared');
-    await openSource(host);
-    fake.closePanel(1);
-    await openSource(host);
-
-    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([
-      'show:/repo/src/checkout.ts',
-      'show:/repo/src/billing.ts',
-      'show:/repo/src/checkout.ts',
-    ]);
-  });
-
-  it('does not open a stale source after the focused blueprint is saved', async () => {
-    const source = checkout.replace(
-      'name: Checkout API',
-      'name: Checkout API\n    properties:\n      filepath: src/api.ts'
-    );
-    const fake = editor({
-      trusted: true,
-      files: [
-        { path: '/repo/blueprints/context.yaml', content: source },
-        { path: '/repo/src/api.ts', content: 'export {}' },
-      ],
-    });
-    const host = await createEditorHost(fake.api);
-    await openArchitectureMap(host);
-    fake.focus('checkout/api');
-    fake.save(
-      '/repo/blueprints/context.yaml',
-      source
-        .replace('name: Checkout API', 'name: Payments API')
-        .replace('filepath: src/api.ts', 'filepath: src/next.ts')
-    );
-
-    await openSource(host);
-
-    expect(fake.html.at(-1)).toContain('Payments API');
-    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
-    expect(fake.calls.filter(call => call.startsWith('show:/repo/src/'))).toEqual([]);
-  });
-
-  it('does not open a file when the focused system has none', async () => {
-    const fake = editor({
-      trusted: true,
-      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
-    });
-    await openArchitectureMap(await createEditorHost(fake.api));
-    fake.focus('checkout/billing');
-
-    await openSource(await createEditorHost(fake.api));
-
-    expect(fake.calls).toContain(`message:${NO_SOURCE_COPY}`);
-    expect(fake.calls.filter(call => call.startsWith('show:'))).toEqual([
-      'show:/repo/blueprints/context.yaml',
-    ]);
+    expect(fake.calls).toContain('findFiles');
   });
 
   it('does not read the folder when Generate runs untrusted', async () => {

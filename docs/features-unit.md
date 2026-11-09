@@ -5153,15 +5153,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ publishes a cycle on open and clears it after the file is fixed
 - ✅ adds nothing for YAML that is not a blueprint and nothing while untrusted
 
-### diagramSession
-
-#### diagram session
-
-- ✅ keeps an older map focused when a newer map opens and closes
-- ✅ follows the map that received a shared entity ref
-- ✅ ignores focus sent to a closed map
-- ✅ clears focus for a map whose blueprint was replaced
-
 ### domain
 
 #### blueprint problems
@@ -5205,13 +5196,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reports an empty folder when nothing in blueprints validates
 - ✅ leaves a selected file that is not a blueprint in the text editor
 - ✅ ignores a blueprint folder name that could escape the workspace
-
-#### open source
-
 - ✅ keeps the filepath a scan stored on the system
-- ✅ resolves a source file inside the workspace and rejects one that leaves it
-- ✅ names the opened file and the system
-- ✅ stays on the diagram when the system has no file in the workspace
 
 #### show hotspots
 
@@ -5257,13 +5242,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows the systems from the blueprint in a trusted folder
 - ✅ says there is no map when the trusted folder has no blueprint
 - ✅ does not merge several workspace folders into one map
-
-#### open source command
-
-- ✅ does not open a file while the workspace is untrusted
-- ✅ opens the file the focused system points at and names it in the status
-- ✅ leaves the diagram in place when the focused system has no source file
-- ✅ does not open a path outside the workspace
 
 #### show hotspots command
 
@@ -5318,10 +5296,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not scan when the scope picker is dismissed
 - ✅ opens the discussion from Tell us you want this and reads no blueprint
 - ✅ does not open the discussion when the prompt is dismissed
-- ✅ opens the source file for the focused system
-- ✅ opens the source for the map that was focused when another map is open
-- ✅ does not open a stale source after the focused blueprint is saved
-- ✅ does not open a file when the focused system has none
 - ✅ does not read the folder when Generate runs untrusted
 
 ## Reporters

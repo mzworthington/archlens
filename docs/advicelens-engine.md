@@ -8,17 +8,17 @@ For using AdviceLens in ArchLens Canvas and the CLI, see the [product guide](./g
 
 ## Stack
 
-| Layer                 | Location                                                               | Role                                                        |
-| --------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Eligibility**       | `app/packages/core/src/recommendations/resilienceAdviceEligibility.ts` | Diagram-level gating and roll-up scope                      |
-| **Core orchestrator** | `app/packages/core/src/recommendations/buildRecommendations.ts`        | Merges resilience, forensics, refactor builders             |
-| **Estate runner**     | `app/packages/core/src/recommendations/runEstateResilience.ts`         | Multi-diagram worst-case simulation + ranked output         |
-| **Scenario library**  | `app/packages/core/src/recommendations/estateScenarios.ts`             | Default headless chaos scenarios per diagram                |
-| **Narration (stub)**  | `app/packages/core/src/recommendations/narrateRecommendations.ts`      | Phase 5 LLM contract; identity pass without narrator        |
-| **Canvas adapter**    | `app/packages/canvas/src/application/recommendations/`                 | `buildDiagramRecommendations`, `buildEstateRecommendations` |
-| **CLI**               | `app/packages/cli/src/cli/resilienceRun.ts`                            | `archlens resilience` estate sweep + gate                   |
-| **Artifact / gate**   | `app/packages/core/src/recommendations/adviceLensArtifact.ts`          | Versioned JSON/YAML report + `evaluateAdviceLensGate`       |
-| **CI action**         | `.github/actions/advicelens-gate/`                                     | PR SLA gate + artifact upload                               |
+| Layer                 | Location                                                               | Role                                                                     |
+| --------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **Eligibility**       | `app/packages/core/src/recommendations/resilienceAdviceEligibility.ts` | Diagram-level gating and roll-up scope                                   |
+| **Core orchestrator** | `app/packages/core/src/recommendations/buildRecommendations.ts`        | Merges resilience, forensics, refactor builders                          |
+| **Estate runner**     | `app/packages/core/src/recommendations/runEstateResilience.ts`         | Multi-diagram worst-case simulation + ranked output                      |
+| **Scenario library**  | `app/packages/core/src/recommendations/estateScenarios.ts`             | Default headless chaos scenarios per diagram                             |
+| **Narration stub**    | `app/packages/core/src/recommendations/narrateRecommendations.ts`      | Phase 5 large language model contract. Identity pass without a narrator. |
+| **Canvas adapter**    | `app/packages/canvas/src/application/recommendations/`                 | `buildDiagramRecommendations`, `buildEstateRecommendations`              |
+| **CLI**               | `app/packages/cli/src/cli/resilienceRun.ts`                            | `archlens resilience` estate sweep + gate                                |
+| **Artifact / gate**   | `app/packages/core/src/recommendations/adviceLensArtifact.ts`          | Versioned JSON/YAML report + `evaluateAdviceLensGate`                    |
+| **CI action**         | `.github/actions/advicelens-gate/`                                     | PR SLA gate + artifact upload                                            |
 
 ---
 
@@ -49,16 +49,16 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ### Builders
 
-| Function                           | Source signals                                |
-| ---------------------------------- | --------------------------------------------- |
-| `buildResilienceRecommendations()` | ChaosLens simulation (SPOFs, heat, integrity) |
-| `buildForensicsRecommendations()`  | TraceLens hotspot × blast composite risk      |
-| `buildRefactorRecommendations()`   | TraceLens refactor boundary clusters          |
+| Function                           | Source signals                                                      |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| `buildResilienceRecommendations()` | ChaosLens simulation: single points of failure, heat, and integrity |
+| `buildForensicsRecommendations()`  | TraceLens hotspot × blast composite risk                            |
+| `buildRefactorRecommendations()`   | TraceLens refactor boundary clusters                                |
 
 ### Types
 
 - `Recommendation` - `id`, `kind`, `source`, `priority`, `evidence`, `actions`, optional `narration`
-- `Recommendation.source` - `'chaoslens' | 'tracelens'` (signal provenance, not narration)
+- `Recommendation.source` is `'chaoslens' | 'tracelens'`, which is signal provenance, not narration.
 - `RecommendationNarration` - `provider: 'adviceLens'`, `detail`, `citations`, optional `model`
 
 - `RecommendationEvidence.applicabilityScope` - container scope and optional code-level contributor for roll-up
@@ -68,28 +68,28 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ## Resilience advice eligibility
 
-Advice targets are **owned application software** - not human actors, third-party vendors, shared data stores, brokers or IaC-imported resources.
+Advice targets the application software you own. Targets aren't human actors, third-party vendors, shared data stores, brokers, or IaC-imported resources.
 
-| Function                                        | Purpose                                                                                                |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `isEstateResilienceDiagramLevel(level)`         | `context` / `container` only for estate chaos sweeps                                                   |
-| `isResilienceAdviceTarget(schema, entityRef)`   | Calling services/workers you control; excludes actors, vendors, structural roles, data stores, brokers |
-| `isAdviceActionable(schema, entityRef)`         | Whether AdviceLens may prescribe implementation actions (alias of resilience eligibility today)        |
-| `isThirdPartyDependency(schema, entityRef)`     | Whether a dependency is a vendor/SaaS outside your control (`properties.classification: third-party`)  |
-| `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets                   |
-| `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                                    |
+| Function                                        | Purpose                                                                                                         |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `isEstateResilienceDiagramLevel(level)`         | `context` and `container` only for estate chaos sweeps                                                          |
+| `isResilienceAdviceTarget(schema, entityRef)`   | Calling services and workers you control. Excludes actors, vendors, structural roles, data stores, and brokers. |
+| `isAdviceActionable(schema, entityRef)`         | Whether AdviceLens may prescribe implementation actions. Today this is an alias of resilience eligibility.      |
+| `isThirdPartyDependency(schema, entityRef)`     | Whether a dependency is a vendor or SaaS outside your control, via `properties.classification: third-party`.    |
+| `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets                            |
+| `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                                             |
 
-**Ownership vs diagram proxy:** `external: true` marks a **workspace proxy** (homded on another diagram). Add `properties.classification: third-party` for vendors you cannot modify - AdviceLens still targets **your callers**, but copy and evidence cite `dependencyOwnership: third-party`. Canvas labels: `(Workspace)` vs `(Third-party)`.
+**Ownership vs diagram proxy:** `external: true` marks a **workspace proxy** homed on another diagram. Add `properties.classification: third-party` for vendors you can't modify. AdviceLens still targets **your callers**, but copy and evidence cite `dependencyOwnership: third-party`. Canvas labels are `Workspace` and `Third-party`.
 
 **Human actors:** C4 `person` nodes and `properties.role: product-persona` are never safeguard or refactor targets.
 
-Component/code diagrams still receive TraceLens refactor and rolled-up composite-risk recommendations; they do not run default estate chaos scenarios.
+Component and code diagrams still receive TraceLens refactor and rolled-up composite-risk recommendations. They don't run default estate chaos scenarios.
 
 ---
 
 ## Evidence citations
 
-`listEvidenceCitations(evidence)` produces stable keys for narration grounding, e.g.:
+`listEvidenceCitations(evidence)` produces stable keys for narration grounding, for example:
 
 - `compositeRiskScore:0.42`
 - `blastRadius:0.82`
@@ -102,7 +102,7 @@ Phase 5 narrators should only cite keys present in this list.
 
 ## Estate scenarios
 
-Default scenarios per diagram (`buildDefaultEstateScenarios`):
+Default scenarios per diagram, from `buildDefaultEstateScenarios`.
 
 | Kind              | Fault                                    | Purpose                     |
 | ----------------- | ---------------------------------------- | --------------------------- |
@@ -134,7 +134,7 @@ Key files:
 ## Product naming
 
 - **AdviceLens** - user-facing product name for the recommendation layer
-- **AdviceLens Core** - deterministic ranking (CI-safe)
-- **AdviceLens Narration** - optional LLM enrichment (Phase 5)
+- **AdviceLens Core** is deterministic ranking, and it's safe for CI.
+- **AdviceLens Narration** is optional large language model enrichment, Phase 5.
 
-Do not confuse with CLI `productName` in system discovery - that hub slug is for monorepo context diagrams only.
+Don't confuse this with CLI `productName` in system discovery. That hub slug is for monorepo context diagrams only.

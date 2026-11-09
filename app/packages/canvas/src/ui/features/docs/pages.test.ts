@@ -117,17 +117,16 @@ describe('docs link resolution', () => {
   });
 
   it('groups docs nav into Start/Surfaces/Tech hubs and sidebar', () => {
-    expect(DOCS_NAV.map(i => i.label)).toEqual(['Start', 'Surfaces', 'Tech']);
-    expect(DOCS_SIDEBAR.map(s => s.title)).toEqual(['Start', 'Surfaces', 'Tech']);
+    expect(DOCS_NAV.map(i => i.label)).toEqual(['Start', 'Learn', 'Surfaces', 'Tech']);
+    expect(DOCS_SIDEBAR.map(s => s.title)).toEqual(['Start', 'Learn', 'Surfaces', 'Tech']);
     const start = DOCS_SIDEBAR.find(s => s.title === 'Start');
     const surfaces = DOCS_SIDEBAR.find(s => s.title === 'Surfaces');
     const tech = DOCS_SIDEBAR.find(s => s.title === 'Tech');
-    expect(start?.items.map(i => i.path)).toEqual([
-      '/guide',
-      '/guide/getting-started',
-      '/guide/jobs',
-      '/journeys',
-    ]);
+    expect(start?.items.map(i => i.path)).toEqual(['/guide', '/guide/jobs', '/journeys']);
+    expect(DOCS_SIDEBAR.find(s => s.title === 'Learn')?.items[0]).toEqual({
+      label: 'Getting started',
+      path: '/tutorials/getting-started',
+    });
     expect(surfaces?.items.at(-2)).toEqual({ label: 'BlueprintSpec', path: '/guide/schema' });
     expect(surfaces?.items.at(-1)).toEqual({ label: 'ChaosSpec', path: '/guide/chaos-spec' });
     expect(tech?.items.map(i => i.label)).toContain('Design system');
@@ -139,7 +138,12 @@ describe('docs link resolution', () => {
     const surfaces = DOCS_NAV.find(i => i.label === 'Surfaces')!;
     const tech = DOCS_NAV.find(i => i.label === 'Tech')!;
     expect(isDocsNavActive('/guide', start)).toBe(true);
-    expect(isDocsNavActive('/guide/getting-started', start)).toBe(true);
+    const learn = DOCS_NAV.find(i => i.label === 'Learn')!;
+    expect(isDocsNavActive('/guide/getting-started', start)).toBe(false);
+    expect(isDocsNavActive('/guide/getting-started', learn)).toBe(true);
+    expect(isDocsNavActive('/tutorials/getting-started', learn)).toBe(true);
+    expect(isDocsNavActive('/reference/cli', learn)).toBe(true);
+    expect(isDocsNavActive('/reference/cli', surfaces)).toBe(false);
     expect(isDocsNavActive('/guide/jobs', start)).toBe(true);
     expect(isDocsNavActive('/journeys', start)).toBe(true);
     expect(isDocsNavActive('/guide/canvas', start)).toBe(false);

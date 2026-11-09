@@ -42,9 +42,7 @@ import type {
 } from '../features/editorPreview/ports';
 import {
   closeDiagramSession,
-  focusDiagramSystem,
   openDiagramSession,
-  readFocusedSystem,
   readSessionView,
   readVisibleDiagram,
   replaceDiagramSession,
@@ -120,7 +118,6 @@ export interface VsCodeLike<
     ): Thenable<T>;
     activeTextEditor: { document: Document } | undefined;
     showTextDocument(document: Document, column: number): Thenable<unknown>;
-    setStatusBarMessage(message: string, hideAfterTimeout: number): void;
     createWebviewPanel(
       viewType: string,
       title: string,
@@ -134,7 +131,6 @@ export interface VsCodeLike<
   };
 }
 
-const STATUS_HIDE_MS = 5000;
 const panelPainters = new Map<number, () => void>();
 
 export async function createEditorHost<Uri extends FileUri>(
@@ -145,10 +141,7 @@ export async function createEditorHost<Uri extends FileUri>(
 
   return {
     isTrusted: () => api.workspace.isTrusted,
-    generateEnabled: () =>
-      api.workspace
-        .getConfiguration('archlens')
-        .get<boolean>('generateFromWorkspace.enabled', false) === true,
+    generateEnabled: () => true,
     selectedPath: () => selection.filePath,
     selectedFolder: () => selection.folderPath,
     hintPath: () => selection.hintPath,
@@ -165,15 +158,6 @@ export async function createEditorHost<Uri extends FileUri>(
     askGenerateInterest: () => askGenerateInterest(api),
     openDiscussion: async url => {
       await api.env.openExternal(api.Uri.parse(url));
-    },
-    focusedSystem: () => readFocusedSystem(),
-    fileExists: path => fileExists(api, path),
-    openFile: async path => {
-      const document = await api.workspace.openTextDocument(api.Uri.file(path));
-      await api.window.showTextDocument(document, api.ViewColumn.Active);
-    },
-    setStatus: message => {
-      api.window.setStatusBarMessage(message, STATUS_HIDE_MS);
     },
     visibleSchema: () => readVisibleDiagram()?.schema,
     writeClipboard: async text => {
@@ -372,16 +356,11 @@ async function onPanelMessage<Uri extends FileUri>(
   message: unknown,
   paint: () => void
 ): Promise<void> {
-  const focus = focusEntity(message);
-  if (focus) {
-    focusDiagramSystem(shown.session, focus);
-    return;
-  }
   const action = panelAction(message);
   if (!action) return;
-  const visible = readVisibleDiagram();
-  if (!visible || visible.id !== shown.session) return;
-  const root = visible.workspaceRoot;
+  const view = readSessionView(shown.session);
+  if (!view) return;
+  const root = view.workspaceRoot;
   if (!root) {
     if (action.type === 'drill') {
       void api.window.showInformationMessage(NO_LOWER_COPY, {});
@@ -393,15 +372,15 @@ async function onPanelMessage<Uri extends FileUri>(
     const decision = decideDrill({
       files,
       focusedEntityRef: action.entityRef,
-      currentPath: visible.sourcePath,
+      currentPath: view.diagram.sourcePath,
     });
     if (decision.kind === 'none') {
       void api.window.showInformationMessage(decision.message, {});
       return;
     }
-    const system = visible.systems.find(item => item.entityRef === action.entityRef);
+    const system = view.diagram.systems.find(item => item.entityRef === action.entityRef);
     const breadcrumb = [
-      ...visible.breadcrumb,
+      ...(view.diagram.breadcrumb ?? []),
       { name: system?.name ?? decision.schema.name, sourcePath: decision.diagram.sourcePath },
     ];
     showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
@@ -410,7 +389,7 @@ async function onPanelMessage<Uri extends FileUri>(
     return;
   }
   const decision = decideBack({
-    breadcrumb: visible.breadcrumb,
+    breadcrumb: view.diagram.breadcrumb ?? [],
     files,
     ...(action.type === 'breadcrumb' ? { sourcePath: action.sourcePath } : {}),
   });
@@ -439,11 +418,6 @@ function schemaFrom(content: string): SystemSchema | undefined {
   } catch {
     return undefined;
   }
-}
-
-function focusEntity(message: unknown): string | undefined {
-  if (!isRecord(message) || message.type !== 'focus-system') return undefined;
-  return typeof message.entityRef === 'string' ? message.entityRef : undefined;
 }
 
 function panelAction(
@@ -486,18 +460,6 @@ function workspaceRootFor<Uri extends FileUri>(
     })
     .sort((left, right) => right.length - left.length);
   return matches[0];
-}
-
-async function fileExists<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  path: string
-): Promise<boolean> {
-  try {
-    const stat = await api.workspace.fs.stat(api.Uri.file(path));
-    return (stat.type & api.FileType.File) !== 0;
-  } catch {
-    return false;
-  }
 }
 
 async function listSourceFiles<Uri extends FileUri>(

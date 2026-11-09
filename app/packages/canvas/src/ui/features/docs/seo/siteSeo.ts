@@ -54,6 +54,35 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     description:
       'Install ArchLens CLI, generate BlueprintSpec from your repo and open the diagrams in Canvas.',
   },
+  '/tutorials/getting-started': {
+    headline: 'Getting started with ArchLens',
+    description:
+      'Scan a repository into BlueprintSpec and open the first diagram in ArchLens Canvas.',
+  },
+  '/reference/cli': {
+    headline: 'CLI reference',
+    description: 'ArchLens CLI commands, flags, defaults, environment variables, and exit codes.',
+  },
+  '/reference/config-schema': {
+    headline: 'Config schema',
+    description:
+      'blueprint.config.json keys for scan scope, monorepo systems, and TraceLens thresholds.',
+  },
+  '/how-to/github-actions-c4': {
+    headline: 'Generate container diagrams in GitHub Actions',
+    description:
+      'Install the ArchLens CLI in GitHub Actions and upload BlueprintSpec diagrams from a pull request.',
+  },
+  '/how-to/monorepo-boundaries': {
+    headline: 'Configure monorepo boundaries',
+    description:
+      'Set blueprint.config.json systems and rollupModules so a monorepo scan keeps the boundaries you named.',
+  },
+  '/explanation/architecture-concepts': {
+    headline: 'Architecture concepts',
+    description:
+      'How ArchLens maps C4 levels onto BlueprintSpec entityRef, and why the scan reads source text.',
+  },
   '/guide/jobs': {
     headline: 'Jobs for today',
     description:
@@ -123,7 +152,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/guide/vscode': {
     headline: 'Editor extension',
     description:
-      'Run the ArchLens editor extension locally, sideload a VSIX, and publish a Marketplace pre-release by hand.',
+      'Run the ArchLens editor extension locally, sideload a VSIX and publish a pre-release to the Visual Studio Marketplace or Open VSX by hand.',
   },
   '/setup': {
     headline: 'Setup & local development',
@@ -257,7 +286,16 @@ function sitemapPriority(path: string): string {
   ) {
     return '0.9';
   }
-  if (path.startsWith('/guide') || path === '/journeys') return '0.8';
+  if (
+    path.startsWith('/guide') ||
+    path.startsWith('/tutorials') ||
+    path.startsWith('/how-to') ||
+    path.startsWith('/reference') ||
+    path.startsWith('/explanation') ||
+    path === '/journeys'
+  ) {
+    return '0.8';
+  }
   return '0.5';
 }
 

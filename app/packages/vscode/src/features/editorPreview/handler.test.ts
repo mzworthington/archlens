@@ -5,7 +5,6 @@ import {
   NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
   NO_SOURCE_FILES_COPY,
-  NO_SOURCE_COPY,
   REVIEW_TITLE,
   SCAN_FAILED_COPY,
   WRITE_FAILED_COPY,
@@ -19,13 +18,11 @@ import {
   copyDiagram,
   generateFromWorkspace,
   openArchitectureMap,
-  openSource,
   showHotspots,
 } from './handler';
 import type {
   BlueprintFile,
   EditorHost,
-  FocusedSystem,
   ReviewChoice,
   ScanOutcome,
   ScanScopeChoice,
@@ -56,8 +53,6 @@ interface RecordedHost extends EditorHost {
   readonly messages: string[];
   readonly diagrams: string[];
   readonly discussions: string[];
-  readonly opened: string[];
-  readonly statuses: string[];
   readonly clipboard: string[];
   readonly reviews: ReviewRow[][];
 }
@@ -72,8 +67,6 @@ function host(input: {
   hintPath?: string;
   picked?: string;
   choice?: 'tell' | 'cancel' | 'escape';
-  focused?: FocusedSystem;
-  existing?: readonly string[];
   schema?: SystemSchema;
   hotspotsOn?: boolean;
   workspaceRoot?: string;
@@ -92,8 +85,6 @@ function host(input: {
   const messages: string[] = [];
   const diagrams: string[] = [];
   const discussions: string[] = [];
-  const opened: string[] = [];
-  const statuses: string[] = [];
   const clipboard: string[] = [];
   const reviews: ReviewRow[][] = [];
   const files = input.files ?? [];
@@ -102,8 +93,6 @@ function host(input: {
     messages,
     diagrams,
     discussions,
-    opened,
-    statuses,
     clipboard,
     reviews,
     isTrusted: () => input.trusted,
@@ -144,14 +133,6 @@ function host(input: {
     },
     openDiscussion: async url => {
       discussions.push(url);
-    },
-    focusedSystem: () => input.focused,
-    fileExists: async path => (input.existing ?? []).includes(path),
-    openFile: async path => {
-      opened.push(path);
-    },
-    setStatus: message => {
-      statuses.push(message);
     },
     visibleSchema: () => input.schema,
     writeClipboard: async text => {
@@ -250,59 +231,6 @@ describe('open architecture map command', () => {
     expect(editor.calls).toContain('pick-folder');
     expect(editor.calls).toContain('list:/web');
     expect(editor.calls).not.toContain('list:/api');
-  });
-});
-
-describe('open source command', () => {
-  it('does not open a file while the workspace is untrusted', async () => {
-    const editor = host({
-      trusted: false,
-      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
-      existing: ['/repo/src/api.ts'],
-    });
-
-    await openSource(editor);
-
-    expect(editor.messages).toEqual([TRUST_COPY]);
-    expect(editor.opened).toEqual([]);
-  });
-
-  it('opens the file the focused system points at and names it in the status', async () => {
-    const editor = host({
-      trusted: true,
-      focused: { name: 'Checkout API', sourceFile: 'src/api.ts', workspaceRoot: '/repo' },
-      existing: ['/repo/src/api.ts'],
-    });
-
-    await openSource(editor);
-
-    expect(editor.opened).toEqual(['/repo/src/api.ts']);
-    expect(editor.statuses).toEqual(['Opened /repo/src/api.ts from Checkout API.']);
-  });
-
-  it('leaves the diagram in place when the focused system has no source file', async () => {
-    const editor = host({
-      trusted: true,
-      focused: { name: 'Billing', workspaceRoot: '/repo' },
-    });
-
-    await openSource(editor);
-
-    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
-    expect(editor.opened).toEqual([]);
-  });
-
-  it('does not open a path outside the workspace', async () => {
-    const editor = host({
-      trusted: true,
-      focused: { name: 'Checkout API', sourceFile: '../secret.ts', workspaceRoot: '/repo' },
-      existing: ['/secret.ts'],
-    });
-
-    await openSource(editor);
-
-    expect(editor.messages).toEqual([NO_SOURCE_COPY]);
-    expect(editor.opened).toEqual([]);
   });
 });
 

@@ -193,6 +193,6 @@ Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the p
 
 - Circular dependency loops are flagged and highlighted on the canvas.
 
-## Editor plan
+## Editor extension
 
-The Visual Studio Marketplace bet (preview a blueprint, then ask before generating one from the workspace) is [vscode-marketplace-extension-prd.md](./vscode-marketplace-extension-prd.md). The pre-release extension is [app/packages/vscode](../app/packages/vscode). It previews a blueprint and asks before generating. It does not change Canvas or the CLI. Local sandbox and publish steps: [Editor extension](./guide/vscode.md). A merge to `main` leaves the Marketplace listing unchanged.
+The pre-release extension is [app/packages/vscode](../app/packages/vscode). It previews a blueprint and asks before generating. It does not change Canvas or the CLI. VS Code and Cursor load the same package. The Visual Studio Marketplace listing and the Open VSX listing that Cursor searches are separate manual publishes. Local sandbox and publish steps: [Editor extension](./guide/vscode.md). A merge to `main` leaves both listings unchanged.

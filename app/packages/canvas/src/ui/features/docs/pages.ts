@@ -3,7 +3,12 @@ import architectureMd from '@docs/architecture.md?raw';
 import techStackMd from '@docs/tech-stack.md?raw';
 import featuresUnitMd from '@docs/features-unit.md?raw';
 import guideIndexMd from '@docs/guide/index.md?raw';
-import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
+import tutorialGettingStartedMd from '@docs/tutorials/getting-started.md?raw';
+import referenceCliMd from '@docs/reference/cli.md?raw';
+import referenceConfigSchemaMd from '@docs/reference/config-schema.md?raw';
+import howToGithubActionsC4Md from '@docs/how-to/github-actions-c4.md?raw';
+import howToMonorepoBoundariesMd from '@docs/how-to/monorepo-boundaries.md?raw';
+import explanationArchitectureConceptsMd from '@docs/explanation/architecture-concepts.md?raw';
 import guideJobsMd from '@docs/guide/jobs.md?raw';
 import guideCanvasMd from '@docs/guide/canvas.md?raw';
 import guideCollaborateMd from '@docs/guide/collaborate.md?raw';
@@ -74,7 +79,15 @@ export type DocsPageMeta = {
   productAction?: DocsProductAction;
 };
 
-const START_PATH_PREFIXES = ['/guide/getting-started', '/guide/jobs', '/journeys'];
+const START_PATH_PREFIXES = ['/guide/jobs', '/journeys'];
+
+const LEARN_PATH_PREFIXES = [
+  '/tutorials',
+  '/how-to',
+  '/reference',
+  '/explanation',
+  '/guide/getting-started',
+];
 
 const SURFACES_PATH_PREFIXES = [
   '/guide/canvas',
@@ -104,6 +117,11 @@ const TECH_PATH_PREFIXES = [
 export const DOCS_NAV: DocsNavItem[] = [
   // path `/guide` is overview-only; surface chapters use the Surfaces hub.
   { label: 'Start', path: '/guide', matchPrefixes: START_PATH_PREFIXES },
+  {
+    label: 'Learn',
+    path: '/tutorials/getting-started',
+    matchPrefixes: LEARN_PATH_PREFIXES,
+  },
   { label: 'Surfaces', path: '/guide/canvas', matchPrefixes: SURFACES_PATH_PREFIXES },
   { label: 'Tech', path: '/setup', matchPrefixes: TECH_PATH_PREFIXES },
 ];
@@ -114,9 +132,19 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
     title: 'Start',
     items: [
       { label: 'Overview', path: '/guide' },
-      { label: 'Getting started', path: '/guide/getting-started' },
       { label: 'Jobs for today', path: '/guide/jobs' },
       { label: 'Interface tour & journeys', path: '/journeys' },
+    ],
+  },
+  {
+    title: 'Learn',
+    items: [
+      { label: 'Getting started', path: '/tutorials/getting-started' },
+      { label: 'CLI reference', path: '/reference/cli' },
+      { label: 'Config schema', path: '/reference/config-schema' },
+      { label: 'Container diagrams in Actions', path: '/how-to/github-actions-c4' },
+      { label: 'Monorepo boundaries', path: '/how-to/monorepo-boundaries' },
+      { label: 'Architecture concepts', path: '/explanation/architecture-concepts' },
     ],
   },
   {
@@ -203,9 +231,52 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   {
     path: '/guide/getting-started',
     title: 'Getting started',
-    markdown: guideGettingStartedMd,
+    markdown: tutorialGettingStartedMd,
     dir: 'guide',
     group: 'guide',
+  },
+  {
+    path: '/tutorials/getting-started',
+    title: 'Getting started',
+    markdown: tutorialGettingStartedMd,
+    dir: 'tutorials',
+    group: 'guide',
+    productAction: { label: 'Open ArchLens Canvas', href: '/workspace' },
+  },
+  {
+    path: '/reference/cli',
+    title: 'CLI reference',
+    markdown: referenceCliMd,
+    dir: 'reference',
+    group: 'reference',
+  },
+  {
+    path: '/reference/config-schema',
+    title: 'Config schema',
+    markdown: referenceConfigSchemaMd,
+    dir: 'reference',
+    group: 'reference',
+  },
+  {
+    path: '/how-to/github-actions-c4',
+    title: 'Generate container diagrams in GitHub Actions',
+    markdown: howToGithubActionsC4Md,
+    dir: 'how-to',
+    group: 'guide',
+  },
+  {
+    path: '/how-to/monorepo-boundaries',
+    title: 'Configure monorepo boundaries',
+    markdown: howToMonorepoBoundariesMd,
+    dir: 'how-to',
+    group: 'guide',
+  },
+  {
+    path: '/explanation/architecture-concepts',
+    title: 'Architecture concepts',
+    markdown: explanationArchitectureConceptsMd,
+    dir: 'explanation',
+    group: 'reference',
   },
   {
     path: '/guide/jobs',
