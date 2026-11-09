@@ -299,6 +299,19 @@ describe('editor host', () => {
     expect(fake.html).toEqual([]);
   });
 
+  it('opens an empty map panel when the trusted folder has no blueprint', async () => {
+    const fake = editor({ trusted: true, files: [] });
+    const host = await createEditorHost(fake.api);
+
+    await openArchitectureMap(host);
+
+    expect(fake.calls).toContain('panel:2');
+    expect(fake.calls).toContain('scripts:false');
+    expect(fake.html.at(-1)).toContain(EMPTY_MAP_COPY);
+    expect(fake.html.at(-1)).not.toContain('<article');
+    expect(fake.calls.some(call => call.startsWith('show:'))).toBe(false);
+  });
+
   it('opens the diagram beside the blueprint in a trusted folder', async () => {
     const fake = editor({
       trusted: true,

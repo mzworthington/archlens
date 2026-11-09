@@ -29,7 +29,7 @@ import {
   type BlueprintDocument,
   type ReviewRow,
 } from '../features/editorPreview/domain';
-import { renderMap } from '../features/editorPreview/renderMap';
+import { renderEmptyMap, renderMap } from '../features/editorPreview/renderMap';
 import type {
   BlueprintFile,
   DiagramView,
@@ -161,6 +161,7 @@ export async function createEditorHost<Uri extends FileUri>(
       void api.window.showInformationMessage(message, {});
     },
     showDiagram: diagram => showDiagram(api, diagram),
+    showEmptyMap: () => showEmptyMap(api),
     askGenerateInterest: () => askGenerateInterest(api),
     openDiscussion: async url => {
       await api.env.openExternal(api.Uri.parse(url));
@@ -301,6 +302,16 @@ function configuredBlueprintsFolder<Uri extends FileUri>(api: VsCodeLike<Uri>): 
     .getConfiguration('archlens')
     .get('blueprintsFolder', 'blueprints');
   return safeBlueprintsFolder(configured);
+}
+
+function showEmptyMap<Uri extends FileUri>(api: VsCodeLike<Uri>): void {
+  const panel = api.window.createWebviewPanel(
+    'archlens.architectureMap',
+    'Architecture map',
+    api.ViewColumn.Beside,
+    { enableScripts: false }
+  );
+  panel.webview.html = renderEmptyMap();
 }
 
 async function showDiagram<Uri extends FileUri>(

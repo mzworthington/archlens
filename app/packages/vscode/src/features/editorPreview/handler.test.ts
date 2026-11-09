@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '@archlens/core';
 import {
-  EMPTY_MAP_COPY,
   INTEREST_DISCUSSION_URL,
   NO_CHANGES_COPY,
   NO_GIT_HOTSPOTS_COPY,
@@ -136,6 +135,9 @@ function host(input: {
     showDiagram: async diagram => {
       diagrams.push(diagram.systems.map(system => system.name).join(', '));
     },
+    showEmptyMap: () => {
+      calls.push('empty-panel');
+    },
     askGenerateInterest: async () => {
       calls.push('prompt');
       return input.choice ?? 'cancel';
@@ -227,7 +229,8 @@ describe('open architecture map command', () => {
 
     await openArchitectureMap(editor);
 
-    expect(editor.messages).toEqual([EMPTY_MAP_COPY]);
+    expect(editor.calls).toContain('empty-panel');
+    expect(editor.messages).toEqual([]);
     expect(editor.diagrams).toEqual([]);
   });
 

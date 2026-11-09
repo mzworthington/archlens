@@ -1,6 +1,5 @@
 import {
   DEFAULT_SOURCE_GLOB,
-  EMPTY_MAP_COPY,
   NO_CHANGES_COPY,
   NO_SOURCE_FILES_COPY,
   SCAN_FAILED_COPY,
@@ -47,7 +46,7 @@ export async function openArchitectureMap(host: EditorHost): Promise<void> {
       await host.showDiagram(decision.diagram);
       return;
     case 'empty':
-      host.showMessage(EMPTY_MAP_COPY);
+      host.showEmptyMap();
       return;
     case 'not-blueprint':
       return;
