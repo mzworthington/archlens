@@ -40,6 +40,7 @@ import adr0014 from '@docs/ADRs/0014-estate-fragments-and-compose-before-publish
 import adr0015 from '@docs/ADRs/0015-declared-context-hydration.md?raw';
 import adr0016 from '@docs/ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md?raw';
 import adr0017 from '@docs/ADRs/0017-browser-structural-scan-vs-cli-forensics.md?raw';
+import adr0018 from '@docs/ADRs/0018-browser-git-tracelens-via-isomorphic-git.md?raw';
 import privacyMd from '@docs/privacy.md?raw';
 import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
 import { titleFromMarkdown } from './presentDocsMarkdown';
@@ -223,6 +224,7 @@ function buildAdrPages(): DocsPageMeta[] {
     adrPage('0015-declared-context-hydration', adr0015),
     adrPage('0016-iac-declaration-vs-provisioned-infrastructure', adr0016),
     adrPage('0017-browser-structural-scan-vs-cli-forensics', adr0017),
+    adrPage('0018-browser-git-tracelens-via-isomorphic-git', adr0018),
   ];
 }
 

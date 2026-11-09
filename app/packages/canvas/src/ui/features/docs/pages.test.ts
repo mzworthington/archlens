@@ -178,6 +178,9 @@ describe('docs link resolution', () => {
       '/ADRs/0001-yaml-blueprintspec-as-canonical-format'
     );
     expect(resolveDocsHref('./ADRs/README.md', '')).toBe('/ADRs');
+    expect(findDocsPage('/ADRs/0018-browser-git-tracelens-via-isomorphic-git')?.markdown).toContain(
+      'isomorphic-git'
+    );
   });
 
   it('presents YAML frontmatter as structured fields, not a code fence', () => {
