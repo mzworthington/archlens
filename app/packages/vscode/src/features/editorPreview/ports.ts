@@ -61,6 +61,7 @@ export interface EditorHost {
   blueprintsFolder(): string;
   showMessage(message: string): void;
   showDiagram(diagram: DiagramView): Promise<void>;
+  showEmptyMap(): void;
   askGenerateInterest(): Promise<GenerateChoice>;
   openDiscussion(url: string): Promise<void>;
   focusedSystem(): FocusedSystem | undefined;
