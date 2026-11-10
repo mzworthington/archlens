@@ -40,7 +40,7 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
     isActive: loc => workspaceLens(loc) === 'advicelens',
   },
   {
-    href: '/',
+    href: '/guide',
     label: 'Docs',
     isActive: loc => !isWorkspacePath(loc),
   },

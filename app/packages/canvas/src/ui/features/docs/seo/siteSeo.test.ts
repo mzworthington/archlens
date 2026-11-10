@@ -11,6 +11,15 @@ import {
 } from './siteSeo';
 
 describe('siteSeo catalog', () => {
+  it('writes the homepage snippet as one sentence a search result can show whole', () => {
+    const seo = resolvePageSeo('/');
+    expect(seo.headline).toBe('Catch architecture risk before it becomes an outage');
+    expect(seo.description.length).toBeLessThanOrEqual(160);
+    expect(seo.description).toBe(
+      'Catch architecture risk before it becomes an outage. ArchLens turns the repo into a map, shows what a failure takes down, and ranks what to fix first.'
+    );
+  });
+
   it('resolves distinctive homepage metadata with social share image', () => {
     const seo = resolvePageSeo('/');
     expect(seo.title.toLowerCase()).toContain('archlens');

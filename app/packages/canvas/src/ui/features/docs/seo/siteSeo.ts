@@ -28,9 +28,10 @@ type SeoOverride = {
 /** Canonical public SEO records - keep in sync with docs routes in `pages.ts`. */
 const PAGE_SEO: Record<string, SeoOverride> = {
   '/': {
-    headline: SITE_NAME,
+    headline: PRODUCT_HERO.headline,
     title: PRODUCT_HERO.documentTitle,
-    description: `${PRODUCT_HERO.lede} ${PRODUCT_HERO.analysisLine} ${PRODUCT_HERO.collabLine}`,
+    description:
+      'Catch architecture risk before it becomes an outage. ArchLens turns the repo into a map, shows what a failure takes down, and ranks what to fix first.',
     softwareName: SITE_NAME,
   },
   '/journeys': {
