@@ -32,6 +32,7 @@ import {
   blueprintWritePlan,
   reviewRows,
   reviewSummary,
+  systemsInBlueprints,
   supportedSourcePaths,
   systemsFromSourcePaths,
   safeBlueprintsFolder,
@@ -319,8 +320,59 @@ describe('generate diagram from workspace', () => {
       '/repo/app/packages/canvas/src/App.tsx',
     ]);
 
-    expect(systems.map(system => system.entityRef)).toEqual(['canvas', 'vscode']);
+    expect(systems.map(system => system.entityRef)).toEqual(['repo/canvas', 'repo/vscode']);
     expect(systems.map(system => system.name)).toEqual(['canvas', 'vscode']);
+  });
+
+  it('writes container, component and drill-down blueprints for a package', () => {
+    const sourceFiles = [
+      '/repo/app/packages/vscode/src/features/editorPreview/domain.ts',
+      '/repo/app/packages/vscode/src/features/editorPreview/handler.ts',
+    ];
+    const plan = blueprintWritePlan({
+      root: '/repo',
+      blueprintsFolder: 'blueprints',
+      files: [],
+      scanned: systemsFromSourcePaths('/repo', sourceFiles),
+      sourceFiles,
+    });
+    const paths = plan.documents.map(document => document.path.replaceAll('\\', '/'));
+
+    expect(paths).toContain('/repo/blueprints/containers.yaml');
+    expect(paths).toContain('/repo/blueprints/vscode-components.yaml');
+    expect(paths.some(path => path.endsWith('/editorpreview-components.yaml'))).toBe(true);
+
+    const component = parseSchemaFromYaml(
+      plan.documents.find(document => document.path.endsWith('vscode-components.yaml'))?.content ??
+        ''
+    );
+    expect(component.level).toBe('component');
+    expect(component.entityRef).toBe(plan.diagram.systems[0]?.entityRef);
+    const drillDown = parseSchemaFromYaml(
+      plan.documents.find(document => document.path.endsWith('editorpreview-components.yaml'))
+        ?.content ?? ''
+    );
+    expect(drillDown.level).toBe('component');
+    expect(drillDown.nodes).toHaveLength(2);
+  });
+
+  it('leaves child diagrams out of the review', () => {
+    const child = checkout
+      .replace('level: context', 'level: component')
+      .replace('entityRef: checkout/api', 'entityRef: checkout/api/handler')
+      .replace('name: Checkout API', 'name: Handler');
+    const rows = reviewRows(
+      systemsInBlueprints([
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api-components.yaml', content: child },
+      ]),
+      [
+        { entityRef: 'checkout/api', name: 'Checkout API' },
+        { entityRef: 'checkout/billing', name: 'Billing' },
+      ]
+    );
+
+    expect(rows).toEqual([]);
   });
 
   it('reviews added, changed and removed systems without treating equal names as changes', () => {
@@ -396,7 +448,7 @@ describe('generate diagram from workspace', () => {
   it('writes the review into the blueprints folder and keeps a hand-written note', () => {
     const noted = checkout.replace(
       'entityRef: checkout/api\n    type: software-system\n    name: Checkout API',
-      'entityRef: checkout\n    type: software-system\n    name: checkout\n    properties:\n      notes: hand written'
+      'entityRef: repo/checkout\n    type: software-system\n    name: checkout\n    properties:\n      notes: hand written'
     );
     const component = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component

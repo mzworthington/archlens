@@ -183,6 +183,7 @@ async function reviewWorkspaceScan(
     blueprintsFolder: host.blueprintsFolder(),
     files: existing,
     scanned,
+    sourceFiles: files,
   });
   if ((await host.applyBlueprintWrite(plan.documents)) === 'failed') {
     host.showMessage(WRITE_FAILED_COPY);

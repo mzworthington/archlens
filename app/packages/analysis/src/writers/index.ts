@@ -6,4 +6,8 @@ export {
   applyExternalDependenciesPass,
   listBlueprintSchemaPaths,
 } from './externalDependenciesPass';
-export { fileLeafEntityRef, shouldEmitRollupDrillDown } from './rollupDrillDown';
+export {
+  buildRollupDrillDownSchemas,
+  fileLeafEntityRef,
+  shouldEmitRollupDrillDown,
+} from './rollupDrillDown';

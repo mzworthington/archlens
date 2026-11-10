@@ -424,7 +424,11 @@ describe('generate diagram command', () => {
 
     await generateFromWorkspace(editor);
 
-    expect(editor.calls).toContain('blueprint:/repo/blueprints/context.yaml');
+    expect(
+      editor.calls.some(
+        call => call.startsWith('blueprint:') && call.includes('/repo/blueprints/context.yaml')
+      )
+    ).toBe(true);
     expect(editor.diagrams).toEqual(['checkout, core']);
     expect(editor.messages).toEqual([]);
   });
@@ -583,7 +587,7 @@ metadata:
   name: Repo
   entityRef: repo
 nodes:
-  - entityRef: core
+  - entityRef: repo/core
     type: software-system
     name: core
 dependencies: []

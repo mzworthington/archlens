@@ -352,7 +352,13 @@ async function showDiagram<Uri extends FileUri>(
   );
   const schema = schemaFrom(document.getText());
   const shown = { session: 0, path: diagram.sourcePath };
-  shown.session = openDiagramSession(diagram, workspaceRootFor(api, diagram.sourcePath), schema);
+  const workspaceRoot = workspaceRootFor(api, diagram.sourcePath);
+  shown.session = openDiagramSession(diagram, workspaceRoot, schema);
+  const listed = workspaceRoot ? await listBlueprintFiles(api, workspaceRoot).catch(() => []) : [];
+  const blueprints = listed.map(file => ({
+    name: file.path,
+    content: readableBlueprint(file.content),
+  }));
   const paint = () => {
     const view = readSessionView(shown.session);
     if (!view) return;
@@ -365,6 +371,7 @@ async function showDiagram<Uri extends FileUri>(
       scriptSrc: sources.scriptSrc,
       styleSrc: sources.styleSrc,
       cspSource: sources.cspSource,
+      blueprints,
     });
   };
   panelPainters.set(shown.session, paint);

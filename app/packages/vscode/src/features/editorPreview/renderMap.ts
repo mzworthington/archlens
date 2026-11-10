@@ -226,10 +226,12 @@ export function renderCanvasShell(input: {
   styleSrc: string;
   cspSource: string;
   theme?: MapColorTheme;
+  blueprints?: readonly { name: string; content: string }[];
 }): string {
   const csp = input.cspSource ? ` ${input.cspSource}` : '';
   const hotspots = input.hotspots ? 'on' : 'off';
   const yaml = JSON.stringify(input.yaml).replaceAll('<', '\\u003c');
+  const blueprints = JSON.stringify(input.blueprints ?? []).replaceAll('<', '\\u003c');
   const theme = input.theme === 'system' ? 'system' : 'light';
   const systemTheme =
     theme === 'system'
@@ -329,6 +331,7 @@ document.addEventListener('pointerdown', (event) => {
 <body data-hotspots="${hotspots}">
 <div id="root"></div>
 <script nonce="${escapeHtml(input.nonce)}" type="application/json" id="blueprint">${yaml}</script>
+<script nonce="${escapeHtml(input.nonce)}" type="application/json" id="blueprints">${blueprints}</script>
 ${systemTheme}
 ${keepNodeDrag}
 <script nonce="${escapeHtml(input.nonce)}" src="${escapeHtml(input.scriptSrc)}"></script>

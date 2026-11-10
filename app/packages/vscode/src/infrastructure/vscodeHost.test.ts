@@ -302,7 +302,10 @@ describe('editor host', () => {
     await openArchitectureMap(host);
 
     expect(fake.calls).toContain('findFiles');
-    expect(fake.patterns).toEqual([{ base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' }]);
+    expect(fake.patterns).toEqual([
+      { base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' },
+      { base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' },
+    ]);
     expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
     expect(fake.calls).toContain('text:1');
     expect(fake.calls).toContain('panel:2');
@@ -321,7 +324,10 @@ describe('editor host', () => {
 
     await openArchitectureMap(host);
 
-    expect(fake.patterns).toEqual([{ base: folder, pattern: '**/*.{yaml,yml}' }]);
+    expect(fake.patterns).toEqual([
+      { base: folder, pattern: '**/*.{yaml,yml}' },
+      { base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' },
+    ]);
     expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
     expect(fake.html[0]).toContain('Checkout API');
   });
@@ -337,7 +343,7 @@ describe('editor host', () => {
     await openArchitectureMap(host);
 
     expect(fake.calls).toContain('read:/repo/blueprints/context.yaml');
-    expect(fake.calls).not.toContain('findFiles');
+    expect(fake.patterns).toEqual([{ base: '/repo', pattern: 'blueprints/**/*.{yaml,yml}' }]);
     expect(fake.html[0]).toContain('Checkout API');
   });
 
@@ -417,7 +423,8 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).toContain('canvas-preview.js');
     expect(fake.html.at(-1)).toContain('name: Checkout API');
     expect(fake.html.at(-1)).toContain('Handler');
-    expect(fake.html.at(-1)).not.toContain('Billing');
+    const visible = (fake.html.at(-1) ?? '').split('id="blueprints"')[0] ?? '';
+    expect(visible).not.toContain('Billing');
 
     await fake.send({ type: 'back' });
 
@@ -673,7 +680,7 @@ metadata:
   name: Checkout
   entityRef: checkout
 nodes:
-  - entityRef: checkout
+  - entityRef: repo/checkout
     type: software-system
     name: checkout
 dependencies: []

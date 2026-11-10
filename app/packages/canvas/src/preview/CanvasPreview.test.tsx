@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
+import { useBlueprintStore } from '../application/store/store';
 import { CanvasPreview } from './CanvasPreview';
 import { readBlueprintPayload } from './webview';
 
@@ -114,11 +115,43 @@ describe('canvas preview', () => {
     expect(screen.queryByRole('menuitem', { name: 'Compare Systems' })).not.toBeInTheDocument();
   });
 
+  it('keeps a child blueprint in the catalog so a package can open', async () => {
+    const child = `
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: repo/vscode
+  name: Vscode Components
+nodes:
+  - entityRef: repo/vscode/editorpreview
+    type: component
+    name: Editor Preview
+dependencies: []
+`;
+    render(
+      <CanvasPreview
+        yaml={blueprint
+          .replace('entityRef: billing', 'entityRef: repo')
+          .replace('entityRef: billing/billing-service', 'entityRef: repo/vscode')}
+        blueprints={[{ name: 'vscode-components.yaml', content: child }]}
+      />
+    );
+
+    expect(await screen.findByTestId('react-flow')).toBeInTheDocument();
+    expect(
+      useBlueprintStore.getState().workspaceCatalog.some(entry => entry.entityRef === 'repo/vscode')
+    ).toBe(true);
+  });
+
   it('reads the blueprint and hotspot flag the panel embedded', () => {
     document.body.innerHTML =
       '<script type="application/json" id="blueprint">"name: Billing\\n"</script>';
     document.body.dataset.hotspots = 'on';
 
-    expect(readBlueprintPayload()).toEqual({ yaml: 'name: Billing\n', hotspots: true });
+    expect(readBlueprintPayload()).toEqual({
+      yaml: 'name: Billing\n',
+      hotspots: true,
+      blueprints: [],
+    });
   });
 });

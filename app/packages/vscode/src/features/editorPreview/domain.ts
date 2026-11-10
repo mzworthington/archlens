@@ -1,10 +1,14 @@
 import { resolveContainerFromPath } from '@archlens/analysis/container-grouping';
+import { ModelExtractor } from '@archlens/analysis/model-extractor';
 import {
   createMutableGitignoreFilter,
   createStructuralPathFilter,
 } from '@archlens/analysis/path-filter';
+import type { ParsedSourceFile } from '@archlens/analysis/types';
+import { buildRollupDrillDownSchemas } from '@archlens/analysis/writers';
 import {
   blueprintYamlLanguageServerDirective,
+  EntityRef,
   getNodePosition,
   parseSchemaFromYaml,
   serializeSchemaToMermaid,
@@ -13,6 +17,7 @@ import {
   systemSchemaPublicUrl,
   validateGraph,
   type NodeForensics,
+  type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
 import type { BlueprintFile, DiagramCrumb, DiagramView, GenerateChoice } from './ports';
@@ -269,7 +274,9 @@ export function systemsFromSourcePaths(root: string, files: readonly string[]): 
       ? normalized.slice(normalizedRoot.length + 1)
       : normalized.split('/').pop() || normalized;
     const container = resolveContainerFromPath(relative, { rollupModules: true });
-    const entityRef = validEntityRef(container.containerId);
+    const entityRef = validEntityRef(
+      EntityRef.child(workspaceSlug(normalizedRoot), container.containerId)
+    );
     if (byRef.has(entityRef)) continue;
     byRef.set(entityRef, { entityRef, name: container.displayName });
   }
@@ -286,6 +293,7 @@ export function systemsInBlueprints(files: readonly BlueprintFile[]): NamedSyste
     } catch {
       continue;
     }
+    if (schema.level !== 'context') continue;
     for (const node of schema.nodes) {
       if (seen.has(node.entityRef)) continue;
       seen.add(node.entityRef);
@@ -334,6 +342,7 @@ export function blueprintWritePlan(input: {
   blueprintsFolder: string;
   files: readonly BlueprintFile[];
   scanned: readonly NamedSystem[];
+  sourceFiles?: readonly string[];
 }): { documents: readonly BlueprintDocument[]; diagram: DiagramView } {
   const folderPath = joinEditorPath(input.root, safeBlueprintsFolder(input.blueprintsFolder));
   const parsed = input.files.flatMap(file => {
@@ -356,8 +365,14 @@ export function blueprintWritePlan(input: {
     joinEditorPath(folderPath, 'context.yaml');
   const documents: BlueprintDocument[] = [];
   let diagram: DiagramView | undefined;
+  const rollupDocuments = rollupBlueprintDocuments(input.root, folderPath, input.sourceFiles ?? []);
+  const rollupPaths = new Set(rollupDocuments.map(document => document.path));
 
   for (const file of parsed) {
+    if (input.sourceFiles && file.path !== targetPath) {
+      if (!rollupPaths.has(file.path)) documents.push({ path: file.path });
+      continue;
+    }
     const next = editedSchema(file.schema, input.scanned, file.path === targetPath);
     if (next.nodes.length === 0) {
       documents.push({ path: file.path });
@@ -373,6 +388,8 @@ export function blueprintWritePlan(input: {
     diagram = diagramFrom(targetPath, next);
     documents.push({ path: targetPath, content: renderBlueprint(next, undefined) });
   }
+
+  for (const document of rollupDocuments) documents.push(document);
 
   return {
     documents,
@@ -599,6 +616,131 @@ function isContextFile(filePath: string): boolean {
 function joinEditorPath(root: string, ...parts: string[]): string {
   const slash = root.includes('\\') ? '\\' : '/';
   return [root.replace(/[/\\]+$/, ''), ...parts].join(slash);
+}
+
+function workspaceSlug(root: string): string {
+  const folder =
+    root
+      .replace(/[/\\]+$/, '')
+      .split(/[/\\]/)
+      .pop() || 'workspace';
+  return slugify(folder) || 'workspace';
+}
+
+/** Container, component and folder drill-down files, matching the CLI rollup writers. */
+function rollupBlueprintDocuments(
+  root: string,
+  folderPath: string,
+  files: readonly string[]
+): BlueprintDocument[] {
+  const parsed = files.flatMap(file => {
+    const relative = relativeSourcePath(root, file);
+    return relative ? [parsedSourceFile(relative)] : [];
+  });
+  if (parsed.length === 0) return [];
+
+  const parentRef = workspaceSlug(root);
+  const graph = new ModelExtractor(parentRef, { rollupModules: true }).extractGraph(parsed);
+  const componentNodes = [...graph.componentNodesMap.values()];
+  const fileNodes = [...graph.fileLevelNodesMap.values()];
+  const documents: BlueprintDocument[] = [];
+  const containerNodes = [...graph.containerNodesMap.values()].map(writableNode);
+
+  if (containerNodes.length > 0) {
+    documents.push(
+      renderedDocument(joinEditorPath(folderPath, 'containers.yaml'), {
+        entityRef: parentRef,
+        name: `${parentRef} Containers`,
+        version: systemSchemaPublicUrl(),
+        level: 'container',
+        nodes: containerNodes,
+        dependencies: graph.containerDependencies,
+      })
+    );
+  }
+
+  for (const [containerId, containerNode] of graph.containerNodesMap) {
+    const internal = componentNodes.filter(node => node.properties?.containerId === containerId);
+    if (internal.length === 0 || !containerNode.entityRef) continue;
+    const drillDowns = buildRollupDrillDownSchemas(
+      containerNode.entityRef,
+      internal,
+      fileNodes,
+      graph.fileLevelDependencies,
+      undefined,
+      componentNodes
+    );
+    documents.push(
+      renderedDocument(joinEditorPath(folderPath, `${containerId}-components.yaml`), {
+        entityRef: containerNode.entityRef,
+        name: `${containerNode.name} Components`,
+        version: systemSchemaPublicUrl(),
+        level: 'component',
+        nodes: internal.map(writableNode),
+        dependencies: graph.componentDependencies.filter(
+          dependency =>
+            dependency.from.startsWith(`${containerNode.entityRef}/`) ||
+            dependency.to.startsWith(`${containerNode.entityRef}/`)
+        ),
+      })
+    );
+    for (const drillDown of drillDowns) {
+      documents.push(
+        renderedDocument(joinEditorPath(folderPath, drillDown.relativePath), {
+          ...drillDown.schema,
+          version: systemSchemaPublicUrl(),
+          nodes: drillDown.schema.nodes.map(writableNode),
+        })
+      );
+    }
+  }
+
+  return documents;
+}
+
+function renderedDocument(path: string, schema: SystemSchema): BlueprintDocument {
+  return { path, content: renderBlueprint(schema, undefined) };
+}
+
+function writableNode(node: SystemNode): SystemNode {
+  if (!node.properties) return node;
+  const properties: NonNullable<SystemNode['properties']> = {};
+  for (const [key, value] of Object.entries(node.properties)) {
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      properties[key] = value;
+    }
+  }
+  return {
+    ...node,
+    properties: Object.keys(properties).length > 0 ? properties : undefined,
+  };
+}
+
+function parsedSourceFile(relativePath: string): ParsedSourceFile {
+  const baseName =
+    relativePath
+      .split('/')
+      .pop()
+      ?.replace(/\.[^.]+$/, '') || relativePath;
+  return {
+    filePath: relativePath,
+    relativePath,
+    baseName,
+    isTestFile: /\.(test|spec)\.[^.]+$/.test(relativePath),
+    imports: [],
+    reExports: [],
+    newExpressions: [],
+    callExpressions: [],
+  };
+}
+
+function relativeSourcePath(root: string, file: string): string {
+  const normalizedRoot = root.replaceAll('\\', '/').replace(/\/+$/, '');
+  const normalized = file.replaceAll('\\', '/');
+  if (normalized.startsWith(`${normalizedRoot}/`)) {
+    return normalized.slice(normalizedRoot.length + 1);
+  }
+  return normalized.split('/').pop() || normalized;
 }
 
 function freshSchema(root: string): SystemSchema {
