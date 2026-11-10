@@ -11,11 +11,16 @@ export interface DiagramSystem {
   readonly entityRef: string;
   readonly sourceFile?: string;
   readonly hotspotCount?: number;
+  readonly type?: string;
+  readonly external?: boolean;
+  readonly position?: { readonly x: number; readonly y: number };
 }
 
 export interface DiagramLink {
   readonly fromName: string;
   readonly toName: string;
+  readonly fromRef?: string;
+  readonly toRef?: string;
 }
 
 export interface DiagramCrumb {

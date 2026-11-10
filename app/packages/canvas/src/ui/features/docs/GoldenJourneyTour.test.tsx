@@ -28,4 +28,13 @@ describe('GoldenJourneyTour', () => {
       '/workspace/samples/golden-journey?lens=advicelens&plan=samples%2Fgolden-journey%2Fcheckout-platform%2Fcheckout-api'
     );
   });
+
+  it('renders the product chip in accent ink so the label stays readable on a light page', () => {
+    render(<GoldenJourneyTour />);
+
+    const chip = screen.getByText('ArchLens CLI');
+    expect(chip).toHaveClass('text-accent', 'bg-accent/10', 'text-xs');
+    expect(chip.className).not.toContain('text-slate-400');
+    expect(chip.className).not.toContain('bg-slate-800');
+  });
 });

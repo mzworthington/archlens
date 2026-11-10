@@ -138,7 +138,7 @@ function StepCard({ step }: { step: JourneyStep }) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-base font-semibold text-white">{step.title}</h3>
-            <span className="rounded-full border border-slate-600/40 bg-slate-800/50 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-400">
+            <span className="rounded-full border border-accent/35 bg-accent/10 px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wide text-accent">
               {step.product}
             </span>
           </div>

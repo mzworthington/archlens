@@ -1,5 +1,6 @@
 import {
   blueprintYamlLanguageServerDirective,
+  getNodePosition,
   parseSchemaFromYaml,
   serializeSchemaToMermaid,
   serializeSchemaToYaml,
@@ -497,12 +498,8 @@ export function presentHotspots(
     ...diagram,
     systems: diagram.systems.map(system => {
       const count = counts.get(system.entityRef);
-      const plain = {
-        name: system.name,
-        entityRef: system.entityRef,
-        ...(system.sourceFile ? { sourceFile: system.sourceFile } : {}),
-      };
-      return count === undefined ? plain : { ...plain, hotspotCount: count };
+      const { hotspotCount: _hotspotCount, ...rest } = system;
+      return count === undefined ? rest : { ...rest, hotspotCount: count };
     }),
   };
 }
@@ -536,18 +533,7 @@ function projectFile(file: BlueprintFile): DiagramView | undefined {
     return {
       sourcePath: file.path,
       level: schema.level,
-      systems: schema.nodes.map(node => {
-        const sourceFile = sourceFileOf(node.properties?.filepath);
-        return {
-          name: node.name,
-          entityRef: node.entityRef,
-          ...(sourceFile ? { sourceFile } : {}),
-        };
-      }),
-      links: schema.dependencies.map(dependency => ({
-        fromName: nameFor(schema, dependency.from),
-        toName: nameFor(schema, dependency.to),
-      })),
+      ...placed(schema),
     };
   } catch {
     return undefined;
@@ -646,18 +632,29 @@ function diagramFrom(path: string, schema: SystemSchema): DiagramView {
   return {
     sourcePath: path,
     level: schema.level,
+    ...placed(schema),
+  };
+}
+
+function placed(schema: SystemSchema): Pick<DiagramView, 'systems' | 'links'> {
+  return {
     systems: schema.nodes.map(node => {
-      const sourceFile = node.properties?.filepath;
+      const sourceFile = sourceFileOf(node.properties?.filepath);
+      const position = getNodePosition(node);
       return {
         name: node.name,
         entityRef: node.entityRef,
-        ...(typeof sourceFile === 'string' ? { sourceFile } : {}),
+        type: node.type,
+        ...(node.external ? { external: true as const } : {}),
+        ...(position ? { position } : {}),
+        ...(sourceFile ? { sourceFile } : {}),
       };
     }),
     links: schema.dependencies.map(dependency => ({
-      fromName:
-        schema.nodes.find(node => node.entityRef === dependency.from)?.name ?? dependency.from,
-      toName: schema.nodes.find(node => node.entityRef === dependency.to)?.name ?? dependency.to,
+      fromName: nameFor(schema, dependency.from),
+      toName: nameFor(schema, dependency.to),
+      fromRef: dependency.from,
+      toRef: dependency.to,
     })),
   };
 }

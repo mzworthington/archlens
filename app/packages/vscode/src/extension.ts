@@ -9,7 +9,7 @@ import {
 import { watchBlueprintProblems } from './infrastructure/blueprintDiagnostics';
 import { createEditorHost, type VsCodeLike } from './infrastructure/vscodeHost';
 
-function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
+function vscodeApi(extensionUri: vscode.Uri): VsCodeLike<vscode.Uri, vscode.TextDocument> {
   return {
     FileType: vscode.FileType,
     ViewColumn: {
@@ -64,6 +64,7 @@ function vscodeApi(): VsCodeLike<vscode.Uri, vscode.TextDocument> {
         writeText: value => vscode.env.clipboard.writeText(value),
       },
     },
+    extensionUri,
   };
 }
 
@@ -107,29 +108,30 @@ export function activate(context: vscode.ExtensionContext): void {
       },
     }),
     vscode.commands.registerCommand('archlens.openArchitectureMap', (resource?: vscode.Uri) => {
-      void run(() => openArchitectureMap, resource);
+      void run(context.extensionUri, () => openArchitectureMap, resource);
     }),
     vscode.commands.registerCommand('archlens.generateFromWorkspace', (resource?: vscode.Uri) => {
-      void run(() => generateFromWorkspace, resource);
+      void run(context.extensionUri, () => generateFromWorkspace, resource);
     }),
     vscode.commands.registerCommand('archlens.compareWithScan', (resource?: vscode.Uri) => {
-      void run(() => compareWithScan, resource);
+      void run(context.extensionUri, () => compareWithScan, resource);
     }),
     vscode.commands.registerCommand('archlens.copyDiagram', () => {
-      void run(() => copyDiagram, undefined);
+      void run(context.extensionUri, () => copyDiagram, undefined);
     }),
     vscode.commands.registerCommand('archlens.showHotspots', () => {
-      void run(() => showHotspots, undefined);
+      void run(context.extensionUri, () => showHotspots, undefined);
     })
   );
 }
 
 async function run(
+  extensionUri: vscode.Uri,
   command: () => (host: Awaited<ReturnType<typeof createEditorHost>>) => Promise<void>,
   resource: vscode.Uri | undefined
 ): Promise<void> {
   try {
-    const host = await createEditorHost(vscodeApi(), resource);
+    const host = await createEditorHost(vscodeApi(extensionUri), resource);
     await command()(host);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

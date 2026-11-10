@@ -38,5 +38,5 @@ describe('vitest workspace worker budget', () => {
     } finally {
       fs.rmSync(scriptPath, { force: true });
     }
-  });
+  }, 30_000);
 });

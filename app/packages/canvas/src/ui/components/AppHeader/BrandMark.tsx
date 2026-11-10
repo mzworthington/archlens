@@ -1,4 +1,4 @@
-import React from 'react';
+import type * as React from 'react';
 import { Link } from 'wouter';
 
 /** Crosshair mark from the design-system header. */

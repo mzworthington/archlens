@@ -307,7 +307,7 @@ describe('editor host', () => {
     expect(fake.calls).toContain('text:1');
     expect(fake.calls).toContain('panel:2');
     expect(fake.html[0]).toContain('Checkout API');
-    expect(fake.html[0]).toContain('Checkout API → Billing');
+    expect(fake.html[0]).toContain('canvas-preview.js');
   });
 
   it('reads blueprints in the folder that was right-clicked', async () => {
@@ -414,8 +414,8 @@ describe('editor host', () => {
 
     await fake.send({ type: 'drill', entityRef: 'checkout/api' });
 
-    expect(fake.html.at(-1)).toContain('Checkout</button>');
-    expect(fake.html.at(-1)).toContain('Checkout API</span>');
+    expect(fake.html.at(-1)).toContain('canvas-preview.js');
+    expect(fake.html.at(-1)).toContain('name: Checkout API');
     expect(fake.html.at(-1)).toContain('Handler');
     expect(fake.html.at(-1)).not.toContain('Billing');
 
@@ -480,9 +480,9 @@ describe('editor host', () => {
 
     await showHotspots(host);
 
-    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
-    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
-    expect(fake.html[0]).not.toContain('<p>Hotspot</p>');
+    expect(fake.html.at(-1)).toContain('data-hotspots="on"');
+    expect(fake.html.at(-1)).toContain('hotspot');
+    expect(fake.html[0]).not.toContain('data-hotspots="on"');
   });
 
   it('marks hotspots again after a broken blueprint save is fixed', async () => {
@@ -515,8 +515,8 @@ describe('editor host', () => {
 
     await showHotspots(host);
 
-    expect(fake.html.at(-1)).toContain('<p>Hotspot</p>');
-    expect(fake.html.at(-1)).toContain('<dd>6</dd>');
+    expect(fake.html.at(-1)).toContain('data-hotspots="on"');
+    expect(fake.html.at(-1)).toContain('hotspot');
   });
 
   it('leaves the diagram unchanged when the folder has no git history', async () => {

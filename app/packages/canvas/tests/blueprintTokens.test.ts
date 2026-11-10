@@ -176,6 +176,15 @@ describe('blueprint design tokens', () => {
     expect(stylesheet).toContain('background: #fef2f2');
   });
 
+  it('darkens translucent amber copy on the light paper background', () => {
+    const stylesheet = fs.readFileSync(path.join(canvasRoot, 'src/index.css'), 'utf8');
+
+    // Tailwind emits text-amber-200/90 as its own class, so the bare
+    // text-amber-200 rule leaves the integrity "Impacted" line pale yellow.
+    expect(stylesheet).toContain("html[data-theme='light'] .text-amber-200\\/90");
+    expect(stylesheet).toContain("html[data-theme='light'] .text-amber-400\\/90");
+  });
+
   it('defines the light paper token set on the light theme', () => {
     const tokens = fs.readFileSync(tokensPath, 'utf8');
 

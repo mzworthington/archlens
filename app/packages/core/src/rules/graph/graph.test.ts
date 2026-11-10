@@ -45,6 +45,16 @@ describe('toSystemSchemaJsonSchema', () => {
       })
     );
   });
+
+  it('allows a landscape description on metadata', () => {
+    const schema = toSystemSchemaJsonSchema();
+    const metadata = schema.properties as {
+      metadata: { properties?: Record<string, { type?: string }> };
+    };
+    expect(metadata.metadata.properties?.description).toEqual(
+      expect.objectContaining({ type: 'string' })
+    );
+  });
 });
 
 describe('Graph Validation & Cycle Detection', () => {

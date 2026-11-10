@@ -1,5 +1,6 @@
+import path from 'node:path';
 import { randomBytes } from 'node:crypto';
-import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
+import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import {
   CANCEL_COPY,
   CUSTOM_FILES_COPY,
@@ -23,13 +24,12 @@ import {
   hasUnsavedBlueprint,
   isInsideEditorPath,
   isYamlPath,
-  presentHotspots,
   safeBlueprintsFolder,
   sameEditorPath,
   type BlueprintDocument,
   type ReviewRow,
 } from '../features/editorPreview/domain';
-import { renderEmptyMap, renderMap } from '../features/editorPreview/renderMap';
+import { renderCanvasShell, renderEmptyMap } from '../features/editorPreview/renderMap';
 import type {
   BlueprintFile,
   DiagramView,
@@ -50,9 +50,11 @@ import {
   showInSession,
 } from './diagramSession';
 
-interface WebviewPanel {
+interface WebviewPanel<Uri extends FileUri = FileUri> {
   webview: {
     html: string;
+    cspSource?: string;
+    asWebviewUri?(uri: Uri): Uri;
     onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
       dispose(): void;
     };
@@ -122,13 +124,14 @@ export interface VsCodeLike<
       viewType: string,
       title: string,
       column: number,
-      options: { enableScripts: boolean }
-    ): WebviewPanel;
+      options: { enableScripts: boolean; localResourceRoots?: readonly Uri[] }
+    ): WebviewPanel<Uri>;
   };
   env: {
     openExternal(uri: Uri): Thenable<boolean>;
     clipboard: { writeText(value: string): Thenable<void> };
   };
+  extensionUri?: Uri;
 }
 
 const panelPainters = new Map<number, () => void>();
@@ -298,17 +301,47 @@ function showEmptyMap<Uri extends FileUri>(api: VsCodeLike<Uri>): void {
   panel.webview.html = renderEmptyMap();
 }
 
+function canvasSources<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  panel: WebviewPanel<Uri>
+): { scriptSrc: string; styleSrc: string; cspSource: string } {
+  const extensionUri = api.extensionUri;
+  if (!extensionUri || !panel.webview.asWebviewUri) {
+    return {
+      scriptSrc: 'canvas-preview.js',
+      styleSrc: 'canvas-preview.css',
+      cspSource: '',
+    };
+  }
+  const directory = path.join(extensionUri.fsPath, 'media', 'canvas-preview');
+  return {
+    scriptSrc: panel.webview
+      .asWebviewUri(api.Uri.file(path.join(directory, 'canvas-preview.js')))
+      .toString(),
+    styleSrc: panel.webview
+      .asWebviewUri(api.Uri.file(path.join(directory, 'canvas-preview.css')))
+      .toString(),
+    cspSource: panel.webview.cspSource ?? '',
+  };
+}
+
 async function showDiagram<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   diagram: DiagramView
 ): Promise<void> {
   const document = await api.workspace.openTextDocument(api.Uri.file(diagram.sourcePath));
   await api.window.showTextDocument(document, api.ViewColumn.Active);
+  const mediaRoot = api.extensionUri
+    ? api.Uri.file(path.join(api.extensionUri.fsPath, 'media'))
+    : undefined;
   const panel = api.window.createWebviewPanel(
     'archlens.architectureMap',
     'Architecture map',
     api.ViewColumn.Beside,
-    { enableScripts: true }
+    {
+      enableScripts: true,
+      ...(mediaRoot ? { localResourceRoots: [mediaRoot] } : {}),
+    }
   );
   const schema = schemaFrom(document.getText());
   const shown = { session: 0, path: diagram.sourcePath };
@@ -316,10 +349,15 @@ async function showDiagram<Uri extends FileUri>(
   const paint = () => {
     const view = readSessionView(shown.session);
     if (!view) return;
-    panel.webview.html = renderMap(
-      presentHotspots(view.diagram, view.schema?.nodes ?? [], view.hotspotsOn),
-      mapNonce()
-    );
+    const sources = canvasSources(api, panel);
+    panel.webview.html = renderCanvasShell({
+      yaml: view.schema ? serializeSchemaToYaml(view.schema) : '',
+      hotspots: view.hotspotsOn,
+      nonce: mapNonce(),
+      scriptSrc: sources.scriptSrc,
+      styleSrc: sources.styleSrc,
+      cspSource: sources.cspSource,
+    });
   };
   panelPainters.set(shown.session, paint);
   paint();

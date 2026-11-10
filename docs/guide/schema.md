@@ -1,105 +1,94 @@
 # BlueprintSpec
 
-**BlueprintSpec** is ArchLens's architecture-as-code (AaC) format. It is opinionated on purpose: one YAML shape for a context, container or component view, with typed nodes and stable `entityRef` links. Canvas, the CLI and CI read and write that file. Mermaid is a picture of it.
+**BlueprintSpec** is ArchLens's architecture-as-code format. One YAML shape describes a context, a container, or a component view, with typed nodes and stable `entityRef` links. Canvas, the CLI, and CI read and write that file. Mermaid is a picture of it.
 
 The narrow format is what makes the rest of ArchLens possible:
 
-- **A pull request can show the architecture change.** The file is YAML. Display names can change without breaking links, because identity is `entityRef`.
-- **The diagram follows the file.** You do not maintain a slide and a model. Mermaid and infrastructure-as-code imports merge into BlueprintSpec. Export-only views stay non-editable ([ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md)).
-- **Invalid architecture fails a check.** A public JSON Schema, editor autocomplete and `archlens validate --contract` use the same rules.
-- **The lenses share the nodes.** TraceLens, ChaosLens and AdviceLens attach to `entityRef`. They do not invent a second map.
+- **A pull request can show the architecture change.** The file is YAML. A display name can change without breaking a link, because identity is `entityRef`.
+- **The diagram follows the file.** You don't keep a slide and a model. Mermaid and infrastructure-as-code imports merge into BlueprintSpec. An export-only view stays non-editable. See [ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md).
+- **An invalid architecture fails a check.** A public JSON Schema, editor autocomplete, and `archlens validate --contract` use the same rules.
+- **The lenses share the nodes.** TraceLens, ChaosLens, and AdviceLens attach to `entityRef`. They don't invent a second map.
 
-This page is for teams integrating with that contract: authoring by hand, generating from **ArchLens CLI** or consuming it in another tool. It covers the **JSON Schema** validation surface and how we name and link parts of an architecture with **`entityRef`**.
+This page is for a team that authors the file by hand, generates it with **ArchLens CLI**, or consumes it in another tool. It covers the JSON Schema surface and how you name and link parts of an architecture with `entityRef`.
 
----
+## What a BlueprintSpec file contains
 
-## What BlueprintSpec guarantees
+Every blueprint file describes one view: who appears on the diagram, how they relate, and which layout and TraceLens signals you stored.
 
-Every blueprint file describes one view of your systems architecture: who appears on the diagram, how they relate and (optionally) layout and TraceLens signals. BlueprintSpec ensures that:
+- The same file loads in ArchLens Canvas, passes CI checks, and round-trips through import and export.
+- An external tool can validate BlueprintSpec without running ArchLens. Point it at a public schema URL.
+- A versioned URL pins the contract. The `latest` URL tracks `main`.
 
-- The same file loads in ArchLens Canvas, passes CI checks and round-trips through import/export.
-- External tools can validate BlueprintSpec without running ArchLens - by pointing at a public schema URL.
-- Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
+The rules live once in `@archlens/core` and ship as JSON Schema for editors and integrators.
 
-Under the hood, rules are defined once in `@archlens/core` and published as JSON Schema for editors and integrators.
+## Entity references
 
----
+An entity reference is the stable identity of something on the map: a product landscape, a service boundary, a deployable unit, or a code module. A `name` is for people. An `entityRef` is for linking.
 
-## Entity references (`entityRef`)
+You use an `entityRef` to:
 
-### Purpose
+- **Connect diagrams in a hierarchy.** Zoom from a context map into a container map, then into components. A child diagram's identity matches the parent node you double-clicked.
+- **Express a dependency across a boundary.** "Service A calls Service B" uses each party's `entityRef`, even when they live in different YAML files.
+- **Align a generated view with a hand edit.** ArchLens, an IaC import, and ArchLens Canvas resolve the same identifiers, so a merge and a diff stay meaningful.
+- **Anchor TraceLens and ownership.** Git and complexity signals roll up along the same tree you already use for architecture views.
 
-An **entity reference** is the stable identity of something on your architecture map - a product landscape, a service boundary, a deployable unit or a code module. Display names (`name` fields) are for people; **`entityRef` is for linking**.
+An `entityRef` is a trail of slugs from the widest scope down to the finest grain you model. It isn't a file path or a repository folder, though the CLI often infers a sensible value from the repo layout.
 
-We use it to:
+### How you build a reference
 
-- **Connect diagrams in a hierarchy** - zoom from a context map into a container map, then into components. A child diagram’s identity matches the parent node you double-clicked.
-- **Express dependencies across boundaries** - “Service A calls Service B” uses each party’s `entityRef`, even when they live in different YAML files.
-- **Align generated and hand-edited views** - ArchLens, IaC import and ArchLens Canvas all resolve to the same identifiers so merges and diffs stay meaningful.
-- **Anchor TraceLens and ownership** - git and complexity signals roll up along the same tree the business already uses for architecture views.
+Build a reference from short, URL-safe segments joined by `/`.
 
-Think of `entityRef` as a **breadcrumb trail** from the widest scope down to the finest grain you model, not as a file path or repository folder (though the CLI often infers sensible values from repo layout).
+Turn a human label into a slug. Use lower case, turn spaces into hyphens, and drop punctuation. For example, `App Service` becomes `app-service`. Each extra `/` means one level deeper in the zoom model.
 
-### How we craft them
+| Segments | Typical scope          | Example                       | What it represents                                        |
+| -------- | ---------------------- | ----------------------------- | --------------------------------------------------------- |
+| 1        | Context, the landscape | `blueprint`                   | The whole product portfolio or program map                |
+| 2        | Container              | `blueprint/app`               | A major system or bounded capability inside the landscape |
+| 3        | Component              | `blueprint/app/canvas`        | A deployable or logical part inside that system           |
+| 4        | Code, optional         | `blueprint/app/canvas/canvas` | A finer module or package when you model at code level    |
 
-References are built from **short, URL-safe segments** joined by `/`:
+A diagram file carries its scope in `metadata.entityRef`, plus a friendly `metadata.name`. Each node on the Canvas has its own `entityRef`. A dependency lists `from` and `to`.
 
-- Human labels are **slugified**: lower case, spaces → hyphens, punctuation removed (e.g. `App Service` → `app-service`).
-- Each extra `/` means **one level deeper** in the zoom model.
+When ArchLens scans a monorepo, it proposes references from product ids, package names, and folder structure. You can adjust a slug in YAML. Once you commit it, treat it as an integration id. Renaming a display label shouldn't require a new ref unless you reorganize the map on purpose.
 
-| Segments | Typical scope       | Example                       | What it represents                                        |
-| -------- | ------------------- | ----------------------------- | --------------------------------------------------------- |
-| 1        | Context (landscape) | `blueprint`                   | Whole product portfolio or programme map                  |
-| 2        | Container           | `blueprint/app`               | A major system or bounded capability inside the landscape |
-| 3        | Component           | `blueprint/app/canvas`        | A deployable or logical part inside that system           |
-| 4        | Code (optional)     | `blueprint/app/canvas/canvas` | Finer module or package when you model at code level      |
+### Link a parent diagram to a child
 
-**Diagram files** carry their scope in `metadata.entityRef` (and a friendly `metadata.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
+You don't need a separate parent-pointer file.
 
-When ArchLens scans a monorepo, it proposes references from product IDs, package names and folder structure. You can adjust slugs in YAML; once committed, treat them as **integration IDs** - renaming a display label should not require renaming refs unless you intentionally reorganise the map.
+> A nested diagram's `metadata.entityRef` equals the `entityRef` of the node you drill into on the parent diagram.
 
-### Linking parent and child diagrams
+For example:
 
-No separate “parent pointer” file is required. The rule is simple:
-
-> A nested diagram’s `metadata.entityRef` **equals** the `entityRef` of the node you drill into on the parent diagram.
-
-Example:
-
-- Context diagram node: `entityRef: blueprint/app`, name “App System”.
-- Container diagram file: `metadata.entityRef: blueprint/app`, name “App Containers”.
+- The context diagram node is `entityRef: blueprint/app`, named App System.
+- The container diagram file is `metadata.entityRef: blueprint/app`, named App Containers.
 - Double-clicking that node opens the child diagram because the identities match.
 
-The same pattern applies from container → component diagrams.
+The same pattern applies from a container diagram to a component diagram.
 
-### Practical guidance for integrators
+### Guidance for integrators
 
-- Prefer **stable, business-meaningful slugs** (product, domain, service) over transient repo folder names when authoring by hand.
-- Use **fully qualified** references (`a/b/c`) in dependencies and externals so links work across files in a workspace.
-- Pin the **BlueprintSpec URL** (below) in consumer pipelines so validation behaviour does not shift unexpectedly.
-- When merging ArchLens output with manual edits, conflicts on the same `entityRef` are the signal that two sources disagree about one real-world entity.
+- Prefer a stable, business-meaningful slug, such as a product, a domain, or a service, over a repo folder name that moves.
+- Use a fully qualified reference, `a/b/c`, in a dependency and an external so the link works across files in a workspace.
+- Pin the BlueprintSpec URL below in a consumer pipeline so validation doesn't shift when `main` moves.
+- When you merge ArchLens output with a manual edit, a conflict on the same `entityRef` means two sources disagree about one real entity.
 
----
+## Public schema URLs
 
-## Public BlueprintSpec URLs
+| Channel                 | URL                                                         | Use when                                                       |
+| ----------------------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
+| **Versioned, pin this** | `https://archlens.dev/schemas/v4/blueprint.schema.json`     | An external repo that shouldn't break when BlueprintSpec moves |
+| **Tracking main**       | `https://archlens.dev/schemas/latest/blueprint.schema.json` | Follow BlueprintSpec on `main`                                 |
 
-| Channel                            | URL                                                         | Use when                                                    |
-| ---------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| **Versioned (preferred for pins)** | `https://archlens.dev/schemas/v4/blueprint.schema.json`     | External repos that should not break on BlueprintSpec bumps |
-| **Latest**                         | `https://archlens.dev/schemas/latest/blueprint.schema.json` | Tracking BlueprintSpec on `main`                            |
-
-Locally (and on this docs site), the same paths are available under the app origin:
+On this site, and when you run the app locally, the same paths are available on the app origin:
 
 - `/schemas/v4/blueprint.schema.json`
 - `/schemas/latest/blueprint.schema.json`
 
-Contributors: regenerating checked-in schema files, pre-commit checks and major version bumps - [Setup & local development](../setup.md#blueprintspec-json-schema).
+Contributors who regenerate the checked-in schema, the pre-commit check, and a major version bump should read [Setup and local development](../setup.md#blueprintspec-json-schema).
 
----
+## Point an editor at the schema
 
-## Pointing an editor at BlueprintSpec
-
-Each blueprint file sets `version` to the public BlueprintSpec URL. You can also add an IDE directive:
+Each blueprint file sets `version` to the public BlueprintSpec URL. You can also add an editor directive:
 
 ```yaml
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
@@ -118,11 +107,11 @@ dependencies:
     type: direct-call
 ```
 
-Contributors working in this repository: workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete - see [Setup - YAML format (v4)](../setup.md#yaml-format-v4).
+In this repository, workspace settings map `blueprints/**/*.yaml` to the local BlueprintSpec for autocomplete. See [Setup, YAML format v4](../setup.md#yaml-format-v4).
 
-## Live BlueprintSpec (latest)
+## Live schema
 
-The block below fetches the **latest** BlueprintSpec served with this app and pretty-prints it. Refresh the page after a new deploy to see updates on the hosted site.
+The block below fetches the BlueprintSpec on the `latest` channel and pretty-prints it. Refresh the page after a deploy to see the hosted update.
 
 ```live-schema
 latest
@@ -130,13 +119,13 @@ latest
 
 ## Declared system context
 
-A **system context** diagram (`level: context`) can be **authored** as well as generated. Declare personas, software-system anchors and third-party dependencies up front; ArchLens scan **hydrates** discoveries into that seed instead of replacing human intent ([ADR-0015](../ADRs/0015-declared-context-hydration.md)).
+You can author a system context diagram, `level: context`, as well as generate one. Declare personas, software-system anchors, and third-party dependencies up front. An ArchLens scan hydrates discoveries into that seed instead of replacing what you wrote. See [ADR-0015](../ADRs/0015-declared-context-hydration.md).
 
-There is no separate BlueprintSpec `kind` - use `level: context`.
+There is no separate BlueprintSpec kind. Use `level: context`.
 
 ### Sparse shape
 
-Minimum useful declaration for a multi-repo product:
+This is the minimum useful declaration for a multi-repo product:
 
 ```yaml
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
@@ -177,44 +166,44 @@ dependencies:
     type: direct-call
 ```
 
-| Concept             | Convention                                                                                                                                                |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Product persona** | `type: person` + `properties.role: product-persona`                                                                                                       |
-| **System anchor**   | `software-system` / `group` with a stable `entityRef` (and optional `name`)                                                                               |
-| **Infra spoke**     | `software-system` with `properties.role: infrastructure` and `properties.serves` (comma-separated system `entityRef`s this stack supports)                |
-| **Third-party**     | `external: true` + `properties.classification: third-party`                                                                                               |
-| **Display `name`**  | Optional everywhere; omit to derive from the `entityRef` leaf. Merges prefer an explicit name over a derived one; two explicit names keep the earlier one |
+| Concept             | Convention                                                                                                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Product persona** | `type: person` plus `properties.role: product-persona`                                                                                                                     |
+| **System anchor**   | `software-system` or `group`, with a stable `entityRef` and an optional `name`                                                                                             |
+| **Infra spoke**     | `software-system` with `properties.role: infrastructure` and `properties.serves`, a comma-separated list of system `entityRef`s this stack supports                        |
+| **Third-party**     | `external: true` plus `properties.classification: third-party`                                                                                                             |
+| **Display name**    | Optional on every node. Omit it to derive a label from the `entityRef` leaf. A merge prefers an explicit name over a derived one. Two explicit names keep the earlier one. |
 
-### IaC → context and container
+### From IaC to context and container
 
-When ArchLens scans Terraform or Pulumi, it classifies resources by **provider pack** (Cloudflare, AWS, Azure, Google Cloud):
+When ArchLens scans Terraform or Pulumi, it classifies each resource with a provider pack: Cloudflare, AWS, Azure, or `Google Cloud`.
 
-| Diagram       | Projection                                                                                                                                                                         |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Context**   | One scan-proposed third-party per **vendor** that had a primary product; edges from each `serves` system                                                                           |
-| **Container** | Internal **IaC declarations** for the full classified parse; only primary products get external provisioned nodes linked with `provisions`; supporting/noise stay declaration-only |
+| Diagram       | Projection                                                                                                                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Context**   | One scan-proposed third-party per vendor that had a primary product, with an edge from each `serves` system                                                                                    |
+| **Container** | Internal IaC declarations for the full classified parse. Only a primary product gets an external provisioned node, linked with `provisions`. Supporting and noise nodes stay declaration-only. |
 
-See [ADR-0016](../ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md). Author-declared third-parties keep their names and ownership. Scan proposals hydrate through the same plan as code discoveries ([ADR-0015](../ADRs/0015-declared-context-hydration.md)). Full workflow: [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+See [ADR-0016](../ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md). An author-declared third-party keeps its name and its ownership. A scan proposal hydrates through the same plan as a code discovery. See [ADR-0015](../ADRs/0015-declared-context-hydration.md). The full workflow is [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
-Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens - Declare then scan](./cli.md#declare-then-scan).
+Seed files live under the scan output directory, at `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml`. The context folder is optional. Commit them in the repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). Read [Declare then scan](./cli.md#declare-then-scan) for how a scan merges into the seed.
 
-## Catalog staging vs BlueprintSpec
+## Catalog staging and BlueprintSpec
 
-**BlueprintSpec is unchanged** by estate fragments and compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)). Diagram YAML in local folders, fragments and published snapshots is still the same BlueprintSpec / `SystemSchema` contract on this page.
+Estate fragments and compose don't change BlueprintSpec. See [ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md). Diagram YAML in a local folder, in a fragment, and in a published snapshot is still the BlueprintSpec and `SystemSchema` contract on this page.
 
-What is **not** BlueprintSpec:
+These artifacts aren't BlueprintSpec:
 
-| Artifact                 | Role                                                                              |
-| ------------------------ | --------------------------------------------------------------------------------- |
-| Fragment `manifest.json` | Metadata for a staged product/slice (`estateId`, `productId`, `sourceRef`, …)     |
-| Suggestion overlay YAML  | Accepted/rejected intent (`delta.nodes` / `delta.dependencies`) under `overlays/` |
+| Artifact                 | Role                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| Fragment `manifest.json` | Metadata for a staged product or slice: `estateId`, `productId`, `sourceRef`, and the rest |
+| Suggestion overlay YAML  | Accepted or rejected intent, `delta.nodes` and `delta.dependencies`, under `overlays/`     |
 
-Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of BlueprintSpec files. Local folder edits and Canvas working copies still use BlueprintSpec only ([ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md), [ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)).
+Compose merges fragments, plus accepted overlays, into a normal ADR-0010 catalog of BlueprintSpec files. A local folder edit and a Canvas working copy still use BlueprintSpec only. See [ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md) and [ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md).
 
 ## Next
 
-- [ChaosSpec](./chaos-spec.md) - failure scenarios that reference BlueprintSpec diagrams
-- [ArchLens CLI](./cli.md) - generating diagrams that follow BlueprintSpec (including [declare then scan](./cli.md#declare-then-scan))
-- [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
+- [ChaosSpec](./chaos-spec.md) is a failure scenario that references a BlueprintSpec diagram.
+- [ArchLens CLI](./cli.md) generates diagrams that follow BlueprintSpec, including [declare then scan](./cli.md#declare-then-scan).
+- [ArchLens Canvas](./canvas.md) is where you edit and validate a workspace.
 - [Getting started](./getting-started.md)
-- [GitHub Actions workflows](./ci-workflows.md) - declared seeds, fragment → compose catalog jobs
+- [GitHub Actions workflows](./ci-workflows.md) covers declared seeds and the fragment-to-compose catalog jobs.

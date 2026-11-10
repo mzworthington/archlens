@@ -27,7 +27,9 @@ const appPackageVersion = JSON.parse(
   fs.readFileSync(path.join(canvasPackageRoot, 'package.json'), 'utf8')
 ).version as string;
 
-export default defineConfig({
+const previewBuild = process.env.CANVAS_PREVIEW === '1';
+
+const siteConfig = defineConfig({
   base,
   // Project API key is a public phc_ token; expose only POSTHOG_TOKEN / POSTHOG_HOST.
   envPrefix: ['VITE_', 'POSTHOG_TOKEN', 'POSTHOG_HOST'],
@@ -172,3 +174,28 @@ export default defineConfig({
     },
   },
 });
+
+const previewConfig = defineConfig({
+  define: {
+    __APP_BUILD_ID__: JSON.stringify('vscode-preview'),
+    __APP_PACKAGE_VERSION__: JSON.stringify(appPackageVersion),
+  },
+  plugins: [react(), tailwindcss()],
+  publicDir: false,
+  build: {
+    outDir: '../vscode/media/canvas-preview',
+    emptyOutDir: true,
+    assetsInlineLimit: 100000000,
+    rollupOptions: {
+      input: 'src/preview/webview.tsx',
+      output: {
+        format: 'iife',
+        inlineDynamicImports: true,
+        entryFileNames: 'canvas-preview.js',
+        assetFileNames: 'canvas-preview.css',
+      },
+    },
+  },
+});
+
+export default previewBuild ? previewConfig : siteConfig;

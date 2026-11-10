@@ -112,7 +112,7 @@
     }
   },
   "scripts": {
-    "compile": "pnpm exec esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20 --sourcemap",
+    "compile": "pnpm --filter @archlens/canvas build:preview && pnpm exec esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node20 --sourcemap",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "package:pre-release": "pnpm run compile && pnpm exec vsce package --pre-release --no-dependencies --allow-missing-repository",

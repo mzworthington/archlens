@@ -99,6 +99,7 @@ const sourceProvenanceSchema = z.object({
 const metadataSchema = z.object({
   entityRef: entityRefStringSchema.optional(),
   name: z.string().min(1),
+  description: z.string().optional(),
   source: sourceProvenanceSchema.optional(),
 });
 

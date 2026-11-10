@@ -70,10 +70,17 @@ describe('open architecture map', () => {
         sourcePath: '/repo/blueprints/context.yaml',
         level: 'context',
         systems: [
-          { name: 'Checkout API', entityRef: 'checkout/api' },
-          { name: 'Billing', entityRef: 'checkout/billing' },
+          { name: 'Checkout API', entityRef: 'checkout/api', type: 'software-system' },
+          { name: 'Billing', entityRef: 'checkout/billing', type: 'software-system' },
         ],
-        links: [{ fromName: 'Checkout API', toName: 'Billing' }],
+        links: [
+          {
+            fromName: 'Checkout API',
+            toName: 'Billing',
+            fromRef: 'checkout/api',
+            toRef: 'checkout/billing',
+          },
+        ],
       },
     });
   });
@@ -175,6 +182,7 @@ describe('open architecture map', () => {
     expect(decision.kind === 'diagram' && decision.diagram.systems[0]).toEqual({
       name: 'Checkout API',
       entityRef: 'checkout/api',
+      type: 'software-system',
       sourceFile: 'src/api.ts',
     });
   });
