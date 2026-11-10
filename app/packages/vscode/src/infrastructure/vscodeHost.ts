@@ -183,6 +183,13 @@ export async function createEditorHost<Uri extends FileUri>(
       panelPainters.get(visible.id)?.();
     },
     listSourceFiles: (root, glob) => listSourceFiles(api, root, glob),
+    readSource: async filePath => {
+      try {
+        return (await readFile(api, api.Uri.file(filePath))).content;
+      } catch {
+        return null;
+      }
+    },
     readGitignore: root => readGitignore(api, root),
     askScanScope: found => askScanScope(api, found),
     askScanGlob: () => askScanGlob(api),

@@ -20,6 +20,7 @@ import {
   openArchitectureMap,
   showHotspots,
 } from './handler';
+import type { BlueprintDocument } from './domain';
 import type {
   BlueprintFile,
   EditorHost,
@@ -55,6 +56,7 @@ interface RecordedHost extends EditorHost {
   readonly discussions: string[];
   readonly clipboard: string[];
   readonly reviews: ReviewRow[][];
+  readonly written: BlueprintDocument[];
 }
 
 function host(input: {
@@ -81,6 +83,7 @@ function host(input: {
   review?: ReviewChoice;
   writeResult?: 'written' | 'failed';
   unsaved?: boolean;
+  sourceText?: Readonly<Record<string, string>>;
 }): RecordedHost {
   const calls: string[] = [];
   const messages: string[] = [];
@@ -88,6 +91,7 @@ function host(input: {
   const discussions: string[] = [];
   const clipboard: string[] = [];
   const reviews: ReviewRow[][] = [];
+  const written: BlueprintDocument[] = [];
   const files = input.files ?? [];
   return {
     calls,
@@ -96,6 +100,7 @@ function host(input: {
     discussions,
     clipboard,
     reviews,
+    written,
     isTrusted: () => input.trusted,
     generateEnabled: () => {
       calls.push('read-setting');
@@ -175,9 +180,11 @@ function host(input: {
       return input.review ?? 'keep';
     },
     applyBlueprintWrite: async documents => {
+      written.push(...documents);
       calls.push(`blueprint:${documents.map(document => document.path).join(',')}`);
       return input.writeResult ?? 'written';
     },
+    readSource: async path => input.sourceText?.[path] ?? null,
   };
 }
 
@@ -348,6 +355,29 @@ describe('generate diagram command', () => {
     expect(editor.calls.some(call => call.startsWith('scan:'))).toBe(false);
     expect(editor.reviews).toEqual([]);
     expect(editor.discussions).toEqual([]);
+  });
+
+  it('writes a call edge when one source file imports another', async () => {
+    const domain = '/repo/app/packages/vscode/src/features/editorPreview/domain.ts';
+    const handlerPath = '/repo/app/packages/vscode/src/features/editorPreview/handler.ts';
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      review: 'write',
+      sourceFiles: [domain, handlerPath],
+      sourceText: {
+        [domain]: 'export const ready = true;\n',
+        [handlerPath]: "import { ready } from './domain';\n",
+      },
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.written.map(document => document.content).join('\n')).toContain(
+      'Calls module / service'
+    );
   });
 
   it('leaves gitignored and structural paths out of the review', async () => {

@@ -22,6 +22,8 @@ import {
 } from '@archlens/core';
 import type { BlueprintFile, DiagramCrumb, DiagramView, GenerateChoice } from './ports';
 
+export { analyzeWorkspace } from './analyzeWorkspace';
+
 export const TRUST_COPY = 'ArchLens does not read this folder until the workspace is trusted.';
 export const EMPTY_MAP_COPY = 'No map in this folder.';
 export const GENERATE_TITLE = 'Generate diagram from workspace';
@@ -343,6 +345,7 @@ export function blueprintWritePlan(input: {
   files: readonly BlueprintFile[];
   scanned: readonly NamedSystem[];
   sourceFiles?: readonly string[];
+  analyzed?: readonly BlueprintDocument[];
 }): { documents: readonly BlueprintDocument[]; diagram: DiagramView } {
   const folderPath = joinEditorPath(input.root, safeBlueprintsFolder(input.blueprintsFolder));
   const parsed = input.files.flatMap(file => {
@@ -365,7 +368,8 @@ export function blueprintWritePlan(input: {
     joinEditorPath(folderPath, 'context.yaml');
   const documents: BlueprintDocument[] = [];
   let diagram: DiagramView | undefined;
-  const rollupDocuments = rollupBlueprintDocuments(input.root, folderPath, input.sourceFiles ?? []);
+  const rollupDocuments =
+    input.analyzed ?? rollupBlueprintDocuments(input.root, folderPath, input.sourceFiles ?? []);
   const rollupPaths = new Set(rollupDocuments.map(document => document.path));
 
   for (const file of parsed) {

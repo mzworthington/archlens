@@ -13,6 +13,7 @@ import {
   foundLine,
   generateDecision,
   languagesInPaths,
+  analyzeWorkspace,
   blueprintWritePlan,
   reviewRows,
   sameEditorPath,
@@ -21,6 +22,7 @@ import {
   systemsInBlueprints,
   workspaceRootForSelection,
 } from './domain';
+import { parseWorkspaceSources } from './parseWorkspaceSources';
 import type { BlueprintFile, EditorHost } from './ports';
 
 export async function openArchitectureMap(host: EditorHost): Promise<void> {
@@ -178,12 +180,25 @@ async function reviewWorkspaceScan(
   }
   if ((await host.showReview(rows)) !== 'write') return;
 
+  const sources: { path: string; content: string }[] = [];
+  for (const file of files) {
+    const content = await host.readSource(file);
+    if (content === null) continue;
+    sources.push({ path: file, content });
+  }
+  const outputDir = `${workspaceRoot.replace(/[/\\]+$/, '')}/${host.blueprintsFolder()}`;
+  const analyzed = await analyzeWorkspace({
+    root: workspaceRoot,
+    outputDir,
+    files: await parseWorkspaceSources(workspaceRoot, sources),
+  });
   const plan = blueprintWritePlan({
     root: workspaceRoot,
     blueprintsFolder: host.blueprintsFolder(),
     files: existing,
     scanned,
     sourceFiles: files,
+    analyzed,
   });
   if ((await host.applyBlueprintWrite(plan.documents)) === 'failed') {
     host.showMessage(WRITE_FAILED_COPY);

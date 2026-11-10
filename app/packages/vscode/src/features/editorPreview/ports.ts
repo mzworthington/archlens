@@ -69,6 +69,7 @@ export interface EditorHost {
   hasGitHistory(root: string): Promise<boolean>;
   setHotspots(on: boolean): void;
   listSourceFiles(root: string, glob: string): Promise<readonly string[]>;
+  readSource(path: string): Promise<string | null>;
   readGitignore(root: string): Promise<string>;
   askScanScope(found: string): Promise<ScanScopeChoice>;
   askScanGlob(): Promise<string | undefined>;

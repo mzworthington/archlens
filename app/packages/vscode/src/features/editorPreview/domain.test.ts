@@ -29,6 +29,7 @@ import {
   isInsideEditorPath,
   languagesInPaths,
   presentHotspots,
+  analyzeWorkspace,
   blueprintWritePlan,
   reviewRows,
   reviewSummary,
@@ -354,6 +355,39 @@ describe('generate diagram from workspace', () => {
     );
     expect(drillDown.level).toBe('component');
     expect(drillDown.nodes).toHaveLength(2);
+  });
+
+  it('records an import as a call when the analyzers run', async () => {
+    const documents = await analyzeWorkspace({
+      root: '/repo',
+      outputDir: '/repo/blueprints',
+      files: [
+        {
+          filePath: '/repo/app/packages/vscode/src/features/editorPreview/domain.ts',
+          relativePath: 'app/packages/vscode/src/features/editorPreview/domain.ts',
+          baseName: 'domain',
+          isTestFile: false,
+          imports: [],
+          reExports: [],
+          newExpressions: [],
+          callExpressions: [],
+        },
+        {
+          filePath: '/repo/app/packages/vscode/src/features/editorPreview/handler.ts',
+          relativePath: 'app/packages/vscode/src/features/editorPreview/handler.ts',
+          baseName: 'handler',
+          isTestFile: false,
+          imports: [{ moduleSpecifier: './domain' }],
+          reExports: [],
+          newExpressions: [],
+          callExpressions: [],
+        },
+      ],
+    });
+
+    expect(documents.map(document => document.content).join('\n')).toContain(
+      'Calls module / service'
+    );
   });
 
   it('leaves child diagrams out of the review', () => {
