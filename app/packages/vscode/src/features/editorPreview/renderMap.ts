@@ -216,6 +216,8 @@ for (const crumb of document.querySelectorAll('[data-crumb]')) {
 </script>`;
 }
 
+export type MapColorTheme = 'light' | 'system';
+
 export function renderCanvasShell(input: {
   yaml: string;
   hotspots: boolean;
@@ -223,22 +225,112 @@ export function renderCanvasShell(input: {
   scriptSrc: string;
   styleSrc: string;
   cspSource: string;
+  theme?: MapColorTheme;
 }): string {
   const csp = input.cspSource ? ` ${input.cspSource}` : '';
   const hotspots = input.hotspots ? 'on' : 'off';
   const yaml = JSON.stringify(input.yaml).replaceAll('<', '\\u003c');
+  const theme = input.theme === 'system' ? 'system' : 'light';
+  const systemTheme =
+    theme === 'system'
+      ? `<script nonce="${escapeHtml(input.nonce)}">
+const scheme = window.matchMedia('(prefers-color-scheme: dark)');
+const applyTheme = () => {
+  document.documentElement.dataset.theme = scheme.matches ? 'blueprint' : 'light';
+};
+applyTheme();
+scheme.addEventListener('change', applyTheme);
+</script>`
+      : '';
+  const keepNodeDrag = `<script nonce="${escapeHtml(input.nonce)}">
+let lastClickAt = 0;
+let lastClickElement = null;
+let bridgingPointer = false;
+const flowSurface = '.react-flow__node, .react-flow__pane, .react-flow__edge';
+const flowChrome = '.react-flow__panel, .react-flow__controls, .react-flow__minimap';
+function mouseInit(event) {
+  return {
+    bubbles: true,
+    cancelable: true,
+    view: window,
+    clientX: event.clientX,
+    clientY: event.clientY,
+    screenX: event.screenX,
+    screenY: event.screenY,
+    button: event.button,
+    buttons: event.buttons,
+    ctrlKey: event.ctrlKey,
+    metaKey: event.metaKey,
+    shiftKey: event.shiftKey,
+    altKey: event.altKey,
+  };
+}
+function swallowTrustedMouse(event) {
+  if (!bridgingPointer || !event.isTrusted) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+}
+window.addEventListener('mousedown', swallowTrustedMouse, true);
+window.addEventListener('mousemove', swallowTrustedMouse, true);
+window.addEventListener('mouseup', swallowTrustedMouse, true);
+document.addEventListener('pointerdown', (event) => {
+  if (event.button !== 0 || !event.isPrimary) return;
+  const target = event.target;
+  const element = target instanceof Element ? target : target.parentElement;
+  if (!element) return;
+  if (element.closest(flowChrome)) return;
+  if (!element.closest(flowSurface)) return;
+  event.preventDefault();
+  bridgingPointer = true;
+  if (typeof element.setPointerCapture === 'function') {
+    try { element.setPointerCapture(event.pointerId); } catch (captureError) { void captureError; }
+  }
+  const originX = event.clientX;
+  const originY = event.clientY;
+  element.dispatchEvent(new MouseEvent('mousedown', mouseInit(event)));
+  const move = (pointerEvent) => {
+    pointerEvent.preventDefault();
+    element.dispatchEvent(new MouseEvent('mousemove', mouseInit(pointerEvent)));
+  };
+  const finish = (pointerEvent) => {
+    document.removeEventListener('pointermove', move, true);
+    document.removeEventListener('pointerup', finish, true);
+    document.removeEventListener('pointercancel', finish, true);
+    bridgingPointer = false;
+    pointerEvent.preventDefault();
+    element.dispatchEvent(new MouseEvent('mouseup', mouseInit(pointerEvent)));
+    if (pointerEvent.type === 'pointercancel') return;
+    const dx = pointerEvent.clientX - originX;
+    const dy = pointerEvent.clientY - originY;
+    if (dx * dx + dy * dy > 16) return;
+    const at = { bubbles: true, cancelable: true, clientX: pointerEvent.clientX, clientY: pointerEvent.clientY, view: window };
+    element.dispatchEvent(new MouseEvent('click', at));
+    const now = Date.now();
+    if (lastClickElement === element && now - lastClickAt < 400) {
+      element.dispatchEvent(new MouseEvent('dblclick', at));
+    }
+    lastClickAt = now;
+    lastClickElement = element;
+  };
+  document.addEventListener('pointermove', move, true);
+  document.addEventListener('pointerup', finish, true);
+  document.addEventListener('pointercancel', finish, true);
+}, true);
+</script>`;
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src${csp} data: blob:; style-src${csp} 'unsafe-inline' https://fonts.googleapis.com; font-src${csp} https://fonts.gstatic.com; script-src 'nonce-${escapeHtml(input.nonce)}'${csp};" />
 <link rel="stylesheet" href="${escapeHtml(input.styleSrc)}" />
 <title>Architecture map</title>
-<style>html,body,#root{height:100%;margin:0;}body{background:#020617;}</style>
+<style>html,body,#root{height:100%;margin:0;} .react-flow__node,.react-flow__node *,.react-flow__pane,.react-flow__edge{user-select:none;-webkit-user-drag:none;touch-action:none;}</style>
 </head>
 <body data-hotspots="${hotspots}">
 <div id="root"></div>
 <script nonce="${escapeHtml(input.nonce)}" type="application/json" id="blueprint">${yaml}</script>
+${systemTheme}
+${keepNodeDrag}
 <script nonce="${escapeHtml(input.nonce)}" src="${escapeHtml(input.scriptSrc)}"></script>
 </body>
 </html>`;

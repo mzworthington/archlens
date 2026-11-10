@@ -11,11 +11,12 @@ import {
   GENERATE_TITLE,
   KEEP_FILES_COPY,
   WRITE_BLUEPRINT_COPY,
-  NO_CHANGES_COPY,
   NO_LOWER_COPY,
   REVIEW_NOTE,
   REVIEW_TITLE,
   TELL_US_COPY,
+  readableBlueprint,
+  reviewSummary,
   THIS_FOLDER_COPY,
   WHOLE_WORKSPACE_COPY,
   decideBack,
@@ -182,6 +183,7 @@ export async function createEditorHost<Uri extends FileUri>(
       panelPainters.get(visible.id)?.();
     },
     listSourceFiles: (root, glob) => listSourceFiles(api, root, glob),
+    readGitignore: root => readGitignore(api, root),
     askScanScope: found => askScanScope(api, found),
     askScanGlob: () => askScanGlob(api),
     confirmGenerate: () => confirmGenerate(api),
@@ -291,6 +293,11 @@ function configuredBlueprintsFolder<Uri extends FileUri>(api: VsCodeLike<Uri>): 
   return safeBlueprintsFolder(configured);
 }
 
+function configuredMapTheme<Uri extends FileUri>(api: VsCodeLike<Uri>): 'light' | 'system' {
+  const configured = api.workspace.getConfiguration('archlens').get<string>('theme', 'light');
+  return configured === 'system' ? 'system' : 'light';
+}
+
 function showEmptyMap<Uri extends FileUri>(api: VsCodeLike<Uri>): void {
   const panel = api.window.createWebviewPanel(
     'archlens.architectureMap',
@@ -353,6 +360,7 @@ async function showDiagram<Uri extends FileUri>(
     panel.webview.html = renderCanvasShell({
       yaml: view.schema ? serializeSchemaToYaml(view.schema) : '',
       hotspots: view.hotspotsOn,
+      theme: configuredMapTheme(api),
       nonce: mapNonce(),
       scriptSrc: sources.scriptSrc,
       styleSrc: sources.styleSrc,
@@ -452,7 +460,7 @@ async function hasGitHistory<Uri extends FileUri>(
 
 function schemaFrom(content: string): SystemSchema | undefined {
   try {
-    return parseSchemaFromYaml(content);
+    return parseSchemaFromYaml(readableBlueprint(content));
   } catch {
     return undefined;
   }
@@ -498,6 +506,18 @@ function workspaceRootFor<Uri extends FileUri>(
     })
     .sort((left, right) => right.length - left.length);
   return matches[0];
+}
+
+async function readGitignore<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  root: string
+): Promise<string> {
+  try {
+    const bytes = await api.workspace.fs.readFile(api.Uri.file(path.join(root, '.gitignore')));
+    return new TextDecoder().decode(bytes);
+  } catch {
+    return '';
+  }
 }
 
 async function listSourceFiles<Uri extends FileUri>(
@@ -573,8 +593,7 @@ async function showReview<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   rows: readonly ReviewRow[]
 ): Promise<ReviewChoice> {
-  const lines =
-    rows.length === 0 ? NO_CHANGES_COPY : rows.map(row => `${row.status} ${row.name}`).join('\n');
+  const lines = reviewSummary(rows);
   const choice = await api.window.showInformationMessage(
     REVIEW_TITLE,
     { modal: true, detail: `${lines}\n\n${REVIEW_NOTE}` },

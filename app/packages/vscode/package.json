@@ -32,9 +32,7 @@
   "activationEvents": [
     "onCommand:archlens.openArchitectureMap",
     "onCommand:archlens.generateFromWorkspace",
-    "onCommand:archlens.compareWithScan",
     "onCommand:archlens.copyDiagram",
-    "onCommand:archlens.showHotspots",
     "onLanguage:yaml"
   ],
   "contributes": {
@@ -50,18 +48,8 @@
         "category": "ArchLens"
       },
       {
-        "command": "archlens.compareWithScan",
-        "title": "Compare with a fresh scan",
-        "category": "ArchLens"
-      },
-      {
         "command": "archlens.copyDiagram",
         "title": "Copy diagram as Mermaid",
-        "category": "ArchLens"
-      },
-      {
-        "command": "archlens.showHotspots",
-        "title": "Show hotspots",
         "category": "ArchLens"
       }
     ],
@@ -83,11 +71,6 @@
           "command": "archlens.copyDiagram",
           "when": "webviewId == 'archlens.architectureMap'",
           "group": "navigation@2"
-        },
-        {
-          "command": "archlens.showHotspots",
-          "when": "webviewId == 'archlens.architectureMap'",
-          "group": "navigation@3"
         }
       ]
     },
@@ -98,6 +81,12 @@
           "type": "string",
           "default": "blueprints",
           "description": "Folder that holds BlueprintSpec files. The preview only reads this folder."
+        },
+        "archlens.theme": {
+          "type": "string",
+          "enum": ["light", "system"],
+          "default": "light",
+          "description": "Map appearance. Light is the default. System follows the operating system appearance."
         }
       }
     }
@@ -119,6 +108,7 @@
     "vscode:prepublish": "pnpm run compile"
   },
   "dependencies": {
+    "@archlens/analysis": "workspace:*",
     "@archlens/core": "workspace:*"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { FEATURE_FLAGS } from '../../../../../application/navigation/featureGate';
+import { useExtensionPreview } from '../../extensionPreview';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
 import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
 import { DiagramExportMenuItems } from '../WorkspaceToolbar/DiagramExportMenuItems';
@@ -161,6 +162,7 @@ export const ToolbarOverflowMenu: React.FC = () => {
     isWorkspaceOpen,
     isMemoryScanWorkspace,
   } = useSaveAction();
+  const extensionPreview = useExtensionPreview();
   const setIsCompareOpen = useBlueprintStore(s => s.setIsCompareOpen);
   const setIsFeatureFlagsOpen = useBlueprintStore(s => s.setIsFeatureFlagsOpen);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
@@ -219,21 +221,23 @@ export const ToolbarOverflowMenu: React.FC = () => {
           browseTestId="browse-chaos-spec-action-overflow"
         />
 
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            setIsCompareOpen(true);
-          }}
-          disabled={controlsDisabled || loadedSystems.length < 2}
-          className={menuItemClass}
-          title="Compare two loaded systems"
-          data-testid="toolbar-compare"
-        >
-          <GitCompare className="w-3.5 h-3.5 shrink-0" />
-          Compare Systems
-        </button>
+        {extensionPreview ? null : (
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              close();
+              setIsCompareOpen(true);
+            }}
+            disabled={controlsDisabled || loadedSystems.length < 2}
+            className={menuItemClass}
+            title="Compare two loaded systems"
+            data-testid="toolbar-compare"
+          >
+            <GitCompare className="w-3.5 h-3.5 shrink-0" />
+            Compare Systems
+          </button>
+        )}
 
         {FEATURE_FLAGS.length > 0 ? (
           <button

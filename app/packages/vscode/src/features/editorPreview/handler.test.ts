@@ -73,6 +73,7 @@ function host(input: {
   git?: boolean;
   map?: boolean;
   sourceFiles?: readonly string[];
+  gitignore?: string;
   scope?: ScanScopeChoice;
   glob?: string;
   confirm?: 'generate' | 'cancel';
@@ -156,6 +157,7 @@ function host(input: {
       calls.push(`sources:${root}`);
       return input.sourceFiles ?? [];
     },
+    readGitignore: async () => input.gitignore ?? '',
     askScanScope: async found => {
       calls.push(`found:${found}`);
       return input.scope ?? 'escape';
@@ -348,6 +350,25 @@ describe('generate diagram command', () => {
     expect(editor.discussions).toEqual([]);
   });
 
+  it('leaves gitignored and structural paths out of the review', async () => {
+    const editor = host({
+      trusted: true,
+      enabled: true,
+      scope: 'workspace',
+      confirm: 'generate',
+      gitignore: '.pnpm-store/\n',
+      sourceFiles: [
+        '/repo/src/catalog.ts',
+        '/repo/.pnpm-store/v11/projects/store/index.ts',
+        '/repo/.github/workflows/codeql.test.cjs',
+      ],
+    });
+
+    await generateFromWorkspace(editor);
+
+    expect(editor.reviews).toEqual([[{ status: 'Added', name: 'core' }]]);
+  });
+
   it('shows added, changed and removed rows and writes nothing', async () => {
     const editor = host({
       trusted: true,
@@ -362,8 +383,9 @@ describe('generate diagram command', () => {
 
     expect(editor.reviews).toEqual([
       [
-        { status: 'Changed', name: 'api' },
-        { status: 'Added', name: 'catalog' },
+        { status: 'Added', name: 'checkout' },
+        { status: 'Added', name: 'core' },
+        { status: 'Removed', name: 'Checkout API' },
         { status: 'Removed', name: 'Billing' },
       ],
     ]);
@@ -403,7 +425,7 @@ describe('generate diagram command', () => {
     await generateFromWorkspace(editor);
 
     expect(editor.calls).toContain('blueprint:/repo/blueprints/context.yaml');
-    expect(editor.diagrams).toEqual(['api, catalog']);
+    expect(editor.diagrams).toEqual(['checkout, core']);
     expect(editor.messages).toEqual([]);
   });
 
@@ -476,7 +498,8 @@ describe('generate diagram command', () => {
     expect(editor.calls).toContain('scan:/repo/checkout');
     expect(editor.reviews).toEqual([
       [
-        { status: 'Changed', name: 'api' },
+        { status: 'Added', name: 'checkout' },
+        { status: 'Removed', name: 'Checkout API' },
         { status: 'Removed', name: 'Billing' },
       ],
     ]);
@@ -542,7 +565,14 @@ describe('compare with a fresh scan', () => {
 
     await compareWithScan(editor);
 
-    expect(editor.reviews).toEqual([[{ status: 'Added', name: 'catalog' }]]);
+    expect(editor.reviews).toEqual([
+      [
+        { status: 'Added', name: 'checkout' },
+        { status: 'Added', name: 'core' },
+        { status: 'Removed', name: 'api' },
+        { status: 'Removed', name: 'billing' },
+      ],
+    ]);
     expect(editor.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
   });
 
@@ -553,9 +583,9 @@ metadata:
   name: Repo
   entityRef: repo
 nodes:
-  - entityRef: src/catalog
+  - entityRef: core
     type: software-system
-    name: catalog
+    name: core
 dependencies: []
 `;
     const editor = host({

@@ -99,6 +99,59 @@ describe('architecture map panel', () => {
     expect(html).not.toContain('<article');
   });
 
+  it('opens in light mode and can follow the system appearance', () => {
+    const light = renderCanvasShell({
+      yaml: 'name: Checkout API\n',
+      hotspots: false,
+      nonce: 'nonce-1',
+      scriptSrc: 'canvas-preview.js',
+      styleSrc: 'canvas-preview.css',
+      cspSource: '',
+      theme: 'light',
+    });
+    const system = renderCanvasShell({
+      yaml: 'name: Checkout API\n',
+      hotspots: false,
+      nonce: 'nonce-1',
+      scriptSrc: 'canvas-preview.js',
+      styleSrc: 'canvas-preview.css',
+      cspSource: '',
+      theme: 'system',
+    });
+
+    expect(light).toContain('data-theme="light"');
+    expect(light).not.toContain('background:#020617');
+    expect(light).not.toContain('prefers-color-scheme');
+    expect(system).toContain('prefers-color-scheme: dark');
+    expect(system).toContain("scheme.matches ? 'blueprint' : 'light'");
+  });
+
+  it('lets a canvas node move instead of starting a browser drag', () => {
+    const html = renderCanvasShell({
+      yaml: 'name: Checkout API\n',
+      hotspots: false,
+      nonce: 'nonce-1',
+      scriptSrc: 'canvas-preview.js',
+      styleSrc: 'canvas-preview.css',
+      cspSource: '',
+      theme: 'light',
+    });
+
+    expect(html).toContain("addEventListener('pointerdown'");
+    expect(html).toContain("'.react-flow__node, .react-flow__pane, .react-flow__edge'");
+    expect(html).toContain("'.react-flow__panel, .react-flow__controls, .react-flow__minimap'");
+    expect(html).toContain('preventDefault()');
+    expect(html).toContain(', true)');
+    expect(html).toContain("new MouseEvent('mousedown'");
+    expect(html).toContain("new MouseEvent('mousemove'");
+    expect(html).toContain("new MouseEvent('mouseup'");
+    expect(html).toContain('event.isTrusted');
+    expect(html).toContain("new MouseEvent('click'");
+    expect(html).toContain("new MouseEvent('dblclick'");
+    expect(html).toContain('-webkit-user-drag:none');
+    expect(html).toContain('user-select:none');
+  });
+
   it('shows a hotspot mark and a change count on a marked system', () => {
     const html = renderMap(
       {

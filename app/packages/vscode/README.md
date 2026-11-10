@@ -9,12 +9,10 @@ Site copy of this page: [Editor extension](../../../docs/guide/vscode.md).
 ## Commands
 
 - **Open architecture map** shows the systems and the links in `blueprints/`. From the command palette, the focused YAML file is the map. A focused source file picks that workspace folder when several roots are open. An empty folder opens the map panel, which says **No map in this folder.** and lists no systems. The recommended YAML extension (`redhat.vscode-yaml`) still provides schema hints. This extension does not replace it.
-- **Generate diagram from workspace** asks what to scan and shows **Review blueprint changes**. **Keep current files** leaves the folder unchanged. **Write blueprint** saves the review into `blueprints/`.
-- **Compare with a fresh scan** uses that same picker and review. A match says **No changes.** An unsaved blueprint asks you to save or revert before a compare.
+- **Generate diagram from workspace** asks what to scan and shows **Review blueprint changes** with a count of added, changed, and removed systems. **Keep current files** leaves the folder unchanged. **Write blueprint** saves the review into `blueprints/`.
 - Enter on a system with a child diagram opens that diagram. Alt+Left, or the parent in the breadcrumb, comes back. A system with no child diagram stays put.
 - **Copy diagram as Mermaid** copies a flowchart of the systems on screen. The YAML file stays as it is. An empty diagram says **Nothing to copy.**
 - Opening or saving a blueprint puts a cycle, or the first failed check, in Problems. YAML that is not a blueprint gets no ArchLens problem. Restricted Mode adds none.
-- **Show hotspots** marks systems that a scan already recorded as hotspots, and properties include the change count. A folder with no git history says **Hotspots need a git history for this folder.** and the diagram stays as it is.
 
 ## A merge does not publish
 

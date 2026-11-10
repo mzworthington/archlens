@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Router } from 'wouter';
 import { useBlueprintStore } from '../application/store/store';
+import { ExtensionPreviewProvider } from '../ui/features/workspace/extensionPreview';
 import { WorkspacePage } from '../ui/features/workspace/WorkspacePage';
 
 /** Stay off `/workspace` so the site's demo bootstrap leaves this blueprint in place. */
@@ -23,7 +24,9 @@ export function CanvasPreview({ yaml, hotspots = false }: { yaml: string; hotspo
   return (
     <div className="h-screen w-screen">
       <Router hook={previewLocation}>
-        <WorkspacePage />
+        <ExtensionPreviewProvider>
+          <WorkspacePage />
+        </ExtensionPreviewProvider>
       </Router>
     </div>
   );

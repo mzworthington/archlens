@@ -2,6 +2,7 @@ import React from 'react';
 import { Download, Folder, GitMerge, ScanSearch, ShieldAlert, Upload } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { useExtensionPreview } from '../../extensionPreview';
 import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
 
 export type ToolbarOpenMenuItemsProps = {
@@ -37,6 +38,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
   const openBrowserLiteScan = useBlueprintStore(s => s.openBrowserLiteScan);
   const loadSchema = useBlueprintStore(s => s.loadSchema);
   const setIsStartupOpen = useBlueprintStore(s => s.setIsStartupOpen);
+  const extensionPreview = useExtensionPreview();
 
   const folderTitle = isWorkspaceOpen
     ? 'Open another folder workspace'
@@ -80,22 +82,24 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
 
   return (
     <>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          void handleBrowserLiteScan();
-        }}
-        disabled={disabled}
-        className={menuItemClass}
-        title="Scan a local repo in the browser, including git hotspots when `.git` is present."
-        id={`browser-lite-scan-action${idSuffix}`}
-        data-testid={`browser-lite-scan-action${idSuffix}`}
-      >
-        <ScanSearch className="w-3.5 h-3.5 text-accent shrink-0" />
-        Browser lite scan
-      </button>
+      {extensionPreview ? null : (
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            onClose();
+            void handleBrowserLiteScan();
+          }}
+          disabled={disabled}
+          className={menuItemClass}
+          title="Scan a local repo in the browser, including git hotspots when `.git` is present."
+          id={`browser-lite-scan-action${idSuffix}`}
+          data-testid={`browser-lite-scan-action${idSuffix}`}
+        >
+          <ScanSearch className="w-3.5 h-3.5 text-accent shrink-0" />
+          Browser lite scan
+        </button>
+      )}
       <button
         type="button"
         role="menuitem"
@@ -124,69 +128,75 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
         <Upload className="w-3.5 h-3.5 shrink-0" />
         Open File
       </button>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          setIsImportMermaidOpen(true);
-        }}
-        disabled={disabled || !schema}
-        className={menuItemClass}
-        title="Import Mermaid diagram into the active schema"
-        id="import-mermaid-action"
-      >
-        <GitMerge className="w-3.5 h-3.5 text-accent shrink-0" />
-        Import Mermaid
-      </button>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          openChaosSpecPicker();
-        }}
-        disabled={disabled || !isWorkspaceOpen}
-        className={menuItemClass}
-        title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
-        id={`browse-chaos-spec-action${idSuffix}`}
-        data-testid={browseTestId}
-      >
-        <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
-        Browse ChaosSpecs
-      </button>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          ensureResilienceMode();
-          openChaosSpecDialog('import');
-        }}
-        disabled={disabled || !schema}
-        className={menuItemClass}
-        title="Load a ChaosSpec YAML scenario for ChaosLens"
-        id={`import-chaos-spec-action${idSuffix}`}
-      >
-        <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
-        Load ChaosSpec
-      </button>
-      <button
-        type="button"
-        role="menuitem"
-        onClick={() => {
-          onClose();
-          ensureResilienceMode();
-          openChaosSpecDialog('export');
-        }}
-        disabled={disabled || !schema || resilienceFaults.length === 0}
-        className={menuItemClass}
-        title="Export the active ChaosLens scenario as ChaosSpec YAML"
-        id={`export-chaos-spec-action${idSuffix}`}
-      >
-        <Download className="w-3.5 h-3.5 text-accent shrink-0" />
-        Export ChaosSpec
-      </button>
+      {extensionPreview ? null : (
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            onClose();
+            setIsImportMermaidOpen(true);
+          }}
+          disabled={disabled || !schema}
+          className={menuItemClass}
+          title="Import Mermaid diagram into the active schema"
+          id="import-mermaid-action"
+        >
+          <GitMerge className="w-3.5 h-3.5 text-accent shrink-0" />
+          Import Mermaid
+        </button>
+      )}
+      {extensionPreview ? null : (
+        <>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              onClose();
+              openChaosSpecPicker();
+            }}
+            disabled={disabled || !isWorkspaceOpen}
+            className={menuItemClass}
+            title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
+            id={`browse-chaos-spec-action${idSuffix}`}
+            data-testid={browseTestId}
+          >
+            <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
+            Browse ChaosSpecs
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              onClose();
+              ensureResilienceMode();
+              openChaosSpecDialog('import');
+            }}
+            disabled={disabled || !schema}
+            className={menuItemClass}
+            title="Load a ChaosSpec YAML scenario for ChaosLens"
+            id={`import-chaos-spec-action${idSuffix}`}
+          >
+            <ShieldAlert className="w-3.5 h-3.5 text-accent shrink-0" />
+            Load ChaosSpec
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              onClose();
+              ensureResilienceMode();
+              openChaosSpecDialog('export');
+            }}
+            disabled={disabled || !schema || resilienceFaults.length === 0}
+            className={menuItemClass}
+            title="Export the active ChaosLens scenario as ChaosSpec YAML"
+            id={`export-chaos-spec-action${idSuffix}`}
+          >
+            <Download className="w-3.5 h-3.5 text-accent shrink-0" />
+            Export ChaosSpec
+          </button>
+        </>
+      )}
     </>
   );
 };

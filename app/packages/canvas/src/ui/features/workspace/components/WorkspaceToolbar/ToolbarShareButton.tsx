@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Share2 } from 'lucide-react';
 import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { useExtensionPreview } from '../../extensionPreview';
 import { readBlankCanvasSession } from '../../../../../application/store/states/ioState/blankCanvasSession';
 import { shouldPromptSaveBeforeShare } from '../../../../../application/store/states/ioState/blankWorkspacePlacement';
 import {
@@ -43,6 +44,7 @@ export const ToolbarShareButton: React.FC = () => {
   const roomDiagrams = loadedSystems.map(system => ({ path: system.path, name: system.name }));
   const sharingWorkspace = roomDiagrams.length > 1;
   const [shareOpen, setShareOpen] = useState(false);
+  const extensionPreview = useExtensionPreview();
 
   const copyShareLink = useCallback(
     async (roomId: string) => {
@@ -81,6 +83,8 @@ export const ToolbarShareButton: React.FC = () => {
     connectedCount === 1 ? '1 person editing' : `${connectedCount} people editing`;
   const shareLabel = sharingWorkspace ? 'Share live workspace' : 'Share live diagram';
   const ariaLabel = isActive && connectedCount > 0 ? `${shareLabel}, ${peopleLabel}` : shareLabel;
+
+  if (extensionPreview) return null;
 
   return (
     <>

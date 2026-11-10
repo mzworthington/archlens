@@ -1,6 +1,7 @@
 import React from 'react';
 import { Braces, SlidersHorizontal } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { useExtensionPreview } from '../../extensionPreview';
 
 const panelToggleClass =
   'flex items-center gap-2 min-h-11 px-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 shadow-sm text-xs font-semibold font-mono uppercase tracking-wider active:bg-slate-900 cursor-pointer';
@@ -19,6 +20,7 @@ export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant 
   const leftCollapsed = useBlueprintStore(s => s.leftCollapsed);
   const rightCollapsed = useBlueprintStore(s => s.rightCollapsed);
   const toggleRightCollapsed = useBlueprintStore(s => s.toggleRightCollapsed);
+  const extensionPreview = useExtensionPreview();
 
   if (!leftCollapsed || !rightCollapsed) return null;
 
@@ -39,15 +41,17 @@ export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant 
       role="toolbar"
       aria-label="Open side panels"
     >
-      <button
-        type="button"
-        onClick={openExplorer}
-        className={`${panelToggleClass} flex-1 justify-center`}
-        aria-label="Open Explorer"
-      >
-        <Braces className="w-4 h-4 text-accent shrink-0" aria-hidden />
-        Explorer
-      </button>
+      {extensionPreview ? null : (
+        <button
+          type="button"
+          onClick={openExplorer}
+          className={`${panelToggleClass} flex-1 justify-center`}
+          aria-label="Open Explorer"
+        >
+          <Braces className="w-4 h-4 text-accent shrink-0" aria-hidden />
+          Explorer
+        </button>
+      )}
       <button
         type="button"
         onClick={toggleRightCollapsed}

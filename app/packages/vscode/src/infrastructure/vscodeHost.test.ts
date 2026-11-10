@@ -570,7 +570,8 @@ describe('editor host', () => {
     await generateFromWorkspace(host);
 
     expect(fake.calls).toContain('message:Review blueprint changes');
-    expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(true);
+    expect(fake.calls.some(call => call.includes('1 added'))).toBe(true);
+    expect(fake.calls.some(call => call.includes('Added catalog'))).toBe(false);
     expect(fake.calls.some(call => call.includes(REVIEW_NOTE))).toBe(true);
     expect(fake.calls.some(call => call.startsWith('blueprint:'))).toBe(false);
   });
@@ -592,7 +593,7 @@ describe('editor host', () => {
     await generateFromWorkspace(host);
 
     expect(fake.calls).toContain('blueprint:/repo/blueprints/context.yaml');
-    expect(fake.html.at(-1)).toContain('catalog');
+    expect(fake.html.at(-1)).toContain('name: core');
     expect(fake.html.at(-1)).not.toContain('Billing');
   });
 
@@ -672,9 +673,9 @@ metadata:
   name: Checkout
   entityRef: checkout
 nodes:
-  - entityRef: checkout/api
+  - entityRef: checkout
     type: software-system
-    name: api
+    name: checkout
 dependencies: []
 `;
     const fake = editor({
@@ -707,7 +708,8 @@ dependencies: []
     await generateFromWorkspace(host);
 
     expect(fake.patterns).toContainEqual({ base: '/repo', pattern: '**/*.tf.json' });
-    expect(fake.calls.some(call => call.includes('Added stack'))).toBe(true);
+    expect(fake.calls.some(call => call.includes('1 added'))).toBe(true);
+    expect(fake.calls.some(call => call.includes('Added stack'))).toBe(false);
   });
 
   it('does not scan when the scope picker is dismissed', async () => {

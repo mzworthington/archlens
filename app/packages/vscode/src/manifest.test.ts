@@ -48,18 +48,16 @@ describe('marketplace pre-release', () => {
     expect(manifest.contributes.commands.map(command => command.title)).toEqual([
       'Open architecture map',
       'Generate diagram from workspace',
-      'Compare with a fresh scan',
       'Copy diagram as Mermaid',
-      'Show hotspots',
     ]);
     expect(manifest.activationEvents).toEqual([
       'onCommand:archlens.openArchitectureMap',
       'onCommand:archlens.generateFromWorkspace',
-      'onCommand:archlens.compareWithScan',
       'onCommand:archlens.copyDiagram',
-      'onCommand:archlens.showHotspots',
       'onLanguage:yaml',
     ]);
+    expect(JSON.stringify(manifest)).not.toContain('showHotspots');
+    expect(JSON.stringify(manifest)).not.toContain('compareWithScan');
   });
 
   it('ships no generate-from-workspace setting and refuses to read an untrusted folder', () => {

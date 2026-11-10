@@ -2,6 +2,7 @@ import React from 'react';
 import { Play, ShieldAlert } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { useExtensionPreview } from '../../extensionPreview';
 import { workspaceEntityRefFromPath } from '../../../../../application/navigation/workspaceUrl';
 import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
 import {
@@ -104,6 +105,9 @@ function SimulateButton() {
 /** ChaosLens mode toggle - TraceLens lives in the Explorer side panel tabs. */
 export const LensToolbarControls: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
+  const extensionPreview = useExtensionPreview();
+
+  if (extensionPreview) return null;
 
   return (
     <div

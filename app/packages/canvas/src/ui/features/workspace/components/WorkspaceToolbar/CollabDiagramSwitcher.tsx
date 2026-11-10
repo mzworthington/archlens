@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { useExtensionPreview } from '../../extensionPreview';
 
 /** Diagram list for a live workspace room. Hidden when the room has a single file. */
 export const CollabDiagramSwitcher: React.FC = () => {
@@ -7,8 +8,9 @@ export const CollabDiagramSwitcher: React.FC = () => {
   const systems = useBlueprintStore(state => state.loadedSystems);
   const currentPath = useBlueprintStore(state => state.currentFilePath);
   const selectSystem = useBlueprintStore(state => state.selectSystem);
+  const extensionPreview = useExtensionPreview();
 
-  if (!active || systems.length < 2) return null;
+  if (extensionPreview || !active || systems.length < 2) return null;
 
   return (
     <nav

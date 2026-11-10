@@ -31,6 +31,7 @@ import {
   presentHotspots,
   blueprintWritePlan,
   reviewRows,
+  reviewSummary,
   supportedSourcePaths,
   systemsFromSourcePaths,
   safeBlueprintsFolder,
@@ -58,7 +59,41 @@ dependencies:
 const notes = `title: meeting notes
 `;
 
+const dottedScan = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: ArchLens
+  entityRef: archlens
+nodes:
+  - entityRef: app/playwright.config
+    type: software-system
+    name: playwright.config
+dependencies: []
+`;
+
 describe('open architecture map', () => {
+  it('opens a scan whose file name left a dot in the entity ref', () => {
+    const decision = decideOpenMap({
+      files: [{ path: '/repo/blueprints/archlens/context.yaml', content: dottedScan }],
+    });
+
+    expect(decision).toEqual({
+      kind: 'diagram',
+      diagram: {
+        sourcePath: '/repo/blueprints/archlens/context.yaml',
+        level: 'context',
+        systems: [
+          {
+            name: 'playwright.config',
+            entityRef: 'app/playwright-config',
+            type: 'software-system',
+          },
+        ],
+        links: [],
+      },
+    });
+  });
+
   it('shows the systems and the link between them', () => {
     const decision = decideOpenMap({
       files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
@@ -277,6 +312,17 @@ describe('generate diagram from workspace', () => {
     expect(supportedSourcePaths(['/repo/node_modules/leftpad/index.js'])).toEqual([]);
   });
 
+  it('rolls files in one package up to a single system', () => {
+    const systems = systemsFromSourcePaths('/repo', [
+      '/repo/app/packages/vscode/src/extension.ts',
+      '/repo/app/packages/vscode/src/features/editorPreview/domain.ts',
+      '/repo/app/packages/canvas/src/App.tsx',
+    ]);
+
+    expect(systems.map(system => system.entityRef)).toEqual(['canvas', 'vscode']);
+    expect(systems.map(system => system.name)).toEqual(['canvas', 'vscode']);
+  });
+
   it('reviews added, changed and removed systems without treating equal names as changes', () => {
     const rows = reviewRows(
       [
@@ -287,10 +333,13 @@ describe('generate diagram from workspace', () => {
     );
 
     expect(rows).toEqual([
-      { status: 'Changed', name: 'api' },
-      { status: 'Added', name: 'catalog' },
+      { status: 'Added', name: 'checkout' },
+      { status: 'Added', name: 'core' },
+      { status: 'Removed', name: 'Checkout API' },
       { status: 'Removed', name: 'Billing' },
     ]);
+    expect(reviewSummary(rows)).toBe('2 added, 2 removed.');
+    expect(reviewSummary(rows)).not.toContain('catalog');
     expect(NO_SOURCE_FILES_COPY).toBe('No supported source files in this folder.');
     expect(SCAN_FAILED_COPY).toBe('The scan did not finish. No blueprint files were written.');
     expect(NO_CHANGES_COPY).toBe('No changes.');
@@ -346,8 +395,8 @@ describe('generate diagram from workspace', () => {
 
   it('writes the review into the blueprints folder and keeps a hand-written note', () => {
     const noted = checkout.replace(
-      'name: Checkout API',
-      'name: Checkout API\n    properties:\n      notes: hand written'
+      'entityRef: checkout/api\n    type: software-system\n    name: Checkout API',
+      'entityRef: checkout\n    type: software-system\n    name: checkout\n    properties:\n      notes: hand written'
     );
     const component = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
@@ -375,9 +424,9 @@ dependencies: []
       document => document.path === '/repo/blueprints/context.yaml'
     );
     const schema = parseSchemaFromYaml(written?.content ?? '');
-    expect(schema.nodes.map(node => node.name)).toEqual(['api', 'catalog']);
+    expect(schema.nodes.map(node => node.name)).toEqual(['checkout', 'core']);
     expect(schema.nodes[0]?.properties?.notes).toBe('hand written');
-    expect(schema.nodes[1]?.properties?.filepath).toBe('src/catalog.ts');
+    expect(schema.nodes[1]?.properties?.filepath).toBeUndefined();
     expect(schema.dependencies).toEqual([]);
     expect(plan.documents.some(document => document.path === '/other/secret.yaml')).toBe(false);
     expect(
@@ -386,7 +435,7 @@ dependencies: []
           document.path === '/repo/blueprints/billing.yaml' && document.content === undefined
       )
     ).toBe(true);
-    expect(plan.diagram.systems.map(system => system.name)).toEqual(['api', 'catalog']);
+    expect(plan.diagram.systems.map(system => system.name)).toEqual(['checkout', 'core']);
   });
 });
 

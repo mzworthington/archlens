@@ -1,3 +1,8 @@
+import { resolveContainerFromPath } from '@archlens/analysis/container-grouping';
+import {
+  createMutableGitignoreFilter,
+  createStructuralPathFilter,
+} from '@archlens/analysis/path-filter';
 import {
   blueprintYamlLanguageServerDirective,
   getNodePosition,
@@ -235,20 +240,40 @@ export function supportedSourcePaths(paths: readonly string[]): string[] {
   return paths.filter(file => !isSkippedSourcePath(file) && languageOf(file) !== undefined);
 }
 
-/** One system per supported file. The YAML file is not written here. */
+/** Drop paths the CLI would skip: `.gitignore` plus structural noise such as `.github`. */
+export function pathsForScan(
+  root: string,
+  files: readonly string[],
+  gitignoreText: string
+): string[] {
+  const gitignore = createMutableGitignoreFilter();
+  gitignore.add(gitignoreText);
+  const structural = createStructuralPathFilter({ ignore: [], include: [], allowIac: true });
+  const normalizedRoot = root.replaceAll('\\', '/').replace(/\/+$/, '');
+  return supportedSourcePaths(files).filter(file => {
+    const normalized = file.replaceAll('\\', '/');
+    const relative = normalized.startsWith(`${normalizedRoot}/`)
+      ? normalized.slice(normalizedRoot.length + 1)
+      : normalized;
+    return !gitignore.ignores(relative) && !structural.shouldSkip(relative);
+  });
+}
+
+/** One system per package or folder. Files inside it stay off the context map. */
 export function systemsFromSourcePaths(root: string, files: readonly string[]): NamedSystem[] {
   const normalizedRoot = root.replaceAll('\\', '/').replace(/\/+$/, '');
-  return supportedSourcePaths(files)
-    .map(file => {
-      const normalized = file.replaceAll('\\', '/');
-      const relative = normalized.startsWith(`${normalizedRoot}/`)
-        ? normalized.slice(normalizedRoot.length + 1)
-        : normalized.split('/').pop() || normalized;
-      const entityRef = stripSourceSuffix(relative);
-      const name = entityRef.split('/').pop() || entityRef;
-      return { entityRef, name, sourceFile: relative };
-    })
-    .sort((left, right) => left.entityRef.localeCompare(right.entityRef));
+  const byRef = new Map<string, NamedSystem>();
+  for (const file of supportedSourcePaths(files)) {
+    const normalized = file.replaceAll('\\', '/');
+    const relative = normalized.startsWith(`${normalizedRoot}/`)
+      ? normalized.slice(normalizedRoot.length + 1)
+      : normalized.split('/').pop() || normalized;
+    const container = resolveContainerFromPath(relative, { rollupModules: true });
+    const entityRef = validEntityRef(container.containerId);
+    if (byRef.has(entityRef)) continue;
+    byRef.set(entityRef, { entityRef, name: container.displayName });
+  }
+  return [...byRef.values()].sort((left, right) => left.entityRef.localeCompare(right.entityRef));
 }
 
 export function systemsInBlueprints(files: readonly BlueprintFile[]): NamedSystem[] {
@@ -257,7 +282,7 @@ export function systemsInBlueprints(files: readonly BlueprintFile[]): NamedSyste
   for (const file of files) {
     let schema: SystemSchema;
     try {
-      schema = parseSchemaFromYaml(file.content);
+      schema = parseSchemaFromYaml(readableBlueprint(file.content));
     } catch {
       continue;
     }
@@ -289,6 +314,20 @@ export function reviewRows(
   return rows;
 }
 
+/** A short count for the review dialog. Names stay out of the modal. */
+export function reviewSummary(rows: readonly ReviewRow[]): string {
+  const counts = { Added: 0, Changed: 0, Removed: 0 };
+  for (const row of rows) counts[row.status] += 1;
+  const parts = (
+    [
+      ['Added', 'added'],
+      ['Changed', 'changed'],
+      ['Removed', 'removed'],
+    ] as const
+  ).flatMap(([status, label]) => (counts[status] > 0 ? [`${counts[status]} ${label}`] : []));
+  return parts.length === 0 ? NO_CHANGES_COPY : `${parts.join(', ')}.`;
+}
+
 /** Files under the blueprints folder that make the review true. Other folders are left alone. */
 export function blueprintWritePlan(input: {
   root: string;
@@ -301,7 +340,11 @@ export function blueprintWritePlan(input: {
     if (!isInsideEditorPath(file.path, folderPath)) return [];
     try {
       return [
-        { path: file.path, original: file.content, schema: parseSchemaFromYaml(file.content) },
+        {
+          path: file.path,
+          original: file.content,
+          schema: parseSchemaFromYaml(readableBlueprint(file.content)),
+        },
       ];
     } catch {
       return [];
@@ -521,7 +564,7 @@ function readBlueprint(file: BlueprintFile): ParsedBlueprint | undefined {
   const diagram = projectFile(file);
   if (!diagram) return undefined;
   try {
-    return { diagram, schema: parseSchemaFromYaml(file.content) };
+    return { diagram, schema: parseSchemaFromYaml(readableBlueprint(file.content)) };
   } catch {
     return undefined;
   }
@@ -529,7 +572,7 @@ function readBlueprint(file: BlueprintFile): ParsedBlueprint | undefined {
 
 function projectFile(file: BlueprintFile): DiagramView | undefined {
   try {
-    const schema = parseSchemaFromYaml(file.content);
+    const schema = parseSchemaFromYaml(readableBlueprint(file.content));
     return {
       sourcePath: file.path,
       level: schema.level,
@@ -737,25 +780,20 @@ function isSkippedSourcePath(file: string): boolean {
     .some(segment => SKIPPED_SOURCE_SEGMENTS.has(segment));
 }
 
-function stripSourceSuffix(relative: string): string {
-  const suffixes = [
-    '.tf.json',
-    '.tsx',
-    '.ts',
-    '.jsx',
-    '.js',
-    '.mjs',
-    '.cjs',
-    '.cs',
-    '.py',
-    '.go',
-    '.java',
-    '.tf',
-    '.yaml',
-    '.yml',
-  ];
-  const match = suffixes.find(suffix => relative.endsWith(suffix));
-  return match ? relative.slice(0, -match.length) : relative;
+/** Dots in a file name are not legal inside an entityRef segment. */
+export function readableBlueprint(content: string): string {
+  return content.replace(
+    /^([ \t]*(?:-[ \t]*)?(?:entityRef|parentEntityRef|from|to):[ \t]*)(['"]?)([^'"\s]+)\2[ \t]*$/gm,
+    (_match, prefix: string, quote: string, value: string) =>
+      `${prefix}${quote}${validEntityRef(value)}${quote}`
+  );
+}
+
+function validEntityRef(ref: string): string {
+  return ref
+    .split('/')
+    .map(segment => segment.replaceAll('.', '-'))
+    .join('/');
 }
 
 function lineOf(content: string, entityRef: string | undefined): number {

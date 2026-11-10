@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { CanvasPreview } from './CanvasPreview';
@@ -85,10 +85,33 @@ describe('canvas preview', () => {
     expect(screen.getByTestId('background')).toBeInTheDocument();
   });
 
-  it('mounts the workspace around the canvas', async () => {
+  it('hides the explorer, header, and resilience controls', async () => {
     render(<CanvasPreview yaml={blueprint} />);
 
-    expect(await screen.findByRole('button', { name: 'Show explorer' })).toBeInTheDocument();
+    expect(await screen.findByTestId('react-flow')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /explorer/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /ARCHLENS/i })).not.toBeInTheDocument();
+    expect(screen.queryByTestId('toolbar-resilience-lens')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('toolbar-resilience-simulate')).not.toBeInTheDocument();
+  });
+
+  it('leaves share, mermaid import, chaos specs, and browser scan off the map', async () => {
+    render(<CanvasPreview yaml={blueprint} />);
+
+    expect(await screen.findByTestId('react-flow')).toBeInTheDocument();
+    expect(screen.queryByTestId('toolbar-share-collab')).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'More actions' })).toBeEnabled();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'More actions' }));
+
+    expect(screen.queryByRole('menuitem', { name: 'Import Mermaid' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: 'Browser lite scan' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: 'Browse ChaosSpecs' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: 'Load ChaosSpec' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: 'Export ChaosSpec' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: 'Compare Systems' })).not.toBeInTheDocument();
   });
 
   it('reads the blueprint and hotspot flag the panel embedded', () => {

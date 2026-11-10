@@ -1,7 +1,1 @@
-export {
-  compareWithScan,
-  copyDiagram,
-  generateFromWorkspace,
-  openArchitectureMap,
-  showHotspots,
-} from './handler';
+export { copyDiagram, generateFromWorkspace, openArchitectureMap } from './handler';

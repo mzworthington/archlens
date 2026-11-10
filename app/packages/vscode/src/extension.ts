@@ -1,11 +1,5 @@
 import * as vscode from 'vscode';
-import {
-  compareWithScan,
-  copyDiagram,
-  generateFromWorkspace,
-  openArchitectureMap,
-  showHotspots,
-} from './features/editorPreview';
+import { copyDiagram, generateFromWorkspace, openArchitectureMap } from './features/editorPreview';
 import { watchBlueprintProblems } from './infrastructure/blueprintDiagnostics';
 import { createEditorHost, type VsCodeLike } from './infrastructure/vscodeHost';
 
@@ -113,14 +107,8 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand('archlens.generateFromWorkspace', (resource?: vscode.Uri) => {
       void run(context.extensionUri, () => generateFromWorkspace, resource);
     }),
-    vscode.commands.registerCommand('archlens.compareWithScan', (resource?: vscode.Uri) => {
-      void run(context.extensionUri, () => compareWithScan, resource);
-    }),
     vscode.commands.registerCommand('archlens.copyDiagram', () => {
       void run(context.extensionUri, () => copyDiagram, undefined);
-    }),
-    vscode.commands.registerCommand('archlens.showHotspots', () => {
-      void run(context.extensionUri, () => showHotspots, undefined);
     })
   );
 }

@@ -16,7 +16,7 @@ import {
   blueprintWritePlan,
   reviewRows,
   sameEditorPath,
-  supportedSourcePaths,
+  pathsForScan,
   systemsFromSourcePaths,
   systemsInBlueprints,
   workspaceRootForSelection,
@@ -118,13 +118,23 @@ async function reviewWorkspaceScan(
   });
   if (!workspaceRoot) return;
 
-  const discovered = supportedSourcePaths(
-    await host.listSourceFiles(workspaceRoot, DEFAULT_SOURCE_GLOB)
+  const gitignoreText = await host.readGitignore(workspaceRoot);
+  const discovered = pathsForScan(
+    workspaceRoot,
+    await host.listSourceFiles(workspaceRoot, DEFAULT_SOURCE_GLOB),
+    gitignoreText
   );
   const scope = await host.askScanScope(foundLine(languagesInPaths(discovered)));
   if (scope === 'escape') return;
 
-  const files = await filesForScope(host, scope, workspaceRoot, selectedFolder, discovered);
+  const files = await filesForScope(
+    host,
+    scope,
+    workspaceRoot,
+    selectedFolder,
+    discovered,
+    gitignoreText
+  );
   if (!files) return;
 
   if (confirm && (await host.confirmGenerate()) !== 'generate') return;
@@ -244,7 +254,8 @@ async function filesForScope(
   scope: 'workspace' | 'folder' | 'custom',
   workspaceRoot: string,
   selectedFolder: string | undefined,
-  discovered: readonly string[]
+  discovered: readonly string[],
+  gitignoreText: string
 ): Promise<readonly string[] | undefined> {
   switch (scope) {
     case 'workspace':
@@ -252,12 +263,20 @@ async function filesForScope(
     case 'folder': {
       const root = selectedFolder ?? workspaceRoot;
       if (root === workspaceRoot) return discovered;
-      return supportedSourcePaths(await host.listSourceFiles(root, DEFAULT_SOURCE_GLOB));
+      return pathsForScan(
+        workspaceRoot,
+        await host.listSourceFiles(root, DEFAULT_SOURCE_GLOB),
+        gitignoreText
+      );
     }
     case 'custom': {
       const glob = await host.askScanGlob();
       if (!glob) return undefined;
-      return supportedSourcePaths(await host.listSourceFiles(workspaceRoot, glob));
+      return pathsForScan(
+        workspaceRoot,
+        await host.listSourceFiles(workspaceRoot, glob),
+        gitignoreText
+      );
     }
     default: {
       const unexpected: never = scope;

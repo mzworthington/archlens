@@ -18,10 +18,12 @@ import { useBlueprintStore } from '../../../application/store/store';
 import { WorkspacePanelRail } from './layout/WorkspacePanelRail';
 import { useWorkspacePanelLayout } from './layout/useWorkspacePanelLayout';
 import { WORKSPACE_PANEL_WIDTH } from './layout/workspacePanelLayout';
+import { useExtensionPreview } from './extensionPreview';
 export const WorkspacePage: React.FC = () => {
   const { setIsShortcutsOpen } = useBlueprintStore();
   const layout = useWorkspacePanelLayout();
   const workspaceDialogs = useWorkspaceDialogs();
+  const extensionPreview = useExtensionPreview();
 
   useBundledWorkspaceBootstrap();
   useBlankCanvasUnloadGuard();
@@ -38,23 +40,25 @@ export const WorkspacePage: React.FC = () => {
   return (
     <ReactFlowProvider>
       <div className="flex flex-col h-dvh w-full bg-bp-canvas overflow-hidden text-slate-100">
-        <Header />
+        {extensionPreview ? null : <Header />}
         <CatalogRefreshOffer />
         <div className="flex-1 flex overflow-hidden relative min-h-0">
-          {showLeftPanel ? <LeftWorkspacePanel /> : null}
+          {showLeftPanel && !extensionPreview ? <LeftWorkspacePanel /> : null}
           {layout.isTraceLensMode ? <TraceLensPanel /> : <Canvas />}
           {layout.showRightSlot ? <PropertyPanel /> : null}
 
           {!layout.isTraceLensMode ? (
             <>
-              <WorkspacePanelRail
-                slot="left"
-                collapsed={layout.leftCollapsed}
-                onToggle={layout.toggleLeftSlot}
-                panelWidthPx={WORKSPACE_PANEL_WIDTH.left}
-                expandTitle={layout.leftRailTitle.expand}
-                collapseTitle={layout.leftRailTitle.collapse}
-              />
+              {extensionPreview ? null : (
+                <WorkspacePanelRail
+                  slot="left"
+                  collapsed={layout.leftCollapsed}
+                  onToggle={layout.toggleLeftSlot}
+                  panelWidthPx={WORKSPACE_PANEL_WIDTH.left}
+                  expandTitle={layout.leftRailTitle.expand}
+                  collapseTitle={layout.leftRailTitle.collapse}
+                />
+              )}
               <WorkspacePanelRail
                 slot="right"
                 collapsed={layout.rightCollapsed}
@@ -68,13 +72,15 @@ export const WorkspacePage: React.FC = () => {
         </div>
       </div>
       {workspaceDialogs}
-      <CollabNameDialog
-        isOpen={collabJoin.needsDisplayName}
-        initialName={collabJoin.prefillName}
-        joinError={collabJoin.joinError}
-        onConfirm={collabJoin.confirmJoin}
-        onCancel={collabJoin.cancelJoin}
-      />
+      {extensionPreview ? null : (
+        <CollabNameDialog
+          isOpen={collabJoin.needsDisplayName}
+          initialName={collabJoin.prefillName}
+          joinError={collabJoin.joinError}
+          onConfirm={collabJoin.confirmJoin}
+          onCancel={collabJoin.cancelJoin}
+        />
+      )}
     </ReactFlowProvider>
   );
 };
