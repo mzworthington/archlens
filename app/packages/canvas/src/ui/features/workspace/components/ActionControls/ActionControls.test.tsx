@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ReactFlowProvider } from '@xyflow/react';
-import { systemSchemaPublicUrl } from '@archlens/core';
 import {
   ToolbarEditActions,
   ToolbarOverflowMenu,
@@ -159,12 +158,12 @@ describe('ActionControls Component', () => {
     expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
   });
 
-  it('triggers initSchema on clearing canvas if confirmed', async () => {
-    const initSchemaMock = vi.fn();
+  it('resets to an empty workspace on clearing canvas if confirmed', async () => {
+    const resetToEmptyWorkspaceMock = vi.fn();
     const setIsLoadingMock = vi.fn();
     const clearWorkspaceDraftsMock = vi.fn().mockResolvedValue(undefined);
     useBlueprintStore.setState({
-      initSchema: initSchemaMock,
+      resetToEmptyWorkspace: resetToEmptyWorkspaceMock,
       setIsLoading: setIsLoadingMock,
       clearWorkspaceDrafts: clearWorkspaceDraftsMock,
     });
@@ -181,20 +180,14 @@ describe('ActionControls Component', () => {
       'Clear the workspace, purge all IndexedDB drafts and create a blank canvas?'
     );
     expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
-    expect(initSchemaMock).toHaveBeenCalledWith({
-      name: 'Empty Workspace',
-      version: systemSchemaPublicUrl(),
-      level: 'container',
-      nodes: [],
-      dependencies: [],
-    });
+    expect(resetToEmptyWorkspaceMock).toHaveBeenCalled();
 
     confirmSpy.mockRestore();
   });
 
-  it('does not trigger initSchema on clearing canvas if not confirmed', () => {
-    const initSchemaMock = vi.fn();
-    useBlueprintStore.setState({ initSchema: initSchemaMock });
+  it('does not reset the workspace on clearing canvas if not confirmed', () => {
+    const resetToEmptyWorkspaceMock = vi.fn();
+    useBlueprintStore.setState({ resetToEmptyWorkspace: resetToEmptyWorkspaceMock });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false);
 
@@ -202,7 +195,7 @@ describe('ActionControls Component', () => {
     openMoreMenu();
     fireEvent.click(screen.getByTitle('Clear canvas'));
 
-    expect(initSchemaMock).not.toHaveBeenCalled();
+    expect(resetToEmptyWorkspaceMock).not.toHaveBeenCalled();
 
     confirmSpy.mockRestore();
   });

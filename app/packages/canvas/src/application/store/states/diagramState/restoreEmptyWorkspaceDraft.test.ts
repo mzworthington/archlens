@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { systemSchemaPublicUrl } from '@archlens/core';
 import { useBlueprintStore } from '../../store';
 import { noopWorkingCopy } from '../../../../core';
+import {
+  isFolderWorkspacePreferred,
+  resetWorkspaceOpenSessionForTests,
+} from '../../workspaceOpenSession';
 import { resetEmptyWorkspaceDraftSessionForTests } from './emptyWorkspaceDraft';
 import { persistBlankCanvasSession } from '../ioState/blankCanvasSession';
 import { EMPTY_WORKSPACE_PATH } from './resetToEmptyWorkspace';
@@ -9,6 +13,7 @@ import { EMPTY_WORKSPACE_PATH } from './resetToEmptyWorkspace';
 describe('restoreEmptyWorkspaceDraft', () => {
   beforeEach(() => {
     resetEmptyWorkspaceDraftSessionForTests();
+    resetWorkspaceOpenSessionForTests();
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
       nodes: [],
@@ -50,6 +55,7 @@ describe('restoreEmptyWorkspaceDraft', () => {
     expect(state.schema.nodes[0]?.name).toBe('Ada');
     expect(state.nodes).toHaveLength(1);
     expect(state.isWorkspaceOpen).toBe(false);
+    expect(isFolderWorkspacePreferred()).toBe(true);
   });
 
   it('does not restore when a folder workspace is open', async () => {

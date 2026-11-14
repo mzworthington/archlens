@@ -205,4 +205,33 @@ describe('useBundledWorkspaceBootstrap', () => {
     });
     expect(openBundledSample).not.toHaveBeenCalled();
   });
+
+  it('does not auto-open Samples after create-zoom under a blank-canvas session', async () => {
+    persistBlankCanvasSession({
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+      placement: 'file',
+    });
+    mockLocation = '/workspace/super-amazing/checkout';
+    mockParams = { '*': 'super-amazing/checkout' };
+    mockSearch = '';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(false);
+    useBlueprintStore.setState({
+      openBundledSample,
+      restoreEmptyWorkspaceDraft,
+      isWorkspaceOpen: false,
+      isStartupOpen: true,
+    });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+    // Child zoom must not consume the one-shot draft restore claim.
+    expect(restoreEmptyWorkspaceDraft).not.toHaveBeenCalled();
+  });
 });

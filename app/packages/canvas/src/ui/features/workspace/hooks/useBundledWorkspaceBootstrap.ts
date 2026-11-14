@@ -12,6 +12,7 @@ import {
   workspaceEntityRefFromPath,
   workspaceEntityRefFromRouteParam,
 } from '../../../../application/navigation/workspaceUrl';
+import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 import { parseCollabRoomId } from '../../../../application/navigation/collabRoomUrl';
 import {
   readBlankCanvasSession,
@@ -49,13 +50,19 @@ export function useBundledWorkspaceBootstrap(): void {
       urlEntityRef: entityRef,
       session: blankCanvasSession,
     });
+    // Skip demo for blank roots and create-zoom children; only rehydrate the draft on the root.
+    const blankSessionRoot = blankCanvasSession?.entityRef?.trim();
+    const isBlankCanvasRootUrl =
+      Boolean(entityRef) &&
+      (entityRef === EMPTY_WORKSPACE_ENTITY_REF ||
+        (Boolean(blankSessionRoot) && entityRef === blankSessionRoot));
     const skipDemoForCollab = Boolean(roomId) || restoreBlankCanvas || createBlankWorkspace;
 
     if (skipDemoForCollab) {
       const { isStartupOpen, setIsStartupOpen, restoreEmptyWorkspaceDraft } =
         useBlueprintStore.getState();
       if (isStartupOpen) setIsStartupOpen(false);
-      if (restoreBlankCanvas && !roomId && !createBlankWorkspace) {
+      if (restoreBlankCanvas && isBlankCanvasRootUrl && !roomId && !createBlankWorkspace) {
         void restoreEmptyWorkspaceDraft({ expectedEntityRef: entityRef });
       }
       return;

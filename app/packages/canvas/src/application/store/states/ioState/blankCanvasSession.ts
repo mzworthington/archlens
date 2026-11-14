@@ -76,14 +76,33 @@ export function persistBlankCanvasSessionFromSchema(
   });
 }
 
-/** Deep-link should rehydrate the Ideate draft instead of opening the demo. */
+/** True when the URL is the blank starter or a create-zoom child under it. */
+function isEmptyWorkspaceUrlEntityRef(urlEntityRef: string): boolean {
+  return (
+    urlEntityRef === EMPTY_WORKSPACE_ENTITY_REF ||
+    urlEntityRef.startsWith(`${EMPTY_WORKSPACE_ENTITY_REF}/`)
+  );
+}
+
+/** True when the URL is the blank session root or a create-zoom child under it. */
+function isBlankSessionUrlEntityRef(urlEntityRef: string, sessionEntityRef: string): boolean {
+  return urlEntityRef === sessionEntityRef || urlEntityRef.startsWith(`${sessionEntityRef}/`);
+}
+
+/**
+ * Deep-link should rehydrate the Ideate draft instead of opening the demo.
+ * Create-zoom child URLs under the blank session must stay protected too —
+ * otherwise bootstrap reloads Samples after the user leaves `/empty-workspace`.
+ */
 export function shouldRestoreBlankCanvasForUrl(input: {
   urlEntityRef: string | undefined;
   session: BlankCanvasSession | null;
 }): boolean {
   if (!input.urlEntityRef) return false;
-  if (input.urlEntityRef === EMPTY_WORKSPACE_ENTITY_REF) return true;
-  return input.session?.entityRef === input.urlEntityRef;
+  if (isEmptyWorkspaceUrlEntityRef(input.urlEntityRef)) return true;
+  const sessionRef = input.session?.entityRef?.trim();
+  if (!sessionRef) return false;
+  return isBlankSessionUrlEntityRef(input.urlEntityRef, sessionRef);
 }
 
 function isStringRecord(value: unknown): value is Record<string, unknown> {

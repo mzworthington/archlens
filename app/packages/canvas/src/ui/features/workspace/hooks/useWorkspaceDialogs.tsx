@@ -16,7 +16,10 @@ import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samples
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
-import { markFolderWorkspacePreferred } from '../../../../application/store/workspaceOpenSession';
+import {
+  beginWorkspaceOpen,
+  markFolderWorkspacePreferred,
+} from '../../../../application/store/workspaceOpenSession';
 import {
   EMPTY_WORKSPACE_ENTITY_REF,
   EMPTY_WORKSPACE_PATH,
@@ -188,6 +191,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
   }, [openInTabCliScan, setIsStartupOpen, setLocation]);
 
   const handleImportMermaid = useCallback(() => {
+    // Invalidate any in-flight Samples open, then prefer blank for this page session.
+    beginWorkspaceOpen();
     markFolderWorkspacePreferred();
     resetToEmptyWorkspace();
     setIsStartupOpen(false);
@@ -197,6 +202,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
 
   const openNamedBlankCanvas = useCallback(
     async (name: string, placement: 'file' | 'folder' | 'unsaved') => {
+      // Invalidate any in-flight Samples open, then prefer blank for this page session.
+      beginWorkspaceOpen();
       markFolderWorkspacePreferred();
       resetToEmptyWorkspace();
       updateSchemaName(name);

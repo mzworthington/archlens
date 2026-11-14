@@ -1,6 +1,7 @@
 import type { SystemSchema } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import type { BlueprintStoreSet } from '../../store';
+import { markFolderWorkspacePreferred } from '../../workspaceOpenSession';
 import {
   claimEmptyWorkspaceDraftRestore,
   shouldRestoreEmptyWorkspaceDraft,
@@ -75,6 +76,8 @@ export async function restoreEmptyWorkspaceDraft(
   };
 
   get().clearHistory();
+  // Survives create-zoom URL changes after refresh — bootstrap must not reopen Samples.
+  markFolderWorkspacePreferred();
   set({
     currentFilePath: filePath,
     workspaceCatalog: [],
