@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertTriangle, CheckCircle } from 'lucide-react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const badgeClass =
@@ -13,7 +14,15 @@ export const WorkspaceStatusBadges: React.FC = () => {
     schemaVersionWarning,
     isBrowserLiteWorkspace,
     setIsValidationOpen,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      schema: s.schema,
+      validationResult: s.validationResult,
+      schemaVersionWarning: s.schemaVersionWarning,
+      isBrowserLiteWorkspace: s.isBrowserLiteWorkspace,
+      setIsValidationOpen: s.setIsValidationOpen,
+    }))
+  );
 
   return (
     <div

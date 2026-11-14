@@ -20,7 +20,7 @@ import { useWorkspacePanelLayout } from './layout/useWorkspacePanelLayout';
 import { WORKSPACE_PANEL_WIDTH } from './layout/workspacePanelLayout';
 import { useExtensionPreview } from './extensionPreview';
 export const WorkspacePage: React.FC = () => {
-  const { setIsShortcutsOpen } = useBlueprintStore();
+  const setIsShortcutsOpen = useBlueprintStore(s => s.setIsShortcutsOpen);
   const layout = useWorkspacePanelLayout();
   const workspaceDialogs = useWorkspaceDialogs();
   const extensionPreview = useExtensionPreview();

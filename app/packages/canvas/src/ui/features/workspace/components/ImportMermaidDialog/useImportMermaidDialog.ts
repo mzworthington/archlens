@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import type { ConflictResolution } from '@archlens/core';
 import { extractMermaidFromMarkdown } from '@archlens/core/import-mermaid';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -21,7 +22,18 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
     setLayoutEngine,
     applyClientLayout,
     setMermaidEnrichBannerOpen,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      previewMermaidImport: s.previewMermaidImport,
+      importMermaid: s.importMermaid,
+      lastError: s.lastError,
+      clearError: s.clearError,
+      setNotification: s.setNotification,
+      setLayoutEngine: s.setLayoutEngine,
+      applyClientLayout: s.applyClientLayout,
+      setMermaidEnrichBannerOpen: s.setMermaidEnrichBannerOpen,
+    }))
+  );
 
   const [mermaidText, setMermaidText] = useState('');
   const [parseError, setParseError] = useState<string | null>(null);

@@ -196,6 +196,12 @@ describe('parseArchlensArgv plan shape', () => {
     expect(plan.runEnrichOnly).toBe(true);
     expect(plan.runArchitecture).toBe(false);
   });
+
+  it('parses --fail-on-cycles on architecture scan', () => {
+    const plan = parseArchlensArgv(['scan', '--fail-on-cycles']);
+    expect(plan.architecture.failOnCycles).toBe(true);
+    expect(parseArchlensArgv(['scan']).architecture.failOnCycles).toBe(false);
+  });
 });
 
 describe('parseArchlensArgv update flags', () => {

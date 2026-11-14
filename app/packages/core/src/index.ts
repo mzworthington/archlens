@@ -3,6 +3,7 @@ export * from './models/schemaVersion';
 export * from './lib/entityRef';
 export * from './lib/displayName';
 export * from './lib/workspaceCatalog';
+export * from './lib/childZoom';
 export * from './lib/buildWorkspaceCatalogFromYaml';
 export * from './lib/remoteCatalogSnapshot';
 export * from './lib/estateFragment';

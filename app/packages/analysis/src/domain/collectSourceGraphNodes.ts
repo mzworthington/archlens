@@ -65,7 +65,7 @@ function upsertComponentNode(
       containerId,
       technology: hydration.technology,
       classification: hydration.reason,
-    } as unknown as SystemNode['properties'],
+    },
   });
 }
 

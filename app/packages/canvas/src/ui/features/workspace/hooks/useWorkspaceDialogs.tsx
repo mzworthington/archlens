@@ -29,6 +29,7 @@ import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
 import { useCollabShareSession } from './useCollabShareSession';
 import React, { useCallback, useState } from 'react';
 import { useLocation } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 
 function folderPickerAvailable(): boolean {
   return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
@@ -59,6 +60,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsFeatureFlagsOpen,
     childExternalsParentRef,
     isSourceCodeOpen,
+    isValidationOpen,
     isLoading,
     liteScanProgress,
     openWorkspaceDirectory,
@@ -79,7 +81,50 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setNotification,
     loadedSystems,
     selectSystem,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      isDiffOpen: s.isDiffOpen,
+      setIsDiffOpen: s.setIsDiffOpen,
+      isImportMermaidOpen: s.isImportMermaidOpen,
+      setIsImportMermaidOpen: s.setIsImportMermaidOpen,
+      chaosSpecDialogMode: s.chaosSpecDialogMode,
+      openChaosSpecDialog: s.openChaosSpecDialog,
+      closeChaosSpecDialog: s.closeChaosSpecDialog,
+      isChaosSpecPickerOpen: s.isChaosSpecPickerOpen,
+      closeChaosSpecPicker: s.closeChaosSpecPicker,
+      isStartupOpen: s.isStartupOpen,
+      setIsStartupOpen: s.setIsStartupOpen,
+      isCompareOpen: s.isCompareOpen,
+      setIsCompareOpen: s.setIsCompareOpen,
+      isShortcutsOpen: s.isShortcutsOpen,
+      setIsShortcutsOpen: s.setIsShortcutsOpen,
+      isFeatureFlagsOpen: s.isFeatureFlagsOpen,
+      setIsFeatureFlagsOpen: s.setIsFeatureFlagsOpen,
+      childExternalsParentRef: s.childExternalsParentRef,
+      isSourceCodeOpen: s.isSourceCodeOpen,
+      isValidationOpen: s.isValidationOpen,
+      isLoading: s.isLoading,
+      liteScanProgress: s.liteScanProgress,
+      openWorkspaceDirectory: s.openWorkspaceDirectory,
+      openBundledSample: s.openBundledSample,
+      openBrowserLiteScan: s.openBrowserLiteScan,
+      openInTabCliScan: s.openInTabCliScan,
+      stopInTabCliSession: s.stopInTabCliSession,
+      cancelBrowserLiteScan: s.cancelBrowserLiteScan,
+      resetToEmptyWorkspace: s.resetToEmptyWorkspace,
+      loadSchema: s.loadSchema,
+      updateSchemaName: s.updateSchemaName,
+      saveSchema: s.saveSchema,
+      saveBlankCanvasToFolder: s.saveBlankCanvasToFolder,
+      persistBrowserScanMapToFolder: s.persistBrowserScanMapToFolder,
+      persistBrowserScanMapDownload: s.persistBrowserScanMapDownload,
+      dismissScanMapPersist: s.dismissScanMapPersist,
+      isScanMapPersistOpen: s.isScanMapPersistOpen,
+      setNotification: s.setNotification,
+      loadedSystems: s.loadedSystems,
+      selectSystem: s.selectSystem,
+    }))
+  );
 
   const handleOpenSample = useCallback(async () => {
     const opened = await openBundledSample();
@@ -330,7 +375,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
       <LazyMountOnOpen isOpen={isSourceCodeOpen}>
         <WorkspaceSourceCodeDialog />
       </LazyMountOnOpen>
-      <LazyMountOnOpen isOpen={useBlueprintStore(s => s.isValidationOpen)}>
+      <LazyMountOnOpen isOpen={isValidationOpen}>
         <ValidationDialog />
       </LazyMountOnOpen>
     </>

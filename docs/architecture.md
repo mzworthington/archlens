@@ -155,17 +155,16 @@ Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 - `infrastructure/layout/` - graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
 - `infrastructure/db/` - IndexedDB working copy / baseline diffs.
 - `infrastructure/collab/` - Yjs collab session + BroadcastChannel / WebSocket transports.
-- Worker runtime: [`app/packages/collab`](../app/packages/collab) (`@archlens/collab`) — Durable Object rooms at `collab.archlens.dev`; not bundled into Pages.
+- Worker runtime: [`app/packages/collab`](../app/packages/collab) (`@archlens/collab`) - Durable Object rooms at `collab.archlens.dev`; not bundled into Pages.
 - `infrastructure/network/` - online/offline status for the offline banner.
 - `application/layout/` - pure layout use-case (`computeClientLayout`) and grid policy.
 - `application/store/` - Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).
 - PWA (service worker via `vite-plugin-pwa`) caches the app shell for offline Canvas use.
 
-### 4. TypeScript CLI (`app/packages/cli/src/`)
+### 4. Shared Analysis Core (`app/packages/analysis/src/`) & TypeScript CLI (`app/packages/cli/src/`)
 
-- `archlens.ts` - entry / prompts.
-- `analysis/domain/` - analyzer, language strategies, model extraction.
-- `writers/` - context / container / component YAML writers.
+- `@archlens/analysis` (`app/packages/analysis/src/`) - runtime-agnostic `CodebaseAnalyzer`, `ModelExtractor`, language strategies (`domain/languages/`) and C4 writers (`writers/`) shared by `@archlens/cli`, `@archlens/canvas` (browser lite scan) and `app/packages/vscode`.
+- `@archlens/cli` (`app/packages/cli/src/`) - `cli/archlens.ts` entry/prompts, Tree-Sitter/ts-morph adapters (`analysis/adapters/parsing/`), git forensics (`forensics/`) and CLI re-exports.
 
 ---
 

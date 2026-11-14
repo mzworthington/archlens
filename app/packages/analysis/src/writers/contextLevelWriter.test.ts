@@ -2,10 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   ContextLevelWriter,
   contextDisplayName,
-  personDependenciesForSystems,
   PERSON_EDGE_DESCRIPTION,
   resolveContextSeedRelativePath,
-  topLevelSystemNodes,
 } from './contextLevelWriter';
 import { MockFileSystem, MockLogger } from '../test/fakes';
 import {
@@ -15,57 +13,6 @@ import {
   serializeSchemaToYaml,
   systemSchemaPublicUrl,
 } from '@archlens/core';
-
-describe('topLevelSystemNodes', () => {
-  it('returns nodes without a visual parent, excluding the person', () => {
-    const nodes = topLevelSystemNodes([
-      {
-        entityRef: 'ctx/backstage',
-        type: 'group',
-        name: 'Backstage',
-        properties: { productId: 'backstage' },
-      },
-      {
-        entityRef: 'ctx/packages',
-        type: 'software-system',
-        name: 'Packages',
-        parentEntityRef: 'ctx/backstage',
-      },
-      { entityRef: 'ctx/user', type: 'person', name: 'User' },
-    ]);
-    expect(nodes.map(n => n.entityRef)).toEqual(['ctx/backstage']);
-  });
-});
-
-describe('personDependenciesForSystems', () => {
-  it('links the person to top-level groups only', () => {
-    const deps = personDependenciesForSystems('ctx/user', [
-      {
-        entityRef: 'ctx/backstage',
-        type: 'group',
-        name: 'Backstage',
-        properties: { productId: 'backstage' },
-      },
-      {
-        entityRef: 'ctx/packages',
-        type: 'software-system',
-        name: 'Packages',
-        parentEntityRef: 'ctx/backstage',
-      },
-      {
-        entityRef: 'ctx/blueprint',
-        type: 'software-system',
-        name: 'Blueprint',
-        properties: { productId: 'blueprint' },
-      },
-    ]);
-
-    expect(deps).toHaveLength(2);
-    expect(deps.every(d => d.from === 'ctx/user')).toBe(true);
-    expect(deps.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
-    expect(deps.map(d => d.to).sort()).toEqual(['ctx/backstage', 'ctx/blueprint']);
-  });
-});
 
 describe('contextDisplayName', () => {
   it('title-cases slugified context roots', () => {

@@ -1,4 +1,4 @@
-import type { PropertyMap } from '../../models/schema';
+import type { NodeForensics, NodeResilience, PropertyMap } from '../../models/schema';
 
 /** Snapshot of a node used for structural schema diffs (CLI + Canvas). */
 export type SchemaDiffNode = {
@@ -10,6 +10,9 @@ export type SchemaDiffNode = {
   y?: number;
   external?: boolean;
   isTest?: boolean;
+  parentEntityRef?: string;
+  forensics?: NodeForensics;
+  resilience?: NodeResilience;
   filePath: string;
 };
 

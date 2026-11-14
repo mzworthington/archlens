@@ -30,6 +30,7 @@ type Props = {
   safeguards: NodeSafeguards;
   monteCarlo: MonteCarloConfig;
   simulationResult: SimulationResult | null;
+  pinnedBaseline?: SimulationResult | null;
   recommendations?: Recommendation[];
   resilienceUnavailable?: boolean;
   containerEntityRef?: string | null;
@@ -46,6 +47,8 @@ type Props = {
   onLoadChaosSpec: () => void;
   onExportChaosSpec: () => void;
   onClearScenario: () => void;
+  onPinBaseline?: () => void;
+  onClearBaseline?: () => void;
   sampleMode?: boolean;
 };
 
@@ -159,6 +162,75 @@ export const ResilienceSection: React.FC<Props> = props => {
       </div>
 
       <TelemetryViewToggle view={props.telemetryView} onViewChange={props.onTelemetryViewChange} />
+      {props.simulationResult && props.onPinBaseline ? (
+        <div
+          className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2 space-y-1.5"
+          data-testid="chaoslens-baseline-card"
+        >
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+              What-if baseline
+            </span>
+            {props.pinnedBaseline ? (
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={props.onPinBaseline}
+                  className="text-[11px] font-semibold text-accent hover:text-cyan-300 transition cursor-pointer"
+                  data-testid="update-pinned-baseline-button"
+                >
+                  Update pin
+                </button>
+                <button
+                  type="button"
+                  onClick={props.onClearBaseline}
+                  className="text-[11px] font-semibold text-slate-400 hover:text-slate-200 transition cursor-pointer"
+                  data-testid="clear-pinned-baseline-button"
+                >
+                  Clear
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={props.onPinBaseline}
+                className="text-[11px] font-semibold text-accent hover:text-cyan-300 transition cursor-pointer"
+                data-testid="pin-baseline-button"
+              >
+                Pin current run
+              </button>
+            )}
+          </div>
+          {props.pinnedBaseline ? (
+            <div
+              className="flex items-center justify-between text-xs font-mono text-slate-300"
+              data-testid="chaoslens-baseline-delta"
+            >
+              <span>Baseline: {props.pinnedBaseline.overallSla.toFixed(1)}% SLA</span>
+              <span>
+                Δ{' '}
+                {(props.simulationResult.overallSla - props.pinnedBaseline.overallSla >= 0
+                  ? '+'
+                  : '') +
+                  (props.simulationResult.overallSla - props.pinnedBaseline.overallSla).toFixed(1)}
+                % SLA · Δ{' '}
+                {props.simulationResult.impactedDomains.length -
+                  props.pinnedBaseline.impactedDomains.length >=
+                0
+                  ? `+${
+                      props.simulationResult.impactedDomains.length -
+                      props.pinnedBaseline.impactedDomains.length
+                    }`
+                  : `${
+                      props.simulationResult.impactedDomains.length -
+                      props.pinnedBaseline.impactedDomains.length
+                    }`}{' '}
+                domains
+              </span>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
       {props.telemetryView === 'sre' ? (
         <TelemetryPanel result={props.simulationResult} recommendations={props.recommendations} />
       ) : (

@@ -97,6 +97,8 @@ export interface DiagramState {
   updateDependency: (from: string, to: string, updates: Partial<SystemDependency>) => void;
   deleteDependency: (from: string, to: string) => void;
   selectSystem: (path: string) => Promise<void>;
+  /** Create the child diagram for a node that has none, then leave it active. */
+  createChildZoom: (nodeEntityRef: string) => Promise<boolean>;
   listWorkspaceExternalCandidates: (filters?: ExternalCandidateFilters) => WorkspaceEntity[];
   addExternalDependencies: (entityRefs: string[], dependencies?: SystemDependency[]) => void;
   materializeCouplingGhost: (ghost: {

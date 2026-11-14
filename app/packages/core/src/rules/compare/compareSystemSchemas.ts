@@ -17,16 +17,20 @@ function nodeToDiffNode(node: SystemNode, filePath: string): SchemaDiffNode {
     y: position?.y,
     external: node.external,
     isTest: node.isTest,
+    parentEntityRef: node.parentEntityRef,
+    forensics: node.forensics,
+    resilience: node.resilience,
     filePath,
   };
 }
 
 function depToDiffDep(dep: SystemDependency, filePath: string): SchemaDiffDependency {
+  const type = dep.type || 'direct-call';
   return {
-    id: `${dep.from}->${dep.to}`,
+    id: `${dep.from}->${dep.to}:${type}`,
     fromRef: dep.from,
     toRef: dep.to,
-    type: dep.type,
+    type,
     description: dep.description,
     filePath,
   };
@@ -73,6 +77,9 @@ export function compareSystemSchemas(
     const positionChanged = node.x !== original.x || node.y !== original.y;
     const externalChanged = node.external !== original.external;
     const isTestChanged = node.isTest !== original.isTest;
+    const parentChanged = node.parentEntityRef !== original.parentEntityRef;
+    const resilienceChanged =
+      JSON.stringify(node.resilience) !== JSON.stringify(original.resilience);
 
     if (
       nameChanged ||
@@ -80,7 +87,9 @@ export function compareSystemSchemas(
       propertiesChanged ||
       positionChanged ||
       externalChanged ||
-      isTestChanged
+      isTestChanged ||
+      parentChanged ||
+      resilienceChanged
     ) {
       diff.nodes.modified.push({ original, current: node });
     }

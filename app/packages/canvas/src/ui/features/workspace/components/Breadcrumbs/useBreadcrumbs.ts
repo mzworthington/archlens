@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import {
   buildBreadcrumbSegments,
@@ -22,7 +23,18 @@ export function useBreadcrumbs() {
     selectedNodeId,
     loadedSystems,
     workspaceCatalog,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      currentFilePath: s.currentFilePath,
+      schema: s.schema,
+      isWorkspaceOpen: s.isWorkspaceOpen,
+      isSampleWorkspace: s.isSampleWorkspace,
+      workspaceName: s.workspaceName,
+      selectedNodeId: s.selectedNodeId,
+      loadedSystems: s.loadedSystems,
+      workspaceCatalog: s.workspaceCatalog,
+    }))
+  );
 
   const [openDropdownIdx, setOpenDropdownIdx] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);

@@ -9,6 +9,8 @@ import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
 import { IacAnalyzer } from '@archlens/analysis/iac';
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
+import { assessArchitectureHealth } from '@archlens/core';
+import { loadBlueprintTree } from './blueprintLoader';
 import {
   loadAnalysisConfig,
   mergeAnalysisOptions,
@@ -271,6 +273,18 @@ export async function executeArchitectureRun(
     });
     reportIacResult(iacResult, headlessUi);
 
+    if (state.plan.architecture.failOnCycles) {
+      const { files } = await loadBlueprintTree(absoluteOutputDir, fileSystem);
+      const health = assessArchitectureHealth(
+        files.map(file => ({ path: file.relativePath, schema: file.schema }))
+      );
+      if (health.cycleCount > 0) {
+        throw new Error(
+          `Detected ${health.cycleCount} dependency cycle(s) across generated blueprints.`
+        );
+      }
+    }
+
     finishArchitectureSuccess(formatSuccessOutro(absoluteOutputDir), {
       headlessUi,
       watchMode,
@@ -285,5 +299,6 @@ export async function executeArchitectureRun(
     });
   } finally {
     disposeCancellation();
+    scanCache?.dispose();
   }
 }

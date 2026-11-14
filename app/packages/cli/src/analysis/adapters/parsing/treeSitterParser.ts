@@ -61,44 +61,48 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
     const result: ParsedSourceFile[] = [];
     const parser = new Parser();
 
-    for (const filePath of matchedFiles) {
-      throwIfAborted(signal);
-      const ext = path.extname(filePath).toLowerCase();
-      const lang = await this.getLanguage(ext);
-      if (!lang) continue;
+    try {
+      for (const filePath of matchedFiles) {
+        throwIfAborted(signal);
+        const ext = path.extname(filePath).toLowerCase();
+        const lang = await this.getLanguage(ext);
+        if (!lang) continue;
 
-      parser.setLanguage(lang);
+        parser.setLanguage(lang);
 
-      const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
-      const cached = this.scanCache?.get(relativePath);
+        const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
+        const cached = this.scanCache?.get(relativePath);
 
-      let tree: Parser.Tree;
-      let ownsTree = false;
-      try {
-        if (cached) {
-          tree = cached.tree;
-        } else {
-          const content = fs.readFileSync(filePath, 'utf8');
-          tree = parser.parse(content);
-          ownsTree = true;
+        let tree: Parser.Tree;
+        let ownsTree = false;
+        try {
+          if (cached) {
+            tree = cached.tree;
+          } else {
+            const content = fs.readFileSync(filePath, 'utf8');
+            tree = parser.parse(content);
+            ownsTree = true;
+          }
+        } catch {
+          continue;
         }
-      } catch {
-        continue;
-      }
 
-      try {
-        result.push(
-          extractParsedSourceFileFromTree({
-            filePath,
-            relativePath,
-            tree,
-          })
-        );
-      } finally {
-        if (ownsTree) {
-          tree.delete();
+        try {
+          result.push(
+            extractParsedSourceFileFromTree({
+              filePath,
+              relativePath,
+              tree,
+            })
+          );
+        } finally {
+          if (ownsTree) {
+            tree.delete();
+          }
         }
       }
+    } finally {
+      parser.delete?.();
     }
 
     return result;

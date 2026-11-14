@@ -101,6 +101,49 @@ export function openCommentsForNode(
   return listOpenComments(Object.values(doc.comments), nodeEntityRef);
 }
 
+export type CommentAuthorMark = {
+  id: string;
+  name: string;
+};
+
+export type CommentPresence = {
+  count: number;
+  authors: CommentAuthorMark[];
+};
+
+export const COMMENT_AUTHOR_SWATCH_COUNT = 6;
+
+export function commentAuthorSwatch(authorId: string): number {
+  let hash = 0;
+  for (const char of authorId) {
+    hash = (hash * 33 + char.charCodeAt(0)) % 997;
+  }
+  return hash % COMMENT_AUTHOR_SWATCH_COUNT;
+}
+
+function commentAuthorId(comment: NodeComment): string {
+  if (comment.authorKey) return comment.authorKey;
+  const name = comment.authorName.trim().toLowerCase();
+  return name.length > 0 ? `name:${name}` : `client:${comment.authorClientId}`;
+}
+
+export function commentPresence(
+  comments: readonly NodeComment[],
+  nodeEntityRef: string
+): CommentPresence {
+  const open = listOpenComments(comments, nodeEntityRef);
+  const authors: CommentAuthorMark[] = [];
+  const seen = new Set<string>();
+  for (const comment of open) {
+    const id = commentAuthorId(comment);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const name = comment.authorName.trim();
+    authors.push({ id, name: name.length > 0 ? name : 'Someone' });
+  }
+  return { count: open.length, authors };
+}
+
 const COMMENT_STATUSES = new Set<NodeCommentStatus>(['open', 'resolved']);
 
 export function parseNodeComment(raw: unknown): NodeComment | null {

@@ -54,6 +54,7 @@ export interface ArchitectureCliFlags {
   context: string | undefined;
   systemName: string | undefined;
   rollupModules: boolean;
+  failOnCycles?: boolean;
   ignore: string[];
   systems: string[] | undefined;
 }
@@ -242,6 +243,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     context: flagValue(commandArgv, FLAG.context),
     systemName: flagValue(commandArgv, FLAG.systemName),
     rollupModules: commandArgv.includes(FLAG.rollupModules),
+    failOnCycles: commandArgv.includes(FLAG.failOnCycles),
     ignore: parseCsv(flagValue(commandArgv, FLAG.ignore)),
     systems: (() => {
       const raw = flagValue(commandArgv, FLAG.systems);

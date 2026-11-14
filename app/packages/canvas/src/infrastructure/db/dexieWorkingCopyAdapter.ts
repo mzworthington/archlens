@@ -49,6 +49,8 @@ export const dexieWorkingCopyAdapter: WorkingCopyPort = {
       db.workingNodes.clear(),
       db.originalDependencies.clear(),
       db.workingDependencies.clear(),
+      db.originalMeta.clear(),
+      db.workingMeta.clear(),
     ]);
   },
 };

@@ -121,16 +121,24 @@ export class TreeSitterComplexityAdapter implements ComplexityAnalyzerPort {
                 language: cyclomaticLang,
                 ext,
               };
-              this.scanCache?.put(cached);
+              if (this.scanCache) {
+                this.scanCache.put(cached);
+              }
             }
           }
 
           if (cached) {
-            const derived = metricsFromTree(cyclomaticLang, cached);
-            complexity = derived.complexity;
-            complexityPeak = derived.complexityPeak;
-            cognitiveComplexity = derived.cognitiveComplexity;
-            functionCount = derived.functionCount;
+            try {
+              const derived = metricsFromTree(cyclomaticLang, cached);
+              complexity = derived.complexity;
+              complexityPeak = derived.complexityPeak;
+              cognitiveComplexity = derived.cognitiveComplexity;
+              functionCount = derived.functionCount;
+            } finally {
+              if (!this.scanCache) {
+                cached.tree.delete?.();
+              }
+            }
           }
         }
 
@@ -151,6 +159,7 @@ export class TreeSitterComplexityAdapter implements ComplexityAnalyzerPort {
       }
     }
 
+    parser.delete?.();
     return results;
   }
 }

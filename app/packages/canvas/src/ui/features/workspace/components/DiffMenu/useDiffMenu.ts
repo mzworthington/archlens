@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { SchemaDiff } from '../../../../../core';
 import {
@@ -18,7 +19,20 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
     workingCopyPort,
     collabSessionPort,
     isWorkspaceOpen,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      checkPendingChanges: s.checkPendingChanges,
+      currentFilePath: s.currentFilePath,
+      initSchema: s.initSchema,
+      loadedSystems: s.loadedSystems,
+      logger: s.logger,
+      saveActiveDiagram: s.saveActiveDiagram,
+      setNotification: s.setNotification,
+      workingCopyPort: s.workingCopyPort,
+      collabSessionPort: s.collabSessionPort,
+      isWorkspaceOpen: s.isWorkspaceOpen,
+    }))
+  );
   const [diff, setDiff] = useState<SchemaDiff | null>(null);
   const [loading, setLoading] = useState(false);
 

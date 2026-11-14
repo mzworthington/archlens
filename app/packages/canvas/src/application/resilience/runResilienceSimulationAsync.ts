@@ -1,6 +1,10 @@
 import type { LoggerPort } from '@archlens/core/logging';
 import { noopLogger } from '@archlens/core/logging';
 import type { SystemSchema } from '@archlens/core';
+import {
+  buildResilienceRecommendations,
+  resilienceRecommendationsToAdvice,
+} from '@archlens/core/recommendations';
 import type { ChaosSpec } from '@archlens/core/resilience';
 import {
   runResilienceSimulation,
@@ -17,6 +21,10 @@ export interface ResilienceSimulationOptions {
   monteCarlo?: MonteCarloConfig;
   logger?: LoggerPort;
   engine?: ResilienceEnginePort;
+}
+
+function hasLegacyTargetSpofAdvice(advice: readonly string[]): boolean {
+  return advice.some(line => line.startsWith('Add a circuit breaker on '));
 }
 
 export async function runResilienceSimulationAsync(
@@ -41,7 +49,24 @@ export async function runResilienceSimulationAsync(
   if (wasmResult) {
     const result = wasmResultToSimulationResult(wasmResult);
     const faultNodeIds = resolveFaultNodeIds(schema, spec);
-    return { ...result, heatHops: computeResilienceHeatHops(schema, spec), faultNodeIds };
+    const advice = hasLegacyTargetSpofAdvice(result.advice)
+      ? resilienceRecommendationsToAdvice(
+          buildResilienceRecommendations({
+            schema,
+            spofs: result.spofs,
+            heat: result.heat,
+            propagationStoppedAt: result.propagationStoppedAt,
+            integrityHeat: result.integrityHeat,
+            faultNodeIds,
+          })
+        )
+      : result.advice;
+    return {
+      ...result,
+      advice,
+      heatHops: computeResilienceHeatHops(schema, spec),
+      faultNodeIds,
+    };
   }
 
   logger.warn('ChaosLens WASM engine unavailable; running TypeScript fallback simulation.');

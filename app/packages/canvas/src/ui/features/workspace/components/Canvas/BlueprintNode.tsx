@@ -17,12 +17,14 @@ import { BlueprintNodeBadges } from './BlueprintNodeBadges';
 import {
   BlueprintNodeExternalSummaryHub,
   BlueprintNodeHandles,
+  BlueprintNodeCreateZoomButton,
   BlueprintNodeHeaderChrome,
   BlueprintNodeTitle,
   BlueprintNodeZoomButton,
 } from './BlueprintNodeChrome';
 import { BlueprintNodeBlastRipple } from './BlueprintNodeHeatOverlays';
 import { blueprintNodeHeatStyle } from './blueprintNodeHeatStyle';
+import { NodeCommentMarker } from './NodeCommentMarker';
 
 type CustomNode = Node<ComponentNodeData, 'blueprintNode'>;
 
@@ -32,6 +34,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   const [, setLocation] = useLocation();
   const selectNode = useBlueprintStore(state => state.selectNode);
+  const createChildZoom = useBlueprintStore(state => state.createChildZoom);
   const materializeCouplingGhost = useBlueprintStore(state => state.materializeCouplingGhost);
   const workspaceCatalog = useBlueprintStore(state => state.workspaceCatalog);
   const loadedSystems = useBlueprintStore(state => state.loadedSystems);
@@ -40,6 +43,9 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const liteCanvas = useBlueprintStore(state => state.liteCanvas);
   const entityRef = data.entityRef;
   const canZoom = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
+  const canCreateZoom = Boolean(
+    entityRef && !canZoom && !data.external && !data.couplingGhost && !data.hiddenExternalGhost
+  );
   const childExternalsCount =
     canZoom && entityRef
       ? listChildDiagramExternals(workspaceCatalog, loadedSystems, entityRef).length
@@ -53,6 +59,18 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     e.stopPropagation();
     if (!entityRef) return;
     navigateToWorkspaceEntity(entityRef, { workspaceCatalog, setLocation });
+  };
+
+  const createZoom = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!entityRef) return;
+    void createChildZoom(entityRef).then(created => {
+      if (!created) return;
+      navigateToWorkspaceEntity(entityRef, {
+        workspaceCatalog: useBlueprintStore.getState().workspaceCatalog,
+        setLocation,
+      });
+    });
   };
 
   // Keep edge endpoints attached after lite-canvas chrome height changes.
@@ -163,6 +181,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         integrityHeat,
       })}
     >
+      <NodeCommentMarker entityRef={entityRef} />
       <button
         type="button"
         aria-label={name}
@@ -194,6 +213,12 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           </div>
         ) : null}
 
+        {liteCanvas && canCreateZoom ? (
+          <div className="absolute top-2 right-2 pointer-events-auto">
+            <BlueprintNodeCreateZoomButton name={name} liteCanvas onCreateZoom={createZoom} />
+          </div>
+        ) : null}
+
         {!liteCanvas && (
           <div className="pointer-events-auto">
             <BlueprintNodeHeaderChrome
@@ -201,6 +226,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
               name={name}
               entityRef={entityRef}
               canZoom={canZoom}
+              canCreateZoom={canCreateZoom}
               childExternalsCount={childExternalsCount}
               showSourceCodeButton={showSourceCodeButton}
               sourceFilepath={sourceFilepath}
@@ -211,6 +237,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
               onViewSource={openSourceCodeDialog}
               onMaterializeGhost={materializeCouplingGhost}
               onZoom={zoomToChild}
+              onCreateZoom={createZoom}
             />
           </div>
         )}

@@ -51,6 +51,7 @@ The forensics metrics, the coupling lens, the dependency view, and the Canvas di
 
 - A single click selects a node and opens **Properties**. It doesn't zoom into a child diagram.
 - Double-click a node that has a child diagram, matched by `entityRef`, or use its **Zoom** button, to drill in.
+- A node with no child diagram shows **Create zoom**. That adds an empty diagram one C4 level down, with `metadata.entityRef` equal to the node, and opens it. In an opened folder, ArchLens writes the new YAML beside the current file.
 - Press `Esc`, or use the breadcrumbs or the zoom-out control, to go back up.
 
 ![Container level](../screenshots/3-container-level.png)

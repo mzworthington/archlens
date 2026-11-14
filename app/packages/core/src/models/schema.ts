@@ -32,7 +32,7 @@ export interface NodeResilience {
 }
 
 export interface PropertyMap {
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | boolean | string[];
 }
 
 export type ForensicClassification = 'hotspot' | 'knowledge-silo';

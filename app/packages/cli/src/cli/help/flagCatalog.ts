@@ -15,6 +15,7 @@ export const FLAG = {
   context: '--context',
   systemName: '--system-name',
   rollupModules: '--rollup-modules',
+  failOnCycles: '--fail-on-cycles',
   ignore: '--ignore',
   systems: '--systems',
   git: '--git',
@@ -106,6 +107,13 @@ const ARCHITECTURE_FLAGS: readonly ArchitectureFlag[] = [
     scan: {
       label: '--rollup-modules',
       summary: 'Collapse *-module-* packages into prefix systems',
+    },
+  },
+  {
+    names: [FLAG.failOnCycles],
+    scan: {
+      label: '--fail-on-cycles',
+      summary: 'Exit non-zero if scanned blueprints contain dependency cycles',
     },
   },
   {

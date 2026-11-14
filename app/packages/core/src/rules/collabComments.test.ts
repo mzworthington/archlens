@@ -3,6 +3,9 @@ import type { SystemSchema } from '../models/schema';
 import { serializeSchemaToYaml } from './graph/serialize';
 import {
   addComment,
+  commentPresence,
+  COMMENT_AUTHOR_SWATCH_COUNT,
+  commentAuthorSwatch,
   createNodeComment,
   deleteComment,
   emptyCommentDocument,
@@ -75,6 +78,79 @@ describe('createNodeComment', () => {
         createdAtMs: 1,
       })
     ).toBeNull();
+  });
+});
+
+describe('commentPresence', () => {
+  it('counts open comments on a node and keeps one mark per person', () => {
+    const ada = createNodeComment({
+      id: 'c1',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorKey: 'ada',
+      authorClientId: 1,
+      body: 'first',
+      createdAtMs: 1,
+    });
+    const adaAgain = createNodeComment({
+      id: 'c2',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Ada',
+      authorKey: 'ada',
+      authorClientId: 9,
+      body: 'second',
+      createdAtMs: 2,
+    });
+    const grace = createNodeComment({
+      id: 'c3',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Grace',
+      authorKey: 'grace',
+      authorClientId: 2,
+      body: 'third',
+      createdAtMs: 3,
+    });
+    const resolved = createNodeComment({
+      id: 'c4',
+      nodeEntityRef: 'shop/api',
+      authorName: 'Lin',
+      authorKey: 'lin',
+      authorClientId: 3,
+      body: 'done',
+      createdAtMs: 4,
+    });
+    const elsewhere = createNodeComment({
+      id: 'c5',
+      nodeEntityRef: 'shop/db',
+      authorName: 'Lin',
+      authorKey: 'lin',
+      authorClientId: 3,
+      body: 'other node',
+      createdAtMs: 5,
+    });
+    if (!ada || !adaAgain || !grace || !resolved || !elsewhere) {
+      throw new Error('expected comments');
+    }
+
+    expect(
+      commentPresence(
+        [ada, adaAgain, grace, { ...resolved, status: 'resolved' }, elsewhere],
+        'shop/api'
+      )
+    ).toEqual({
+      count: 3,
+      authors: [
+        { id: 'ada', name: 'Ada' },
+        { id: 'grace', name: 'Grace' },
+      ],
+    });
+  });
+
+  it('assigns each person a stable highlight that differs from another person', () => {
+    expect(commentAuthorSwatch('ada')).toBe(commentAuthorSwatch('ada'));
+    expect(commentAuthorSwatch('ada')).not.toBe(commentAuthorSwatch('grace'));
+    expect(commentAuthorSwatch('ada')).toBeGreaterThanOrEqual(0);
+    expect(commentAuthorSwatch('ada')).toBeLessThan(COMMENT_AUTHOR_SWATCH_COUNT);
   });
 });
 

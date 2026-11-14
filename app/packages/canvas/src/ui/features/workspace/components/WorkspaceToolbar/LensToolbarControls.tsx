@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, ShieldAlert } from 'lucide-react';
 import { useLocation } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useExtensionPreview } from '../../extensionPreview';
 import { workspaceEntityRefFromPath } from '../../../../../application/navigation/workspaceUrl';
@@ -19,7 +20,15 @@ const RESILIENCE_UNAVAILABLE_MESSAGE =
 function ResilienceLensButton() {
   const [location, setLocation] = useLocation();
   const { isResilienceMode, setResilienceMode, resilienceFaults, schema, setNotification } =
-    useBlueprintStore();
+    useBlueprintStore(
+      useShallow(s => ({
+        isResilienceMode: s.isResilienceMode,
+        setResilienceMode: s.setResilienceMode,
+        resilienceFaults: s.resilienceFaults,
+        schema: s.schema,
+        setNotification: s.setNotification,
+      }))
+    );
   const unavailable = !isResilienceSimulationDiagramLevel(schema.level);
 
   const handleClick = () => {
@@ -81,7 +90,13 @@ function ResilienceLensButton() {
 
 function SimulateButton() {
   const { resilienceFaults, runResilienceSimulation, resilienceSimulationRunning } =
-    useBlueprintStore();
+    useBlueprintStore(
+      useShallow(s => ({
+        resilienceFaults: s.resilienceFaults,
+        runResilienceSimulation: s.runResilienceSimulation,
+        resilienceSimulationRunning: s.resilienceSimulationRunning,
+      }))
+    );
   const canSimulate = resilienceFaults.length > 0;
 
   return (

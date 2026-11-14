@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../application/store/store';
 import { resolveImportPeerPaths } from '../../../application/forensics/resolveCouplingEdges';
 import {
@@ -41,7 +42,35 @@ export function useTraceLensSidePanelModel() {
     toggleShowCoupling,
     leftCollapsed,
     toggleLeftCollapsed,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      schema: s.schema,
+      selectedNodeId: s.selectedNodeId,
+      nodes: s.nodes,
+      edges: s.edges,
+      loadedSystems: s.loadedSystems,
+      showCoupling: s.showCoupling,
+      showCouplingSchemaDeps: s.showCouplingSchemaDeps,
+      toggleShowCouplingSchemaDeps: s.toggleShowCouplingSchemaDeps,
+      selectNode: s.selectNode,
+      isResilienceMode: s.isResilienceMode,
+      resilienceSimulationResult: s.resilienceSimulationResult,
+      dependencyViewMode: s.dependencyViewMode,
+      setDependencyViewMode: s.setDependencyViewMode,
+      showTests: s.showTests,
+      toggleShowTests: s.toggleShowTests,
+      showUpstreamExternals: s.showUpstreamExternals,
+      toggleShowUpstreamExternals: s.toggleShowUpstreamExternals,
+      showDownstreamExternals: s.showDownstreamExternals,
+      toggleShowDownstreamExternals: s.toggleShowDownstreamExternals,
+      toggleShowSelectedDependenciesOnly: s.toggleShowSelectedDependenciesOnly,
+      showHotspotHeatmap: s.showHotspotHeatmap,
+      toggleShowHotspotHeatmap: s.toggleShowHotspotHeatmap,
+      toggleShowCoupling: s.toggleShowCoupling,
+      leftCollapsed: s.leftCollapsed,
+      toggleLeftCollapsed: s.toggleLeftCollapsed,
+    }))
+  );
 
   const { parentEntityRef } = useActiveDiagramEntity();
   const scopeEntityRef = parentEntityRef ?? schema.entityRef ?? undefined;

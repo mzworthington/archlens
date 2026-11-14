@@ -36,7 +36,7 @@ export function appendMemberFilepath(node: SystemNode, filepath: string): void {
     ...node.properties,
     memberFilepaths,
     filepath: typeof node.properties?.filepath === 'string' ? node.properties.filepath : filepath,
-  } as unknown as SystemNode['properties'];
+  };
 }
 
 export function applyHydrationUpgrade(

@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { serializeSchemaToMermaid, serializeSchemaToYaml } from '@archlens/core';
 
@@ -58,7 +59,22 @@ export function useCodeViewer(): UseCodeViewerReturn {
     toggleLeftCollapsed,
     isWorkspaceOpen,
     setIsImportMermaidOpen,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      schema: s.schema,
+      yamlCode: s.yamlCode,
+      importYaml: s.importYaml,
+      importJson: s.importJson,
+      lastError: s.lastError,
+      clearError: s.clearError,
+      logger: s.logger,
+      showTests: s.showTests,
+      leftCollapsed: s.leftCollapsed,
+      toggleLeftCollapsed: s.toggleLeftCollapsed,
+      isWorkspaceOpen: s.isWorkspaceOpen,
+      setIsImportMermaidOpen: s.setIsImportMermaidOpen,
+    }))
+  );
 
   const [activeTab, setActiveTab] = useState<Tab>('yaml');
   const [copied, setCopied] = useState(false);

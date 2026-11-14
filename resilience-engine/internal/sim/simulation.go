@@ -2,6 +2,7 @@ package sim
 
 import (
 	"math"
+	"sort"
 	"strings"
 
 	"blueprint/resilience-engine/internal/graph"
@@ -55,6 +56,37 @@ func DomainFromEntityRef(ref string) string {
 	return segments[len(segments)-2]
 }
 
+func isThirdPartyNode(node model.SystemNode) bool {
+	if node.External {
+		return true
+	}
+	if strings.HasPrefix(node.EntityRef, "external/") || strings.Contains(node.EntityRef, "/external/") {
+		return true
+	}
+	return false
+}
+
+func isSafeguardTargetNode(node model.SystemNode) bool {
+	if isThirdPartyNode(node) {
+		return false
+	}
+	switch node.Type {
+	case "web-app", "mobile-app", "single-page-app", "microservice", "rest-api", "grpc-service", "gateway-api", "background-worker", "serverless-app", "serverless-function", "container", "component", "code-module":
+		return true
+	default:
+		return false
+	}
+}
+
+func sortedMapKeys[V any](m map[string]V) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
 func buildAdvice(
 	schema model.SystemSchema,
 	spofs []string,
@@ -68,16 +100,40 @@ func buildAdvice(
 	for _, node := range schema.Nodes {
 		nodeByID[node.EntityRef] = node
 	}
+	dependents := buildDependents(schema)
 
 	for _, spof := range spofs {
-		node := nodeByID[spof]
-		name := node.Name
-		if name == "" {
-			name = spof
+		depNode := nodeByID[spof]
+		depName := depNode.Name
+		if depName == "" {
+			depName = spof
 		}
-		advice = append(advice,
-			"Add a circuit breaker on "+name+" - multiple services depend on it with no isolation.",
-		)
+		note := "shared dependency with fan-in and no caller-side isolation in application code"
+		if isThirdPartyNode(depNode) {
+			note = "shared third-party dependency with fan-in - isolation must be in your application code, not on the vendor"
+		}
+		callers := dependents[spof]
+		seenCallers := make(map[string]struct{}, len(callers))
+		for _, callerID := range callers {
+			if _, seen := seenCallers[callerID]; seen {
+				continue
+			}
+			seenCallers[callerID] = struct{}{}
+			callerNode, ok := nodeByID[callerID]
+			if !ok || !isSafeguardTargetNode(callerNode) {
+				continue
+			}
+			if boolVal(model.ResilienceSafeguardsForNode(callerNode).CircuitBreaker) {
+				continue
+			}
+			callerName := callerNode.Name
+			if callerName == "" {
+				callerName = callerID
+			}
+			advice = append(advice,
+				"In "+callerName+", add a circuit breaker on the outbound client to "+depName+" - "+note+".",
+			)
+		}
 	}
 
 	for _, stopped := range propagationStoppedAt {
@@ -87,14 +143,18 @@ func buildAdvice(
 			name = stopped
 		}
 		advice = append(advice,
-			"Circuit breaker on "+name+" contained the blast radius - keep this safeguard enabled.",
+			"Circuit breaker in "+name+" contained the blast radius - keep this outbound isolation in application code.",
 		)
 	}
 
 	hotNodes := make([]string, 0)
-	for id, intensity := range heat {
+	for _, id := range sortedMapKeys(heat) {
+		intensity := heat[id]
 		if intensity >= 0.7 {
-			node := nodeByID[id]
+			node, ok := nodeByID[id]
+			if ok && !isSafeguardTargetNode(node) {
+				continue
+			}
 			name := node.Name
 			if name == "" {
 				name = id
@@ -103,7 +163,7 @@ func buildAdvice(
 		}
 	}
 	if len(hotNodes) > 0 {
-		advice = append(advice, "High-impact nodes: "+strings.Join(hotNodes, ", ")+". Review timeouts and fallbacks.")
+		advice = append(advice, "High-impact services: "+strings.Join(hotNodes, ", ")+". Review outbound timeouts and fallbacks in application code.")
 	}
 
 	for _, faultID := range faultNodeIDs {
@@ -130,7 +190,7 @@ func buildAdvice(
 		}
 		if len(stalePeers) > 0 {
 			peerNames := make([]string, 0, len(stalePeers))
-			for id := range stalePeers {
+			for _, id := range sortedMapKeys(stalePeers) {
 				node := nodeByID[id]
 				name := node.Name
 				if name == "" {
@@ -139,14 +199,15 @@ func buildAdvice(
 				peerNames = append(peerNames, name)
 			}
 			advice = append(advice,
-				publisherName+" stopped publishing - "+strings.Join(peerNames, ", ")+
-					" may keep running but will miss new events.",
+				publisherName+" stopped publishing - in "+strings.Join(peerNames, ", ")+
+					", handle stale or missing events in consumer logic.",
 			)
 		}
 	}
 
 	integrityOnly := make([]string, 0)
-	for id, intensity := range integrityHeat {
+	for _, id := range sortedMapKeys(integrityHeat) {
+		intensity := integrityHeat[id]
 		if intensity < 0.7 {
 			continue
 		}
@@ -154,7 +215,10 @@ func buildAdvice(
 		if avail >= 0.3 {
 			continue
 		}
-		node := nodeByID[id]
+		node, ok := nodeByID[id]
+		if ok && !isSafeguardTargetNode(node) {
+			continue
+		}
 		name := node.Name
 		if name == "" {
 			name = id
@@ -164,7 +228,7 @@ func buildAdvice(
 	if len(integrityOnly) > 0 {
 		advice = append(advice,
 			"Data integrity risk without availability loss: "+strings.Join(integrityOnly, ", ")+
-				". Verify staleness handling and compensating actions.",
+				". Verify staleness handling and compensating actions in application code.",
 		)
 	}
 
@@ -176,7 +240,8 @@ func DetectSpofs(schema model.SystemSchema) []string {
 	dependents := buildDependents(schema)
 	spofs := make([]string, 0)
 
-	for dependency, callers := range dependents {
+	for _, dependency := range sortedMapKeys(dependents) {
+		callers := dependents[dependency]
 		if len(callers) < 2 {
 			continue
 		}
@@ -259,15 +324,15 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 	entryPointSlas, overallSla := computeEntryPointSlas(entryPoints, mergedHeat)
 
 	impactedNodes := make([]string, 0)
-	for id, intensity := range mergedHeat {
-		if intensity > 0 {
+	for _, id := range sortedMapKeys(mergedHeat) {
+		if mergedHeat[id] > 0 {
 			impactedNodes = append(impactedNodes, id)
 		}
 	}
 
 	integrityImpactedNodes := make([]string, 0)
-	for id, intensity := range mergedIntegrityHeat {
-		if intensity > 0 {
+	for _, id := range sortedMapKeys(mergedIntegrityHeat) {
+		if mergedIntegrityHeat[id] > 0 {
 			integrityImpactedNodes = append(integrityImpactedNodes, id)
 		}
 	}
@@ -276,24 +341,15 @@ func RunSimulation(schema model.SystemSchema, spec model.ChaosSpec) model.Simula
 	for _, id := range impactedNodes {
 		domainSet[DomainFromEntityRef(id)] = struct{}{}
 	}
-	impactedDomains := make([]string, 0, len(domainSet))
-	for domain := range domainSet {
-		impactedDomains = append(impactedDomains, domain)
-	}
+	impactedDomains := sortedMapKeys(domainSet)
 
 	integrityDomainSet := make(map[string]struct{})
 	for _, id := range integrityImpactedNodes {
 		integrityDomainSet[DomainFromEntityRef(id)] = struct{}{}
 	}
-	integrityImpactedDomains := make([]string, 0, len(integrityDomainSet))
-	for domain := range integrityDomainSet {
-		integrityImpactedDomains = append(integrityImpactedDomains, domain)
-	}
+	integrityImpactedDomains := sortedMapKeys(integrityDomainSet)
 
-	stopped := make([]string, 0, len(propagationStoppedAt))
-	for id := range propagationStoppedAt {
-		stopped = append(stopped, id)
-	}
+	stopped := sortedMapKeys(propagationStoppedAt)
 
 	spofs := DetectSpofs(schema)
 	heatOut := make(map[string]float64, len(mergedHeat))

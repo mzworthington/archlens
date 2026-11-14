@@ -63,12 +63,12 @@ type IoGet = () => IoState & DiagramState & UiState;
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 const IN_TAB_CLI_LOADING_MESSAGE = 'Running sandboxed CLI scan…';
 
-let browserLiteScanController: AbortController | null = null;
-let browserLitePersistInFlight = false;
-let inTabCliSandbox: InTabCliSandbox | null = null;
-let scanKind: 'lite' | 'in-tab-cli' = 'lite';
-
 export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoGet) {
+  let browserLiteScanController: AbortController | null = null;
+  let browserLitePersistInFlight = false;
+  let inTabCliSandbox: InTabCliSandbox | null = null;
+  let scanKind: 'lite' | 'in-tab-cli' = 'lite';
+
   return {
     loadSchema: async () => {
       const { fileSystemPort, importYaml, logger, setNotification, setIsLoading } = get();
@@ -100,7 +100,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         logger.error('Failed to load schema file', err);
         setNotification?.({
           type: 'error',
-          title: 'Save Error',
+          title: 'Load Error',
           message: (err as Error).message || 'Error occurred while loading schema.',
         });
         return false;

@@ -1,5 +1,10 @@
 export { dedupeDependencies, validateGraph } from './validate';
-export { systemSchemaValidator, toSystemSchemaJsonSchema } from './schema';
+export {
+  systemDependencySchema,
+  systemNodeSchema,
+  systemSchemaValidator,
+  toSystemSchemaJsonSchema,
+} from './schema';
 export { parseSchemaFromYaml, parseSchemaFromJson } from './parse';
 export { serializeSchemaToYaml } from './serialize';
 export { serializeSchemaToMermaid } from './mermaid';

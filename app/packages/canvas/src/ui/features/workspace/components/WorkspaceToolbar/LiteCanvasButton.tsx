@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap } from 'lucide-react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 const btnClass =
@@ -9,7 +10,12 @@ const LITE_CANVAS_HELP =
   'Faster pan and zoom on large diagrams: hide minimap/grid, simplify nodes, cap edge animation.';
 
 export const LiteCanvasButton: React.FC = () => {
-  const { liteCanvas, toggleLiteCanvas } = useBlueprintStore();
+  const { liteCanvas, toggleLiteCanvas } = useBlueprintStore(
+    useShallow(s => ({
+      liteCanvas: s.liteCanvas,
+      toggleLiteCanvas: s.toggleLiteCanvas,
+    }))
+  );
 
   return (
     <button

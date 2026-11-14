@@ -61,12 +61,8 @@ export function resolveContextSeedRelativePath(
   diagramEntityRef: string,
   options: { nestedExists: boolean; rootExists: boolean }
 ): string {
-  if (diagramEntityRef === 'samples') return 'golden-journey/context.yaml';
   if (options.rootExists && !options.nestedExists) {
     return LEGACY_CONTEXT_RELATIVE_PATH;
-  }
-  if (options.nestedExists) {
-    return nestedContextRelativePath(diagramEntityRef);
   }
   return nestedContextRelativePath(diagramEntityRef);
 }
@@ -108,11 +104,6 @@ function systemLabel(displayName: string, systemEntityRef: string): string {
   return titled.endsWith(' System') ? titled : `${titled} System`;
 }
 
-/** Top-level nodes on the context canvas (no visual parent). */
-export function topLevelSystemNodes(nodes: SystemNode[]): SystemNode[] {
-  return nodes.filter(n => n.type !== 'person' && !n.parentEntityRef);
-}
-
 function shouldEmitAsGroup(
   system: ContextSystemInput,
   systemRef: string,
@@ -134,19 +125,6 @@ function shouldEmitAsGroup(
       ));
 
   return hasChildrenInBatch || hasChildrenInSchema || hasProductMembers;
-}
-
-/** Person → each top-level system or group. */
-export function personDependenciesForSystems(
-  personRef: string,
-  nodes: SystemNode[]
-): SystemDependency[] {
-  return topLevelSystemNodes(nodes).map(system => ({
-    from: personRef,
-    to: system.entityRef,
-    type: 'direct-call' as const,
-    description: PERSON_EDGE_DESCRIPTION,
-  }));
 }
 
 function hubRefForProduct(nodes: SystemNode[], productId: string): string | undefined {

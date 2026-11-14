@@ -588,6 +588,40 @@ describe('blueprint problems', () => {
 
     expect(blueprintProblems(fixed)).toEqual([]);
   });
+
+  it('formats a three-system cycle without a serial comma', () => {
+    const threeNodeCycle = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  name: Checkout
+  entityRef: checkout
+nodes:
+  - entityRef: catalog
+    type: software-system
+    name: Catalog
+  - entityRef: billing
+    type: software-system
+    name: Billing
+  - entityRef: shipping
+    type: software-system
+    name: Shipping
+dependencies:
+  - from: catalog
+    to: billing
+    type: direct-call
+  - from: billing
+    to: shipping
+    type: direct-call
+  - from: shipping
+    to: catalog
+    type: direct-call
+`;
+    const problems = blueprintProblems(threeNodeCycle);
+
+    expect(problems[0]?.message).toBe(
+      'Cycle: Catalog calls Billing, Billing calls Shipping and Shipping calls Catalog.'
+    );
+  });
 });
 
 describe('diagram navigation', () => {

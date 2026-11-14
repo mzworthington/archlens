@@ -218,5 +218,6 @@ async function measureBrowserSyntaxTreeComplexity(
     return null;
   } finally {
     tree?.delete();
+    parser.delete?.();
   }
 }

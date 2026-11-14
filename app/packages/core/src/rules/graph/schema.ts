@@ -64,7 +64,7 @@ const nodePositionSchema = z.object({
   y: z.number(),
 });
 
-const systemNodeSchema = z.object({
+export const systemNodeSchema = z.object({
   entityRef: entityRefStringSchema,
   type: nodeTypeSchema,
   name: z.string().min(1),
@@ -80,7 +80,7 @@ const systemNodeSchema = z.object({
   resilience: nodeResilienceSchema.optional(),
 });
 
-const systemDependencySchema = z.object({
+export const systemDependencySchema = z.object({
   from: entityRefStringSchema,
   to: entityRefStringSchema,
   type: dependencyTypeSchema,

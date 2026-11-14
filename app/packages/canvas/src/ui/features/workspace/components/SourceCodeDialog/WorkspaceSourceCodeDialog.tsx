@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { SourceCodeDialog } from './SourceCodeDialog';
 
@@ -16,7 +17,22 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
     workspacePort,
     githubPat,
     setGithubPat,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      isSourceCodeOpen: s.isSourceCodeOpen,
+      sourceCodeFilepath: s.sourceCodeFilepath,
+      sourceCodeProvenance: s.sourceCodeProvenance,
+      closeSourceCodeDialog: s.closeSourceCodeDialog,
+      schema: s.schema,
+      loadedSystems: s.loadedSystems,
+      currentFilePath: s.currentFilePath,
+      isWorkspaceOpen: s.isWorkspaceOpen,
+      isSampleWorkspace: s.isSampleWorkspace,
+      workspacePort: s.workspacePort,
+      githubPat: s.githubPat,
+      setGithubPat: s.setGithubPat,
+    }))
+  );
 
   const sourceProvenance = useMemo(() => {
     if (sourceCodeProvenance?.remoteUrl) return sourceCodeProvenance;

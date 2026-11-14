@@ -8,7 +8,7 @@ import type {
   SystemDependency,
   SystemNode,
 } from '@archlens/core';
-import { emptyCollabDocument } from '@archlens/core';
+import { emptyCollabDocument, systemDependencySchema, systemNodeSchema } from '@archlens/core';
 
 export const YJS_LOCAL_ORIGIN = 'archlens-local';
 
@@ -134,19 +134,24 @@ function readC4Level(value: unknown): C4Level {
 function readNode(raw: unknown, fallbackRef: string): SystemNode | null {
   if (!raw || typeof raw !== 'object') return null;
   const rec = raw as Record<string, unknown>;
-  if (typeof rec.name !== 'string' || typeof rec.type !== 'string') return null;
-  const node = rec as unknown as SystemNode;
-  if (!node.entityRef) node.entityRef = fallbackRef;
-  return node;
+  const candidate = {
+    ...rec,
+    entityRef:
+      typeof rec.entityRef === 'string' && rec.entityRef.length > 0 ? rec.entityRef : fallbackRef,
+  };
+  const parsed = systemNodeSchema.safeParse(candidate);
+  if (!parsed.success) return null;
+  const { x, y, ...rest } = parsed.data;
+  const position = rest.position ?? (x !== undefined && y !== undefined ? { x, y } : undefined);
+  return {
+    ...rest,
+    ...(position ? { position } : {}),
+  };
 }
 
 function readDep(raw: unknown): SystemDependency | null {
-  if (!raw || typeof raw !== 'object') return null;
-  const rec = raw as Record<string, unknown>;
-  if (typeof rec.from !== 'string' || typeof rec.to !== 'string' || typeof rec.type !== 'string') {
-    return null;
-  }
-  return rec as unknown as SystemDependency;
+  const parsed = systemDependencySchema.safeParse(raw);
+  return parsed.success ? parsed.data : null;
 }
 
 function readCollabDocumentFromJson(

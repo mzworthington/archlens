@@ -29,6 +29,7 @@ export const createResilienceState = (set: ResilienceSet, get: ResilienceGet): R
   resilienceSafeguards: {},
   resilienceMonteCarlo: { ...DEFAULT_RESILIENCE_MONTE_CARLO },
   resilienceSimulationResult: null,
+  pinnedResilienceBaseline: null,
   resilienceSimulationRunning: false,
   resilienceSimulationScope: null,
   chaosSpecMetadata: null,
@@ -44,6 +45,7 @@ export const createResilienceState = (set: ResilienceSet, get: ResilienceGet): R
       ...(!enabled
         ? {
             resilienceSimulationResult: null,
+            pinnedResilienceBaseline: null,
             resilienceSimulationScope: null,
             resilienceSafeguards: {},
             resilienceFaults: [],

@@ -6,6 +6,8 @@ import type { ResilienceGet, ResilienceSet } from './types';
 import { resilienceModePanelPatch } from './helpers';
 
 export function createSimulationActions(set: ResilienceSet, get: ResilienceGet) {
+  let activeRunId = 0;
+
   return {
     runResilienceSimulation: () => {
       const {
@@ -44,6 +46,7 @@ export function createSimulationActions(set: ResilienceSet, get: ResilienceGet) 
         addExternalDependencies([], simulationSchema.dependencies);
       }
 
+      const runId = ++activeRunId;
       set({ resilienceSimulationRunning: true, resilienceSimulationScope: scope });
       void runResilienceSimulationAsync(simulationSchema, simulationSpec, {
         monteCarlo: resilienceMonteCarlo,
@@ -51,6 +54,7 @@ export function createSimulationActions(set: ResilienceSet, get: ResilienceGet) 
         engine: resilienceEnginePort,
       })
         .then((result: SimulationResult) => {
+          if (runId !== activeRunId) return;
           set({
             resilienceSimulationResult: result,
             resilienceSimulationRunning: false,
@@ -58,6 +62,7 @@ export function createSimulationActions(set: ResilienceSet, get: ResilienceGet) 
         })
         .catch(err => {
           logger.error('ChaosLens resilience simulation failed.', err);
+          if (runId !== activeRunId) return;
           set({ resilienceSimulationRunning: false });
         });
     },
@@ -76,7 +81,22 @@ export function createSimulationActions(set: ResilienceSet, get: ResilienceGet) 
       void syncResilienceExternalsToCanvas(get, set);
       get().runResilienceSimulation();
     },
-    clearResilienceSimulation: () =>
-      set({ resilienceSimulationResult: null, resilienceSimulationScope: null }),
+    clearResilienceSimulation: () => {
+      activeRunId++;
+      set({
+        resilienceSimulationResult: null,
+        pinnedResilienceBaseline: null,
+        resilienceSimulationScope: null,
+        resilienceSimulationRunning: false,
+      });
+    },
+    pinResilienceBaseline: () => {
+      const current = get().resilienceSimulationResult;
+      if (!current) return;
+      set({ pinnedResilienceBaseline: current });
+    },
+    clearPinnedResilienceBaseline: () => {
+      set({ pinnedResilienceBaseline: null });
+    },
   };
 }

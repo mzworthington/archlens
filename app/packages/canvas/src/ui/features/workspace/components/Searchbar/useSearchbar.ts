@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useReactFlow } from '@xyflow/react';
 import { useLocation } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
@@ -62,7 +63,16 @@ export function useSearchbar(): UseSearchbarReturn {
     showUpstreamExternals,
     showDownstreamExternals,
     workspaceCatalog,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      loadedSystems: s.loadedSystems,
+      currentFilePath: s.currentFilePath,
+      showTests: s.showTests,
+      showUpstreamExternals: s.showUpstreamExternals,
+      showDownstreamExternals: s.showDownstreamExternals,
+      workspaceCatalog: s.workspaceCatalog,
+    }))
+  );
   const reactFlowInstance = useReactFlow();
   const [, setLocation] = useLocation();
 

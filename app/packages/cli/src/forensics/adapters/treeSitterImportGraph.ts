@@ -51,7 +51,11 @@ export class TreeSitterImportGraphAdapter implements ImportGraphPort {
           parser.setLanguage(language);
           const text = fs.readFileSync(absolute, 'utf8');
           const tree = parser.parse(text);
-          specifiers = extractRelativeImportsFromTree(ext, tree.rootNode);
+          try {
+            specifiers = extractRelativeImportsFromTree(ext, tree.rootNode);
+          } finally {
+            tree.delete?.();
+          }
         }
 
         if (specifiers.length > 0) {
@@ -60,6 +64,7 @@ export class TreeSitterImportGraphAdapter implements ImportGraphPort {
       } catch {}
     }
 
+    parser.delete?.();
     return result;
   }
 }

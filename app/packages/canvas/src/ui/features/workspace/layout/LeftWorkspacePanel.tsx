@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useLocation } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { stripChaosLensSearch } from '../../../../application/resilience/chaosLensUrl';
 import { useModalFocusTrap } from '../../../a11y/useModalFocusTrap';
@@ -18,7 +19,16 @@ export const LeftWorkspacePanel: React.FC = () => {
     toggleLeftCollapsed,
     isResilienceMode,
     setResilienceMode,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      leftCollapsed: s.leftCollapsed,
+      activeLeftPanel: s.activeLeftPanel,
+      setActiveLeftPanel: s.setActiveLeftPanel,
+      toggleLeftCollapsed: s.toggleLeftCollapsed,
+      isResilienceMode: s.isResilienceMode,
+      setResilienceMode: s.setResilienceMode,
+    }))
+  );
   const [, setLocation] = useLocation();
   const resilienceRef = useRef<HTMLDivElement>(null);
   const resilienceTrapped = isResilienceMode && activeLeftPanel === 'chaosLens' && !leftCollapsed;
@@ -79,6 +89,7 @@ export const LeftWorkspacePanel: React.FC = () => {
               safeguards={model.selectedResilienceSafeguards}
               monteCarlo={model.resilienceMonteCarlo}
               simulationResult={model.resilienceSimulationResult}
+              pinnedBaseline={model.pinnedResilienceBaseline}
               recommendations={model.resilienceRecommendations}
               onTelemetryViewChange={model.setResilienceTelemetryView}
               onSelectFault={model.selectNode}
@@ -92,6 +103,8 @@ export const LeftWorkspacePanel: React.FC = () => {
               onLoadChaosSpec={() => model.openChaosSpecDialog('import')}
               onExportChaosSpec={() => model.openChaosSpecDialog('export')}
               onClearScenario={model.clearResilienceScenario}
+              onPinBaseline={model.pinResilienceBaseline}
+              onClearBaseline={model.clearPinnedResilienceBaseline}
             />
           </div>
         ) : activeTab === 'traceLens' ? (

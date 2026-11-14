@@ -34,6 +34,12 @@ export const BlueprintNodeHandles: React.FC = () => (
   </>
 );
 
+function zoomActionClass(liteCanvas: boolean): string {
+  return liteCanvas
+    ? 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10'
+    : 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0';
+}
+
 type ZoomButtonProps = {
   name: string;
   liteCanvas: boolean;
@@ -45,15 +51,11 @@ export const BlueprintNodeZoomButton: React.FC<ZoomButtonProps> = ({
   liteCanvas,
   onZoom,
 }) => {
-  const zoomButtonClass = liteCanvas
-    ? 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10'
-    : 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0';
-
   return (
     <button
       type="button"
       onClick={onZoom}
-      className={zoomButtonClass}
+      className={zoomActionClass(liteCanvas)}
       title="Click to zoom inside"
       aria-label={`Zoom into ${name}`}
       data-testid="zoom-in-button"
@@ -64,11 +66,38 @@ export const BlueprintNodeZoomButton: React.FC<ZoomButtonProps> = ({
   );
 };
 
+type CreateZoomButtonProps = {
+  name: string;
+  liteCanvas: boolean;
+  onCreateZoom: (e: React.MouseEvent) => void;
+};
+
+export const BlueprintNodeCreateZoomButton: React.FC<CreateZoomButtonProps> = ({
+  name,
+  liteCanvas,
+  onCreateZoom,
+}) => {
+  return (
+    <button
+      type="button"
+      onClick={onCreateZoom}
+      className={zoomActionClass(liteCanvas)}
+      title="Create a child diagram and open it"
+      aria-label={`Create zoom into ${name}`}
+      data-testid="create-zoom-button"
+    >
+      <ZoomIn className="w-2.5 h-2.5" />
+      {!liteCanvas ? <span>Create zoom</span> : null}
+    </button>
+  );
+};
+
 type HeaderChromeProps = {
   config: BlueprintNodeTypeConfig;
   name: string;
   entityRef?: string;
   canZoom: boolean;
+  canCreateZoom: boolean;
   childExternalsCount: number;
   showSourceCodeButton: boolean;
   sourceFilepath?: string;
@@ -83,6 +112,7 @@ type HeaderChromeProps = {
     position: { x: number; y: number };
   }) => void;
   onZoom: (e: React.MouseEvent) => void;
+  onCreateZoom: (e: React.MouseEvent) => void;
 };
 
 /** Icon + action buttons row (hidden in lite canvas mode). */
@@ -91,6 +121,7 @@ export const BlueprintNodeHeaderChrome: React.FC<HeaderChromeProps> = ({
   name,
   entityRef,
   canZoom,
+  canCreateZoom,
   childExternalsCount,
   showSourceCodeButton,
   sourceFilepath,
@@ -101,10 +132,13 @@ export const BlueprintNodeHeaderChrome: React.FC<HeaderChromeProps> = ({
   onViewSource,
   onMaterializeGhost,
   onZoom,
+  onCreateZoom,
 }) => {
   const Icon = config.icon;
   const zoomButton = canZoom ? (
     <BlueprintNodeZoomButton name={name} liteCanvas={false} onZoom={onZoom} />
+  ) : canCreateZoom ? (
+    <BlueprintNodeCreateZoomButton name={name} liteCanvas={false} onCreateZoom={onCreateZoom} />
   ) : null;
   const addGhostButton =
     isCouplingGhost && sourceFilepath ? (

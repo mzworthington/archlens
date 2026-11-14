@@ -19,29 +19,36 @@ export async function parseWorkspaceSources(
   const parserReady = await initParser();
   const parser = parserReady ? new Parser() : null;
   const parsed: ParsedSourceFile[] = [];
-  for (const source of sources) {
-    const relativePath = relativeSourcePath(root, source.path);
-    if (!parser) {
-      parsed.push(emptyParsed(source.path, relativePath));
-      continue;
+  try {
+    for (const source of sources) {
+      const relativePath = relativeSourcePath(root, source.path);
+      if (!parser) {
+        parsed.push(emptyParsed(source.path, relativePath));
+        continue;
+      }
+      const language = await languageFor(relativePath);
+      if (!language) {
+        parsed.push(emptyParsed(source.path, relativePath));
+        continue;
+      }
+      parser.setLanguage(language);
+      const tree = parser.parse(source.content);
+      try {
+        parsed.push(
+          extractParsedSourceFileFromTree({
+            filePath: source.path,
+            relativePath,
+            tree,
+          })
+        );
+      } finally {
+        tree.delete();
+      }
     }
-    const language = await languageFor(relativePath);
-    if (!language) {
-      parsed.push(emptyParsed(source.path, relativePath));
-      continue;
-    }
-    parser.setLanguage(language);
-    const tree = parser.parse(source.content);
-    parsed.push(
-      extractParsedSourceFileFromTree({
-        filePath: source.path,
-        relativePath,
-        tree,
-      })
-    );
-    tree.delete();
+    return parsed;
+  } finally {
+    parser?.delete?.();
   }
-  return parsed;
 }
 
 async function initParser(): Promise<boolean> {

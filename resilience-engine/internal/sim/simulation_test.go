@@ -120,3 +120,24 @@ func TestRunMonteCarloProducesStats(t *testing.T) {
 }
 
 func ptr(v float64) *float64 { return &v }
+
+func TestRunSimulationEmitsCallerSideSpofAdviceDeterministically(t *testing.T) {
+	spec := model.ChaosSpec{
+		Faults: []model.NodeFaultConfig{
+			{NodeID: "shop/payment", FaultType: "region-outage"},
+		},
+		EntryPoints: []string{"shop/web", "shop/mobile"},
+	}
+	first := sim.RunSimulation(ecommerceSchema(), spec)
+	for i := 0; i < 20; i++ {
+		next := sim.RunSimulation(ecommerceSchema(), spec)
+		if len(next.Advice) != len(first.Advice) {
+			t.Fatalf("expected deterministic advice length, got %v vs %v", next.Advice, first.Advice)
+		}
+		for idx := range first.Advice {
+			if next.Advice[idx] != first.Advice[idx] {
+				t.Fatalf("non-deterministic advice at %d: %q vs %q", idx, next.Advice[idx], first.Advice[idx])
+			}
+		}
+	}
+}

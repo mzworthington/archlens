@@ -164,4 +164,13 @@ export class TreeSitterScanCache {
   has(relativePath: string): boolean {
     return this.entries.has(relativePath.replace(/\\/g, '/'));
   }
+
+  dispose(): void {
+    for (const entry of this.entries.values()) {
+      try {
+        entry.tree.delete?.();
+      } catch {}
+    }
+    this.entries.clear();
+  }
 }

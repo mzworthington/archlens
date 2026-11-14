@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BlueprintNode } from './BlueprintNode';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
-import type { ForensicClassification } from '@archlens/core';
+import { commentAuthorSwatch, type ForensicClassification, type NodeComment } from '@archlens/core';
 import type { Node, NodeProps } from '@xyflow/react';
 
 const mockSetLocation = vi.fn();
@@ -53,7 +53,13 @@ describe('BlueprintNode Component', () => {
       ],
       dependencies: [],
     });
-    useBlueprintStore.setState({ selectedNodeId: null, liteCanvas: false });
+    useBlueprintStore.setState({
+      selectedNodeId: null,
+      liteCanvas: false,
+      collabRoomActive: false,
+      collabComments: [],
+      persistedComments: [],
+    });
   });
 
   const defaultProps: NodeProps<Node<ComponentNodeData, 'blueprintNode'>> = {
@@ -77,6 +83,87 @@ describe('BlueprintNode Component', () => {
     positionAbsoluteY: 0,
   };
 
+  const openComment = (overrides: Partial<NodeComment> & Pick<NodeComment, 'id'>): NodeComment => ({
+    nodeEntityRef: 'shop/api',
+    authorName: 'Ada',
+    authorKey: 'ada',
+    authorClientId: 1,
+    body: 'Super Comment',
+    createdAtMs: 1,
+    status: 'open',
+    ...overrides,
+  });
+
+  it('shows a comment count and a highlight for each person on the node', () => {
+    useBlueprintStore.setState({
+      persistedComments: [
+        openComment({ id: 'c1', authorName: 'Ada', authorKey: 'ada', createdAtMs: 1 }),
+        openComment({
+          id: 'c2',
+          authorName: 'Ada',
+          authorKey: 'ada',
+          authorClientId: 9,
+          body: 'again',
+          createdAtMs: 2,
+        }),
+        openComment({
+          id: 'c3',
+          authorName: 'Grace',
+          authorKey: 'grace',
+          authorClientId: 2,
+          body: 'also',
+          createdAtMs: 3,
+        }),
+        openComment({
+          id: 'c4',
+          nodeEntityRef: 'shop/db',
+          authorName: 'Lin',
+          authorKey: 'lin',
+          body: 'elsewhere',
+          createdAtMs: 4,
+        }),
+      ],
+    });
+
+    render(
+      <BlueprintNode {...defaultProps} data={{ ...defaultProps.data, entityRef: 'shop/api' }} />
+    );
+
+    const marker = screen.getByTestId('node-comment-marker');
+    expect(marker).toHaveTextContent('3');
+    expect(marker).toHaveAccessibleName('3 open comments from Ada, Grace');
+    const ada = screen.getByTestId('node-comment-author-ada');
+    const grace = screen.getByTestId('node-comment-author-grace');
+    expect(ada).toHaveTextContent('A');
+    expect(grace).toHaveTextContent('G');
+    expect(ada).toHaveAttribute('data-swatch', String(commentAuthorSwatch('ada')));
+    expect(grace).toHaveAttribute('data-swatch', String(commentAuthorSwatch('grace')));
+    expect(ada.getAttribute('data-swatch')).not.toBe(grace.getAttribute('data-swatch'));
+    expect(screen.queryByTestId('node-comment-author-lin')).not.toBeInTheDocument();
+  });
+
+  it('uses the live room thread for the marker while a room is open', () => {
+    useBlueprintStore.setState({
+      collabRoomActive: true,
+      persistedComments: [
+        openComment({ id: 'stale', body: 'saved earlier', createdAtMs: 1 }),
+        openComment({ id: 'stale-2', authorName: 'Grace', authorKey: 'grace', createdAtMs: 2 }),
+      ],
+      collabComments: [
+        openComment({ id: 'live', authorName: 'Ada', authorKey: 'ada', createdAtMs: 3 }),
+      ],
+    });
+
+    render(
+      <BlueprintNode {...defaultProps} data={{ ...defaultProps.data, entityRef: 'shop/api' }} />
+    );
+
+    expect(screen.getByTestId('node-comment-marker')).toHaveAccessibleName(
+      '1 open comment from Ada'
+    );
+    expect(screen.queryByTestId('node-comment-author-grace')).not.toBeInTheDocument();
+  });
+
   it('renders correctly with basic node details', () => {
     render(<BlueprintNode {...defaultProps} />);
 
@@ -87,6 +174,7 @@ describe('BlueprintNode Component', () => {
     expect(screen.getByTestId('handle-source-right')).toBeInTheDocument();
     expect(screen.getByTestId('handle-target-top')).toBeInTheDocument();
     expect(screen.getByTestId('blueprint-node')).not.toHaveStyle({ backdropFilter: 'blur(8px)' });
+    expect(screen.queryByTestId('node-comment-marker')).not.toBeInTheDocument();
   });
 
   it('uses a quiet port instead of a filled connection handle', () => {
@@ -353,6 +441,46 @@ describe('BlueprintNode Component', () => {
     await waitFor(() => {
       expect(mockSetLocation).toHaveBeenCalledWith('/workspace/billing/api');
     });
+  });
+
+  it('creates a child diagram and opens it when Create zoom is clicked', async () => {
+    const parent = {
+      name: 'Billing Containers',
+      version: '1.0.0',
+      level: 'container' as const,
+      entityRef: 'billing',
+      nodes: [{ entityRef: 'billing/api', type: 'microservice' as const, name: 'API' }],
+      dependencies: [],
+    };
+    useBlueprintStore.setState({
+      currentFilePath: 'blueprints/billing/containers.yaml',
+      isWorkspaceOpen: false,
+      workspaceCatalog: [],
+      schema: parent,
+      loadedSystems: [
+        { path: 'blueprints/billing/containers.yaml', name: 'Billing Containers', schema: parent },
+      ],
+    });
+
+    render(
+      <BlueprintNode
+        {...defaultProps}
+        data={{ ...defaultProps.data, entityRef: 'billing/api', name: 'API' }}
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /create zoom into api/i }));
+
+    await waitFor(() => {
+      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/billing/api');
+    });
+    expect(
+      useBlueprintStore
+        .getState()
+        .workspaceCatalog.some(
+          entry => entry.entityRef === 'billing/api' && entry.level === 'component'
+        )
+    ).toBe(true);
   });
 
   it('shows Zoom indicator when node has a sub-diagram link in loadedSystems', () => {

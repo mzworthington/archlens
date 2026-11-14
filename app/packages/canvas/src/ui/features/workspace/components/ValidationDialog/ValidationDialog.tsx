@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertTriangle, CheckCircle, X } from 'lucide-react';
+import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 export const ValidationDialog: React.FC = () => {
@@ -9,7 +10,15 @@ export const ValidationDialog: React.FC = () => {
     validationResult,
     setFocusedCyclePath,
     selectNode,
-  } = useBlueprintStore();
+  } = useBlueprintStore(
+    useShallow(s => ({
+      isValidationOpen: s.isValidationOpen,
+      setIsValidationOpen: s.setIsValidationOpen,
+      validationResult: s.validationResult,
+      setFocusedCyclePath: s.setFocusedCyclePath,
+      selectNode: s.selectNode,
+    }))
+  );
 
   if (!isValidationOpen) return null;
 

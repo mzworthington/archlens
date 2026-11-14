@@ -34,6 +34,7 @@ export interface ResilienceState {
   resilienceSafeguards: Partial<Record<EntityRef, NodeSafeguards>>;
   resilienceMonteCarlo: MonteCarloConfig;
   resilienceSimulationResult: SimulationResult | null;
+  pinnedResilienceBaseline: SimulationResult | null;
   resilienceSimulationRunning: boolean;
   resilienceSimulationScope: string[] | null;
   chaosSpecMetadata: ChaosSpecMetadata | null;
@@ -64,4 +65,6 @@ export interface ResilienceState {
   runResilienceSimulation: () => void;
   simulateResilienceFaultAtNode: (nodeId: EntityRef) => void;
   clearResilienceSimulation: () => void;
+  pinResilienceBaseline: () => void;
+  clearPinnedResilienceBaseline: () => void;
 }

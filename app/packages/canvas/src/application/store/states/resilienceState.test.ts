@@ -701,4 +701,19 @@ faults:
       expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
     });
   });
+
+  it('pins and clears a baseline simulation result for what-if comparison', async () => {
+    useBlueprintStore.getState().runResilienceSimulation();
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    useBlueprintStore.getState().pinResilienceBaseline();
+    expect(useBlueprintStore.getState().pinnedResilienceBaseline).toBe(
+      useBlueprintStore.getState().resilienceSimulationResult
+    );
+
+    useBlueprintStore.getState().clearPinnedResilienceBaseline();
+    expect(useBlueprintStore.getState().pinnedResilienceBaseline).toBeNull();
+  });
 });

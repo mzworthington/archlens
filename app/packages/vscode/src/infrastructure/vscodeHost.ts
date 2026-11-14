@@ -1,83 +1,30 @@
-import path from 'node:path';
-import { randomBytes } from 'node:crypto';
-import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import {
-  CANCEL_COPY,
-  CUSTOM_FILES_COPY,
-  CUSTOM_GLOB_HINT,
-  DEFAULT_SOURCE_GLOB,
-  GENERATE_DIAGRAM_COPY,
-  GENERATE_OFF_COPY,
-  GENERATE_TITLE,
-  KEEP_FILES_COPY,
-  WRITE_BLUEPRINT_COPY,
-  NO_LOWER_COPY,
-  REVIEW_NOTE,
-  REVIEW_TITLE,
-  TELL_US_COPY,
-  readableBlueprint,
-  reviewSummary,
-  THIS_FOLDER_COPY,
-  WHOLE_WORKSPACE_COPY,
-  decideBack,
-  decideDrill,
-  decideOpenMap,
   hasUnsavedBlueprint,
-  isInsideEditorPath,
   isYamlPath,
-  safeBlueprintsFolder,
-  sameEditorPath,
   type BlueprintDocument,
-  type ReviewRow,
 } from '../features/editorPreview/domain';
-import { renderCanvasShell, renderEmptyMap } from '../features/editorPreview/renderMap';
-import type {
-  BlueprintFile,
-  DiagramView,
-  EditorHost,
-  GenerateChoice,
-  ReviewChoice,
-  ScanOutcome,
-  ScanScopeChoice,
-  WorkspaceFolder,
-} from '../features/editorPreview/ports';
+import type { BlueprintFile, EditorHost, WorkspaceFolder } from '../features/editorPreview/ports';
+import { readVisibleDiagram, setSessionHotspots } from './diagramSession';
+import type { FileUri, FolderPickItem, OpenDocument, WebviewPanel } from './host/vscodeTypes';
 import {
-  closeDiagramSession,
-  openDiagramSession,
-  readSessionView,
-  readVisibleDiagram,
-  replaceDiagramSession,
-  setSessionHotspots,
-  setSessionSchema,
-  showInSession,
-} from './diagramSession';
-
-interface WebviewPanel<Uri extends FileUri = FileUri> {
-  webview: {
-    html: string;
-    cspSource?: string;
-    postMessage?(message: unknown): void;
-    asWebviewUri?(uri: Uri): Uri;
-    onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
-      dispose(): void;
-    };
-    postMessage?(message: unknown): void;
-  };
-  onDidDispose(listener: () => void): void;
-}
-
-interface FolderPickItem {
-  label: string;
-  description: string;
-  path: string;
-}
-
-type FileUri = { fsPath: string; toString(): string };
-type OpenDocument<Uri extends FileUri> = {
-  getText(): string;
-  uri: Uri;
-  isDirty?: boolean;
-};
+  configuredBlueprintsFolder,
+  listBlueprintFiles,
+  panelPainters,
+  readFile,
+  showDiagram,
+  showEmptyMap,
+} from './host/webviewPanelAdapter';
+import {
+  askGenerateInterest,
+  askScanGlob,
+  askScanScope,
+  confirmGenerate,
+  hasGitHistory,
+  listSourceFiles,
+  readGitignore,
+  scanFolder,
+  showReview,
+} from './host/workspaceFileTransactions';
 
 export interface VsCodeLike<
   Uri extends FileUri = FileUri,
@@ -143,8 +90,6 @@ export interface VsCodeLike<
   };
   extensionUri?: Uri;
 }
-
-const panelPainters = new Map<number, () => void>();
 
 export async function createEditorHost<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
@@ -270,428 +215,6 @@ async function readSelected<Uri extends FileUri>(
   return [await readFile(api, api.Uri.file(filePath))];
 }
 
-async function listBlueprintFiles<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  folderPath: string
-): Promise<readonly BlueprintFile[]> {
-  const blueprintsFolder = configuredBlueprintsFolder(api);
-  const uris = await api.workspace.findFiles({
-    base: folderPath,
-    pattern: blueprintSearchPattern(folderPath, blueprintsFolder),
-  });
-  const files: BlueprintFile[] = [];
-  for (const uri of uris) {
-    if (!isInsideEditorPath(uri.fsPath, folderPath)) continue;
-    files.push(await readFile(api, uri));
-  }
-  return files;
-}
-
-async function readFile<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  uri: Uri
-): Promise<BlueprintFile> {
-  const bytes = await api.workspace.fs.readFile(uri);
-  return { path: uri.fsPath, content: new TextDecoder().decode(bytes) };
-}
-
-function blueprintSearchPattern(folderPath: string, blueprintsFolder: string): string {
-  const segments = folderPath.split(/[/\\]/).filter(segment => segment.length > 0);
-  const name = segments[segments.length - 1];
-  if (name === blueprintsFolder) return '**/*.{yaml,yml}';
-  return `${blueprintsFolder}/**/*.{yaml,yml}`;
-}
-
-function configuredBlueprintsFolder<Uri extends FileUri>(api: VsCodeLike<Uri>): string {
-  const configured = api.workspace
-    .getConfiguration('archlens')
-    .get('blueprintsFolder', 'blueprints');
-  return safeBlueprintsFolder(configured);
-}
-
-function configuredMapTheme<Uri extends FileUri>(api: VsCodeLike<Uri>): 'light' | 'system' {
-  const configured = api.workspace.getConfiguration('archlens').get<string>('theme', 'light');
-  return configured === 'system' ? 'system' : 'light';
-}
-
-function showEmptyMap<Uri extends FileUri>(api: VsCodeLike<Uri>): void {
-  const panel = api.window.createWebviewPanel(
-    'archlens.architectureMap',
-    'Architecture map',
-    api.ViewColumn.Beside,
-    { enableScripts: false }
-  );
-  panel.webview.html = renderEmptyMap();
-}
-
-function canvasSources<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  panel: WebviewPanel<Uri>
-): { scriptSrc: string; styleSrc: string; cspSource: string } {
-  const extensionUri = api.extensionUri;
-  if (!extensionUri || !panel.webview.asWebviewUri) {
-    return {
-      scriptSrc: 'canvas-preview.js',
-      styleSrc: 'canvas-preview.css',
-      cspSource: '',
-    };
-  }
-  const directory = path.join(extensionUri.fsPath, 'media', 'canvas-preview');
-  return {
-    scriptSrc: panel.webview
-      .asWebviewUri(api.Uri.file(path.join(directory, 'canvas-preview.js')))
-      .toString(),
-    styleSrc: panel.webview
-      .asWebviewUri(api.Uri.file(path.join(directory, 'canvas-preview.css')))
-      .toString(),
-    cspSource: panel.webview.cspSource ?? '',
-  };
-}
-
-async function showDiagram<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  diagram: DiagramView
-): Promise<void> {
-  const document = await api.workspace.openTextDocument(api.Uri.file(diagram.sourcePath));
-  await api.window.showTextDocument(document, api.ViewColumn.Active);
-  const mediaRoot = api.extensionUri
-    ? api.Uri.file(path.join(api.extensionUri.fsPath, 'media'))
-    : undefined;
-  const panel = api.window.createWebviewPanel(
-    'archlens.architectureMap',
-    'Architecture map',
-    api.ViewColumn.Beside,
-    {
-      enableScripts: true,
-      ...(mediaRoot ? { localResourceRoots: [mediaRoot] } : {}),
-    }
-  );
-  const schema = schemaFrom(document.getText());
-  const shown: { session: number; path: string; synced?: string } = {
-    session: 0,
-    path: diagram.sourcePath,
-  };
-  const workspaceRoot = workspaceRootFor(api, diagram.sourcePath);
-  shown.session = openDiagramSession(diagram, workspaceRoot, schema);
-  const listed = workspaceRoot ? await listBlueprintFiles(api, workspaceRoot).catch(() => []) : [];
-  const blueprints = listed.map(file => ({
-    name: file.path,
-    content: readableBlueprint(file.content),
-  }));
-  let ready = false;
-  const paint = () => {
-    const view = readSessionView(shown.session);
-    if (!view) return;
-    const update = {
-      type: 'show' as const,
-      yaml: view.schema ? serializeSchemaToYaml(view.schema) : '',
-      hotspots: view.hotspotsOn,
-    };
-    if (ready) {
-      panel.webview.postMessage?.(update);
-      return;
-    }
-    const sources = canvasSources(api, panel);
-    panel.webview.html = renderCanvasShell({
-      yaml: update.yaml,
-      hotspots: update.hotspots,
-      theme: configuredMapTheme(api),
-      nonce: mapNonce(),
-      scriptSrc: sources.scriptSrc,
-      styleSrc: sources.styleSrc,
-      cspSource: sources.cspSource,
-      blueprints,
-    });
-  };
-  panelPainters.set(shown.session, paint);
-  paint();
-  const messages = panel.webview.onDidReceiveMessage(message => {
-    if (isRecord(message) && message.type === 'ready') {
-      ready = true;
-      return;
-    }
-    return onPanelMessage(api, shown, message, paint);
-  });
-  const listener = api.workspace.onDidSaveTextDocument(saved => {
-    if (!sameEditorPath(saved.uri.fsPath, shown.path)) return;
-    if (saved.getText() === shown.synced) return;
-    const decision = decideOpenMap({
-      files: [{ path: shown.path, content: saved.getText() }],
-      selectedPath: shown.path,
-    });
-    if (decision.kind !== 'diagram') return;
-    shown.session = replaceDiagramSession(
-      shown.session,
-      decision.diagram,
-      workspaceRootFor(api, decision.diagram.sourcePath),
-      schemaFrom(saved.getText())
-    );
-    panelPainters.set(shown.session, paint);
-    paint();
-  });
-  panel.onDidDispose(() => {
-    panelPainters.delete(shown.session);
-    closeDiagramSession(shown.session);
-    messages.dispose();
-    listener.dispose();
-  });
-}
-
-async function onPanelMessage<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  shown: { session: number; path: string; synced?: string },
-  message: unknown,
-  paint: () => void
-): Promise<void> {
-  const action = panelAction(message);
-  if (!action) return;
-  if (action.type === 'sync') {
-    await writeSyncedBlueprint(api, shown, action.yaml);
-    return;
-  }
-  const view = readSessionView(shown.session);
-  if (!view) return;
-  const root = view.workspaceRoot;
-  if (!root) {
-    if (action.type === 'drill') {
-      void api.window.showInformationMessage(NO_LOWER_COPY, {});
-    }
-    return;
-  }
-  const files = await listBlueprintFiles(api, root);
-  if (action.type === 'drill') {
-    const decision = decideDrill({
-      files,
-      focusedEntityRef: action.entityRef,
-      currentPath: view.diagram.sourcePath,
-    });
-    if (decision.kind === 'none') {
-      void api.window.showInformationMessage(decision.message, {});
-      return;
-    }
-    const system = view.diagram.systems.find(item => item.entityRef === action.entityRef);
-    const targetPath = decision.diagram.sourcePath;
-    const prior = view.diagram.breadcrumb ?? [];
-    const existing = prior.findIndex(crumb => sameEditorPath(crumb.sourcePath, targetPath));
-    const currentRef = view.schema?.entityRef;
-    const targetRef = decision.schema.entityRef;
-    const zoomingOut =
-      existing >= 0 ||
-      (typeof currentRef === 'string' &&
-        typeof targetRef === 'string' &&
-        currentRef.startsWith(`${targetRef}/`));
-    const crumb = {
-      name: system?.name ?? decision.schema.name,
-      sourcePath: targetPath,
-    };
-    const breadcrumb = zoomingOut
-      ? existing >= 0
-        ? prior.slice(0, existing + 1)
-        : [crumb]
-      : [...prior, crumb];
-    showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
-    shown.synced = undefined;
-    shown.path = decision.diagram.sourcePath;
-    paint();
-    return;
-  }
-  const decision = decideBack({
-    breadcrumb: view.diagram.breadcrumb ?? [],
-    files,
-    ...(action.type === 'breadcrumb' ? { sourcePath: action.sourcePath } : {}),
-  });
-  if (decision.kind === 'stay') return;
-  showInSession(shown.session, decision.diagram, decision.schema, decision.breadcrumb);
-  shown.synced = undefined;
-  shown.path = decision.diagram.sourcePath;
-  paint();
-}
-
-async function hasGitHistory<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  root: string
-): Promise<boolean> {
-  const folder = root.replaceAll('\\', '/').replace(/\/+$/, '');
-  try {
-    await api.workspace.fs.stat(api.Uri.file(`${folder}/.git`));
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function schemaFrom(content: string): SystemSchema | undefined {
-  try {
-    return parseSchemaFromYaml(readableBlueprint(content));
-  } catch {
-    return undefined;
-  }
-}
-
-function panelAction(
-  message: unknown
-):
-  | { type: 'drill'; entityRef: string }
-  | { type: 'back' }
-  | { type: 'breadcrumb'; sourcePath: string }
-  | { type: 'sync'; yaml: string }
-  | undefined {
-  if (!isRecord(message)) return undefined;
-  if (message.type === 'drill' && typeof message.entityRef === 'string') {
-    return { type: 'drill', entityRef: message.entityRef };
-  }
-  if (message.type === 'back') return { type: 'back' };
-  if (message.type === 'breadcrumb' && typeof message.sourcePath === 'string') {
-    return { type: 'breadcrumb', sourcePath: message.sourcePath };
-  }
-  if (message.type === 'sync' && typeof message.yaml === 'string') {
-    return { type: 'sync', yaml: message.yaml };
-  }
-  return undefined;
-}
-
-async function writeSyncedBlueprint<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  shown: { session: number; path: string; synced?: string },
-  yaml: string
-): Promise<void> {
-  const apply = api.workspace.applyTextDocument;
-  const save = api.workspace.saveTextDocument;
-  if (!apply || !save || yaml.trim().length === 0) return;
-  const schema = schemaFrom(yaml);
-  if (!schema) return;
-  const uri = api.Uri.file(shown.path);
-  const document = await api.workspace.openTextDocument(uri);
-  const current = document.getText();
-  if (document.isDirty === true && current !== shown.synced) return;
-  shown.synced = yaml;
-  setSessionSchema(shown.session, schema);
-  if (current === yaml) return;
-  await apply(uri, yaml);
-  await save(uri);
-}
-
-function isRecord(message: unknown): message is Record<string, unknown> {
-  return typeof message === 'object' && message !== null;
-}
-
-function mapNonce(): string {
-  return randomBytes(16).toString('hex');
-}
-
-function workspaceRootFor<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  blueprintPath: string
-): string | undefined {
-  const file = blueprintPath.replaceAll('\\', '/').replace(/\/+$/, '');
-  const folders = api.workspace.workspaceFolders ?? [];
-  const matches = folders
-    .map(folder => folder.uri.fsPath)
-    .filter(folder => {
-      const root = folder.replaceAll('\\', '/').replace(/\/+$/, '');
-      return file === root || file.startsWith(`${root}/`);
-    })
-    .sort((left, right) => right.length - left.length);
-  return matches[0];
-}
-
-async function readGitignore<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  root: string
-): Promise<string> {
-  try {
-    const bytes = await api.workspace.fs.readFile(api.Uri.file(path.join(root, '.gitignore')));
-    return new TextDecoder().decode(bytes);
-  } catch {
-    return '';
-  }
-}
-
-async function listSourceFiles<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  root: string,
-  glob: string
-): Promise<string[]> {
-  const patterns =
-    glob === DEFAULT_SOURCE_GLOB ? [glob, '**/*.tf.json', '**/Pulumi*.{yaml,yml}'] : [glob];
-  const paths: string[] = [];
-  for (const pattern of patterns) {
-    const uris = await api.workspace.findFiles({ base: root, pattern });
-    for (const uri of uris) paths.push(uri.fsPath);
-  }
-  return [...new Set(paths)];
-}
-
-async function askScanScope<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  found: string
-): Promise<ScanScopeChoice> {
-  const picked = await api.window.showQuickPick(
-    [
-      { label: WHOLE_WORKSPACE_COPY, description: found, path: 'workspace' },
-      { label: THIS_FOLDER_COPY, description: found, path: 'folder' },
-      { label: CUSTOM_FILES_COPY, description: found, path: 'custom' },
-    ],
-    { title: GENERATE_TITLE, placeHolder: found }
-  );
-  if (picked?.path === 'workspace' || picked?.path === 'folder' || picked?.path === 'custom') {
-    return picked.path;
-  }
-  return 'escape';
-}
-
-async function askScanGlob<Uri extends FileUri>(api: VsCodeLike<Uri>): Promise<string | undefined> {
-  const glob = await api.window.showInputBox({
-    title: CUSTOM_FILES_COPY,
-    prompt: CUSTOM_GLOB_HINT,
-    value: DEFAULT_SOURCE_GLOB,
-  });
-  const trimmed = glob?.trim();
-  return trimmed ? trimmed : undefined;
-}
-
-async function confirmGenerate<Uri extends FileUri>(
-  api: VsCodeLike<Uri>
-): Promise<'generate' | 'cancel'> {
-  const choice = await api.window.showInformationMessage(
-    GENERATE_DIAGRAM_COPY,
-    { modal: true },
-    GENERATE_DIAGRAM_COPY,
-    CANCEL_COPY
-  );
-  return choice === GENERATE_DIAGRAM_COPY ? 'generate' : 'cancel';
-}
-
-async function scanFolder<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  root: string
-): Promise<ScanOutcome> {
-  try {
-    return await api.window.withProgress(
-      { title: `Scanning ${root}…`, cancellable: true },
-      async token => (token.isCancellationRequested ? 'cancelled' : 'ready')
-    );
-  } catch {
-    return 'failed';
-  }
-}
-
-async function showReview<Uri extends FileUri>(
-  api: VsCodeLike<Uri>,
-  rows: readonly ReviewRow[]
-): Promise<ReviewChoice> {
-  const lines = reviewSummary(rows);
-  const choice = await api.window.showInformationMessage(
-    REVIEW_TITLE,
-    { modal: true, detail: `${lines}\n\n${REVIEW_NOTE}` },
-    KEEP_FILES_COPY,
-    ...(rows.length > 0 ? [WRITE_BLUEPRINT_COPY] : [])
-  );
-  if (choice === WRITE_BLUEPRINT_COPY) return 'write';
-  if (choice === KEEP_FILES_COPY) return 'keep';
-  return 'escape';
-}
-
 async function applyBlueprintWrite<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
   documents: readonly BlueprintDocument[]
@@ -715,10 +238,10 @@ async function applyBlueprintWrite<Uri extends FileUri>(
 
 async function readBytes<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
-  path: string
+  filePath: string
 ): Promise<Uint8Array | undefined> {
   try {
-    return await api.workspace.fs.readFile(api.Uri.file(path));
+    return await api.workspace.fs.readFile(api.Uri.file(filePath));
   } catch {
     return undefined;
   }
@@ -739,15 +262,15 @@ async function writeBlueprintDocument<Uri extends FileUri>(
 
 async function restoreBlueprintDocument<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
-  path: string,
+  filePath: string,
   bytes: Uint8Array | undefined
 ): Promise<void> {
   try {
     if (bytes === undefined) {
-      await api.workspace.fs.delete(api.Uri.file(path));
+      await api.workspace.fs.delete(api.Uri.file(filePath));
       return;
     }
-    await api.workspace.fs.writeFile(api.Uri.file(path), bytes);
+    await api.workspace.fs.writeFile(api.Uri.file(filePath), bytes);
   } catch {
     return;
   }
@@ -755,28 +278,14 @@ async function restoreBlueprintDocument<Uri extends FileUri>(
 
 async function ensureParentDirectory<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
-  path: string
+  filePath: string
 ): Promise<void> {
-  const parent = path.replace(/[/\\][^/\\]+$/, '');
-  if (!parent || parent === path) return;
+  const parent = filePath.replace(/[/\\][^/\\]+$/, '');
+  if (!parent || parent === filePath) return;
   try {
     const stat = await api.workspace.fs.stat(api.Uri.file(parent));
     if ((stat.type & api.FileType.Directory) !== 0) return;
   } catch {
     await api.workspace.fs.createDirectory(api.Uri.file(parent));
   }
-}
-
-async function askGenerateInterest<Uri extends FileUri>(
-  api: VsCodeLike<Uri>
-): Promise<GenerateChoice> {
-  const choice = await api.window.showInformationMessage(
-    GENERATE_TITLE,
-    { modal: true, detail: GENERATE_OFF_COPY },
-    TELL_US_COPY,
-    CANCEL_COPY
-  );
-  if (choice === TELL_US_COPY) return 'tell';
-  if (choice === CANCEL_COPY) return 'cancel';
-  return 'escape';
 }

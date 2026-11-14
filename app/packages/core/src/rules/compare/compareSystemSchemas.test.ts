@@ -40,4 +40,23 @@ describe('compareSystemSchemas', () => {
     expect(diff.dependencies.deleted).toHaveLength(1);
     expect(schemaDiffHasChanges(diff)).toBe(true);
   });
+
+  it('detects parentEntityRef and resilience changes on nodes', () => {
+    const withSafeguards: SystemSchema = {
+      ...base,
+      nodes: [
+        {
+          ...base.nodes[0]!,
+          parentEntityRef: 'a/group-1',
+          resilience: { circuitBreaker: true },
+        },
+        base.nodes[1]!,
+      ],
+    };
+
+    const diff = compareSystemSchemas(base, withSafeguards);
+    expect(diff.nodes.modified).toHaveLength(1);
+    expect(diff.nodes.modified[0]?.current.parentEntityRef).toBe('a/group-1');
+    expect(diff.nodes.modified[0]?.current.resilience).toEqual({ circuitBreaker: true });
+  });
 });

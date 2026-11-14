@@ -10,6 +10,7 @@ type SystemNode struct {
 	EntityRef       string                 `json:"entityRef"`
 	Type            string                 `json:"type"`
 	Name            string                 `json:"name,omitempty"`
+	External        bool                   `json:"external,omitempty"`
 	ParentEntityRef string                 `json:"parentEntityRef,omitempty"`
 	Resilience      *NodeResilience        `json:"resilience,omitempty"`
 	Properties      map[string]interface{} `json:"properties,omitempty"`

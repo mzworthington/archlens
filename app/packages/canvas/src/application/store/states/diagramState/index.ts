@@ -16,6 +16,7 @@ import { materializeCouplingGhostOnDiagram } from '../../../forensics/materializ
 import { createHistoryActions } from './historyActions';
 import { createCheckPendingChanges } from './pendingChanges';
 import { createSelectSystem } from './selectSystem';
+import { createCreateChildZoom } from './createChildZoom';
 import { createInitSchema } from './initSchema';
 import { createApplyClientLayout } from './applyClientLayout';
 import { applyRemoteCollabDiagram, applyRemoteCollabSchema } from './applyRemoteCollabSchema';
@@ -68,6 +69,7 @@ export const createDiagramState = (
     checkPendingChanges: createCheckPendingChanges(set, get),
     initSchema: createInitSchema(set, get),
     selectSystem: createSelectSystem(set, get),
+    createChildZoom: createCreateChildZoom(set, get),
     applyClientLayout: createApplyClientLayout(set, get),
     ...canvasGraphActions,
 

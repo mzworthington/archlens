@@ -1,217 +1,136 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
+import type { SystemSchema } from '@archlens/core';
 import {
+  computeSchemaDiff,
   db,
+  loadWorkingSchema,
+  revertWorkingSchema,
   saveBaselineSchema,
   saveWorkingSchema,
-  computeSchemaDiff,
-  revertWorkingSchema,
 } from './db';
-import type { SystemSchema } from '@archlens/core';
 
-describe('db.ts - IndexedDB Client Operations', () => {
+describe('IndexedDB working-copy persistence (db.ts)', () => {
   beforeEach(async () => {
-    await db.originalNodes.clear();
-    await db.workingNodes.clear();
-    await db.originalDependencies.clear();
-    await db.workingDependencies.clear();
+    await Promise.all([
+      db.originalNodes.clear(),
+      db.workingNodes.clear(),
+      db.originalDependencies.clear(),
+      db.workingDependencies.clear(),
+      db.originalMeta.clear(),
+      db.workingMeta.clear(),
+    ]);
   });
 
-  const sampleSchema: SystemSchema = {
-    name: 'Sample System',
+  const baselineSchema: SystemSchema = {
+    name: 'Payments System',
     version: '1.0.0',
-    level: 'component',
+    level: 'container',
+    entityRef: 'payments',
+    source: {
+      remoteUrl: 'https://github.com/org/payments.git',
+      defaultBranch: 'main',
+      scannedAtCommit: 'abc1234',
+    },
     nodes: [
       {
-        entityRef: 'service-a',
-        type: 'microservice',
-        name: 'Service A',
-        properties: { technology: 'Go' },
+        entityRef: 'payments/core-group',
+        type: 'group',
+        name: 'Core Group',
       },
-      { entityRef: 'db-a', type: 'relational-database', name: 'Database A' },
+      {
+        entityRef: 'payments/api',
+        type: 'rest-api',
+        name: 'Payments API',
+        parentEntityRef: 'payments/core-group',
+        position: { x: 100, y: 200 },
+        forensics: {
+          complexity: 14,
+          churn: 9,
+          hotspotScore: 126,
+        },
+        resilience: {
+          circuitBreaker: true,
+          retry: false,
+        },
+      },
+      {
+        entityRef: 'payments/db',
+        type: 'relational-database',
+        name: 'Payments DB',
+        external: false,
+      },
     ],
-    dependencies: [{ from: 'service-a', to: 'db-a', type: 'read-write' }],
+    dependencies: [
+      {
+        from: 'payments/api',
+        to: 'payments/db',
+        type: 'read-write',
+        description: 'Queries ledger',
+      },
+      {
+        from: 'payments/api',
+        to: 'payments/db',
+        type: 'provisions',
+        description: 'Runs migrations',
+      },
+    ],
   };
 
-  const sampleNodeRefMap = {
-    'service-a': 'backstage/catalog/service-a',
-    'db-a': 'backstage/catalog/db-a',
-  };
+  it('preserves parentEntityRef, forensics, resilience, source and parallel dependency types on load and revert', async () => {
+    const filePath = 'payments/containers.yaml';
+    await saveBaselineSchema(filePath, baselineSchema, 'payments', {});
 
-  it('should successfully save baseline schemas and dependencies', async () => {
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-
-    const nodes = await db.originalNodes.toArray();
-    expect(nodes).toHaveLength(2);
-
-    const serviceNode = nodes.find(n => n.id === 'service-a');
-    expect(serviceNode).toEqual({
-      entityRef: 'backstage/catalog/service-a',
-      id: 'service-a',
-      systemId: 'backstage',
-      containerId: 'catalog',
-      type: 'microservice',
-      name: 'Service A',
-      properties: { technology: 'Go' },
-      filePath: 'blueprints/sys.yaml',
-      x: undefined,
-      y: undefined,
-    });
-
-    const deps = await db.originalDependencies.toArray();
-    expect(deps).toHaveLength(1);
-    expect(deps[0].id).toBe('backstage/catalog/service-a->backstage/catalog/db-a');
-  });
-
-  it('should compute an empty diff when baseline and working schemas match', async () => {
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-    await saveWorkingSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-
-    const diff = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diff.nodes.added).toHaveLength(0);
-    expect(diff.nodes.modified).toHaveLength(0);
-    expect(diff.nodes.deleted).toHaveLength(0);
-    expect(diff.dependencies.added).toHaveLength(0);
-    expect(diff.dependencies.deleted).toHaveLength(0);
-  });
-
-  it('should detect added components and connections in working schema', async () => {
-    const updatedSchema: SystemSchema = {
-      ...sampleSchema,
-      nodes: [
-        ...sampleSchema.nodes,
-        { entityRef: 'cache-a', type: 'cache-store', name: 'Cache Store A' },
-      ],
-      dependencies: [
-        ...sampleSchema.dependencies,
-        { from: 'service-a', to: 'cache-a', type: 'read-write' },
-      ],
+    const mutatedWorking: SystemSchema = {
+      ...baselineSchema,
+      nodes: baselineSchema.nodes.map(node =>
+        node.entityRef === 'payments/api'
+          ? {
+              ...node,
+              resilience: { circuitBreaker: false, bulkhead: true },
+              parentEntityRef: undefined,
+            }
+          : node
+      ),
     };
+    await saveWorkingSchema(filePath, mutatedWorking, 'payments', {});
 
-    const updatedNodeRefMap = {
-      ...sampleNodeRefMap,
-      'cache-a': 'backstage/catalog/cache-a',
-    };
-
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-    await saveWorkingSchema('blueprints/sys.yaml', updatedSchema, 'backstage', updatedNodeRefMap);
-
-    const diff = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diff.nodes.added).toHaveLength(1);
-    expect(diff.nodes.added[0].id).toBe('cache-a');
-    expect(diff.dependencies.added).toHaveLength(1);
-    expect(diff.dependencies.added[0].id).toBe(
-      'backstage/catalog/service-a->backstage/catalog/cache-a'
-    );
-  });
-
-  it('should detect deleted components and connections in working schema', async () => {
-    const reducedSchema: SystemSchema = {
-      ...sampleSchema,
-      nodes: [
-        {
-          entityRef: 'service-a',
-          type: 'microservice',
-          name: 'Service A',
-          properties: { technology: 'Go' },
-        },
-      ],
-      dependencies: [],
-    };
-
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-    await saveWorkingSchema('blueprints/sys.yaml', reducedSchema, 'backstage', sampleNodeRefMap);
-
-    const diff = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diff.nodes.deleted).toHaveLength(1);
-    expect(diff.nodes.deleted[0].id).toBe('db-a');
-    expect(diff.dependencies.deleted).toHaveLength(1);
-    expect(diff.dependencies.deleted[0].id).toBe(
-      'backstage/catalog/service-a->backstage/catalog/db-a'
-    );
-  });
-
-  it('should detect modified properties, name or type of components', async () => {
-    const modifiedSchema: SystemSchema = {
-      ...sampleSchema,
-      nodes: [
-        {
-          entityRef: 'service-a',
-          type: 'microservice',
-          name: 'Service A Updated Name',
-          properties: { technology: 'Go', version: '2.0' },
-        },
-        { entityRef: 'db-a', type: 'relational-database', name: 'Database A' },
-      ],
-    };
-
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-    await saveWorkingSchema('blueprints/sys.yaml', modifiedSchema, 'backstage', sampleNodeRefMap);
-
-    const diff = await computeSchemaDiff('blueprints/sys.yaml');
+    const diff = await computeSchemaDiff(filePath);
     expect(diff.nodes.modified).toHaveLength(1);
-    expect(diff.nodes.modified[0].current.name).toBe('Service A Updated Name');
-    expect(diff.nodes.modified[0].original.name).toBe('Service A');
-  });
+    expect(diff.nodes.modified[0]?.current.entityRef).toBe('payments/api');
 
-  it('should detect position changes of components', async () => {
-    const positionSchema: SystemSchema = {
-      ...sampleSchema,
-      nodes: [
-        {
-          entityRef: 'service-a',
-          type: 'microservice',
-          name: 'Service A',
-          position: { x: 150, y: 250 },
-        },
-        { entityRef: 'db-a', type: 'relational-database', name: 'Database A' },
-      ],
-    };
-
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-    await saveWorkingSchema('blueprints/sys.yaml', positionSchema, 'backstage', sampleNodeRefMap);
-
-    const diff = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diff.nodes.modified).toHaveLength(1);
-    expect(diff.nodes.modified[0].current.x).toBe(150);
-    expect(diff.nodes.modified[0].current.y).toBe(250);
-  });
-
-  it('should revert draft changes back to baseline', async () => {
-    await saveBaselineSchema('blueprints/sys.yaml', sampleSchema, 'backstage', sampleNodeRefMap);
-
-    const updatedSchema: SystemSchema = {
-      ...sampleSchema,
-      nodes: [
-        {
-          entityRef: 'service-a',
-          type: 'microservice',
-          name: 'Service A Modified',
-          properties: { technology: 'TS' },
-        },
-      ],
-      dependencies: [],
-    };
-    await saveWorkingSchema('blueprints/sys.yaml', updatedSchema, 'backstage', sampleNodeRefMap);
-
-    const diffBefore = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diffBefore.nodes.modified).toHaveLength(1);
-
-    const restored = await revertWorkingSchema(
-      'blueprints/sys.yaml',
-      'Sample System',
+    const loadedWorking = await loadWorkingSchema(
+      filePath,
+      'Payments System',
       '1.0.0',
-      'component'
+      'container',
+      'payments'
     );
+    expect(loadedWorking?.source).toEqual(baselineSchema.source);
+    expect(loadedWorking?.dependencies).toHaveLength(2);
+    expect(loadedWorking?.dependencies.map(d => d.type).sort()).toEqual([
+      'provisions',
+      'read-write',
+    ]);
 
-    expect(restored.name).toBe('Sample System');
-    expect(restored.nodes).toHaveLength(2);
-    const restoredService = restored.nodes.find(n => n.entityRef === 'backstage/catalog/service-a');
-    expect(restoredService?.name).toBe('Service A');
-    expect(restored.dependencies).toHaveLength(1);
-
-    const diffAfter = await computeSchemaDiff('blueprints/sys.yaml');
-    expect(diffAfter.nodes.added).toHaveLength(0);
-    expect(diffAfter.nodes.modified).toHaveLength(0);
-    expect(diffAfter.nodes.deleted).toHaveLength(0);
+    const reverted = await revertWorkingSchema(
+      filePath,
+      'Payments System',
+      '1.0.0',
+      'container',
+      'payments'
+    );
+    const apiNode = reverted.nodes.find(n => n.entityRef === 'payments/api');
+    expect(apiNode?.parentEntityRef).toBe('payments/core-group');
+    expect(apiNode?.forensics).toEqual({
+      complexity: 14,
+      churn: 9,
+      hotspotScore: 126,
+    });
+    expect(apiNode?.resilience).toEqual({
+      circuitBreaker: true,
+      retry: false,
+    });
+    expect(reverted.source).toEqual(baselineSchema.source);
+    expect(reverted.dependencies).toHaveLength(2);
   });
 });

@@ -19,9 +19,18 @@ export interface Env {
   GIT_SHA?: string;
 }
 
-type SocketGate = { admitted: boolean };
+type SocketGate = { admitted: boolean; failedAttempts?: number };
 
 const POLICY_KEY = 'policy';
+const LEGACY_YDOC_KEY = 'ydoc';
+const YDOC_CHUNKS_KEY = 'ydoc:chunks';
+export const YDOC_CHUNK_BYTES = 64 * 1024;
+export const MAX_COLLAB_FRAME_BYTES = 1024 * 1024;
+export const MAX_AUTH_FAILURES = 3;
+
+function ydocChunkKey(index: number): string {
+  return `ydoc:${index}`;
+}
 
 export class CollabRoom {
   private doc: Y.Doc | null = null;
@@ -34,9 +43,40 @@ export class CollabRoom {
   private async loadDoc(): Promise<Y.Doc> {
     if (this.doc) return this.doc;
     const doc = new Y.Doc();
-    const stored = await this.ctx.storage.get<ArrayBuffer>('ydoc');
-    if (stored) {
-      Y.applyUpdate(doc, new Uint8Array(stored));
+    const chunkCount = await this.ctx.storage.get<number>(YDOC_CHUNKS_KEY);
+    if (typeof chunkCount === 'number' && chunkCount > 0) {
+      const parts: Uint8Array[] = [];
+      let totalLength = 0;
+      for (let i = 0; i < chunkCount; i++) {
+        const chunk = await this.ctx.storage.get<ArrayBuffer>(ydocChunkKey(i));
+        if (chunk) {
+          const bytes = new Uint8Array(chunk);
+          parts.push(bytes);
+          totalLength += bytes.byteLength;
+        }
+      }
+      if (totalLength > 0) {
+        const merged = new Uint8Array(totalLength);
+        let offset = 0;
+        for (const part of parts) {
+          merged.set(part, offset);
+          offset += part.byteLength;
+        }
+        try {
+          Y.applyUpdate(doc, merged);
+        } catch {
+          // Ignore corrupted stored state and start fresh
+        }
+      }
+    } else {
+      const stored = await this.ctx.storage.get<ArrayBuffer>(LEGACY_YDOC_KEY);
+      if (stored) {
+        try {
+          Y.applyUpdate(doc, new Uint8Array(stored));
+        } catch {
+          // Ignore corrupted legacy state
+        }
+      }
     }
     this.doc = doc;
     return doc;
@@ -44,7 +84,33 @@ export class CollabRoom {
 
   private async persist(doc: Y.Doc): Promise<void> {
     const update = Y.encodeStateAsUpdate(doc);
-    await this.ctx.storage.put('ydoc', update.slice().buffer);
+    const prevChunks = (await this.ctx.storage.get<number>(YDOC_CHUNKS_KEY)) ?? 0;
+    const chunkCount = Math.ceil(update.byteLength / YDOC_CHUNK_BYTES);
+    const entries: Record<string, unknown> = {
+      [YDOC_CHUNKS_KEY]: chunkCount,
+    };
+    for (let i = 0; i < chunkCount; i++) {
+      const start = i * YDOC_CHUNK_BYTES;
+      const end = Math.min(start + YDOC_CHUNK_BYTES, update.byteLength);
+      entries[ydocChunkKey(i)] = update.slice(start, end).buffer;
+    }
+    await this.ctx.storage.put(entries);
+
+    const staleKeys: string[] = [LEGACY_YDOC_KEY];
+    for (let i = chunkCount; i < prevChunks; i++) {
+      staleKeys.push(ydocChunkKey(i));
+    }
+    await this.ctx.storage.delete(staleKeys);
+  }
+
+  private async purgeDocStorage(): Promise<void> {
+    this.doc = null;
+    const prevChunks = (await this.ctx.storage.get<number>(YDOC_CHUNKS_KEY)) ?? 0;
+    const keysToDelete: string[] = [LEGACY_YDOC_KEY, YDOC_CHUNKS_KEY];
+    for (let i = 0; i < prevChunks; i++) {
+      keysToDelete.push(ydocChunkKey(i));
+    }
+    await this.ctx.storage.delete(keysToDelete);
   }
 
   private async loadPolicy(): Promise<RoomPolicy | null> {
@@ -93,6 +159,7 @@ export class CollabRoom {
     if (!expired) return false;
     await this.ctx.storage.put(POLICY_KEY, expired);
     await this.syncAlarm(expired);
+    await this.purgeDocStorage();
     await this.closeAll('ended');
     return true;
   }
@@ -129,18 +196,38 @@ export class CollabRoom {
       }
       ws.send(encodeControl(outcome.reply));
       if (outcome.broadcastEnded) {
+        await this.purgeDocStorage();
         await this.closeAll('ended');
         return;
       }
       if (outcome.admit) {
-        this.setGate(ws, { admitted: true });
+        this.setGate(ws, { admitted: true, failedAttempts: 0 });
         await this.sendSnapshot(ws);
+        return;
+      }
+      const attemptedCredentials =
+        (control.op === 'join' && Boolean(control.secret || control.hostToken)) ||
+        control.op === 'claim' ||
+        control.op === 'end';
+      if (
+        attemptedCredentials &&
+        (outcome.reply.op === 'denied' || outcome.reply.op === 'need-secret')
+      ) {
+        const prevGate = this.gate(ws);
+        const failedAttempts = (prevGate.failedAttempts ?? 0) + 1;
+        this.setGate(ws, { ...prevGate, failedAttempts });
+        if (failedAttempts >= MAX_AUTH_FAILURES) {
+          try {
+            ws.close(1008, 'denied');
+          } catch {}
+        }
       }
       return;
     }
 
     if (await this.endIfExpired()) return;
     if (!this.gate(ws).admitted) return;
+    if (message.byteLength > MAX_COLLAB_FRAME_BYTES) return;
 
     const frame = decodeCollabFrame(message);
     if (!frame) return;
@@ -156,7 +243,11 @@ export class CollabRoom {
     if (!isPersistedCollabFrame(frame.kind)) return;
 
     const doc = await this.loadDoc();
-    Y.applyUpdate(doc, frame.update);
+    try {
+      Y.applyUpdate(doc, frame.update);
+    } catch {
+      return;
+    }
     await this.persist(doc);
     const outbound = encodeCollabFrame(COLLAB_MSG_UPDATE, frame.update);
     for (const peer of this.ctx.getWebSockets()) {

@@ -1,17 +1,23 @@
 import Dexie, { type Table } from 'dexie';
-import type { C4Level, DependencyType, SystemSchema } from '@archlens/core';
+import type { C4Level, DependencyType, SourceProvenance, SystemSchema } from '@archlens/core';
 import { getNodePosition, withNodePosition } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyNode, WorkingCopyDependency } from '../../core';
 
 export type { SchemaDiff };
 export type DbNode = WorkingCopyNode;
 export type DbDependency = WorkingCopyDependency;
+export type DbSchemaMeta = {
+  filePath: string;
+  source?: SourceProvenance;
+};
 
 class BlueprintDatabase extends Dexie {
   originalNodes!: Table<DbNode, string>;
   workingNodes!: Table<DbNode, string>;
   originalDependencies!: Table<DbDependency, string>;
   workingDependencies!: Table<DbDependency, string>;
+  originalMeta!: Table<DbSchemaMeta, string>;
+  workingMeta!: Table<DbSchemaMeta, string>;
 
   constructor() {
     super('BlueprintDatabase');
@@ -20,6 +26,14 @@ class BlueprintDatabase extends Dexie {
       workingNodes: 'entityRef, filePath, systemId, type, name',
       originalDependencies: 'id, filePath, fromRef, toRef',
       workingDependencies: 'id, filePath, fromRef, toRef',
+    });
+    this.version(2).stores({
+      originalNodes: 'entityRef, filePath, systemId, type, name',
+      workingNodes: 'entityRef, filePath, systemId, type, name',
+      originalDependencies: 'id, filePath, fromRef, toRef',
+      workingDependencies: 'id, filePath, fromRef, toRef',
+      originalMeta: 'filePath',
+      workingMeta: 'filePath',
     });
   }
 }
@@ -57,11 +71,75 @@ function systemNodeFromDb(n: DbNode): SystemSchema['nodes'][number] {
     properties: n.properties,
     external: n.external,
     isTest: n.isTest,
+    ...(n.parentEntityRef !== undefined ? { parentEntityRef: n.parentEntityRef } : {}),
+    ...(n.forensics !== undefined ? { forensics: n.forensics } : {}),
+    ...(n.resilience !== undefined ? { resilience: n.resilience } : {}),
   };
   if (n.x != null && n.y != null) {
     return withNodePosition(node, { x: n.x, y: n.y });
   }
   return node;
+}
+
+function toDbNode(
+  node: SystemSchema['nodes'][number],
+  filePath: string,
+  systemId: string,
+  nodeRefMap: Record<string, string>
+): DbNode {
+  const key = node.entityRef || '';
+  const entityRef =
+    node.entityRef && node.entityRef.includes('/')
+      ? node.entityRef
+      : nodeRefMap[key] || `${systemId}/${key}`;
+  const refParts = entityRef.split('/');
+  const containerId = refParts.length > 2 ? refParts[1] : undefined;
+  const localId = refParts[refParts.length - 1];
+  const position = getNodePosition(node);
+  const rawParent = node.parentEntityRef;
+  const parentEntityRef = rawParent
+    ? rawParent.includes('/')
+      ? rawParent
+      : nodeRefMap[rawParent] || `${systemId}/${rawParent}`
+    : undefined;
+
+  return {
+    entityRef,
+    id: localId,
+    systemId,
+    containerId,
+    type: node.type,
+    name: node.name,
+    properties: node.properties || {},
+    x: position?.x,
+    y: position?.y,
+    external: node.external,
+    isTest: node.isTest,
+    parentEntityRef,
+    forensics: node.forensics,
+    resilience: node.resilience,
+    filePath,
+  };
+}
+
+function toDbDependency(
+  dep: SystemSchema['dependencies'][number],
+  filePath: string,
+  systemId: string,
+  nodeRefMap: Record<string, string>
+): DbDependency {
+  const fromRef =
+    nodeRefMap[dep.from] || (dep.from.includes('/') ? dep.from : `${systemId}/${dep.from}`);
+  const toRef = nodeRefMap[dep.to] || (dep.to.includes('/') ? dep.to : `${systemId}/${dep.to}`);
+  const type = dep.type || 'direct-call';
+  return {
+    id: `${fromRef}->${toRef}:${type}`,
+    fromRef,
+    toRef,
+    type,
+    description: dep.description,
+    filePath,
+  };
 }
 
 /**
@@ -73,60 +151,31 @@ export async function saveBaselineSchema(
   systemId: string,
   nodeRefMap: Record<string, string>
 ) {
-  await db.transaction('rw', [db.originalNodes, db.originalDependencies], async () => {
-    await db.originalNodes.where('filePath').equals(filePath).delete();
-    await db.originalDependencies.where('filePath').equals(filePath).delete();
+  await db.transaction(
+    'rw',
+    [db.originalNodes, db.originalDependencies, db.originalMeta],
+    async () => {
+      await db.originalNodes.where('filePath').equals(filePath).delete();
+      await db.originalDependencies.where('filePath').equals(filePath).delete();
+      await db.originalMeta.put({ filePath, source: schema.source });
 
-    const dbNodes: DbNode[] = schema.nodes.map(node => {
-      const key = node.entityRef || '';
-      const entityRef =
-        node.entityRef && node.entityRef.includes('/')
-          ? node.entityRef
-          : nodeRefMap[key] || `${systemId}/${key}`;
-      const refParts = entityRef.split('/');
-      const containerId = refParts.length > 2 ? refParts[1] : undefined;
-      const localId = refParts[refParts.length - 1];
+      const dbNodes: DbNode[] = schema.nodes.map(node =>
+        toDbNode(node, filePath, systemId, nodeRefMap)
+      );
 
-      const position = getNodePosition(node);
+      if (dbNodes.length > 0) {
+        await db.originalNodes.bulkPut(dbNodes);
+      }
 
-      return {
-        entityRef,
-        id: localId,
-        systemId,
-        containerId,
-        type: node.type,
-        name: node.name,
-        properties: node.properties || {},
-        x: position?.x,
-        y: position?.y,
-        external: node.external,
-        isTest: node.isTest,
-        filePath,
-      };
-    });
+      const dbDeps: DbDependency[] = (schema.dependencies || []).map(dep =>
+        toDbDependency(dep, filePath, systemId, nodeRefMap)
+      );
 
-    if (dbNodes.length > 0) {
-      await db.originalNodes.bulkPut(dbNodes);
+      if (dbDeps.length > 0) {
+        await db.originalDependencies.bulkPut(dbDeps);
+      }
     }
-
-    const dbDeps: DbDependency[] = (schema.dependencies || []).map(dep => {
-      const fromRef =
-        nodeRefMap[dep.from] || (dep.from.includes('/') ? dep.from : `${systemId}/${dep.from}`);
-      const toRef = nodeRefMap[dep.to] || (dep.to.includes('/') ? dep.to : `${systemId}/${dep.to}`);
-      return {
-        id: `${fromRef}->${toRef}`,
-        fromRef,
-        toRef,
-        type: dep.type,
-        description: dep.description,
-        filePath,
-      };
-    });
-
-    if (dbDeps.length > 0) {
-      await db.originalDependencies.bulkPut(dbDeps);
-    }
-  });
+  );
 }
 
 /**
@@ -138,60 +187,31 @@ export async function saveWorkingSchema(
   systemId: string,
   nodeRefMap: Record<string, string>
 ) {
-  await db.transaction('rw', [db.workingNodes, db.workingDependencies], async () => {
-    await db.workingNodes.where('filePath').equals(filePath).delete();
-    await db.workingDependencies.where('filePath').equals(filePath).delete();
+  await db.transaction(
+    'rw',
+    [db.workingNodes, db.workingDependencies, db.workingMeta],
+    async () => {
+      await db.workingNodes.where('filePath').equals(filePath).delete();
+      await db.workingDependencies.where('filePath').equals(filePath).delete();
+      await db.workingMeta.put({ filePath, source: schema.source });
 
-    const dbNodes: DbNode[] = schema.nodes.map(node => {
-      const key = node.entityRef || '';
-      const entityRef =
-        node.entityRef && node.entityRef.includes('/')
-          ? node.entityRef
-          : nodeRefMap[key] || `${systemId}/${key}`;
-      const refParts = entityRef.split('/');
-      const containerId = refParts.length > 2 ? refParts[1] : undefined;
-      const localId = refParts[refParts.length - 1];
+      const dbNodes: DbNode[] = schema.nodes.map(node =>
+        toDbNode(node, filePath, systemId, nodeRefMap)
+      );
 
-      const position = getNodePosition(node);
+      if (dbNodes.length > 0) {
+        await db.workingNodes.bulkPut(dbNodes);
+      }
 
-      return {
-        entityRef,
-        id: localId,
-        systemId,
-        containerId,
-        type: node.type,
-        name: node.name,
-        properties: node.properties || {},
-        x: position?.x,
-        y: position?.y,
-        external: node.external,
-        isTest: node.isTest,
-        filePath,
-      };
-    });
+      const dbDeps: DbDependency[] = (schema.dependencies || []).map(dep =>
+        toDbDependency(dep, filePath, systemId, nodeRefMap)
+      );
 
-    if (dbNodes.length > 0) {
-      await db.workingNodes.bulkPut(dbNodes);
+      if (dbDeps.length > 0) {
+        await db.workingDependencies.bulkPut(dbDeps);
+      }
     }
-
-    const dbDeps: DbDependency[] = (schema.dependencies || []).map(dep => {
-      const fromRef =
-        nodeRefMap[dep.from] || (dep.from.includes('/') ? dep.from : `${systemId}/${dep.from}`);
-      const toRef = nodeRefMap[dep.to] || (dep.to.includes('/') ? dep.to : `${systemId}/${dep.to}`);
-      return {
-        id: `${fromRef}->${toRef}`,
-        fromRef,
-        toRef,
-        type: dep.type,
-        description: dep.description,
-        filePath,
-      };
-    });
-
-    if (dbDeps.length > 0) {
-      await db.workingDependencies.bulkPut(dbDeps);
-    }
-  });
+  );
 }
 
 /**
@@ -223,8 +243,22 @@ export async function computeSchemaDiff(filePath: string): Promise<SchemaDiff> {
       const propertiesChanged =
         JSON.stringify(current.properties) !== JSON.stringify(original.properties);
       const positionChanged = current.x !== original.x || current.y !== original.y;
+      const externalChanged = current.external !== original.external;
+      const isTestChanged = current.isTest !== original.isTest;
+      const parentChanged = current.parentEntityRef !== original.parentEntityRef;
+      const resilienceChanged =
+        JSON.stringify(current.resilience) !== JSON.stringify(original.resilience);
 
-      if (nameChanged || typeChanged || propertiesChanged || positionChanged) {
+      if (
+        nameChanged ||
+        typeChanged ||
+        propertiesChanged ||
+        positionChanged ||
+        externalChanged ||
+        isTestChanged ||
+        parentChanged ||
+        resilienceChanged
+      ) {
         diff.nodes.modified.push({ original, current });
       }
     }
@@ -264,6 +298,7 @@ export async function revertWorkingSchema(
 ): Promise<SystemSchema> {
   const originalNodes = await db.originalNodes.where('filePath').equals(filePath).toArray();
   const originalDeps = await db.originalDependencies.where('filePath').equals(filePath).toArray();
+  const originalMeta = await db.originalMeta.get(filePath);
 
   const originalSchema: SystemSchema = {
     name: systemName || 'Restored Schema',
@@ -277,18 +312,28 @@ export async function revertWorkingSchema(
       type: parseDependencyType(d.type),
       description: d.description,
     })),
+    ...(originalMeta?.source !== undefined ? { source: originalMeta.source } : {}),
   };
 
-  await db.transaction('rw', [db.workingNodes, db.workingDependencies], async () => {
-    await db.workingNodes.where('filePath').equals(filePath).delete();
-    await db.workingDependencies.where('filePath').equals(filePath).delete();
-    if (originalNodes.length > 0) {
-      await db.workingNodes.bulkPut(originalNodes);
+  await db.transaction(
+    'rw',
+    [db.workingNodes, db.workingDependencies, db.workingMeta],
+    async () => {
+      await db.workingNodes.where('filePath').equals(filePath).delete();
+      await db.workingDependencies.where('filePath').equals(filePath).delete();
+      if (originalMeta) {
+        await db.workingMeta.put(originalMeta);
+      } else {
+        await db.workingMeta.delete(filePath);
+      }
+      if (originalNodes.length > 0) {
+        await db.workingNodes.bulkPut(originalNodes);
+      }
+      if (originalDeps.length > 0) {
+        await db.workingDependencies.bulkPut(originalDeps);
+      }
     }
-    if (originalDeps.length > 0) {
-      await db.workingDependencies.bulkPut(originalDeps);
-    }
-  });
+  );
 
   return originalSchema;
 }
@@ -316,6 +361,7 @@ export async function loadWorkingSchema(
     return null;
   }
   const workingDeps = await db.workingDependencies.where('filePath').equals(filePath).toArray();
+  const workingMeta = await db.workingMeta.get(filePath);
 
   return {
     name: systemName || 'Working Schema',
@@ -329,5 +375,6 @@ export async function loadWorkingSchema(
       type: parseDependencyType(d.type),
       description: d.description,
     })),
+    ...(workingMeta?.source !== undefined ? { source: workingMeta.source } : {}),
   };
 }
