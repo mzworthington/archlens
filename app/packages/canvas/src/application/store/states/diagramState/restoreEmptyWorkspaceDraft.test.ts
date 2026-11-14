@@ -18,13 +18,12 @@ const namedSession = {
 };
 
 const childZoomPath = 'software-system-1204-components.yaml';
-const grandchildZoomPath = 'handler-code.yaml';
 
 function draftSchema(
   name: string,
   entityRef: string,
   nodeRef: string,
-  options?: { level?: 'container' | 'component' | 'code'; nodeName?: string; nodeType?: string }
+  options?: { level?: 'container' | 'component' | 'code'; nodeName?: string }
 ) {
   return {
     name,
@@ -34,7 +33,7 @@ function draftSchema(
     nodes: [
       {
         entityRef: nodeRef,
-        type: (options?.nodeType ?? 'software-system') as 'software-system',
+        type: 'software-system' as const,
         name: options?.nodeName ?? 'API',
         position: { x: 10, y: 20 },
       },
@@ -48,16 +47,14 @@ async function restoreDraft(input: {
   schema: ReturnType<typeof draftSchema>;
   session?: typeof namedSession;
   child?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
-  children?: Array<{ filePath: string; schema: ReturnType<typeof draftSchema> | null }>;
+  grandchild?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
 }) {
   if (input.session) persistBlankCanvasSession(input.session);
-  const byPath = new Map<string, ReturnType<typeof draftSchema> | null>();
-  if (input.child) byPath.set(input.child.filePath, input.child.schema);
-  for (const child of input.children ?? []) {
-    byPath.set(child.filePath, child.schema);
-  }
   const loadWorkingSchema = vi.fn(async (args: { filePath: string }) => {
-    if (byPath.has(args.filePath)) return byPath.get(args.filePath) ?? null;
+    if (input.grandchild && args.filePath === input.grandchild.filePath) {
+      return input.grandchild.schema;
+    }
+    if (input.child && args.filePath === input.child.filePath) return input.child.schema;
     return input.schema;
   });
   useBlueprintStore.setState({
@@ -254,40 +251,64 @@ describe('restoreEmptyWorkspaceDraft', () => {
     );
   });
 
-  it('rehydrates a nested create-zoom grandchild for a deeper URL', async () => {
+  it('rehydrates a nested create-zoom when the URL is the grandchild diagram', async () => {
     const childRef = 'super-amazing/software-system-1204';
-    const grandchildRef = `${childRef}/handler`;
-    const { restored } = await restoreDraft({
-      expectedEntityRef: grandchildRef,
+    const codeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
+    const { restored, loadWorkingSchema } = await restoreDraft({
+      expectedEntityRef: codeRef,
       session: namedSession,
       schema: draftSchema('Super amazing', 'super-amazing', childRef),
-      children: [
-        {
-          filePath: childZoomPath,
-          schema: draftSchema('API Components', childRef, grandchildRef, {
-            level: 'component',
-            nodeName: 'Handler',
-            nodeType: 'component',
-          }),
-        },
-        {
-          filePath: grandchildZoomPath,
-          schema: draftSchema('Handler Code', grandchildRef, `${grandchildRef}/fn`, {
-            level: 'code',
-            nodeName: 'Fn',
-            nodeType: 'component',
-          }),
-        },
-      ],
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, codeRef, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+      grandchild: {
+        filePath: codeZoomPath,
+        schema: draftSchema('Handler Code', codeRef, `${codeRef}/run`, {
+          level: 'code',
+          nodeName: 'run',
+        }),
+      },
     });
 
     expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: childZoomPath,
+        systemEntityRef: childRef,
+        systemLevel: 'component',
+      })
+    );
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: codeZoomPath,
+        systemName: 'Handler Code',
+        systemEntityRef: codeRef,
+        systemLevel: 'code',
+      })
+    );
     const state = useBlueprintStore.getState();
-    expect(state.currentFilePath).toBe(grandchildZoomPath);
-    expect(state.schema.entityRef).toBe(grandchildRef);
+    expect(state.currentFilePath).toBe(codeZoomPath);
+    expect(state.schema.entityRef).toBe(codeRef);
     expect(state.schema.level).toBe('code');
-    expect(state.loadedSystems.map(system => system.path).sort()).toEqual(
-      [childZoomPath, grandchildZoomPath, namedSession.filePath].sort()
+    expect(state.schema.nodes.map(node => node.name)).toEqual(['run']);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      codeZoomPath,
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: codeZoomPath,
+          entityRef: codeRef,
+          level: 'code',
+        }),
+      ])
     );
   });
 });
