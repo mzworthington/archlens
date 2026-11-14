@@ -42,7 +42,8 @@ async function loadCreateZoomChild(
   parent: SystemSchema,
   parentPath: string,
   expectedEntityRef: string | undefined,
-  workingCopyPort: WorkingCopyPort
+  workingCopyPort: WorkingCopyPort,
+  existingPaths: readonly string[]
 ): Promise<LoadedDiagram | null> {
   const node = zoomNodeForUrl(parent, expectedEntityRef);
   if (!node) return null;
@@ -53,7 +54,7 @@ async function loadCreateZoomChild(
     parentLevel: parent.level,
     version: parent.version,
     parentPath,
-    existingPaths: [parentPath],
+    existingPaths,
   });
   if (!built) return null;
 
@@ -80,6 +81,48 @@ async function loadCreateZoomChild(
     : built.schema;
 
   return { path: built.path, name: schema.name, schema };
+}
+
+/**
+ * Blank canvases start at container, so a code URL is two create-zooms down
+ * (component, then code). Each child's identity is a node on the diagram above
+ * it, and that diagram is itself a working copy — keep walking until the URL
+ * is the open diagram.
+ */
+async function loadCreateZoomChain(
+  parent: SystemSchema,
+  parentPath: string,
+  expectedEntityRef: string | undefined,
+  workingCopyPort: WorkingCopyPort
+): Promise<LoadedDiagram[]> {
+  const chain: LoadedDiagram[] = [];
+  const existingPaths = [parentPath];
+  let current = parent;
+  let currentPath = parentPath;
+
+  while (current.level !== 'code') {
+    const child = await loadCreateZoomChild(
+      current,
+      currentPath,
+      expectedEntityRef,
+      workingCopyPort,
+      existingPaths
+    );
+    if (
+      !child ||
+      child.schema.entityRef === current.entityRef ||
+      existingPaths.includes(child.path)
+    ) {
+      break;
+    }
+    chain.push(child);
+    existingPaths.push(child.path);
+    if (child.schema.entityRef === expectedEntityRef) break;
+    current = child.schema;
+    currentPath = child.path;
+  }
+
+  return chain;
 }
 
 export async function restoreEmptyWorkspaceDraft(
@@ -137,17 +180,20 @@ export async function restoreEmptyWorkspaceDraft(
     name: systemName,
     entityRef: systemEntityRef,
   };
-  const child = await loadCreateZoomChild(schema, filePath, expected, workingCopyPort);
+  const chain = await loadCreateZoomChain(schema, filePath, expected, workingCopyPort);
   const parentDiagram: LoadedDiagram = { path: filePath, name: schema.name, schema };
-  const systems = child ? [parentDiagram, child] : [parentDiagram];
-  const active = child ?? parentDiagram;
+  const systems = [parentDiagram, ...chain];
+  const active = chain[chain.length - 1] ?? parentDiagram;
 
   get().clearHistory();
   set({
     currentFilePath: active.path,
-    workspaceCatalog: child
-      ? buildWorkspaceCatalog(systems.map(system => ({ path: system.path, schema: system.schema })))
-      : [],
+    workspaceCatalog:
+      chain.length > 0
+        ? buildWorkspaceCatalog(
+            systems.map(system => ({ path: system.path, schema: system.schema }))
+          )
+        : [],
     loadedSystems: systems,
     isWorkspaceOpen: false,
     isSampleWorkspace: false,

@@ -19,7 +19,7 @@ function draftSchema(
   name: string,
   entityRef: string,
   nodeRef: string,
-  options?: { level?: 'container' | 'component'; nodeName?: string }
+  options?: { level?: 'container' | 'component' | 'code'; nodeName?: string }
 ) {
   return {
     name,
@@ -43,9 +43,13 @@ async function restoreDraft(input: {
   schema: ReturnType<typeof draftSchema>;
   session?: typeof namedSession;
   child?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
+  grandchild?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
 }) {
   if (input.session) persistBlankCanvasSession(input.session);
   const loadWorkingSchema = vi.fn(async (args: { filePath: string }) => {
+    if (input.grandchild && args.filePath === input.grandchild.filePath) {
+      return input.grandchild.schema;
+    }
     if (input.child && args.filePath === input.child.filePath) return input.child.schema;
     return input.schema;
   });
@@ -236,6 +240,67 @@ describe('restoreEmptyWorkspaceDraft', () => {
         expect.objectContaining({
           entityRef: childRef,
           path: childZoomPath,
+        }),
+      ])
+    );
+  });
+
+  it('rehydrates a nested create-zoom when the URL is the grandchild diagram', async () => {
+    const childRef = 'super-amazing/software-system-1204';
+    const codeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
+    const { restored, loadWorkingSchema } = await restoreDraft({
+      expectedEntityRef: codeRef,
+      session: namedSession,
+      schema: draftSchema('Super amazing', 'super-amazing', childRef),
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, codeRef, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+      grandchild: {
+        filePath: codeZoomPath,
+        schema: draftSchema('Handler Code', codeRef, `${codeRef}/run`, {
+          level: 'code',
+          nodeName: 'run',
+        }),
+      },
+    });
+
+    expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: childZoomPath,
+        systemEntityRef: childRef,
+        systemLevel: 'component',
+      })
+    );
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: codeZoomPath,
+        systemName: 'Handler Code',
+        systemEntityRef: codeRef,
+        systemLevel: 'code',
+      })
+    );
+    const state = useBlueprintStore.getState();
+    expect(state.currentFilePath).toBe(codeZoomPath);
+    expect(state.schema.entityRef).toBe(codeRef);
+    expect(state.schema.level).toBe('code');
+    expect(state.schema.nodes.map(node => node.name)).toEqual(['run']);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      codeZoomPath,
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: codeZoomPath,
+          entityRef: codeRef,
+          level: 'code',
         }),
       ])
     );
