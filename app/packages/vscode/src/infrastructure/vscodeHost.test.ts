@@ -67,6 +67,7 @@ function editor(input: {
 }) {
   const calls: string[] = [];
   const html: string[] = [];
+  const posted: unknown[] = [];
   const opened: string[] = [];
   const copied: string[] = [];
   const patterns: { base: string; pattern: string }[] = [];
@@ -135,11 +136,24 @@ function editor(input: {
       },
       openTextDocument: async uri => ({
         uri,
+        isDirty: false,
         getText: () => files.find(file => file.path === uri.fsPath)?.content ?? '',
       }),
       onDidSaveTextDocument: listener => {
         onSave = listener;
         return { dispose: () => undefined };
+      },
+      applyTextDocument: async (uri, content) => {
+        calls.push(`edit:${uri.fsPath}`);
+        const found = files.find(file => file.path === uri.fsPath);
+        if (found) found.content = content;
+        else files.push({ path: uri.fsPath, content });
+      },
+      saveTextDocument: async uri => {
+        calls.push(`save:${uri.fsPath}`);
+        const content = files.find(file => file.path === uri.fsPath)?.content ?? '';
+        onSave?.({ uri, getText: () => content });
+        return true;
       },
       textDocuments: input.dirtyBlueprint
         ? [
@@ -204,6 +218,9 @@ function editor(input: {
               panel.onMessage = message => listener(message);
               return { dispose: () => undefined };
             },
+            postMessage: (message: unknown) => {
+              posted.push(message);
+            },
           },
           onDidDispose: listener => {
             panel.onDispose = listener;
@@ -228,6 +245,7 @@ function editor(input: {
     api,
     calls,
     html,
+    posted,
     files,
     opened,
     copied,
@@ -393,6 +411,26 @@ describe('editor host', () => {
     expect(fake.html.at(-1)).toContain('Checkout API');
   });
 
+  it('writes a diagram edit into the open blueprint without reloading the map', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    const panels = fake.html.length;
+    const next = checkout.replace('name: Billing', 'name: Payments');
+
+    await fake.send({ type: 'sync', yaml: next });
+
+    expect(fake.files.find(file => file.path === '/repo/blueprints/context.yaml')?.content).toBe(
+      next
+    );
+    expect(fake.html).toHaveLength(panels);
+    expect(fake.calls).toContain('edit:/repo/blueprints/context.yaml');
+    expect(fake.calls).toContain('save:/repo/blueprints/context.yaml');
+  });
+
   it('refreshes the diagram when the blueprint is saved', async () => {
     const fake = editor({
       trusted: true,
@@ -405,6 +443,23 @@ describe('editor host', () => {
 
     expect(fake.html.at(-1)).toContain('Payments');
     expect(fake.html.at(-1)).not.toContain('>Billing<');
+  });
+
+  it('keeps the canvas page and posts the next diagram once the map is ready', async () => {
+    const fake = editor({
+      trusted: true,
+      files: [{ path: '/repo/blueprints/context.yaml', content: checkout }],
+    });
+    const host = await createEditorHost(fake.api);
+    await openArchitectureMap(host);
+    await fake.send({ type: 'ready' });
+    const pages = fake.html.length;
+
+    fake.save('/repo/blueprints/context.yaml', checkout.replace('name: Billing', 'name: Payments'));
+
+    expect(fake.html).toHaveLength(pages);
+    expect(fake.posted.at(-1)).toMatchObject({ type: 'show', hotspots: false });
+    expect(JSON.stringify(fake.posted.at(-1))).toContain('name: Payments');
   });
 
   it('drills into a child diagram and returns with Alt+Left', async () => {

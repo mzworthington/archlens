@@ -607,6 +607,25 @@ describe('diagram navigation', () => {
     expect(decision.diagram.sourcePath).toBe('/repo/blueprints/api.yaml');
   });
 
+  it('opens the context diagram when zoom out names that system', () => {
+    const decision = decideDrill({
+      files: [
+        { path: '/repo/blueprints/context.yaml', content: checkout },
+        { path: '/repo/blueprints/api.yaml', content: container },
+      ],
+      focusedEntityRef: 'checkout',
+      currentPath: '/repo/blueprints/api.yaml',
+    });
+
+    expect(decision.kind).toBe('child');
+    if (decision.kind !== 'child') return;
+    expect(decision.diagram.sourcePath).toBe('/repo/blueprints/context.yaml');
+    expect(decision.diagram.systems.map(system => system.name)).toEqual([
+      'Checkout API',
+      'Billing',
+    ]);
+  });
+
   it('stays put when the focused system has no child diagram', () => {
     expect(
       decideDrill({

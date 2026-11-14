@@ -189,27 +189,29 @@ export const ToolbarOverflowMenu: React.FC = () => {
         menuRef={menuRef}
         menuClassName={menuPanelClass}
       >
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            void handleSave();
-          }}
-          disabled={saveDisabled}
-          className={menuItemClass}
-          title={
-            isMemoryScanWorkspace
-              ? 'Save scan map to a blueprints folder or download'
-              : isWorkspaceOpen
-                ? 'Save diagram directly in folder'
-                : 'Save YAML to disk'
-          }
-          aria-label={isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
-        >
-          <Download className="w-3.5 h-3.5 shrink-0" />
-          {isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
-        </button>
+        {extensionPreview ? null : (
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              close();
+              void handleSave();
+            }}
+            disabled={saveDisabled}
+            className={menuItemClass}
+            title={
+              isMemoryScanWorkspace
+                ? 'Save scan map to a blueprints folder or download'
+                : isWorkspaceOpen
+                  ? 'Save diagram directly in folder'
+                  : 'Save YAML to disk'
+            }
+            aria-label={isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
+          >
+            <Download className="w-3.5 h-3.5 shrink-0" />
+            {isMemoryScanWorkspace ? 'Save map to folder' : 'Save'}
+          </button>
+        )}
 
         <DiagramExportMenuItems menuItemClass={menuItemClass} onClose={close} />
 

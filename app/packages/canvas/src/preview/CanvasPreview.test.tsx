@@ -56,6 +56,29 @@ vi.mock('@xyflow/react', () => {
   };
 });
 
+type PreviewWindow = Window & {
+  acquireVsCodeApi?: () => { postMessage: (message: unknown) => void };
+  archlensVscode?: { postMessage: (message: unknown) => void };
+};
+
+function installPreviewHost(): unknown[] {
+  const messages: unknown[] = [];
+  const previewWindow = window as PreviewWindow;
+  delete previewWindow.archlensVscode;
+  previewWindow.acquireVsCodeApi = () => ({
+    postMessage: message => {
+      messages.push(message);
+    },
+  });
+  return messages;
+}
+
+function isBlueprintSync(message: unknown): message is { type: 'sync'; yaml: string } {
+  if (typeof message !== 'object' || message === null) return false;
+  const record = message as { type?: unknown; yaml?: unknown };
+  return record.type === 'sync' && typeof record.yaml === 'string';
+}
+
 const blueprint = `
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
@@ -141,6 +164,68 @@ dependencies: []
     expect(
       useBlueprintStore.getState().workspaceCatalog.some(entry => entry.entityRef === 'repo/vscode')
     ).toBe(true);
+  });
+
+  it('sends a property edit to the open blueprint and does not ask to save', async () => {
+    const messages = installPreviewHost();
+    render(<CanvasPreview yaml={blueprint} />);
+
+    expect(await screen.findByTestId('react-flow')).toBeInTheDocument();
+    const node = useBlueprintStore
+      .getState()
+      .nodes.find(item => item.data.name === 'Billing Service');
+    expect(node).toBeDefined();
+    useBlueprintStore.getState().selectNode(node!.id, { expandPanel: true });
+    useBlueprintStore.setState({ rightCollapsed: false, rightPanelTab: 'properties' });
+
+    fireEvent.change(await screen.findByLabelText('Name'), { target: { value: 'Payments' } });
+
+    await waitFor(() => {
+      expect(
+        messages.some(
+          message => isBlueprintSync(message) && message.yaml.includes('name: Payments')
+        )
+      ).toBe(true);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'More actions' })).toBeEnabled();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'More actions' }));
+    expect(screen.queryByRole('menuitem', { name: 'Save' })).not.toBeInTheDocument();
+  });
+
+  it('applies the next diagram the panel posts and leaves the page in place', async () => {
+    const messages = installPreviewHost();
+    const { container } = render(<CanvasPreview yaml={blueprint} />);
+    const page = container.firstElementChild;
+
+    expect(await screen.findByTestId('nodes-count')).toHaveTextContent('2');
+    await waitFor(() => {
+      expect(messages).toContainEqual({ type: 'ready' });
+    });
+
+    const next = `
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: billing
+  name: Billing
+nodes:
+  - entityRef: billing/treasury
+    type: microservice
+    name: Treasury
+dependencies: []
+`;
+    window.dispatchEvent(
+      new MessageEvent('message', { data: { type: 'show', yaml: next, hotspots: true } })
+    );
+
+    await waitFor(() => {
+      expect(screen.getByTestId('nodes-count')).toHaveTextContent('1');
+    });
+    expect(useBlueprintStore.getState().showHotspotHeatmap).toBe(true);
+    expect(container.firstElementChild).toBe(page);
   });
 
   it('reads the blueprint and hotspot flag the panel embedded', () => {

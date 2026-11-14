@@ -48,6 +48,7 @@ import {
   readVisibleDiagram,
   replaceDiagramSession,
   setSessionHotspots,
+  setSessionSchema,
   showInSession,
 } from './diagramSession';
 
@@ -55,10 +56,12 @@ interface WebviewPanel<Uri extends FileUri = FileUri> {
   webview: {
     html: string;
     cspSource?: string;
+    postMessage?(message: unknown): void;
     asWebviewUri?(uri: Uri): Uri;
     onDidReceiveMessage(listener: (message: unknown) => void | Promise<void>): {
       dispose(): void;
     };
+    postMessage?(message: unknown): void;
   };
   onDidDispose(listener: () => void): void;
 }
@@ -70,7 +73,11 @@ interface FolderPickItem {
 }
 
 type FileUri = { fsPath: string; toString(): string };
-type OpenDocument<Uri extends FileUri> = { getText(): string; uri: Uri };
+type OpenDocument<Uri extends FileUri> = {
+  getText(): string;
+  uri: Uri;
+  isDirty?: boolean;
+};
 
 export interface VsCodeLike<
   Uri extends FileUri = FileUri,
@@ -98,6 +105,8 @@ export interface VsCodeLike<
     };
     openTextDocument(uri: Uri): Thenable<Document>;
     onDidSaveTextDocument(listener: (document: Document) => void): { dispose(): void };
+    applyTextDocument?(uri: Uri, content: string): Thenable<void>;
+    saveTextDocument?(uri: Uri): Thenable<boolean>;
     readonly textDocuments?: readonly { uri: Uri; isDirty: boolean; getText(): string }[];
   };
   window: {
@@ -358,7 +367,10 @@ async function showDiagram<Uri extends FileUri>(
     }
   );
   const schema = schemaFrom(document.getText());
-  const shown = { session: 0, path: diagram.sourcePath };
+  const shown: { session: number; path: string; synced?: string } = {
+    session: 0,
+    path: diagram.sourcePath,
+  };
   const workspaceRoot = workspaceRootFor(api, diagram.sourcePath);
   shown.session = openDiagramSession(diagram, workspaceRoot, schema);
   const listed = workspaceRoot ? await listBlueprintFiles(api, workspaceRoot).catch(() => []) : [];
@@ -366,13 +378,23 @@ async function showDiagram<Uri extends FileUri>(
     name: file.path,
     content: readableBlueprint(file.content),
   }));
+  let ready = false;
   const paint = () => {
     const view = readSessionView(shown.session);
     if (!view) return;
-    const sources = canvasSources(api, panel);
-    panel.webview.html = renderCanvasShell({
+    const update = {
+      type: 'show' as const,
       yaml: view.schema ? serializeSchemaToYaml(view.schema) : '',
       hotspots: view.hotspotsOn,
+    };
+    if (ready) {
+      panel.webview.postMessage?.(update);
+      return;
+    }
+    const sources = canvasSources(api, panel);
+    panel.webview.html = renderCanvasShell({
+      yaml: update.yaml,
+      hotspots: update.hotspots,
       theme: configuredMapTheme(api),
       nonce: mapNonce(),
       scriptSrc: sources.scriptSrc,
@@ -383,11 +405,16 @@ async function showDiagram<Uri extends FileUri>(
   };
   panelPainters.set(shown.session, paint);
   paint();
-  const messages = panel.webview.onDidReceiveMessage(message =>
-    onPanelMessage(api, shown, message, paint)
-  );
+  const messages = panel.webview.onDidReceiveMessage(message => {
+    if (isRecord(message) && message.type === 'ready') {
+      ready = true;
+      return;
+    }
+    return onPanelMessage(api, shown, message, paint);
+  });
   const listener = api.workspace.onDidSaveTextDocument(saved => {
     if (!sameEditorPath(saved.uri.fsPath, shown.path)) return;
+    if (saved.getText() === shown.synced) return;
     const decision = decideOpenMap({
       files: [{ path: shown.path, content: saved.getText() }],
       selectedPath: shown.path,
@@ -412,12 +439,16 @@ async function showDiagram<Uri extends FileUri>(
 
 async function onPanelMessage<Uri extends FileUri>(
   api: VsCodeLike<Uri>,
-  shown: { session: number; path: string },
+  shown: { session: number; path: string; synced?: string },
   message: unknown,
   paint: () => void
 ): Promise<void> {
   const action = panelAction(message);
   if (!action) return;
+  if (action.type === 'sync') {
+    await writeSyncedBlueprint(api, shown, action.yaml);
+    return;
+  }
   const view = readSessionView(shown.session);
   if (!view) return;
   const root = view.workspaceRoot;
@@ -439,11 +470,27 @@ async function onPanelMessage<Uri extends FileUri>(
       return;
     }
     const system = view.diagram.systems.find(item => item.entityRef === action.entityRef);
-    const breadcrumb = [
-      ...(view.diagram.breadcrumb ?? []),
-      { name: system?.name ?? decision.schema.name, sourcePath: decision.diagram.sourcePath },
-    ];
+    const targetPath = decision.diagram.sourcePath;
+    const prior = view.diagram.breadcrumb ?? [];
+    const existing = prior.findIndex(crumb => sameEditorPath(crumb.sourcePath, targetPath));
+    const currentRef = view.schema?.entityRef;
+    const targetRef = decision.schema.entityRef;
+    const zoomingOut =
+      existing >= 0 ||
+      (typeof currentRef === 'string' &&
+        typeof targetRef === 'string' &&
+        currentRef.startsWith(`${targetRef}/`));
+    const crumb = {
+      name: system?.name ?? decision.schema.name,
+      sourcePath: targetPath,
+    };
+    const breadcrumb = zoomingOut
+      ? existing >= 0
+        ? prior.slice(0, existing + 1)
+        : [crumb]
+      : [...prior, crumb];
     showInSession(shown.session, decision.diagram, decision.schema, breadcrumb);
+    shown.synced = undefined;
     shown.path = decision.diagram.sourcePath;
     paint();
     return;
@@ -455,6 +502,7 @@ async function onPanelMessage<Uri extends FileUri>(
   });
   if (decision.kind === 'stay') return;
   showInSession(shown.session, decision.diagram, decision.schema, decision.breadcrumb);
+  shown.synced = undefined;
   shown.path = decision.diagram.sourcePath;
   paint();
 }
@@ -486,6 +534,7 @@ function panelAction(
   | { type: 'drill'; entityRef: string }
   | { type: 'back' }
   | { type: 'breadcrumb'; sourcePath: string }
+  | { type: 'sync'; yaml: string }
   | undefined {
   if (!isRecord(message)) return undefined;
   if (message.type === 'drill' && typeof message.entityRef === 'string') {
@@ -495,7 +544,31 @@ function panelAction(
   if (message.type === 'breadcrumb' && typeof message.sourcePath === 'string') {
     return { type: 'breadcrumb', sourcePath: message.sourcePath };
   }
+  if (message.type === 'sync' && typeof message.yaml === 'string') {
+    return { type: 'sync', yaml: message.yaml };
+  }
   return undefined;
+}
+
+async function writeSyncedBlueprint<Uri extends FileUri>(
+  api: VsCodeLike<Uri>,
+  shown: { session: number; path: string; synced?: string },
+  yaml: string
+): Promise<void> {
+  const apply = api.workspace.applyTextDocument;
+  const save = api.workspace.saveTextDocument;
+  if (!apply || !save || yaml.trim().length === 0) return;
+  const schema = schemaFrom(yaml);
+  if (!schema) return;
+  const uri = api.Uri.file(shown.path);
+  const document = await api.workspace.openTextDocument(uri);
+  const current = document.getText();
+  if (document.isDirty === true && current !== shown.synced) return;
+  shown.synced = yaml;
+  setSessionSchema(shown.session, schema);
+  if (current === yaml) return;
+  await apply(uri, yaml);
+  await save(uri);
 }
 
 function isRecord(message: unknown): message is Record<string, unknown> {

@@ -109,6 +109,12 @@ export function readSessionView(id: number): SessionView | undefined {
   };
 }
 
+export function setSessionSchema(id: number, schema: SystemSchema): void {
+  const session = sessions.get(id);
+  if (!session) return;
+  session.schema = schema;
+}
+
 export function setSessionHotspots(id: number, on: boolean): void {
   const session = sessions.get(id);
   if (!session) return;

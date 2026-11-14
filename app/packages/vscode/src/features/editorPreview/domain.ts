@@ -486,11 +486,7 @@ export function decideDrill(input: {
     .filter(file => !sameEditorPath(file.path, input.currentPath))
     .map(readBlueprint)
     .filter((blueprint): blueprint is ParsedBlueprint => blueprint !== undefined)
-    .filter(
-      blueprint =>
-        blueprint.schema.entityRef === input.focusedEntityRef &&
-        blueprint.schema.level !== 'context'
-    )
+    .filter(blueprint => blueprint.schema.entityRef === input.focusedEntityRef)
     .sort((left, right) => left.diagram.sourcePath.localeCompare(right.diagram.sourcePath))[0];
   return child
     ? { kind: 'child', diagram: child.diagram, schema: child.schema }

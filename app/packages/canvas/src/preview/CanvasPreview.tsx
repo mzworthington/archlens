@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Router } from 'wouter';
 import { buildWorkspaceCatalog, parseSchemaFromYaml } from '@archlens/core';
 import { workspaceEntityRefFromPath } from '../application/navigation/workspaceUrl';
@@ -35,23 +35,63 @@ function previewLocation(): [string, (path: string) => void] {
   return ['/preview', previewNavigate];
 }
 
+/** Property edits already refresh the in-memory YAML. Send that YAML to the open file. */
+function useSyncBlueprintEdits(): void {
+  useEffect(() => {
+    let pending = 0;
+    let last = useBlueprintStore.getState().yamlCode;
+    const stop = useBlueprintStore.subscribe(state => {
+      if (state.yamlCode === last) return;
+      last = state.yamlCode;
+      window.clearTimeout(pending);
+      const yaml = state.yamlCode;
+      pending = window.setTimeout(() => {
+        extensionHost()?.postMessage({ type: 'sync', yaml });
+      }, 200);
+    });
+    return () => {
+      window.clearTimeout(pending);
+      stop();
+    };
+  }, []);
+}
+
 /** The architecture map is the workspace page, loaded from one blueprint. */
 export function CanvasPreview({
-  yaml,
-  hotspots = false,
+  yaml: initialYaml,
+  hotspots: initialHotspots = false,
   blueprints = [],
 }: {
   yaml: string;
   hotspots?: boolean;
   blueprints?: readonly PreviewBlueprint[];
 }) {
-  const seen = useRef('');
+  const [yaml, setYaml] = useState(initialYaml);
+  const [hotspots, setHotspots] = useState(initialHotspots);
+  useEffect(() => {
+    extensionHost()?.postMessage({ type: 'ready' });
+    const onMessage = (event: MessageEvent) => {
+      const data = event.data as { type?: unknown; yaml?: unknown; hotspots?: unknown } | null;
+      if (!data || data.type !== 'show' || typeof data.yaml !== 'string') return;
+      setYaml(data.yaml);
+      if (typeof data.hotspots === 'boolean') setHotspots(data.hotspots);
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+  const seen = useRef<string | null>(null);
   const catalogKey = useRef('');
-  if (seen.current !== yaml) {
+  if (seen.current === null) {
     seen.current = yaml;
     useBlueprintStore.getState().importYaml(yaml);
     useBlueprintStore.setState({ isStartupOpen: false, isWorkspaceOpen: true });
   }
+  useEffect(() => {
+    if (seen.current === yaml) return;
+    seen.current = yaml;
+    useBlueprintStore.getState().importYaml(yaml);
+    useBlueprintStore.setState({ isStartupOpen: false, isWorkspaceOpen: true });
+  }, [yaml]);
   const nextCatalogKey = blueprints.map(file => `${file.name}\0${file.content}`).join('\n');
   if (catalogKey.current !== nextCatalogKey && blueprints.length > 0) {
     catalogKey.current = nextCatalogKey;
@@ -70,9 +110,19 @@ export function CanvasPreview({
       ),
     });
   }
-  if (useBlueprintStore.getState().showHotspotHeatmap !== hotspots) {
-    useBlueprintStore.setState({ showHotspotHeatmap: hotspots });
+  const seenHotspots = useRef<boolean | null>(null);
+  if (seenHotspots.current === null) {
+    seenHotspots.current = hotspots;
+    if (useBlueprintStore.getState().showHotspotHeatmap !== hotspots) {
+      useBlueprintStore.setState({ showHotspotHeatmap: hotspots });
+    }
   }
+  useEffect(() => {
+    if (seenHotspots.current === hotspots) return;
+    seenHotspots.current = hotspots;
+    useBlueprintStore.setState({ showHotspotHeatmap: hotspots });
+  }, [hotspots]);
+  useSyncBlueprintEdits();
 
   return (
     <div className="h-screen w-screen">

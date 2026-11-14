@@ -27,6 +27,20 @@ function vscodeApi(extensionUri: vscode.Uri): VsCodeLike<vscode.Uri, vscode.Text
       fs: vscode.workspace.fs,
       openTextDocument: uri => vscode.workspace.openTextDocument(uri),
       onDidSaveTextDocument: listener => vscode.workspace.onDidSaveTextDocument(listener),
+      applyTextDocument: async (uri, content) => {
+        const document = await vscode.workspace.openTextDocument(uri);
+        const edit = new vscode.WorkspaceEdit();
+        edit.replace(
+          uri,
+          new vscode.Range(document.positionAt(0), document.positionAt(document.getText().length)),
+          content
+        );
+        await vscode.workspace.applyEdit(edit);
+      },
+      saveTextDocument: async uri => {
+        const document = await vscode.workspace.openTextDocument(uri);
+        return document.save();
+      },
       get textDocuments() {
         return vscode.workspace.textDocuments;
       },
