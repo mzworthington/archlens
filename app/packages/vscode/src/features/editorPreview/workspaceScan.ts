@@ -4,7 +4,7 @@ import {
   createStructuralPathFilter,
 } from '@archlens/analysis/path-filter';
 import { EntityRef, parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
-import type { BlueprintFile, GenerateChoice } from '../ports';
+import type { BlueprintFile, GenerateChoice } from './ports';
 import {
   CANCEL_COPY,
   DEFAULT_BLUEPRINTS_FOLDER,

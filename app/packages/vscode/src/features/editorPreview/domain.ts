@@ -30,8 +30,8 @@ export {
   WHOLE_WORKSPACE_COPY,
   WRITE_BLUEPRINT_COPY,
   WRITE_FAILED_COPY,
-} from './domain/copyConstants';
-export { type BlueprintProblem, blueprintProblems } from './domain/diagnostics';
+} from './copyConstants';
+export { type BlueprintProblem, blueprintProblems } from './diagnostics';
 export {
   chooseWorkspaceFolder,
   decideBack,
@@ -40,8 +40,8 @@ export {
   decideOpenMap,
   decideShowHotspots,
   presentHotspots,
-} from './domain/navigation';
-export { blueprintWritePlan } from './domain/rollupSynthesis';
+} from './navigation';
+export { blueprintWritePlan } from './rollupSynthesis';
 export {
   type BlueprintDocument,
   foundLine,
@@ -56,4 +56,4 @@ export {
   systemsFromSourcePaths,
   systemsInBlueprints,
   workspaceRootForSelection,
-} from './domain/workspaceScan';
+} from './workspaceScan';

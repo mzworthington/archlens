@@ -16,15 +16,14 @@ import {
   WRITE_BLUEPRINT_COPY,
   reviewSummary,
   type ReviewRow,
-} from '../../features/editorPreview/domain';
+} from '../features/editorPreview/domain';
 import type {
   GenerateChoice,
   ReviewChoice,
   ScanOutcome,
   ScanScopeChoice,
-} from '../../features/editorPreview/ports';
-import type { VsCodeLike } from '../vscodeHost';
-import type { FileUri } from './vscodeTypes';
+} from '../features/editorPreview/ports';
+import type { FileUri, VsCodeHostLike as VsCodeLike } from './vscodeTypes';
 
 export async function hasGitHistory<Uri extends FileUri>(
   api: VsCodeLike<Uri>,

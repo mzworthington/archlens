@@ -8,7 +8,7 @@ import {
   type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
-import type { BlueprintFile, DiagramView } from '../ports';
+import type { BlueprintFile, DiagramView } from './ports';
 import {
   diagramFrom,
   isContextFile,

@@ -10,9 +10,9 @@ import {
   readableBlueprint,
   safeBlueprintsFolder,
   sameEditorPath,
-} from '../../features/editorPreview/domain';
-import type { BlueprintFile, DiagramView } from '../../features/editorPreview/ports';
-import { renderCanvasShell, renderEmptyMap } from '../../features/editorPreview/renderMap';
+} from '../features/editorPreview/domain';
+import type { BlueprintFile, DiagramView } from '../features/editorPreview/ports';
+import { renderCanvasShell, renderEmptyMap } from '../features/editorPreview/renderMap';
 import {
   closeDiagramSession,
   openDiagramSession,
@@ -20,9 +20,8 @@ import {
   replaceDiagramSession,
   setSessionSchema,
   showInSession,
-} from '../diagramSession';
-import type { VsCodeLike } from '../vscodeHost';
-import type { FileUri, WebviewPanel } from './vscodeTypes';
+} from './diagramSession';
+import type { FileUri, VsCodeHostLike as VsCodeLike, WebviewPanel } from './vscodeTypes';
 
 export const panelPainters = new Map<number, () => void>();
 

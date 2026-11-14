@@ -1,5 +1,5 @@
 import { serializeSchemaToMermaid, type NodeForensics, type SystemSchema } from '@archlens/core';
-import type { BlueprintFile, DiagramCrumb, DiagramView } from '../ports';
+import type { BlueprintFile, DiagramCrumb, DiagramView } from './ports';
 import {
   DEFAULT_BLUEPRINTS_FOLDER,
   isContextFile,

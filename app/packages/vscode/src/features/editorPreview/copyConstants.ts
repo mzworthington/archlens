@@ -6,7 +6,7 @@ import {
   slugify,
   type SystemSchema,
 } from '@archlens/core';
-import type { BlueprintFile, DiagramView } from '../ports';
+import type { BlueprintFile, DiagramView } from './ports';
 
 export const TRUST_COPY = 'ArchLens does not read this folder until the workspace is trusted.';
 export const EMPTY_MAP_COPY = 'No map in this folder.';
