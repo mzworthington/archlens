@@ -23,6 +23,10 @@ describe('blankCanvasSession', () => {
     expect(blankCanvasEntityRefFromName('Super amazing')).toBe('super-amazing');
   });
 
+  it('avoids the reserved Samples catalog slug for a blank workspace named Samples', () => {
+    expect(blankCanvasEntityRefFromName('Samples')).toBe('samples-workspace');
+  });
+
   it('round-trips a saved session', () => {
     persistBlankCanvasSession(namedSession);
     expect(readBlankCanvasSession()).toEqual(namedSession);
@@ -72,6 +76,39 @@ describe('blankCanvasSession', () => {
       shouldRestoreBlankCanvasForUrl({
         urlEntityRef: 'golden-journey/checkout',
         session: namedSession,
+      })
+    ).toBe(false);
+  });
+
+  it('does not claim bundled Samples deep-links when a blank session reused the samples slug', () => {
+    const samplesSession = {
+      filePath: 'samples.yaml',
+      entityRef: 'samples',
+      name: 'Samples',
+      placement: 'unsaved' as const,
+    };
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'samples',
+        session: samplesSession,
+      })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'samples/software-system-1204',
+        session: samplesSession,
+      })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'samples/golden-journey',
+        session: samplesSession,
+      })
+    ).toBe(false);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'samples/golden-journey/checkout',
+        session: samplesSession,
       })
     ).toBe(false);
   });

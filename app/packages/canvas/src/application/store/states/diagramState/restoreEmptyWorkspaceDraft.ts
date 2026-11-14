@@ -34,27 +34,20 @@ function zoomNodeForUrl(
   return match;
 }
 
-/**
- * Create-zoom stores the child as its own working copy. The blank session only
- * remembers the parent, so a child URL has to load that file again or the
- * catalog cannot target it after refresh.
- */
-async function loadCreateZoomChild(
+async function loadStoredChildDiagram(
   parent: SystemSchema,
   parentPath: string,
-  expectedEntityRef: string | undefined,
+  node: { entityRef: string; name: string },
+  existingPaths: readonly string[],
   workingCopyPort: WorkingCopyPort
 ): Promise<LoadedDiagram | null> {
-  const node = zoomNodeForUrl(parent, expectedEntityRef);
-  if (!node) return null;
-
   const built = buildChildZoomDiagram({
     nodeEntityRef: node.entityRef,
     nodeName: node.name,
     parentLevel: parent.level,
     version: parent.version,
     parentPath,
-    existingPaths: [parentPath],
+    existingPaths,
   });
   if (!built) return null;
 
@@ -81,6 +74,53 @@ async function loadCreateZoomChild(
     : built.schema;
 
   return { path: built.path, name: schema.name, schema };
+}
+
+/**
+ * Walk create-zoom parents until the URL target (or the deepest reachable child).
+ * Nested zooms (container → component → code) each have their own working copy.
+ */
+async function loadCreateZoomChain(
+  root: SystemSchema,
+  rootPath: string,
+  expectedEntityRef: string | undefined,
+  workingCopyPort: WorkingCopyPort
+): Promise<LoadedDiagram[]> {
+  if (!expectedEntityRef) return [];
+
+  const chain: LoadedDiagram[] = [];
+  const existingPaths = [rootPath];
+  let currentSchema = root;
+  let currentPath = rootPath;
+
+  while (true) {
+    const node = zoomNodeForUrl(currentSchema, expectedEntityRef);
+    if (!node) break;
+
+    const child = await loadStoredChildDiagram(
+      currentSchema,
+      currentPath,
+      node,
+      existingPaths,
+      workingCopyPort
+    );
+    if (!child) break;
+
+    chain.push(child);
+    existingPaths.push(child.path);
+
+    if (
+      expectedEntityRef === child.schema.entityRef ||
+      !expectedEntityRef.startsWith(`${child.schema.entityRef}/`)
+    ) {
+      break;
+    }
+
+    currentSchema = child.schema;
+    currentPath = child.path;
+  }
+
+  return chain;
 }
 
 export async function restoreEmptyWorkspaceDraft(
@@ -138,19 +178,22 @@ export async function restoreEmptyWorkspaceDraft(
     name: systemName,
     entityRef: systemEntityRef,
   };
-  const child = await loadCreateZoomChild(schema, filePath, expected, workingCopyPort);
+  const zoomChain = await loadCreateZoomChain(schema, filePath, expected, workingCopyPort);
   const parentDiagram: LoadedDiagram = { path: filePath, name: schema.name, schema };
-  const systems = child ? [parentDiagram, child] : [parentDiagram];
-  const active = child ?? parentDiagram;
+  const systems = [parentDiagram, ...zoomChain];
+  const active = zoomChain[zoomChain.length - 1] ?? parentDiagram;
 
   get().clearHistory();
   // Survives create-zoom URL changes after refresh — bootstrap must not reopen Samples.
   markFolderWorkspacePreferred();
   set({
     currentFilePath: active.path,
-    workspaceCatalog: child
-      ? buildWorkspaceCatalog(systems.map(system => ({ path: system.path, schema: system.schema })))
-      : [],
+    workspaceCatalog:
+      zoomChain.length > 0
+        ? buildWorkspaceCatalog(
+            systems.map(system => ({ path: system.path, schema: system.schema }))
+          )
+        : [],
     loadedSystems: systems,
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
