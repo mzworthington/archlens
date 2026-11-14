@@ -30,10 +30,6 @@ test.describe('Blank canvas create zoom', () => {
       page.getByTestId('workspace-status-badges').getByText('component', { exact: true })
     ).toBeVisible();
     await expectNotSamples(page);
-    await page.screenshot({
-      path: '/opt/cursor/artifacts/blank-canvas-create-zoom.png',
-      fullPage: true,
-    });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(/\/workspace\/super-amazing\/.+/, { timeout: 20_000 });
@@ -42,10 +38,6 @@ test.describe('Blank canvas create zoom', () => {
     });
     await expect(page.getByRole('heading', { name: 'New Software System' })).toBeVisible();
     await expectNotSamples(page);
-    await page.screenshot({
-      path: '/opt/cursor/artifacts/blank-canvas-create-zoom-refresh.png',
-      fullPage: true,
-    });
   });
 
   test('Clear Canvas from Samples drops the sample catalog', async ({ page }) => {
@@ -59,10 +51,6 @@ test.describe('Blank canvas create zoom', () => {
 
     await expect(page).toHaveURL(/\/workspace\/empty-workspace\/?$/, { timeout: 20_000 });
     await expectNotSamples(page);
-    await page.screenshot({
-      path: '/opt/cursor/artifacts/clear-canvas-blank.png',
-      fullPage: true,
-    });
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(/\/workspace\/empty-workspace\/?$/, { timeout: 20_000 });

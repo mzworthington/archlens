@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ReactFlowProvider } from '@xyflow/react';
-import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
+import type { SystemSchema } from '@archlens/core';
 import {
   isFolderWorkspacePreferred,
   resetWorkspaceOpenSessionForTests,
@@ -171,44 +171,15 @@ describe('ActionControls Component', () => {
     expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
   });
 
-  it('resets sample systems and leaves the blank workspace when clearing canvas', async () => {
-    const initSchemaMock = vi.fn();
+  it('resets the workspace and leaves the blank canvas when clearing is confirmed', async () => {
+    const resetToEmptyWorkspace = vi.fn();
     const setIsLoadingMock = vi.fn();
     const clearWorkspaceDraftsMock = vi.fn().mockResolvedValue(undefined);
     useBlueprintStore.setState({
-      initSchema: initSchemaMock,
+      resetToEmptyWorkspace,
       setIsLoading: setIsLoadingMock,
       clearWorkspaceDrafts: clearWorkspaceDraftsMock,
-      isWorkspaceOpen: true,
       isSampleWorkspace: true,
-      usesRemoteCatalog: true,
-      remoteCatalogRevision: 'rev-9',
-      workspaceName: 'Samples',
-      workspaceCatalog: [
-        {
-          path: 'context.yaml',
-          name: 'Golden Journey',
-          level: 'context',
-          entityRef: 'golden-journey',
-          nodeEntityRefs: ['golden-journey/checkout'],
-        },
-      ],
-      loadedSystems: [
-        {
-          path: 'context.yaml',
-          name: 'Golden Journey',
-          schema: {
-            name: 'Golden Journey',
-            version: '1.0.0',
-            level: 'context',
-            entityRef: 'golden-journey',
-            nodes: [
-              { entityRef: 'golden-journey/checkout', type: 'software-system', name: 'Checkout' },
-            ],
-            dependencies: [],
-          },
-        },
-      ],
     });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
@@ -223,33 +194,18 @@ describe('ActionControls Component', () => {
       'Clear the workspace, purge all IndexedDB drafts and create a blank canvas?'
     );
     expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
-    expect(initSchemaMock).toHaveBeenCalledWith({
-      name: 'Empty Workspace',
-      version: systemSchemaPublicUrl(),
-      level: 'container',
-      nodes: [],
-      dependencies: [],
-    });
-    const state = useBlueprintStore.getState();
-    expect(state.isSampleWorkspace).toBe(false);
-    expect(state.usesRemoteCatalog).toBe(false);
-    expect(state.remoteCatalogRevision).toBeNull();
-    expect(state.isWorkspaceOpen).toBe(false);
-    expect(state.workspaceCatalog).toEqual([]);
-    expect(state.loadedSystems).toHaveLength(1);
-    expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
+    expect(resetToEmptyWorkspace).toHaveBeenCalled();
     expect(isFolderWorkspacePreferred()).toBe(true);
     expect(mockSetLocation).toHaveBeenCalledWith('/workspace/empty-workspace', { replace: true });
 
     confirmSpy.mockRestore();
   });
 
-  it('does not trigger initSchema on clearing canvas if not confirmed', () => {
-    const initSchemaMock = vi.fn();
+  it('does not clear the canvas when confirm is declined', () => {
+    const resetToEmptyWorkspace = vi.fn();
     useBlueprintStore.setState({
-      initSchema: initSchemaMock,
+      resetToEmptyWorkspace,
       isSampleWorkspace: true,
-      workspaceName: 'Samples',
     });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false);
@@ -258,7 +214,7 @@ describe('ActionControls Component', () => {
     openMoreMenu();
     fireEvent.click(screen.getByTitle('Clear canvas'));
 
-    expect(initSchemaMock).not.toHaveBeenCalled();
+    expect(resetToEmptyWorkspace).not.toHaveBeenCalled();
     expect(useBlueprintStore.getState().isSampleWorkspace).toBe(true);
     expect(mockSetLocation).not.toHaveBeenCalled();
     expect(isFolderWorkspacePreferred()).toBe(false);
