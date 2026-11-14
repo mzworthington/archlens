@@ -3,7 +3,7 @@ import type { SystemSchema, NodePosition } from '../../models/schema';
 import { SYSTEM_SCHEMA_MAJOR_VERSION, systemSchemaPublicUrl } from '../../models/schemaVersion';
 import { ENTITY_REF_PATTERN } from '../../lib/entityRef';
 import { getNodePosition } from '../../lib/nodePosition';
-import { nodeForensicsSchema } from '../../forensics/wireSchema';
+import { nodeForensicsSchema } from '../../models/wireSchema';
 
 const nodeTypeSchema = z.enum([
   'person',

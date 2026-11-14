@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { NodeFileSystemAdapter } from '../../analysis/adapters/nodeFileSystem';
 import { ConsoleLogger } from '../../analysis/adapters/consoleLogger';
-import type { PublishCliPlan } from '../parseArchlensArgv';
-import { loadBlueprintTree } from '../blueprintLoader';
+import type { PublishCliPlan } from '../help/flagCatalog';
+import { loadBlueprintTree } from './blueprintLoader';
 import { formatValidationResult } from '../format/formatValidationResult';
 import {
   formatPublishDryRunResult,

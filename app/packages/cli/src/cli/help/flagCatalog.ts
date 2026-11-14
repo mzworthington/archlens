@@ -1,6 +1,174 @@
 import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
 import pc from 'picocolors';
 
+export type OutputFormat = 'text' | 'json';
+/** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
+export type ResilienceOutputFormat = OutputFormat | 'yaml';
+
+export function defaultEstateKeyPrefix(estateId: string): string {
+  let trimmed = estateId;
+  while (trimmed.startsWith('/')) trimmed = trimmed.slice(1);
+  while (trimmed.endsWith('/')) trimmed = trimmed.slice(0, -1);
+  return `estates/${trimmed}`;
+}
+
+export interface ArchitectureCliFlags {
+  parserType: string | undefined;
+  glob: string | undefined;
+  outputDir: string | undefined;
+  context: string | undefined;
+  systemName: string | undefined;
+  rollupModules: boolean;
+  failOnCycles?: boolean;
+  ignore: string[];
+  systems: string[] | undefined;
+}
+
+export interface GitForensicsCliFlags {
+  sinceDays: number | undefined;
+  maxCouplingCommitFiles: number | undefined;
+  glob: string | undefined;
+  ignore: string[];
+  targetPath: string;
+}
+
+export interface ArchlensCliPlan {
+  isHeadless: boolean;
+  runArchitecture: boolean;
+  /** Re-run externals pass on existing YAML only (no AST scan). */
+  runEnrichOnly: boolean;
+  runGitForensics: boolean;
+  /** After a successful scan, upload the output tree via `archlens publish --no-dry-run`. */
+  publishAfterScan: boolean;
+  /** Forwarded to publish-after-scan (default skip; `--validate` gates; `--skip-validation` always allows). */
+  publishSkipValidation: boolean;
+  /** Forwarded to publish-after-scan (`--key-prefix` / `--workspace-name`). */
+  publishKeyPrefix?: string;
+  publishWorkspaceName?: string;
+  /** True when CLI flags already decided git on/off (skip interactive git prompt). */
+  gitDecisionExplicit: boolean;
+  watch: boolean;
+  watchDebounceMs: number;
+  architecture: ArchitectureCliFlags;
+  git: GitForensicsCliFlags;
+}
+
+export interface ValidateCliPlan {
+  targetPath: string;
+  format: OutputFormat;
+  /**
+   * Also run BlueprintSpec contract checks (schema parse, entityRef wiring).
+   * Default validate is architecture health only (cycles + forensics actions).
+   */
+  includeContract: boolean;
+  /** Explicit baseline blueprint tree for deterioration compare. */
+  baselinePath?: string;
+  /** Git commit/ref to materialize as the health baseline (default HEAD~1 when flag bare). */
+  sinceCommit?: string;
+}
+
+export interface DiffCliPlan {
+  baselinePath: string;
+  currentPath: string;
+  format: OutputFormat;
+}
+
+export interface ResilienceCliPlan {
+  targetPath: string;
+  format: ResilienceOutputFormat;
+  chaosSpecsDir?: string;
+  /** Write AdviceLens artifact to this path (format from --format, or .yaml/.json extension). */
+  outputPath?: string;
+  minSla: number;
+  failOnRecommendations: boolean;
+  maxRegionOutageTargets?: number;
+  maxFanInProbes?: number;
+}
+
+export interface PublishCliPlan {
+  targetPath: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  /**
+   * When true, do not fail publish/compose on workspace validation.
+   * Default true: catalogs show reality; use `--validate` for an optional hard gate.
+   * `--skip-validation` always allows push even if `--validate` is also set.
+   */
+  skipValidation: boolean;
+  workspaceName?: string;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogComposeCliPlan {
+  estateId: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  skipValidation: boolean;
+  /** When true, exit 0 if no fragments are staged (cron safety nets). */
+  allowEmpty: boolean;
+  workspaceName?: string;
+  maxRetries: number;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogPublishFragmentCliPlan {
+  targetPath: string;
+  estateId: string;
+  productId: string;
+  systemId?: string;
+  fragmentKey?: string;
+  sourceRef: string;
+  runId?: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  skipValidation: boolean;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogAcceptOverlayCliPlan {
+  estateId: string;
+  overlayFile: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogRejectOverlayCliPlan {
+  estateId: string;
+  overlayId: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogPruneCliPlan {
+  estateId: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  keepSnapshotCount: number;
+  keepSnapshotDays: number;
+  keepFragmentRuns: number;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
 export const FLAG = {
   help: '--help',
   helpShort: '-h',

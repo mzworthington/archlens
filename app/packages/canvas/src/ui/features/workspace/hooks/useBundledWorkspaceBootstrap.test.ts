@@ -190,4 +190,19 @@ describe('useBundledWorkspaceBootstrap', () => {
     });
     expect(openBundledSample).not.toHaveBeenCalled();
   });
+
+  it('does not open the startup chooser or demo when new=1 is in the query', async () => {
+    mockLocation = '/workspace';
+    mockParams = { '*': '' };
+    mockSearch = '?new=1';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+  });
 });

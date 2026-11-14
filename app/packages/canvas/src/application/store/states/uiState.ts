@@ -1,4 +1,3 @@
-import type { BlueprintState } from '../store';
 import type { LayoutEngineId } from '../../../core';
 import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
 import type { DependencyViewMode } from '../../forensics/dependencyViewMode';
@@ -8,6 +7,10 @@ import { toggleDependencyViewMode } from '../../forensics/dependencyViewMode';
 import { isDesktopViewport } from '../layoutUtils';
 
 export type { DependencyViewMode };
+
+type UiStoreSlice = UiState & {
+  isTraceLensPanelOpen?: boolean;
+};
 
 export interface ToastAction {
   label: string;
@@ -101,9 +104,11 @@ export interface UiState {
 }
 
 export const createUiState = (
-  set: (
-    partial: Partial<BlueprintState> | ((state: BlueprintState) => Partial<BlueprintState>)
-  ) => void
+  set: {
+    bivarianceHack(
+      partial: Partial<UiStoreSlice> | ((state: UiStoreSlice) => Partial<UiStoreSlice>)
+    ): void;
+  }['bivarianceHack']
 ): UiState => ({
   showTests: false,
   showUpstreamExternals: true,

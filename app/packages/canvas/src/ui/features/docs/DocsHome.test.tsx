@@ -36,6 +36,10 @@ describe('DocsHome', () => {
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );
+    expect(screen.getByRole('link', { name: 'Create a new workspace' })).toHaveAttribute(
+      'href',
+      '/workspace?new=1'
+    );
     expect(screen.queryByRole('heading', { name: 'On the diagram' })).not.toBeInTheDocument();
     expect(
       screen.queryByRole('heading', { name: 'CLI, Canvas, then the lenses' })

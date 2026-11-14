@@ -1,13 +1,9 @@
 import type { NodeForensics } from '../models/schema';
+import type { RefactorSuggestionKind } from '../models/recommendations';
 import type { OwnershipBreakdown } from './ownership';
 import type { RefactorBoundary, RefactorBoundarySignal } from './refactorBoundary';
 
-export type RefactorSuggestionKind =
-  | 'extract-shared-logic'
-  | 'split-by-container'
-  | 'define-api-boundary'
-  | 'add-second-owner'
-  | 'coordinate-ownership';
+export type { RefactorSuggestionKind };
 
 export type RefactorSuggestionSection = 'coupled-files' | 'ownership' | 'boundary-members';
 

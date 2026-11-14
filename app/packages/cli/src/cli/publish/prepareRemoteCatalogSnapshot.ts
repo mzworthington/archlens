@@ -6,9 +6,11 @@ import {
 } from '@archlens/core';
 import type { ObjectStoragePort } from '@archlens/storage';
 import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision';
-import { getArchlensVersion } from './version';
-import type { PublishDryRunResult, PublishUploadResult } from './format/formatPublishDryRunResult';
-import type { RemoteCatalogPublishResult } from './publish/publishRemoteCatalog';
+import type {
+  PublishDryRunResult,
+  PublishUploadResult,
+  RemoteCatalogPublishResult,
+} from '../format/formatPublishDryRunResult';
 
 export type PreparedRemoteCatalogSnapshot = {
   revisionId: string;
@@ -19,13 +21,14 @@ export function prepareRemoteCatalogSnapshot(input: {
   yamlObjects: RemoteCatalogYamlObject[];
   workspaceName: string;
   publishedAt?: string;
+  toolVersion?: string;
 }): PreparedRemoteCatalogSnapshot {
   const revisionId = computeRemoteCatalogRevisionId(input.yamlObjects);
   const snapshotPlan = buildRemoteCatalogSnapshotPlan({
     revisionId,
     yamlObjects: input.yamlObjects,
     workspaceName: input.workspaceName,
-    toolVersion: `archlens ${getArchlensVersion()}`,
+    toolVersion: input.toolVersion ?? 'archlens dev',
     ...(input.publishedAt ? { publishedAt: input.publishedAt } : {}),
   });
   return { revisionId, snapshotPlan };

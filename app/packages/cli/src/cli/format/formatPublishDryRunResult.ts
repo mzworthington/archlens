@@ -2,7 +2,12 @@ import pc from 'picocolors';
 import type { RemoteCatalogSnapshotPlan } from '@archlens/core';
 import type { BlueprintValidationResult } from '@archlens/core';
 import type { OutputFormat } from './formatValidationResult';
-import type { RemoteCatalogPublishResult } from '../publish/publishRemoteCatalog';
+
+export type RemoteCatalogPublishResult = {
+  revisionId: string;
+  provider: string;
+  uploadedObjects: number;
+};
 
 export type PublishDryRunResult = {
   dryRun: true;

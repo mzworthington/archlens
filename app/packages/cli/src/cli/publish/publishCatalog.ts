@@ -5,14 +5,14 @@ import {
   type SystemSchema,
 } from '@archlens/core';
 import type { ObjectStoragePort } from '@archlens/storage';
-import type { PublishCliPlan } from '../parseArchlensArgv';
+import type { PublishCliPlan } from '../help/flagCatalog';
 import { uploadRemoteCatalogSnapshot } from './publishRemoteCatalog';
 import type { PublishDryRunResult, PublishUploadResult } from '../format/formatPublishDryRunResult';
 import {
   prepareRemoteCatalogSnapshot,
   toPublishDryRunResult,
   toPublishUploadResult,
-} from '../prepareRemoteCatalogSnapshot';
+} from './prepareRemoteCatalogSnapshot';
 
 const DEFAULT_WORKSPACE_NAME = 'blueprints';
 

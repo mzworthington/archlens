@@ -3,12 +3,10 @@ import { Awareness } from 'y-protocols/awareness';
 import {
   collabDocumentToSchema,
   collabPatchIsEmpty,
-  collabWorkspaceFocusPath,
   collabWorkspacePaths,
   createNodeComment,
   diffCollabDocuments,
   emptyCollabDocument,
-  mergeCollabWorkspaceJoin,
   schemaToCollabDocument,
   type CollabDocument,
   type NodeComment,
@@ -18,7 +16,6 @@ import {
   EMPTY_COLLAB_PRESENCE,
   colorForClientId,
   normalizeCollabDisplayName,
-  presenceFromAwarenessStates,
   type CollabPresence,
   type CollabSessionPort,
   type CollabWorkspaceUpdate,
@@ -37,43 +34,17 @@ import {
   writeComment,
   YJS_COMMENTS_MAP,
 } from './yjsCommentProjection';
+import {
+  browserCollabAuthorKeyStore,
+  documentIsEmpty,
+  emitPresence,
+  hydrateCollabWorkspaceJoin,
+  readStableAuthorKey,
+  waitForCollabAdmission,
+  type CollabAuthorKeyStore,
+} from './yjsCollabSessionHelpers';
 
-const COLLAB_AUTHOR_KEY = 'archlens.collabAuthorKey';
-
-export type CollabAuthorKeyStore = {
-  get(): string | null;
-  set(value: string): void;
-};
-
-function browserCollabAuthorKeyStore(): CollabAuthorKeyStore {
-  let memory: string | null = null;
-  return {
-    get() {
-      try {
-        if (typeof localStorage !== 'undefined') return localStorage.getItem(COLLAB_AUTHOR_KEY);
-      } catch {
-        /* private mode */
-      }
-      return memory;
-    },
-    set(value: string) {
-      memory = value;
-      try {
-        if (typeof localStorage !== 'undefined') localStorage.setItem(COLLAB_AUTHOR_KEY, value);
-      } catch {
-        /* private mode */
-      }
-    },
-  };
-}
-
-function readStableAuthorKey(store: CollabAuthorKeyStore): string {
-  const existing = store.get()?.trim() ?? '';
-  if (existing.length > 0 && existing.length <= 80) return existing;
-  const next = crypto.randomUUID();
-  store.set(next);
-  return next;
-}
+export type { CollabAuthorKeyStore };
 
 export type YjsCollabSessionOptions = {
   transport: CollabTransport;
@@ -84,18 +55,6 @@ export type YjsCollabSessionOptions = {
   /** Same store across leave/join keeps resolve and delete after the Yjs client id changes. */
   authorKeyStore?: CollabAuthorKeyStore;
 };
-
-function documentIsEmpty(doc: CollabDocument): boolean {
-  return !doc.meta.name && Object.keys(doc.nodes).length === 0;
-}
-
-function emitPresence(
-  awareness: Awareness,
-  onPresence: (presence: CollabPresence) => void,
-  scope?: { activeDiagramPath?: string | null }
-): void {
-  onPresence(presenceFromAwarenessStates(awareness.getStates(), awareness.clientID, scope));
-}
 
 /**
  * Yjs-backed CollabSessionPort. CRDT types stay inside this adapter.
@@ -125,8 +84,6 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     if (!ydoc || !onComments || !activePath) return;
     onComments(readComments(ydoc, activePath));
   };
-
-  const newCommentId = (): string => crypto.randomUUID();
 
   const localAuthor = (): { name: string; clientId: number; key: string } | null => {
     if (!awareness) return null;
@@ -295,35 +252,20 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       const liveAwareness = awareness;
       if (!liveDoc || !liveAwareness) return;
 
-      let controlSeen = false;
-      let admitted = false;
       const controlWaitMs = options.controlWaitMs ?? (syncWaitMs === 0 ? 0 : 8_000);
-      await new Promise<void>(resolve => {
-        let settled = false;
-        const finish = () => {
-          if (settled) return;
-          settled = true;
-          resolve();
-        };
-        const timer = setTimeout(finish, controlWaitMs);
-        const session = options.transport.connect(roomId, liveDoc, liveAwareness, {
-          credentials,
-          onControl: message => {
-            controlSeen = true;
-            admitted = message.op === 'admitted';
-            onRoomControl?.(message.op);
-            clearTimeout(timer);
-            finish();
-          },
-        });
-        disconnect = session.dispose;
-        sendControl = session.sendControl;
+      const admission = await waitForCollabAdmission({
+        transport: options.transport,
+        roomId,
+        doc: liveDoc,
+        awareness: liveAwareness,
+        credentials,
+        onRoomControl,
+        controlWaitMs,
+        syncWaitMs,
       });
-      if (syncWaitMs > 0) {
-        await new Promise(resolve => setTimeout(resolve, syncWaitMs));
-      }
-      if (!controlSeen) admitted = controlWaitMs === 0;
-      if (!admitted || !ydoc) {
+      disconnect = admission.dispose;
+      sendControl = admission.sendControl;
+      if (!admission.admitted || !ydoc) {
         leave();
         return;
       }
@@ -338,28 +280,15 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
 
       if (enterWorkspace) {
         workspaceMode = true;
-        let remote = stored;
-        if (Object.keys(stored.diagrams).length === 0) {
-          const root = readCollabDocument(ydoc);
-          if (!documentIsEmpty(root)) remote = { diagrams: { [requestedPath]: root } };
-        }
-        const seeds = Object.keys(stored.diagrams).length > 0 ? explicit : localDiagrams;
-        const merged = mergeCollabWorkspaceJoin(remote, seeds);
-        for (const [path, document] of Object.entries(merged.diagrams)) {
-          if (stored.diagrams[path]) continue;
-          writeCollabDiagram(ydoc, path, document, YJS_LOCAL_ORIGIN);
-        }
-        const latest = readCollabWorkspace(ydoc);
-        const focus = collabWorkspaceFocusPath(
-          latest,
+        const { focus, latest } = hydrateCollabWorkspaceJoin({
+          ydoc,
+          awareness: liveAwareness,
           requestedPath,
-          explicit.map(diagram => diagram.path)
-        );
+          explicit,
+          localDiagrams,
+          lastByPath,
+        });
         activePath = focus;
-        if (focus) liveAwareness.setLocalStateField('diagramPath', focus);
-        for (const [path, document] of Object.entries(latest.diagrams)) {
-          lastByPath.set(path, document);
-        }
         ready = true;
         if (focus && latest.diagrams[focus]) emitActive(focus, latest.diagrams[focus]);
         emitWorkspace();
@@ -473,7 +402,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       const author = localAuthor();
       if (!ydoc || !activeRoom || !author) return;
       const created = createNodeComment({
-        id: newCommentId(),
+        id: crypto.randomUUID(),
         nodeEntityRef: input.nodeEntityRef,
         authorName: author.name,
         authorClientId: author.clientId,

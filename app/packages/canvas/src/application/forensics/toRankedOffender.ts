@@ -6,8 +6,7 @@ import {
   describeChaosRiskContext,
   type ChaosRefactorContext,
 } from '@archlens/core/forensics';
-import { evaluateForensicsConcern } from './concern';
-import type { LoadedSystemRef, RankedOffender } from './rankOffenders';
+import { evaluateForensicsConcern, type LoadedSystemRef, type RankedOffender } from './concern';
 
 function resolveChaosScores(
   forensics: NodeForensics,

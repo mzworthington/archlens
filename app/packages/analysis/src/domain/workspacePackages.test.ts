@@ -135,7 +135,7 @@ describe('ModelExtractor workspace package imports', () => {
 
     expect(
       componentDependencies.some(
-        d => d.from === 'blueprint/app/canvas/app' && d.to === 'blueprint/app/core/graph'
+        d => d.from === 'blueprint/app/canvas/app' && d.to === 'blueprint/app/core/rules'
       )
     ).toBe(true);
   });

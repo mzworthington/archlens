@@ -8,7 +8,12 @@ import {
   resolvePublishSkipValidation,
   type ResilienceOutputFormat,
 } from './argvFlags';
-import { FLAG } from './help/flagCatalog';
+import {
+  FLAG,
+  type ArchitectureCliFlags,
+  type ArchlensCliPlan,
+  type GitForensicsCliFlags,
+} from './help/flagCatalog';
 import {
   parseCatalogAcceptOverlayArgv,
   parseCatalogComposeArgv,
@@ -32,7 +37,7 @@ import {
   type ValidateCliPlan,
 } from './subcommandArgv';
 
-export type { ResilienceOutputFormat };
+export type { ArchlensCliPlan, ResilienceOutputFormat };
 export { defaultEstateKeyPrefix };
 
 export type {
@@ -46,47 +51,6 @@ export { parseCatalogComposeArgv, parseCatalogPruneArgv, parseCatalogPublishFrag
 
 export type { DiffCliPlan, PublishCliPlan, ResilienceCliPlan, ValidateCliPlan };
 export { parseDiffArgv, parsePublishArgv, parseResilienceArgv, parseValidateArgv };
-
-export interface ArchitectureCliFlags {
-  parserType: string | undefined;
-  glob: string | undefined;
-  outputDir: string | undefined;
-  context: string | undefined;
-  systemName: string | undefined;
-  rollupModules: boolean;
-  failOnCycles?: boolean;
-  ignore: string[];
-  systems: string[] | undefined;
-}
-
-export interface GitForensicsCliFlags {
-  sinceDays: number | undefined;
-  maxCouplingCommitFiles: number | undefined;
-  glob: string | undefined;
-  ignore: string[];
-  targetPath: string;
-}
-
-export interface ArchlensCliPlan {
-  isHeadless: boolean;
-  runArchitecture: boolean;
-  /** Re-run externals pass on existing YAML only (no AST scan). */
-  runEnrichOnly: boolean;
-  runGitForensics: boolean;
-  /** After a successful scan, upload the output tree via `archlens publish --no-dry-run`. */
-  publishAfterScan: boolean;
-  /** Forwarded to publish-after-scan (default skip; `--validate` gates; `--skip-validation` always allows). */
-  publishSkipValidation: boolean;
-  /** Forwarded to publish-after-scan (`--key-prefix` / `--workspace-name`). */
-  publishKeyPrefix?: string;
-  publishWorkspaceName?: string;
-  /** True when CLI flags already decided git on/off (skip interactive git prompt). */
-  gitDecisionExplicit: boolean;
-  watch: boolean;
-  watchDebounceMs: number;
-  architecture: ArchitectureCliFlags;
-  git: GitForensicsCliFlags;
-}
 
 export type ArchlensCommandPlan =
   | { kind: 'architecture'; plan: ArchlensCliPlan }

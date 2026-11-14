@@ -38,7 +38,7 @@ async function run() {
 
   const help = resolveHelpRequest(args);
   if (help.isHelp) {
-    printCliHelp(help.topic);
+    printCliHelp(help.topic, getArchlensVersion());
     process.exit(0);
   }
 
@@ -77,6 +77,7 @@ async function run() {
           ...opts,
           askPath: askPathWithTabComplete,
         }),
+      executeRun: executeArchitectureRun,
     });
     return;
   }

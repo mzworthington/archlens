@@ -8,7 +8,7 @@ import type { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitte
 import { loadForensicsConfig, resolveForensicsOptions } from './adapters/loadForensicsConfig';
 import { SourceFileListerAdapter } from './adapters/sourceFileLister';
 import { TreeSitterComplexityAdapter } from './adapters/treeSitterComplexity';
-import type { GitForensicsCliFlags } from '../cli/parseArchlensArgv';
+import type { GitForensicsCliFlags } from './domain/options';
 
 /**
  * Collect per-file forensics metrics for attaching onto architecture nodes.

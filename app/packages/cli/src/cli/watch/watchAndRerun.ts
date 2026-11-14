@@ -1,30 +1,44 @@
 import chokidar, { type FSWatcher } from 'chokidar';
 import pc from 'picocolors';
 import { buildWatchIgnorePatterns, createDebouncer, type WatchModeOptions } from './watchMode';
-import type { ArchlensCliPlan } from '../parseArchlensArgv';
-import { executeArchitectureRun, resolveArchitectureState } from '../architectureRun';
+import type { ArchlensCliPlan } from '../help/flagCatalog';
 import { isCancellationError } from '@archlens/analysis/cancellation';
 
-export interface WatchAndRerunDeps {
+export interface WatchRunCancellation {
+  signal: AbortSignal;
+  install: () => () => void;
+}
+
+export interface WatchExecuteRunOptions {
+  headlessUi: boolean;
+  watchMode?: boolean;
+  cancellation?: WatchRunCancellation;
+  suppressExitOnCancel?: boolean;
+}
+
+export interface WatchAndRerunDeps<TState extends { outputDir: string } = { outputDir: string }> {
   watch?: (scanRoot: string, ignored: string[]) => FSWatcher;
   log?: (message: string) => void;
   onExit?: (code: number) => never;
-  resolveState?: typeof resolveArchitectureState;
-  executeRun?: typeof executeArchitectureRun;
+  resolveState?: (plan: ArchlensCliPlan, opts: { interactive: boolean }) => Promise<TState>;
+  executeRun?: (state: TState, options: WatchExecuteRunOptions) => Promise<void>;
 }
 
-export async function watchAndRerun(
+export async function watchAndRerun<TState extends { outputDir: string } = { outputDir: string }>(
   plan: ArchlensCliPlan,
   options: WatchModeOptions,
-  deps: WatchAndRerunDeps = {}
+  deps: WatchAndRerunDeps<TState> = {}
 ): Promise<never> {
   const log = deps.log ?? console.log;
   const exit = deps.onExit ?? ((code: number) => process.exit(code));
   const watch =
     deps.watch ??
     ((scanRoot, ignored) => chokidar.watch(scanRoot, { ignored, ignoreInitial: true }));
-  const resolveState = deps.resolveState ?? resolveArchitectureState;
-  const executeRun = deps.executeRun ?? executeArchitectureRun;
+  const resolveState = deps.resolveState;
+  const executeRun = deps.executeRun;
+  if (!resolveState || !executeRun) {
+    throw new Error('watchAndRerun requires resolveState and executeRun callbacks');
+  }
 
   const interactiveFirstRun = !plan.isHeadless;
   const state = await resolveState(plan, { interactive: interactiveFirstRun });

@@ -1,6 +1,10 @@
-export type OutputFormat = 'text' | 'json';
-/** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
-export type ResilienceOutputFormat = OutputFormat | 'yaml';
+import {
+  defaultEstateKeyPrefix,
+  type OutputFormat,
+  type ResilienceOutputFormat,
+} from './help/flagCatalog';
+
+export { defaultEstateKeyPrefix, type OutputFormat, type ResilienceOutputFormat };
 
 const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
@@ -46,13 +50,6 @@ export function parseStorageProvider(argv: string[]): 'r2' | 's3' | 'azure' | un
   return providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
     ? providerRaw
     : undefined;
-}
-
-export function defaultEstateKeyPrefix(estateId: string): string {
-  let trimmed = estateId;
-  while (trimmed.startsWith('/')) trimmed = trimmed.slice(1);
-  while (trimmed.endsWith('/')) trimmed = trimmed.slice(0, -1);
-  return `estates/${trimmed}`;
 }
 
 /**

@@ -1,4 +1,4 @@
-import type { ArchlensCliPlan } from '../parseArchlensArgv';
+import type { ArchlensCliPlan } from '../help/flagCatalog';
 
 export interface InteractiveGitChoice {
   /** none = skip forensics; full = enrich blueprints; skip = leave plan unchanged. */

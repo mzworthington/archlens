@@ -10,33 +10,9 @@ import {
 } from '@archlens/core/layout';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../../core';
 import { computeClientLayout } from '../../layout/computeClientLayout';
-import { NODE_SIZE } from '../../layout/constants';
-import type { BlueprintRFNode } from './mapping';
+import { getAbsoluteNodePosition, getNodeDimensions, type BlueprintRFNode } from './mapping';
 
-function getNodeDimensions(node: BlueprintRFNode): { width: number; height: number } {
-  const style = node.style as { width?: number; height?: number } | undefined;
-  return {
-    width: node.measured?.width ?? style?.width ?? NODE_SIZE.width,
-    height: node.measured?.height ?? style?.height ?? NODE_SIZE.height,
-  };
-}
-
-export function getAbsoluteNodePosition(
-  node: BlueprintRFNode,
-  nodeById: Map<string, BlueprintRFNode>
-): { x: number; y: number } {
-  let x = node.position.x;
-  let y = node.position.y;
-  let parentId = typeof node.parentId === 'string' ? node.parentId : undefined;
-  while (parentId) {
-    const parent = nodeById.get(parentId);
-    if (!parent) break;
-    x += parent.position.x;
-    y += parent.position.y;
-    parentId = typeof parent.parentId === 'string' ? parent.parentId : undefined;
-  }
-  return { x, y };
-}
+export { getAbsoluteNodePosition };
 
 /** Run automatic layout on load unless every node already has saved coordinates. */
 export function shouldAutoLayoutOnLoad(schema: SystemSchema): boolean {

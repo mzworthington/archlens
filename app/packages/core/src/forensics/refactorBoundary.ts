@@ -1,5 +1,5 @@
 import type { NodeForensics } from '../models/schema';
-import { normalizeWorkspaceFilepath } from '../rules/workspaceExternals';
+import { normalizeWorkspaceFilepath } from '../lib/posixPath';
 import { computeRefactorScore } from './refactorScore';
 
 export type RefactorBoundarySignal =

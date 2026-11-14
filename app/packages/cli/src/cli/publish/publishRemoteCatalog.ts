@@ -5,12 +5,6 @@ import {
   type ObjectStoragePort,
 } from '@archlens/storage';
 
-export type RemoteCatalogPublishResult = {
-  revisionId: string;
-  provider: string;
-  uploadedObjects: number;
-};
-
 export type PublishObjectStorageOverrides = {
   provider?: 'r2' | 's3' | 'azure';
   bucket?: string;

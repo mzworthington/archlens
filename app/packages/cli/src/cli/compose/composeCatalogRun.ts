@@ -1,6 +1,6 @@
 import { ObjectStoragePreconditionFailedError, type ObjectStoragePort } from '@archlens/storage';
 import { ConsoleLogger } from '../../analysis/adapters/consoleLogger';
-import type { CatalogComposeCliPlan } from '../parseArchlensArgv';
+import type { CatalogComposeCliPlan } from '../help/flagCatalog';
 import { resolvePublishObjectStorage } from '../publish/publishRemoteCatalog';
 import { runComposeCatalog } from './composeCatalog';
 import {

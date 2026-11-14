@@ -7,58 +7,15 @@ import {
   parseStorageProvider,
   positionalArgs,
   resolvePublishSkipValidation,
-  type OutputFormat,
-  type ResilienceOutputFormat,
 } from './argvFlags';
+import type {
+  DiffCliPlan,
+  PublishCliPlan,
+  ResilienceCliPlan,
+  ValidateCliPlan,
+} from './help/flagCatalog';
 
-export interface ValidateCliPlan {
-  targetPath: string;
-  format: OutputFormat;
-  /**
-   * Also run BlueprintSpec contract checks (schema parse, entityRef wiring).
-   * Default validate is architecture health only (cycles + forensics actions).
-   */
-  includeContract: boolean;
-  /** Explicit baseline blueprint tree for deterioration compare. */
-  baselinePath?: string;
-  /** Git commit/ref to materialize as the health baseline (default HEAD~1 when flag bare). */
-  sinceCommit?: string;
-}
-
-export interface DiffCliPlan {
-  baselinePath: string;
-  currentPath: string;
-  format: OutputFormat;
-}
-
-export interface ResilienceCliPlan {
-  targetPath: string;
-  format: ResilienceOutputFormat;
-  chaosSpecsDir?: string;
-  /** Write AdviceLens artifact to this path (format from --format, or .yaml/.json extension). */
-  outputPath?: string;
-  minSla: number;
-  failOnRecommendations: boolean;
-  maxRegionOutageTargets?: number;
-  maxFanInProbes?: number;
-}
-
-export interface PublishCliPlan {
-  targetPath: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  /**
-   * When true, do not fail publish/compose on workspace validation.
-   * Default true: catalogs show reality; use `--validate` for an optional hard gate.
-   * `--skip-validation` always allows push even if `--validate` is also set.
-   */
-  skipValidation: boolean;
-  workspaceName?: string;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
+export type { DiffCliPlan, PublishCliPlan, ResilienceCliPlan, ValidateCliPlan };
 
 export function parseValidateArgv(argv: string[]): ValidateCliPlan {
   const rest = argv[0] === 'validate' ? argv.slice(1) : argv;

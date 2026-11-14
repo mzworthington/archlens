@@ -1,5 +1,5 @@
 import type { ForensicClassification } from '../models/schema';
-import { churnAccelerationRatio, churnAccelerationTone } from '../forensics/churnAcceleration';
+import { churnAccelerationRatio, churnAccelerationTone } from '../lib/churnAcceleration';
 import { collectDependencyCycles, type DependencyCycleReason } from './dependencyCycles';
 import type { LoadedBlueprintSchema } from './validateBlueprintWorkspace';
 

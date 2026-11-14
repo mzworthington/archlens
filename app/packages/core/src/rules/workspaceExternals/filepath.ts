@@ -1,10 +1,8 @@
 import type { WorkspaceEntity, WorkspaceFilepathIndex, LoadedSystemInput } from './types';
 import { buildWorkspaceEntityIndex } from './entityIndex';
+import { normalizeWorkspaceFilepath } from '../../lib/posixPath';
 
-/** Normalize filepath for joins between forensics paths and node properties.filepath. */
-export function normalizeWorkspaceFilepath(path: string): string {
-  return path.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+/g, '/');
-}
+export { normalizeWorkspaceFilepath };
 
 /**
  * Index workspace entities by normalized `properties.filepath` for cross-diagram coupling resolution.

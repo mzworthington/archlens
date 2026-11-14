@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Code2, ExternalLink, Key, Lock, RefreshCw, X, Eye, EyeOff } from 'lucide-react';
+import { Code2, ExternalLink, Key, RefreshCw, X } from 'lucide-react';
 import {
   buildSourceFileUrl,
   normalizeGitRemoteUrl,
@@ -8,6 +8,11 @@ import {
 } from '@archlens/core';
 import { useSourceCodeDialog } from './useSourceCodeDialog';
 import { HighlightedSourceCode } from './HighlightedSourceCode';
+import {
+  ExternalHttpLink,
+  PatSettingsDrawer,
+  SourceUnavailablePanel,
+} from './SourceCodeDialogParts';
 
 const CUSTOM_REPO_URL_KEY = 'archlens_custom_repo_url';
 
@@ -16,41 +21,25 @@ function readStoredRepoUrl(): string {
   return normalizeGitRemoteUrl(localStorage.getItem(CUSTOM_REPO_URL_KEY) ?? '') ?? '';
 }
 
-function ExternalHttpLink({
-  href,
-  className,
-  title,
-  children,
-  'aria-label': ariaLabel,
-}: {
-  href: string;
-  className?: string;
-  title?: string;
-  children: React.ReactNode;
-  'aria-label'?: string;
-}) {
-  let safeHref: string | undefined;
-  try {
-    const parsed = new URL(href);
-    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
-      safeHref = parsed.href;
-    }
-  } catch {
-    return null;
-  }
-  if (!safeHref) return null;
-  return (
-    <a
-      href={safeHref}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-      title={title}
-      aria-label={ariaLabel}
-    >
-      {children}
-    </a>
-  );
+function resolveViewerUrl(
+  rawViewerUrl: string | undefined,
+  displayPath: string | undefined,
+  source: SourceProvenance | undefined,
+  activeRepoUrl: string
+): string | undefined {
+  const effectiveRemoteUrl = normalizeGitRemoteUrl(source?.remoteUrl || activeRepoUrl || '');
+  const fallbackViewerUrl =
+    effectiveRemoteUrl && displayPath
+      ? buildSourceFileUrl(
+          {
+            ...source,
+            remoteUrl: effectiveRemoteUrl,
+            scannedAtCommit: source?.scannedAtCommit || source?.defaultBranch || 'main',
+          },
+          displayPath
+        )
+      : undefined;
+  return safeHttpUrl(rawViewerUrl || fallbackViewerUrl);
 }
 
 interface SourceCodeDialogProps {
@@ -86,36 +75,25 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
   const [tokenInput, setTokenInput] = useState(githubPat ?? '');
   const [showPatDrawer, setShowPatDrawer] = useState(false);
   const [showPasswordText, setShowPasswordText] = useState(false);
+  const [repoUrlInput, setRepoUrlInput] = useState(readStoredRepoUrl);
+  const [activeRepoUrl, setActiveRepoUrl] = useState(readStoredRepoUrl);
 
   useEffect(() => {
     setTokenInput(githubPat ?? '');
   }, [githubPat]);
 
-  const [repoUrlInput, setRepoUrlInput] = useState(readStoredRepoUrl);
-  const [activeRepoUrl, setActiveRepoUrl] = useState(readStoredRepoUrl);
-
   if (!isOpen) return null;
 
-  const rawViewerUrl =
-    result && !result.ok ? result.viewerUrl : result?.ok ? result.viewerUrl : undefined;
   const displayPath =
     result?.ok && 'filepath' in result
       ? result.filepath
       : filepath?.replace(/\\/g, '/').replace(/^\.\//, '');
-
-  const effectiveRemoteUrl = normalizeGitRemoteUrl(source?.remoteUrl || activeRepoUrl || '');
-  const fallbackViewerUrl =
-    effectiveRemoteUrl && displayPath
-      ? buildSourceFileUrl(
-          {
-            ...source,
-            remoteUrl: effectiveRemoteUrl,
-            scannedAtCommit: source?.scannedAtCommit || source?.defaultBranch || 'main',
-          },
-          displayPath
-        )
-      : undefined;
-  const viewerUrl = safeHttpUrl(rawViewerUrl || fallbackViewerUrl);
+  const viewerUrl = resolveViewerUrl(
+    result ? result.viewerUrl : undefined,
+    displayPath,
+    source,
+    activeRepoUrl
+  );
 
   const handleSaveToken = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -152,7 +130,6 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
           className="pointer-events-auto w-full max-w-4xl bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl h-[min(90vh,860px)] flex flex-col overflow-hidden"
           onWheel={e => e.stopPropagation()}
         >
-          {/* Dialog Header */}
           <div className="p-4 border-b border-slate-800 flex items-start justify-between gap-3 shrink-0 bg-slate-950/80">
             <div className="flex items-start gap-2 min-w-0 flex-1">
               <Code2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
@@ -235,142 +212,34 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
             </div>
           </div>
 
-          {/* Collapsible PAT settings drawer */}
           {showPatDrawer && (
-            <div className="p-4 bg-slate-900/90 border-b border-slate-800 flex flex-col gap-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Key className="w-4 h-4 text-accent" />
-                  <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-                    GitHub Personal Access Token (PAT)
-                  </h3>
-                </div>
-                <p className="text-[11px] text-slate-400">
-                  Required for private repositories (stored in local browser storage only)
-                </p>
-              </div>
-
-              <form onSubmit={handleSaveToken} className="flex gap-2">
-                <div className="relative flex-1">
-                  <input
-                    type={showPasswordText ? 'text' : 'password'}
-                    value={tokenInput}
-                    onChange={e => setTokenInput(e.target.value)}
-                    placeholder="ghp_... or github_pat_..."
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-accent rounded-lg px-3 py-1.5 text-xs font-mono text-white focus:outline-none pr-8"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPasswordText(!showPasswordText)}
-                    className="absolute right-2 top-2 text-slate-400 hover:text-slate-200"
-                  >
-                    {showPasswordText ? (
-                      <EyeOff className="w-3.5 h-3.5" />
-                    ) : (
-                      <Eye className="w-3.5 h-3.5" />
-                    )}
-                  </button>
-                </div>
-                <button
-                  type="submit"
-                  className="px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/40 text-accent font-semibold text-xs hover:bg-accent/25 transition cursor-pointer shrink-0"
-                >
-                  Save & Retry
-                </button>
-                {githubPat && (
-                  <button
-                    type="button"
-                    onClick={handleClearToken}
-                    className="px-3 py-1.5 rounded-lg bg-red-950/40 border border-red-800/40 text-red-300 font-semibold text-xs hover:bg-red-900/40 transition cursor-pointer shrink-0"
-                  >
-                    Clear Token
-                  </button>
-                )}
-              </form>
-            </div>
+            <PatSettingsDrawer
+              tokenInput={tokenInput}
+              onChangeTokenInput={setTokenInput}
+              showPasswordText={showPasswordText}
+              onTogglePasswordText={() => setShowPasswordText(!showPasswordText)}
+              githubPat={githubPat}
+              onSaveToken={handleSaveToken}
+              onClearToken={handleClearToken}
+            />
           )}
 
-          {/* Dialog Body */}
           <div className="flex-1 overflow-hidden p-4 pt-0 min-h-0 flex flex-col gap-2">
             {loading ? (
               <div className="flex-1 flex items-center justify-center text-sm text-slate-500 font-mono">
                 Loading source…
               </div>
             ) : result && !result.ok ? (
-              <div className="flex-1 flex flex-col items-center justify-center p-6 min-h-0 overflow-y-auto">
-                <div className="w-full max-w-lg bg-slate-900/80 border border-slate-800 rounded-xl p-6 text-center shadow-lg flex flex-col items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-accent">
-                    <Lock className="w-5 h-5" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-slate-200">
-                      Source code preview unavailable
-                    </h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      In-browser source rendering works directly for{' '}
-                      <strong className="text-slate-300 font-semibold">public repositories</strong>.
-                      For private repositories, click the{' '}
-                      <button
-                        type="button"
-                        onClick={() => setShowPatDrawer(true)}
-                        className="text-accent font-semibold underline hover:text-white cursor-pointer"
-                      >
-                        Add PAT
-                      </button>{' '}
-                      button at the top of the screen to configure a GitHub Personal Access Token,
-                      or open the workspace locally.
-                    </p>
-                  </div>
-
-                  {viewerUrl ? (
-                    <ExternalHttpLink
-                      href={viewerUrl}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/15 hover:bg-accent/25 border border-accent/40 text-accent font-bold text-xs transition cursor-pointer shadow-md"
-                    >
-                      <ExternalLink className="w-4 h-4 shrink-0 text-accent" />
-                      <span>Open in GitHub</span>
-                    </ExternalHttpLink>
-                  ) : (
-                    <div className="w-full bg-slate-950/80 border border-slate-800 rounded-lg p-3 text-left space-y-2">
-                      <p className="text-[11px] text-slate-400">
-                        No remote repository URL found on this diagram. Enter your GitHub repository
-                        web URL:
-                      </p>
-                      <form
-                        onSubmit={e => {
-                          e.preventDefault();
-                          const remote = normalizeGitRemoteUrl(repoUrlInput);
-                          if (
-                            remote &&
-                            typeof window !== 'undefined' &&
-                            typeof localStorage !== 'undefined'
-                          ) {
-                            localStorage.setItem(CUSTOM_REPO_URL_KEY, remote);
-                            setActiveRepoUrl(remote);
-                            setRepoUrlInput(remote);
-                          }
-                        }}
-                        className="flex gap-2"
-                      >
-                        <input
-                          type="text"
-                          value={repoUrlInput}
-                          onChange={e => setRepoUrlInput(e.target.value)}
-                          placeholder="https://github.com/owner/repo"
-                          className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white focus:outline-none focus:border-accent"
-                        />
-                        <button
-                          type="submit"
-                          className="px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/30 text-accent font-semibold text-xs hover:bg-accent/25 transition cursor-pointer shrink-0"
-                        >
-                          Save & View Link
-                        </button>
-                      </form>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <SourceUnavailablePanel
+                viewerUrl={viewerUrl}
+                repoUrlInput={repoUrlInput}
+                onChangeRepoUrlInput={setRepoUrlInput}
+                onOpenPatDrawer={() => setShowPatDrawer(true)}
+                onSaveRepoUrl={remote => {
+                  setActiveRepoUrl(remote);
+                  setRepoUrlInput(remote);
+                }}
+              />
             ) : result?.ok ? (
               <HighlightedSourceCode content={result.content} filepath={result.filepath} />
             ) : null}

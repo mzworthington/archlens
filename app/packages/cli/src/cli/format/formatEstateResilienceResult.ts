@@ -4,7 +4,7 @@ import {
   serializeEstateResilienceReport,
   type EstateResilienceReport,
 } from '@archlens/core/recommendations';
-import type { ResilienceOutputFormat } from '../parseArchlensArgv';
+import type { ResilienceOutputFormat } from '../help/flagCatalog';
 
 function formatRecommendationLine(
   recommendation: EstateResilienceReport['recommendations'][number],

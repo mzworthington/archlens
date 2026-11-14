@@ -1,14 +1,15 @@
 import type { EntityRef, SystemSchema } from '../models/schema';
 import { EntityRef as EntityRefUtil } from '../models/schema';
+import { computeBlastRadius } from './blastRadius';
+import type { ChaosSpec } from './faultSpec';
+import { detectSpofCallSites, detectSpofs, resolveFaultTargets, type SpofCallSite } from './graph';
+import { computeIntegrityRadius } from './integrityRadius';
 import {
   buildResilienceRecommendations,
   resilienceRecommendationsToAdvice,
-} from '../recommendations/resilienceRecommendations';
-import { computeBlastRadius } from './blastRadius';
-import type { ChaosSpec } from './faultSpec';
-import { buildDependents, resolveFaultTargets } from './graph';
-import { computeIntegrityRadius } from './integrityRadius';
-import { resolveNodeResilience } from './nodeResilience';
+} from './resilienceRecommendations';
+
+export { detectSpofCallSites, detectSpofs, type SpofCallSite };
 
 export interface MonteCarloStats {
   iterations: number;
@@ -61,36 +62,6 @@ function computeOverallIntegrity(integrityHeat: Map<EntityRef, number>): number 
   const scores = impacted.map(([, intensity]) => (1 - intensity) * 100);
   const mean = scores.reduce((a, b) => a + b, 0) / scores.length;
   return Math.round(mean * 10) / 10;
-}
-
-/**
- * Detect single points of failure: dependencies with multiple callers and no circuit breaker.
- */
-export interface SpofCallSite {
-  dependencyEntityRef: EntityRef;
-  callerEntityRefs: EntityRef[];
-}
-
-export function detectSpofCallSites(schema: SystemSchema): SpofCallSite[] {
-  const dependents = buildDependents(schema);
-  const sites: SpofCallSite[] = [];
-
-  for (const [dependency, callers] of dependents) {
-    if (callers.length < 2) continue;
-
-    const node = schema.nodes.find(n => n.entityRef === dependency);
-    const hasCircuitBreaker = Boolean(resolveNodeResilience(node).circuitBreaker);
-
-    if (!hasCircuitBreaker) {
-      sites.push({ dependencyEntityRef: dependency, callerEntityRefs: [...callers] });
-    }
-  }
-
-  return sites;
-}
-
-export function detectSpofs(schema: SystemSchema): EntityRef[] {
-  return detectSpofCallSites(schema).map(site => site.dependencyEntityRef);
 }
 
 /**

@@ -32,6 +32,114 @@ export type ImportDependencyMaps = {
   filepathToFileEntityRef: Map<string, string>;
 };
 
+function extractFileSlug(filepath: string): string {
+  const fileName = filepath.replace(/\\/g, '/').split('/').pop() ?? '';
+  return slugify(fileName.replace(/\.(ts|tsx|js|jsx|go|java|kt|kts|cs|py)$/, ''));
+}
+
+function resolveWorkspaceTargetComponentRef(
+  parentRef: string,
+  resolveOptions: ResolveContainerOptions,
+  maps: ImportDependencyMaps,
+  workspaceTargetContainerId: string,
+  moduleSpecifier: string
+): string {
+  const entryComponentId = resolveWorkspacePackageEntryComponentId(
+    workspaceTargetContainerId,
+    resolveOptions.workspacePackageEntryIndex
+  );
+  const subpathComponentId = subpathComponentIdFromSpecifier(moduleSpecifier);
+  const candidateId = subpathComponentId ?? entryComponentId;
+
+  const containerPrefix = `${workspaceTargetContainerId}/`;
+  const containerNodes: Array<{ key: string; node: SystemNode }> = [];
+  for (const [key, node] of maps.componentNodesMap) {
+    if (
+      key.startsWith(containerPrefix) ||
+      node.properties?.containerId === workspaceTargetContainerId
+    ) {
+      containerNodes.push({ key, node });
+    }
+  }
+
+  if (containerNodes.length === 0) {
+    return componentEntityRef(parentRef, workspaceTargetContainerId, candidateId);
+  }
+
+  const exactKey = `${workspaceTargetContainerId}/${candidateId}`;
+  const exactNode = maps.componentNodesMap.get(exactKey);
+  if (exactNode?.entityRef) {
+    return exactNode.entityRef;
+  }
+
+  if (subpathComponentId) {
+    const suffixMatch = containerNodes.find(({ key }) => key.endsWith(`/${subpathComponentId}`));
+    if (suffixMatch?.node.entityRef) {
+      return suffixMatch.node.entityRef;
+    }
+
+    const memberFileLists = containerNodes.map(({ node }) => {
+      const members = Array.isArray(node.properties?.memberFilepaths)
+        ? (node.properties.memberFilepaths as string[])
+        : typeof node.properties?.filepath === 'string'
+          ? [node.properties.filepath]
+          : [];
+      return {
+        node,
+        slugs: members.map(extractFileSlug).filter(Boolean),
+      };
+    });
+
+    const exactFileMatch = memberFileLists.find(({ slugs }) => slugs.includes(subpathComponentId));
+    if (exactFileMatch?.node.entityRef) {
+      return exactFileMatch.node.entityRef;
+    }
+
+    const affixFileMatch = memberFileLists.find(({ slugs }) =>
+      slugs.some(
+        slug => slug.endsWith(`-${subpathComponentId}`) || slug.startsWith(`${subpathComponentId}-`)
+      )
+    );
+    if (affixFileMatch?.node.entityRef) {
+      return affixFileMatch.node.entityRef;
+    }
+
+    const targetTokens = subpathComponentId.split('-').filter(Boolean);
+    if (targetTokens.length > 1) {
+      const tokenFileMatch = memberFileLists.find(({ slugs }) =>
+        slugs.some(slug => {
+          const slugTokens = new Set(slug.split('-').filter(Boolean));
+          return targetTokens.every(token => slugTokens.has(token));
+        })
+      );
+      if (tokenFileMatch?.node.entityRef) {
+        return tokenFileMatch.node.entityRef;
+      }
+    }
+  }
+
+  for (const fallbackId of [
+    'index',
+    'extension',
+    'main',
+    'app',
+    'cli',
+    workspaceTargetContainerId,
+  ]) {
+    const fallbackNode = maps.componentNodesMap.get(`${workspaceTargetContainerId}/${fallbackId}`);
+    if (fallbackNode?.entityRef) {
+      return fallbackNode.entityRef;
+    }
+  }
+
+  const nonTestNode = containerNodes.find(({ node }) => !node.isTest)?.node;
+  return (
+    nonTestNode?.entityRef ??
+    containerNodes[0]?.node.entityRef ??
+    componentEntityRef(parentRef, workspaceTargetContainerId, candidateId)
+  );
+}
+
 function addWorkspacePackageImport(
   parentRef: string,
   resolveOptions: ResolveContainerOptions,
@@ -51,13 +159,13 @@ function addWorkspacePackageImport(
   }
 ): void {
   const toContainerRef = EntityRef.child(parentRef, workspaceTargetContainerId);
-  const entryComponentId = resolveWorkspacePackageEntryComponentId(
+  const toComponentRef = resolveWorkspaceTargetComponentRef(
+    parentRef,
+    resolveOptions,
+    maps,
     workspaceTargetContainerId,
-    resolveOptions.workspacePackageEntryIndex
+    moduleSpecifier
   );
-  const subpathComponentId = subpathComponentIdFromSpecifier(moduleSpecifier);
-  const toComponentId = subpathComponentId ?? entryComponentId;
-  const toComponentRef = componentEntityRef(parentRef, workspaceTargetContainerId, toComponentId);
   const description = packageNameFromSpecifier(moduleSpecifier) ?? undefined;
 
   if (fromComponent.entityRef !== toComponentRef) {

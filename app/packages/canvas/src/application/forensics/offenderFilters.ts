@@ -5,7 +5,7 @@ import type {
   OffenderSignalFilter,
   OffenderTestFilter,
   RankedOffender,
-} from './rankOffenders';
+} from './concern';
 
 export function hasUsefulForensics(node: SystemNode): boolean {
   const forensics = node.forensics;

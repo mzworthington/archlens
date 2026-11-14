@@ -15,6 +15,7 @@ import { PRODUCT_CATEGORY_STYLES } from '../../components/designSystem/shared';
 import { DocsShell } from './DocsShell';
 import { TodayJobs } from './TodayJobs';
 import { PRODUCT_HERO } from '../../content/productOutcomes';
+import { CREATE_BLANK_WORKSPACE_URL } from '../../../application/navigation/workspaceUrl';
 
 type Product = {
   title: string;
@@ -317,6 +318,12 @@ export const DocsHome: React.FC = () => {
                 >
                   Open ArchLens Canvas
                   <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+                <Link
+                  href={CREATE_BLANK_WORKSPACE_URL}
+                  className="inline-flex items-center justify-center rounded-xl border border-accent/40 px-5 py-3 text-sm font-semibold text-accent hover:text-ink hover:bg-accent/10 hover:border-accent transition-colors"
+                >
+                  Create a new workspace
                 </Link>
                 <Link
                   href="/journeys"

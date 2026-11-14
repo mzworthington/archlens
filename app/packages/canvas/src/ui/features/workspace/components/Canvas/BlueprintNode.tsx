@@ -2,12 +2,7 @@ import React, { memo, useEffect } from 'react';
 import { useUpdateNodeInternals } from '@xyflow/react';
 import { useLocation } from 'wouter';
 import type { NodeProps, Node } from '@xyflow/react';
-import {
-  listChildDiagramExternals,
-  resolveChildDiagramEntry,
-  resolveExternalNodeKind,
-  type NodeType,
-} from '@archlens/core';
+import type { NodeType } from '@archlens/core';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
 import { evaluateForensicsConcern } from '../../../../../application/forensics/concern';
@@ -24,6 +19,7 @@ import {
 } from './BlueprintNodeChrome';
 import { BlueprintNodeBlastRipple } from './BlueprintNodeHeatOverlays';
 import { blueprintNodeHeatStyle } from './blueprintNodeHeatStyle';
+import { resolveBlueprintNodeVisualState } from './blueprintNodeVisualState';
 import { NodeCommentMarker } from './NodeCommentMarker';
 
 type CustomNode = Node<ComponentNodeData, 'blueprintNode'>;
@@ -42,17 +38,6 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   const diagramSource = useBlueprintStore(state => state.schema.source);
   const liteCanvas = useBlueprintStore(state => state.liteCanvas);
   const entityRef = data.entityRef;
-  const canZoom = entityRef ? !!resolveChildDiagramEntry(workspaceCatalog, entityRef) : false;
-  const canCreateZoom = Boolean(
-    entityRef && !canZoom && !data.external && !data.couplingGhost && !data.hiddenExternalGhost
-  );
-  const childExternalsCount =
-    canZoom && entityRef
-      ? listChildDiagramExternals(workspaceCatalog, loadedSystems, entityRef).length
-      : 0;
-  const sourceFilepath =
-    typeof data.properties?.filepath === 'string' ? data.properties.filepath : undefined;
-  const showSourceCodeButton = Boolean(sourceFilepath) && !canZoom;
   const updateNodeInternals = useUpdateNodeInternals();
 
   const zoomToChild = (e: React.MouseEvent) => {
@@ -79,74 +64,20 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   }, [id, liteCanvas, updateNodeInternals]);
 
   const concern = React.useMemo(() => evaluateForensicsConcern(data.forensics), [data.forensics]);
-  const classifications = data.forensics?.classifications ?? [];
-  const externalKind = data.external
-    ? resolveExternalNodeKind({ external: data.external, properties: data.properties })
-    : null;
-  const showHotBadge = classifications.includes('hotspot') || concern.level === 'danger';
-  const showSiloBadge =
-    classifications.includes('knowledge-silo') ||
-    (concern.level === 'warning' && concern.reasons.some(r => /silo/i.test(r)));
-  const hotspotHeat = typeof data.hotspotHeat === 'number' ? data.hotspotHeat : 0;
-  const blastHeat = typeof data.blastHeat === 'number' ? data.blastHeat : 0;
-  const integrityHeat = typeof data.integrityHeat === 'number' ? data.integrityHeat : 0;
-  const showHotspotHeat = hotspotHeat > 0.08;
-  const showAvailabilityRisk = blastHeat > 0.08;
-  const showIntegrityRisk = integrityHeat > 0.08;
-  const showRiskVisualization = showHotspotHeat || showAvailabilityRisk || showIntegrityRisk;
-  const availabilityScore = Math.round((1 - blastHeat) * 100);
-  const integrityScore = Math.round((1 - integrityHeat) * 100);
-  const showBlastRipple = Boolean(data.blastRipple) && !liteCanvas;
-  const isOutOfSimulationScope = Boolean(data.resilienceOutOfScope);
-  const activeSafeguards = data.resilienceSafeguards;
+  const visual = resolveBlueprintNodeVisualState({
+    data,
+    selected,
+    liteCanvas,
+    concern,
+    workspaceCatalog,
+    loadedSystems,
+  });
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (data.hiddenExternalGhost) return;
     selectNode(id);
   };
-
-  const concernBorder =
-    concern.level === 'danger'
-      ? 'border-red-800/80'
-      : concern.level === 'warning'
-        ? 'border-amber-800/80'
-        : null;
-
-  const solidBg = 'bg-slate-950';
-  const borderClass = data.hiddenExternalGhost
-    ? 'border-dashed border-cyan-500/70 bg-cyan-950/30 hover:border-cyan-400/80'
-    : data.couplingGhost
-      ? 'border-dashed border-amber-500/70 bg-amber-950/30 hover:border-amber-400/80'
-      : data.external
-        ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
-        : data.isResilienceFaultTarget
-          ? 'resilience-fault-target'
-          : selected
-            ? 'border-brand-500 bg-slate-900 scale-102'
-            : data.dependencyRole === 'upstream'
-              ? 'border-violet-500/70 bg-slate-900'
-              : data.dependencyRole === 'downstream'
-                ? 'border-emerald-500/70 bg-slate-900'
-                : data.couplingHighlight
-                  ? 'border-amber-500/70 bg-slate-900'
-                  : data.refactorBoundaryHighlight
-                    ? 'border-violet-500/70 bg-slate-900'
-                    : activeSafeguards
-                      ? 'resilience-safeguard'
-                      : concernBorder
-                        ? `${concernBorder} ${solidBg} hover:border-slate-700`
-                        : `${solidBg} border-slate-800 hover:border-slate-700`;
-
-  const resilienceTitle =
-    showAvailabilityRisk || showIntegrityRisk
-      ? [
-          showAvailabilityRisk ? `Availability ${availabilityScore}%` : null,
-          showIntegrityRisk ? `Integrity ${integrityScore}%` : null,
-        ]
-          .filter(Boolean)
-          .join(' · ')
-      : name;
 
   if (data.externalSummaryHub) {
     const band = data.externalSummaryBand === 'callers' ? 'callers' : 'targets';
@@ -161,24 +92,24 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   return (
     <div
-      title={resilienceTitle}
+      title={visual.resilienceTitle}
       className={`relative w-64 rounded-xl border p-4 cursor-pointer ${
         liteCanvas ? '' : 'transition-colors duration-150'
-      } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''} ${
-        isOutOfSimulationScope ? 'opacity-35 saturate-50' : ''
+      } ${visual.borderClass} ${visual.showBlastRipple ? 'blast-ripple-node' : ''} ${
+        visual.isOutOfSimulationScope ? 'opacity-35 saturate-50' : ''
       }`}
       style={blueprintNodeHeatStyle({
         selected,
         external: data.external,
         couplingHighlight: data.couplingHighlight,
         liteCanvas,
-        isOutOfSimulationScope,
-        showAvailabilityRisk,
-        showIntegrityRisk,
-        showHotspotHeat,
-        hotspotHeat,
-        blastHeat,
-        integrityHeat,
+        isOutOfSimulationScope: visual.isOutOfSimulationScope,
+        showAvailabilityRisk: visual.showAvailabilityRisk,
+        showIntegrityRisk: visual.showIntegrityRisk,
+        showHotspotHeat: visual.showHotspotHeat,
+        hotspotHeat: visual.hotspotHeat,
+        blastHeat: visual.blastHeat,
+        integrityHeat: visual.integrityHeat,
       })}
     >
       <NodeCommentMarker entityRef={entityRef} />
@@ -187,33 +118,27 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         aria-label={name}
         onClick={handleClick}
         data-coupling-highlight={data.couplingHighlight ? 'true' : undefined}
-        data-hotspot-heat={showHotspotHeat ? hotspotHeat.toFixed(2) : undefined}
-        data-availability-heat={showAvailabilityRisk ? blastHeat.toFixed(2) : undefined}
-        data-integrity-heat={showIntegrityRisk ? integrityHeat.toFixed(2) : undefined}
-        data-testid={
-          liteCanvas
-            ? 'blueprint-node-simplified'
-            : activeSafeguards
-              ? 'resilience-safeguard-node'
-              : showRiskVisualization
-                ? 'hotspot-heat'
-                : 'blueprint-node'
+        data-hotspot-heat={visual.showHotspotHeat ? visual.hotspotHeat.toFixed(2) : undefined}
+        data-availability-heat={
+          visual.showAvailabilityRisk ? visual.blastHeat.toFixed(2) : undefined
         }
+        data-integrity-heat={visual.showIntegrityRisk ? visual.integrityHeat.toFixed(2) : undefined}
+        data-testid={visual.testId}
         className="absolute inset-0 z-0 border-0 bg-transparent p-0 cursor-pointer"
       />
       <div className="relative z-10 pointer-events-none">
         <div className="pointer-events-auto">
-          <BlueprintNodeBlastRipple show={showBlastRipple} />
+          <BlueprintNodeBlastRipple show={visual.showBlastRipple} />
           <BlueprintNodeHandles />
         </div>
 
-        {liteCanvas && canZoom ? (
+        {liteCanvas && visual.canZoom ? (
           <div className="absolute top-2 right-2 pointer-events-auto">
             <BlueprintNodeZoomButton name={name} liteCanvas onZoom={zoomToChild} />
           </div>
         ) : null}
 
-        {liteCanvas && canCreateZoom ? (
+        {liteCanvas && visual.canCreateZoom ? (
           <div className="absolute top-2 right-2 pointer-events-auto">
             <BlueprintNodeCreateZoomButton name={name} liteCanvas onCreateZoom={createZoom} />
           </div>
@@ -225,11 +150,11 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
               config={config}
               name={name}
               entityRef={entityRef}
-              canZoom={canZoom}
-              canCreateZoom={canCreateZoom}
-              childExternalsCount={childExternalsCount}
-              showSourceCodeButton={showSourceCodeButton}
-              sourceFilepath={sourceFilepath}
+              canZoom={visual.canZoom}
+              canCreateZoom={visual.canCreateZoom}
+              childExternalsCount={visual.childExternalsCount}
+              showSourceCodeButton={visual.showSourceCodeButton}
+              sourceFilepath={visual.sourceFilepath}
               diagramSource={diagramSource}
               isExternal={data.external}
               isCouplingGhost={data.couplingGhost}
@@ -249,20 +174,20 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           liteCanvas={liteCanvas}
           hiddenExternalGhost={data.hiddenExternalGhost}
           couplingGhost={data.couplingGhost}
-          externalKind={externalKind}
+          externalKind={visual.externalKind}
         />
 
         {!liteCanvas && (
           <BlueprintNodeBadges
             typeLabel={config.label}
-            showHotBadge={showHotBadge}
-            showSiloBadge={showSiloBadge}
+            showHotBadge={visual.showHotBadge}
+            showSiloBadge={visual.showSiloBadge}
             couplingHighlight={data.couplingHighlight}
             refactorBoundaryHighlight={data.refactorBoundaryHighlight}
             dependencyRole={data.dependencyRole}
-            activeSafeguards={activeSafeguards}
-            showAvailabilityRisk={showAvailabilityRisk}
-            showIntegrityRisk={showIntegrityRisk}
+            activeSafeguards={data.resilienceSafeguards}
+            showAvailabilityRisk={visual.showAvailabilityRisk}
+            showIntegrityRisk={visual.showIntegrityRisk}
             isTest={data.isTest}
           />
         )}

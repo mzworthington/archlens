@@ -1,5 +1,5 @@
-import type { BlueprintState } from '../store';
 import { isDesktopViewport } from '../layoutUtils';
+import type { UiState } from './uiState';
 
 export interface TraceLensState {
   isTraceLensMode: boolean;
@@ -10,7 +10,12 @@ export interface TraceLensState {
   toggleTraceLensMode: () => void;
 }
 
-function traceLensModePanelPatch(): Partial<BlueprintState> {
+type TraceLensStoreSlice = TraceLensState &
+  Pick<UiState, 'leftCollapsed' | 'rightCollapsed' | 'activeLeftPanel'> & {
+    isResilienceMode?: boolean;
+  };
+
+function traceLensModePanelPatch(): Partial<TraceLensStoreSlice> {
   return {
     leftCollapsed: true,
     isTraceLensPanelOpen: false,
@@ -19,10 +24,14 @@ function traceLensModePanelPatch(): Partial<BlueprintState> {
 }
 
 export const createTraceLensState = (
-  set: (
-    partial: Partial<BlueprintState> | ((state: BlueprintState) => Partial<BlueprintState>)
-  ) => void,
-  get: () => BlueprintState
+  set: {
+    bivarianceHack(
+      partial:
+        | Partial<TraceLensStoreSlice>
+        | ((state: TraceLensStoreSlice) => Partial<TraceLensStoreSlice>)
+    ): void;
+  }['bivarianceHack'],
+  get: () => TraceLensStoreSlice
 ): TraceLensState => ({
   isTraceLensMode: false,
   isTraceLensPanelOpen: false,

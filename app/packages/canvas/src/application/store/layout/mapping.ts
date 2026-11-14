@@ -17,7 +17,23 @@ import { getNodePosition } from '@archlens/core';
 import { NODE_SIZE } from '../../layout/constants';
 import { dependencyArrowMarker } from './edgeAnimation';
 import type { CanvasEdgeMarker } from './edgeAnimation';
-import { getAbsoluteNodePosition } from './groupedLayout';
+
+export function getAbsoluteNodePosition(
+  node: BlueprintRFNode,
+  nodeById: Map<string, BlueprintRFNode>
+): { x: number; y: number } {
+  let x = node.position.x;
+  let y = node.position.y;
+  let parentId = typeof node.parentId === 'string' ? node.parentId : undefined;
+  while (parentId) {
+    const parent = nodeById.get(parentId);
+    if (!parent) break;
+    x += parent.position.x;
+    y += parent.position.y;
+    parentId = typeof parent.parentId === 'string' ? parent.parentId : undefined;
+  }
+  return { x, y };
+}
 
 export type ComponentNodeData = {
   [key: string]: unknown;

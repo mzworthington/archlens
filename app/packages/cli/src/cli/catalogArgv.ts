@@ -6,75 +6,22 @@ import {
   parseStorageProvider,
   positionalArgs,
   resolvePublishSkipValidation,
-  type OutputFormat,
 } from './argvFlags';
+import type {
+  CatalogAcceptOverlayCliPlan,
+  CatalogComposeCliPlan,
+  CatalogPruneCliPlan,
+  CatalogPublishFragmentCliPlan,
+  CatalogRejectOverlayCliPlan,
+} from './help/flagCatalog';
 
-export interface CatalogComposeCliPlan {
-  estateId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  skipValidation: boolean;
-  /** When true, exit 0 if no fragments are staged (cron safety nets). */
-  allowEmpty: boolean;
-  workspaceName?: string;
-  maxRetries: number;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogPublishFragmentCliPlan {
-  targetPath: string;
-  estateId: string;
-  productId: string;
-  systemId?: string;
-  fragmentKey?: string;
-  sourceRef: string;
-  runId?: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  skipValidation: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogAcceptOverlayCliPlan {
-  estateId: string;
-  overlayFile: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogRejectOverlayCliPlan {
-  estateId: string;
-  overlayId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogPruneCliPlan {
-  estateId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  keepSnapshotCount: number;
-  keepSnapshotDays: number;
-  keepFragmentRuns: number;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
+export type {
+  CatalogAcceptOverlayCliPlan,
+  CatalogComposeCliPlan,
+  CatalogPruneCliPlan,
+  CatalogPublishFragmentCliPlan,
+  CatalogRejectOverlayCliPlan,
+};
 
 export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
   const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;

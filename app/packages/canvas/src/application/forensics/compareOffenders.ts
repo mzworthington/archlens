@@ -1,4 +1,4 @@
-import type { OffenderSignalFilter, RankedOffender } from './rankOffenders';
+import type { OffenderSignalFilter, RankedOffender } from './concern';
 
 function compareDesc(left: number, right: number): number {
   return right - left;

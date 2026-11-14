@@ -1,6 +1,5 @@
 import pc from 'picocolors';
 import { FLAG } from './flagCatalog';
-import { getArchlensVersion } from '../version';
 import {
   printCatalogHelp,
   printDiffHelp,
@@ -78,10 +77,10 @@ export function resolveHelpRequest(argv: string[]): { isHelp: boolean; topic: He
   return { isHelp: true, topic: topic ?? 'overview' };
 }
 
-export function printCliHelp(topic: HelpTopic = 'overview'): void {
+export function printCliHelp(topic: HelpTopic = 'overview', version = 'dev'): void {
   console.log('');
   console.log(
-    `${pc.bold(pc.cyan('◆'))} ${pc.bold('ARCHLENS')} ${pc.dim(getArchlensVersion())} ${pc.dim('-')} ${pc.dim('Blueprints from your codebase')}`
+    `${pc.bold(pc.cyan('◆'))} ${pc.bold('ARCHLENS')} ${pc.dim(version)} ${pc.dim('-')} ${pc.dim('Blueprints from your codebase')}`
   );
 
   switch (topic) {

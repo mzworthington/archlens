@@ -27,10 +27,10 @@ type BrandMarkProps = {
 
 /**
  * Design-system product lockup: glowing icon + ARCHLENS title.
- * Links to the product guide (`/guide`).
+ * Links to the root homepage (`/`).
  */
 export const BrandMark: React.FC<BrandMarkProps> = ({ badge, subtitle }) => (
-  <Link href="/guide" className="flex items-center gap-3 min-w-0 group">
+  <Link href="/" className="flex items-center gap-3 min-w-0 group">
     <div className="p-1 border border-accent/40 rounded bg-accent/10 shrink-0 group-hover:border-accent/70 transition-colors">
       <BrandIcon />
     </div>

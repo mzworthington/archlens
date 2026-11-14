@@ -8,7 +8,7 @@ import {
   type ObjectStoragePort,
   type UploadEstateFragmentResult,
 } from '@archlens/storage';
-import type { CatalogPublishFragmentCliPlan } from '../parseArchlensArgv';
+import type { CatalogPublishFragmentCliPlan } from '../help/flagCatalog';
 import type { BlueprintValidationResult } from '@archlens/core';
 import { validateBlueprintWorkspace } from '@archlens/core';
 

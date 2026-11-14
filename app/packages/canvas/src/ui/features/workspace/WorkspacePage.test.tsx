@@ -189,4 +189,23 @@ describe('WorkspacePage Component', () => {
 
     expect(screen.getByTestId('startup-workspace-dialog')).toBeInTheDocument();
   });
+
+  it('opens the create blank workspace dialog when navigating to /workspace?new=1', () => {
+    mockLocation = '/workspace?new=1';
+    mockParams = { '*': '' };
+    useBlueprintStore.setState({
+      isStartupOpen: true,
+      loadedSystems: [],
+      isWorkspaceOpen: false,
+    });
+
+    render(<WorkspacePage />);
+
+    expect(screen.getByTestId('name-blank-workspace-dialog')).toBeInTheDocument();
+    expect(screen.queryByTestId('startup-workspace-dialog')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel naming workspace' }));
+    expect(screen.queryByTestId('name-blank-workspace-dialog')).not.toBeInTheDocument();
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace', { replace: true });
+  });
 });

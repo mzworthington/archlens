@@ -1,8 +1,15 @@
-import type { DependencyType, EntityRef, SystemDependency, SystemNode } from '../models/schema';
+import type {
+  DependencyType,
+  EntityRef,
+  SystemDependency,
+  SystemNode,
+  SystemSchema,
+} from '../models/schema';
 import {
   isAsyncStreamDependency,
   isAvailabilityPropagatingDependency,
 } from '../taxonomy/dependencySemantics';
+import { resolveNodeResilience } from './nodeResilience';
 
 type GraphKernelNode = Pick<SystemNode, 'entityRef' | 'type' | 'parentEntityRef'>;
 type GraphKernelEdge = Pick<SystemDependency, 'from' | 'to' | 'type'>;
@@ -142,4 +149,34 @@ export function pubSubBrokersAttachedToNode(
   }
 
   return [...brokers];
+}
+
+/**
+ * Detect single points of failure: dependencies with multiple callers and no circuit breaker.
+ */
+export interface SpofCallSite {
+  dependencyEntityRef: EntityRef;
+  callerEntityRefs: EntityRef[];
+}
+
+export function detectSpofCallSites(schema: SystemSchema): SpofCallSite[] {
+  const dependents = buildDependents(schema);
+  const sites: SpofCallSite[] = [];
+
+  for (const [dependency, callers] of dependents) {
+    if (callers.length < 2) continue;
+
+    const node = schema.nodes.find(n => n.entityRef === dependency);
+    const hasCircuitBreaker = Boolean(resolveNodeResilience(node).circuitBreaker);
+
+    if (!hasCircuitBreaker) {
+      sites.push({ dependencyEntityRef: dependency, callerEntityRefs: [...callers] });
+    }
+  }
+
+  return sites;
+}
+
+export function detectSpofs(schema: SystemSchema): EntityRef[] {
+  return detectSpofCallSites(schema).map(site => site.dependencyEntityRef);
 }

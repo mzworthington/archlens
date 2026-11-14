@@ -30,3 +30,8 @@ export function extname(filePath: string): string {
   const dot = base.lastIndexOf('.');
   return dot > 0 ? base.slice(dot) : '';
 }
+
+/** Normalize filepath for joins between forensics paths and node properties.filepath. */
+export function normalizeWorkspaceFilepath(path: string): string {
+  return path.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+/g, '/');
+}

@@ -27,8 +27,12 @@ import { shouldPromptSaveBeforeShare } from '../../../../application/store/state
 import { collabShareAudience } from '../../../../application/collab/collabShareAudience';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
 import { useCollabShareSession } from './useCollabShareSession';
-import React, { useCallback, useState } from 'react';
-import { useLocation } from 'wouter';
+import {
+  isCreateBlankWorkspaceSearch,
+  withoutCreateBlankWorkspaceSearch,
+} from '../../../../application/navigation/workspaceUrl';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useSearch } from 'wouter';
 import { useShallow } from 'zustand/react/shallow';
 
 function folderPickerAvailable(): boolean {
@@ -36,9 +40,10 @@ function folderPickerAvailable(): boolean {
 }
 
 export function useWorkspaceDialogs(): React.ReactNode {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const search = useSearch();
   const collabShare = useCollabShareSession();
-  const [nameBlankOpen, setNameBlankOpen] = useState(false);
+  const [nameBlankOpen, setNameBlankOpen] = useState(() => isCreateBlankWorkspaceSearch(search));
   const [shareAfterNamed, setShareAfterNamed] = useState(false);
   const {
     isDiffOpen,
@@ -125,6 +130,13 @@ export function useWorkspaceDialogs(): React.ReactNode {
       selectSystem: s.selectSystem,
     }))
   );
+
+  useEffect(() => {
+    if (!isCreateBlankWorkspaceSearch(search)) return;
+    setShareAfterNamed(false);
+    setNameBlankOpen(true);
+    setIsStartupOpen(false);
+  }, [search, setIsStartupOpen]);
 
   const handleOpenSample = useCallback(async () => {
     const opened = await openBundledSample();
@@ -325,6 +337,9 @@ export function useWorkspaceDialogs(): React.ReactNode {
         onCancel={() => {
           setNameBlankOpen(false);
           setShareAfterNamed(false);
+          if (isCreateBlankWorkspaceSearch(search)) {
+            setLocation(withoutCreateBlankWorkspaceSearch(location, search), { replace: true });
+          }
         }}
       />
       <SaveScanMapDialog

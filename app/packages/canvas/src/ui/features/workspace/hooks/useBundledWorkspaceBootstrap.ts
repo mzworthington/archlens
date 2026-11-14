@@ -7,6 +7,7 @@ import {
   releaseDemoBootstrapClaim,
 } from '../../../../application/store/workspaceOpenSession';
 import {
+  isCreateBlankWorkspaceSearch,
   isWorkspacePath,
   workspaceEntityRefFromPath,
   workspaceEntityRefFromRouteParam,
@@ -42,18 +43,19 @@ export function useBundledWorkspaceBootstrap(): void {
       workspaceEntityRefFromPath(pathOnly);
 
     const roomId = parseCollabRoomId(search);
+    const createBlankWorkspace = isCreateBlankWorkspaceSearch(search);
     const blankCanvasSession = readBlankCanvasSession();
     const restoreBlankCanvas = shouldRestoreBlankCanvasForUrl({
       urlEntityRef: entityRef,
       session: blankCanvasSession,
     });
-    const skipDemoForCollab = Boolean(roomId) || restoreBlankCanvas;
+    const skipDemoForCollab = Boolean(roomId) || restoreBlankCanvas || createBlankWorkspace;
 
     if (skipDemoForCollab) {
       const { isStartupOpen, setIsStartupOpen, restoreEmptyWorkspaceDraft } =
         useBlueprintStore.getState();
       if (isStartupOpen) setIsStartupOpen(false);
-      if (restoreBlankCanvas && !roomId) {
+      if (restoreBlankCanvas && !roomId && !createBlankWorkspace) {
         void restoreEmptyWorkspaceDraft({ expectedEntityRef: entityRef });
       }
       return;
