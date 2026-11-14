@@ -66,6 +66,37 @@ describe('resetToEmptyWorkspace', () => {
     expect(assessSchemaVersion(EMPTY_WORKSPACE_SCHEMA.version)).toBeNull();
   });
 
+  it('drops sample systems and sample flags so the catalog cannot come back', () => {
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      usesRemoteCatalog: true,
+      remoteCatalogRevision: 'rev-9',
+      workspaceName: 'Samples',
+      workspaceCatalog: [
+        {
+          path: 'context.yaml',
+          name: 'Golden Journey',
+          level: 'context',
+          entityRef: 'golden-journey',
+          nodeEntityRefs: ['golden-journey/checkout'],
+        },
+      ],
+    });
+
+    useBlueprintStore.getState().resetToEmptyWorkspace();
+
+    const state = useBlueprintStore.getState();
+    expect(state.isSampleWorkspace).toBe(false);
+    expect(state.usesRemoteCatalog).toBe(false);
+    expect(state.remoteCatalogRevision).toBeNull();
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.workspaceCatalog).toEqual([]);
+    expect(state.loadedSystems).toHaveLength(1);
+    expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
+    expect(state.schema.name).toBe(EMPTY_WORKSPACE_SCHEMA.name);
+  });
+
   it('promotes the URL entity when the blank canvas is named', () => {
     useBlueprintStore.getState().resetToEmptyWorkspace();
     useBlueprintStore.getState().updateSchemaName('Super amazing');
