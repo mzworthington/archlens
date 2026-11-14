@@ -76,14 +76,30 @@ export function persistBlankCanvasSessionFromSchema(
   });
 }
 
+function isEntityRefUnder(entityRef: string, root: string): boolean {
+  if (!root) return false;
+  return entityRef === root || entityRef.startsWith(`${root}/`);
+}
+
+/** Session root, or `empty-workspace`, when the URL is that canvas or a child zoom under it. */
+export function blankCanvasRootForUrl(input: {
+  urlEntityRef: string | undefined;
+  session: BlankCanvasSession | null;
+}): string | undefined {
+  const urlEntityRef = input.urlEntityRef;
+  if (!urlEntityRef) return undefined;
+  const sessionRef = input.session?.entityRef;
+  if (sessionRef && isEntityRefUnder(urlEntityRef, sessionRef)) return sessionRef;
+  if (isEntityRefUnder(urlEntityRef, EMPTY_WORKSPACE_ENTITY_REF)) return EMPTY_WORKSPACE_ENTITY_REF;
+  return undefined;
+}
+
 /** Deep-link should rehydrate the Ideate draft instead of opening the demo. */
 export function shouldRestoreBlankCanvasForUrl(input: {
   urlEntityRef: string | undefined;
   session: BlankCanvasSession | null;
 }): boolean {
-  if (!input.urlEntityRef) return false;
-  if (input.urlEntityRef === EMPTY_WORKSPACE_ENTITY_REF) return true;
-  return input.session?.entityRef === input.urlEntityRef;
+  return blankCanvasRootForUrl(input) !== undefined;
 }
 
 function isStringRecord(value: unknown): value is Record<string, unknown> {

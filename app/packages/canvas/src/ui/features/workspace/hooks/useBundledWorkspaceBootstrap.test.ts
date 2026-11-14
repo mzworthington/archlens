@@ -191,6 +191,78 @@ describe('useBundledWorkspaceBootstrap', () => {
     expect(openBundledSample).not.toHaveBeenCalled();
   });
 
+  it('does not open Samples for a create-zoom child under a blank-canvas session', async () => {
+    persistBlankCanvasSession({
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+      placement: 'unsaved',
+    });
+    mockLocation = '/workspace/super-amazing/software-system-1204';
+    mockParams = { '*': 'super-amazing/software-system-1204' };
+    mockSearch = '';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({
+      openBundledSample,
+      restoreEmptyWorkspaceDraft,
+      isWorkspaceOpen: false,
+      isStartupOpen: true,
+    });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(restoreEmptyWorkspaceDraft).toHaveBeenCalledWith({
+        expectedEntityRef: 'super-amazing/software-system-1204',
+      });
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+  });
+
+  it('does not open Samples for a child zoom under empty-workspace', async () => {
+    mockLocation = '/workspace/empty-workspace/software-system-1204';
+    mockParams = { '*': 'empty-workspace/software-system-1204' };
+    mockSearch = '';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(false);
+    useBlueprintStore.setState({
+      openBundledSample,
+      restoreEmptyWorkspaceDraft,
+      isStartupOpen: true,
+    });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+    expect(restoreEmptyWorkspaceDraft).toHaveBeenCalledWith({
+      expectedEntityRef: 'empty-workspace/software-system-1204',
+    });
+  });
+
+  it('still opens Samples for a nested catalog deep link outside the blank session', async () => {
+    persistBlankCanvasSession({
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+      placement: 'unsaved',
+    });
+    mockLocation = '/workspace/golden-journey/checkout';
+    mockParams = { '*': 'golden-journey/checkout' };
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(openBundledSample).toHaveBeenCalled();
+    });
+  });
+
   it('does not open the startup chooser or demo when new=1 is in the query', async () => {
     mockLocation = '/workspace';
     mockParams = { '*': '' };

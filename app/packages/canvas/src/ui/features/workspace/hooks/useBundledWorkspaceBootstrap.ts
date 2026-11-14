@@ -22,8 +22,9 @@ import {
  * Workspace bootstrap:
  * - Bare `/workspace` (or `/workspace/`) → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
- * - Collab `?room=` or empty-workspace → stay on the current canvas (do not load demo).
- * - Empty-workspace also rehydrates an IndexedDB draft after refresh (not after Ideate).
+ * - Collab `?room=`, empty-workspace, or a create-zoom child under that blank session
+ *   → stay on the current canvas (do not load demo).
+ * - Those URLs also rehydrate an IndexedDB draft after refresh (not after Ideate).
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {

@@ -10,7 +10,7 @@ import {
   EMPTY_WORKSPACE_PATH,
   EMPTY_WORKSPACE_SCHEMA,
 } from './resetToEmptyWorkspace';
-import { readBlankCanvasSession } from '../ioState/blankCanvasSession';
+import { blankCanvasRootForUrl, readBlankCanvasSession } from '../ioState/blankCanvasSession';
 
 export async function restoreEmptyWorkspaceDraft(
   set: BlueprintStoreSet,
@@ -29,18 +29,12 @@ export async function restoreEmptyWorkspaceDraft(
 
   const session = readBlankCanvasSession();
   const expected = options.expectedEntityRef;
-  if (
-    expected &&
-    expected !== EMPTY_WORKSPACE_ENTITY_REF &&
-    session &&
-    session.entityRef !== expected
-  ) {
-    return false;
-  }
+  const blankRoot = blankCanvasRootForUrl({ urlEntityRef: expected, session });
+  if (expected && !blankRoot) return false;
 
   const filePath = session?.filePath || EMPTY_WORKSPACE_PATH;
   const systemName = session?.name || EMPTY_WORKSPACE_SCHEMA.name;
-  const systemEntityRef = session?.entityRef || expected || EMPTY_WORKSPACE_ENTITY_REF;
+  const systemEntityRef = session?.entityRef || blankRoot || expected || EMPTY_WORKSPACE_ENTITY_REF;
 
   const { workingCopyPort } = get();
   let draft: SystemSchema | null = null;

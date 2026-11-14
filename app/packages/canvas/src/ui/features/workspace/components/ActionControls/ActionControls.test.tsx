@@ -1,16 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ReactFlowProvider } from '@xyflow/react';
-import { systemSchemaPublicUrl } from '@archlens/core';
+import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
+import {
+  isFolderWorkspacePreferred,
+  resetWorkspaceOpenSessionForTests,
+} from '../../../../../application/store/workspaceOpenSession';
+import { useBlueprintStore } from '../../../../../application/store/store';
+import { noopCollabSession } from '../../../../../core';
 import {
   ToolbarEditActions,
   ToolbarOverflowMenu,
   ToolbarPendingChangesButton,
   ToolbarShortcutsButton,
 } from './ActionControls';
-import { useBlueprintStore } from '../../../../../application/store/store';
-import type { SystemSchema } from '@archlens/core';
-import { noopCollabSession } from '../../../../../core';
+
+const mockSetLocation = vi.fn();
+
+vi.mock('wouter', () => ({
+  useLocation: () => ['/workspace/golden-journey', mockSetLocation],
+  useSearch: () => '',
+}));
 
 const emptyHistorySchema: SystemSchema = {
   name: 'History',
@@ -39,6 +49,8 @@ function openMoreMenu() {
 
 describe('ActionControls Component', () => {
   beforeEach(() => {
+    resetWorkspaceOpenSessionForTests();
+    mockSetLocation.mockClear();
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
       isMemoryScanWorkspace: false,
@@ -159,7 +171,7 @@ describe('ActionControls Component', () => {
     expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
   });
 
-  it('triggers initSchema on clearing canvas if confirmed', async () => {
+  it('resets sample systems and leaves the blank workspace when clearing canvas', async () => {
     const initSchemaMock = vi.fn();
     const setIsLoadingMock = vi.fn();
     const clearWorkspaceDraftsMock = vi.fn().mockResolvedValue(undefined);
@@ -167,6 +179,36 @@ describe('ActionControls Component', () => {
       initSchema: initSchemaMock,
       setIsLoading: setIsLoadingMock,
       clearWorkspaceDrafts: clearWorkspaceDraftsMock,
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      usesRemoteCatalog: true,
+      remoteCatalogRevision: 'rev-9',
+      workspaceName: 'Samples',
+      workspaceCatalog: [
+        {
+          path: 'context.yaml',
+          name: 'Golden Journey',
+          level: 'context',
+          entityRef: 'golden-journey',
+          nodeEntityRefs: ['golden-journey/checkout'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'context.yaml',
+          name: 'Golden Journey',
+          schema: {
+            name: 'Golden Journey',
+            version: '1.0.0',
+            level: 'context',
+            entityRef: 'golden-journey',
+            nodes: [
+              { entityRef: 'golden-journey/checkout', type: 'software-system', name: 'Checkout' },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
     });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
@@ -188,13 +230,27 @@ describe('ActionControls Component', () => {
       nodes: [],
       dependencies: [],
     });
+    const state = useBlueprintStore.getState();
+    expect(state.isSampleWorkspace).toBe(false);
+    expect(state.usesRemoteCatalog).toBe(false);
+    expect(state.remoteCatalogRevision).toBeNull();
+    expect(state.isWorkspaceOpen).toBe(false);
+    expect(state.workspaceCatalog).toEqual([]);
+    expect(state.loadedSystems).toHaveLength(1);
+    expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
+    expect(isFolderWorkspacePreferred()).toBe(true);
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/empty-workspace', { replace: true });
 
     confirmSpy.mockRestore();
   });
 
   it('does not trigger initSchema on clearing canvas if not confirmed', () => {
     const initSchemaMock = vi.fn();
-    useBlueprintStore.setState({ initSchema: initSchemaMock });
+    useBlueprintStore.setState({
+      initSchema: initSchemaMock,
+      isSampleWorkspace: true,
+      workspaceName: 'Samples',
+    });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false);
 
@@ -203,6 +259,9 @@ describe('ActionControls Component', () => {
     fireEvent.click(screen.getByTitle('Clear canvas'));
 
     expect(initSchemaMock).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().isSampleWorkspace).toBe(true);
+    expect(mockSetLocation).not.toHaveBeenCalled();
+    expect(isFolderWorkspacePreferred()).toBe(false);
 
     confirmSpy.mockRestore();
   });

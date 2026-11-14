@@ -56,4 +56,34 @@ describe('blankCanvasSession', () => {
     expect(shouldRestoreBlankCanvasForUrl({ urlEntityRef: 'super-amazing', session })).toBe(true);
     expect(shouldRestoreBlankCanvasForUrl({ urlEntityRef: 'golden-journey', session })).toBe(false);
   });
+
+  it('keeps a create-zoom child under the blank session on that canvas', () => {
+    const session = {
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+      placement: 'file' as const,
+    };
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'super-amazing/software-system-1204',
+        session,
+      })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'empty-workspace/software-system-1204',
+        session: null,
+      })
+    ).toBe(true);
+    expect(shouldRestoreBlankCanvasForUrl({ urlEntityRef: 'super-amazing-extra', session })).toBe(
+      false
+    );
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'golden-journey/checkout',
+        session,
+      })
+    ).toBe(false);
+  });
 });

@@ -121,4 +121,78 @@ describe('restoreEmptyWorkspaceDraft', () => {
     expect(useBlueprintStore.getState().schema.entityRef).toBe('super-amazing');
     expect(useBlueprintStore.getState().currentFilePath).toBe('super_amazing.yaml');
   });
+
+  it('rehydrates the parent blank draft when the URL is a create-zoom child', async () => {
+    persistBlankCanvasSession({
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+      placement: 'unsaved',
+    });
+    const loadWorkingSchema = vi.fn().mockResolvedValue({
+      name: 'Super amazing',
+      version: systemSchemaPublicUrl(),
+      level: 'container',
+      entityRef: 'super-amazing',
+      nodes: [
+        {
+          entityRef: 'super-amazing/software-system-1204',
+          type: 'software-system',
+          name: 'API',
+          position: { x: 10, y: 20 },
+        },
+      ],
+      dependencies: [],
+    });
+    useBlueprintStore.setState({
+      workingCopyPort: { ...noopWorkingCopy, loadWorkingSchema },
+    });
+
+    const restored = await useBlueprintStore.getState().restoreEmptyWorkspaceDraft({
+      expectedEntityRef: 'super-amazing/software-system-1204',
+    });
+
+    expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: 'super_amazing.yaml',
+        systemEntityRef: 'super-amazing',
+      })
+    );
+    expect(useBlueprintStore.getState().isSampleWorkspace).toBe(false);
+    expect(useBlueprintStore.getState().schema.entityRef).toBe('super-amazing');
+  });
+
+  it('rehydrates the empty-workspace draft for a child zoom when no named session exists', async () => {
+    const loadWorkingSchema = vi.fn().mockResolvedValue({
+      name: 'Empty Workspace',
+      version: systemSchemaPublicUrl(),
+      level: 'container',
+      entityRef: 'empty-workspace',
+      nodes: [
+        {
+          entityRef: 'empty-workspace/software-system-1204',
+          type: 'software-system',
+          name: 'API',
+          position: { x: 4, y: 8 },
+        },
+      ],
+      dependencies: [],
+    });
+    useBlueprintStore.setState({
+      workingCopyPort: { ...noopWorkingCopy, loadWorkingSchema },
+    });
+
+    const restored = await useBlueprintStore.getState().restoreEmptyWorkspaceDraft({
+      expectedEntityRef: 'empty-workspace/software-system-1204',
+    });
+
+    expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: EMPTY_WORKSPACE_PATH,
+        systemEntityRef: 'empty-workspace',
+      })
+    );
+  });
 });
