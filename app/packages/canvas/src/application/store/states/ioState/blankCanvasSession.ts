@@ -76,33 +76,30 @@ export function persistBlankCanvasSessionFromSchema(
   });
 }
 
-/** True when the URL is the blank starter or a create-zoom child under it. */
-function isEmptyWorkspaceUrlEntityRef(urlEntityRef: string): boolean {
-  return (
-    urlEntityRef === EMPTY_WORKSPACE_ENTITY_REF ||
-    urlEntityRef.startsWith(`${EMPTY_WORKSPACE_ENTITY_REF}/`)
-  );
+function isEntityRefUnder(entityRef: string, root: string): boolean {
+  if (!root) return false;
+  return entityRef === root || entityRef.startsWith(`${root}/`);
 }
 
-/** True when the URL is the blank session root or a create-zoom child under it. */
-function isBlankSessionUrlEntityRef(urlEntityRef: string, sessionEntityRef: string): boolean {
-  return urlEntityRef === sessionEntityRef || urlEntityRef.startsWith(`${sessionEntityRef}/`);
+/** Session root, or `empty-workspace`, when the URL is that canvas or a child zoom under it. */
+export function blankCanvasRootForUrl(input: {
+  urlEntityRef: string | undefined;
+  session: BlankCanvasSession | null;
+}): string | undefined {
+  const urlEntityRef = input.urlEntityRef;
+  if (!urlEntityRef) return undefined;
+  const sessionRef = input.session?.entityRef;
+  if (sessionRef && isEntityRefUnder(urlEntityRef, sessionRef)) return sessionRef;
+  if (isEntityRefUnder(urlEntityRef, EMPTY_WORKSPACE_ENTITY_REF)) return EMPTY_WORKSPACE_ENTITY_REF;
+  return undefined;
 }
 
-/**
- * Deep-link should rehydrate the Ideate draft instead of opening the demo.
- * Create-zoom child URLs under the blank session must stay protected too —
- * otherwise bootstrap reloads Samples after the user leaves `/empty-workspace`.
- */
+/** Deep-link should rehydrate the Ideate draft instead of opening the demo. */
 export function shouldRestoreBlankCanvasForUrl(input: {
   urlEntityRef: string | undefined;
   session: BlankCanvasSession | null;
 }): boolean {
-  if (!input.urlEntityRef) return false;
-  if (isEmptyWorkspaceUrlEntityRef(input.urlEntityRef)) return true;
-  const sessionRef = input.session?.entityRef?.trim();
-  if (!sessionRef) return false;
-  return isBlankSessionUrlEntityRef(input.urlEntityRef, sessionRef);
+  return blankCanvasRootForUrl(input) !== undefined;
 }
 
 function isStringRecord(value: unknown): value is Record<string, unknown> {

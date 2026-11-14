@@ -12,7 +12,6 @@ import {
   workspaceEntityRefFromPath,
   workspaceEntityRefFromRouteParam,
 } from '../../../../application/navigation/workspaceUrl';
-import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 import { parseCollabRoomId } from '../../../../application/navigation/collabRoomUrl';
 import {
   readBlankCanvasSession,
@@ -23,8 +22,9 @@ import {
  * Workspace bootstrap:
  * - Bare `/workspace` (or `/workspace/`) → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
- * - Collab `?room=` or empty-workspace → stay on the current canvas (do not load demo).
- * - Empty-workspace also rehydrates an IndexedDB draft after refresh (not after Ideate).
+ * - Collab `?room=`, empty-workspace, or a create-zoom child under that blank session
+ *   → stay on the current canvas (do not load demo).
+ * - Those URLs also rehydrate an IndexedDB draft after refresh (not after Ideate).
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
@@ -50,19 +50,13 @@ export function useBundledWorkspaceBootstrap(): void {
       urlEntityRef: entityRef,
       session: blankCanvasSession,
     });
-    // Skip demo for blank roots and create-zoom children; only rehydrate the draft on the root.
-    const blankSessionRoot = blankCanvasSession?.entityRef?.trim();
-    const isBlankCanvasRootUrl =
-      Boolean(entityRef) &&
-      (entityRef === EMPTY_WORKSPACE_ENTITY_REF ||
-        (Boolean(blankSessionRoot) && entityRef === blankSessionRoot));
     const skipDemoForCollab = Boolean(roomId) || restoreBlankCanvas || createBlankWorkspace;
 
     if (skipDemoForCollab) {
       const { isStartupOpen, setIsStartupOpen, restoreEmptyWorkspaceDraft } =
         useBlueprintStore.getState();
       if (isStartupOpen) setIsStartupOpen(false);
-      if (restoreBlankCanvas && isBlankCanvasRootUrl && !roomId && !createBlankWorkspace) {
+      if (restoreBlankCanvas && !roomId && !createBlankWorkspace) {
         void restoreEmptyWorkspaceDraft({ expectedEntityRef: entityRef });
       }
       return;

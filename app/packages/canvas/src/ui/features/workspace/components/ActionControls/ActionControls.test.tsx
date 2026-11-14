@@ -1,15 +1,26 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ReactFlowProvider } from '@xyflow/react';
+import type { SystemSchema } from '@archlens/core';
+import {
+  isFolderWorkspacePreferred,
+  resetWorkspaceOpenSessionForTests,
+} from '../../../../../application/store/workspaceOpenSession';
+import { useBlueprintStore } from '../../../../../application/store/store';
+import { noopCollabSession } from '../../../../../core';
 import {
   ToolbarEditActions,
   ToolbarOverflowMenu,
   ToolbarPendingChangesButton,
   ToolbarShortcutsButton,
 } from './ActionControls';
-import { useBlueprintStore } from '../../../../../application/store/store';
-import type { SystemSchema } from '@archlens/core';
-import { noopCollabSession } from '../../../../../core';
+
+const mockSetLocation = vi.fn();
+
+vi.mock('wouter', () => ({
+  useLocation: () => ['/workspace/golden-journey', mockSetLocation],
+  useSearch: () => '',
+}));
 
 const emptyHistorySchema: SystemSchema = {
   name: 'History',
@@ -38,6 +49,8 @@ function openMoreMenu() {
 
 describe('ActionControls Component', () => {
   beforeEach(() => {
+    resetWorkspaceOpenSessionForTests();
+    mockSetLocation.mockClear();
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
       isMemoryScanWorkspace: false,
@@ -158,14 +171,15 @@ describe('ActionControls Component', () => {
     expect(saveActiveDiagramMock).toHaveBeenCalledTimes(1);
   });
 
-  it('resets to an empty workspace on clearing canvas if confirmed', async () => {
-    const resetToEmptyWorkspaceMock = vi.fn();
+  it('resets the workspace and leaves the blank canvas when clearing is confirmed', async () => {
+    const resetToEmptyWorkspace = vi.fn();
     const setIsLoadingMock = vi.fn();
     const clearWorkspaceDraftsMock = vi.fn().mockResolvedValue(undefined);
     useBlueprintStore.setState({
-      resetToEmptyWorkspace: resetToEmptyWorkspaceMock,
+      resetToEmptyWorkspace,
       setIsLoading: setIsLoadingMock,
       clearWorkspaceDrafts: clearWorkspaceDraftsMock,
+      isSampleWorkspace: true,
     });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
@@ -180,14 +194,19 @@ describe('ActionControls Component', () => {
       'Clear the workspace, purge all IndexedDB drafts and create a blank canvas?'
     );
     expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
-    expect(resetToEmptyWorkspaceMock).toHaveBeenCalled();
+    expect(resetToEmptyWorkspace).toHaveBeenCalled();
+    expect(isFolderWorkspacePreferred()).toBe(true);
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/empty-workspace', { replace: true });
 
     confirmSpy.mockRestore();
   });
 
-  it('does not reset the workspace on clearing canvas if not confirmed', () => {
-    const resetToEmptyWorkspaceMock = vi.fn();
-    useBlueprintStore.setState({ resetToEmptyWorkspace: resetToEmptyWorkspaceMock });
+  it('does not clear the canvas when confirm is declined', () => {
+    const resetToEmptyWorkspace = vi.fn();
+    useBlueprintStore.setState({
+      resetToEmptyWorkspace,
+      isSampleWorkspace: true,
+    });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false);
 
@@ -195,7 +214,10 @@ describe('ActionControls Component', () => {
     openMoreMenu();
     fireEvent.click(screen.getByTitle('Clear canvas'));
 
-    expect(resetToEmptyWorkspaceMock).not.toHaveBeenCalled();
+    expect(resetToEmptyWorkspace).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().isSampleWorkspace).toBe(true);
+    expect(mockSetLocation).not.toHaveBeenCalled();
+    expect(isFolderWorkspacePreferred()).toBe(false);
 
     confirmSpy.mockRestore();
   });
