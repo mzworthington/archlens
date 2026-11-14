@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { systemSchemaPublicUrl } from '@archlens/core';
 import { useBlueprintStore } from '../../store';
 import { noopWorkingCopy } from '../../../../core';
+import {
+  isFolderWorkspacePreferred,
+  resetWorkspaceOpenSessionForTests,
+} from '../../workspaceOpenSession';
 import { resetEmptyWorkspaceDraftSessionForTests } from './emptyWorkspaceDraft';
 import { persistBlankCanvasSession } from '../ioState/blankCanvasSession';
 import { EMPTY_WORKSPACE_PATH } from './resetToEmptyWorkspace';
@@ -44,8 +48,11 @@ async function restoreDraft(input: {
   session?: typeof namedSession;
   child?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
   grandchild?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
+  /** Paths whose empty zoom was saved (working-copy record, no nodes). */
+  persistedPaths?: string[];
 }) {
   if (input.session) persistBlankCanvasSession(input.session);
+  const persisted = new Set(input.persistedPaths ?? []);
   const loadWorkingSchema = vi.fn(async (args: { filePath: string }) => {
     if (input.grandchild && args.filePath === input.grandchild.filePath) {
       return input.grandchild.schema;
@@ -54,7 +61,11 @@ async function restoreDraft(input: {
     return input.schema;
   });
   useBlueprintStore.setState({
-    workingCopyPort: { ...noopWorkingCopy, loadWorkingSchema },
+    workingCopyPort: {
+      ...noopWorkingCopy,
+      loadWorkingSchema,
+      pathHasStoredData: async (filePath: string) => persisted.has(filePath),
+    },
   });
   const restored = await useBlueprintStore
     .getState()
@@ -65,6 +76,7 @@ async function restoreDraft(input: {
 describe('restoreEmptyWorkspaceDraft', () => {
   beforeEach(() => {
     resetEmptyWorkspaceDraftSessionForTests();
+    resetWorkspaceOpenSessionForTests();
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
       nodes: [],
@@ -106,6 +118,7 @@ describe('restoreEmptyWorkspaceDraft', () => {
     expect(state.schema.nodes[0]?.name).toBe('Ada');
     expect(state.nodes).toHaveLength(1);
     expect(state.isWorkspaceOpen).toBe(false);
+    expect(isFolderWorkspacePreferred()).toBe(true);
   });
 
   it('does not restore when a folder workspace is open', async () => {
@@ -290,6 +303,91 @@ describe('restoreEmptyWorkspaceDraft', () => {
     expect(state.schema.entityRef).toBe(codeRef);
     expect(state.schema.level).toBe('code');
     expect(state.schema.nodes.map(node => node.name)).toEqual(['run']);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      codeZoomPath,
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: codeZoomPath,
+          entityRef: codeRef,
+          level: 'code',
+        }),
+      ])
+    );
+  });
+
+  it('keeps a node URL on the create-zoom child instead of inventing an empty grandchild', async () => {
+    const childRef = 'super-amazing/software-system-1204';
+    const nodeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
+    const { restored } = await restoreDraft({
+      expectedEntityRef: nodeRef,
+      session: namedSession,
+      schema: draftSchema('Super amazing', 'super-amazing', childRef),
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, nodeRef, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+      grandchild: { filePath: codeZoomPath, schema: null },
+    });
+
+    expect(restored).toBe(true);
+    const state = useBlueprintStore.getState();
+    expect(state.currentFilePath).toBe(childZoomPath);
+    expect(state.schema.entityRef).toBe(childRef);
+    expect(state.schema.level).toBe('component');
+    expect(state.schema.nodes.map(node => node.name)).toEqual(['Handler']);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog.map(entry => entry.path).sort()).toEqual([
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog.some(entry => entry.entityRef === nodeRef)).toBe(false);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: childZoomPath,
+          entityRef: childRef,
+          nodeEntityRefs: [nodeRef],
+        }),
+      ])
+    );
+  });
+
+  it('rehydrates an empty nested create-zoom when that diagram was saved', async () => {
+    const childRef = 'super-amazing/software-system-1204';
+    const codeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
+    const { restored } = await restoreDraft({
+      expectedEntityRef: codeRef,
+      session: namedSession,
+      schema: draftSchema('Super amazing', 'super-amazing', childRef),
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, codeRef, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+      grandchild: { filePath: codeZoomPath, schema: null },
+      persistedPaths: [codeZoomPath],
+    });
+
+    expect(restored).toBe(true);
+    const state = useBlueprintStore.getState();
+    expect(state.currentFilePath).toBe(codeZoomPath);
+    expect(state.schema.entityRef).toBe(codeRef);
+    expect(state.schema.level).toBe('code');
+    expect(state.schema.nodes).toEqual([]);
     expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
       codeZoomPath,
       childZoomPath,

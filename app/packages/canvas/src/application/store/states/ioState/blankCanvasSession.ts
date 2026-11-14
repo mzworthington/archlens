@@ -3,6 +3,7 @@ import {
   EMPTY_WORKSPACE_ENTITY_REF,
   EMPTY_WORKSPACE_PATH,
 } from '../diagramState/resetToEmptyWorkspace';
+import { GOLDEN_JOURNEY_ENTITY_REF, SAMPLES_ENTITY_REF } from '../../samplesWorkspace';
 import { isBlankWorkspacePlacement, type BlankWorkspacePlacement } from './blankWorkspacePlacement';
 
 export type BlankCanvasSession = {
@@ -15,7 +16,10 @@ export type BlankCanvasSession = {
 const STORAGE_KEY = 'archlens.blankCanvas.session';
 
 export function blankCanvasEntityRefFromName(name: string): string {
-  return slugify(name).replace(/_/g, '-') || EMPTY_WORKSPACE_ENTITY_REF;
+  const slug = slugify(name).replace(/_/g, '-') || EMPTY_WORKSPACE_ENTITY_REF;
+  // Avoid colliding with the bundled Samples catalog slug.
+  if (slug === SAMPLES_ENTITY_REF) return `${SAMPLES_ENTITY_REF}-workspace`;
+  return slug;
 }
 
 export function persistBlankCanvasSession(session: BlankCanvasSession): void {
@@ -76,9 +80,25 @@ export function persistBlankCanvasSessionFromSchema(
   });
 }
 
+/** New zoom nodes are stamped `{type}-{4 digits}`, unlike catalog slugs. */
+function isGeneratedZoomSegment(segment: string): boolean {
+  return /-\d{4}$/.test(segment);
+}
+
 function isEntityRefUnder(entityRef: string, root: string): boolean {
   if (!root) return false;
-  return entityRef === root || entityRef.startsWith(`${root}/`);
+  if (entityRef === root) return true;
+  if (!entityRef.startsWith(`${root}/`)) return false;
+  const firstChild = entityRef.slice(root.length + 1).split('/')[0] ?? '';
+  return isGeneratedZoomSegment(firstChild);
+}
+
+/** Bundled Samples deep-links must not be claimed by a blank session named "Samples". */
+function isBundledSampleDeepLink(urlEntityRef: string): boolean {
+  return (
+    urlEntityRef === GOLDEN_JOURNEY_ENTITY_REF ||
+    urlEntityRef.startsWith(`${GOLDEN_JOURNEY_ENTITY_REF}/`)
+  );
 }
 
 /** Session root, or `empty-workspace`, when the URL is that canvas or a child zoom under it. */
@@ -88,6 +108,7 @@ export function blankCanvasRootForUrl(input: {
 }): string | undefined {
   const urlEntityRef = input.urlEntityRef;
   if (!urlEntityRef) return undefined;
+  if (isBundledSampleDeepLink(urlEntityRef)) return undefined;
   const sessionRef = input.session?.entityRef;
   if (sessionRef && isEntityRefUnder(urlEntityRef, sessionRef)) return sessionRef;
   if (isEntityRefUnder(urlEntityRef, EMPTY_WORKSPACE_ENTITY_REF)) return EMPTY_WORKSPACE_ENTITY_REF;

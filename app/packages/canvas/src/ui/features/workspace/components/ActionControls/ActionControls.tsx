@@ -13,7 +13,10 @@ import {
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { FEATURE_FLAGS } from '../../../../../application/navigation/featureGate';
 import { buildWorkspacePath } from '../../../../../application/navigation/workspaceUrl';
-import { markFolderWorkspacePreferred } from '../../../../../application/store/workspaceOpenSession';
+import {
+  beginWorkspaceOpen,
+  markFolderWorkspacePreferred,
+} from '../../../../../application/store/workspaceOpenSession';
 import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 import { useExtensionPreview } from '../../extensionPreview';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
@@ -67,6 +70,7 @@ function useClearAction() {
       } finally {
         setIsLoading(false);
       }
+      beginWorkspaceOpen();
       markFolderWorkspacePreferred();
       resetToEmptyWorkspace();
       setLocation(buildWorkspacePath(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });

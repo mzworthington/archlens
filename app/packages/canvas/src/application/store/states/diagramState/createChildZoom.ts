@@ -5,6 +5,7 @@ import {
   serializeSchemaToYaml,
 } from '@archlens/core';
 import type { SystemSchema } from '@archlens/core';
+import { markFolderWorkspacePreferred } from '../../workspaceOpenSession';
 import type { DiagramStateDeps } from './types';
 import type { BlueprintStoreSet } from '../../store';
 
@@ -65,6 +66,11 @@ export function createCreateChildZoom(set: SetFn, get: GetFn) {
     get().initSchema(built.schema);
 
     const opened = get();
+    // Blank Ideate sessions keep isWorkspaceOpen false; create-zoom changes the URL
+    // off empty-workspace, so re-assert the no-demo preference for this page session.
+    if (!opened.isWorkspaceOpen && !opened.isSampleWorkspace) {
+      markFolderWorkspacePreferred();
+    }
     if (opened.isWorkspaceOpen && !opened.isSampleWorkspace && !opened.isMemoryScanWorkspace) {
       const yaml = opened.yamlCode || serializeSchemaToYaml(opened.schema);
       const written = await opened.workspacePort.writeFile(built.path, yaml);

@@ -1,6 +1,7 @@
 import { buildChildZoomDiagram, buildWorkspaceCatalog, type SystemSchema } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import type { BlueprintStoreSet } from '../../store';
+import { markFolderWorkspacePreferred } from '../../workspaceOpenSession';
 import {
   claimEmptyWorkspaceDraftRestore,
   shouldRestoreEmptyWorkspaceDraft,
@@ -43,7 +44,8 @@ async function loadCreateZoomChild(
   parentPath: string,
   expectedEntityRef: string | undefined,
   workingCopyPort: WorkingCopyPort,
-  existingPaths: readonly string[]
+  existingPaths: readonly string[],
+  allowMissingWorkingCopy: boolean
 ): Promise<LoadedDiagram | null> {
   const node = zoomNodeForUrl(parent, expectedEntityRef);
   if (!node) return null;
@@ -71,6 +73,13 @@ async function loadCreateZoomChild(
     stored = null;
   }
 
+  if (!stored && !allowMissingWorkingCopy) {
+    // Saved empty zooms have a working-copy record and no nodes. A node URL
+    // under the parent has neither, so selection stays on this diagram.
+    const savedEmptyZoom = await workingCopyPort.pathHasStoredData(built.path);
+    if (!savedEmptyZoom) return null;
+  }
+
   const schema: SystemSchema = stored
     ? {
         ...built.schema,
@@ -85,9 +94,8 @@ async function loadCreateZoomChild(
 
 /**
  * Blank canvases start at container, so a code URL is two create-zooms down
- * (component, then code). Each child's identity is a node on the diagram above
- * it, and that diagram is itself a working copy — keep walking until the URL
- * is the open diagram.
+ * (component, then code). Stop when the URL is that diagram. A deeper ref
+ * with no saved zoom is a node on the current diagram, not another canvas.
  */
 async function loadCreateZoomChain(
   parent: SystemSchema,
@@ -106,7 +114,8 @@ async function loadCreateZoomChain(
       currentPath,
       expectedEntityRef,
       workingCopyPort,
-      existingPaths
+      existingPaths,
+      chain.length === 0
     );
     if (
       !child ||
@@ -186,6 +195,8 @@ export async function restoreEmptyWorkspaceDraft(
   const active = chain[chain.length - 1] ?? parentDiagram;
 
   get().clearHistory();
+  // Survives create-zoom URL changes after refresh — bootstrap must not reopen Samples.
+  markFolderWorkspacePreferred();
   set({
     currentFilePath: active.path,
     workspaceCatalog:
