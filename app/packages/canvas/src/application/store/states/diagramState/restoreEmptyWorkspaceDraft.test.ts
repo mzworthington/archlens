@@ -13,17 +13,24 @@ const namedSession = {
   placement: 'file' as const,
 };
 
-function draftSchema(name: string, entityRef: string, nodeRef: string) {
+const childZoomPath = 'software-system-1204-components.yaml';
+
+function draftSchema(
+  name: string,
+  entityRef: string,
+  nodeRef: string,
+  options?: { level?: 'container' | 'component'; nodeName?: string }
+) {
   return {
     name,
     version: systemSchemaPublicUrl(),
-    level: 'container' as const,
+    level: options?.level ?? ('container' as const),
     entityRef,
     nodes: [
       {
         entityRef: nodeRef,
         type: 'software-system' as const,
-        name: 'API',
+        name: options?.nodeName ?? 'API',
         position: { x: 10, y: 20 },
       },
     ],
@@ -35,9 +42,13 @@ async function restoreDraft(input: {
   expectedEntityRef: string;
   schema: ReturnType<typeof draftSchema>;
   session?: typeof namedSession;
+  child?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
 }) {
   if (input.session) persistBlankCanvasSession(input.session);
-  const loadWorkingSchema = vi.fn().mockResolvedValue(input.schema);
+  const loadWorkingSchema = vi.fn(async (args: { filePath: string }) => {
+    if (input.child && args.filePath === input.child.filePath) return input.child.schema;
+    return input.schema;
+  });
   useBlueprintStore.setState({
     workingCopyPort: { ...noopWorkingCopy, loadWorkingSchema },
   });
@@ -121,17 +132,15 @@ describe('restoreEmptyWorkspaceDraft', () => {
     expect(useBlueprintStore.getState().schema.nodes).toEqual([]);
   });
 
-  it.each([
-    ['super-amazing', 'person/ada'],
-    ['super-amazing/software-system-1204', 'super-amazing/software-system-1204'],
-  ])('rehydrates the named blank draft for %s', async (expectedEntityRef, nodeRef) => {
+  it('rehydrates a named saved draft for its workspace URL', async () => {
     const { restored, loadWorkingSchema } = await restoreDraft({
-      expectedEntityRef,
+      expectedEntityRef: namedSession.entityRef,
       session: namedSession,
-      schema: draftSchema('Super amazing', 'super-amazing', nodeRef),
+      schema: draftSchema('Super amazing', 'super-amazing', 'person/ada'),
     });
 
     expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledTimes(1);
     expect(loadWorkingSchema).toHaveBeenCalledWith(
       expect.objectContaining({
         filePath: namedSession.filePath,
@@ -140,18 +149,68 @@ describe('restoreEmptyWorkspaceDraft', () => {
       })
     );
     expect(useBlueprintStore.getState().schema.entityRef).toBe(namedSession.entityRef);
-    expect(useBlueprintStore.getState().isSampleWorkspace).toBe(false);
     expect(useBlueprintStore.getState().currentFilePath).toBe(namedSession.filePath);
   });
 
-  it('rehydrates the empty-workspace draft for a child zoom when no named session exists', async () => {
+  it('rehydrates the create-zoom child and its working copy for a child URL', async () => {
+    const childRef = 'super-amazing/software-system-1204';
     const { restored, loadWorkingSchema } = await restoreDraft({
-      expectedEntityRef: 'empty-workspace/software-system-1204',
-      schema: draftSchema(
-        'Empty Workspace',
-        'empty-workspace',
-        'empty-workspace/software-system-1204'
-      ),
+      expectedEntityRef: childRef,
+      session: namedSession,
+      schema: draftSchema('Super amazing', 'super-amazing', childRef),
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, `${childRef}/handler`, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+    });
+
+    expect(restored).toBe(true);
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: namedSession.filePath,
+        systemEntityRef: namedSession.entityRef,
+      })
+    );
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: childZoomPath,
+        systemName: 'API Components',
+        systemEntityRef: childRef,
+        systemLevel: 'component',
+      })
+    );
+    const state = useBlueprintStore.getState();
+    expect(state.isSampleWorkspace).toBe(false);
+    expect(state.currentFilePath).toBe(childZoomPath);
+    expect(state.schema.entityRef).toBe(childRef);
+    expect(state.schema.nodes.map(node => node.name)).toEqual(['Handler']);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: namedSession.filePath,
+          entityRef: namedSession.entityRef,
+        }),
+        expect.objectContaining({
+          path: childZoomPath,
+          entityRef: childRef,
+        }),
+      ])
+    );
+  });
+
+  it('rehydrates an empty create-zoom child when that working copy has no nodes', async () => {
+    const childRef = 'empty-workspace/software-system-1204';
+    const { restored, loadWorkingSchema } = await restoreDraft({
+      expectedEntityRef: childRef,
+      schema: draftSchema('Empty Workspace', 'empty-workspace', childRef),
+      child: { filePath: childZoomPath, schema: null },
     });
 
     expect(restored).toBe(true);
@@ -160,6 +219,25 @@ describe('restoreEmptyWorkspaceDraft', () => {
         filePath: EMPTY_WORKSPACE_PATH,
         systemEntityRef: 'empty-workspace',
       })
+    );
+    expect(loadWorkingSchema).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filePath: childZoomPath,
+        systemEntityRef: childRef,
+      })
+    );
+    const state = useBlueprintStore.getState();
+    expect(state.currentFilePath).toBe(childZoomPath);
+    expect(state.schema.entityRef).toBe(childRef);
+    expect(state.schema.level).toBe('component');
+    expect(state.schema.nodes).toEqual([]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          entityRef: childRef,
+          path: childZoomPath,
+        }),
+      ])
     );
   });
 });

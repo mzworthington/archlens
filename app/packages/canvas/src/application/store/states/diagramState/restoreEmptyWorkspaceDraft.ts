@@ -1,4 +1,4 @@
-import type { SystemSchema } from '@archlens/core';
+import { buildChildZoomDiagram, buildWorkspaceCatalog, type SystemSchema } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import type { BlueprintStoreSet } from '../../store';
 import {
@@ -11,6 +11,76 @@ import {
   EMPTY_WORKSPACE_SCHEMA,
 } from './resetToEmptyWorkspace';
 import { blankCanvasRootForUrl, readBlankCanvasSession } from '../ioState/blankCanvasSession';
+
+type LoadedDiagram = { path: string; name: string; schema: SystemSchema };
+
+/** Parent node whose diagram the URL is, or a node on that diagram. */
+function zoomNodeForUrl(
+  parent: SystemSchema,
+  expectedEntityRef: string | undefined
+): { entityRef: string; name: string } | undefined {
+  if (!expectedEntityRef || expectedEntityRef === parent.entityRef) return undefined;
+
+  let match: { entityRef: string; name: string } | undefined;
+  for (const node of parent.nodes) {
+    if (!node.entityRef || node.external) continue;
+    const ref = node.entityRef;
+    if (expectedEntityRef !== ref && !expectedEntityRef.startsWith(`${ref}/`)) continue;
+    if (!match || ref.length > match.entityRef.length) {
+      match = { entityRef: ref, name: node.name };
+    }
+  }
+  return match;
+}
+
+/**
+ * Create-zoom stores the child as its own working copy. The blank session only
+ * remembers the parent, so a child URL has to load that file again or the
+ * catalog cannot target it after refresh.
+ */
+async function loadCreateZoomChild(
+  parent: SystemSchema,
+  parentPath: string,
+  expectedEntityRef: string | undefined,
+  workingCopyPort: WorkingCopyPort
+): Promise<LoadedDiagram | null> {
+  const node = zoomNodeForUrl(parent, expectedEntityRef);
+  if (!node) return null;
+
+  const built = buildChildZoomDiagram({
+    nodeEntityRef: node.entityRef,
+    nodeName: node.name,
+    parentLevel: parent.level,
+    version: parent.version,
+    parentPath,
+    existingPaths: [parentPath],
+  });
+  if (!built) return null;
+
+  let stored: SystemSchema | null = null;
+  try {
+    stored = await workingCopyPort.loadWorkingSchema({
+      filePath: built.path,
+      systemName: built.schema.name,
+      systemVersion: built.schema.version,
+      systemLevel: built.schema.level,
+      systemEntityRef: built.schema.entityRef,
+    });
+  } catch {
+    stored = null;
+  }
+
+  const schema: SystemSchema = stored
+    ? {
+        ...built.schema,
+        nodes: stored.nodes,
+        dependencies: stored.dependencies,
+        ...(stored.source !== undefined ? { source: stored.source } : {}),
+      }
+    : built.schema;
+
+  return { path: built.path, name: schema.name, schema };
+}
 
 export async function restoreEmptyWorkspaceDraft(
   set: BlueprintStoreSet,
@@ -67,12 +137,18 @@ export async function restoreEmptyWorkspaceDraft(
     name: systemName,
     entityRef: systemEntityRef,
   };
+  const child = await loadCreateZoomChild(schema, filePath, expected, workingCopyPort);
+  const parentDiagram: LoadedDiagram = { path: filePath, name: schema.name, schema };
+  const systems = child ? [parentDiagram, child] : [parentDiagram];
+  const active = child ?? parentDiagram;
 
   get().clearHistory();
   set({
-    currentFilePath: filePath,
-    workspaceCatalog: [],
-    loadedSystems: [{ path: filePath, name: schema.name, schema }],
+    currentFilePath: active.path,
+    workspaceCatalog: child
+      ? buildWorkspaceCatalog(systems.map(system => ({ path: system.path, schema: system.schema })))
+      : [],
+    loadedSystems: systems,
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     usesRemoteCatalog: false,
@@ -87,6 +163,6 @@ export async function restoreEmptyWorkspaceDraft(
     focusedCyclePath: null,
     rightPanelTab: 'catalog',
   });
-  get().initSchema(schema);
+  get().initSchema(active.schema);
   return true;
 }

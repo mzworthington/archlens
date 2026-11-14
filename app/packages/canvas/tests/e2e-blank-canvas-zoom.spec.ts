@@ -33,10 +33,13 @@ test.describe('Blank canvas create zoom', () => {
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page).toHaveURL(/\/workspace\/super-amazing\/.+/, { timeout: 20_000 });
-    await expect(page.getByLabel('Workspace name')).toHaveValue('Super amazing', {
+    await expect(page.getByLabel('Workspace name')).toHaveValue('New Software System Components', {
       timeout: 20_000,
     });
-    await expect(page.getByRole('heading', { name: 'New Software System' })).toBeVisible();
+    await expect(
+      page.getByTestId('workspace-status-badges').getByText('component', { exact: true })
+    ).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Super amazing' })).toBeVisible();
     await expectNotSamples(page);
   });
 
