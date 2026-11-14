@@ -44,7 +44,8 @@ async function loadCreateZoomChild(
   parentPath: string,
   expectedEntityRef: string | undefined,
   workingCopyPort: WorkingCopyPort,
-  existingPaths: readonly string[]
+  existingPaths: readonly string[],
+  allowMissingWorkingCopy: boolean
 ): Promise<LoadedDiagram | null> {
   const node = zoomNodeForUrl(parent, expectedEntityRef);
   if (!node) return null;
@@ -72,10 +73,12 @@ async function loadCreateZoomChild(
     stored = null;
   }
 
-  // Without a stored working copy, inventing an empty zoom is only safe for the
-  // first hop from the blank root. Under an already-restored create-zoom, a
-  // deeper URL is node selection for useUrlSync — do not open a blank grandchild.
-  if (!stored && existingPaths.length > 1) return null;
+  if (!stored && !allowMissingWorkingCopy) {
+    // Saved empty zooms have a working-copy record and no nodes. A node URL
+    // under the parent has neither, so selection stays on this diagram.
+    const savedEmptyZoom = await workingCopyPort.pathHasStoredData(built.path);
+    if (!savedEmptyZoom) return null;
+  }
 
   const schema: SystemSchema = stored
     ? {
@@ -91,9 +94,8 @@ async function loadCreateZoomChild(
 
 /**
  * Blank canvases start at container, so a code URL is two create-zooms down
- * (component, then code). Each child's identity is a node on the diagram above
- * it, and that diagram is itself a working copy — keep walking until the URL
- * is the open diagram.
+ * (component, then code). Stop when the URL is that diagram. A deeper ref
+ * with no saved zoom is a node on the current diagram, not another canvas.
  */
 async function loadCreateZoomChain(
   parent: SystemSchema,
@@ -112,7 +114,8 @@ async function loadCreateZoomChain(
       currentPath,
       expectedEntityRef,
       workingCopyPort,
-      existingPaths
+      existingPaths,
+      chain.length === 0
     );
     if (
       !child ||

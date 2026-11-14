@@ -4,6 +4,7 @@ import {
   computeSchemaDiff,
   db,
   loadWorkingSchema,
+  pathHasStoredData,
   revertWorkingSchema,
   saveBaselineSchema,
   saveWorkingSchema,
@@ -132,5 +133,26 @@ describe('IndexedDB working-copy persistence (db.ts)', () => {
     });
     expect(reverted.source).toEqual(baselineSchema.source);
     expect(reverted.dependencies).toHaveLength(2);
+  });
+
+  it('counts a saved empty diagram as stored data', async () => {
+    const filePath = 'handler-code.yaml';
+    await saveWorkingSchema(
+      filePath,
+      {
+        name: 'Handler Code',
+        version: '1.0.0',
+        level: 'code',
+        entityRef: 'super-amazing/software-system-1204/handler',
+        nodes: [],
+        dependencies: [],
+      },
+      'super-amazing/software-system-1204/handler',
+      {}
+    );
+
+    expect(await pathHasStoredData(filePath)).toBe(true);
+    expect(await loadWorkingSchema(filePath)).toBeNull();
+    expect(await pathHasStoredData('missing.yaml')).toBe(false);
   });
 });

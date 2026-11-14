@@ -48,8 +48,11 @@ async function restoreDraft(input: {
   session?: typeof namedSession;
   child?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
   grandchild?: { filePath: string; schema: ReturnType<typeof draftSchema> | null };
+  /** Paths whose empty zoom was saved (working-copy record, no nodes). */
+  persistedPaths?: string[];
 }) {
   if (input.session) persistBlankCanvasSession(input.session);
+  const persisted = new Set(input.persistedPaths ?? []);
   const loadWorkingSchema = vi.fn(async (args: { filePath: string }) => {
     if (input.grandchild && args.filePath === input.grandchild.filePath) {
       return input.grandchild.schema;
@@ -58,7 +61,11 @@ async function restoreDraft(input: {
     return input.schema;
   });
   useBlueprintStore.setState({
-    workingCopyPort: { ...noopWorkingCopy, loadWorkingSchema },
+    workingCopyPort: {
+      ...noopWorkingCopy,
+      loadWorkingSchema,
+      pathHasStoredData: async (filePath: string) => persisted.has(filePath),
+    },
   });
   const restored = await useBlueprintStore
     .getState()
@@ -315,6 +322,7 @@ describe('restoreEmptyWorkspaceDraft', () => {
   it('keeps a node URL on the create-zoom child instead of inventing an empty grandchild', async () => {
     const childRef = 'super-amazing/software-system-1204';
     const nodeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
     const { restored } = await restoreDraft({
       expectedEntityRef: nodeRef,
       session: namedSession,
@@ -326,7 +334,7 @@ describe('restoreEmptyWorkspaceDraft', () => {
           nodeName: 'Handler',
         }),
       },
-      grandchild: { filePath: 'handler-code.yaml', schema: null },
+      grandchild: { filePath: codeZoomPath, schema: null },
     });
 
     expect(restored).toBe(true);
@@ -343,5 +351,56 @@ describe('restoreEmptyWorkspaceDraft', () => {
       childZoomPath,
       namedSession.filePath,
     ]);
+    expect(state.workspaceCatalog.some(entry => entry.entityRef === nodeRef)).toBe(false);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: childZoomPath,
+          entityRef: childRef,
+          nodeEntityRefs: [nodeRef],
+        }),
+      ])
+    );
+  });
+
+  it('rehydrates an empty nested create-zoom when that diagram was saved', async () => {
+    const childRef = 'super-amazing/software-system-1204';
+    const codeRef = `${childRef}/handler`;
+    const codeZoomPath = 'handler-code.yaml';
+    const { restored } = await restoreDraft({
+      expectedEntityRef: codeRef,
+      session: namedSession,
+      schema: draftSchema('Super amazing', 'super-amazing', childRef),
+      child: {
+        filePath: childZoomPath,
+        schema: draftSchema('API Components', childRef, codeRef, {
+          level: 'component',
+          nodeName: 'Handler',
+        }),
+      },
+      grandchild: { filePath: codeZoomPath, schema: null },
+      persistedPaths: [codeZoomPath],
+    });
+
+    expect(restored).toBe(true);
+    const state = useBlueprintStore.getState();
+    expect(state.currentFilePath).toBe(codeZoomPath);
+    expect(state.schema.entityRef).toBe(codeRef);
+    expect(state.schema.level).toBe('code');
+    expect(state.schema.nodes).toEqual([]);
+    expect(state.loadedSystems.map(system => system.path).sort()).toEqual([
+      codeZoomPath,
+      childZoomPath,
+      namedSession.filePath,
+    ]);
+    expect(state.workspaceCatalog).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: codeZoomPath,
+          entityRef: codeRef,
+          level: 'code',
+        }),
+      ])
+    );
   });
 });

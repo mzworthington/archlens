@@ -339,14 +339,16 @@ export async function revertWorkingSchema(
 }
 
 /**
- * True if either working or baseline tables already have rows for this path.
+ * True when this path has working nodes, baseline nodes, or a working-copy
+ * record. Empty create-zooms persist only the meta row.
  */
 export async function pathHasStoredData(filePath: string): Promise<boolean> {
-  const [workingCount, originalCount] = await Promise.all([
+  const [workingCount, originalCount, workingMeta] = await Promise.all([
     db.workingNodes.where('filePath').equals(filePath).count(),
     db.originalNodes.where('filePath').equals(filePath).count(),
+    db.workingMeta.get(filePath),
   ]);
-  return workingCount > 0 || originalCount > 0;
+  return workingCount > 0 || originalCount > 0 || workingMeta != null;
 }
 
 export async function loadWorkingSchema(
