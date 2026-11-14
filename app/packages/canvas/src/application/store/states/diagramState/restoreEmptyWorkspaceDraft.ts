@@ -72,6 +72,11 @@ async function loadCreateZoomChild(
     stored = null;
   }
 
+  // Without a stored working copy, inventing an empty zoom is only safe for the
+  // first hop from the blank root. Under an already-restored create-zoom, a
+  // deeper URL is node selection for useUrlSync — do not open a blank grandchild.
+  if (!stored && existingPaths.length > 1) return null;
+
   const schema: SystemSchema = stored
     ? {
         ...built.schema,
