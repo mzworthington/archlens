@@ -112,4 +112,34 @@ describe('blankCanvasSession', () => {
       })
     ).toBe(false);
   });
+
+  it('does not claim catalog paths under a blank canvas named Golden Journey', () => {
+    const journey = {
+      filePath: 'golden_journey.yaml',
+      entityRef: 'golden-journey',
+      name: 'Golden Journey',
+      placement: 'unsaved' as const,
+    };
+    expect(
+      shouldRestoreBlankCanvasForUrl({ urlEntityRef: 'golden-journey', session: journey })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'golden-journey/software-system-1204',
+        session: journey,
+      })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'golden-journey/software-system-1204/handler',
+        session: journey,
+      })
+    ).toBe(true);
+    expect(
+      shouldRestoreBlankCanvasForUrl({
+        urlEntityRef: 'golden-journey/checkout',
+        session: journey,
+      })
+    ).toBe(false);
+  });
 });

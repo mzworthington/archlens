@@ -80,9 +80,17 @@ export function persistBlankCanvasSessionFromSchema(
   });
 }
 
+/** New zoom nodes are stamped `{type}-{4 digits}`, unlike catalog slugs. */
+function isGeneratedZoomSegment(segment: string): boolean {
+  return /-\d{4}$/.test(segment);
+}
+
 function isEntityRefUnder(entityRef: string, root: string): boolean {
   if (!root) return false;
-  return entityRef === root || entityRef.startsWith(`${root}/`);
+  if (entityRef === root) return true;
+  if (!entityRef.startsWith(`${root}/`)) return false;
+  const firstChild = entityRef.slice(root.length + 1).split('/')[0] ?? '';
+  return isGeneratedZoomSegment(firstChild);
 }
 
 /** Bundled Samples deep-links must not be claimed by a blank session named "Samples". */
