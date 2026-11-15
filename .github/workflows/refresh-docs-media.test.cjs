@@ -24,6 +24,17 @@ describe('Refresh docs & media workflow', () => {
     assert.equal(pinned, '0.11.0');
   });
 
+  it('syncs Vale packages before committing derived docs (Google styles are gitignored)', () => {
+    const workflowDir = __dirname;
+    const yaml = fs.readFileSync(path.join(workflowDir, 'refresh-docs-media.yml'), 'utf8');
+    assert.match(yaml, /^\s+- name: Sync Vale packages\s*$/m);
+    assert.match(yaml, /^\s+run: vale sync\s*$/m);
+    const syncStep = yaml.indexOf('run: vale sync');
+    const refreshStep = yaml.indexOf('run: bin/sync-derived.sh');
+    assert.ok(syncStep !== -1 && refreshStep !== -1, 'both Vale sync and sync-derived steps must exist');
+    assert.ok(syncStep < refreshStep, 'vale sync must run before sync-derived.sh');
+  });
+
   it('references third-party actions by version tag rather than commit SHA', () => {
     const workflowDir = __dirname;
     const files = fs.readdirSync(workflowDir).filter(name => name.endsWith('.yml'));

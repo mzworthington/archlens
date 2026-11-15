@@ -61,6 +61,11 @@ jobs:
           sudo apt-get install -y ffmpeg ttyd
           mise install vhs
 
+      # Google package is gitignored; pre-commit runs Vale when derived Markdown
+      # changes, so sync before sync-derived.sh commits.
+      - name: Sync Vale packages
+        run: vale sync
+
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
         working-directory: app

@@ -49,17 +49,29 @@ docs=$(git diff --cached --name-only --diff-filter=ACM | grep '\.md$' || true)
 
 if [ -n "$docs" ]; then
   echo "Running Vale against staged documentation..."
+  VALE_BIN=""
   if command -v vale >/dev/null 2>&1; then
-    printf '%s\n' "$docs" | tr '\n' '\0' | xargs -0 vale || {
-      echo "Vale linting failed. Fix style issues before committing."
-      exit 1
-    }
-  elif command -v mise >/dev/null 2>&1; then
-    printf '%s\n' "$docs" | tr '\n' '\0' | xargs -0 mise exec -- vale || {
-      echo "Vale linting failed. Fix style issues before committing."
-      exit 1
-    }
-  else
+    VALE_BIN="vale"
+  elif command -v mise >/dev/null 2>&1 && mise exec -- vale --version >/dev/null 2>&1; then
+    VALE_BIN="mise exec -- vale"
+  fi
+
+  if [ -z "$VALE_BIN" ]; then
     echo "Vale is not installed; prose lint skipped. CI still runs it."
+  else
+    # Packages = Google in .vale.ini; styles are gitignored until `vale sync`.
+    if [ ! -d .github/styles/Google ]; then
+      echo "Vale Google styles missing; running vale sync..."
+      # shellcheck disable=SC2086
+      $VALE_BIN sync || {
+        echo "Vale sync failed. Run: vale sync"
+        exit 1
+      }
+    fi
+    # shellcheck disable=SC2086
+    printf '%s\n' "$docs" | tr '\n' '\0' | xargs -0 $VALE_BIN || {
+      echo "Vale linting failed. Fix style issues before committing."
+      exit 1
+    }
   fi
 fi
