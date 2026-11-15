@@ -146,18 +146,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ hydrates a declared context with personas and does not inject a fallback user
 - ✅ falls back to a fresh context when the declared seed is unreadable
 
-#### personDependenciesForSystems
-
-- ✅ links the person to top-level groups only
-
 #### resolveContextSeedRelativePath
 
 - ✅ prefers root context.yaml when nested path is absent
 - ✅ uses nested context path when present or when creating fresh
-
-#### topLevelSystemNodes
-
-- ✅ returns nodes without a visual parent, excluding the person
 
 ### csharpAnalyzer
 
@@ -588,8 +580,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ triggers saveSchema on clicking Save when workspace is closed
 - ✅ triggers saveActiveDiagram on clicking Save when workspace is open
 - ✅ names Save map to folder when the workspace is a memory scan
-- ✅ triggers initSchema on clearing canvas if confirmed
-- ✅ does not trigger initSchema on clearing canvas if not confirmed
+- ✅ resets the workspace and leaves the blank canvas when clearing is confirmed
+- ✅ does not clear the canvas when confirm is declined
 - ✅ hides feature flags from the overflow menu when none are catalogued
 - ✅ disables buttons when isLoading is true
 - ✅ disables undo button when past history is empty, enables and triggers action when filled
@@ -702,9 +694,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### blankCanvasSession
 
 - ✅ slugs a display name into a workspace entity ref
+- ✅ avoids the reserved Samples catalog slug for a blank workspace named Samples
 - ✅ round-trips a saved session
 - ✅ treats a legacy session without placement as unsaved when it is still the starter file
-- ✅ restores empty-workspace and the persisted named URL, not unrelated deep links
+- ✅ restores the blank session, including a create-zoom child, and ignores other deep links
+- ✅ does not claim bundled Samples deep-links when a blank session reused the samples slug
+- ✅ does not claim catalog paths under a blank canvas named Golden Journey
 
 ### blankWorkspacePlacement
 
@@ -745,6 +740,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### BlueprintNode Component
 
+- ✅ shows a comment count and a highlight for each person on the node
+- ✅ uses the live room thread for the marker while a room is open
 - ✅ renders correctly with basic node details
 - ✅ uses a quiet port instead of a filled connection handle
 - ✅ simplifies chrome when liteCanvas is on but keeps all edge handles mounted
@@ -764,6 +761,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows Go to entity button for external nodes present elsewhere in the workspace
 - ✅ hides Go to entity button when external node is not in the workspace catalog
 - ✅ navigates to canonical entity when Go to entity is clicked
+- ✅ creates a child diagram and opens it when Create zoom is clicked
 - ✅ shows Zoom indicator when node has a sub-diagram link in loadedSystems
 - ✅ keeps the zoom button visible in lite canvas mode
 - ✅ triggers navigation to node entityRef when Zoom button is clicked
@@ -792,6 +790,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ paints the design-system asset pack from the token set
 - ✅ paints every remaining screen from the token set
 - ✅ paints canvas status chips with the light paper palette
+- ✅ darkens translucent amber copy on the light paper background
 - ✅ defines the light paper token set on the light theme
 - ✅ labels token swatches as canvas, surface, ink, and accent
 - ✅ names status and category colors in the same token set
@@ -803,6 +802,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### BrandMark
 
+- ✅ links the product mark to the root
 - ✅ renders a single active lens badge
 
 ### Breadcrumbs
@@ -1046,6 +1046,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ always shows actors and external dependencies at context level
 - ✅ keeps actors and externals visible under dependency focus at context level
+
+### CanvasPreview
+
+#### canvas preview
+
+- ✅ draws a blueprint with the workspace canvas
+- ✅ hides the explorer, header, and resilience controls
+- ✅ leaves share, mermaid import, chaos specs, and browser scan off the map
+- ✅ keeps a child blueprint in the catalog so a package can open
+- ✅ sends a property edit to the open blueprint and does not ask to save
+- ✅ applies the next diagram the panel posts and leaves the page in place
+- ✅ reads the blueprint and hotspot flag the panel embedded
 
 ### CanvasZoomReadout
 
@@ -1300,15 +1312,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### db
 
-#### db.ts - IndexedDB Client Operations
+#### IndexedDB working-copy persistence (db.ts)
 
-- ✅ should successfully save baseline schemas and dependencies
-- ✅ should compute an empty diff when baseline and working schemas match
-- ✅ should detect added components and connections in working schema
-- ✅ should detect deleted components and connections in working schema
-- ✅ should detect modified properties, name or type of components
-- ✅ should detect position changes of components
-- ✅ should revert draft changes back to baseline
+- ✅ preserves parentEntityRef, forensics, resilience, source and parallel dependency types on load and revert
+- ✅ counts a saved empty diagram as stored data
 
 ### DemoGraduateCtas
 
@@ -1474,8 +1481,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### DocsShell
 
-- ✅ shows mobile section scrollers for Start, Surfaces and Tech
-- ✅ shows header hubs for Start, Surfaces and Tech
+- ✅ shows mobile section scrollers for Start, Learn, Surfaces and Tech
+- ✅ shows header hubs for Start, Learn, Surfaces and Tech
 - ✅ shows local section nav on mobile and nested sidebar items when provided
 - ✅ links author credit to mzworthington.co.uk
 - ✅ links Privacy policy to /privacy
@@ -1716,6 +1723,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### GoldenJourneyTour
 
 - ✅ renders estate product map and six journey steps with deep links
+- ✅ renders the product chip in accent ink so the label stays readable on a light page
 
 ### Header
 
@@ -2328,6 +2336,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ adds a unique query param so the next navigation is not a cached shell
 
+#### freshNavigationResponse
+
+- ✅ follows the pretty-URL redirect and returns the final page
+- ✅ serves the cached shell when the network fetch fails
+- ✅ sends the browser to the same page without al_refresh when nothing else can load
+
+#### navigationBody
+
+- ✅ copies a redirected guide response so Chrome does not fail the navigation
+- ✅ returns a direct shell response unchanged
+
 #### pathWithoutRefreshParam
 
 - ✅ removes the cache-bust param so a later deploy can wait for Refresh
@@ -2371,6 +2390,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resetToEmptyWorkspace
 
 - ✅ clears sandbox systems and leaves a blank diagram
+- ✅ drops sample systems and sample flags so the catalog cannot come back
 - ✅ promotes the URL entity when the blank canvas is named
 
 ### resilienceState
@@ -2399,6 +2419,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ supports multiple faults in the scenario list
 - ✅ removes a fault from the scenario list
 - ✅ simulates a region outage at a specific node
+- ✅ pins and clears a baseline simulation result for what-if comparison
 
 ### resolveCouplingEdges
 
@@ -2473,6 +2494,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not restore when the in-memory canvas already has nodes
 - ✅ does not restore immediately after an explicit blank start
 - ✅ rehydrates a named saved draft for its workspace URL
+- ✅ rehydrates the create-zoom child and its working copy for a child URL
+- ✅ rehydrates an empty create-zoom child when that working copy has no nodes
+- ✅ rehydrates a nested create-zoom when the URL is the grandchild diagram
+- ✅ keeps a node URL on the create-zoom child instead of inventing an empty grandchild
+- ✅ rehydrates an empty nested create-zoom when that diagram was saved
 
 ### rewritePrecacheHtmlUrls
 
@@ -2515,6 +2541,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ falls back to the TypeScript engine when WASM is unavailable
 - ✅ propagates WASM simulation errors instead of falling back
 - ✅ logs WASM unavailability through the injected logger
+- ✅ normalizes legacy WASM target-side SPOF advice to canonical caller-side recommendations
 
 ### safeguardHighlights
 
@@ -2648,6 +2675,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### siteSeo catalog
 
+- ✅ writes the homepage snippet as one sentence a search result can show whole
 - ✅ resolves distinctive homepage metadata with social share image
 - ✅ gives each product surface a unique title and description
 - ✅ covers every docs page path with an SEO record
@@ -2857,10 +2885,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ auto-opens sandbox for deep-linked /workspace/<entityRef>
 - ✅ does not reopen the chooser when a workspace is already open
 - ✅ does not auto-open sandbox for /workspace/empty-workspace
-- ✅ restores a named blank-canvas session instead of opening the demo
+- ✅ restores the blank canvas for /workspace/super-amazing instead of opening Samples
+- ✅ restores the blank canvas for /workspace/super-amazing/software-system-1204 instead of opening Samples
+- ✅ restores the blank canvas for /workspace/empty-workspace/software-system-1204 instead of opening Samples
+- ✅ still opens Samples for a nested catalog deep link outside the blank session
 - ✅ does not restore an empty-workspace draft when a collab room is present
 - ✅ does not auto-open sandbox when a collab room is in the query
 - ✅ does not open the startup chooser when a collab room is on bare /workspace
+- ✅ does not open the startup chooser or demo when new=1 is in the query
 
 ### useChaosSpecDialog
 
@@ -3034,6 +3066,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should synchronize workspace system selection from URL params
 - ✅ does not reopen the startup chooser when navigating within the workspace
 - ✅ shows the startup chooser on bare workspace with no loaded systems
+- ✅ opens the create blank workspace dialog when navigating to /workspace?new=1
 
 ### WorkspacePage.resilience
 
@@ -3350,6 +3383,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ treats enrich subcommand as externals-only pass
 - ✅ enables git forensics refresh with enrich --git
 - ✅ treats --enrich-only flag like enrich subcommand
+- ✅ parses --fail-on-cycles on architecture scan
 
 #### parseArchlensArgv update flags
 
@@ -3625,6 +3659,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns ok and the deployed sha without caching
 - ✅ uses local when the deploy sha is missing
 
+### index
+
+#### CollabRoom
+
+- ✅ chunks Y.Doc updates exceeding 128 KiB across multiple KV keys and reloads cleanly
+- ✅ ignores malformed binary Yjs update frames without crashing the room
+- ✅ purges stored ydoc chunks when the host ends the room
+- ✅ closes the socket after repeated failed secret attempts
+
 ### roomControl
 
 #### roomControl
@@ -3822,6 +3865,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ safeguards-ledger-outage.yaml validates and converts against its target diagram
 - ✅ shared-hub-inventory-outage.yaml validates and converts against its target diagram
 
+### childZoom
+
+#### buildChildZoomDiagram
+
+- ✅ builds an empty child diagram whose identity matches the node
+
 ### churnAcceleration
 
 #### churnAccelerationRatio
@@ -3857,6 +3906,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### comment sidecar vs BlueprintSpec
 
 - ✅ does not change YAML export when a session sidecar holds comments
+
+#### commentPresence
+
+- ✅ counts open comments on a node and keeps one mark per person
+- ✅ assigns each person a stable highlight that differs from another person
 
 #### createNodeComment
 
@@ -3945,6 +3999,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns empty diff for identical schemas
 - ✅ detects added, modified and deleted nodes
+- ✅ detects parentEntityRef and resilience changes on nodes
 
 ### compositeRisk
 
@@ -4274,6 +4329,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### toSystemSchemaJsonSchema
 
 - ✅ exports Draft-07 JSON Schema as a v4 object document with metadata
+- ✅ allows a landscape description on metadata
 
 #### YAML Schema Parsing and Serialization
 
@@ -5161,6 +5217,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ adds no problem for YAML that is not a blueprint
 - ✅ reports the first failed check for a broken blueprint
 - ✅ clears the cycle once the file no longer has one
+- ✅ formats a three-system cycle without a serial comma
 
 #### copy diagram as mermaid
 
@@ -5170,6 +5227,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### diagram navigation
 
 - ✅ drills into the child diagram for the focused system
+- ✅ opens the context diagram when zoom out names that system
 - ✅ stays put when the focused system has no child diagram
 - ✅ returns the parent diagram from the breadcrumb
 
@@ -5181,12 +5239,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ still does not read source when the setting is turned on
 - ✅ does not offer the discussion while the workspace is untrusted
 - ✅ names the languages in the folder and ignores dependency output
+- ✅ rolls files in one package up to a single system
+- ✅ writes container, component and drill-down blueprints for a package
+- ✅ records an import as a call when the analyzers run
+- ✅ leaves child diagrams out of the review
 - ✅ reviews added, changed and removed systems without treating equal names as changes
 - ✅ treats a half-edited file in the blueprints folder as unsaved
 - ✅ writes the review into the blueprints folder and keeps a hand-written note
 
 #### open architecture map
 
+- ✅ opens a scan whose file name left a dot in the entity ref
 - ✅ shows the systems and the link between them
 - ✅ treats Windows and forward-slash paths as the same file
 - ✅ prefers a context-level diagram over a file named context.yaml
@@ -5227,6 +5290,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ opens the discussion from Tell us you want this and lists no files
 - ✅ writes nothing when the prompt is dismissed
 - ✅ closes the scope picker on Escape and does not scan
+- ✅ writes a call edge when one source file imports another
+- ✅ leaves gitignored and structural paths out of the review
 - ✅ shows added, changed and removed rows and writes nothing
 - ✅ keeps the current files when the review is dismissed
 - ✅ writes the review and shows those systems
@@ -5255,7 +5320,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### marketplace pre-release
 
 - ✅ lists ArchLens as a Marketplace pre-release with the preview commands
-- ✅ ships generate-from-workspace off and refuses to read an untrusted folder
+- ✅ ships no generate-from-workspace setting and refuses to read an untrusted folder
 - ✅ writes blueprint files only from the review host
 
 ### renderMap
@@ -5263,6 +5328,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### architecture map panel
 
 - ✅ names each system so keyboard focus lands on that name
+- ✅ draws the website canvas so a node can be dragged and the link follows it
+- ✅ hosts the workspace canvas and gives it the blueprint
+- ✅ opens in light mode and can follow the system appearance
+- ✅ lets a canvas node move instead of starting a browser drag
 - ✅ shows a hotspot mark and a change count on a marked system
 - ✅ escapes a system name before putting it in the panel
 - ✅ shows the empty sentence and no systems
@@ -5272,30 +5341,34 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### editor host
 
 - ✅ does not read the folder when Open architecture map runs untrusted
+- ✅ opens an empty map panel when the trusted folder has no blueprint
 - ✅ opens the diagram beside the blueprint in a trusted folder
 - ✅ reads blueprints in the folder that was right-clicked
 - ✅ opens the YAML file that is already focused
 - ✅ ignores a blueprint path outside the chosen folder
 - ✅ refreshes the diagram when the save path uses backslashes
 - ✅ keeps the diagram when a save is no longer a blueprint
+- ✅ writes a diagram edit into the open blueprint without reloading the map
 - ✅ refreshes the diagram when the blueprint is saved
+- ✅ keeps the canvas page and posts the next diagram once the map is ready
 - ✅ drills into a child diagram and returns with Alt+Left
 - ✅ stays on the diagram when Enter has no child
 - ✅ copies the open diagram as Mermaid without writing the YAML
 - ✅ marks a recorded hotspot when the folder has git history
 - ✅ marks hotspots again after a broken blueprint save is fixed
 - ✅ leaves the diagram unchanged when the folder has no git history
+- ✅ reviews the workspace when a generate setting would say off
 - ✅ reviews source files when generation is on and writes nothing
 - ✅ writes the blueprint when the review is accepted and shows the new systems
 - ✅ restores the previous blueprint when the write fails
-- ✅ asks the interest prompt for compare while generation is off
+- ✅ compares with a fresh scan when a generate setting would say off
 - ✅ does not scan a compare while the open blueprint is unsaved
 - ✅ does not scan a compare while a blueprints file is half edited
 - ✅ says there are no changes when the compare matches the blueprint
 - ✅ includes Terraform JSON in a default workspace scan
 - ✅ does not scan when the scope picker is dismissed
-- ✅ opens the discussion from Tell us you want this and reads no blueprint
-- ✅ does not open the discussion when the prompt is dismissed
+- ✅ does not open the interest discussion when generating
+- ✅ does not open the interest discussion when the scope picker is dismissed
 - ✅ does not read the folder when Generate runs untrusted
 
 ## Reporters

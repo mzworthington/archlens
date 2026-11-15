@@ -1,5 +1,76 @@
 # Changelog
 
+## 2026-11-15
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Sync Vale Google styles before refresh commits (#276)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps-dev)_ Bump jsdom from 30.1.3 to 31.0.0 in /app
+- _(deps)_ Bump the npm-minor-patch group
+
+## 2026-11-14
+
+### 🚀 Features
+
+- _(canvas)_ Enhance CanvasPreview and editor integration with blueprint synchronization
+- _(canvas)_ Create a child zoom from the node
+- _(vscode)_ Implement editor preview features
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Keep blank create-zoom out of Samples (MZW-170)
+- _(canvas)_ Restore blank create-zoom children after refresh (MZW-170)
+- _(canvas)_ Restore nested blank zooms and reserve samples slug (MZW-170)
+- _(canvas)_ Keep blank-canvas create-zoom off Samples (MZW-170)
+- _(canvas)_ Restore create-zoom child drafts on refresh (MZW-170)
+- _(canvas)_ Restore nested create-zoom drafts on refresh (MZW-170)
+- _(canvas)_ Ignore catalog slugs when matching blank zoom URLs
+- _(canvas)_ Stop inventing empty zooms for node URLs (MZW-170)
+- _(canvas)_ Keep node urls on the restored create-zoom child
+
+### ⚙️ Refactoring & Performance
+
+- _(forensics)_ Reorganize offender-related types and imports for clarity
+
+### 🧰 Maintenance & Dependencies
+
+- _(canvas)_ Merge main and resolve blank-zoom conflicts (MZW-170)
+
+### 🧪 Testing
+
+- _(canvas)_ Drop duplicated blank-canvas cases (MZW-170)
+
+## 2026-11-10
+
+### 🚀 Features
+
+- _(canvas)_ Integrate extension preview functionality
+- _(canvas)_ Enhance CanvasPreview with blueprint handling and drill-down schemas
+- _(vscode)_ Add tree-sitter dependencies and enhance workspace analysis
+
+### 🧰 Maintenance & Dependencies
+
+- Docs and styling updates
+- _(deps)_ Bump fast-xml-parser
+
+### 📚 Documentation
+
+- Update copy and seo pages
+
+## 2026-11-09
+
+### 🚀 Features
+
+- _(vscode)_ Show an empty architecture map in the panel (#268)
+- Moving to Diátaxis documentation framework
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Open the guide from the header and publish ADR 0018
+
 ## 2026-11-08
 
 ### 🚀 Features
@@ -11,6 +82,7 @@
 - _(resilience)_ Avoid let reassignment in RAF tick callback (#263)
 - _(quality)_ Remove unused exports; fix sync-derived rebase (#265)
 - _(quality)_ Format treeSitterHighlight.ts per prettier config (#266)
+- _(canvas)_ Stop refresh from failing guide navigations (#267)
 
 ### 🧰 Maintenance & Dependencies
 
