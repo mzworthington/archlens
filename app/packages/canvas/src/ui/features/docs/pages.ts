@@ -192,10 +192,14 @@ export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
 }
 
 function normalizeDocsPath(location: string): string {
-  if (location.length > 1 && location.endsWith('/')) {
-    return location.replace(/\/+$/, '') || '/';
+  if (location.length <= 1 || !location.endsWith('/')) {
+    return location;
   }
-  return location;
+  let end = location.length;
+  while (end > 1 && location.charAt(end - 1) === '/') {
+    end -= 1;
+  }
+  return location.slice(0, end);
 }
 
 /** Sidebar chapter that owns `location` - used to pick the active mobile section tab. */
