@@ -131,13 +131,13 @@ Canvas visibility and TraceLens overlays are in Explorer, on the **TraceLens** t
 
 ![Workspace display](../screenshots/8-workspace-display.png)
 
-| Toggle                              | Effect                                                                       |
-| ----------------------------------- | ---------------------------------------------------------------------------- |
-| **Show Test Components**            | Reveal nodes marked `isTest`. They're hidden by default.                     |
-| **Show Externals**                  | Show or hide external proxy nodes in the upstream and downstream bands.      |
-| **Show Selected Dependencies Only** | After you select a node, show only its upstream and downstream dependencies. |
-| **Risk Heatmap**                    | Tint nodes by `hotspotScore`. See [TraceLens](./tracelens.md).               |
-| **Coupling Lens**                   | Focus coupled peers on the Canvas. See [TraceLens](./tracelens.md).          |
+| Toggle                              | Effect                                                                                                                            |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Show Test Components**            | Reveal nodes marked `isTest`. They're hidden by default.                                                                          |
+| **Show Externals**                  | Show or hide external proxy nodes in the upstream and downstream bands.                                                           |
+| **Show Selected Dependencies Only** | When this is on, a selected node shows only its upstream and downstream dependencies. Selecting a node doesn't change the switch. |
+| **Risk Heatmap**                    | Tint nodes by `hotspotScore`. See [TraceLens](./tracelens.md).                                                                    |
+| **Coupling Lens**                   | Focus coupled peers on the Canvas. See [TraceLens](./tracelens.md).                                                               |
 
 **Lite** on the bottom toolbar speeds up pan and zoom on a large diagram. It hides the minimap and the grid, simplifies nodes, and caps edge animation.
 

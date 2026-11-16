@@ -23,7 +23,7 @@ describe('uiState Actions & State Management', () => {
     expect(state.showTests).toBe(false);
     expect(state.showUpstreamExternals).toBe(true);
     expect(state.showDownstreamExternals).toBe(true);
-    expect(state.dependencyViewMode).toBe('focus');
+    expect(state.dependencyViewMode).toBe('full');
     expect(state.showCoupling).toBe(false);
     expect(state.showHotspotHeatmap).toBe(true);
     expect(state.liteCanvas).toBe(false);
@@ -73,15 +73,28 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
   });
 
-  it('should toggle dependency focus via toggleShowSelectedDependenciesOnly', () => {
-    const store = useBlueprintStore.getState();
-    expect(store.dependencyViewMode).toBe('focus');
-
-    store.toggleShowSelectedDependenciesOnly();
+  it('keeps the dependency toggle when a node is selected or cleared', () => {
+    useBlueprintStore.setState({ dependencyViewMode: 'full', selectedNodeId: null });
+    useBlueprintStore.getState().selectNode('nodeA');
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('full');
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('nodeA');
+
+    useBlueprintStore.setState({ dependencyViewMode: 'focus-externals' });
+    useBlueprintStore.getState().selectNode(null);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
+    expect(useBlueprintStore.getState().selectedNodeId).toBeNull();
+  });
+
+  it('should toggle dependency focus via toggleShowSelectedDependenciesOnly', () => {
+    useBlueprintStore.setState({ dependencyViewMode: 'full' });
+    const store = useBlueprintStore.getState();
+    expect(store.dependencyViewMode).toBe('full');
 
     store.toggleShowSelectedDependenciesOnly();
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
+
+    store.toggleShowSelectedDependenciesOnly();
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('full');
   });
 
   it('should set dependency view mode via setDependencyViewMode', () => {
