@@ -73,6 +73,14 @@ describe('DocsShell', () => {
     expect(
       within(technologyNav).getByRole('link', { name: 'Architecture & security' })
     ).toBeInTheDocument();
+    expect(within(technologyNav).getByRole('link', { name: 'ADRs' })).toHaveAttribute(
+      'href',
+      '/ADRs'
+    );
+    expect(within(technologyNav).getByRole('link', { name: 'Changelog' })).toHaveAttribute(
+      'href',
+      '/changelog'
+    );
     expect(
       within(technologyNav).getByRole('link', { name: 'ChaosLens engine' })
     ).toBeInTheDocument();

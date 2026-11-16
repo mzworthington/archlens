@@ -23,7 +23,7 @@ node bin/changelog-render.mjs
 (cd app && pnpm test:vhs)
 (cd app && pnpm format:write)
 
-git add CHANGELOG.md docs/features-unit.md schemas/ docs/screenshots/
+git add docs/changelog.md CHANGELOG.md docs/features-unit.md schemas/ docs/screenshots/
 
 if git diff --staged --quiet; then
   echo "Derived outputs are already up to date."

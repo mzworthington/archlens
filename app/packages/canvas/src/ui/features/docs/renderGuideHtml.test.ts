@@ -37,4 +37,11 @@ describe('renderGuideHtml', () => {
     expect(html).toContain('target="_blank"');
     expect(html).toContain('rel="noreferrer"');
   });
+
+  it('rewrites ADR and changelog markdown links to in-app routes', () => {
+    const fromAdrs = renderGuideHtml('[Changelog](../changelog.md)\n', 'ADRs');
+    expect(fromAdrs).toContain('href="/changelog"');
+    const fromRoot = renderGuideHtml('[ADRs](./ADRs/README.md)\n', '');
+    expect(fromRoot).toContain('href="/ADRs"');
+  });
 });

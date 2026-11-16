@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const gitCliff = join(root, 'app/node_modules/.bin/git-cliff');
+const docsChangelog = join(root, 'docs/changelog.md');
+const rootChangelog = join(root, 'CHANGELOG.md');
 
 const releases = JSON.parse(
   execFileSync(gitCliff, ['-c', join(root, 'cliff.toml'), '-x'], {
@@ -60,6 +62,16 @@ function formatBullet(commit) {
   return `- ${scope}${breaking}${message}`;
 }
 
+/** Keep root CHANGELOG.md as a symlink for GitHub / tooling that still looks at the repo root. */
+function ensureRootChangelogSymlink() {
+  if (existsSync(rootChangelog)) {
+    const st = lstatSync(rootChangelog);
+    if (st.isSymbolicLink()) return;
+    unlinkSync(rootChangelog);
+  }
+  symlinkSync('docs/changelog.md', rootChangelog);
+}
+
 /** @type {Map<string, Map<string, { bullets: string[], messages: Set<string> }>>} */
 const byDay = new Map();
 
@@ -83,7 +95,12 @@ for (const release of releases) {
   }
 }
 
-const lines = ['# Changelog', ''];
+const lines = [
+  '# Changelog',
+  '',
+  'What shipped in ArchLens, day by day. Hard-to-reverse choices live in [Architecture Decision Records](./ADRs/README.md).',
+  '',
+];
 
 for (const date of [...byDay.keys()].sort((a, b) => b.localeCompare(a))) {
   lines.push(`## ${date}`, '');
@@ -97,4 +114,5 @@ for (const date of [...byDay.keys()].sort((a, b) => b.localeCompare(a))) {
   }
 }
 
-writeFileSync(join(root, 'CHANGELOG.md'), `${lines.join('\n').trimEnd()}\n`);
+writeFileSync(docsChangelog, `${lines.join('\n').trimEnd()}\n`);
+ensureRootChangelogSymlink();

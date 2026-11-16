@@ -183,6 +183,18 @@ describe('docs link resolution', () => {
     );
   });
 
+  it('registers the changelog next to ADRs in Tech docs', () => {
+    const page = findDocsPage('/changelog');
+    expect(page?.title).toBe('Changelog');
+    expect(page?.markdown).toMatch(/Architecture Decision Records/i);
+    expect(page?.markdown).toMatch(/## \d{4}-\d{2}-\d{2}/);
+    expect(resolveDocsHref('./changelog.md', '')).toBe('/changelog');
+    expect(resolveDocsHref('../changelog.md', 'ADRs')).toBe('/changelog');
+    expect(DOCS_SIDEBAR.find(s => s.title === 'Tech')?.items.map(i => i.label)).toEqual(
+      expect.arrayContaining(['ADRs', 'Changelog'])
+    );
+  });
+
   it('presents YAML frontmatter as structured fields, not a code fence', () => {
     const { frontmatter, body } = splitDocsMarkdown(
       "---\nstatus: Accepted\ndeciders: ['ArchLens']\n---\n\n# Title\n"
