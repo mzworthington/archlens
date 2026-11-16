@@ -49,8 +49,29 @@ export function readStableAuthorKey(store: CollabAuthorKeyStore): string {
   return next;
 }
 
+/** Boot canvas name before a workspace/schema is chosen — must never seed a room. */
+const BOOT_PLACEHOLDER_SCHEMA_NAME = 'Loading';
+
+function isBootPlaceholderName(name: string | undefined | null): boolean {
+  const trimmed = name?.trim() ?? '';
+  return trimmed.length === 0 || trimmed === BOOT_PLACEHOLDER_SCHEMA_NAME;
+}
+
+/**
+ * Room content that peers should adopt. A boot `Loading` meta name with no
+ * nodes/deps is empty — guests used to poison rooms by seeding that placeholder.
+ */
 export function documentIsEmpty(doc: CollabDocument): boolean {
-  return !doc.meta.name && Object.keys(doc.nodes).length === 0;
+  if (Object.keys(doc.nodes).length > 0 || Object.keys(doc.dependencies).length > 0) {
+    return false;
+  }
+  return isBootPlaceholderName(doc.meta.name);
+}
+
+/** Only seed when local schema is intentional content, not the boot placeholder. */
+export function schemaIsSeedable(schema: SystemSchema): boolean {
+  if (schema.nodes.length > 0 || schema.dependencies.length > 0) return true;
+  return !isBootPlaceholderName(schema.name);
 }
 
 export function emitPresence(
@@ -79,34 +100,60 @@ export async function waitForCollabAdmission(input: {
   let admitted = false;
   let dispose: () => void = () => {};
   let sendControl: (message: CollabClientControl) => void = () => {};
+  let remoteSynced = false;
+  let resolveSyncWait: (() => void) | null = null;
 
-  await new Promise<void>(resolve => {
-    let settled = false;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      resolve();
-    };
-    const timer = setTimeout(finish, input.controlWaitMs);
-    const session = input.transport.connect(input.roomId, input.doc, input.awareness, {
-      credentials: input.credentials,
-      onControl: message => {
-        controlSeen = true;
-        admitted = message.op === 'admitted';
-        input.onRoomControl?.(message.op);
-        clearTimeout(timer);
-        finish();
-      },
+  const onRemoteUpdate = (_update: Uint8Array, origin: unknown) => {
+    if (origin === YJS_LOCAL_ORIGIN) return;
+    remoteSynced = true;
+    resolveSyncWait?.();
+  };
+  // Listen before connect so a Durable Object snapshot during admit still counts.
+  input.doc.on('update', onRemoteUpdate);
+
+  try {
+    await new Promise<void>(resolve => {
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        resolve();
+      };
+      const timer = setTimeout(finish, input.controlWaitMs);
+      const session = input.transport.connect(input.roomId, input.doc, input.awareness, {
+        credentials: input.credentials,
+        onControl: message => {
+          controlSeen = true;
+          admitted = message.op === 'admitted';
+          input.onRoomControl?.(message.op);
+          clearTimeout(timer);
+          finish();
+        },
+      });
+      dispose = session.dispose;
+      sendControl = session.sendControl;
     });
-    dispose = session.dispose;
-    sendControl = session.sendControl;
-  });
 
-  if (input.syncWaitMs > 0) {
-    await new Promise(resolve => setTimeout(resolve, input.syncWaitMs));
-  }
-  if (!controlSeen) {
-    admitted = input.controlWaitMs === 0;
+    if (input.syncWaitMs > 0 && admitted && !remoteSynced) {
+      await new Promise<void>(resolve => {
+        let settled = false;
+        const finish = () => {
+          if (settled) return;
+          settled = true;
+          resolveSyncWait = null;
+          clearTimeout(timer);
+          resolve();
+        };
+        resolveSyncWait = finish;
+        const timer = setTimeout(finish, input.syncWaitMs);
+      });
+    }
+    if (!controlSeen) {
+      admitted = input.controlWaitMs === 0;
+    }
+  } finally {
+    input.doc.off('update', onRemoteUpdate);
+    resolveSyncWait = null;
   }
 
   return { admitted, dispose, sendControl };
@@ -127,7 +174,8 @@ export function hydrateCollabWorkspaceJoin(input: {
     const root = readCollabDocument(ydoc);
     if (!documentIsEmpty(root)) remote = { diagrams: { [requestedPath]: root } };
   }
-  const seeds = Object.keys(stored.diagrams).length > 0 ? explicit : localDiagrams;
+  const candidateSeeds = Object.keys(stored.diagrams).length > 0 ? explicit : localDiagrams;
+  const seeds = candidateSeeds.filter(diagram => schemaIsSeedable(diagram.schema));
   const merged = mergeCollabWorkspaceJoin(remote, seeds);
   for (const [path, document] of Object.entries(merged.diagrams)) {
     if (stored.diagrams[path]) continue;

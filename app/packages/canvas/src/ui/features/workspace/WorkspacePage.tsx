@@ -12,6 +12,7 @@ import { useBlankCanvasUnloadGuard } from './hooks/useBlankCanvasUnloadGuard';
 import { useUrlSync } from './hooks/useUrlSync';
 import { useWorkspaceLensSync } from './hooks/useWorkspaceLensSync';
 import { useCollabRoomSync } from './hooks/useCollabRoomSync';
+import { useCollabDiskAutosave } from './hooks/useCollabDiskAutosave';
 import { CollabNameDialog } from './components/CollabNameDialog/CollabNameDialog';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { useBlueprintStore } from '../../../application/store/store';
@@ -30,6 +31,7 @@ export const WorkspacePage: React.FC = () => {
   useUrlSync();
   useWorkspaceLensSync();
   const collabJoin = useCollabRoomSync();
+  useCollabDiskAutosave();
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),

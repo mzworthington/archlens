@@ -74,7 +74,11 @@ export interface IoState {
   dismissScanMapPersist: () => void;
   liteScanProgress: LiteScanProgress | null;
   cancelBrowserLiteScan: () => void;
-  saveActiveDiagram: () => Promise<boolean>;
+  saveActiveDiagram: (options?: {
+    quiet?: boolean;
+    /** When false right before disk write, abort (stale quiet autosave after Keep disk). */
+    isCurrent?: () => boolean;
+  }) => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
   joinCollabRoom: (
     roomId: string,

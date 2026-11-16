@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as Y from 'yjs';
 import { Awareness, applyAwarenessUpdate, encodeAwarenessUpdate } from 'y-protocols/awareness';
 import { commentsFromRecord, type NodeComment, type SystemSchema } from '@archlens/core';
@@ -116,7 +116,81 @@ async function joinCommentRoom(
   return commentsB;
 }
 
+const loadingSeed: SystemSchema = {
+  name: 'Loading',
+  version: '1.0.0',
+  level: 'container',
+  nodes: [],
+  dependencies: [],
+};
+
 describe('createYjsCollabSession', () => {
+  it('does not let a Loading boot placeholder poison an empty room before the host seeds', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionGuest = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionHost = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const hostReceived: SystemSchema[] = [];
+    const guestReceived: SystemSchema[] = [];
+
+    await sessionGuest.join({
+      roomId: 'room-loading-race',
+      seedSchema: loadingSeed,
+      displayName: 'Guest',
+      onSchema: schema => guestReceived.push(schema),
+      onPresence: () => {},
+    });
+    await sessionHost.join({
+      roomId: 'room-loading-race',
+      seedSchema: seed,
+      displayName: 'Host',
+      onSchema: schema => hostReceived.push(schema),
+      onPresence: () => {},
+    });
+
+    // Guest must not have adopted an empty Loading room as durable content.
+    expect(guestReceived.some(schema => schema.name === 'Loading')).toBe(false);
+    // Host seeds the real diagram; guest should receive those nodes.
+    await vi.waitFor(() => {
+      expect(guestReceived.at(-1)?.nodes.map(n => n.entityRef)).toEqual(['shop/api']);
+    });
+    expect(hostReceived.some(schema => schema.name === 'Loading')).toBe(false);
+
+    sessionGuest.leave();
+    sessionHost.leave();
+  });
+
+  it('recovers when the room only has a Loading placeholder and the host has real nodes', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const sessionPoison = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const sessionHost = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const hostReceived: SystemSchema[] = [];
+
+    // Seed a real node first (so join writes), then push empty Loading to poison the room.
+    await sessionPoison.join({
+      roomId: 'room-recover',
+      seedSchema: seed,
+      displayName: 'Early',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+    sessionPoison.pushSchema(loadingSeed);
+
+    await sessionHost.join({
+      roomId: 'room-recover',
+      seedSchema: seed,
+      displayName: 'Host',
+      onSchema: schema => hostReceived.push(schema),
+      onPresence: () => {},
+    });
+
+    expect(
+      hostReceived.some(schema => schema.name === 'Loading' && schema.nodes.length === 0)
+    ).toBe(false);
+    expect(sessionHost.isActive()).toBe(true);
+    sessionPoison.leave();
+    sessionHost.leave();
+  });
+
   it('hydrates a late joiner from the seeded room', async () => {
     const [transportA, transportB] = createLinkedTransports();
     const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });

@@ -6,7 +6,7 @@ Collaboration is a live **room** on the map. **Share** copies a link peers open 
 https://archlens.dev/guide/collaborate
 ```
 
-No ArchLens account. Named cursors show who is looking where. Writing YAML back to disk still goes through **Pending Changes**.
+No ArchLens account. Named cursors show who is looking where. Folder workspaces auto-save the active diagram to disk while a room is open. **Pending Changes** is still there for an explicit Keep disk / Keep live and commit.
 
 Live share is an opt-in room, not a second source of truth. Folder workspaces stay local-first. Published catalogs stay a CI publish. See [Privacy](../privacy.md) for what a room actually sends.
 
@@ -81,7 +81,7 @@ These stay on each browser, not in the room:
 ## What a room isn't
 
 - Not a published catalog. Pipeline, then object storage, then Canvas, is still [CLI publish](./cli.md).
-- Not disk. Folder **Commit** remains the only write back to YAML.
+- Not a second source of truth for YAML. Folder workspaces still own disk. While a live room is open on a folder workspace, ArchLens **auto-saves** the active diagram to disk after a short idle so room expiry can't be the only copy. **Pending Changes** remains available for explicit Keep disk / Keep live and commit.
 - Not Linear tickets or voice and video. A workspace share is one room for the diagrams you have open, not a second copy of the folder on disk.
 - Not product sign-in. Treat an open link like a meeting URL.
 
