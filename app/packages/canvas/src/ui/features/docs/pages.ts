@@ -116,7 +116,7 @@ const TECH_PATH_PREFIXES = [
   '/changelog',
 ];
 
-/** Header hubs - chapter lists live in the sidebar / mobile section scrollers. */
+/** Header hubs - chapter lists live in the sidebar / mobile section tabs. */
 export const DOCS_NAV: DocsNavItem[] = [
   // path `/guide` is overview-only; surface chapters use the Surfaces hub.
   { label: 'Start', path: '/guide', matchPrefixes: START_PATH_PREFIXES },
@@ -189,6 +189,39 @@ export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
     );
   }
   return location === item.path || location.startsWith(`${item.path}/`);
+}
+
+function normalizeDocsPath(location: string): string {
+  if (location.length <= 1 || !location.endsWith('/')) {
+    return location;
+  }
+  let end = location.length;
+  while (end > 1 && location.charAt(end - 1) === '/') {
+    end -= 1;
+  }
+  return location.slice(0, end);
+}
+
+/** Sidebar chapter that owns `location` - used to pick the active mobile section tab. */
+export function docsSidebarSectionForPath(location: string): DocsSidebarSection {
+  const path = normalizeDocsPath(location);
+
+  const exact = DOCS_SIDEBAR.find(section => section.items.some(item => item.path === path));
+  if (exact) return exact;
+
+  // Prefer hub matchPrefixes so Start's `/guide` does not claim Surfaces `/guide/*` chapters.
+  const hub = DOCS_NAV.find(item => isDocsNavActive(path, item));
+  if (hub) {
+    const byTitle = DOCS_SIDEBAR.find(section => section.title === hub.label);
+    if (byTitle) return byTitle;
+  }
+
+  const nested = DOCS_SIDEBAR.find(section =>
+    section.items.some(item => item.path !== '/' && path.startsWith(`${item.path}/`))
+  );
+  if (nested) return nested;
+
+  return DOCS_SIDEBAR[0]!;
 }
 
 function adrPage(stem: string, markdown: string): DocsPageMeta {

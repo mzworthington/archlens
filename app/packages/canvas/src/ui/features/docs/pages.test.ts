@@ -6,6 +6,7 @@ import {
   DOCS_SIDEBAR,
   findDocsPage,
   isDocsNavActive,
+  docsSidebarSectionForPath,
   docsScreenshotSrc,
   resolveDocsAssetSrc,
   resolveDocsHref,
@@ -157,6 +158,18 @@ describe('docs link resolution', () => {
     expect(isDocsNavActive('/guide/ci-workflows', tech)).toBe(true);
     expect(isDocsNavActive('/design-system', tech)).toBe(true);
     expect(isDocsNavActive('/design-system', start)).toBe(false);
+  });
+
+  it('resolves the sidebar section for a docs path', () => {
+    expect(docsSidebarSectionForPath('/changelog').title).toBe('Tech');
+    expect(docsSidebarSectionForPath('/design-system').title).toBe('Tech');
+    expect(docsSidebarSectionForPath('/guide').title).toBe('Start');
+    expect(docsSidebarSectionForPath('/tutorials/getting-started').title).toBe('Learn');
+    expect(docsSidebarSectionForPath('/guide/canvas').title).toBe('Surfaces');
+    expect(docsSidebarSectionForPath('/guide/canvas/').title).toBe('Surfaces');
+    expect(docsSidebarSectionForPath('/guide/getting-started').title).toBe('Learn');
+    expect(docsSidebarSectionForPath('/guide/ci-workflows').title).toBe('Tech');
+    expect(docsSidebarSectionForPath('/ADRs/some-decision').title).toBe('Tech');
   });
 
   it('registers the AdviceLens engine reference page', () => {

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
-import { DOCS_NAV, DOCS_SIDEBAR, isDocsNavActive } from './pages';
+import { DOCS_NAV, DOCS_SIDEBAR, docsSidebarSectionForPath, isDocsNavActive } from './pages';
 
 export type DocsLocalNav = {
   /** Section label for mobile scroller (e.g. "On this page"). */
@@ -24,6 +24,13 @@ type Props = {
   localNav?: DocsLocalNav;
 };
 
+const chipClass = (active: boolean) =>
+  `rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 ${
+    active
+      ? 'bg-accent/15 text-accent border-accent/30'
+      : 'text-ink/55 hover:text-ink/90 bg-transparent border-transparent hover:bg-white/5'
+  }`;
+
 function MobileScroller({
   items,
   location,
@@ -38,22 +45,14 @@ function MobileScroller({
   return (
     <div
       data-testid={testId}
-      className="flex gap-2 items-center p-3 overflow-x-auto scrollbar-none min-w-0"
+      className="flex gap-2 items-center px-3 pb-3 overflow-x-auto scrollbar-none min-w-0"
       role="navigation"
       aria-label={ariaLabel}
     >
       {items.map(item => {
         const active = location === item.path;
         return (
-          <Link
-            key={item.path}
-            href={item.path}
-            className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 ${
-              active
-                ? 'bg-accent/15 text-accent border-accent/30'
-                : 'text-ink/55 hover:text-ink/90 bg-transparent border-transparent hover:bg-white/5'
-            }`}
-          >
+          <Link key={item.path} href={item.path} className={chipClass(active)}>
             {item.label}
           </Link>
         );
@@ -81,17 +80,75 @@ function MobileLocalNav({ localNav }: { localNav: DocsLocalNav }) {
               key={item.id}
               type="button"
               onClick={() => localNav.onSelect(item.id)}
-              className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 cursor-pointer ${
-                active
-                  ? 'bg-accent/15 text-accent border-accent/30'
-                  : 'text-ink/55 hover:text-ink/90 bg-transparent border-transparent hover:bg-white/5'
-              }`}
+              className={`${chipClass(active)} cursor-pointer`}
             >
               {item.label}
             </button>
           );
         })}
       </div>
+    </div>
+  );
+}
+
+/**
+ * Mobile chapter nav: one section-tab row + one link scroller for the active section.
+ * Avoids stacking every Start/Learn/Surfaces/Tech scroller and eating the viewport.
+ */
+function MobileDocsChapterNav({
+  location,
+  showLocalNav,
+  localNav,
+}: {
+  location: string;
+  showLocalNav: boolean;
+  localNav?: DocsLocalNav;
+}) {
+  const locationSectionTitle = docsSidebarSectionForPath(location).title;
+  const [activeSectionTitle, setActiveSectionTitle] = useState(locationSectionTitle);
+
+  useEffect(() => {
+    setActiveSectionTitle(locationSectionTitle);
+  }, [locationSectionTitle]);
+
+  const activeSection =
+    DOCS_SIDEBAR.find(section => section.title === activeSectionTitle) ?? DOCS_SIDEBAR[0]!;
+  const sectionSlug = activeSection.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  return (
+    <div
+      className="lg:hidden border-b border-accent/10 bg-surface/60 backdrop-blur-sm sticky top-[73px] z-40"
+      data-testid="docs-mobile-chapter-nav"
+    >
+      <div
+        className="flex gap-2 items-center px-3 pt-2.5 pb-1.5 overflow-x-auto scrollbar-none min-w-0"
+        role="tablist"
+        aria-label="Docs chapters"
+        data-testid="docs-mobile-section-tabs"
+      >
+        {DOCS_SIDEBAR.map(section => {
+          const selected = section.title === activeSection.title;
+          return (
+            <button
+              key={section.title}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              className={`${chipClass(selected)} cursor-pointer uppercase tracking-[0.12em]`}
+              onClick={() => setActiveSectionTitle(section.title)}
+            >
+              {section.title}
+            </button>
+          );
+        })}
+      </div>
+      <MobileScroller
+        items={activeSection.items}
+        location={location}
+        aria-label={activeSection.title}
+        testId={`docs-mobile-${sectionSlug}-nav`}
+      />
+      {showLocalNav && localNav ? <MobileLocalNav localNav={localNav} /> : null}
     </div>
   );
 }
@@ -105,7 +162,7 @@ export const DocsShell: React.FC<Props> = ({
 }) => {
   const [location] = useLocation();
   const isLanding = layout === 'landing';
-  const showLocalNav = localNav && location === localNav.expandUnderPath;
+  const showLocalNav = Boolean(localNav && location === localNav.expandUnderPath);
 
   return (
     <div className="h-dvh w-full overflow-y-auto blueprint-grid text-ink pb-safe">
@@ -139,25 +196,7 @@ export const DocsShell: React.FC<Props> = ({
       </AppHeader>
 
       {!isLanding ? (
-        <div className="lg:hidden border-b border-accent/10 bg-surface/60 backdrop-blur-sm sticky top-[73px] z-40">
-          {DOCS_SIDEBAR.map((section, index) => (
-            <div
-              key={section.title}
-              className={index === 0 ? undefined : 'border-t border-accent/10'}
-            >
-              <p className="px-3 pt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
-                {section.title}
-              </p>
-              <MobileScroller
-                items={section.items}
-                location={location}
-                aria-label={section.title}
-                testId={`docs-mobile-${section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-nav`}
-              />
-            </div>
-          ))}
-          {showLocalNav ? <MobileLocalNav localNav={localNav!} /> : null}
-        </div>
+        <MobileDocsChapterNav location={location} showLocalNav={showLocalNav} localNav={localNav} />
       ) : null}
 
       <div
