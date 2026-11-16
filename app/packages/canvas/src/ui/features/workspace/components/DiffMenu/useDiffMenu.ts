@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import {
+  resumeActiveDiagramSaves,
+  supersedeActiveDiagramSave,
+} from '../../../../../application/store/states/ioState/activeDiagramSaveGate';
 import type { SchemaDiff } from '../../../../../core';
 import {
   keepDiskConfirmMessage,
@@ -61,6 +65,9 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       return;
     }
 
+    // Invalidate a quiet save that already captured the live draft. If its
+    // write lands, put the reverted YAML back so disk stays the kept baseline.
+    const superseded = supersedeActiveDiagramSave();
     try {
       const system = loadedSystems.find(s => s.path === currentFilePath);
       const originalSchema = await workingCopyPort.revertWorkingSchema({
@@ -75,11 +82,18 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       if (keepDiskRequiresRoomPush(Boolean(collabSessionPort?.isActive()))) {
         collabSessionPort.pushSchema(originalSchema);
       }
+      await superseded.settled;
+      if (superseded.diskWriteWasActive && currentFilePath) {
+        const restoredYaml = useBlueprintStore.getState().yamlCode;
+        await useBlueprintStore.getState().workspacePort.writeFile(currentFilePath, restoredYaml);
+      }
       await checkPendingChanges?.();
       logger.info('Reverted active diagram changes to baseline version');
       onClose();
     } catch (err) {
       logger.error('Failed to revert active diagram draft changes', err);
+    } finally {
+      resumeActiveDiagramSaves();
     }
   };
 

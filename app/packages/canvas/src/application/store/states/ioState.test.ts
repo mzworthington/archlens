@@ -11,6 +11,11 @@ import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
 import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { resetWorkspaceOpenSessionForTests } from '../workspaceOpenSession';
+import {
+  resetActiveDiagramSaveGateForTests,
+  resumeActiveDiagramSaves,
+  supersedeActiveDiagramSave,
+} from './ioState/activeDiagramSaveGate';
 import { readBlankCanvasSession } from './ioState/blankCanvasSession';
 
 const HOT_SOURCE = `
@@ -168,6 +173,7 @@ dependencies: []
 
   beforeEach(async () => {
     resetWorkspaceOpenSessionForTests();
+    resetActiveDiagramSaveGateForTests();
     delete mockFiles['another-system.yaml'];
     await db.originalNodes.clear();
     await db.workingNodes.clear();
@@ -614,6 +620,60 @@ nodes: []`);
       const success = await store.saveActiveDiagram();
       expect(success).toBe(true);
       spyWrite.mockRestore();
+    });
+
+    it('does not baseline a diagram write superseded while the file write is in flight', async () => {
+      let releaseWrite: (ok: boolean) => void = () => undefined;
+      const writeFile = vi.fn(
+        () =>
+          new Promise<boolean>(resolve => {
+            releaseWrite = resolve;
+          })
+      );
+      const saveBaselineSchema = vi.fn(async () => undefined);
+      useBlueprintStore.setState({
+        isWorkspaceOpen: true,
+        isSampleWorkspace: false,
+        isMemoryScanWorkspace: false,
+        currentFilePath: 'blueprints/shop.yaml',
+        yamlCode: 'name: Live\n',
+        workspacePort: { ...mockWorkspacePort, writeFile },
+        workingCopyPort: {
+          ...useBlueprintStore.getState().workingCopyPort,
+          saveBaselineSchema,
+        },
+      });
+
+      const saving = useBlueprintStore.getState().saveActiveDiagram({ quiet: true });
+      expect(writeFile).toHaveBeenCalledWith('blueprints/shop.yaml', 'name: Live\n');
+
+      const superseded = supersedeActiveDiagramSave();
+      expect(superseded.diskWriteWasActive).toBe(true);
+      useBlueprintStore.setState({ yamlCode: 'name: Disk\n' });
+      releaseWrite(true);
+
+      await expect(saving).resolves.toBe(false);
+      await superseded.settled;
+      expect(saveBaselineSchema).not.toHaveBeenCalled();
+      resumeActiveDiagramSaves();
+    });
+
+    it('does not start a folder write while Keep disk has superseded saves', async () => {
+      const writeFile = vi.fn(async () => true);
+      useBlueprintStore.setState({
+        isWorkspaceOpen: true,
+        isSampleWorkspace: false,
+        isMemoryScanWorkspace: false,
+        currentFilePath: 'blueprints/shop.yaml',
+        yamlCode: 'name: Live\n',
+        workspacePort: { ...mockWorkspacePort, writeFile },
+      });
+
+      supersedeActiveDiagramSave();
+      const saved = await useBlueprintStore.getState().saveActiveDiagram({ quiet: true });
+      expect(saved).toBe(false);
+      expect(writeFile).not.toHaveBeenCalled();
+      resumeActiveDiagramSaves();
     });
 
     it('should return false if writeFile fails or throws when workspace is open', async () => {

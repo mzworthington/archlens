@@ -1,9 +1,12 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DiffMenu } from './DiffMenu';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { LoggerPort, WorkingCopyPort } from '../../../../../core';
 import { noopCollabSession } from '../../../../../core';
+import { resetActiveDiagramSaveGateForTests } from '../../../../../application/store/states/ioState/activeDiagramSaveGate';
+
+const realSaveActiveDiagram = useBlueprintStore.getState().saveActiveDiagram;
 
 const computeSchemaDiff = vi.fn();
 const revertWorkingSchema = vi.fn();
@@ -24,6 +27,7 @@ describe('DiffMenu Component', () => {
   const mockOnClose = vi.fn();
 
   beforeEach(() => {
+    resetActiveDiagramSaveGateForTests();
     vi.clearAllMocks();
     useBlueprintStore.setState({
       currentFilePath: 'blueprints/cli.yaml',
@@ -50,6 +54,10 @@ describe('DiffMenu Component', () => {
       isWorkspaceOpen: false,
       collabSessionPort: noopCollabSession,
     });
+  });
+
+  afterEach(() => {
+    resetActiveDiagramSaveGateForTests();
   });
 
   it('is hidden when isOpen is false', () => {
@@ -253,6 +261,87 @@ describe('DiffMenu Component', () => {
     await waitFor(() => {
       expect(pushSchema).toHaveBeenCalled();
     });
+    confirmSpy.mockRestore();
+  });
+
+  it('puts the kept disk YAML back when a quiet save is still writing', async () => {
+    const written: string[] = [];
+    let releaseWrite: (ok: boolean) => void = () => undefined;
+    const writeFile = vi.fn((_path: string, content: string) => {
+      written.push(content);
+      if (written.length === 1) {
+        return new Promise<boolean>(resolve => {
+          releaseWrite = resolve;
+        });
+      }
+      return Promise.resolve(true);
+    });
+    const saveBaselineSchema = vi.fn(async () => undefined);
+    const pushSchema = vi.fn();
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isSampleWorkspace: false,
+      isMemoryScanWorkspace: false,
+      yamlCode: 'name: Live\n',
+      currentFilePath: 'blueprints/cli.yaml',
+      saveActiveDiagram: realSaveActiveDiagram,
+      workspacePort: { ...useBlueprintStore.getState().workspacePort, writeFile },
+      workingCopyPort: { ...mockWorkingCopy, saveBaselineSchema },
+      initSchema: vi.fn(() => {
+        useBlueprintStore.setState({ yamlCode: 'name: On disk\n' });
+      }),
+      checkPendingChanges: vi.fn(async () => undefined),
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        isActive: () => true,
+        pushSchema,
+      },
+    });
+    computeSchemaDiff.mockResolvedValueOnce({
+      nodes: {
+        added: [
+          {
+            entityRef: 'cli/new-service',
+            id: 'new-service',
+            systemId: 'cli',
+            type: 'microservice',
+            name: 'New Service',
+            properties: {},
+            filePath: 'blueprints/cli.yaml',
+          },
+        ],
+        modified: [],
+        deleted: [],
+      },
+      dependencies: { added: [], deleted: [] },
+    });
+    revertWorkingSchema.mockImplementationOnce(async () => {
+      releaseWrite(true);
+      return {
+        name: 'CLI System',
+        version: '1.0.0',
+        level: 'container' as const,
+        nodes: [],
+        dependencies: [],
+      };
+    });
+
+    const saving = useBlueprintStore.getState().saveActiveDiagram({ quiet: true });
+    expect(writeFile).toHaveBeenCalledWith('blueprints/cli.yaml', 'name: Live\n');
+
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
+    render(<DiffMenu isOpen={true} onClose={mockOnClose} />);
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Keep disk' })).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Keep disk' }));
+
+    await waitFor(() => {
+      expect(written).toEqual(['name: Live\n', 'name: On disk\n']);
+    });
+    await expect(saving).resolves.toBe(false);
+    expect(saveBaselineSchema).not.toHaveBeenCalled();
+    expect(pushSchema).toHaveBeenCalled();
     confirmSpy.mockRestore();
   });
 

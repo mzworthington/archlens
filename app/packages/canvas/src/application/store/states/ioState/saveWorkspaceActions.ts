@@ -1,6 +1,13 @@
 import { persistBlankCanvasSessionFromSchema } from './blankCanvasSession';
 import { yamlFileNameFromDiagramName } from './yamlFileNameFromDiagramName';
 import { loadWorkspaceFromYamlFiles } from './openWorkspace';
+import {
+  areActiveDiagramSavesBlocked,
+  beginActiveDiagramDiskWrite,
+  endActiveDiagramDiskWrite,
+  readActiveDiagramSaveEpoch,
+  trackActiveDiagramSave,
+} from './activeDiagramSaveGate';
 import type { BlueprintStoreSet } from '../../store';
 import type { DiagramState } from '../diagramState';
 import type { UiState } from '../uiState';
@@ -136,45 +143,66 @@ export function createSaveWorkspaceActions(set: BlueprintStoreSet, get: IoGet) {
         return get().saveSchema();
       }
 
-      logger.info('Saving active diagram directly to workspace', { path: currentFilePath, quiet });
-      try {
-        const success = await workspacePort.writeFile(currentFilePath, yamlCode);
-        if (success) {
-          logger.info('Diagram saved successfully');
-          const sysId = schema.entityRef || 'default';
-          const fileRefMap = nodeRefMap[currentFilePath] || {};
-          await workingCopyPort.saveBaselineSchema({
-            filePath: currentFilePath,
-            schema,
-            systemId: sysId,
-            nodeRefMap: fileRefMap,
-          });
-          await get().checkPendingChanges?.();
-          if (!quiet) {
+      const epoch = readActiveDiagramSaveEpoch();
+      const task = (async (): Promise<boolean> => {
+        if (areActiveDiagramSavesBlocked() || epoch !== readActiveDiagramSaveEpoch()) {
+          return false;
+        }
+
+        logger.info('Saving active diagram directly to workspace', {
+          path: currentFilePath,
+          quiet,
+        });
+        beginActiveDiagramDiskWrite();
+        try {
+          const success = await workspacePort.writeFile(currentFilePath, yamlCode);
+          // Keep disk bumps the epoch while this write is in flight.
+          // Do not baseline the captured draft; Keep disk rewrites the file
+          // with the reverted YAML after this save returns.
+          if (areActiveDiagramSavesBlocked() || epoch !== readActiveDiagramSaveEpoch()) {
+            return false;
+          }
+          if (success) {
+            logger.info('Diagram saved successfully');
+            const sysId = schema.entityRef || 'default';
+            const fileRefMap = nodeRefMap[currentFilePath] || {};
+            await workingCopyPort.saveBaselineSchema({
+              filePath: currentFilePath,
+              schema,
+              systemId: sysId,
+              nodeRefMap: fileRefMap,
+            });
+            await get().checkPendingChanges?.();
+            if (!quiet) {
+              setNotification?.({
+                type: 'success',
+                title: 'Save Successful',
+                message: `Saved active diagram to ${currentFilePath.split('/').pop()}`,
+              });
+            }
+          } else {
+            logger.error('Failed to save diagram');
             setNotification?.({
-              type: 'success',
-              title: 'Save Successful',
-              message: `Saved active diagram to ${currentFilePath.split('/').pop()}`,
+              type: 'error',
+              title: 'Save Failed',
+              message: 'Failed to write active diagram to disk.',
             });
           }
-        } else {
-          logger.error('Failed to save diagram');
+          return success;
+        } catch (err) {
+          logger.error('Error saving diagram in workspace', err);
           setNotification?.({
             type: 'error',
-            title: 'Save Failed',
-            message: 'Failed to write active diagram to disk.',
+            title: 'Save Error',
+            message: (err as Error).message || 'Error occurred while saving diagram.',
           });
+          return false;
+        } finally {
+          endActiveDiagramDiskWrite();
         }
-        return success;
-      } catch (err) {
-        logger.error('Error saving diagram in workspace', err);
-        setNotification?.({
-          type: 'error',
-          title: 'Save Error',
-          message: (err as Error).message || 'Error occurred while saving diagram.',
-        });
-        return false;
-      }
+      })();
+
+      return trackActiveDiagramSave(task);
     },
   };
 }
