@@ -79,4 +79,33 @@ describe('collab workspace room', () => {
 
     expect(collabWorkspaceFocusPath(remote, 'samples/context.yaml', [])).toBe('containers.yaml');
   });
+
+  it('does not publish a boot Loading diagram into an empty room', () => {
+    const merged = mergeCollabWorkspaceJoin({ diagrams: {} }, [
+      { path: 'context.yaml', schema: loadingSchema() },
+    ]);
+
+    expect(merged.diagrams).toEqual({});
+  });
+
+  it('replaces a Loading placeholder with the host diagram that has nodes', () => {
+    const remote = collabWorkspaceFromSchemas([{ path: 'context.yaml', schema: loadingSchema() }]);
+
+    const merged = mergeCollabWorkspaceJoin(remote, [{ path: 'context.yaml', schema: context }]);
+
+    expect(schemaFromCollabWorkspace(merged, 'context.yaml')?.name).toBe('Context');
+    expect(
+      schemaFromCollabWorkspace(merged, 'context.yaml')?.nodes.map(node => node.entityRef)
+    ).toEqual(['shop']);
+  });
 });
+
+function loadingSchema(): SystemSchema {
+  return {
+    name: 'Loading',
+    version: '1.0.0',
+    level: 'context',
+    nodes: [],
+    dependencies: [],
+  };
+}

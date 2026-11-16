@@ -1,5 +1,6 @@
 import type { SystemSchema } from '../models/schema';
 import {
+  collabDocumentIsBootPlaceholder,
   collabDocumentToSchema,
   schemaToCollabDocument,
   type CollabDocument,
@@ -69,8 +70,12 @@ export function mergeCollabWorkspaceJoin(
 ): CollabWorkspace {
   const diagrams: Record<string, CollabDocument> = { ...remote.diagrams };
   for (const diagram of local) {
-    if (!diagram.path || diagrams[diagram.path]) continue;
-    diagrams[diagram.path] = schemaToCollabDocument(diagram.schema);
+    if (!diagram.path) continue;
+    const localDoc = schemaToCollabDocument(diagram.schema);
+    if (collabDocumentIsBootPlaceholder(localDoc)) continue;
+    const existing = diagrams[diagram.path];
+    if (existing && !collabDocumentIsBootPlaceholder(existing)) continue;
+    diagrams[diagram.path] = localDoc;
   }
   return { diagrams };
 }

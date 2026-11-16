@@ -3,6 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { SchemaDiff } from '../../../../../core';
 import {
+  keepDiskConfirmMessage,
   keepDiskRequiresRoomPush,
   shouldPreviewCollabVsDisk,
 } from '../../../../../application/workspace/collabVsDisk';
@@ -55,7 +56,11 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
   }, [isOpen, fetchDiff]);
 
   const handleRevert = async () => {
-    if (!confirm('Are you sure you want to revert all unsaved draft changes for this diagram?')) {
+    const confirmLiveRoom = shouldPreviewCollabVsDisk({
+      collabActive: Boolean(collabSessionPort?.isActive()),
+      isWorkspaceOpen: Boolean(isWorkspaceOpen),
+    });
+    if (!confirm(keepDiskConfirmMessage(confirmLiveRoom))) {
       return;
     }
 

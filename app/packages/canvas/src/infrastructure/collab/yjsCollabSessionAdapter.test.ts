@@ -1,11 +1,19 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as Y from 'yjs';
 import { Awareness, applyAwarenessUpdate, encodeAwarenessUpdate } from 'y-protocols/awareness';
-import { commentsFromRecord, type NodeComment, type SystemSchema } from '@archlens/core';
+import {
+  commentsFromRecord,
+  diffCollabDocuments,
+  emptyCollabDocument,
+  schemaToCollabDocument,
+  type NodeComment,
+  type SystemSchema,
+} from '@archlens/core';
 import type { CollabPresence } from '../../core';
 import type { CollabTransport } from './collabTransport';
 import { createYjsCollabSession } from './yjsCollabSessionAdapter';
 import { YJS_COMMENTS_MAP } from './yjsCommentProjection';
+import { applyCollabPatch } from './yjsSchemaProjection';
 
 function createLinkedTransports(): [CollabTransport, CollabTransport] {
   const docs: Array<Y.Doc | null> = [null, null];
@@ -92,6 +100,14 @@ const emptySeed: SystemSchema = {
   dependencies: [],
 };
 
+const loadingSeed: SystemSchema = {
+  name: 'Loading',
+  version: '1.0.0',
+  level: 'context',
+  nodes: [],
+  dependencies: [],
+};
+
 async function joinCommentRoom(
   sessionA: ReturnType<typeof createYjsCollabSession>,
   sessionB: ReturnType<typeof createYjsCollabSession>,
@@ -117,6 +133,195 @@ async function joinCommentRoom(
 }
 
 describe('createYjsCollabSession', () => {
+  it('does not write a boot Loading schema into the room', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const guest = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const observer = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const seen: SystemSchema[] = [];
+
+    await guest.join({
+      roomId: 'room-loading',
+      seedSchema: loadingSeed,
+      displayName: 'Grace',
+      onSchema: schema => seen.push(schema),
+      onPresence: () => {},
+    });
+    await observer.join({
+      roomId: 'room-loading',
+      seedSchema: loadingSeed,
+      displayName: 'Ada',
+      onSchema: schema => seen.push(schema),
+      onPresence: () => {},
+    });
+
+    expect(seen).toEqual([]);
+    guest.leave();
+    observer.leave();
+  });
+
+  it('replaces a Loading placeholder with the host diagram instead of adopting it', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const guest = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const host = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const guestSeen: SystemSchema[] = [];
+    const hostSeen: SystemSchema[] = [];
+
+    await guest.join({
+      roomId: 'room-placeholder',
+      seedSchema: loadingSeed,
+      displayName: 'Grace',
+      onSchema: schema => guestSeen.push(schema),
+      onPresence: () => {},
+    });
+    guest.pushSchema(loadingSeed);
+    await host.join({
+      roomId: 'room-placeholder',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: schema => hostSeen.push(schema),
+      onPresence: () => {},
+    });
+
+    expect(hostSeen.map(schema => schema.name)).not.toContain('Loading');
+    expect(guestSeen.at(-1)?.name).toBe('Shop');
+    expect(guestSeen.at(-1)?.nodes.map(node => node.entityRef)).toEqual(['shop/api']);
+    guest.leave();
+    host.leave();
+  });
+
+  it('replaces a Loading file in a folder room with the host diagram', async () => {
+    const [transportA, transportB] = createLinkedTransports();
+    const guest = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });
+    const host = createYjsCollabSession({ transport: transportB, syncWaitMs: 0 });
+    const guestNodes: string[][] = [];
+    const context = {
+      ...seed,
+      name: 'Context',
+      level: 'context' as const,
+      nodes: [{ entityRef: 'shop', type: 'software-system' as const, name: 'Shop' }],
+    };
+    const containers = {
+      ...seed,
+      name: 'Containers',
+      nodes: [{ entityRef: 'shop/api', type: 'rest-api' as const, name: 'API' }],
+    };
+
+    await guest.join({
+      roomId: 'room-folder-placeholder',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: containers },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Grace',
+      onSchema: () => {},
+      onPresence: () => {},
+      onDiagram: (_path, schema) => {
+        guestNodes.push(schema.nodes.map(node => node.entityRef));
+      },
+    });
+    guest.pushSchema(loadingSeed);
+    guestNodes.length = 0;
+    await host.join({
+      roomId: 'room-folder-placeholder',
+      seedSchema: context,
+      seedDiagrams: [
+        { path: 'context.yaml', schema: context },
+        { path: 'containers.yaml', schema: containers },
+      ],
+      activePath: 'context.yaml',
+      displayName: 'Ada',
+      onSchema: () => {},
+      onPresence: () => {},
+    });
+
+    expect(guestNodes.at(-1)).toEqual(['shop']);
+    guest.leave();
+    host.leave();
+  });
+
+  it('waits long enough for a remote snapshot before seeding an empty room', async () => {
+    vi.useFakeTimers();
+    try {
+      const session = createYjsCollabSession({
+        transport: {
+          connect: () => ({ dispose: () => {}, sendControl: () => {} }),
+        },
+        controlWaitMs: 0,
+      });
+      let settled = false;
+      const pending = session
+        .join({
+          roomId: 'room-wait',
+          seedSchema: seed,
+          displayName: 'Ada',
+          onSchema: () => {},
+          onPresence: () => {},
+        })
+        .then(() => {
+          settled = true;
+        });
+
+      await vi.advanceTimersByTimeAsync(0);
+      await vi.advanceTimersByTimeAsync(399);
+      expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1);
+      await pending;
+      expect(settled).toBe(true);
+      session.leave();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('stops the sync wait when a remote diagram arrives', async () => {
+    vi.useFakeTimers();
+    let pending: Promise<void> = Promise.resolve();
+    let session: ReturnType<typeof createYjsCollabSession> | null = null;
+    try {
+      const seen: SystemSchema[] = [];
+      session = createYjsCollabSession({
+        transport: {
+          connect: (_roomId, ydoc) => {
+            setTimeout(() => {
+              applyCollabPatch(
+                ydoc,
+                diffCollabDocuments(emptyCollabDocument(), schemaToCollabDocument(seed)),
+                'remote'
+              );
+            }, 30);
+            return { dispose: () => {}, sendControl: () => {} };
+          },
+        },
+        controlWaitMs: 0,
+      });
+      let settled = false;
+      pending = session
+        .join({
+          roomId: 'room-early',
+          seedSchema: loadingSeed,
+          displayName: 'Grace',
+          onSchema: schema => seen.push(schema),
+          onPresence: () => {},
+        })
+        .then(() => {
+          settled = true;
+        });
+
+      await vi.advanceTimersByTimeAsync(0);
+      await vi.advanceTimersByTimeAsync(30);
+      expect(settled).toBe(true);
+      expect(seen.at(-1)?.name).toBe('Shop');
+      expect(seen.at(-1)?.nodes.map(node => node.entityRef)).toEqual(['shop/api']);
+    } finally {
+      await vi.advanceTimersByTimeAsync(5_000);
+      await pending;
+      session?.leave();
+      vi.useRealTimers();
+    }
+  });
+
   it('hydrates a late joiner from the seeded room', async () => {
     const [transportA, transportB] = createLinkedTransports();
     const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });

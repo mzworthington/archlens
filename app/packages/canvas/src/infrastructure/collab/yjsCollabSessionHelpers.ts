@@ -1,6 +1,7 @@
 import * as Y from 'yjs';
 import type { Awareness } from 'y-protocols/awareness';
 import {
+  collabDocumentIsEmpty,
   collabWorkspaceFocusPath,
   mergeCollabWorkspaceJoin,
   type CollabDocument,
@@ -49,8 +50,10 @@ export function readStableAuthorKey(store: CollabAuthorKeyStore): string {
   return next;
 }
 
+export const COLLAB_WS_SYNC_WAIT_MS = 400;
+
 export function documentIsEmpty(doc: CollabDocument): boolean {
-  return !doc.meta.name && Object.keys(doc.nodes).length === 0;
+  return collabDocumentIsEmpty(doc);
 }
 
 export function emitPresence(
@@ -70,6 +73,8 @@ export async function waitForCollabAdmission(input: {
   onRoomControl?: (op: CollabServerControl['op']) => void;
   controlWaitMs: number;
   syncWaitMs: number;
+  /** When set, a remote update ends the wait only if this returns true. */
+  untilReady?: () => boolean;
 }): Promise<{
   admitted: boolean;
   dispose: () => void;
@@ -102,8 +107,23 @@ export async function waitForCollabAdmission(input: {
     sendControl = session.sendControl;
   });
 
-  if (input.syncWaitMs > 0) {
-    await new Promise(resolve => setTimeout(resolve, input.syncWaitMs));
+  if (input.syncWaitMs > 0 && !input.untilReady?.()) {
+    await new Promise<void>(resolve => {
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        input.doc.off('update', onUpdate);
+        clearTimeout(timer);
+        resolve();
+      };
+      const onUpdate = () => {
+        if (input.untilReady && !input.untilReady()) return;
+        finish();
+      };
+      const timer = setTimeout(finish, input.syncWaitMs);
+      input.doc.on('update', onUpdate);
+    });
   }
   if (!controlSeen) {
     admitted = input.controlWaitMs === 0;
@@ -130,7 +150,9 @@ export function hydrateCollabWorkspaceJoin(input: {
   const seeds = Object.keys(stored.diagrams).length > 0 ? explicit : localDiagrams;
   const merged = mergeCollabWorkspaceJoin(remote, seeds);
   for (const [path, document] of Object.entries(merged.diagrams)) {
-    if (stored.diagrams[path]) continue;
+    const previous = stored.diagrams[path];
+    if (previous && !documentIsEmpty(previous)) continue;
+    if (previous && documentIsEmpty(document)) continue;
     writeCollabDiagram(ydoc, path, document, YJS_LOCAL_ORIGIN);
   }
   const latest = readCollabWorkspace(ydoc);

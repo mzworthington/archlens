@@ -249,6 +249,9 @@ describe('DiffMenu Component', () => {
       expect(screen.getByRole('dialog', { name: 'Live room vs disk' })).toBeInTheDocument();
     });
     fireEvent.click(screen.getByRole('button', { name: 'Keep disk' }));
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringMatching(/peers lose unsaved live edits/i)
+    );
     await waitFor(() => {
       expect(pushSchema).toHaveBeenCalled();
     });

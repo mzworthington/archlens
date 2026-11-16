@@ -9,6 +9,7 @@ import { EMPTY_COLLAB_PRESENCE, type NodeComment } from '../../../../core';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../../collab/collabDisplayName';
 import { readCollabHostToken } from '../../../collab/collabRoomCredentials';
 import { mergeLoadedSystemsWithRoom } from '../../../collab/mergeCollabWorkspaceSystems';
+import { flushQuietLiveRoomDiskSaves } from '../../../workspace/liveRoomDiskSave';
 import type { BlueprintStoreSet } from '../../store';
 import type { IoState } from './index';
 import {
@@ -275,6 +276,7 @@ export function createCollabStoreActions(
     },
 
     leaveCollabRoom: () => {
+      flushQuietLiveRoomDiskSaves(get);
       const flushPath = get().currentFilePath;
       const snapshot = flushPath ? commentsForDiagram(flushPath, get().collabComments) : [];
       const seen = new Set(roomCommentIdsSeen);

@@ -22,6 +22,8 @@ import { sortNodesForReactFlow } from '../../layoutUtils';
 import { setSessionLayout, schemaLayoutFingerprint } from '../../sessionLayoutCache';
 import type { BlueprintStoreSet } from '../../store';
 import type { CollabSessionPort, LoggerPort, WorkingCopyPort } from '../../../../core';
+import { scheduleQuietLiveRoomDiskSave } from '../../../workspace/liveRoomDiskSave';
+import type { ToastNotification } from '../uiState';
 
 export type ApplyStateSnapshot = {
   schema?: Pick<SystemSchema, 'name'> & Partial<SystemSchema>;
@@ -30,11 +32,20 @@ export type ApplyStateSnapshot = {
   layoutCustomized?: boolean;
   validationResult?: ValidationResult;
   logger?: Partial<LoggerPort>;
-  workingCopyPort?: Pick<WorkingCopyPort, 'saveWorkingSchema'> | null;
+  workingCopyPort?:
+    | (Pick<WorkingCopyPort, 'saveWorkingSchema'> &
+        Partial<Pick<WorkingCopyPort, 'saveBaselineSchema'>>)
+    | null;
   checkPendingChanges?: () => void | Promise<void>;
   collabSessionPort?: Pick<CollabSessionPort, 'isActive' | 'pushSchema'> | null;
   workspaceName?: string;
   isWorkspaceOpen?: boolean;
+  isSampleWorkspace?: boolean;
+  isMemoryScanWorkspace?: boolean;
+  yamlCode?: string;
+  nodeRefMap?: Record<string, Record<string, string>>;
+  workspacePort?: { writeFile(relativePath: string, content: string): Promise<boolean> } | null;
+  setNotification?: (notification: ToastNotification | null) => void;
 };
 
 export type ApplyStateGet = () => ApplyStateSnapshot;
@@ -215,4 +226,5 @@ export function applyStateUpdates(
   if (pushCollab && collab?.isActive()) {
     collab.pushSchema(resolvedSchema);
   }
+  if (syncWorkingCopy) scheduleQuietLiveRoomDiskSave(get);
 }

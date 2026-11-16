@@ -1,3 +1,4 @@
+import { commitDiagramFile } from '../../../workspace/commitDiagramFile';
 import { persistBlankCanvasSessionFromSchema } from './blankCanvasSession';
 import { yamlFileNameFromDiagramName } from './yamlFileNameFromDiagramName';
 import { loadWorkspaceFromYamlFiles } from './openWorkspace';
@@ -135,43 +136,21 @@ export function createSaveWorkspaceActions(set: BlueprintStoreSet, get: IoGet) {
         return get().saveSchema();
       }
 
-      logger.info('Saving active diagram directly to workspace', { path: currentFilePath });
-      try {
-        const success = await workspacePort.writeFile(currentFilePath, yamlCode);
-        if (success) {
-          logger.info('Diagram saved successfully');
-          const sysId = schema.entityRef || 'default';
-          const fileRefMap = nodeRefMap[currentFilePath] || {};
-          await workingCopyPort.saveBaselineSchema({
-            filePath: currentFilePath,
-            schema,
-            systemId: sysId,
-            nodeRefMap: fileRefMap,
-          });
-          await get().checkPendingChanges?.();
-          setNotification?.({
-            type: 'success',
-            title: 'Save Successful',
-            message: `Saved active diagram to ${currentFilePath.split('/').pop()}`,
-          });
-        } else {
-          logger.error('Failed to save diagram');
-          setNotification?.({
-            type: 'error',
-            title: 'Save Failed',
-            message: 'Failed to write active diagram to disk.',
-          });
+      return commitDiagramFile(
+        {
+          workspacePort,
+          workingCopyPort,
+          logger,
+          setNotification,
+          checkPendingChanges: () => get().checkPendingChanges?.(),
+        },
+        {
+          path: currentFilePath,
+          yaml: yamlCode,
+          schema,
+          nodeRefMap: nodeRefMap[currentFilePath] || {},
         }
-        return success;
-      } catch (err) {
-        logger.error('Error saving diagram in workspace', err);
-        setNotification?.({
-          type: 'error',
-          title: 'Save Error',
-          message: (err as Error).message || 'Error occurred while saving diagram.',
-        });
-        return false;
-      }
+      );
     },
   };
 }

@@ -12,6 +12,7 @@ import { runResilienceWasmSimulation } from '../infrastructure/resilience/wasmCl
 import { createBroadcastChannelTransport } from '../infrastructure/collab/broadcastChannelTransport';
 import { createWebsocketCollabTransport } from '../infrastructure/collab/websocketCollabTransport';
 import { createYjsCollabSession } from '../infrastructure/collab/yjsCollabSessionAdapter';
+import { COLLAB_WS_SYNC_WAIT_MS } from '../infrastructure/collab/yjsCollabSessionHelpers';
 import type {
   FileSystemPort,
   WorkspacePort,
@@ -58,7 +59,7 @@ export function createBrowserPorts(): BrowserPorts {
     },
     collabSessionPort: createYjsCollabSession({
       transport,
-      syncWaitMs: wsUrl ? 50 : 0,
+      syncWaitMs: wsUrl ? COLLAB_WS_SYNC_WAIT_MS : 0,
       controlWaitMs: wsUrl ? 8_000 : 0,
     }),
   };

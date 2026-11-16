@@ -38,6 +38,7 @@ import {
   browserCollabAuthorKeyStore,
   documentIsEmpty,
   emitPresence,
+  COLLAB_WS_SYNC_WAIT_MS,
   hydrateCollabWorkspaceJoin,
   readStableAuthorKey,
   waitForCollabAdmission,
@@ -60,7 +61,7 @@ export type YjsCollabSessionOptions = {
  * Yjs-backed CollabSessionPort. CRDT types stay inside this adapter.
  */
 export function createYjsCollabSession(options: YjsCollabSessionOptions): CollabSessionPort {
-  const syncWaitMs = options.syncWaitMs ?? 50;
+  const syncWaitMs = options.syncWaitMs ?? COLLAB_WS_SYNC_WAIT_MS;
   const authorKey = readStableAuthorKey(options.authorKeyStore ?? browserCollabAuthorKeyStore());
   let ydoc: Y.Doc | null = null;
   let awareness: Awareness | null = null;
@@ -262,6 +263,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
         onRoomControl,
         controlWaitMs,
         syncWaitMs,
+        untilReady: () => !documentIsEmpty(readCollabDocument(liveDoc)),
       });
       disconnect = admission.dispose;
       sendControl = admission.sendControl;
@@ -300,9 +302,11 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
 
       if (documentIsEmpty(readCollabDocument(ydoc))) {
         const seed = schemaToCollabDocument(seedSchema);
-        const patch = diffCollabDocuments(emptyCollabDocument(), seed);
-        if (!collabPatchIsEmpty(patch)) {
-          applyCollabPatch(ydoc, patch, YJS_LOCAL_ORIGIN);
+        if (!documentIsEmpty(seed)) {
+          const patch = diffCollabDocuments(emptyCollabDocument(), seed);
+          if (!collabPatchIsEmpty(patch)) {
+            applyCollabPatch(ydoc, patch, YJS_LOCAL_ORIGIN);
+          }
         }
         lastLocal = readCollabDocument(ydoc);
       } else {

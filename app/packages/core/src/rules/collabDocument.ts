@@ -194,6 +194,22 @@ export function diffCollabDocuments(prev: CollabDocument, next: CollabDocument):
   return patch;
 }
 
+export const COLLAB_BOOT_PLACEHOLDER_NAME = 'Loading';
+
+export function collabDocumentHasBody(doc: CollabDocument): boolean {
+  return Object.keys(doc.nodes).length > 0 || Object.keys(doc.dependencies).length > 0;
+}
+
+export function collabDocumentIsBootPlaceholder(doc: CollabDocument): boolean {
+  return !collabDocumentHasBody(doc) && doc.meta.name.trim() === COLLAB_BOOT_PLACEHOLDER_NAME;
+}
+
+export function collabDocumentIsEmpty(doc: CollabDocument): boolean {
+  if (collabDocumentHasBody(doc)) return false;
+  const name = doc.meta.name.trim();
+  return name.length === 0 || name === COLLAB_BOOT_PLACEHOLDER_NAME;
+}
+
 export function collabPatchIsEmpty(patch: CollabPatch): boolean {
   return (
     patch.meta === undefined &&
