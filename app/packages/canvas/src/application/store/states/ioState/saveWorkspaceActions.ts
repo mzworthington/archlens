@@ -113,8 +113,9 @@ export function createSaveWorkspaceActions(set: BlueprintStoreSet, get: IoGet) {
       }
     },
 
-    saveActiveDiagram: async (options?: { quiet?: boolean }) => {
+    saveActiveDiagram: async (options?: { quiet?: boolean; isCurrent?: () => boolean }) => {
       const quiet = options?.quiet === true;
+      const isCurrent = options?.isCurrent;
       const {
         yamlCode,
         schema,
@@ -138,8 +139,16 @@ export function createSaveWorkspaceActions(set: BlueprintStoreSet, get: IoGet) {
 
       logger.info('Saving active diagram directly to workspace', { path: currentFilePath, quiet });
       try {
+        if (isCurrent && !isCurrent()) {
+          logger.info('Skipped stale diagram save', { path: currentFilePath, quiet });
+          return false;
+        }
         const success = await workspacePort.writeFile(currentFilePath, yamlCode);
         if (success) {
+          if (isCurrent && !isCurrent()) {
+            logger.info('Skipped stale baseline after write', { path: currentFilePath, quiet });
+            return false;
+          }
           logger.info('Diagram saved successfully');
           const sysId = schema.entityRef || 'default';
           const fileRefMap = nodeRefMap[currentFilePath] || {};
