@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **hard to reverse** or **deliberately off-norm**. Recorded with the lifecycle kit skill `agent-adr`.
+Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **hard to reverse** or **deliberately off-norm**. Recorded with the lifecycle kit skill `agent-adr`. Day-by-day product changes live in the [Changelog](../changelog.md).
 
 | ADR                                                                | Title                                                       | Status     | Date       |
 | ------------------------------------------------------------------ | ----------------------------------------------------------- | ---------- | ---------- |

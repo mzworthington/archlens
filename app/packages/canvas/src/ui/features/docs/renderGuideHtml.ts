@@ -53,6 +53,8 @@ const IN_APP_PREFIXES = [
   '/chaoslens-engine',
   '/advicelens-engine',
   '/features-unit',
+  '/ADRs',
+  '/changelog',
 ];
 
 /**

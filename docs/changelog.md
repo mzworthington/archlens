@@ -1,0 +1,1336 @@
+# Changelog
+
+What shipped in ArchLens, day by day. Hard-to-reverse choices live in [Architecture Decision Records](./ADRs/README.md).
+
+## 2026-11-15
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Sync Vale Google styles before refresh commits (#276)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps-dev)_ Bump jsdom from 30.1.3 to 31.0.0 in /app
+- _(deps)_ Bump the npm-minor-patch group
+- _(deps)_ Bump basic-ftp
+
+## 2026-11-14
+
+### 🚀 Features
+
+- _(canvas)_ Enhance CanvasPreview and editor integration with blueprint synchronization
+- _(canvas)_ Create a child zoom from the node
+- _(vscode)_ Implement editor preview features
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Keep blank create-zoom out of Samples (MZW-170)
+- _(canvas)_ Restore blank create-zoom children after refresh (MZW-170)
+- _(canvas)_ Restore nested blank zooms and reserve samples slug (MZW-170)
+- _(canvas)_ Keep blank-canvas create-zoom off Samples (MZW-170)
+- _(canvas)_ Restore create-zoom child drafts on refresh (MZW-170)
+- _(canvas)_ Restore nested create-zoom drafts on refresh (MZW-170)
+- _(canvas)_ Ignore catalog slugs when matching blank zoom URLs
+- _(canvas)_ Stop inventing empty zooms for node URLs (MZW-170)
+- _(canvas)_ Keep node urls on the restored create-zoom child
+
+### ⚙️ Refactoring & Performance
+
+- _(forensics)_ Reorganize offender-related types and imports for clarity
+
+### 🧰 Maintenance & Dependencies
+
+- _(canvas)_ Merge main and resolve blank-zoom conflicts (MZW-170)
+
+### 🧪 Testing
+
+- _(canvas)_ Drop duplicated blank-canvas cases (MZW-170)
+
+## 2026-11-10
+
+### 🚀 Features
+
+- _(canvas)_ Integrate extension preview functionality
+- _(canvas)_ Enhance CanvasPreview with blueprint handling and drill-down schemas
+- _(vscode)_ Add tree-sitter dependencies and enhance workspace analysis
+
+### 🧰 Maintenance & Dependencies
+
+- Docs and styling updates
+- _(deps)_ Bump fast-xml-parser
+
+### 📚 Documentation
+
+- Update copy and seo pages
+
+## 2026-11-09
+
+### 🚀 Features
+
+- _(vscode)_ Show an empty architecture map in the panel (#268)
+- Moving to Diátaxis documentation framework
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Open the guide from the header and publish ADR 0018
+
+## 2026-11-08
+
+### 🚀 Features
+
+- _(comments)_ Persist node comments to YAML sidecar (#262)
+
+### 🐛 Bug Fixes
+
+- _(resilience)_ Avoid let reassignment in RAF tick callback (#263)
+- _(quality)_ Remove unused exports; fix sync-derived rebase (#265)
+- _(quality)_ Format treeSitterHighlight.ts per prettier config (#266)
+- _(canvas)_ Stop refresh from failing guide navigations (#267)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps-dev)_ Bump @vscode/vsce from 3.6.0 to 4.1.0 in /app
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 20 updates (#261)
+- _(deps)_ Bump @pulumi/pulumi
+
+## 2026-11-07
+
+### 🚀 Features
+
+- _(vscode)_ Write the reviewed blueprint when asked
+
+### 🐛 Bug Fixes
+
+- _(vscode)_ Correct review note and empty scan label
+
+## 2026-11-06
+
+### 🚀 Features
+
+- Token sweep for theme
+- _(canvas)_ Paint Light across the workspace and docs (MZW-154)
+- _(canvas)_ Pack diagram layout and shrink connection handles
+- _(canvas)_ Open on Light unless Blueprint was chosen
+- _(canvas)_ Name Architecture as Code on the home lede
+- _(canvas)_ Align the home hero and light map chrome
+- _(canvas)_ Share one room across every open diagram (MZW-49)
+- _(canvas)_ Paint guides from one design-token set (MZW-158)
+- _(vscode)_ Preview a blueprint and ask before generating (MZW-160)
+- _(canvas)_ Announce the VS Code extension on the homepage
+- _(vscode)_ Open the source file for a focused system
+- _(vscode)_ Navigate diagrams, copy Mermaid, and show blueprint problems
+- _(vscode)_ Show recorded hotspot marks on the diagram
+- _(vscode)_ Review a workspace scan without writing files
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Reload when a service worker update hangs
+- _(deps)_ Pin minimatch 11 and a patched deepmerge
+- _(ci)_ Rebase derived docs onto main before pushing
+- _(canvas)_ Paint status chips with the light paper palette
+- _(core)_ Sort workspace diagram paths with localeCompare
+- _(vscode)_ Open the map from the blueprints folder
+- _(vscode)_ Keep open-source focus on each map and hide the status
+- _(canvas)_ Stop the update refresh from reloading in a loop
+- _(canvas)_ Ignore service worker update messages from other origins
+- _(canvas)_ Close the catalog refresh dialog when Escape is pressed
+- _(vscode)_ Name the parent crumb from the diagram
+- _(vscode)_ Redraw hotspots after a recovered diagram
+- _(vscode)_ Match folder scans and include Terraform JSON
+- _(vscode)_ Choose the map folder on Windows and from the focused file
+- _(vscode)_ Pass the focused editor into the map host
+
+### 🧰 Maintenance & Dependencies
+
+- _(vscode)_ Package a pre-release VSIX for sideload
+
+### 📚 Documentation
+
+- _(prd)_ Add the editor marketplace bet
+- _(guide)_ Show the current startup chooser on Collaborate
+- _(vscode)_ Describe the local sandbox and keep Marketplace publish off
+
+## 2026-11-05
+
+### 🚀 Features
+
+- _(canvas)_ Paint the shell from one design-token set (MZW-158)
+- _(canvas)_ Paint the homepage and docs chrome from the token set (MZW-158)
+- _(canvas)_ Paint design-system tokens and identity from the token set (MZW-158)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Resolve the scan offer on case-insensitive disks (MZW-151)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Pin glob and qs past open advisories
+
+### 📚 Documentation
+
+- _(canvas)_ Present BlueprintSpec as architecture as code
+
+## 2026-11-01
+
+### 🚀 Features
+
+- _(canvas)_ Refresh a remote catalog snapshot in place (MZW-42)
+- _(canvas)_ Offer a repo scan on the golden-journey map (MZW-151)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Trap focus in chooser, drafts, share and resilience (MZW-45)
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Prerender the tracelens guide and defer its demo gif
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-minor-patch group
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 10 updates
+- _(deps)_ Bump qs
+
+## 2026-10-31
+
+### 📚 Documentation
+
+- _(guide)_ Name share, rooms and comments (MZW-91)
+
+## 2026-10-28
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Precache the shell as HTML so Cloudflare can inject the beacon
+
+## 2026-10-27
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 18 updates
+
+## 2026-10-25
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump chokidar from 5.0.0 to 6.0.0 in /app
+- _(deps)_ Bump the npm-minor-patch group
+
+## 2026-10-24
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Patch PostCSS selector parsing and KaTeX
+- _(deps)_ Pin undici, Zod, and serialize-javascript past open advisories
+
+### ⚙️ Refactoring & Performance
+
+- Consolidate FUNCTION_ROOT_TYPES and improve test structure
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-security group across 1 directory with 4 updates
+
+## 2026-10-18
+
+### 🚀 Features
+
+- _(mcp)_ Compose kit default with the build monitor
+- _(infra)_ Host guide GIFs on a docs-media R2 bucket
+- _(docs)_ Serve guide GIFs from the media host
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Patch source-map-js indexed source-map denial of service
+- _(test)_ Give file vitest projects the same CI worker budget
+- _(canvas)_ Store the collab reconnect timer as a setTimeout handle
+- _(docs)_ Keep guide GIFs under the Pages file limit
+- _(canvas)_ Keep vitest helpers out of the Playwright suite
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump the npm-security group across 1 directory with 2 updates
+- _(deps)_ Bump mermaid from 11.17.2 to 12.2.0 in /app
+- Update screenshot assets with new versions
+- _(deps)_ Bump the npm-minor-patch group across 1 directory with 22 updates
+- Upload guide GIFs before the Pages deploy
+
+## 2026-10-17
+
+### 🐛 Bug Fixes
+
+- Security posture for mermaid
+- _(deps)_ Land open dependency updates and patched advisories
+
+### 🧰 Maintenance & Dependencies
+
+- Keep Dependabot lockfile updates with the manifest
+- _(deps-dev)_ Bump vite-plugin-pwa from 1.3.0 to 2.0.0 in /app
+- _(deps)_ Bump actions/setup-go from 6 to 7 in the actions group
+
+## 2026-10-03
+
+### 🚀 Features
+
+- _(canvas)_ Opt in to a sandboxed in-tab scan (MZW-47)
+- _(canvas)_ Score in-tab scan complexity from the syntax tree (MZW-47)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Clear default-profile Sonar promise and regex issues
+- _(canvas)_ Keep node comment authorship across reconnect (MZW-50)
+
+## 2026-10-01
+
+### 🐛 Bug Fixes
+
+- _(deps)_ Apply Dependabot bumps and patch open advisories
+- _(deps)_ Raise transitive pins past the remaining advisories
+
+## 2026-09-22
+
+### 🧰 Maintenance & Dependencies
+
+- Sonar auto analysis
+
+## 2026-09-21
+
+### 🚀 Features
+
+- _(canvas)_ Sync node comments in a live room (MZW-50) (#169)
+- _(canvas)_ Enhance PropertyPanel with collaborative comments functionality
+
+### 🐛 Bug Fixes
+
+- _(analysis)_ Resolve Python src-layout import edges
+
+### 🧰 Maintenance & Dependencies
+
+- Publish existing coverage reports to SonarCloud
+- Use SONARQUBE_API_TOKEN and SONARQUBE_ORG for SonarCloud
+- Keep test files out of coverage reports
+
+## 2026-09-20
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump js-yaml from 5.4.1 to 5.4.2 in /app (#181)
+- _(deps)_ Batch dependabot updates (#182)
+
+## 2026-09-19
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Shim window in the dagre layout worker (MZW-107)
+- _(canvas)_ Stop Firefox ServiceWorker install failing on wasm precache (MZW-104)
+- _(ci)_ Keep Actions version-tag pins out of Sonar (#168)
+
+## 2026-09-17
+
+### 📚 Documentation
+
+- Render readme status badges via shields.io
+
+## 2026-09-15
+
+### 🐛 Bug Fixes
+
+- Clear ArchLens SonarCloud quality findings
+- _(canvas)_ Shim require in the dagre layout worker (#163)
+- Clear ArchLens SonarCloud security and reliability findings
+- _(canvas)_ Shim window in the dagre layout worker (MZW-107) (#164)
+- _(canvas)_ Stop Workbox precaching wasm so Firefox can install /sw.js (MZW-104) (#166)
+- _(canvas)_ Update MermaidPreview and UpdateBanner components for accessibility and cache-busting
+
+### 🧰 Maintenance & Dependencies
+
+- Sonar mcp
+- Remove state from git
+
+## 2026-09-14
+
+### 🐛 Bug Fixes
+
+- Vhs version pinning
+- _(deps)_ Drop stray root lockfile that kept Dependabot alerts open
+- _(canvas)_ Hard-reload when the update banner Refresh is clicked (#162)
+
+### 🧰 Maintenance & Dependencies
+
+- Stop tracking local .waykit session state
+
+## 2026-09-13
+
+### 🚀 Features
+
+- Read git location on browser scan
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Refresh Pulumi TypeScript lockfile and skip CodeQL overlay
+
+## 2026-09-12
+
+### 🚀 Features
+
+- _(canvas)_ Attach isomorphic-git TraceLens and demo graduation CTAs (MZW-39) (#159)
+- _(canvas)_ Scan a repo from a ZIP when folder pick is missing (MZW-36) (#160)
+- Improved refresh logic
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Stop service worker html 308s and swallow fetch TypeErrors (MZW-102)
+- _(canvas)_ Only swallow service worker fetch TypeErrors (MZW-102)
+- _(canvas)_ Swallow transient service worker update failures (#155)
+- _(canvas)_ Rewrite PWA precache HTML off 308s (MZW-102)
+- _(canvas)_ Drop root index.html from PWA precache (MZW-102)
+- _(canvas)_ Rewrite leftover PWA html off 308s (MZW-102)
+
+### 🧰 Maintenance & Dependencies
+
+- Improve dependendabot & codeQL
+
+## 2026-09-11
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump @vitest/mocker from 4.1.10 to 5.0.0 in /app in the npm_and_yarn group across 0 directory (#154)
+- Update wk hooks
+- _(deps)_ Bump app and Pulumi packages to latest current majors
+
+## 2026-09-07
+
+### 🐛 Bug Fixes
+
+- Update import paths to remove file extensions in analysis package
+
+## 2026-09-06
+
+### 🚀 Features
+
+- _(organisation)_ Show load risk at planned as-of (MZW-55)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump @pulumi/pulumi in /infra/cloudflare (#141)
+- _(deps)_ Bump @aws-sdk/client-s3 from 3.1101.0 to 3.1125.0 in /app (#152)
+- _(deps-dev)_ Bump knip from 6.33.0 to 6.34.0 in /app (#151)
+- _(deps)_ Bump chokidar from 4.0.3 to 5.0.0 in /app (#150)
+- _(deps)_ Bump lucide-react from 1.38.0 to 1.39.0 in /app (#148)
+- _(deps)_ Bump @xyflow/react from 12.11.2 to 12.11.6 in /app (#146)
+- _(deps-dev)_ Bump @types/node from 26.4.0 to 26.4.1 in /app (#145)
+- _(deps-dev)_ Bump @cloudflare/workers-types in /app (#142)
+- _(deps)_ Bump mermaid from 11.16.1 to 11.17.2 in /app (#147)
+- _(deps)_ Bump ignore from 7.0.6 to 7.0.8 in /app (#144)
+- _(deps-dev)_ Bump @types/node in /infra/cloudflare (#143)
+- _(deps-dev)_ Bump wrangler from 4.127.1 to 4.128.0 in /app (#149)
+- _(ui)_ Remove duplicate IaC import functionality
+
+### 📚 Documentation
+
+- Improve collab docs
+
+## 2026-09-05
+
+### 🚀 Features
+
+- _(canvas)_ Name and place a blank workspace before drawing (MZW-5)
+- _(docs)_ Add 'Jobs for today' section and related links in documentation
+- _(canvas)_ Persist browser-scan maps to a folder (MZW-38)
+- _(skills)_ Require capability folders instead of prefixed dump extracts
+- Posthog plus opt-in
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Keep collab secrets out of sessionStorage
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Split workspace entry and I/O open/save slices
+- _(canvas)_ Separate estate ranking from recommendation copy
+- _(core)_ Isolate entity-ref identity and graph topology
+- _(cli)_ Drive architecture flags and help from one catalog
+- _(forensics)_ Reorganize forensics-related files and update paths in tests
+- Fold dump barrels into capability folders
+
+### 🧰 Maintenance & Dependencies
+
+- Update assets
+
+### 📚 Documentation
+
+- Update README and canvas titles for clarity and consistency
+- Standardize phrasing across documentation
+
+## 2026-09-04
+
+### 🚀 Features
+
+- Implement live progress tracking for browser lite scans
+- Enhance pre-commit hook with context measurement and update contributing guidelines
+- _(collab)_ Kick guests when a secret room expires (MZW-48)
+
+### 🐛 Bug Fixes
+
+- _(storage)_ Load-test catalog publish/consume through R2 5xx
+
+### 📚 Documentation
+
+- Rewrite homepage and guide voice for practitioners (#130)
+
+## 2026-09-03
+
+### 🐛 Bug Fixes
+
+- Deploy Pages from the app workspace, not a stray root package
+
+### 🧰 Maintenance & Dependencies
+
+- Update documentation for Waykit integration and clarify setup instructions
+- Align to waykit
+- Fix e2e tests
+- Add pulumi to core toolchain installation
+
+## 2026-09-02
+
+### 🚀 Features
+
+- Improved workspace selection
+
+### ⚙️ Refactoring & Performance
+
+- _(canvas)_ Update schema version handling and enhance tests
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Land Dependabot updates and pin browserslist (#127)
+- Update references from agent-lifecycle-kit to Waykit in documentation and setup scripts
+
+## 2026-09-01
+
+### 🚀 Features
+
+- _(canvas)_ Add opt-in yjs share-link collaboration
+- _(collab)_ Integrate collab Worker deployment into CI and update documentation
+- _(feature-flags)_ Implement feature flag management and UI integration
+- _(collab)_ Enhance collaboration feature with share link support
+- _(collab)_ Implement collaborative presence and cursor tracking
+- _(canvas)_ Enhance type safety and improve linting rules
+- Enable RUM
+- Add tests for directorySlug and slugFromPath functions, and implement safeHttpUrl for URL validation
+- _(canvas)_ Intent-first workspace startup chooser (#114)
+- _(canvas)_ Ship live collaboration without feature flag (#115)
+
+### 🐛 Bug Fixes
+
+- _(canvas)_ Update _redirects for Cloudflare Pages to serve static assets and index.html correctly
+- _(canvas)_ Reconnect collab WebSocket after mobile drops (#116)
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Land Dependabot bumps and skip web-tree-sitter 0.26 (#113)
+
+## 2026-08-26
+
+### 🧰 Maintenance & Dependencies
+
+- Reduce tour gif size
+- Update wrangler to v4
+
+## 2026-08-25
+
+### ⚙️ Refactoring & Performance
+
+- Implement flexible workspace panel layout with tabs and improve canvas node dragging behavior
+
+## 2026-08-20
+
+### 🚀 Features
+
+- Improve ux by increase canvas contrast
+- Improved UX on code viewer
+
+### 🧰 Maintenance & Dependencies
+
+- Reduce blueprint generation to weekly
+
+## 2026-08-10
+
+### 🚀 Features
+
+- Enhance documentation structure with ADR support and improve Markdown rendering
+
+## 2026-08-09
+
+### 🚀 Features
+
+- Demo-first onboarding and browser repo scan
+- Add author credit link to DocsShell component
+- Add option to start a blank canvas in workspace entry and startup dialog
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Point Dependabot npm at app and infra workspaces (#74)
+- _(deps)_ Patch Dependabot npm advisories in app workspace (#89)
+- _(security)_ Resolve open CodeQL code-scanning alerts (#90)
+- _(cli)_ Retry transient R2 InternalError in object storage (#92)
+- _(cli)_ Stabilize estate compose against R2 InternalError (#94)
+
+### ⚙️ Refactoring & Performance
+
+- Update SEO functions and remove unused code
+- Update CI workflow and improve JSON Schema generation
+
+### 🧰 Maintenance & Dependencies
+
+- _(codeql)_ Analyze Go and GitHub Actions alongside JS/TS (#93)
+- E2e test performance improvements
+
+## 2026-08-08
+
+### 🐛 Bug Fixes
+
+- _(cli)_ Accept interactive main menu in VHS demo tape (#72)
+
+### ⚙️ Refactoring & Performance
+
+- _(cloudflare)_ Remove custom Pulumi setup action and integrate edge-dns reusable workflow
+
+### 🧰 Maintenance & Dependencies
+
+- Update .gitignore to include environment files and secrets
+
+## 2026-08-07
+
+### 🚀 Features
+
+- _(cloudflare)_ Add Web Analytics and Observatory scheduled tests to infrastructure
+
+### 🐛 Bug Fixes
+
+- _(layout)_ Stop initial-load overlap for grouped systems + externals (#70)
+- _(docs)_ Update Cloudflare API token permissions for Account Settings in documentation
+
+## 2026-08-06
+
+### 🚀 Features
+
+- _(iac)_ Meaningful externals for context vs container (#67)
+- _(layout)_ Add optional edge labels and improve layout spacing
+- _(iac)_ Introduce provisions dependency type and enhance schema handling
+- _(canvas)_ Improve product SEO for ArchLens surfaces (#69)
+
+### 🐛 Bug Fixes
+
+- Restore fragment sticking for context anchors and IaC collisions (#68)
+
+### ⚙️ Refactoring & Performance
+
+- Split recommendation builders to cut cyclomatic complexity (#61)
+- Split PropertyPanel to cut cyclomatic complexity (#62)
+- Split forensics panel and offender ranking complexity (#64)
+- Split extractGraph to cut cyclomatic complexity (#63)
+- Split CLI entrypoints to cut cyclomatic complexity (#65)
+- Split next-tier complexity hotspots (#66)
+
+### 🧰 Maintenance & Dependencies
+
+- Update GitHub Actions workflows and CLI for improved concurrency and error handling
+- Enhance demo catalog workflow with configurable clone depth and update documentation
+
+### 💼 Other
+
+- Fix render of external iac withou resilience mode enabled
+
+## 2026-08-05
+
+### 🚀 Features
+
+- _(cli)_ Validate architecture health and commit regression (#55)
+- _(designer)_ Browse ChaosSpecs and open target canvas (#57)
+- _(forensics)_ Enhance entity scope handling in forensics metrics
+- _(cli)_ Add catalog prune command and related functionality
+- _(cli)_ Refactor catalog snapshot handling and improve publish logic
+- _(cli)_ Integrate tree-sitter WASM support and enhance dependency management
+- _(canvas)_ Initialize ArchLens Canvas application with core files and configurations
+- _(workflow)_ Enhance Pulumi Cloud integration with dashboard links and rich diff summaries
+- Hydrate declared system context from reposcan (#58)
+
+### ⚙️ Refactoring & Performance
+
+- _(designer)_ Streamline resilience state management and enhance canvas integration
+- Rename designer to canvas to align language
+- Commit ArchLens context under blueprints/ (#59)
+
+### 🧰 Maintenance & Dependencies
+
+- Remove husky pre-push build gate (#56)
+
+### 📚 Documentation
+
+- Drop dogfood wording for hosted samples estate tone (#54)
+
+## 2026-08-04
+
+### 🚀 Features
+
+- _(infra)_ Manage archlens.dev DNS via Pulumi (#50)
+- _(infra)_ Enhance Cloudflare setup with DNS import and script updates
+- Archlens yaml refresh
+- _(tests)_ Add _redirects test for Cloudflare Pages SPA routing and enhance diagramState tests with validation logging
+- Implement remote catalog publishing
+- _(ci)_ Add weekly workflow to regenerate sample blueprints from upstream repositories
+- Bootstrap script for cloudflare + gh
+- _(cli)_ Add runtime WASM support for web-tree-sitter and enhance tree-sitter WASM file handling
+
+### 🐛 Bug Fixes
+
+- _(docs-media)_ Record product GIFs at large-display viewport
+- _(docs-media)_ Stabilize large-display chaoslens and tracelens demos
+- _(docs-media)_ Open TraceLens refactor plan action and refresh GIFs
+- _(cli)_ Align VHS demo with software-system name prompt
+
+### ⚙️ Refactoring & Performance
+
+- _(ioState)_ Replace bundled workspace catalog loading with sample workspace session loading in state management and tests
+- _(ci)_ Streamline blueprints regeneration workflow by removing CLI build step and adding version input for archlens installation
+- _(ci)_ Simplify blueprints regeneration workflow by removing unnecessary self-scan logic and updating clone command
+- Migrate blueprints to golden-paths structure, update workflows, and remove deprecated files
+- _(ci)_ Remove sample publishing workflow and add skip-validation option for publish commands
+- _(ci)_ Update workflows to remove deprecated files and enhance publish commands with skip-validation option
+- Enhance documentation and CLI commands for catalog management, including new options for key prefix and workspace name
+- _(ci)_ Update workflows to implement fragment publishing and composing, enhance CLI options with allow-empty flag
+- _(cli)_ Update ArchLens CLI installation method to use GitHub releases, enhance error handling for missing WASM files, and improve interactive command options
+- _(docs)_ Update installation instructions to use bash instead of sh for ArchLens CLI, ensuring compatibility with script features
+- _(ci)_ Update workflows to use a shared samples estate for publishing and composing, adjusting key prefixes and documentation accordingly
+- _(navigation)_ Enhance workspace navigation by introducing child diagram support, updating URL handling, and improving search parameter management
+
+### 🧰 Maintenance & Dependencies
+
+- _(infra)_ Note DNS Edit token requirement for Pulumi (#51)
+- _(infra)_ Update compatibility date and enhance CI workflows
+
+## 2026-08-03
+
+### 🚀 Features
+
+- _(docs)_ Add Technology Stack page and update references
+
+### 🧰 Maintenance & Dependencies
+
+- Update deployment process to Cloudflare Pages and refine CI workflow
+- Enhance Cloudflare integration and update build version handling
+- Improve Cloudflare setup script and update documentation for custom domain cutover
+
+### 📚 Documentation
+
+- Retrofit sparse MADRs for foundational ArchLens decisions (#48)
+
+## 2026-08-02
+
+### 🚀 Features
+
+- Open sandbox from prebuilt catalog with loading feedback (#37)
+- _(advicelens)_ Phase 4 CI gate, JSON artifact, and studio export (#40)
+- Preload golden and stress sandbox YAML, keep full catalog (#42)
+- _(tracelens)_ Show per-workspace complexity summary (#43)
+
+### 🐛 Bug Fixes
+
+- Always show actors and externals on C4 context diagrams (#36)
+- Land sandbox open on golden-journey estate (#38)
+- Land sandbox open on golden-paths context (#41)
+- _(tracelens)_ Preload ArchLens context and fix LOC always 0 (#44)
+- _(tracelens)_ Fix undercounted ArchLens LOC (~4k → ~71k) (#45)
+
+### 🧪 Testing
+
+- _(chaoslens)_ Enforce WASM Monte Carlo KR3 budget on large-graph (#39)
+
+## 2026-08-01
+
+### 🚀 Features
+
+- Rename PWA to ArchLens
+- Enhance resilience recommendations with dependency ownership tracking and update external node classifications
+- Enhance codebase analysis by adding file-level dependency tracking and improving entity reference resolution across modules
+- Shareable ChaosLens URL state for mode and faults (#28)
+- Close external simulation scope Phase 3 fixpoint (#29)
+- Enhance external summary hub functionality and improve UI interactions
+- Remove lenses box
+- Introduce AdviceLens functionality and update TraceLens references
+
+### 🐛 Bug Fixes
+
+- Restore unit and e2e coverage for bundled blueprints (#24)
+- Wire dependency edges when materializing resilience externals (#32)
+- Update build version format and enhance resilience advice eligibility tests
+- Update workspace entity references and improve URL handling in hooks
+- Update TraceLens references and improve documentation consistency
+- Stop rewriting golden-journey deep links to context (#34)
+
+### ⚙️ Refactoring & Performance
+
+- Streamline bundled workspace handling and remove deprecated code
+- Remove deprecated sandbox loading logic and streamline diagram state management
+- Update TraceLens integration to use workspace URLs and remove legacy paths
+- Update entity reference resolution and context handling across analysis modules, streamline Python and TypeScript dependency resolution, and remove unused blueprints
+- Carve mega modules and trim overlapping tests (#31)
+
+### 🧰 Maintenance & Dependencies
+
+- Reduce codebase complexity
+- Bootstrap Cursor agents with mise (including bun) (#25)
+- Bootstrap lifecycle kit in setup; close sim scope Phase 2 (#27)
+- Architecture prune — less drift, fewer lines (#30)
+
+### 📚 Documentation
+
+- Fall back to agent-lifecycle-kit when ~/.agents is missing (#26)
+
+## 2026-07-31
+
+### 🚀 Features
+
+- Enhance CLI with multi-repo support through system name
+- Introduce AdviceLens for ranked recommendations and resilience insights
+- Enhance resilience recommendations
+- Advice lens UX updates
+- Add AdviceLens stress test configurations and enhance chaos spec validation
+- Add new GCP and AWS infrastructure blueprints for various services including Cloud Run, Lambda, and reverse proxy configurations
+
+### ⚙️ Refactoring & Performance
+
+- Update context file paths and entity references to use 'application' instead of 'blueprint' across various modules
+
+## 2026-07-30
+
+### 🚀 Features
+
+- Chaosspec has launched
+- Chaosspec export and import
+- Expand tracelens to more languages
+- Add composite risk calculations and refactor suggestions to forensics module
+- Implement workspace filepath indexing and enhance coupling edge resolution for improved dependency management
+- Enhance TreeSitterParserAdapter with scan cache support and improve forensics metrics collection
+- Add max coupling commit files option to CLI and enhance forensics metrics collection
+- Integrate Lighthouse CI and accessibility testing into the workflow; enhance forensics metrics with new simulation features
+- Performance improvements
+- Add Lighthouse summary step to CI workflow, update dependencies, and enhance CLI with validation and diff commands
+
+### ⚙️ Refactoring & Performance
+
+- Replace CompositeComplexityAdapter with TreeSitterComplexityAdapter and remove unused complexity adapters; update forensics metrics collection
+- Consolidate forensics functions by exporting from core module, removing redundant implementations
+
+### 🧰 Maintenance & Dependencies
+
+- Remove Lighthouse CI steps from workflow and clean up schedule configuration
+
+## 2026-07-29
+
+### 🚀 Features
+
+- Hcl highlighting
+- Chaoslens exec mode
+- Add update command and flags to CLI
+- Improved UX for CLI
+- Add watch mode and debounce functionality to CLI
+- Implement external simulation scope with materialization of unresolved dependencies
+- Enhance CLI with enrich and scan commands, improving dependency management and YAML processing
+- Domain identification within chaoslens
+- Improved install and usage instructions
+
+### 🐛 Bug Fixes
+
+- Remove temporary directory cleanup trap and ensure cleanup after installation
+
+### 🧰 Maintenance & Dependencies
+
+- Ability to dispath pipeline from gh
+
+### 📚 Documentation
+
+- Update guide messaging
+
+## 2026-07-28
+
+### 🚀 Features
+
+- Highlight safeguards on canvas and allow persistance of safeguards:
+- Integrate integrity metrics into resilience simulation and UI components
+- Add support for interactive mode via BLUEPRINT_INTERACTIVE environment variable
+- Complex terraform example in sandbox
+- Rebrand: ArchLens has arrived
+- Blueprint spec v4- position to object
+
+### 🧰 Maintenance & Dependencies
+
+- Improve sync pipeline, incluing release on change
+- Update CI workflows to use actions/setup-go@v6 and improve release CLI with target SHA
+
+## 2026-07-27
+
+### 🚀 Features
+
+- Workspace loading functionality for tracelens
+- Add blast ripple animation and heat hop tracking for resilience simulation
+- When using chaoslens we show all nodes even when selected
+- Enhance ForensicsPage with source code dialog and provenance tracking
+- Syntax highlighting on code viewer
+- Add Monte Carlo simulation configuration to resilience state and UI components
+
+### ⚙️ Refactoring & Performance
+
+- Remove unused redirect logic
+
+### 🧰 Maintenance & Dependencies
+
+- Update changelog and remove unused tree-sitter dependencies from package.json and pnpm-lock.yaml
+- Refactor CI workflow to regenerate derived outputs
+- Fix changelog formatting
+- Improve chaoslens guide gif
+
+### 📚 Documentation
+
+- Call to action on subproduct guides
+
+## 2026-07-26
+
+### 🚀 Features
+
+- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
+- Enhance ChaosLens integration with Go/WASM support and update documentation
+
+### 🐛 Bug Fixes
+
+- Refresh checked-in chaoslens.wasm to match current Go sources
+
+### ⚙️ Refactoring & Performance
+
+- Remove obsolete chaoslens.wasm and wasm_exec.js files
+
+### 🧰 Maintenance & Dependencies
+
+- Update changelog and enhance documentation
+- Align pulimi to rest of languages
+- Update dependencies and enhance package configurations
+
+## 2026-07-25
+
+### 🚀 Features
+
+- Externals split into up and down including layout
+- Add zoom-in button to BlueprintNode and update Canvas layout with workspace status badges
+- Pulumi with python
+
+### ⚙️ Refactoring & Performance
+
+- Simplify breadcrumb logic
+- Consolidate CLI release detection and publishing logic, removing schema release handling
+- Update changelog generation process and remove deprecated script
+- Streamline changelog generation and update CLI script handling
+
+### 🧰 Maintenance & Dependencies
+
+- Release logic split across web, cli, schema
+- Merge origin/main and regenerate changelog
+
+## 2026-07-24
+
+### 🚀 Features
+
+- Groups mermaid support
+- Enhance IaC context handling by nesting modules under product hubs and refining group structures
+- Enhance search functionality in workspace by integrating toolbar menu portal and improving node selection experience
+- Add support for re-exports in TreeSitter and TsMorph parsers, enhancing module import handling
+- Enhance infraSchemaMap with human-readable tokenization and generic label checks for improved display names
+- Update useUrlSync to maintain diagram URL for external node selections, enhancing navigation consistency
+
+### ⚙️ Refactoring & Performance
+
+- Update IaC analysis to streamline module discovery and enhance workspace package indexing
+
+## 2026-07-23
+
+### 🚀 Features
+
+- Add resolveEntityHome function and integrate GoToEntityButton for external nodes in workspace
+- Add workspace display settings functionality and related UI components
+- Implement child diagram externals functionality and enhance workspace navigation
+- Order of node buttons
+- Improved placement of nodes
+
+### 🧰 Maintenance & Dependencies
+
+- Stabilise e2e tests
+
+## 2026-07-21
+
+### 🚀 Features
+
+- Enhance forensics data with author commit tracking and guided refactor workflow updates
+- Add build ID and versioning metadata for deployment, introduce update banner for new builds
+- Add workbox-window dependency for improved PWA functionality and update documentation for service worker behavior
+- Enhance app version label formatting to support short and full build IDs
+- View source code when git analysis has run
+- Enhance C# and .NET analysis capabilities with project reference handling and namespace resolution
+- Improve designer canvas performance with loading overlays and off-main-thread layout processing
+- Implement diagram loading overlays and off-thread layout processing for improved performance
+- Additional sandbox files
+
+### ⚙️ Refactoring & Performance
+
+- Remove SystemMapDialog and related state management from the workspace, update README for terminology consistency
+- Update e2e tests to use new sandbox loading helper and remove deprecated journeys test
+
+### 🧰 Maintenance & Dependencies
+
+- Update docs to include entityref descriptions
+
+## 2026-07-20
+
+### 🚀 Features
+
+- Pulimi support
+- Implement deduplication of dependencies in graph management and enhance related tests for consistency
+- Enhance type definitions with optional churnByWeek property, and improve metrics in blueprints for better analysis
+- Add Java and Go parsing capabilities to TreeSitterParser, including import, package, and method call detection; enhance test framework detection for multiple languages
+- Add unit test features generation to CI workflow and update related documentation
+- UX refresh, additional menus and helpers
+- Update Playwright configuration for parallel testing and enhance screenshot assets
+- Enhance workspace management with cataloging and lazy-loading of systems
+- Add tests for flowchart label processing and enhance Mermaid extraction from markdown
+- Add Code of Conduct to promote a respectful and constructive community
+- Mobile UX improvements
+- Enhance forensics insights with trend dashboard and schema version assessment
+- Implement ToolbarMenuPortal for improved dropdown handling in workspace toolbar
+
+### 🐛 Bug Fixes
+
+- Include bun in build step
+
+### ⚙️ Refactoring & Performance
+
+- Streamline address slugification and enhance Pulumi extraction from markdown
+
+### 🧰 Maintenance & Dependencies
+
+- Pipeline performance tweaks
+- Pipeline performance improvements
+- Update sandbox files
+- Update features-unit.md
+- Update CI workflow to upload and download generated features documentation, remove outdated check script
+- Improve CI workflow for documentation handling and remove deprecated scripts
+- _(deps)_ Bump setup-node to v7 and download-artifact to v8 (#21)
+- Remove dependency on quality and unit-tests from e2e job in CI workflow
+
+## 2026-07-19
+
+### 🚀 Features
+
+- Add mapDomainDepsToRFEdges function to drop duplicate edges and update related usages across layout utilities and diagram state management
+- Implement deduplication of dependencies in graph management and enhance related tests for consistency
+
+## 2026-07-18
+
+### 🚀 Features
+
+- Enhance dependency visualization by adding animated edges and updating focus logic to include upstream and downstream neighbors
+- Implement force relayout option in layout pass and enhance schema merging to preserve forensics and properties during overwrites
+- Upgrade schema versioning to v3, refactor YAML structure to include metaData, and enhance serialization for improved compatibility
+- Introduce liteCanvas mode to enhance performance by simplifying node visuals, capping edge animations, and hiding non-essential UI elements during large diagram interactions
+- Enhance CLI and core functionality with Terraform support, add context-level person node, and improve documentation for unit test features
+- Implement mobile navigation for documentation with separate scrollers for product guide and reference sections, and refactor DocsShell for improved readability
+
+### ⚙️ Refactoring & Performance
+
+- Remove unnecessary 'onlyRenderVisibleElements' prop from Canvas component and update related tests for consistency
+
+## 2026-07-17
+
+### 🚀 Features
+
+- Implement Mermaid import functionality, enhance diagram state management, and update UI components for improved user experience
+- External dependencies management in diagram state, and enhance UI components for external dependencies display
+- External dependencies handling
+- Enhance external dependencies management by rolling up component-level dependencies into inter-container edges, update UI components for improved display, and refine schema handling for container diagrams
+- Add showSelectedDependenciesOnly state management and UI controls for focused dependency display in the canvas
+- Implement forensics metrics counting and enhance UI components to display dependency counts in the workspace
+- Add startup chooser functionality to manage workspace initialization and enhance user experience with Mermaid imports
+
+### 🐛 Bug Fixes
+
+- Improve workspace folder handling by prioritizing startup chooser, enhance test timeouts, and update documentation for clarity
+
+### ⚙️ Refactoring & Performance
+
+- Streamline database seeding process in e2e tests, improve workspace folder opening logic, and update toolbar interaction for better performance
+
+### 🧰 Maintenance & Dependencies
+
+- Update pre-commit checks to include full-repo format validation, modify linting commands to deny warnings, and enhance documentation for commit hooks
+
+### 📚 Documentation
+
+- Update docs with new features
+
+## 2026-07-16
+
+### 🚀 Features
+
+- Implement undo/redo functionality with keyboard shortcuts and UI controls
+- Enable drag-and-drop node placement on canvas and update default right panel state to expanded
+- Implement cycle path focus feature to visualize circular dependencies in the canvas
+- New logo and assets
+- Add blueprint context, designer assets, and Lighthouse configuration
+- Add mobile sub-navigation switchers to DesignSystemShowcase and DocsShell components
+- Add global loading state with overlay and disable action buttons during asynchronous operations
+- Implement resolveShortEntityRef function and enhance entity reference handling in tests and state management
+- Enhance C# parsing and classification, add local-first persistence feature, and update blueprint context with new layers and components
+- Integrate PWA support with service worker, enhance app context for network status, and update designer metadata for offline capabilities
+
+### 🐛 Bug Fixes
+
+- Correct e2e panel toggle assertions and update corresponding documentation screenshots
+- Adjust asset references for dark mode support in PWA configuration
+
+### ⚙️ Refactoring & Performance
+
+- Show orb ontop of node
+- Extract getNextLevel function for breadcrumb navigation and optimize segment creation logic
+
+### 🧰 Maintenance & Dependencies
+
+- Add error logging to pending changes diff computation in diagram state
+- Update blueprint layout coordinates, add customer entity, and set static playwright viewport
+- Fix builds around actionControls
+- Update CLI documentation and assets, replace PNG with GIF for interactive prompts, and add VHS demo instructions
+- Update JSON schema generation process, add pre-commit checks for schema validation, and enhance documentation for IDE integration
+- Update schema version to v2, refactor YAML serialization to support one-element sequences, and enhance documentation for IDE integration
+- Regen sandbox files
+
+### 📚 Documentation
+
+- Expand documentation with roadmap, canvas features, and a new design system guide
+- Update project documentation screenshots to reflect current UI state
+
+### 🧪 Testing
+
+- Add delays to e2e test screenshots to ensure proper render and update documentation images
+
+### 🎨 Styling
+
+- Update CodeViewer UI with new branding colors and improved tab styling
+
+## 2026-07-15
+
+### 🚀 Features
+
+- Migrate blueprint system to modular component architecture and update CLI analysis domain logic
+- Add schema topology comparison to resolve stale IndexedDB drafts on workspace load and quarantine the unmaintained Rust CLI.
+- Implement comprehensive codebase forensics engine with metrics, aggregation, and git-based history analysis
+- Enhance BlueprintNode and PropertyPanel components with forensics data integration and UI updates for better visibility of codebase metrics
+- Refactor component blueprints and introduce cli writer and core component definitions
+- Docs site from md
+- Enhance Design System Showcase and Docs components with new identity guidelines, improved layout, and updated styling
+- Introduce eshop domain blueprints and update existing component definitions
+- Integrate Tree-sitter for language analysis and standardize blueprint component configurations
+- Add Forensics page and update navigation links in AppHeader and related components
+- Implement layout engine selection and integration for diagram positioning in designer application
+- Add mobile navigation and breadcrumbs components for improved user experience in workspace
+- Replace mobile edge rails with touch-friendly navigation chips and remove unused design system link
+- Improve mobile layout responsiveness and safe area handling using viewport-fit and dynamic viewport units
+- Refactor Mermaid integration and improve component loading with lazy loading and suspense for better performance
+- Add risk heatmap and coupling focus features to enhance node visualization and workspace display controls
+
+### 🐛 Bug Fixes
+
+- Improve property panel layout and text truncation to prevent overflow
+
+### ⚙️ Refactoring & Performance
+
+- Migrate core models and schema logic to new @blueprint/core package and implement CLI writer abstractions
+- Move core logic to workspace-agnostic packages and modernize diagram state management and property panel components
+- Transition CLI from Rust to TypeScript and reorganize blueprint component structures
+- Implement container grouping logic and add gitignore support to model extractor
+- Remove legacy handover artifacts and add AGENTS.md documentation
+- Update setNotification signature to use ToastNotification type in openWorkspace state
+- Change cliIgnores and cliSystems to mutable variables and add blueprint dependency to context.yaml
+- Replace VitePress documentation site with integrated Markdown viewer inside designer application
+- Standardize component blueprints and update CLI analysis and writing logic
+- Update blueprint component file paths and dependency mappings across plugins and packages
+
+### 🧰 Maintenance & Dependencies
+
+- Update Playwright configuration and enhance e2e tests for blueprint navigation; replace test workspace references and add new screenshots
+- Fix md linting
+- Update documentation for CLI installation and usage, remove outdated links, and simplify setup instructions
+- Update dependencies, refine lint-staged configuration, and improve pre-commit hook logic
+
+### 🧪 Testing
+
+- Add missing properties object to hotspot heatmap test data
+
+## 2026-07-13
+
+### ⚙️ Refactoring & Performance
+
+- Consolidate blueprint structure by removing deprecated component files and updating schema definitions
+- Remove unused context_system_id variable from analyzer orchestrator
+- Simplify sub-diagram detection, remove UI comments, and update blueprint context schema
+
+### 🧪 Testing
+
+- Comment out obsolete e2e test steps and update documentation assets following workspace decommissioning
+
+## 2026-07-12
+
+### 🚀 Features
+
+- Covert CLI to rust
+- Add C# support to analyzer, update CLI defaults, and initialize new designer and eshop blueprint schemas
+- Implement TypeScript CLI analysis package and add extensive component definition blueprints.
+- Add persistence and diffing support for node positions and C4 metadata in schema workspaces
+
+### ⚙️ Refactoring & Performance
+
+- Reorganize UI components into a structured feature-based folder architecture
+- Encapsulate URL synchronization logic into a custom useUrlSync hook and clean up workspace page components
+- Migrate entity ref mapping from plain objects to Map for improved lookup and type safety
+- Simplify 404 redirect logic by removing subdirectory path handling
+- Implement Default traits, clean up orchestrator and path logic, and update pre-commit hooks
+- Remove legacy blueprint YAML configuration files and update CLI analyzer logic
+- Implement strategy pattern for language-specific codebase analysis using new analyzer classesg
+
+### 🧰 Maintenance & Dependencies
+
+- _(deps)_ Bump softprops/action-gh-release from 2 to 3
+- _(deps)_ Bump actions/checkout from 4 to 7
+- _(deps)_ Bump actions/upload-artifact from 5 to 7
+- _(deps)_ Bump actions/cache from 4 to 6
+- _(deps)_ Bump github/codeql-action from 3 to 4
+- Add coverage report paths to vitest action and set release job dependency on build-and-test
+- Split pipeline to support independent releases for Rust and TypeScript CLI binaries and update project documentation
+
+## 2026-07-11
+
+### 🚀 Features
+
+- Generate and integrate comprehensive blueprint component definitions
+
+### ⚙️ Refactoring & Performance
+
+- Migrate to pnpm monorepo architecture with core, app, and cli packages
+- Migrate and consolidate Backstage component blueprints and asset references
+- Remove deprecated blueprints and implement new application state and entity reference infrastructure
+- Consolidate CLI release logic into the main CI pipeline workflow
+- Enable Properties Panel to manage both node-specific and workspace-level configuration properties
+
+### 🧰 Maintenance & Dependencies
+
+- Add Bun setup step to GitHub Actions workflow
+- Update CI reporter to github-actions and add CodeQL badge to README
+- Implement GitHub Pages deployment and isolate CLI release process into a dedicated job
+
+### 📚 Documentation
+
+- Overhaul project documentation with dedicated setup, architecture, and journeys guides while updating the README to prioritize CLI usage.
+- Update architecture documentation to include CLI AST analyzer details and fix typo in README
+- Add README files for all packages, configure root vitest workspace, and update documentation and package metadata
+
+## 2026-07-10
+
+### 🚀 Features
+
+- Add dependency descriptions to property panel and include new blueprint system templates
+- Relocate validation status and actions to top-right panel in Canvas adapter
+- Implement URL-based workspace routing and add C4 level management to system schemas
+- Integrate Playwright for E2E testing and add UI tour screenshots to README
+- Implement workspace manifest management and remove legacy hardcoded blueprint files
+- Implement codebase AST analysis domain logic with ports, adapters, and modular structure
+- Integrate Tree-sitter parser adapter for multi-language AST analysis and update CLI for dynamic parsing
+- Enhance breadcrumbs to display hierarchy paths and nested node previews
+- Add C# parser support and implement dynamic blueprint directory and naming logic
+- Implement eShop service blueprints and enhance Tree-sitter parser to capture field, property, and parameter types.
+- Add hierarchical path resolution and sibling system dropdown navigation to Breadcrumbs
+- Implement adapter layer for diagram state management and workspace persistence
+- Implement DesignSystemShowcase component and update project assets with new branding icons and grid layout
+- Migrate to wouter routing and split App into dedicated Workspace and DesignSystem pages
+- Add brand header to canvas, update code viewer branding, and filter breadcrumbs by workspace family
+- Code coverage repots
+- Implement CLI interactive mode, cross-platform binary release pipeline, and additional blueprint definitions
+- Implement comprehensive blueprint component definitions and expand CLI analysis test coverage
+- Implement searchable node navigation with Header integration and hotkey support
+
+### 🐛 Bug Fixes
+
+- Resolve loaded systems from current store state instead of default constant
+- Ensure initialManifest is explicitly undefined when getClosestManifest fails
+
+### ⚙️ Refactoring & Performance
+
+- Enforce consistent code style and update husky to run tests on pre-commit
+- Update import extensions and make namespaces optional in analysis types
+- Update breadcrumb navigation logic and flatten workspace hierarchy structure
+- Consolidate canvas UI controls into a new ActionControls component and add relevant unit tests.
+- Rename analyze scripts and binaries to blueprint while updating CLI path and documentation
+- Remove redundant comments in Searchbar and add ReactFlow mocks to test suite
+
+### 🧰 Maintenance & Dependencies
+
+- Enforce full codebase linting in pre-commit hook and resolve unused variable warnings in tests
+- Update coverage action to v2 and enable json report generation
+- Add caching for Playwright browsers to improve build performance
+- Update release workflow to reflect CLI source and binary renaming
+
+### 📚 Documentation
+
+- Update setup instructions to include Mise and clarify Husky git hook validation requirements
+- Update architecture diagram, add path handling description, and document modular zustand store slices
+- Update screenshots
+
+### 🧪 Testing
+
+- Update e2e visual regression test project naming and refresh associated screenshots
+
+## 2026-07-09
+
+### 🚀 Features
+
+- Add collapsible left and right panels with toggle controls and update canvas zoom limits
+- Add breadcrumb navigation, C4 model serialization, and enhanced component testing suite
+- Set default sidebar panel states to collapsed
+- Implement dynamic edge routing by calculating closest node handles and adding cardinal connection points to BlueprintNode
+
+### 🧰 Maintenance & Dependencies
+
+- Add dependabot configuration, update CI schedule, and refine README documentation and architectural diagrams
+- Add badge to readme
+- Upgrade dependencies, fix Zod type inference, and add workspace release exclusions
+- Revert base path to root in vite config
+- Update actions/deploy-pages to v5
+
+## 2026-07-08
+
+### 🚀 Features
+
+- Initialize project scaffolding with Vite, domain logic, and core UI components
+- Build local codebase AST analyzer script utilizing ts-morph and dagre layout
+- Add isTest flag to nodes and visualize test files with Mermaid integration
+- Add interactive pan and zoom lightbox for Mermaid diagram previews and update project title
+
+### 🐛 Bug Fixes
+
+- Align analyze script output structure with schema and support new node types
+- Improve frontend validation error diagnostics and display error notifications
+
+### ⚙️ Refactoring & Performance
+
+- Condense dependency filter logic in analyze.ts for improved readability
+
+### 🧰 Maintenance & Dependencies
+
+- Integrate Prettier, strict linting, Husky pre-commit hooks, and GitHub Actions CI workflow
+- Fix node deprecation warning and cache setup in workflow
+- Add GitHub Pages deployment job and configure Vite base path

@@ -92,6 +92,14 @@ describe('siteSeo catalog', () => {
     expect(seo.title.toLowerCase()).toContain('decision');
   });
 
+  it('covers the changelog in the SEO catalog', () => {
+    expect(SEO_CATALOG_PATHS).toContain('/changelog');
+    const seo = resolvePageSeo('/changelog');
+    expect(seo.indexable).toBe(true);
+    expect(seo.title.toLowerCase()).toContain('changelog');
+    expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}/changelog`);
+  });
+
   it('marks workspace routes as non-indexable with a workspace title', () => {
     const seo = resolvePageSeo('/workspace?lens=chaoslens');
     expect(seo.indexable).toBe(false);

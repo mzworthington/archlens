@@ -191,6 +191,11 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     description:
       'ArchLens ADRs: sparse MADR records for hard-to-reverse architecture choices across Canvas, CLI and core.',
   },
+  '/changelog': {
+    headline: 'Changelog',
+    description:
+      'ArchLens changelog: what shipped day by day across Canvas, CLI, TraceLens, ChaosLens and AdviceLens.',
+  },
   '/privacy': {
     headline: 'Privacy policy',
     description:

@@ -101,6 +101,8 @@ Product guide and reference live as Markdown under [`docs/`](./docs/) (same file
 
 - **[Product guide](./docs/guide/index.md)** - overview, Canvas, CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
+- **[Changelog](./docs/changelog.md)** - what shipped day by day (also at `/changelog`; root `CHANGELOG.md` symlinks here)
+- **[Architecture Decision Records](./docs/ADRs/README.md)** - sparse MADR records for hard-to-reverse choices
 - **[Unit test features](./docs/features-unit.md)** - generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**
 - **[Setup & Local Development](./docs/setup.md)**

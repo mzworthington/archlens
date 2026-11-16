@@ -22,6 +22,7 @@ import guideCiWorkflowsMd from '@docs/guide/ci-workflows.md?raw';
 import guideVsCodeMd from '@docs/guide/vscode.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
+import changelogMd from '@docs/changelog.md?raw';
 import adrIndexMd from '@docs/ADRs/README.md?raw';
 import adr0001 from '@docs/ADRs/0001-yaml-blueprintspec-as-canonical-format.md?raw';
 import adr0002 from '@docs/ADRs/0002-entityref-hierarchical-diagram-identity.md?raw';
@@ -112,6 +113,7 @@ const TECH_PATH_PREFIXES = [
   '/guide/ci-workflows',
   '/guide/vscode',
   '/ADRs',
+  '/changelog',
 ];
 
 /** Header hubs - chapter lists live in the sidebar / mobile section scrollers. */
@@ -171,6 +173,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
       { label: 'Technology stack', path: '/tech-stack' },
       { label: 'Architecture & security', path: '/architecture' },
       { label: 'ADRs', path: '/ADRs' },
+      { label: 'Changelog', path: '/changelog' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'AdviceLens engine', path: '/advicelens-engine' },
     ],
@@ -429,6 +432,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     dir: '',
     group: 'reference',
     filterable: true,
+  },
+  {
+    path: '/changelog',
+    title: 'Changelog',
+    markdown: changelogMd,
+    dir: '',
+    group: 'reference',
   },
   ...buildAdrPages(),
 ];

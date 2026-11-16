@@ -23,6 +23,7 @@ Product docs are Markdown in this folder. ArchLens Canvas app renders them at:
 | `/chaoslens-engine`, `/advicelens-engine` | Tech (engine contributor docs)              |
 | `/journeys`                               | Interface tour & journeys                   |
 | [ADRs](./ADRs/README.md)                  | Architecture Decision Records (sparse MADR) |
+| [Changelog](./changelog.md)               | What shipped day by day                     |
 | `/features-unit`                          | Generated unit test feature report          |
 
 Open ArchLens Canvas at **[archlens.dev/workspace](https://archlens.dev/workspace)** (or `/workspace` on the same origin).
