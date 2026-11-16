@@ -27,39 +27,25 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
-  it('shows mobile section scrollers for Start, Learn, Surfaces and Tech', () => {
+  it('shows one mobile chapter scroller for the active section, with tabs to switch', () => {
     render(
       <DocsShell>
         <p>content</p>
       </DocsShell>
     );
 
-    const startNav = screen.getByTestId('docs-mobile-start-nav');
-    expect(startNav.parentElement).toHaveTextContent('Start');
-    expect(within(startNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
-    expect(
-      within(startNav).queryByRole('link', { name: 'Getting started' })
-    ).not.toBeInTheDocument();
-    const learnNav = screen.getByTestId('docs-mobile-learn-nav');
-    expect(learnNav.parentElement).toHaveTextContent('Learn');
-    expect(within(learnNav).getByRole('link', { name: 'Getting started' })).toHaveAttribute(
-      'href',
-      '/tutorials/getting-started'
+    const tabs = screen.getByTestId('docs-mobile-section-tabs');
+    expect(within(tabs).getByRole('tab', { name: 'Start' })).toHaveAttribute(
+      'aria-selected',
+      'false'
     );
-    expect(within(startNav).getByRole('link', { name: 'Jobs for today' })).toBeInTheDocument();
-    expect(
-      within(startNav).getByRole('link', { name: 'Interface tour & journeys' })
-    ).toBeInTheDocument();
-
-    const surfacesNav = screen.getByTestId('docs-mobile-surfaces-nav');
-    expect(surfacesNav.parentElement).toHaveTextContent('Surfaces');
-    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens Canvas' })).toBeInTheDocument();
-    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens CLI' })).toBeInTheDocument();
-    expect(within(surfacesNav).getByRole('link', { name: 'AdviceLens' })).toBeInTheDocument();
-    expect(within(surfacesNav).getByRole('link', { name: 'BlueprintSpec' })).toBeInTheDocument();
+    expect(within(tabs).getByRole('tab', { name: 'Tech' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
 
     const technologyNav = screen.getByTestId('docs-mobile-tech-nav');
-    expect(technologyNav.parentElement).toHaveTextContent('Tech');
+    expect(technologyNav).toHaveAttribute('aria-label', 'Tech');
     expect(within(technologyNav).getByRole('link', { name: 'Design system' })).toBeInTheDocument();
     expect(
       within(technologyNav).getByRole('link', { name: 'Technology stack' })
@@ -88,9 +74,35 @@ describe('DocsShell', () => {
       within(technologyNav).getByRole('link', { name: 'AdviceLens engine' })
     ).toBeInTheDocument();
 
+    expect(screen.queryByTestId('docs-mobile-start-nav')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-learn-nav')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-surfaces-nav')).not.toBeInTheDocument();
     expect(screen.queryByTestId('docs-mobile-contract-nav')).not.toBeInTheDocument();
     expect(screen.queryByTestId('docs-mobile-design-system-nav')).not.toBeInTheDocument();
     expect(screen.queryByTestId('docs-mobile-guide-nav')).not.toBeInTheDocument();
+
+    fireEvent.click(within(tabs).getByRole('tab', { name: 'Start' }));
+    const startNav = screen.getByTestId('docs-mobile-start-nav');
+    expect(within(startNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
+    expect(within(startNav).getByRole('link', { name: 'Jobs for today' })).toBeInTheDocument();
+    expect(
+      within(startNav).getByRole('link', { name: 'Interface tour & journeys' })
+    ).toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-tech-nav')).not.toBeInTheDocument();
+
+    fireEvent.click(within(tabs).getByRole('tab', { name: 'Learn' }));
+    const learnNav = screen.getByTestId('docs-mobile-learn-nav');
+    expect(within(learnNav).getByRole('link', { name: 'Getting started' })).toHaveAttribute(
+      'href',
+      '/tutorials/getting-started'
+    );
+
+    fireEvent.click(within(tabs).getByRole('tab', { name: 'Surfaces' }));
+    const surfacesNav = screen.getByTestId('docs-mobile-surfaces-nav');
+    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens Canvas' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens CLI' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'AdviceLens' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'BlueprintSpec' })).toBeInTheDocument();
   });
 
   it('shows header hubs for Start, Learn, Surfaces and Tech', () => {

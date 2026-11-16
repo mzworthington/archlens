@@ -116,7 +116,7 @@ const TECH_PATH_PREFIXES = [
   '/changelog',
 ];
 
-/** Header hubs - chapter lists live in the sidebar / mobile section scrollers. */
+/** Header hubs - chapter lists live in the sidebar / mobile section tabs. */
 export const DOCS_NAV: DocsNavItem[] = [
   // path `/guide` is overview-only; surface chapters use the Surfaces hub.
   { label: 'Start', path: '/guide', matchPrefixes: START_PATH_PREFIXES },
@@ -189,6 +189,25 @@ export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
     );
   }
   return location === item.path || location.startsWith(`${item.path}/`);
+}
+
+/** Sidebar chapter that owns `location` - used to pick the active mobile section tab. */
+export function docsSidebarSectionForPath(location: string): DocsSidebarSection {
+  const exact = DOCS_SIDEBAR.find(section => section.items.some(item => item.path === location));
+  if (exact) return exact;
+
+  const nested = DOCS_SIDEBAR.find(section =>
+    section.items.some(item => item.path !== '/' && location.startsWith(`${item.path}/`))
+  );
+  if (nested) return nested;
+
+  const hub = DOCS_NAV.find(item => isDocsNavActive(location, item));
+  if (hub) {
+    const byTitle = DOCS_SIDEBAR.find(section => section.title === hub.label);
+    if (byTitle) return byTitle;
+  }
+
+  return DOCS_SIDEBAR[0]!;
 }
 
 function adrPage(stem: string, markdown: string): DocsPageMeta {
