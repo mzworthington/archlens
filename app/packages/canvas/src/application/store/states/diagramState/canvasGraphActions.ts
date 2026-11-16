@@ -110,16 +110,10 @@ export function createCanvasGraphActions(set: SetFn, get: GetFn) {
         }
       }
       const expandPanel = shouldExpandPropertyPanel(resolvedId !== null, options);
-      const dependencyViewMode = resolvedId
-        ? get().dependencyViewMode === 'full'
-          ? 'focus'
-          : get().dependencyViewMode
-        : 'full';
       set({
         selectedNodeId: resolvedId,
         selectedEdgeId: resolvedId ? null : get().selectedEdgeId,
         rightCollapsed: expandPanel ? false : get().rightCollapsed,
-        dependencyViewMode,
       });
     },
 

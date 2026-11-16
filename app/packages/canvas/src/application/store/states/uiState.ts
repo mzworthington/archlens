@@ -113,7 +113,7 @@ export const createUiState = (
   showTests: false,
   showUpstreamExternals: true,
   showDownstreamExternals: true,
-  dependencyViewMode: 'focus',
+  dependencyViewMode: 'full',
   showCoupling: false,
   showCouplingSchemaDeps: false,
   guidedRefactorEntityRefs: null,
