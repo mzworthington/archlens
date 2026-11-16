@@ -7,6 +7,7 @@ import {
   keepDiskRequiresRoomPush,
   shouldPreviewCollabVsDisk,
 } from '../../../../../application/workspace/collabVsDisk';
+import { cancelQuietLiveRoomDiskSave } from '../../../../../application/workspace/liveRoomDiskSave';
 
 export function useDiffMenu(isOpen: boolean, onClose: () => void) {
   const {
@@ -63,6 +64,7 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
     if (!confirm(keepDiskConfirmMessage(confirmLiveRoom))) {
       return;
     }
+    cancelQuietLiveRoomDiskSave(currentFilePath);
 
     try {
       const system = loadedSystems.find(s => s.path === currentFilePath);

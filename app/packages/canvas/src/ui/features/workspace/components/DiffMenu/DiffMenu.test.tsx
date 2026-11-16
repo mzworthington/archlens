@@ -4,6 +4,7 @@ import { DiffMenu } from './DiffMenu';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { LoggerPort, WorkingCopyPort } from '../../../../../core';
 import { noopCollabSession } from '../../../../../core';
+import * as liveRoomDiskSave from '../../../../../application/workspace/liveRoomDiskSave';
 
 const computeSchemaDiff = vi.fn();
 const revertWorkingSchema = vi.fn();
@@ -248,13 +249,57 @@ describe('DiffMenu Component', () => {
     await waitFor(() => {
       expect(screen.getByRole('dialog', { name: 'Live room vs disk' })).toBeInTheDocument();
     });
+    const cancelSave = vi.spyOn(liveRoomDiskSave, 'cancelQuietLiveRoomDiskSave');
     fireEvent.click(screen.getByRole('button', { name: 'Keep disk' }));
+    expect(cancelSave).toHaveBeenCalledWith('blueprints/cli.yaml');
     expect(confirmSpy).toHaveBeenCalledWith(
       expect.stringMatching(/peers lose unsaved live edits/i)
     );
     await waitFor(() => {
       expect(pushSchema).toHaveBeenCalled();
     });
+    cancelSave.mockRestore();
+    confirmSpy.mockRestore();
+  });
+
+  it('leaves the pending quiet save when Keep disk is declined', async () => {
+    computeSchemaDiff.mockResolvedValueOnce({
+      nodes: {
+        added: [
+          {
+            entityRef: 'cli/new-service',
+            id: 'new-service',
+            systemId: 'cli',
+            type: 'microservice',
+            name: 'New Service',
+            properties: {},
+            filePath: 'blueprints/cli.yaml',
+          },
+        ],
+        modified: [],
+        deleted: [],
+      },
+      dependencies: { added: [], deleted: [] },
+    });
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      checkPendingChanges: vi.fn().mockResolvedValue(undefined),
+      collabSessionPort: {
+        ...useBlueprintStore.getState().collabSessionPort,
+        isActive: () => true,
+        pushSchema: vi.fn(),
+      },
+    });
+    const cancelSave = vi.spyOn(liveRoomDiskSave, 'cancelQuietLiveRoomDiskSave');
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    render(<DiffMenu isOpen={true} onClose={mockOnClose} />);
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'Keep disk' })).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Keep disk' }));
+    expect(cancelSave).not.toHaveBeenCalled();
+    expect(revertWorkingSchema).not.toHaveBeenCalled();
+    cancelSave.mockRestore();
     confirmSpy.mockRestore();
   });
 

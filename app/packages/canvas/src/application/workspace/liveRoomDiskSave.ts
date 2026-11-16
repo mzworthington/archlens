@@ -72,6 +72,13 @@ export function scheduleQuietLiveRoomDiskSave(get: ApplyStateGet): void {
   });
 }
 
+export function cancelQuietLiveRoomDiskSave(path: string): void {
+  const job = pendingSaves.get(path);
+  if (!job) return;
+  clearTimeout(job.timer);
+  pendingSaves.delete(path);
+}
+
 export function flushQuietLiveRoomDiskSaves(get: ApplyStateGet): void {
   const jobs = [...pendingSaves.values()];
   pendingSaves.clear();
