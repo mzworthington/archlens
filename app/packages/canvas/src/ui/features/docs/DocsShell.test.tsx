@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { DocsShell, type DocsLocalNav } from './DocsShell';
 
@@ -15,7 +15,15 @@ const localNav: DocsLocalNav = {
 
 vi.mock('wouter', () => ({
   useLocation: () => ['/design-system'],
-  Link: ({ href, children, ...props }: { href: string; children: React.ReactNode }) => (
+  Link: ({
+    href,
+    children,
+    ...props
+  }: {
+    href: string;
+    children: React.ReactNode;
+    [key: string]: unknown;
+  }) => (
     <a href={href} {...props}>
       {children}
     </a>
@@ -27,6 +35,10 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
+  beforeEach(() => {
+    HTMLElement.prototype.scrollIntoView = vi.fn();
+  });
+
   it('shows one mobile chapter scroller for the active section, with tabs to switch', () => {
     render(
       <DocsShell>
@@ -136,6 +148,22 @@ describe('DocsShell', () => {
     expect(within(sidebar).getByRole('button', { name: 'Identity & grid' })).toBeInTheDocument();
     fireEvent.click(within(sidebar).getByRole('button', { name: 'Design tokens' }));
     expect(localNav.onSelect).toHaveBeenCalledWith('tokens');
+  });
+
+  it('keeps the desktop sidebar scrollable within the viewport', () => {
+    render(
+      <DocsShell>
+        <p>content</p>
+      </DocsShell>
+    );
+
+    const sidebarNav = screen.getByTestId('docs-sidebar-nav');
+    expect(sidebarNav).toHaveClass('sticky', 'overflow-y-auto', 'max-h-[calc(100dvh-8rem)]');
+    expect(within(sidebarNav).getByRole('link', { name: 'Changelog' })).toBeInTheDocument();
+    const active = within(sidebarNav).getByRole('link', { name: 'Design system' });
+    expect(active).toHaveAttribute('aria-current', 'page');
+    expect(active).toHaveAttribute('data-active', 'true');
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
   });
 
   it('links author credit to mzworthington.co.uk', () => {
