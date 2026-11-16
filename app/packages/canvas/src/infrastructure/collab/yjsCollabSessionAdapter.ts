@@ -40,6 +40,7 @@ import {
   emitPresence,
   hydrateCollabWorkspaceJoin,
   readStableAuthorKey,
+  schemaIsSeedable,
   waitForCollabAdmission,
   type CollabAuthorKeyStore,
 } from './yjsCollabSessionHelpers';
@@ -299,12 +300,17 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       }
 
       if (documentIsEmpty(readCollabDocument(ydoc))) {
-        const seed = schemaToCollabDocument(seedSchema);
-        const patch = diffCollabDocuments(emptyCollabDocument(), seed);
-        if (!collabPatchIsEmpty(patch)) {
-          applyCollabPatch(ydoc, patch, YJS_LOCAL_ORIGIN);
+        if (schemaIsSeedable(seedSchema)) {
+          const seed = schemaToCollabDocument(seedSchema);
+          const patch = diffCollabDocuments(emptyCollabDocument(), seed);
+          if (!collabPatchIsEmpty(patch)) {
+            applyCollabPatch(ydoc, patch, YJS_LOCAL_ORIGIN);
+          }
+          lastLocal = readCollabDocument(ydoc);
+        } else {
+          // Leave the room empty until a peer with real content seeds it.
+          lastLocal = emptyCollabDocument();
         }
-        lastLocal = readCollabDocument(ydoc);
       } else {
         lastLocal = readCollabDocument(ydoc);
         onSchema?.(collabDocumentToSchema(lastLocal));

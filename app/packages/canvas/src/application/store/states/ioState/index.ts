@@ -74,7 +74,7 @@ export interface IoState {
   dismissScanMapPersist: () => void;
   liteScanProgress: LiteScanProgress | null;
   cancelBrowserLiteScan: () => void;
-  saveActiveDiagram: () => Promise<boolean>;
+  saveActiveDiagram: (options?: { quiet?: boolean }) => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
   joinCollabRoom: (
     roomId: string,

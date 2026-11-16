@@ -58,7 +58,9 @@ export function createBrowserPorts(): BrowserPorts {
     },
     collabSessionPort: createYjsCollabSession({
       transport,
-      syncWaitMs: wsUrl ? 50 : 0,
+      // Wait for the Durable Object snapshot (or a short grace for empty rooms)
+      // before deciding whether to seed — 50ms was racing large rooms and late hosts.
+      syncWaitMs: wsUrl ? 400 : 0,
       controlWaitMs: wsUrl ? 8_000 : 0,
     }),
   };
