@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
 import { DOCS_NAV, DOCS_SIDEBAR, docsSidebarSectionForPath, isDocsNavActive } from './pages';
@@ -153,6 +153,91 @@ function MobileDocsChapterNav({
   );
 }
 
+/**
+ * Desktop chapter list: sticky under the header, scrollable when taller than the viewport
+ * so long menus (Tech + Changelog) stay reachable on long pages.
+ */
+function DocsSidebarNav({
+  location,
+  showLocalNav,
+  localNav,
+}: {
+  location: string;
+  showLocalNav: boolean;
+  localNav?: DocsLocalNav;
+}) {
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const active = navRef.current?.querySelector<HTMLElement>('[data-active="true"]');
+    active?.scrollIntoView?.({ block: 'nearest' });
+  }, [location]);
+
+  return (
+    <nav
+      ref={navRef}
+      className="sticky top-28 max-h-[calc(100dvh-8rem)] overflow-y-auto overscroll-contain space-y-6 text-sm pr-1"
+      aria-label="Docs"
+      data-testid="docs-sidebar-nav"
+    >
+      {DOCS_SIDEBAR.map(section => (
+        <div key={section.title}>
+          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+            {section.title}
+          </p>
+          <ul className="space-y-1">
+            {section.items.map(item => {
+              const active = location === item.path;
+              const expandLocal = showLocalNav && item.path === localNav!.expandUnderPath;
+              return (
+                <li key={item.path}>
+                  <Link
+                    href={item.path}
+                    data-active={active ? 'true' : undefined}
+                    aria-current={active ? 'page' : undefined}
+                    className={`block rounded-md px-2 py-1.5 transition-colors ${
+                      active
+                        ? 'bg-accent/10 text-accent'
+                        : 'text-ink/55 hover:text-ink hover:bg-white/5'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                  {expandLocal ? (
+                    <ul
+                      className="mt-1 ml-2 space-y-0.5 border-l border-accent/15 pl-2"
+                      aria-label={localNav!.title}
+                    >
+                      {localNav!.items.map(sub => {
+                        const subActive = localNav!.activeId === sub.id;
+                        return (
+                          <li key={sub.id}>
+                            <button
+                              type="button"
+                              onClick={() => localNav!.onSelect(sub.id)}
+                              className={`w-full text-left rounded-md px-2 py-1.5 text-[13px] transition-colors cursor-pointer ${
+                                subActive
+                                  ? 'text-accent bg-accent/10'
+                                  : 'text-ink/55 hover:text-ink hover:bg-white/5'
+                              }`}
+                            >
+                              {sub.label}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  );
+}
+
 export const DocsShell: React.FC<Props> = ({
   children,
   title,
@@ -206,60 +291,7 @@ export const DocsShell: React.FC<Props> = ({
       >
         {!isLanding ? (
           <aside className="hidden lg:block" data-testid="docs-sidebar">
-            <nav className="sticky top-28 space-y-6 text-sm" aria-label="Docs">
-              {DOCS_SIDEBAR.map(section => (
-                <div key={section.title}>
-                  <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
-                    {section.title}
-                  </p>
-                  <ul className="space-y-1">
-                    {section.items.map(item => {
-                      const active = location === item.path;
-                      const expandLocal = showLocalNav && item.path === localNav!.expandUnderPath;
-                      return (
-                        <li key={item.path}>
-                          <Link
-                            href={item.path}
-                            className={`block rounded-md px-2 py-1.5 transition-colors ${
-                              active
-                                ? 'bg-accent/10 text-accent'
-                                : 'text-ink/55 hover:text-ink hover:bg-white/5'
-                            }`}
-                          >
-                            {item.label}
-                          </Link>
-                          {expandLocal ? (
-                            <ul
-                              className="mt-1 ml-2 space-y-0.5 border-l border-accent/15 pl-2"
-                              aria-label={localNav!.title}
-                            >
-                              {localNav!.items.map(sub => {
-                                const subActive = localNav!.activeId === sub.id;
-                                return (
-                                  <li key={sub.id}>
-                                    <button
-                                      type="button"
-                                      onClick={() => localNav!.onSelect(sub.id)}
-                                      className={`w-full text-left rounded-md px-2 py-1.5 text-[13px] transition-colors cursor-pointer ${
-                                        subActive
-                                          ? 'text-accent bg-accent/10'
-                                          : 'text-ink/55 hover:text-ink hover:bg-white/5'
-                                      }`}
-                                    >
-                                      {sub.label}
-                                    </button>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          ) : null}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              ))}
-            </nav>
+            <DocsSidebarNav location={location} showLocalNav={showLocalNav} localNav={localNav} />
           </aside>
         ) : null}
 
