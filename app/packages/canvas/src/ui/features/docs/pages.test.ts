@@ -166,6 +166,9 @@ describe('docs link resolution', () => {
     expect(docsSidebarSectionForPath('/guide').title).toBe('Start');
     expect(docsSidebarSectionForPath('/tutorials/getting-started').title).toBe('Learn');
     expect(docsSidebarSectionForPath('/guide/canvas').title).toBe('Surfaces');
+    expect(docsSidebarSectionForPath('/guide/canvas/').title).toBe('Surfaces');
+    expect(docsSidebarSectionForPath('/guide/getting-started').title).toBe('Learn');
+    expect(docsSidebarSectionForPath('/guide/ci-workflows').title).toBe('Tech');
     expect(docsSidebarSectionForPath('/ADRs/some-decision').title).toBe('Tech');
   });
 

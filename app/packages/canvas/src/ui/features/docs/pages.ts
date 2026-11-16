@@ -191,21 +191,31 @@ export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
   return location === item.path || location.startsWith(`${item.path}/`);
 }
 
+function normalizeDocsPath(location: string): string {
+  if (location.length > 1 && location.endsWith('/')) {
+    return location.replace(/\/+$/, '') || '/';
+  }
+  return location;
+}
+
 /** Sidebar chapter that owns `location` - used to pick the active mobile section tab. */
 export function docsSidebarSectionForPath(location: string): DocsSidebarSection {
-  const exact = DOCS_SIDEBAR.find(section => section.items.some(item => item.path === location));
+  const path = normalizeDocsPath(location);
+
+  const exact = DOCS_SIDEBAR.find(section => section.items.some(item => item.path === path));
   if (exact) return exact;
 
-  const nested = DOCS_SIDEBAR.find(section =>
-    section.items.some(item => item.path !== '/' && location.startsWith(`${item.path}/`))
-  );
-  if (nested) return nested;
-
-  const hub = DOCS_NAV.find(item => isDocsNavActive(location, item));
+  // Prefer hub matchPrefixes so Start's `/guide` does not claim Surfaces `/guide/*` chapters.
+  const hub = DOCS_NAV.find(item => isDocsNavActive(path, item));
   if (hub) {
     const byTitle = DOCS_SIDEBAR.find(section => section.title === hub.label);
     if (byTitle) return byTitle;
   }
+
+  const nested = DOCS_SIDEBAR.find(section =>
+    section.items.some(item => item.path !== '/' && path.startsWith(`${item.path}/`))
+  );
+  if (nested) return nested;
 
   return DOCS_SIDEBAR[0]!;
 }
