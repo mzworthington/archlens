@@ -44,7 +44,10 @@ export type ApplyStateSnapshot = {
   isMemoryScanWorkspace?: boolean;
   yamlCode?: string;
   nodeRefMap?: Record<string, Record<string, string>>;
-  workspacePort?: { writeFile(relativePath: string, content: string): Promise<boolean> } | null;
+  workspacePort?: {
+    writeFile(relativePath: string, content: string): Promise<boolean>;
+    readFile?(relativePath: string): Promise<string>;
+  } | null;
   setNotification?: (notification: ToastNotification | null) => void;
 };
 

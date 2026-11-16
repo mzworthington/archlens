@@ -15,9 +15,19 @@ type PendingSave = {
   yaml: string;
   schema: SystemSchema;
   nodeRefMap: Record<string, string>;
+  cancelled: boolean;
 };
 
 const pendingSaves = new Map<string, PendingSave>();
+const inflightSaves = new Set<PendingSave>();
+
+function beginQuietCommit(get: ApplyStateGet, job: PendingSave): void {
+  if (job.cancelled) return;
+  inflightSaves.add(job);
+  void commitPending(get, job).finally(() => {
+    inflightSaves.delete(job);
+  });
+}
 
 function readDiagramSchema(
   schema: NonNullable<ReturnType<ApplyStateGet>['schema']>
@@ -56,12 +66,15 @@ export function scheduleQuietLiveRoomDiskSave(get: ApplyStateGet): void {
   if (collabDocumentIsBootPlaceholder(schemaToCollabDocument(schema))) return;
 
   const existing = pendingSaves.get(path);
-  if (existing) clearTimeout(existing.timer);
+  if (existing) {
+    existing.cancelled = true;
+    clearTimeout(existing.timer);
+  }
   const timer = setTimeout(() => {
     const job = pendingSaves.get(path);
-    if (!job || job.timer !== timer) return;
+    if (!job || job.timer !== timer || job.cancelled) return;
     pendingSaves.delete(path);
-    void commitPending(get, job);
+    beginQuietCommit(get, job);
   }, LIVE_ROOM_DISK_SAVE_DEBOUNCE_MS);
   pendingSaves.set(path, {
     timer,
@@ -69,32 +82,37 @@ export function scheduleQuietLiveRoomDiskSave(get: ApplyStateGet): void {
     yaml,
     schema,
     nodeRefMap: state.nodeRefMap?.[path] ?? {},
+    cancelled: false,
   });
 }
 
 export function cancelQuietLiveRoomDiskSave(path: string): void {
-  const job = pendingSaves.get(path);
-  if (!job) return;
-  clearTimeout(job.timer);
-  pendingSaves.delete(path);
+  const queued = pendingSaves.get(path);
+  if (queued) {
+    queued.cancelled = true;
+    clearTimeout(queued.timer);
+    pendingSaves.delete(path);
+  }
+  for (const job of inflightSaves) {
+    if (job.path === path) job.cancelled = true;
+  }
 }
 
 export function flushQuietLiveRoomDiskSaves(get: ApplyStateGet): void {
   const jobs = [...pendingSaves.values()];
   pendingSaves.clear();
   for (const job of jobs) clearTimeout(job.timer);
-  for (const job of jobs) {
-    void commitPending(get, job);
-  }
+  for (const job of jobs) beginQuietCommit(get, job);
 }
 
 async function commitPending(get: ApplyStateGet, job: PendingSave): Promise<void> {
+  if (job.cancelled) return;
   const state = get();
   const saveBaselineSchema = state.workingCopyPort?.saveBaselineSchema;
   if (!folderWorkspaceOpen(state) || !state.workspacePort || !saveBaselineSchema) return;
   const info = state.logger?.info;
   const error = state.logger?.error;
-  if (!info || !error) return;
+  if (!info || !error || job.cancelled) return;
   await commitDiagramFile(
     {
       workspacePort: state.workspacePort,
@@ -109,6 +127,7 @@ async function commitPending(get: ApplyStateGet, job: PendingSave): Promise<void
       schema: job.schema,
       nodeRefMap: job.nodeRefMap,
       quiet: true,
+      isCurrent: () => !job.cancelled,
     }
   );
 }
