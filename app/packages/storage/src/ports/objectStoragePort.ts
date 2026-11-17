@@ -6,6 +6,11 @@ export type ObjectStoragePutRequest = {
   body: string | Uint8Array;
   contentType?: string;
   /**
+   * HTTP Cache-Control for public CDN / R2 custom-domain reads
+   * (e.g. immutable snapshot objects vs short-lived `latest/` pointer).
+   */
+  cacheControl?: string;
+  /**
    * Compare-and-swap: succeed only when the live object ETag matches.
    * Use after reading `getObjectWithMeta`.
    */

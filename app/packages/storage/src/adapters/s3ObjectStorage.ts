@@ -190,6 +190,7 @@ export function createS3ObjectStorage(
             Key: resolveKey(request.key),
             Body: toBodyBytes(request.body),
             ContentType: request.contentType,
+            ...(request.cacheControl ? { CacheControl: request.cacheControl } : {}),
             ...(request.ifMatch ? { IfMatch: request.ifMatch } : {}),
             ...(request.ifNoneMatch ? { IfNoneMatch: request.ifNoneMatch } : {}),
           })

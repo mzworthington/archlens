@@ -13,7 +13,11 @@ import { isTransientObjectStorageError } from '../lib/transientObjectStorageErro
 describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
   it('stores and retrieves objects through the S3 API', async () => {
     const send = vi.fn(async command => {
-      if (command instanceof PutObjectCommand) return {};
+      if (command instanceof PutObjectCommand) {
+        expect(command.input.CacheControl).toBe('public, max-age=31536000, immutable');
+        expect(command.input.ContentType).toBe('application/yaml');
+        return {};
+      }
       if (command instanceof GetObjectCommand) {
         return { Body: new TextEncoder().encode('diagram-yaml'), ETag: '"abc"' };
       }
@@ -35,6 +39,7 @@ describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
       key: 'snapshots/rev1/demo/context.yaml',
       body: 'yaml',
       contentType: 'application/yaml',
+      cacheControl: 'public, max-age=31536000, immutable',
     });
     await expect(storage.getObjectText('snapshots/rev1/demo/context.yaml')).resolves.toBe(
       'diagram-yaml'

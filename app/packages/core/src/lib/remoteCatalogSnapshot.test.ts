@@ -177,4 +177,21 @@ describe('Feature: Atomic snapshot materialization', () => {
     expect(bodies.some(body => body.key === 'snapshots/rev1/catalog.json')).toBe(true);
     expect(bodies.some(body => body.key === 'snapshots/rev1/manifest.json')).toBe(true);
   });
+
+  it('marks snapshot objects immutable and latest short-lived for CDN cache', () => {
+    const plan = buildRemoteCatalogSnapshotPlan({
+      revisionId: 'rev1',
+      workspaceName: 'blueprints',
+      toolVersion: 'dev',
+      yamlObjects: [{ path: 'golden-journey/context.yaml', content: contextYaml }],
+    });
+    const bodies = materializeRemoteCatalogSnapshotBodies(plan);
+    const latest = bodies.find(body => body.key === 'latest/manifest.json');
+    const snapshotBodies = bodies.filter(body => body.key !== 'latest/manifest.json');
+    expect(latest?.cacheControl).toBe('public, max-age=60, must-revalidate');
+    expect(snapshotBodies.length).toBeGreaterThan(0);
+    expect(
+      snapshotBodies.every(body => body.cacheControl === 'public, max-age=31536000, immutable')
+    ).toBe(true);
+  });
 });
