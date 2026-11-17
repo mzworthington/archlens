@@ -59,6 +59,9 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 - Zone → **DNS: Edit**
 - Zone → **Workers Routes: Edit** (collab custom domain)
 - Zone → **Zone Settings: Edit** (Observatory scheduled tests)
+- Zone → **Cache Rules: Edit** (blueprint catalog edge cache for `.json`/`.yaml`)
+- Account → **Account Rulesets: Edit** (required with Cache Rules for the rulesets API)
+- Account → **Account Filter Lists: Edit** (Cache Rules API companion permission)
 
 ### Object storage (`@archlens/storage`)
 

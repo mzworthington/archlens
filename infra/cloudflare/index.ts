@@ -117,6 +117,51 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
   enabled: true,
 });
 
+/**
+ * Cloudflare does not cache .json / .yaml by default (DYNAMIC). Mark the
+ * blueprint catalog host eligible for cache so ADR-0010 snapshot objects
+ * (and origin Cache-Control) can HIT at the edge. Override TTL on
+ * /snapshots/ so existing objects without headers still cache until republish.
+ */
+new cloudflare.Ruleset('blueprint-catalog-cache', {
+  zoneId,
+  name: 'Blueprint catalog edge cache',
+  description:
+    'Eligible-for-cache for blueprints.* ADR-0010 snapshots (json/yaml) and short TTL for latest/',
+  kind: 'zone',
+  phase: 'http_request_cache_settings',
+  rules: [
+    {
+      ref: 'catalog-snapshots-immutable',
+      description: 'Cache immutable ADR-0010 snapshot objects (catalog.json + YAML)',
+      expression: `(http.host eq "${catalogDomain}" and http.request.uri.path contains "/snapshots/")`,
+      action: 'set_cache_settings',
+      actionParameters: {
+        cache: true,
+        edgeTtl: {
+          mode: 'override_origin',
+          default: 31536000,
+        },
+      },
+      enabled: true,
+    },
+    {
+      ref: 'catalog-latest-short',
+      description: 'Short edge TTL for ADR-0010 latest/manifest.json pointer',
+      expression: `(http.host eq "${catalogDomain}" and http.request.uri.path contains "/latest/")`,
+      action: 'set_cache_settings',
+      actionParameters: {
+        cache: true,
+        edgeTtl: {
+          mode: 'override_origin',
+          default: 60,
+        },
+      },
+      enabled: true,
+    },
+  ],
+});
+
 const docsMediaBucket = new cloudflare.R2Bucket('docs-media', {
   accountId,
   name: docsMediaBucketName,
