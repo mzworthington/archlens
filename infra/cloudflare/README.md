@@ -67,7 +67,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit) and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit), Zone Settings Edit, **Cache Rules Edit**, Account Rulesets Edit, and Account Filter Lists Edit (catalog Cache Rule). Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
