@@ -13,3 +13,18 @@ export function includeExternalsInFocusFromMode(mode: DependencyViewMode): boole
 export function toggleDependencyViewMode(mode: DependencyViewMode): DependencyViewMode {
   return mode === 'full' ? 'focus' : 'full';
 }
+
+/**
+ * Keep dependency focus mode aligned with Callers/Targets:
+ * any band on promotes focus → focus-externals; both off demotes back.
+ */
+export function dependencyModeForExternalToggles(
+  mode: DependencyViewMode,
+  showUpstreamExternals: boolean,
+  showDownstreamExternals: boolean
+): DependencyViewMode {
+  if (showUpstreamExternals || showDownstreamExternals) {
+    return mode === 'focus' ? 'focus-externals' : mode;
+  }
+  return mode === 'focus-externals' ? 'focus' : mode;
+}

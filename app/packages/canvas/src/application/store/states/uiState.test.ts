@@ -84,13 +84,31 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
   });
 
+  it('demotes focus-externals when both callers and targets are turned off', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus-externals',
+      showUpstreamExternals: true,
+      showDownstreamExternals: true,
+    });
+    useBlueprintStore.getState().setShowUpstreamExternals(false);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
+    useBlueprintStore.getState().setShowDownstreamExternals(false);
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
+  });
+
   it('keeps the dependency toggle when a node is selected or cleared', () => {
     useBlueprintStore.setState({ dependencyViewMode: 'full', selectedNodeId: null });
     useBlueprintStore.getState().selectNode('nodeA');
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('full');
     expect(useBlueprintStore.getState().selectedNodeId).toBe('nodeA');
 
-    useBlueprintStore.setState({ dependencyViewMode: 'focus-externals' });
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus-externals',
+      showUpstreamExternals: true,
+      showDownstreamExternals: true,
+    });
     useBlueprintStore.getState().selectNode(null);
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
     expect(useBlueprintStore.getState().selectedNodeId).toBeNull();
@@ -108,10 +126,17 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('full');
   });
 
-  it('should set dependency view mode via setDependencyViewMode', () => {
+  it('should set dependency view mode via setDependencyViewMode and sync external toggles', () => {
     const store = useBlueprintStore.getState();
     store.setDependencyViewMode('focus-externals');
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(true);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
+
+    store.setDependencyViewMode('focus');
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(false);
   });
 
   it('should toggle showCoupling property via toggleShowCoupling action', () => {

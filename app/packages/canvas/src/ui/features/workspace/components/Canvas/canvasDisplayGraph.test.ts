@@ -108,3 +108,46 @@ describe('buildCanvasVisibleNodes - C4 context level', () => {
     expect(ids.has('app')).toBe(true);
   });
 });
+
+describe('buildCanvasVisibleNodes - focus-externals bands', () => {
+  it('respects Callers/Targets when dependency focus includes externals', () => {
+    const schema: SystemSchema = {
+      name: 'Containers',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'app/api', type: 'rest-api', name: 'API' },
+        { entityRef: 'app/caller', type: 'microservice', name: 'Caller', external: true },
+        { entityRef: 'app/target', type: 'database', name: 'Target', external: true },
+      ],
+      dependencies: [
+        { from: 'app/caller', to: 'app/api', type: 'direct-call' },
+        { from: 'app/api', to: 'app/target', type: 'direct-call' },
+      ],
+    };
+    const nodes = [
+      node('app/api', { type: 'rest-api' }),
+      node('app/caller', { external: true }),
+      node('app/target', { external: true, type: 'database' }),
+    ];
+    const edges = [edge('app/caller', 'app/api'), edge('app/api', 'app/target')];
+
+    const callersOnly = buildCanvasVisibleNodes({
+      nodes,
+      edges,
+      schema,
+      loadedSystems: [{ path: 'containers.yaml', name: schema.name, schema }],
+      showTests: true,
+      showUpstreamExternals: true,
+      showDownstreamExternals: false,
+      selectedNodeId: 'app/api',
+      dependencyViewMode: 'focus-externals',
+      isResilienceMode: false,
+      simulationScopeSet: null,
+      showCoupling: false,
+      expandedExternalHub: null,
+    });
+
+    expect(callersOnly.map(n => n.id).sort()).toEqual(['app/api', 'app/caller']);
+  });
+});

@@ -214,7 +214,7 @@ describe('getAbsoluteNodePosition', () => {
 });
 
 describe('shouldAutoLayoutOnLoad', () => {
-  it('runs auto layout even when every node already has YAML coordinates', () => {
+  it('skips auto layout only when every node has saved coordinates', () => {
     expect(
       shouldAutoLayoutOnLoad({
         name: 'Context',
@@ -232,7 +232,7 @@ describe('shouldAutoLayoutOnLoad', () => {
         ],
         dependencies: [],
       })
-    ).toBe(true);
+    ).toBe(false);
   });
 
   it('runs auto layout when only some nodes have coordinates', () => {
@@ -275,16 +275,16 @@ describe('shouldAutoLayoutOnLoad', () => {
     ).toBe(true);
   });
 
-  it('skips auto layout for empty diagrams', () => {
+  it('runs auto layout when nodes are missing coordinates', () => {
     expect(
       shouldAutoLayoutOnLoad({
-        name: 'Empty',
+        name: 'Containers',
         version: '1.0.0',
         level: 'container',
-        nodes: [],
+        nodes: [{ entityRef: 'app/api', type: 'rest-api', name: 'API' }],
         dependencies: [],
       })
-    ).toBe(false);
+    ).toBe(true);
   });
 });
 

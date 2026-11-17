@@ -598,7 +598,7 @@ describe('diagramState Actions & State Management', () => {
     expect(hasSessionLayout('context.yaml', fingerprint)).toBe(false);
   });
 
-  it('selects dagre for auto-layout even when YAML already has complete coordinates', () => {
+  it('respects saved YAML coordinates and skips dagre auto-layout', () => {
     clearSessionLayout();
     useBlueprintStore.setState({
       currentFilePath: 'containers.yaml',
@@ -629,10 +629,12 @@ describe('diagramState Actions & State Management', () => {
     });
 
     const state = useBlueprintStore.getState();
-    expect(state.layoutEngine).toBe('dagre');
-    expect(state.layoutCustomized).toBe(false);
-    // Coordinates stripped so load-layout can place nodes via the engine.
-    expect(state.schema.nodes.every(n => n.position == null)).toBe(true);
+    expect(state.layoutEngine).toBeNull();
+    expect(state.layoutCustomized).toBe(true);
+    expect(state.schema.nodes.map(n => n.position)).toEqual([
+      { x: 10, y: 10 },
+      { x: 400, y: 10 },
+    ]);
   });
 
   describe('validation console logging', () => {

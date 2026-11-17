@@ -5,6 +5,7 @@ import {
   prepareGroupedNodesForLayout,
   groupLayoutDimensions,
   DEFAULT_NODE_SIZE,
+  hasCompleteSavedLayout,
   positionExternalNodes,
 } from '@archlens/core/layout';
 import type { LayoutEngineId, LayoutRegistryPort } from '../../../core';
@@ -13,13 +14,10 @@ import { getAbsoluteNodePosition, getNodeDimensions, type BlueprintRFNode } from
 
 export { getAbsoluteNodePosition };
 
-/**
- * Run automatic layout whenever the diagram has nodes.
- * YAML enrich coords are not treated as a user layout choice; session cache
- * (initSchema) still preserves in-session positions after the first layout.
- */
+/** Run automatic layout on load unless every node already has saved coordinates. */
 export function shouldAutoLayoutOnLoad(schema: SystemSchema): boolean {
-  return schema.nodes.length > 0;
+  if (schema.nodes.length === 0) return false;
+  return !hasCompleteSavedLayout(schema.nodes);
 }
 
 export async function layoutGroupedDomainNodes(
