@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { useUpdateNodeInternals } from '@xyflow/react';
 import { useLocation } from 'wouter';
 import type { NodeProps, Node } from '@xyflow/react';
@@ -59,7 +59,12 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
   };
 
   // Keep edge endpoints attached after lite-canvas chrome height changes.
+  // Skip mount: React Flow measures new nodes in one batch, while one call per node
+  // re-renders the canvas once per node and trips React's update limit on large graphs.
+  const measuredLiteCanvas = useRef(liteCanvas);
   useEffect(() => {
+    if (measuredLiteCanvas.current === liteCanvas) return;
+    measuredLiteCanvas.current = liteCanvas;
     updateNodeInternals(id);
   }, [id, liteCanvas, updateNodeInternals]);
 

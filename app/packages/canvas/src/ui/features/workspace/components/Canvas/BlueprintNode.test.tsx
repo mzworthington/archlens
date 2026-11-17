@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BlueprintNode } from './BlueprintNode';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -7,6 +7,7 @@ import { commentAuthorSwatch, type ForensicClassification, type NodeComment } fr
 import type { Node, NodeProps } from '@xyflow/react';
 
 const mockSetLocation = vi.fn();
+const mockUpdateNodeInternals = vi.hoisted(() => vi.fn());
 vi.mock('wouter', () => ({
   useLocation: () => ['/workspace/application', mockSetLocation],
   useSearch: () => '',
@@ -31,13 +32,14 @@ vi.mock('@xyflow/react', () => {
       Top: 'top',
       Bottom: 'bottom',
     },
-    useUpdateNodeInternals: () => vi.fn(),
+    useUpdateNodeInternals: () => mockUpdateNodeInternals,
   };
 });
 
 describe('BlueprintNode Component', () => {
   beforeEach(() => {
     mockSetLocation.mockClear();
+    mockUpdateNodeInternals.mockClear();
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
       name: 'Test Schema',
@@ -162,6 +164,16 @@ describe('BlueprintNode Component', () => {
       '1 open comment from Ada'
     );
     expect(screen.queryByTestId('node-comment-author-grace')).not.toBeInTheDocument();
+  });
+
+  it('leaves first measurement to React Flow and re-measures only when lite canvas changes', () => {
+    // One call per mounted node re-renders a large canvas once per node (React error #185).
+    render(<BlueprintNode {...defaultProps} />);
+    expect(mockUpdateNodeInternals).not.toHaveBeenCalled();
+
+    act(() => useBlueprintStore.setState({ liteCanvas: true }));
+    expect(mockUpdateNodeInternals).toHaveBeenCalledTimes(1);
+    expect(mockUpdateNodeInternals).toHaveBeenCalledWith('test-node-1');
   });
 
   it('renders correctly with basic node details', () => {
