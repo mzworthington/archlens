@@ -44,6 +44,20 @@ export async function continueWithSample(page: Page) {
   await expectCanvasReady(page);
 }
 
+/** Collapse Explorer if ChaosLens (or TraceLens) left it open. */
+async function ensureLeftPanelCollapsed(page: Page) {
+  const leftPanel = page.getByTestId('left-panel');
+  if ((await leftPanel.count()) === 0) return;
+
+  const closeExplorer = page.getByRole('button', { name: 'Close Explorer' });
+  if (await closeExplorer.isVisible().catch(() => false)) {
+    await closeExplorer.click();
+  } else {
+    await page.getByTestId('left-panel-rail').click();
+  }
+  await expect(leftPanel).toHaveCount(0, { timeout: 10_000 });
+}
+
 /** Demo-first enables ChaosLens; exit so imports/toolbars are not racing resilience UI. */
 export async function exitResilienceModeIfActive(page: Page) {
   const exitResilience = page.getByRole('button', { name: /exit resilience mode/i });
@@ -55,6 +69,8 @@ export async function exitResilienceModeIfActive(page: Page) {
       { timeout: 30_000 }
     );
   }
+  // Exiting ChaosLens does not restore leftCollapsed; suite defaults expect Explorer closed.
+  await ensureLeftPanelCollapsed(page);
 }
 
 async function openOverflowMenu(page: Page) {
