@@ -29,7 +29,7 @@ pulumi import 'cloudflare:index/observatoryScheduledTest:ObservatoryScheduledTes
 
 Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
-Compose/publish writes `Cache-Control: public, max-age=31536000, immutable` on `snapshots/{rev}/…` so Cloudflare can edge-cache the multi‑MB `catalog.json` and YAML. `latest/manifest.json` stays short-lived (`max-age=60, must-revalidate`). Headers apply on the next catalog compose after this lands; until then cold Incognito loads still hit origin for that snapshot.
+Compose/publish writes `Cache-Control: public, max-age=31536000, immutable` on `snapshots/{rev}/…`. Cloudflare does **not** cache `.json`/`.yaml` unless a Cache Rule marks them eligible — this stack owns a zone `http_request_cache_settings` ruleset on `blueprints.*` that sets Eligible for cache (long edge TTL under `/snapshots/`, 60s under `/latest/`). Together, cold Incognito loads can `HIT` the multi‑MB catalog at the edge.
 
 Guide GIFs are a separate bucket so they do not share the catalog contract or cache. **Refresh docs & media** and the production CI upload `docs/screenshots/*.gif` to `guides/<name>.gif` on `media.archlens.dev` before Pages deploy. Set `DOCS_MEDIA_PUBLISH` to `false` to skip that upload. Production Canvas builds use `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides` and leave the GIFs out of the Pages dist.
 
