@@ -134,7 +134,7 @@ Canvas visibility and TraceLens overlays are in Explorer, on the **TraceLens** t
 | Toggle                              | Effect                                                                                                                            |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Show Test Components**            | Reveal nodes marked `isTest`. They're hidden by default.                                                                          |
-| **Show Externals**                  | Callers / Targets buttons show or hide external proxy nodes. Hidden by default (C4 context always shows actors/externals).        |
+| **Show Externals**                  | Callers / Targets buttons show or hide external proxy nodes. Hidden by default; C4 context always shows actors and externals.     |
 | **Show Selected Dependencies Only** | When this is on, a selected node shows only its upstream and downstream dependencies. Selecting a node doesn't change the switch. |
 | **Risk Heatmap**                    | Tint nodes by `hotspotScore`. See [TraceLens](./tracelens.md).                                                                    |
 | **Coupling Lens**                   | Focus coupled peers on the Canvas. See [TraceLens](./tracelens.md).                                                               |
