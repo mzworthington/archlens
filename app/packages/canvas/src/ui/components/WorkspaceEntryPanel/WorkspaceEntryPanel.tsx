@@ -110,12 +110,9 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
-            <span className="block text-sm font-semibold text-slate-100">
-              Try the demo - simulate a failure
-            </span>
+            <span className="block text-sm font-semibold text-slate-100">Try the demo</span>
             <span className="block text-xs text-slate-400 mt-0.5">
-              Opens the golden journey with ChaosLens so you see blast radius and ranked advice
-              first
+              Opens ArchLens with ChaosLens so you see blast radius and ranked advice first
             </span>
           </span>
         </button>

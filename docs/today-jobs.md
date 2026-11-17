@@ -98,7 +98,7 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 
 > Catalog is read-only. CI wrote it. Canvas just shows it.
 
-A composed `latest` snapshot is the estate view. Live rooms and folder commits are not the catalog. On this site, **Try the demo** loads the samples estate.
+A composed `latest` snapshot is the estate view. Live rooms and folder commits are not the catalog. On this site, **Try the demo** loads ArchLens with ChaosLens.
 
 1. **Have** a composed catalog from CI, or use the hosted samples estate.
 2. **Open** Canvas and pick **Try the demo**.
