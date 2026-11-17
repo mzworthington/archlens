@@ -883,10 +883,10 @@ nodes: []`,
       const catalog: WorkspaceCatalogEntry[] = [
         {
           path: SAMPLES_CONTEXT_PATH,
-          name: 'Samples',
+          name: 'ArchLens',
           level: 'context',
-          entityRef: 'samples',
-          nodeEntityRefs: ['samples/golden-journey'],
+          entityRef: 'archlens',
+          nodeEntityRefs: ['archlens/cloudflare'],
         },
         {
           path: 'golden-journey/containers.yaml',
@@ -905,12 +905,12 @@ nodes: []`,
 version: ${v3Version}
 level: context
 metadata:
-  entityRef: samples
-  name: Samples
+  entityRef: archlens
+  name: ArchLens
 nodes:
-  - entityRef: samples/golden-journey
+  - entityRef: archlens/cloudflare
     type: software-system
-    name: Golden Journey
+    name: Cloudflare Hosting
 dependencies: []
 `;
       });
@@ -947,7 +947,7 @@ dependencies: []
       expect(state.workspaceCatalog).toEqual(catalog);
       expect(state.loadedSystems).toHaveLength(1);
       expect(state.currentFilePath).toBe(SAMPLES_CONTEXT_PATH);
-      expect(state.schema.name).toBe('Samples');
+      expect(state.schema.name).toBe('ArchLens');
       expect(state.isLoading).toBe(false);
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();

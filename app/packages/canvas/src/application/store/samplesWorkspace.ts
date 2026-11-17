@@ -5,19 +5,25 @@ import type { WorkspaceCatalogEntry } from '@archlens/core';
  * Full scanned sample corpora live in the remote catalog (CI publish), not in git.
  */
 export const BUNDLED_WORKSPACE_NAME = 'samples';
-/** Default landing diagram when opening the bundled demo. */
-export const SAMPLES_CONTEXT_PATH = 'golden-journey/context.yaml';
-export const SAMPLES_ENTITY_REF = 'samples';
+/** Default landing diagram when opening the sandbox (remote catalog or bundled). */
+export const SAMPLES_CONTEXT_PATH = 'archlens/context.yaml';
+/** Offline / PR fallback when the ArchLens scan corpus is not in the catalog. */
+export const GOLDEN_JOURNEY_CONTEXT_PATH = 'golden-journey/context.yaml';
+export const SAMPLES_ENTITY_REF = 'archlens';
 /** Estate container diagram used by demos, tours and forensics e2e. */
 export const GOLDEN_JOURNEY_ENTITY_REF = 'samples/golden-journey';
 export const GOLDEN_JOURNEY_CONTAINERS_PATH = 'golden-journey/containers.yaml';
 
-/** Prefer the samples context diagram, then estate, then any catalog entry. */
+/** Prefer ArchLens context, then golden-journey fallbacks, then any catalog entry. */
 export function selectBundledSampleEntryPath(catalog: readonly WorkspaceCatalogEntry[]): string {
   if (catalog.length === 0) {
     throw new Error('Bundled catalog has no diagrams');
   }
-  const preferred = [SAMPLES_CONTEXT_PATH, GOLDEN_JOURNEY_CONTAINERS_PATH];
+  const preferred = [
+    SAMPLES_CONTEXT_PATH,
+    GOLDEN_JOURNEY_CONTEXT_PATH,
+    GOLDEN_JOURNEY_CONTAINERS_PATH,
+  ];
   for (const path of preferred) {
     if (catalog.some(entry => entry.path === path)) return path;
   }

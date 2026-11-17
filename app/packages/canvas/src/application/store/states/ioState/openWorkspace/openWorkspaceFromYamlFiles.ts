@@ -78,7 +78,8 @@ export async function loadWorkspaceFromYamlFiles(
   const firstSystem =
     preferred ||
     (isSampleWorkspace &&
-      (resolvedSystems.find(s => s.path === 'golden-journey/context.yaml') ||
+      (resolvedSystems.find(s => s.path === 'archlens/context.yaml') ||
+        resolvedSystems.find(s => s.path === 'golden-journey/context.yaml') ||
         resolvedSystems.find(s => s.path === 'golden-journey/containers.yaml'))) ||
     resolvedSystems.find(s => s.schema.level === 'context') ||
     resolvedSystems.find(s => s.schema.level === 'container') ||
