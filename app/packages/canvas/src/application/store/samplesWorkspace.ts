@@ -14,7 +14,11 @@ export const SAMPLES_ENTITY_REF = 'archlens';
 export const GOLDEN_JOURNEY_ENTITY_REF = 'samples/golden-journey';
 export const GOLDEN_JOURNEY_CONTAINERS_PATH = 'golden-journey/containers.yaml';
 
-/** Prefer ArchLens context, then golden-journey fallbacks, then any catalog entry. */
+/**
+ * Prefer ArchLens as the sandbox default. Golden-journey and the rest of the
+ * samples estate stay in the catalog for Explorer navigation; they are only
+ * used here when ArchLens is missing (offline bundled fallback).
+ */
 export function selectBundledSampleEntryPath(catalog: readonly WorkspaceCatalogEntry[]): string {
   if (catalog.length === 0) {
     throw new Error('Bundled catalog has no diagrams');

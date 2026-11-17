@@ -10,6 +10,7 @@ describe('chaosLensUrl', () => {
   it('builds workspace chaos lens URLs', () => {
     expect(buildChaosLensUrl()).toBe('/workspace?lens=chaoslens');
     expect(buildChaosLensUrl(null)).toBe('/workspace?lens=chaoslens');
+    expect(buildChaosLensUrl('archlens')).toBe('/workspace/archlens?lens=chaoslens');
     expect(buildChaosLensUrl('shop/api')).toBe('/workspace/shop/api?lens=chaoslens');
     expect(
       buildChaosLensUrl('shop', {

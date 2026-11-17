@@ -10,7 +10,7 @@ On bare `/workspace`, ArchLens shows a **startup chooser**. It doesn't open the 
 
 | Intent                  | What it does                                                                                                              |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Try the demo**        | Load the samples catalog and open **ChaosLens** on the golden journey, from blast radius to AdviceLens                    |
+| **Try the demo**        | Load the samples estate and open **ChaosLens** on ArchLens. Golden-journey and other samples stay in Explorer             |
 | **Full analysis (CLI)** | A collapsed strip under the demo: TraceLens git hotspots, watch mode, and CI catalog publish                              |
 | **Investigate**         | Map real systems with a browser lite scan, a folder or a ZIP when the browser can't pick a folder, or a blueprints folder |
 | **Collaborate**         | Share a live editing link, from a blank room or after you open a folder or file. See [Collaborate](./collaborate.md).     |

@@ -12,7 +12,7 @@ import { ValidationDialog } from '../components/ValidationDialog/ValidationDialo
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
 import { SaveScanMapDialog } from '../components/SaveScanMapDialog/SaveScanMapDialog';
-import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
+import { SAMPLES_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
@@ -146,8 +146,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     if (!opened) return;
 
     setIsStartupOpen(false);
-    // Insight path: ChaosLens on the golden journey estate.
-    setLocation(buildChaosLensUrl(GOLDEN_JOURNEY_ENTITY_REF), { replace: true });
+    // Insight path: ChaosLens on the ArchLens sample context.
+    setLocation(buildChaosLensUrl(SAMPLES_ENTITY_REF), { replace: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {

@@ -66,6 +66,8 @@ describe('WorkspaceEntryPanel', () => {
     const sample = screen.getByTestId('workspace-open-sample');
     const cli = screen.getByTestId('workspace-cli-panel');
     expect(sample).toHaveTextContent(/Try the demo/i);
+    expect(sample).not.toHaveTextContent(/simulate a failure/i);
+    expect(sample).toHaveTextContent(/Opens ArchLens with ChaosLens/i);
     expect(cli).toHaveTextContent(/Full analysis - ArchLens CLI/i);
     expect(sample.compareDocumentPosition(cli)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(cli.compareDocumentPosition(screen.getByTestId('workspace-intent-investigate'))).toBe(
