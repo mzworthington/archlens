@@ -33,6 +33,10 @@ jobs:
 
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
+        with:
+          # Catalog publishers must use this checkout so unreleased scan path fixes
+          # (e.g. archlens/cloudflare) land before the next CLI release.
+          source: workspace
 
       - name: Scan, publish fragment, and compose
         env:
