@@ -4,7 +4,6 @@ import {
   normalizeGroupedNodePositions,
   hasGroupedLayout,
   prepareGroupedNodesForLayout,
-  hasCompleteSavedLayout,
   stripLayoutCoordinates,
   positionExternalNodes,
 } from '@archlens/core/layout';
@@ -41,7 +40,7 @@ export function createInitSchema(set: SetFn, get: GetFn) {
     const filePath = get().currentFilePath;
     const fingerprint = schemaLayoutFingerprint(schema);
     const cachedLayout =
-      filePath && (hasCompleteSavedLayout(schema.nodes) || hasSessionLayout(filePath, fingerprint))
+      filePath && hasSessionLayout(filePath, fingerprint)
         ? getSessionLayout(filePath, fingerprint)
         : undefined;
 
@@ -68,8 +67,9 @@ export function createInitSchema(set: SetFn, get: GetFn) {
     }
 
     const grouped = hasGroupedLayout(schema.nodes);
-    const layoutCustomized = hasCompleteSavedLayout(schema.nodes);
-    const needsAutoLayout = !layoutCustomized && shouldAutoLayoutOnLoad(schema);
+    // Enrich/YAML coordinates are not a user layout choice. Always auto-layout
+    // on open unless this session already cached positions for the fingerprint.
+    const needsAutoLayout = shouldAutoLayoutOnLoad(schema);
 
     if (needsAutoLayout && filePath && !hasSessionLayout(filePath, fingerprint)) {
       clearSessionLayout(filePath);
@@ -80,7 +80,9 @@ export function createInitSchema(set: SetFn, get: GetFn) {
         ? stripLayoutCoordinates(schema.nodes)
         : grouped
           ? prepareGroupedNodesForLayout(schema.nodes)
-          : normalizeGroupedNodePositions(schema.nodes);
+          : needsAutoLayout
+            ? stripLayoutCoordinates(schema.nodes)
+            : normalizeGroupedNodePositions(schema.nodes);
 
     const normalized: SystemSchema = {
       ...schema,
@@ -89,8 +91,8 @@ export function createInitSchema(set: SetFn, get: GetFn) {
     };
 
     set({
-      layoutCustomized,
-      ...(needsAutoLayout && get().layoutEngine === null ? { layoutEngine: 'dagre' } : {}),
+      layoutCustomized: false,
+      ...(needsAutoLayout ? { layoutEngine: 'dagre' } : {}),
     });
     const rfNodes = sortNodesForReactFlow(
       refreshGroupBoundsFromChildren(mapDomainNodesToRFNodes(normalized.nodes))

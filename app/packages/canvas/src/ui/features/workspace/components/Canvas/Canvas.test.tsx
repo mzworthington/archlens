@@ -102,6 +102,7 @@ describe('Canvas Component', () => {
     useBlueprintStore.setState({
       lastError: null,
       isWorkspaceOpen: false,
+      isLoading: false,
       validationResult: { isValid: true, issues: [] },
       loadedSystems: [],
       liteCanvas: false,
@@ -320,10 +321,14 @@ describe('Canvas Component', () => {
 
   it('triggers openWorkspaceDirectory store action when Open Folder is clicked', async () => {
     const openWorkspaceDirectory = vi.fn().mockResolvedValue(true);
-    useBlueprintStore.setState({ openWorkspaceDirectory });
+    useBlueprintStore.setState({ openWorkspaceDirectory, isLoading: false });
 
     render(<Canvas />);
 
+    // Auto-layout on mount may briefly set isLoading; wait for the overflow control.
+    await waitFor(() => {
+      expect(screen.getByLabelText('More actions')).toBeEnabled();
+    });
     fireEvent.click(screen.getByLabelText('More actions'));
     fireEvent.click(screen.getByTitle('Open a local directory workspace'));
 

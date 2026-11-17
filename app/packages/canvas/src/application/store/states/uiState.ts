@@ -111,8 +111,8 @@ export const createUiState = (
   }['bivarianceHack']
 ): UiState => ({
   showTests: false,
-  showUpstreamExternals: true,
-  showDownstreamExternals: true,
+  showUpstreamExternals: false,
+  showDownstreamExternals: false,
   dependencyViewMode: 'full',
   showCoupling: false,
   showCouplingSchemaDeps: false,
@@ -162,11 +162,41 @@ export const createUiState = (
   },
   toggleShowTests: () => set(state => ({ showTests: !state.showTests })),
   toggleShowUpstreamExternals: () =>
-    set(state => ({ showUpstreamExternals: !state.showUpstreamExternals })),
+    set(state => {
+      const showUpstreamExternals = !state.showUpstreamExternals;
+      return {
+        showUpstreamExternals,
+        // Turning callers/targets on while dependency focus is active must include
+        // externals in the neighborhood filter — otherwise the toggle looks dead.
+        ...(showUpstreamExternals && state.dependencyViewMode === 'focus'
+          ? { dependencyViewMode: 'focus-externals' as const }
+          : {}),
+      };
+    }),
   toggleShowDownstreamExternals: () =>
-    set(state => ({ showDownstreamExternals: !state.showDownstreamExternals })),
-  setShowUpstreamExternals: show => set({ showUpstreamExternals: show }),
-  setShowDownstreamExternals: show => set({ showDownstreamExternals: show }),
+    set(state => {
+      const showDownstreamExternals = !state.showDownstreamExternals;
+      return {
+        showDownstreamExternals,
+        ...(showDownstreamExternals && state.dependencyViewMode === 'focus'
+          ? { dependencyViewMode: 'focus-externals' as const }
+          : {}),
+      };
+    }),
+  setShowUpstreamExternals: show =>
+    set(state => ({
+      showUpstreamExternals: show,
+      ...(show && state.dependencyViewMode === 'focus'
+        ? { dependencyViewMode: 'focus-externals' as const }
+        : {}),
+    })),
+  setShowDownstreamExternals: show =>
+    set(state => ({
+      showDownstreamExternals: show,
+      ...(show && state.dependencyViewMode === 'focus'
+        ? { dependencyViewMode: 'focus-externals' as const }
+        : {}),
+    })),
   setDependencyViewMode: mode => set({ dependencyViewMode: mode }),
   toggleShowSelectedDependenciesOnly: () =>
     set(state => ({
