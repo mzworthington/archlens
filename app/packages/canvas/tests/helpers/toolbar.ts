@@ -2,12 +2,17 @@ import { expect, type Page } from '@playwright/test';
 import { gotoApp } from './navigation';
 import { expectCanvasReady } from './canvas';
 
-/** Demo-first CTA opens ChaosLens on the golden-journey estate. */
-const DEMO_LANDING_URL = /\/workspace\/samples\/golden-journey(?:\/|$|\?)/;
+/** Demo-first CTA opens ChaosLens on ArchLens when present, else samples fallback. */
+const DEMO_LANDING_URL = /\/workspace\/(?:archlens|samples)(?:\/|$|\?)/;
 
-function isSamplesWorkspaceUrl(url: string): boolean {
+function isDemoWorkspaceUrl(url: string): boolean {
   try {
-    return new URL(url).pathname.replace(/\/$/, '').startsWith('/workspace/samples');
+    const path = new URL(url).pathname.replace(/\/$/, '');
+    return (
+      path === '/workspace/archlens' ||
+      path.startsWith('/workspace/archlens/') ||
+      path.startsWith('/workspace/samples')
+    );
   } catch {
     return false;
   }
@@ -16,7 +21,7 @@ function isSamplesWorkspaceUrl(url: string): boolean {
 /** Dismiss the startup chooser by opening the bundled demo when shown. */
 export async function continueWithSample(page: Page) {
   if (
-    isSamplesWorkspaceUrl(page.url()) &&
+    isDemoWorkspaceUrl(page.url()) &&
     !(await page
       .getByTestId('startup-workspace-dialog')
       .isVisible()

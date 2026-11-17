@@ -1,3 +1,7 @@
+import { getSchemaEntityRef } from '@archlens/core';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useSearch } from 'wouter';
+import { useShallow } from 'zustand/react/shallow';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
 import { ChaosSpecDialog } from '../components/ChaosSpecDialog/ChaosSpecDialog';
@@ -12,7 +16,7 @@ import { ValidationDialog } from '../components/ValidationDialog/ValidationDialo
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
 import { SaveScanMapDialog } from '../components/SaveScanMapDialog/SaveScanMapDialog';
-import { SAMPLES_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
+import { resolveDemoLandingEntityRef } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
@@ -34,9 +38,6 @@ import {
   isCreateBlankWorkspaceSearch,
   withoutCreateBlankWorkspaceSearch,
 } from '../../../../application/navigation/workspaceUrl';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation, useSearch } from 'wouter';
-import { useShallow } from 'zustand/react/shallow';
 
 function folderPickerAvailable(): boolean {
   return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
@@ -146,8 +147,14 @@ export function useWorkspaceDialogs(): React.ReactNode {
     if (!opened) return;
 
     setIsStartupOpen(false);
-    // Insight path: ChaosLens on the ArchLens sample context.
-    setLocation(buildChaosLensUrl(SAMPLES_ENTITY_REF), { replace: true });
+    // ChaosLens on ArchLens when present; otherwise the opened sandbox diagram
+    // (bundled / fixture catalogs fall back to samples / golden-journey).
+    const { schema, workspaceName, workspaceCatalog } = useBlueprintStore.getState();
+    const entityRef = resolveDemoLandingEntityRef(
+      workspaceCatalog,
+      getSchemaEntityRef(schema, workspaceName)
+    );
+    setLocation(buildChaosLensUrl(entityRef), { replace: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
