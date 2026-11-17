@@ -54,6 +54,18 @@ describe('resilienceState', () => {
     expect(useBlueprintStore.getState().resiliencePanelTab).toBe('simulation');
   });
 
+  it('shows external callers and targets when entering resilience mode', () => {
+    useBlueprintStore.setState({
+      showUpstreamExternals: false,
+      showDownstreamExternals: false,
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(true);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
+  });
+
   it('keeps the property panel collapsed when entering resilience mode on mobile', () => {
     mockDesktopViewport(false);
     useBlueprintStore.setState({ rightCollapsed: true });
