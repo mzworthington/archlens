@@ -17,8 +17,8 @@ const STORAGE_KEY = 'archlens.blankCanvas.session';
 
 export function blankCanvasEntityRefFromName(name: string): string {
   const slug = slugify(name).replace(/_/g, '-') || EMPTY_WORKSPACE_ENTITY_REF;
-  // Avoid colliding with the bundled Samples catalog slug.
-  if (slug === SAMPLES_ENTITY_REF) return `${SAMPLES_ENTITY_REF}-workspace`;
+  // Avoid colliding with sandbox catalog roots (ArchLens default + Samples journey).
+  if (slug === SAMPLES_ENTITY_REF || slug === 'samples') return `${slug}-workspace`;
   return slug;
 }
 

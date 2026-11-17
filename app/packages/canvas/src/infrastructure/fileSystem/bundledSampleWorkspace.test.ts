@@ -1,6 +1,6 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
-import { SAMPLES_CONTEXT_PATH } from '../../application/store/samplesWorkspace';
+import { GOLDEN_JOURNEY_CONTEXT_PATH } from '../../application/store/samplesWorkspace';
 
 const goldenPathLoaders = import.meta.glob<string>('../../../../../../samples/**/*.{yaml,yml}', {
   query: '?raw',
@@ -85,13 +85,13 @@ describe('BundledSampleWorkspaceAdapter', () => {
     const { loadBundledWorkspaceCatalog } = await import('./bundledSampleWorkspace');
     const catalog = await loadBundledWorkspaceCatalog();
     expect(catalog.length).toBeGreaterThan(10);
-    expect(catalog.some(e => e.path === SAMPLES_CONTEXT_PATH)).toBe(true);
+    expect(catalog.some(e => e.path === GOLDEN_JOURNEY_CONTEXT_PATH)).toBe(true);
     expect(catalog.some(e => e.path === 'chaoslens-stress/containers.yaml')).toBe(true);
   });
 
   it('reads a single blueprint file by relative path', async () => {
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
-    const content = await BundledSampleWorkspaceAdapter.readFile(SAMPLES_CONTEXT_PATH);
+    const content = await BundledSampleWorkspaceAdapter.readFile(GOLDEN_JOURNEY_CONTEXT_PATH);
     expect(content).toContain('entityRef:');
   });
 
@@ -109,7 +109,7 @@ describe('BundledSampleWorkspaceAdapter', () => {
 
     const catalog = await loadBundledWorkspaceCatalog();
     expect(catalog.length).toBeGreaterThan(10);
-    expect(catalog.some(e => e.path === SAMPLES_CONTEXT_PATH)).toBe(true);
+    expect(catalog.some(e => e.path === GOLDEN_JOURNEY_CONTEXT_PATH)).toBe(true);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
   });

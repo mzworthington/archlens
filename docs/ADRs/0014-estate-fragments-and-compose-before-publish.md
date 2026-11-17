@@ -43,7 +43,7 @@ Phase 0 briefly isolated whole-tree publishers under separate prefixes. Once fra
 | This-repo scan (`publish-blueprint-catalog`) | `archlens`           | `estates/samples/` |
 | External demo matrix leg `{id}`              | `{id}`               | `estates/samples/` |
 
-Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Layout under the prefix remains ADR-0010 (`latest/`, `snapshots/{rev}/`). Demo scans use `--context={id}` so BlueprintSpec paths do not collide across repos.
+Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Layout under the prefix remains ADR-0010 (`latest/`, `snapshots/{rev}/`). Demo scans use `--context={id}` and write BlueprintSpec under that system-first path (`{context}/{system}/…`, matching `entityRef`) so shared leaf names such as `cloudflare` do not collide across products.
 
 ### Phase 1+ - fragment contract
 
