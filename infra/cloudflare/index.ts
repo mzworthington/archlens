@@ -117,6 +117,40 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
   enabled: true,
 });
 
+/**
+ * `.json` and `.yaml` are not default-cached file extensions, so origin
+ * Cache-Control alone leaves snapshot reads `cf-cache-status: DYNAMIC`.
+ * This phase entrypoint marks immutable `snapshots/` objects eligible; the
+ * publisher's Cache-Control then sets the edge TTL. `latest/manifest.json`
+ * stays out so a missing header cannot pin the pointer.
+ */
+new cloudflare.Ruleset(
+  'blueprint-catalog-cache',
+  {
+    zoneId,
+    name: 'blueprint-catalog-cache',
+    description: 'Edge-cache immutable blueprint catalog snapshots',
+    kind: 'zone',
+    phase: 'http_request_cache_settings',
+    rules: [
+      {
+        ref: 'catalog-snapshot-json-yaml',
+        action: 'set_cache_settings',
+        expression: `(http.host eq "${catalogDomain}" and http.request.uri.path contains "/snapshots/" and http.request.uri.path.extension in {"json" "yaml" "yml"})`,
+        description: 'Eligible for cache: catalog snapshot JSON and YAML',
+        enabled: true,
+        actionParameters: {
+          cache: true,
+          edgeTtl: {
+            mode: 'respect_origin',
+          },
+        },
+      },
+    ],
+  },
+  { dependsOn: [catalogCustomDomain] }
+);
+
 const docsMediaBucket = new cloudflare.R2Bucket('docs-media', {
   accountId,
   name: docsMediaBucketName,

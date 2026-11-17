@@ -59,6 +59,7 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 - Zone → **DNS: Edit**
 - Zone → **Workers Routes: Edit** (collab custom domain)
 - Zone → **Zone Settings: Edit** (Observatory scheduled tests)
+- Zone → **Cache Rules: Edit** (catalog snapshot cache ruleset)
 
 ### Object storage (`@archlens/storage`)
 

@@ -83,7 +83,7 @@ Consumers resolve catalog URL as: `{base}{snapshotPrefix}catalog.json` after rea
 
 Steps 3-4 must finish before step 5 so `latest` never references a partial snapshot.
 
-**Cache-Control (CDN / R2 custom domain):** snapshot objects under `snapshots/{revisionId}/` are content-addressed and never rewritten. Publishers set `Cache-Control: public, max-age=31536000, immutable` on those objects so Cloudflare edge can cache `catalog.json` and YAML. The mutable pointer `latest/manifest.json` uses `Cache-Control: public, max-age=60, must-revalidate` so cutover stays fresh without forcing every diagram fetch through origin. Existing objects keep prior headers until the next compose/publish rewrites them.
+**Cache-Control (CDN / R2 custom domain):** snapshot objects under `snapshots/{revisionId}/` are content-addressed and never rewritten. Publishers set `Cache-Control: public, max-age=31536000, immutable` on those objects. Cloudflare caches `.json` and `.yaml` only after a Cache Rule marks them eligible. The hosted zone rule (Pulumi `Ruleset` `blueprint-catalog-cache`, phase `http_request_cache_settings`) sets Eligible for cache on the catalog hostname for `snapshots/` `.json`, `.yaml`, and `.yml`, with edge TTL respecting origin `Cache-Control`. The mutable pointer `latest/manifest.json` uses `Cache-Control: public, max-age=60, must-revalidate` and stays outside that rule. Existing objects keep prior headers until the next compose/publish rewrites them.
 
 ### Consume protocol (Canvas adapter)
 

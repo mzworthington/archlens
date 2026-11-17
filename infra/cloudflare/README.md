@@ -14,6 +14,7 @@ Pages project, custom domains, catalog R2 and the collab Worker hostname for [ar
 | `R2Bucket`                              | Published blueprint catalog corpus (`archlens-blueprint-catalog`)   |
 | `R2BucketCors`                          | Browser GET/HEAD from `archlens.dev` and local dev                  |
 | `R2CustomDomain`                        | Public read at `blueprints.archlens.dev`                            |
+| `Ruleset` (`blueprint-catalog-cache`)   | Eligible-for-cache on catalog `snapshots/` `.json` / `.yaml`        |
 | `R2Bucket` (`docs-media`)               | Guide GIFs (`archlens-docs-media`), separate from the catalog       |
 | `R2CustomDomain` (`docs-media`)         | Public read at `media.archlens.dev`                                 |
 | `WorkersCustomDomain`                   | `collab.archlens.dev` → Worker `archlens-collab` (DNS + cert)       |
@@ -29,7 +30,7 @@ pulumi import 'cloudflare:index/observatoryScheduledTest:ObservatoryScheduledTes
 
 Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
-Compose/publish writes `Cache-Control: public, max-age=31536000, immutable` on `snapshots/{rev}/…` so Cloudflare can edge-cache the multi‑MB `catalog.json` and YAML. `latest/manifest.json` stays short-lived (`max-age=60, must-revalidate`). Headers apply on the next catalog compose after this lands; until then cold Incognito loads still hit origin for that snapshot.
+Compose/publish writes `Cache-Control: public, max-age=31536000, immutable` on `snapshots/{rev}/…`. Cloudflare caches `.json` and `.yaml` only after a Cache Rule marks them eligible, so `Ruleset` `blueprint-catalog-cache` sets Eligible for cache on `snapshots/` `.json`, `.yaml`, and `.yml` for the catalog hostname. Origin `Cache-Control` then sets the edge TTL (`cf-cache-status` can become `HIT`). `latest/manifest.json` stays outside that rule (`max-age=60, must-revalidate`). Existing objects keep prior headers until the next compose rewrites them.
 
 Guide GIFs are a separate bucket so they do not share the catalog contract or cache. **Refresh docs & media** and the production CI upload `docs/screenshots/*.gif` to `guides/<name>.gif` on `media.archlens.dev` before Pages deploy. Set `DOCS_MEDIA_PUBLISH` to `false` to skip that upload. Production Canvas builds use `VITE_DOCS_MEDIA_BASE_URL=https://media.archlens.dev/guides` and leave the GIFs out of the Pages dist.
 
@@ -67,7 +68,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit) and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit), Zone Settings Edit and Cache Rules Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
