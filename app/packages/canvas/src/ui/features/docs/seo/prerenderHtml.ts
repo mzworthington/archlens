@@ -175,8 +175,7 @@ function prerenderBootScript(): string {
 function prerenderBody(seo: PageSeo, navLinks: Array<{ href: string; label: string }>): string {
   const links = navLinks
     .map(
-      link =>
-        `          <li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>`
+      link => `          <li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>`
     )
     .join('\n');
 
