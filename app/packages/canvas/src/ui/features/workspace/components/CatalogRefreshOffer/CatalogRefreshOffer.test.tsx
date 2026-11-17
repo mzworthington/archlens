@@ -51,6 +51,9 @@ describe('CatalogRefreshOffer', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Refresh in place' }));
     const dialog = await screen.findByRole('dialog', { name: 'Replace draft changes?' });
     expect(dialog).toBeInTheDocument();
+    const scrim = screen.getByRole('button', { name: 'Dismiss' });
+    expect(scrim.className).toContain('bg-[#020617]/80');
+    expect(scrim.className).not.toContain('bg-ink');
     expect(refreshRemoteCatalog).toHaveBeenCalledWith(false);
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(

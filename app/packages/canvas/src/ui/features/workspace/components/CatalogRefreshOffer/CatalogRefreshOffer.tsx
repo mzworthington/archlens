@@ -152,7 +152,7 @@ export const CatalogRefreshOffer: React.FC = () => {
             type="button"
             tabIndex={-1}
             aria-label="Dismiss"
-            className="fixed inset-0 bg-ink/40 border-0 p-0 cursor-pointer"
+            className="fixed inset-0 bg-[#020617]/80 border-0 p-0 cursor-pointer"
             onClick={keepCurrent}
           />
           <div

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { injectPrerenderedPageHtml } from './prerenderHtml';
 import { resolvePageSeo } from './siteSeo';
 
@@ -46,4 +46,84 @@ describe('injectPrerenderedPageHtml', () => {
     expect(html).toContain('data-archlens-booting');
     expect(html).toContain('al-prerender-eyebrow');
   });
+
+  it('hides the booting shell from layout and focus, and shows it when the module fails', () => {
+    const seo = resolvePageSeo('/');
+    const html = injectPrerenderedPageHtml(SHELL, seo, [{ href: '/', label: 'ArchLens home' }]);
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const style = parsed.querySelector('style[data-archlens-prerender-css]');
+    const boot = parsed.querySelector('script[data-archlens-prerender-boot]');
+    const shell = parsed.querySelector('[data-archlens-prerender]');
+    expect(style).not.toBeNull();
+    expect(boot?.textContent).toBeTruthy();
+    expect(shell).not.toBeNull();
+    expect(style?.textContent).toContain('display:none !important');
+    expect(style?.textContent).toContain('min-height:0 !important');
+    expect(style?.textContent).not.toContain('clip:rect');
+
+    document.head.append(style!);
+    const root = document.createElement('div');
+    root.id = 'root';
+    root.append(shell!);
+    document.body.append(root);
+    const moduleScript = document.createElement('script');
+    moduleScript.type = 'module';
+    moduleScript.src = '/src/main.tsx';
+    document.body.append(moduleScript);
+
+    const listeners: Array<{ type: string; listener: EventListener; capture: boolean }> = [];
+    const realAdd = window.addEventListener.bind(window);
+    const spy = vi
+      .spyOn(window, 'addEventListener')
+      .mockImplementation((type, listener, options) => {
+        listeners.push({
+          type: String(type),
+          listener: listener as EventListener,
+          capture: options === true,
+        });
+        realAdd(type, listener as EventListener, options);
+      });
+
+    const runBoot = new Function(boot!.textContent ?? '');
+    runBoot();
+
+    const liveShell = document.querySelector<HTMLElement>('[data-archlens-prerender]')!;
+    const link = liveShell.querySelector('a')!;
+    expect(document.documentElement.getAttribute('data-archlens-booting')).toBe('1');
+    expect(getComputedStyle(liveShell).display).toBe('none');
+    expect(getComputedStyle(liveShell).minHeight).toBe('0px');
+    link.focus();
+    expect(document.activeElement).not.toBe(link);
+
+    const icon = document.createElement('link');
+    icon.rel = 'icon';
+    icon.href = '/favicon.svg';
+    document.head.append(icon);
+    icon.dispatchEvent(new Event('error', { bubbles: false }));
+    expect(document.documentElement.getAttribute('data-archlens-booting')).toBe('1');
+
+    moduleScript.dispatchEvent(new Event('error', { bubbles: false }));
+    expect(document.documentElement.hasAttribute('data-archlens-booting')).toBe(false);
+    expect(getComputedStyle(liveShell).display).not.toBe('none');
+    link.focus();
+    expect(document.activeElement).toBe(link);
+
+    document.documentElement.setAttribute('data-archlens-booting', '1');
+    window.dispatchEvent(new ErrorEvent('error', { error: new Error('module eval failed') }));
+    expect(document.documentElement.hasAttribute('data-archlens-booting')).toBe(false);
+
+    for (const item of listeners) {
+      window.removeEventListener(item.type, item.listener, item.capture);
+    }
+    spy.mockRestore();
+    style!.remove();
+    root.remove();
+    moduleScript.remove();
+    icon.remove();
+    document.documentElement.removeAttribute('data-archlens-booting');
+  });
+});
+
+afterEach(() => {
+  document.documentElement.removeAttribute('data-archlens-booting');
 });

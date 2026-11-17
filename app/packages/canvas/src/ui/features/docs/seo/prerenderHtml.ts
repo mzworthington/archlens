@@ -148,18 +148,12 @@ function prerenderCriticalCss(): string {
     text-decoration:none;
     background:rgba(255,255,255,.7);
   }
-  /* Hide the shell from sighted users as soon as the SPA marks hydration start.
-     Semantic HTML stays in the first response for non-JS crawlers and view-source. */
+  /* Drop the throwaway shell from layout, tab order, and the accessibility tree
+     once boot starts. display:none also beats min-height:100dvh. Non-JS crawlers
+     never set the attribute. A failed module clears it so this markup is visible. */
   html[data-archlens-booting="1"] [data-archlens-prerender]{
-    position:absolute !important;
-    width:1px !important;
-    height:1px !important;
-    padding:0 !important;
-    margin:-1px !important;
-    overflow:hidden !important;
-    clip:rect(0,0,0,0) !important;
-    white-space:nowrap !important;
-    border:0 !important;
+    display:none !important;
+    min-height:0 !important;
   }
 </style>`;
 }
@@ -167,8 +161,21 @@ function prerenderCriticalCss(): string {
 function prerenderBootScript(): string {
   // Runs before the module graph so users do not see the SEO shell flash.
   // Crawlers that skip scripts still receive the visible branded markup above.
+  // If that module never replaces #root, clear the flag so the shell is the fallback.
   return `<script data-archlens-prerender-boot>
-(function(){try{document.documentElement.setAttribute("data-archlens-booting","1");}catch(e){}})();
+(function(){
+  try{
+    var doc=document.documentElement;
+    doc.setAttribute("data-archlens-booting","1");
+    var reveal=function(){
+      if(document.querySelector("[data-archlens-prerender]")) doc.removeAttribute("data-archlens-booting");
+    };
+    window.addEventListener("error",function(event){
+      var target=event.target;
+      if((target&&target.tagName==="SCRIPT")||event.error) reveal();
+    },true);
+  }catch(e){}
+})();
 </script>`;
 }
 
