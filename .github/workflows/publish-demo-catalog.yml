@@ -1,7 +1,8 @@
 name: Publish demo catalog
 
 # Demo matrix: clone each example codebase → scan → fragment into shared samples estate.
-# Each demo uses --context={id} so BlueprintSpec paths do not collide across repos.
+# Each demo uses --context={id}; workspace CLI nests paths under that context so
+# shared leaf names (e.g. cloudflare) do not collide across repos on compose.
 # Compose runs once after all matrix legs (avoids concurrent CAS on latest/manifest.json).
 # Cron safety net: compose-catalog.yml.
 
@@ -46,6 +47,10 @@ jobs:
 
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
+        with:
+          # Same workspace CLI as publish-blueprint-catalog so demo IaC paths nest
+          # under --context and cannot clobber archlens/cloudflare on compose.
+          source: workspace
 
       - name: Clone demo repo
         run: |

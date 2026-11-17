@@ -1,16 +1,23 @@
 name: Setup ArchLens CLI
-description: Install the ArchLens CLI from a GitHub release (install.sh).
+description: >-
+  Install the ArchLens CLI from a GitHub release (install.sh) or compile it from
+  the checked-out workspace so catalog publishers pick up unreleased scan fixes.
 
 inputs:
+  source:
+    description: release (install.sh from GitHub Releases) or workspace (compile this checkout)
+    required: false
+    default: release
   archlens-version:
-    description: Release tag to install (default latest)
+    description: Release tag when source=release (default latest)
     required: false
     default: latest
 
 runs:
   using: composite
   steps:
-    - name: Install ArchLens CLI
+    - name: Install ArchLens CLI from release
+      if: inputs.source != 'workspace'
       shell: bash
       run: |
         set -euo pipefail
@@ -31,3 +38,46 @@ runs:
           exit 1
         fi
         archlens --version
+
+    - name: Setup Bun
+      if: inputs.source == 'workspace'
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install pnpm
+      if: inputs.source == 'workspace'
+      uses: pnpm/action-setup@v6
+      with:
+        version: 11.10.0
+        run_install: false
+
+    - name: Setup Node
+      if: inputs.source == 'workspace'
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        cache: pnpm
+        cache-dependency-path: app/pnpm-lock.yaml
+
+    - name: Compile ArchLens CLI from workspace
+      if: inputs.source == 'workspace'
+      shell: bash
+      run: |
+        set -euo pipefail
+        root="${GITHUB_WORKSPACE:?GITHUB_WORKSPACE is required}"
+        cd "$root"
+        pnpm install --frozen-lockfile --dir app
+        mkdir -p "$HOME/.local/bin"
+        export ARCHLENS_VERSION="workspace-${GITHUB_SHA:-dev}"
+        bun app/packages/cli/scripts/emitBuildVersion.ts
+        bun build app/packages/cli/src/cli/archlens.ts \
+          --compile \
+          --target=bun-linux-x64 \
+          --outfile="$HOME/.local/bin/archlens"
+        bun app/packages/cli/scripts/copyTreeSitterWasms.ts "$HOME/.local/bin"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        if [[ ! -f "$HOME/.local/bin/tree-sitter.wasm" ]]; then
+          echo "Workspace CLI build is missing tree-sitter.wasm beside the binary." >&2
+          ls -la "$HOME/.local/bin" || true
+          exit 1
+        fi
+        "$HOME/.local/bin/archlens" --version
