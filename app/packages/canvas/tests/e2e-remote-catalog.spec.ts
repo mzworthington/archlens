@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { expectCanvasReady } from './helpers/canvas';
-import { continueWithSample } from './helpers/toolbar';
+import {
+  continueWithSample,
+  DEMO_LANDING_URL,
+  exitResilienceModeIfActive,
+} from './helpers/toolbar';
 import { gotoApp } from './helpers/navigation';
 
 const rev2Manifest = JSON.stringify({
@@ -29,8 +33,10 @@ test.describe('Remote catalog consume', () => {
     test.setTimeout(180_000);
     await gotoApp(page, '/workspace');
     await continueWithSample(page);
+    await exitResilienceModeIfActive(page);
 
-    await expect(page).toHaveURL(/\/workspace\/samples(?:\/|$)/);
+    // Demo may land on /workspace/samples?lens=chaoslens (query must be allowed).
+    await expect(page).toHaveURL(DEMO_LANDING_URL);
     await expectCanvasReady(page);
     await expect(page.getByText('E2E Remote Probe', { exact: true }).first()).toBeVisible({
       timeout: 60_000,
@@ -44,6 +50,7 @@ test.describe('Remote catalog consume', () => {
     try {
       await gotoApp(page, '/workspace');
       await continueWithSample(page);
+      await exitResilienceModeIfActive(page);
       await expectCanvasReady(page);
       await expect(page.getByText('E2E Remote Probe', { exact: true }).first()).toBeVisible({
         timeout: 60_000,

@@ -3,7 +3,7 @@ import { gotoApp } from './navigation';
 import { expectCanvasReady } from './canvas';
 
 /** Demo-first CTA opens ChaosLens on ArchLens when present, else samples fallback. */
-const DEMO_LANDING_URL = /\/workspace\/(?:archlens|samples)(?:\/|$|\?)/;
+export const DEMO_LANDING_URL = /\/workspace\/(?:archlens|samples)(?:\/|$|\?)/;
 
 function isDemoWorkspaceUrl(url: string): boolean {
   try {
