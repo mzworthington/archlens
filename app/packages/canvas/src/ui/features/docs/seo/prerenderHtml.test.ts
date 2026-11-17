@@ -42,8 +42,7 @@ describe('injectPrerenderedPageHtml', () => {
     expect(html).toContain('ArchLens home');
     expect(html).toContain('data-archlens-prerender="1"');
     expect(html).toContain('data-archlens-prerender-css');
-    expect(html).toContain('data-archlens-prerender-boot');
-    expect(html).toContain('data-archlens-booting');
+    expect(html).not.toContain('data-archlens-booting');
     expect(html).toContain('al-prerender-eyebrow');
   });
 });

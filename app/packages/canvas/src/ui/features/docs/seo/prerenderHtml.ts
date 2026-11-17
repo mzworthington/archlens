@@ -83,9 +83,9 @@ function upsertJsonLd(html: string, seo: PageSeo): string {
 }
 
 /**
- * Critical CSS for the SEO shell. Inline so the first paint is branded before the
- * Vite CSS bundle arrives. Sighted users with JS see this briefly, then React
- * replaces `#root`. Crawlers keep the semantic H1 / description / nav.
+ * Critical CSS for the SEO shell. Inline so the first paint is a branded splash
+ * before React replaces `#root`. Keeps H1 / description / nav crawlable without
+ * clipping them out of the accessibility tree.
  */
 function prerenderCriticalCss(): string {
   return `<style data-archlens-prerender-css>
@@ -148,28 +148,7 @@ function prerenderCriticalCss(): string {
     text-decoration:none;
     background:rgba(255,255,255,.7);
   }
-  /* Hide the shell from sighted users as soon as the SPA marks hydration start.
-     Semantic HTML stays in the first response for non-JS crawlers and view-source. */
-  html[data-archlens-booting="1"] [data-archlens-prerender]{
-    position:absolute !important;
-    width:1px !important;
-    height:1px !important;
-    padding:0 !important;
-    margin:-1px !important;
-    overflow:hidden !important;
-    clip:rect(0,0,0,0) !important;
-    white-space:nowrap !important;
-    border:0 !important;
-  }
 </style>`;
-}
-
-function prerenderBootScript(): string {
-  // Runs before the module graph so users do not see the SEO shell flash.
-  // Crawlers that skip scripts still receive the visible branded markup above.
-  return `<script data-archlens-prerender-boot>
-(function(){try{document.documentElement.setAttribute("data-archlens-booting","1");}catch(e){}})();
-</script>`;
 }
 
 function prerenderBody(seo: PageSeo, navLinks: Array<{ href: string; label: string }>): string {
@@ -193,15 +172,8 @@ ${links}
 }
 
 function upsertPrerenderAssets(html: string): string {
-  let next = html;
-  if (!/data-archlens-prerender-css/i.test(next)) {
-    next = next.replace(/<\/head>/i, `    ${prerenderCriticalCss()}\n  </head>`);
-  }
-  if (!/data-archlens-prerender-boot/i.test(next)) {
-    // Boot script first in body so booting attr lands before paint when possible.
-    next = next.replace(/<body([^>]*)>/i, `<body$1>\n    ${prerenderBootScript()}`);
-  }
-  return next;
+  if (/data-archlens-prerender-css/i.test(html)) return html;
+  return html.replace(/<\/head>/i, `    ${prerenderCriticalCss()}\n  </head>`);
 }
 
 /**
