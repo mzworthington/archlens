@@ -167,7 +167,6 @@ describe('BlueprintNode Component', () => {
   });
 
   it('leaves first measurement to React Flow and re-measures only when lite canvas changes', () => {
-    // One call per mounted node re-renders a large canvas once per node (React error #185).
     render(<BlueprintNode {...defaultProps} />);
     expect(mockUpdateNodeInternals).not.toHaveBeenCalled();
 
