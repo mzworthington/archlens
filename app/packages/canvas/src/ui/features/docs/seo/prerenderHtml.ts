@@ -148,6 +148,32 @@ function prerenderCriticalCss(): string {
     text-decoration:none;
     background:rgba(255,255,255,.7);
   }
+  [data-archlens-prerender] .al-prerender-loading{
+    display:inline-flex;
+    align-items:center;
+    gap:.65rem;
+    margin:1.75rem 0 0;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.75rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgba(21,32,51,.62);
+  }
+  [data-archlens-prerender] .al-prerender-spinner{
+    box-sizing:border-box;
+    width:1.1rem;
+    height:1.1rem;
+    border:2px solid rgba(12,107,120,.22);
+    border-top-color:#0c6b78;
+    border-radius:50%;
+    animation:al-prerender-spin .7s linear infinite;
+  }
+  @keyframes al-prerender-spin{
+    to{transform:rotate(360deg)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    [data-archlens-prerender] .al-prerender-spinner{animation:none;border-top-color:rgba(12,107,120,.55)}
+  }
 </style>`;
 }
 
@@ -158,10 +184,14 @@ function prerenderBody(seo: PageSeo, navLinks: Array<{ href: string; label: stri
     )
     .join('\n');
 
-  return `      <main data-archlens-prerender="1" aria-label="ArchLens">
+  return `      <main data-archlens-prerender="1" aria-busy="true" aria-label="ArchLens">
         <p class="al-prerender-eyebrow">ArchLens</p>
         <h1>${escapeHtml(seo.headline)}</h1>
         <p class="al-prerender-lede">${escapeHtml(seo.description)}</p>
+        <p class="al-prerender-loading" role="status" aria-live="polite">
+          <span class="al-prerender-spinner" aria-hidden="true"></span>
+          Loading workspace
+        </p>
         <nav aria-label="ArchLens products">
           <ul>
 ${links}
