@@ -89,7 +89,7 @@ describe('CodebaseAnalyzer Domain Service', () => {
 
     expect(mockContainerWrite).toHaveBeenCalledTimes(1);
     const containerArgs = mockContainerWrite.mock.calls[0];
-    expect(containerArgs[0]).toBe('/workspace/blueprints/test-pkg');
+    expect(containerArgs[0]).toBe('/workspace/blueprints/test-pkg/system');
     expect(containerArgs[1]).toBe('test-pkg');
     expect(containerArgs[2]).toBe('test-pkg');
     const containerNodesMap = containerArgs[3];
@@ -98,7 +98,7 @@ describe('CodebaseAnalyzer Domain Service', () => {
 
     expect(mockComponentWrite).toHaveBeenCalledTimes(1);
     const componentArgs = mockComponentWrite.mock.calls[0];
-    expect(componentArgs[0]).toBe('/workspace/blueprints/test-pkg');
+    expect(componentArgs[0]).toBe('/workspace/blueprints/test-pkg/system');
     expect(componentArgs[1]).toBe('test-pkg');
     expect(componentArgs[2]).toBe('test-pkg');
     const componentNodesMap = componentArgs[3];
@@ -166,9 +166,9 @@ describe('CodebaseAnalyzer Domain Service', () => {
     expect(systemsArg.find(s => s.entityRef === 'backstage')?.isProductHub).toBe(true);
     expect(systemsArg.every(s => s.productId === 'backstage')).toBe(true);
     expect(mockContainerWrite.mock.calls.map(c => c[0]).sort()).toEqual([
-      '/workspace/blueprints/microsite',
-      '/workspace/blueprints/packages',
-      '/workspace/blueprints/plugins',
+      '/workspace/blueprints/backstage/microsite',
+      '/workspace/blueprints/backstage/packages',
+      '/workspace/blueprints/backstage/plugins',
     ]);
   });
 
@@ -216,7 +216,7 @@ describe('CodebaseAnalyzer Domain Service', () => {
       ],
       undefined
     );
-    expect(mockContainerWrite.mock.calls[0]?.[0]).toBe('/workspace/blueprints/frontend-api');
+    expect(mockContainerWrite.mock.calls[0]?.[0]).toBe('/workspace/blueprints/acme/frontend-api');
   });
 
   it('should not throw if analyzing an empty file set', async () => {

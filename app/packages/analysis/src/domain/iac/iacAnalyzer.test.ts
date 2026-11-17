@@ -66,7 +66,7 @@ resource "aws_iam_role" "lambda" {
     expect(result.terraformRoots).toBe(1);
     expect(result.pulumiRoots).toBe(0);
 
-    const containersPath = path.resolve('/repo/blueprints/infra/containers.yaml');
+    const containersPath = path.resolve('/repo/blueprints/acme/infra/containers.yaml');
     expect(fs.writtenFiles.has(containersPath)).toBe(true);
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.level).toBe('container');
@@ -155,7 +155,7 @@ resources:
     expect(result.terraformRoots).toBe(0);
     expect(result.pulumiRoots).toBe(1);
 
-    const containersPath = path.resolve('/repo/blueprints/infra/containers.yaml');
+    const containersPath = path.resolve('/repo/blueprints/acme/infra/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.entityRef).toBe('acme/infra');
     expect(
@@ -215,7 +215,7 @@ k8s_cluster = Cluster(
     });
 
     expect(result.pulumiRoots).toBe(1);
-    const containersPath = path.resolve('/repo/blueprints/gcp-py-gke/containers.yaml');
+    const containersPath = path.resolve('/repo/blueprints/blueprint/gcp-py-gke/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(
       schema.nodes
@@ -421,15 +421,17 @@ k8s_cluster = Cluster(
     const scan = path.resolve('/repo');
     const plugins = path.resolve('/repo/plugins');
     const out = path.resolve('/repo/blueprints');
-    const containersPath = path.resolve('/repo/blueprints/plugins/containers.yaml');
+    const containersPath = path.resolve('/repo/blueprints/backstage/plugins/containers.yaml');
 
     fs.existingFiles.add(scan);
-    fs.existingFiles.add(path.resolve('/repo/blueprints/plugins'));
+    fs.existingFiles.add(path.resolve('/repo/blueprints/backstage'));
+    fs.existingFiles.add(path.resolve('/repo/blueprints/backstage/plugins'));
     fs.existingFiles.add(containersPath);
     fs.directories.set(scan, ['plugins']);
     fs.directories.set(plugins, ['main.tf']);
-    fs.directories.set(out, ['plugins']);
-    fs.directories.set(path.resolve('/repo/blueprints/plugins'), ['containers.yaml']);
+    fs.directories.set(out, ['backstage']);
+    fs.directories.set(path.resolve('/repo/blueprints/backstage'), ['plugins']);
+    fs.directories.set(path.resolve('/repo/blueprints/backstage/plugins'), ['containers.yaml']);
     fs.textFiles.set(path.resolve('/repo/plugins/main.tf'), '# empty terraform root');
     fs.textFiles.set(
       containersPath,
@@ -635,7 +637,7 @@ new cloudflare.R2BucketCors('blueprint-catalog-cors', {
     expect(result.pulumiRoots).toBe(1);
 
     const containers = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/cloudflare/containers.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/archlens/cloudflare/containers.yaml'))!
     );
     expect(
       containers.nodes

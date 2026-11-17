@@ -49,10 +49,12 @@ export function resolveSystemEntityRef(contextName: string, systemId: string): s
   return EntityRef.child(contextRef, systemId);
 }
 
-/** Disk path under blueprints/ for a system's container + component YAML. */
+/**
+ * Disk path under blueprints/ for a system's container + component YAML.
+ * Same hierarchy as {@link resolveSystemEntityRef} so compose last-writer-wins
+ * cannot clobber sibling products that share a leaf system id (e.g. `cloudflare`).
+ * ADR-0014: `--context` namespaces BlueprintSpec paths across repos.
+ */
 export function resolveBlueprintOutputSegment(contextName: string, systemId: string): string {
-  if (EntityRef.parse(contextName) === 'infrastructure') {
-    return `infrastructure/${systemId}`;
-  }
-  return systemId;
+  return resolveSystemEntityRef(contextName, systemId);
 }
