@@ -1,4 +1,3 @@
-import { getSchemaEntityRef } from '@archlens/core';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useSearch } from 'wouter';
 import { useShallow } from 'zustand/react/shallow';
@@ -16,8 +15,6 @@ import { ValidationDialog } from '../components/ValidationDialog/ValidationDialo
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
 import { SaveScanMapDialog } from '../components/SaveScanMapDialog/SaveScanMapDialog';
-import { resolveDemoLandingEntityRef } from '../../../../application/store/samplesWorkspace';
-import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
 import {
@@ -147,14 +144,15 @@ export function useWorkspaceDialogs(): React.ReactNode {
     if (!opened) return;
 
     setIsStartupOpen(false);
-    // ChaosLens on ArchLens when present; otherwise the opened sandbox diagram
-    // (bundled / fixture catalogs fall back to samples / golden-journey).
-    const { schema, workspaceName, workspaceCatalog } = useBlueprintStore.getState();
-    const entityRef = resolveDemoLandingEntityRef(
-      workspaceCatalog,
-      getSchemaEntityRef(schema, workspaceName)
-    );
-    setLocation(buildChaosLensUrl(entityRef), { replace: true });
+    // Canvas on ArchLens with TraceLens Explorer open — Resilience/ChaosLens stays off
+    // until the user toggles it. Schema YAML stays one tab over.
+    useBlueprintStore.setState({
+      isResilienceMode: false,
+      activeLeftPanel: 'traceLens',
+      leftCollapsed: false,
+      isTraceLensPanelOpen: true,
+    });
+    navigateToActiveWorkspaceEntity(setLocation, { sample: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {

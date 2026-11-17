@@ -35,7 +35,7 @@ test.describe('Remote catalog consume', () => {
     await continueWithSample(page);
     await exitResilienceModeIfActive(page);
 
-    // Demo may land on /workspace/samples?lens=chaoslens (query must be allowed).
+    // Demo lands on /workspace/<entity> without ChaosLens; chaoslens query still allowed for deep links.
     await expect(page).toHaveURL(DEMO_LANDING_URL);
     await expectCanvasReady(page);
     await expect(page.getByText('E2E Remote Probe', { exact: true }).first()).toBeVisible({

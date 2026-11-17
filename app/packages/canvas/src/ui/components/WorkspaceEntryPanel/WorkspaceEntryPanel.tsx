@@ -112,7 +112,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <span>
             <span className="block text-sm font-semibold text-slate-100">Try the demo</span>
             <span className="block text-xs text-slate-400 mt-0.5">
-              Opens ArchLens with ChaosLens so you see blast radius and ranked advice first
+              Opens ArchLens with TraceLens so you see hotspots and schema first
             </span>
           </span>
         </button>
