@@ -83,6 +83,8 @@ Consumers resolve catalog URL as: `{base}{snapshotPrefix}catalog.json` after rea
 
 Steps 3-4 must finish before step 5 so `latest` never references a partial snapshot.
 
+**Cache-Control (CDN / R2 custom domain):** snapshot objects under `snapshots/{revisionId}/` are content-addressed and never rewritten. Publishers set `Cache-Control: public, max-age=31536000, immutable` on those objects so Cloudflare edge can cache `catalog.json` and YAML. The mutable pointer `latest/manifest.json` uses `Cache-Control: public, max-age=60, must-revalidate` so cutover stays fresh without forcing every diagram fetch through origin. Existing objects keep prior headers until the next compose/publish rewrites them.
+
 ### Consume protocol (Canvas adapter)
 
 1. `GET {base}latest/manifest.json` → read `snapshotPrefix`.
@@ -95,7 +97,7 @@ Steps 3-4 must finish before step 5 so `latest` never references a partial snaps
 - Good, because CLI and Canvas integrate through a documented, testable contract without shared state
 - Good, because immutable snapshots support rollback, forensics and "pin to revision" for audits
 - Good, because `catalog.json` and `WorkspaceCatalogEntry` reuse avoids a second navigation model
-- Bad, because storage hosts must serve static JSON/YAML with correct `Content-Type` and CORS (adapter concern, ADR-0011)
+- Bad, because storage hosts must serve static JSON/YAML with correct `Content-Type`, `Cache-Control` and CORS (adapter concern, ADR-0011)
 - Bad, because `latest/` overwrite is eventually consistent on some stores - consumers should retry on 404 immediately after publish
 - Follow-up: ADR-0011 (object storage / R2 hosted catalog), ADR-0012 (remote read-only `WorkspacePort` adapter), ADR-0013 (practitioner connection profiles / auth), ADR-0014 (estate fragments + compose so multi-pipeline publishes do not clobber `latest`)
 - Implementation: `@archlens/storage` (`ObjectStoragePort` + R2/S3/Azure/HTTP adapters)

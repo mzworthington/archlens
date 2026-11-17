@@ -84,9 +84,13 @@ export function createAzureBlobObjectStorage(config: AzureBlobStorageConfig): Ob
       if (request.ifNoneMatch) conditions.ifNoneMatch = request.ifNoneMatch;
       try {
         await blob.uploadData(bytes, {
-          blobHTTPHeaders: request.contentType
-            ? { blobContentType: request.contentType }
-            : undefined,
+          blobHTTPHeaders:
+            request.contentType || request.cacheControl
+              ? {
+                  ...(request.contentType ? { blobContentType: request.contentType } : {}),
+                  ...(request.cacheControl ? { blobCacheControl: request.cacheControl } : {}),
+                }
+              : undefined,
           conditions: Object.keys(conditions).length > 0 ? conditions : undefined,
         });
       } catch (error) {

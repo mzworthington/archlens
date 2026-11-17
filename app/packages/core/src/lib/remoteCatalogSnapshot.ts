@@ -32,7 +32,18 @@ export type RemoteCatalogUploadObject = {
   key: string;
   body: string;
   contentType: string;
+  /**
+   * Cache-Control for CDN / R2 custom-domain reads. Snapshot objects are
+   * content-addressed and safe to cache forever; `latest/` must revalidate.
+   */
+  cacheControl?: string;
 };
+
+/** Immutable ADR-0010 snapshot objects (`snapshots/{rev}/…`). */
+export const REMOTE_CATALOG_SNAPSHOT_CACHE_CONTROL = 'public, max-age=31536000, immutable';
+
+/** Mutable ADR-0010 pointer (`latest/manifest.json`). */
+export const REMOTE_CATALOG_LATEST_CACHE_CONTROL = 'public, max-age=60, must-revalidate';
 
 export type RemoteCatalogSnapshotPlan = {
   revisionId: string;
@@ -246,21 +257,25 @@ export function materializeRemoteCatalogSnapshotBodies(
       key: `${plan.snapshotPrefix}${REMOTE_CATALOG_CATALOG_PATH}`,
       body: catalogJson,
       contentType: 'application/json',
+      cacheControl: REMOTE_CATALOG_SNAPSHOT_CACHE_CONTROL,
     },
     ...plan.yamlObjects.map(object => ({
       key: `${plan.snapshotPrefix}${object.path}`,
       body: object.content,
       contentType: 'application/yaml',
+      cacheControl: REMOTE_CATALOG_SNAPSHOT_CACHE_CONTROL,
     })),
     {
       key: remoteCatalogSnapshotManifestKey(plan.revisionId),
       body: snapshotManifestJson,
       contentType: 'application/json',
+      cacheControl: REMOTE_CATALOG_SNAPSHOT_CACHE_CONTROL,
     },
     {
       key: remoteCatalogLatestManifestKey(),
       body: latestPointerJson,
       contentType: 'application/json',
+      cacheControl: REMOTE_CATALOG_LATEST_CACHE_CONTROL,
     },
   ];
 }
