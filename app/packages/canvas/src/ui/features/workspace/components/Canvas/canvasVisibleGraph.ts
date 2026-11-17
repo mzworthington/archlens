@@ -80,12 +80,26 @@ export function buildCanvasVisibleNodes({
       true
     );
     const focused = candidates.filter(n => {
-      if (closure.has(n.id)) return true;
-      const entityRef = (n.data.entityRef ?? n.id) as string;
-      return !!(
-        simulationScopeSet &&
-        (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id))
-      );
+      if (!closure.has(n.id)) {
+        const entityRef = (n.data.entityRef ?? n.id) as string;
+        return !!(
+          simulationScopeSet &&
+          (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id))
+        );
+      }
+      if (
+        n.data.external &&
+        !shouldShowCanvasExternalNode(
+          n.id,
+          nodes,
+          edges,
+          showUpstreamExternals,
+          showDownstreamExternals
+        )
+      ) {
+        return false;
+      }
+      return true;
     });
     return withContextLevelAnchors(schema.level, focused, candidates);
   }

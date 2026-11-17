@@ -598,6 +598,45 @@ describe('diagramState Actions & State Management', () => {
     expect(hasSessionLayout('context.yaml', fingerprint)).toBe(false);
   });
 
+  it('respects saved YAML coordinates and skips dagre auto-layout', () => {
+    clearSessionLayout();
+    useBlueprintStore.setState({
+      currentFilePath: 'containers.yaml',
+      layoutEngine: null,
+      layoutCustomized: false,
+    });
+
+    useBlueprintStore.getState().initSchema({
+      name: 'App containers',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'archlens/app',
+      nodes: [
+        {
+          entityRef: 'archlens/app/api',
+          type: 'rest-api',
+          name: 'API',
+          position: { x: 10, y: 10 },
+        },
+        {
+          entityRef: 'archlens/app/worker',
+          type: 'background-worker',
+          name: 'Worker',
+          position: { x: 400, y: 10 },
+        },
+      ],
+      dependencies: [{ from: 'archlens/app/api', to: 'archlens/app/worker', type: 'direct-call' }],
+    });
+
+    const state = useBlueprintStore.getState();
+    expect(state.layoutEngine).toBeNull();
+    expect(state.layoutCustomized).toBe(true);
+    expect(state.schema.nodes.map(n => n.position)).toEqual([
+      { x: 10, y: 10 },
+      { x: 400, y: 10 },
+    ]);
+  });
+
   describe('validation console logging', () => {
     it('logs schema validation warnings only when the issue set changes', () => {
       const warn = vi.fn();

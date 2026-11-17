@@ -107,7 +107,7 @@ describe('WorkspaceDisplayControls', () => {
     );
   });
 
-  it('disables caller and target toggles when dependency focus is active', () => {
+  it('keeps caller and target toggles enabled when dependency focus is active', () => {
     render(
       <WorkspaceDisplayControls
         showTests={false}
@@ -130,8 +130,8 @@ describe('WorkspaceDisplayControls', () => {
       />
     );
 
-    expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Show external targets (3)' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Show external targets (3)' })).toBeEnabled();
   });
 
   it('locks caller and target toggles on at C4 context level', () => {

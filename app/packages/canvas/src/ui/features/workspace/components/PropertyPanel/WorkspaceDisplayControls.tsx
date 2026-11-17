@@ -46,7 +46,9 @@ function ExternalVisibilityButtonGroup({
   dependencyFocusActive?: boolean;
   contextLevelAlwaysShowExternals?: boolean;
 }) {
-  const locked = dependencyFocusActive || contextLevelAlwaysShowExternals;
+  // Only C4 context locks externals on. Dependency focus must not disable these —
+  // toggling on promotes focus → focus-externals in the store so the canvas updates.
+  const locked = contextLevelAlwaysShowExternals;
   const buttonClass = (active: boolean) =>
     `px-2 py-0.5 text-[10px] font-bold tracking-wide transition cursor-pointer ${
       active
@@ -61,7 +63,7 @@ function ExternalVisibilityButtonGroup({
         contextLevelAlwaysShowExternals
           ? 'C4 context level always shows actors and external dependencies'
           : dependencyFocusActive
-            ? 'Use Dependency view → Tree + externals while a node is selected'
+            ? 'Turning Callers/Targets on includes externals in the selected dependency tree'
             : undefined
       }
     >

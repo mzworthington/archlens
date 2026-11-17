@@ -3,7 +3,10 @@ import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
 import type { DependencyViewMode } from '../../forensics/dependencyViewMode';
 import type { LeftSlotPanelId } from '../../layout/workspacePanels';
 import type { RightPanelTabId } from '../../layout/rightPanelTab';
-import { toggleDependencyViewMode } from '../../forensics/dependencyViewMode';
+import {
+  dependencyModeForExternalToggles,
+  toggleDependencyViewMode,
+} from '../../forensics/dependencyViewMode';
 import { isDesktopViewport } from '../layoutUtils';
 
 export type { DependencyViewMode };
@@ -111,8 +114,8 @@ export const createUiState = (
   }['bivarianceHack']
 ): UiState => ({
   showTests: false,
-  showUpstreamExternals: true,
-  showDownstreamExternals: true,
+  showUpstreamExternals: false,
+  showDownstreamExternals: false,
   dependencyViewMode: 'full',
   showCoupling: false,
   showCouplingSchemaDeps: false,
@@ -162,12 +165,57 @@ export const createUiState = (
   },
   toggleShowTests: () => set(state => ({ showTests: !state.showTests })),
   toggleShowUpstreamExternals: () =>
-    set(state => ({ showUpstreamExternals: !state.showUpstreamExternals })),
+    set(state => {
+      const showUpstreamExternals = !state.showUpstreamExternals;
+      return {
+        showUpstreamExternals,
+        dependencyViewMode: dependencyModeForExternalToggles(
+          state.dependencyViewMode,
+          showUpstreamExternals,
+          state.showDownstreamExternals
+        ),
+      };
+    }),
   toggleShowDownstreamExternals: () =>
-    set(state => ({ showDownstreamExternals: !state.showDownstreamExternals })),
-  setShowUpstreamExternals: show => set({ showUpstreamExternals: show }),
-  setShowDownstreamExternals: show => set({ showDownstreamExternals: show }),
-  setDependencyViewMode: mode => set({ dependencyViewMode: mode }),
+    set(state => {
+      const showDownstreamExternals = !state.showDownstreamExternals;
+      return {
+        showDownstreamExternals,
+        dependencyViewMode: dependencyModeForExternalToggles(
+          state.dependencyViewMode,
+          state.showUpstreamExternals,
+          showDownstreamExternals
+        ),
+      };
+    }),
+  setShowUpstreamExternals: show =>
+    set(state => ({
+      showUpstreamExternals: show,
+      dependencyViewMode: dependencyModeForExternalToggles(
+        state.dependencyViewMode,
+        show,
+        state.showDownstreamExternals
+      ),
+    })),
+  setShowDownstreamExternals: show =>
+    set(state => ({
+      showDownstreamExternals: show,
+      dependencyViewMode: dependencyModeForExternalToggles(
+        state.dependencyViewMode,
+        state.showUpstreamExternals,
+        show
+      ),
+    })),
+  setDependencyViewMode: mode =>
+    set({
+      dependencyViewMode: mode,
+      // Chip / TraceLens mode switches keep Callers/Targets in sync with the canvas path.
+      ...(mode === 'focus-externals'
+        ? { showUpstreamExternals: true, showDownstreamExternals: true }
+        : mode === 'focus'
+          ? { showUpstreamExternals: false, showDownstreamExternals: false }
+          : {}),
+    }),
   toggleShowSelectedDependenciesOnly: () =>
     set(state => ({
       dependencyViewMode: toggleDependencyViewMode(state.dependencyViewMode),
