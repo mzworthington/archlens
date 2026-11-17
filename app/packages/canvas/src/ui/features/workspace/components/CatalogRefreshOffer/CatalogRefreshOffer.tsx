@@ -125,7 +125,7 @@ export const CatalogRefreshOffer: React.FC = () => {
       <div
         role="status"
         aria-label="Newer snapshot available"
-        className="shrink-0 flex flex-wrap items-center justify-between gap-3 border-b border-accent/20 bg-[#061018] px-4 py-2"
+        className="shrink-0 flex flex-wrap items-center justify-between gap-3 border-b border-accent/20 bg-surface px-4 py-2"
         data-testid="catalog-refresh-offer"
       >
         <p className="text-xs font-semibold text-accent">Newer snapshot available</p>
@@ -140,7 +140,7 @@ export const CatalogRefreshOffer: React.FC = () => {
           <button
             type="button"
             onClick={keepCurrent}
-            className="rounded-md px-3 py-1.5 text-[11px] font-semibold text-slate-300 border border-slate-700 cursor-pointer"
+            className="rounded-md px-3 py-1.5 text-[11px] font-semibold text-ink/70 border border-ink/20 cursor-pointer hover:bg-ink/5"
           >
             Keep what I have
           </button>
@@ -152,7 +152,7 @@ export const CatalogRefreshOffer: React.FC = () => {
             type="button"
             tabIndex={-1}
             aria-label="Dismiss"
-            className="fixed inset-0 bg-[#020617]/80 border-0 p-0 cursor-pointer"
+            className="fixed inset-0 bg-black/50 border-0 p-0 cursor-pointer"
             onClick={keepCurrent}
           />
           <div
@@ -160,19 +160,19 @@ export const CatalogRefreshOffer: React.FC = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="relative w-full max-w-md rounded-xl border border-slate-800 bg-slate-950 p-5 shadow-2xl"
+            className="relative w-full max-w-md rounded-xl border border-ink/15 bg-surface p-5 shadow-2xl"
           >
-            <h2 id={titleId} className="text-sm font-semibold text-slate-100">
+            <h2 id={titleId} className="text-sm font-semibold text-ink">
               Replace draft changes?
             </h2>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-ink/65">
               Refreshing loads the new catalog snapshot and drops draft changes on this canvas.
             </p>
             <div className="mt-4 flex justify-end gap-2">
               <button
                 type="button"
                 onClick={keepCurrent}
-                className="rounded-md px-3 py-1.5 text-[11px] font-semibold text-slate-300 border border-slate-700 cursor-pointer"
+                className="rounded-md px-3 py-1.5 text-[11px] font-semibold text-ink/70 border border-ink/20 cursor-pointer hover:bg-ink/5"
               >
                 Keep what I have
               </button>

@@ -82,16 +82,86 @@ function upsertJsonLd(html: string, seo: PageSeo): string {
   return without.replace(/<\/head>/i, `    ${script}\n  </head>`);
 }
 
+/**
+ * Critical CSS for the SEO shell. Inline so the first paint is a branded splash
+ * before React replaces `#root`. Keeps H1 / description / nav crawlable without
+ * clipping them out of the accessibility tree.
+ */
+function prerenderCriticalCss(): string {
+  return `<style data-archlens-prerender-css>
+  [data-archlens-prerender]{
+    box-sizing:border-box;
+    min-height:100dvh;
+    margin:0;
+    padding:clamp(1.5rem,4vw,3rem);
+    font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:#152033;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%,rgba(12,107,120,.12),transparent),
+      #e8eef3;
+  }
+  [data-archlens-prerender] *{box-sizing:border-box}
+  [data-archlens-prerender] .al-prerender-eyebrow{
+    margin:0 0 .75rem;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#0c6b78;
+  }
+  [data-archlens-prerender] h1{
+    margin:0;
+    max-width:40rem;
+    font-size:clamp(1.75rem,4vw,2.75rem);
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:#152033;
+  }
+  [data-archlens-prerender] .al-prerender-lede{
+    margin:1rem 0 0;
+    max-width:40rem;
+    font-size:clamp(1rem,2.2vw,1.125rem);
+    line-height:1.55;
+    color:rgba(21,32,51,.72);
+  }
+  [data-archlens-prerender] nav{
+    margin-top:1.75rem;
+  }
+  [data-archlens-prerender] nav ul{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem .75rem;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  [data-archlens-prerender] nav a{
+    display:inline-flex;
+    align-items:center;
+    border:1px solid rgba(12,107,120,.35);
+    border-radius:.75rem;
+    padding:.55rem .9rem;
+    font-size:.8125rem;
+    font-weight:600;
+    color:#0c6b78;
+    text-decoration:none;
+    background:rgba(255,255,255,.7);
+  }
+</style>`;
+}
+
 function prerenderBody(seo: PageSeo, navLinks: Array<{ href: string; label: string }>): string {
   const links = navLinks
     .map(
-      link => `        <li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>`
+      link => `          <li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>`
     )
     .join('\n');
 
-  return `      <main data-archlens-prerender="1">
+  return `      <main data-archlens-prerender="1" aria-label="ArchLens">
+        <p class="al-prerender-eyebrow">ArchLens</p>
         <h1>${escapeHtml(seo.headline)}</h1>
-        <p>${escapeHtml(seo.description)}</p>
+        <p class="al-prerender-lede">${escapeHtml(seo.description)}</p>
         <nav aria-label="ArchLens products">
           <ul>
 ${links}
@@ -99,6 +169,11 @@ ${links}
         </nav>
       </main>
 `;
+}
+
+function upsertPrerenderAssets(html: string): string {
+  if (/data-archlens-prerender-css/i.test(html)) return html;
+  return html.replace(/<\/head>/i, `    ${prerenderCriticalCss()}\n  </head>`);
 }
 
 /**
@@ -124,6 +199,7 @@ export function injectPrerenderedPageHtml(
   html = replaceMetaContent(html, 'name', 'twitter:description', seo.description);
   html = replaceMetaContent(html, 'name', 'twitter:image', seo.ogImageUrl);
   html = upsertJsonLd(html, seo);
+  html = upsertPrerenderAssets(html);
 
   const body = prerenderBody(seo, navLinks);
   if (/<div id="root"><\/div>/i.test(html)) {

@@ -125,7 +125,7 @@ export function UpdateBanner() {
       aria-live="polite"
       aria-busy={refreshing}
       data-testid="update-banner"
-      className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-accent/25 bg-surface/95 px-4 py-2 text-xs font-mono text-slate-100 backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
+      className="fixed top-0 inset-x-0 z-[60] flex flex-wrap items-center justify-center gap-3 border-b border-accent/25 bg-surface/95 px-4 py-2 text-xs font-mono text-ink backdrop-blur-md pt-[max(0.5rem,env(safe-area-inset-top))]"
     >
       <RefreshCw
         className={`size-3.5 shrink-0 text-accent ${refreshing ? 'animate-spin' : ''}`}
@@ -145,7 +145,7 @@ export function UpdateBanner() {
         <button
           type="button"
           onClick={dismiss}
-          className="rounded-md border border-slate-700 px-2.5 py-1 text-slate-400 hover:text-slate-200 transition-colors"
+          className="rounded-md border border-ink/20 px-2.5 py-1 text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors"
         >
           Later
         </button>
