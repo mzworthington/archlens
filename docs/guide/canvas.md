@@ -8,13 +8,13 @@ ArchLens Canvas is the map over **BlueprintSpec**. You author it in a local fold
 
 On bare `/workspace`, ArchLens shows a **startup chooser**. It doesn't open the demo on its own. Pick an intent, then a leaf action:
 
-| Intent                  | What it does                                                                                                              |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Try the demo**        | Load the samples estate and open **ChaosLens** on ArchLens. Golden-journey and other samples stay in Explorer             |
-| **Full analysis (CLI)** | A collapsed strip under the demo: TraceLens git hotspots, watch mode, and CI catalog publish                              |
-| **Investigate**         | Map real systems with a browser lite scan, a folder or a ZIP when the browser can't pick a folder, or a blueprints folder |
-| **Collaborate**         | Share a live editing link, from a blank room or after you open a folder or file. See [Collaborate](./collaborate.md).     |
-| **Ideate**              | Start a solo blank Canvas, or import Mermaid. Share later from the toolbar                                                |
+| Intent                  | What it does                                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Try the demo**        | Load the samples estate and open **ArchLens** with **TraceLens** (Resilience off). Golden-journey and other samples stay in Explorer |
+| **Full analysis (CLI)** | A collapsed strip under the demo: TraceLens git hotspots, watch mode, and CI catalog publish                                         |
+| **Investigate**         | Map real systems with a browser lite scan, a folder or a ZIP when the browser can't pick a folder, or a blueprints folder            |
+| **Collaborate**         | Share a live editing link, from a blank room or after you open a folder or file. See [Collaborate](./collaborate.md).                |
+| **Ideate**              | Start a solo blank Canvas, or import Mermaid. Share later from the toolbar                                                           |
 
 A deep link under `/workspace/` skips the chooser and loads the demo so entity URLs resolve. If you open a folder or run a browser scan in this session, the demo doesn't replace that choice.
 

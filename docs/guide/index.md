@@ -18,7 +18,7 @@ Use this guide for the product, not the internals.
 
 ## Typical flow
 
-1. Open **ArchLens Canvas** at `/workspace`. The startup chooser appears, and nothing loads on its own. Pick **Investigate**, **Collaborate**, or **Ideate**, or use **Try the demo** for a ChaosLens run. **Collaborate** copies a live editing link with named cursors and an optional room secret. Disk commit stays on Pending Changes.
+1. Open **ArchLens Canvas** at `/workspace`. The startup chooser appears, and nothing loads on its own. Pick **Investigate**, **Collaborate**, or **Ideate**, or use **Try the demo** for ArchLens with TraceLens (Resilience off). **Collaborate** copies a live editing link with named cursors and an optional room secret. Disk commit stays on Pending Changes.
 2. When you need TraceLens git forensics or a CI publish, install the ArchLens CLI. See [Getting started](../tutorials/getting-started.md).
 3. Run the CLI against a codebase to generate BlueprintSpec. You can also publish from CI to object storage.
 4. Return to Canvas and choose **Open existing blueprints folder**, or keep exploring the demo. Import Mermaid or IaC from the toolbar **Open** menu once a diagram is active.

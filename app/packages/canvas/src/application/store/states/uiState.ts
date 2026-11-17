@@ -127,7 +127,7 @@ export const createUiState = (
   rightCollapsed: !isDesktopViewport(),
   rightPanelTab: 'properties',
   setRightPanelTab: tab => set({ rightPanelTab: tab }),
-  activeLeftPanel: 'codeViewer',
+  activeLeftPanel: 'traceLens',
   showDesignSystem: false,
   isDiffOpen: false,
   isImportMermaidOpen: false,

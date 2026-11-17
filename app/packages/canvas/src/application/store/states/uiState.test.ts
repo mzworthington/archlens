@@ -30,6 +30,7 @@ describe('uiState Actions & State Management', () => {
     expect(state.leftCollapsed).toBe(true);
     expect(state.rightCollapsed).toBe(false);
     expect(state.rightPanelTab).toBe('properties');
+    expect(state.activeLeftPanel).toBe('traceLens');
     expect(state.showDesignSystem).toBe(false);
     expect(state.isDiffOpen).toBe(false);
   });
