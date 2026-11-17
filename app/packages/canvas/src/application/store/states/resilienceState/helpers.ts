@@ -8,6 +8,9 @@ export function resilienceModePanelPatch(): Partial<BlueprintState> {
     activeLeftPanel: 'chaosLens',
     leftCollapsed: false,
     resiliencePanelTab: 'simulation',
+    // ChaosLens faults third-party deps (e.g. Payment Gateway); surface both bands.
+    showUpstreamExternals: true,
+    showDownstreamExternals: true,
     ...(isDesktopViewport() ? { rightCollapsed: false } : {}),
   };
 }
