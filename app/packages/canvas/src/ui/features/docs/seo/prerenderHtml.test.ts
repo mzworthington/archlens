@@ -44,5 +44,8 @@ describe('injectPrerenderedPageHtml', () => {
     expect(html).toContain('data-archlens-prerender-css');
     expect(html).not.toContain('data-archlens-booting');
     expect(html).toContain('al-prerender-eyebrow');
+    expect(html).toContain('al-prerender-spinner');
+    expect(html).toContain('Loading workspace');
+    expect(html).toContain('aria-busy="true"');
   });
 });
