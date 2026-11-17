@@ -8,7 +8,7 @@ Prerequisite: a repository on disk. The install command below is for macOS and L
 
 Open [ArchLens Canvas](https://archlens.dev/workspace).
 
-Bare `/workspace` shows the startup chooser. Choose **Try the demo**. TraceLens opens on the ArchLens sample map before you install anything; toggle **Resilience** when you want ChaosLens.
+Bare `/workspace` shows the startup chooser. Choose **Try the demo**. TraceLens opens on the ArchLens sample map before you install anything. Toggle **Resilience** when you want ChaosLens.
 
 ## 2. Install the CLI
 
