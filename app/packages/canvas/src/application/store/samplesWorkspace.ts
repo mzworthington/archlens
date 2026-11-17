@@ -37,3 +37,24 @@ export function selectBundledSampleEntryPath(catalog: readonly WorkspaceCatalogE
   if (container) return container.path;
   return catalog[0]!.path;
 }
+
+function catalogHasArchLens(catalog: readonly WorkspaceCatalogEntry[]): boolean {
+  return catalog.some(
+    entry => entry.entityRef === SAMPLES_ENTITY_REF || entry.path === SAMPLES_CONTEXT_PATH
+  );
+}
+
+/**
+ * EntityRef for Try the demo / sample-mode landing after the sandbox catalog is open.
+ * Prefer ArchLens when the catalog includes it; otherwise use the opened diagram
+ * (bundled golden-journey / remote fixtures → typically `samples`).
+ */
+export function resolveDemoLandingEntityRef(
+  catalog: readonly WorkspaceCatalogEntry[],
+  openedEntityRef?: string | null
+): string {
+  if (catalogHasArchLens(catalog)) return SAMPLES_ENTITY_REF;
+  if (openedEntityRef) return openedEntityRef;
+  if (catalog.some(entry => entry.entityRef === 'samples')) return 'samples';
+  return GOLDEN_JOURNEY_ENTITY_REF;
+}

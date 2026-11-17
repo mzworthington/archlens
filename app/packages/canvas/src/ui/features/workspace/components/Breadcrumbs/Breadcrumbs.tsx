@@ -1,3 +1,4 @@
+import { getSchemaEntityRef } from '@archlens/core';
 import React from 'react';
 import { ChevronRight, Folder } from 'lucide-react';
 import { useLocation, useSearch } from 'wouter';
@@ -13,7 +14,7 @@ import {
 import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
-import { SAMPLES_ENTITY_REF } from '../../../../../application/store/samplesWorkspace';
+import { resolveDemoLandingEntityRef } from '../../../../../application/store/samplesWorkspace';
 
 export const Breadcrumbs: React.FC = () => {
   const {
@@ -48,7 +49,12 @@ export const Breadcrumbs: React.FC = () => {
       const opened = await openBundledSample();
       if (!opened) return;
       setIsStartupOpen(false);
-      setLocation(buildWorkspaceEntityHref(SAMPLES_ENTITY_REF), { replace: true });
+      const { schema, workspaceName, workspaceCatalog } = useBlueprintStore.getState();
+      const entityRef = resolveDemoLandingEntityRef(
+        workspaceCatalog,
+        getSchemaEntityRef(schema, workspaceName)
+      );
+      setLocation(buildWorkspaceEntityHref(entityRef), { replace: true });
     })();
   };
 
