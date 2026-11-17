@@ -61,6 +61,73 @@ function contextFixture() {
   return { schema, nodes, edges };
 }
 
+function containerFocusFixture() {
+  const schema: SystemSchema = {
+    name: 'App',
+    version: '1.0.0',
+    level: 'container',
+    nodes: [
+      { entityRef: 'app', type: 'component', name: 'App' },
+      { entityRef: 'caller', type: 'component', name: 'Caller', external: true },
+      { entityRef: 'target', type: 'component', name: 'Target', external: true },
+      { entityRef: 'peer', type: 'component', name: 'Peer' },
+      { entityRef: 'stranger', type: 'component', name: 'Stranger' },
+    ],
+    dependencies: [
+      { from: 'caller', to: 'app', type: 'direct-call' },
+      { from: 'app', to: 'target', type: 'direct-call' },
+      { from: 'app', to: 'peer', type: 'direct-call' },
+    ],
+  };
+  const nodes = [
+    node('app'),
+    node('caller', { external: true }),
+    node('target', { external: true }),
+    node('peer'),
+    node('stranger'),
+  ];
+  const edges = [edge('caller', 'app'), edge('app', 'target'), edge('app', 'peer')];
+  return { schema, nodes, edges };
+}
+
+function visibleIds(flags: { callers: boolean; targets: boolean }): string[] {
+  const { schema, nodes, edges } = containerFocusFixture();
+  return buildCanvasVisibleNodes({
+    nodes,
+    edges,
+    schema,
+    loadedSystems: [{ path: 'app.yaml', name: schema.name, schema }],
+    showTests: true,
+    showUpstreamExternals: flags.callers,
+    showDownstreamExternals: flags.targets,
+    selectedNodeId: 'app',
+    dependencyViewMode: 'focus-externals',
+    isResilienceMode: false,
+    simulationScopeSet: null,
+    showCoupling: false,
+    expandedExternalHub: null,
+  })
+    .map(n => n.id)
+    .sort();
+}
+
+describe('buildCanvasVisibleNodes - dependency focus externals', () => {
+  it('shows only the external band the caller and target toggles enable', () => {
+    expect(visibleIds({ callers: true, targets: false })).toEqual(['app', 'caller', 'peer']);
+    expect(visibleIds({ callers: false, targets: true })).toEqual(['app', 'peer', 'target']);
+    expect(visibleIds({ callers: true, targets: true })).toEqual([
+      'app',
+      'caller',
+      'peer',
+      'target',
+    ]);
+  });
+
+  it('hides neighborhood externals when both caller and target toggles are off', () => {
+    expect(visibleIds({ callers: false, targets: false })).toEqual(['app', 'peer']);
+  });
+});
+
 describe('buildCanvasVisibleNodes - C4 context level', () => {
   it('always shows actors and external dependencies at context level', () => {
     const { schema, nodes, edges } = contextFixture();

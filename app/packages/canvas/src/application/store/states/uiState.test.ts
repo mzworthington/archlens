@@ -84,6 +84,77 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
   });
 
+  it('demotes focus-externals when the last caller or target toggle turns off', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus',
+      showUpstreamExternals: false,
+      showDownstreamExternals: false,
+    });
+    const store = useBlueprintStore.getState();
+    store.toggleShowUpstreamExternals();
+    store.toggleShowDownstreamExternals();
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
+
+    store.toggleShowUpstreamExternals();
+    expect(useBlueprintStore.getState().showUpstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
+
+    store.toggleShowDownstreamExternals();
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
+  });
+
+  it('demotes focus-externals when a setter clears the last external toggle', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus-externals',
+      showUpstreamExternals: false,
+      showDownstreamExternals: true,
+    });
+    useBlueprintStore.getState().setShowDownstreamExternals(false);
+    expect(useBlueprintStore.getState().showDownstreamExternals).toBe(false);
+    expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
+  });
+
+  it('presses both external toggles when Tree + externals is selected with both off', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus',
+      showUpstreamExternals: false,
+      showDownstreamExternals: false,
+    });
+    useBlueprintStore.getState().setDependencyViewMode('focus-externals');
+    const state = useBlueprintStore.getState();
+    expect(state.dependencyViewMode).toBe('focus-externals');
+    expect(state.showUpstreamExternals).toBe(true);
+    expect(state.showDownstreamExternals).toBe(true);
+  });
+
+  it('does not force the other band when Tree + externals is selected with one band on', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus',
+      showUpstreamExternals: true,
+      showDownstreamExternals: false,
+    });
+    useBlueprintStore.getState().setDependencyViewMode('focus-externals');
+    const state = useBlueprintStore.getState();
+    expect(state.dependencyViewMode).toBe('focus-externals');
+    expect(state.showUpstreamExternals).toBe(true);
+    expect(state.showDownstreamExternals).toBe(false);
+  });
+
+  it('clears external toggles when leaving tree + externals for focus', () => {
+    useBlueprintStore.setState({
+      dependencyViewMode: 'focus-externals',
+      showUpstreamExternals: true,
+      showDownstreamExternals: false,
+    });
+    useBlueprintStore.getState().setDependencyViewMode('focus');
+    const state = useBlueprintStore.getState();
+    expect(state.dependencyViewMode).toBe('focus');
+    expect(state.showUpstreamExternals).toBe(false);
+    expect(state.showDownstreamExternals).toBe(false);
+  });
+
   it('keeps the dependency toggle when a node is selected or cleared', () => {
     useBlueprintStore.setState({ dependencyViewMode: 'full', selectedNodeId: null });
     useBlueprintStore.getState().selectNode('nodeA');

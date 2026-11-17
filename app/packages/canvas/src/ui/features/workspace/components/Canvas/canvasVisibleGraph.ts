@@ -39,6 +39,23 @@ function isContextLevelAnchorNode(node: BlueprintRFNode): boolean {
   return node.data.type === 'person' || !!node.data.external;
 }
 
+function externalMatchesFocusToggles(
+  node: BlueprintRFNode,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[],
+  showUpstreamExternals: boolean,
+  showDownstreamExternals: boolean
+): boolean {
+  if (!node.data.external) return true;
+  return shouldShowCanvasExternalNode(
+    node.id,
+    nodes,
+    edges,
+    showUpstreamExternals,
+    showDownstreamExternals
+  );
+}
+
 /** Context diagrams always keep actors and external dependencies on canvas. */
 function withContextLevelAnchors(
   level: SystemSchema['level'],
@@ -79,12 +96,20 @@ export function buildCanvasVisibleNodes({
       edges,
       true
     );
-    const focused = candidates.filter(n => {
-      if (closure.has(n.id)) return true;
-      const entityRef = (n.data.entityRef ?? n.id) as string;
-      return !!(
-        simulationScopeSet &&
-        (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id))
+    const focused = candidates.filter(node => {
+      const inClosure = closure.has(node.id);
+      const entityRef = (node.data.entityRef ?? node.id) as string;
+      const inScope =
+        !!simulationScopeSet &&
+        (simulationScopeSet.has(entityRef) || simulationScopeSet.has(node.id));
+      if (!inClosure && !inScope) return false;
+      if (inScope) return true;
+      return externalMatchesFocusToggles(
+        node,
+        nodes,
+        edges,
+        showUpstreamExternals,
+        showDownstreamExternals
       );
     });
     return withContextLevelAnchors(schema.level, focused, candidates);

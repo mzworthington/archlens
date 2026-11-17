@@ -6,6 +6,19 @@ import type { RightPanelTabId } from '../../layout/rightPanelTab';
 import { toggleDependencyViewMode } from '../../forensics/dependencyViewMode';
 import { isDesktopViewport } from '../layoutUtils';
 
+function dependencyViewModeAfterExternalToggle(
+  mode: DependencyViewMode,
+  showUpstreamExternals: boolean,
+  showDownstreamExternals: boolean,
+  turnedOn: boolean
+): DependencyViewMode {
+  if (turnedOn && mode === 'focus') return 'focus-externals';
+  if (mode === 'focus-externals' && !showUpstreamExternals && !showDownstreamExternals) {
+    return 'focus';
+  }
+  return mode;
+}
+
 export type { DependencyViewMode };
 
 type UiStoreSlice = UiState & {
@@ -166,11 +179,12 @@ export const createUiState = (
       const showUpstreamExternals = !state.showUpstreamExternals;
       return {
         showUpstreamExternals,
-        // Turning callers/targets on while dependency focus is active must include
-        // externals in the neighborhood filter — otherwise the toggle looks dead.
-        ...(showUpstreamExternals && state.dependencyViewMode === 'focus'
-          ? { dependencyViewMode: 'focus-externals' as const }
-          : {}),
+        dependencyViewMode: dependencyViewModeAfterExternalToggle(
+          state.dependencyViewMode,
+          showUpstreamExternals,
+          state.showDownstreamExternals,
+          showUpstreamExternals
+        ),
       };
     }),
   toggleShowDownstreamExternals: () =>
@@ -178,26 +192,56 @@ export const createUiState = (
       const showDownstreamExternals = !state.showDownstreamExternals;
       return {
         showDownstreamExternals,
-        ...(showDownstreamExternals && state.dependencyViewMode === 'focus'
-          ? { dependencyViewMode: 'focus-externals' as const }
-          : {}),
+        dependencyViewMode: dependencyViewModeAfterExternalToggle(
+          state.dependencyViewMode,
+          state.showUpstreamExternals,
+          showDownstreamExternals,
+          showDownstreamExternals
+        ),
       };
     }),
   setShowUpstreamExternals: show =>
     set(state => ({
       showUpstreamExternals: show,
-      ...(show && state.dependencyViewMode === 'focus'
-        ? { dependencyViewMode: 'focus-externals' as const }
-        : {}),
+      dependencyViewMode: dependencyViewModeAfterExternalToggle(
+        state.dependencyViewMode,
+        show,
+        state.showDownstreamExternals,
+        show
+      ),
     })),
   setShowDownstreamExternals: show =>
     set(state => ({
       showDownstreamExternals: show,
-      ...(show && state.dependencyViewMode === 'focus'
-        ? { dependencyViewMode: 'focus-externals' as const }
-        : {}),
+      dependencyViewMode: dependencyViewModeAfterExternalToggle(
+        state.dependencyViewMode,
+        state.showUpstreamExternals,
+        show,
+        show
+      ),
     })),
-  setDependencyViewMode: mode => set({ dependencyViewMode: mode }),
+  setDependencyViewMode: mode =>
+    set(state => {
+      if (
+        mode === 'focus-externals' &&
+        !state.showUpstreamExternals &&
+        !state.showDownstreamExternals
+      ) {
+        return {
+          dependencyViewMode: mode,
+          showUpstreamExternals: true,
+          showDownstreamExternals: true,
+        };
+      }
+      if (mode === 'focus' && state.dependencyViewMode === 'focus-externals') {
+        return {
+          dependencyViewMode: mode,
+          showUpstreamExternals: false,
+          showDownstreamExternals: false,
+        };
+      }
+      return { dependencyViewMode: mode };
+    }),
   toggleShowSelectedDependenciesOnly: () =>
     set(state => ({
       dependencyViewMode: toggleDependencyViewMode(state.dependencyViewMode),
