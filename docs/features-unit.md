@@ -219,6 +219,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ maps known context slugs to display titles
 - ✅ nests under a stable system leaf when system id matches the context root
+- ✅ keeps blueprint disk paths aligned with system-first entityRefs
 
 ### externalDependenciesPass
 
@@ -742,6 +743,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ shows a comment count and a highlight for each person on the node
 - ✅ uses the live room thread for the marker while a room is open
+- ✅ leaves first measurement to React Flow and re-measures only when lite canvas changes
 - ✅ renders correctly with basic node details
 - ✅ uses a quiet port instead of a filled connection handle
 - ✅ simplifies chrome when liteCanvas is on but keeps all edge handles mounted
@@ -1047,6 +1049,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ always shows actors and external dependencies at context level
 - ✅ keeps actors and externals visible under dependency focus at context level
 
+#### buildCanvasVisibleNodes - focus-externals bands
+
+- ✅ respects Callers/Targets when dependency focus includes externals
+
 ### CanvasPreview
 
 #### canvas preview
@@ -1190,6 +1196,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ only previews live room vs disk in a folder workspace that is in a room
 - ✅ requires pushing disk back to the room when keeping disk in a live session
+- ✅ warns that Keep disk discards peers live edits while a room is active
 
 ### collectBrowserFileMetrics
 
@@ -1344,6 +1351,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ calls onChange when a segment is selected
 
+### dependencyViewMode
+
+#### dependencyViewMode
+
+- ✅ classifies focus modes
+- ✅ toggles full ↔ focus
+- ✅ promotes and demotes with caller/target toggles
+
 ### DesignSystemDocsPage
 
 #### DesignSystemDocsPage
@@ -1401,6 +1416,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should place a new node at the specified position if provided
 - ✅ should reset focusedCyclePath to null when initSchema is called
 - ✅ does not seed session layout cache before autolayout on load
+- ✅ respects saved YAML coordinates and skips dagre auto-layout
 
 ##### validation console logging
 
@@ -1481,9 +1497,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### DocsShell
 
-- ✅ shows mobile section scrollers for Start, Learn, Surfaces and Tech
+- ✅ shows one mobile chapter scroller for the active section, with tabs to switch
 - ✅ shows header hubs for Start, Learn, Surfaces and Tech
 - ✅ shows local section nav on mobile and nested sidebar items when provided
+- ✅ keeps the desktop sidebar scrollable within the viewport
 - ✅ links author credit to mzworthington.co.uk
 - ✅ links Privacy policy to /privacy
 
@@ -2169,9 +2186,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ registers CI workflows and Tech sidebar pages
 - ✅ groups docs nav into Start/Surfaces/Tech hubs and sidebar
 - ✅ marks Start vs Surfaces vs Tech hubs active without colliding on CI workflows
+- ✅ resolves the sidebar section for a docs path
 - ✅ registers the AdviceLens engine reference page
 - ✅ resolves feature report pages
 - ✅ registers ADR index and detail pages with frontmatter intact
+- ✅ registers the changelog next to ADRs in Tech docs
 - ✅ presents YAML frontmatter as structured fields, not a code fence
 - ✅ describes canvas IaC as coming from lite scan or the CLI with the same significance filter
 - ✅ resolves current guide chapter paths
@@ -2325,6 +2344,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ numbers a repeated heading the same way the markdown view does
 - ✅ leaves source-file links as written
 - ✅ opens absolute http links in a new tab
+- ✅ rewrites ADR and changelog markdown links to in-app routes
 
 ### requestServiceWorkerUpdate
 
@@ -2398,6 +2418,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resilienceState
 
 - ✅ expands the property panel when entering resilience mode on desktop
+- ✅ shows external callers and targets when entering resilience mode
 - ✅ keeps the property panel collapsed when entering resilience mode on mobile
 - ✅ keeps the property panel collapsed when a simulation completes on mobile
 - ✅ does not expand the property panel when a simulation completes on desktop
@@ -2637,9 +2658,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### selectBundledSampleEntryPath
 
+#### resolveDemoLandingEntityRef
+
+- ✅ returns ArchLens when the catalog includes it
+- ✅ uses the opened diagram when ArchLens is absent
+- ✅ falls back to golden-journey when nothing else is available
+
 #### selectBundledSampleEntryPath
 
-- ✅ prefers samples context when present
+- ✅ prefers ArchLens context when present
+- ✅ falls back to golden-journey when ArchLens is absent
 - ✅ falls back to context then first entry
 - ✅ throws when catalog is empty
 
@@ -2680,6 +2708,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ gives each product surface a unique title and description
 - ✅ covers every docs page path with an SEO record
 - ✅ covers the ADR index in the SEO catalog
+- ✅ covers the changelog in the SEO catalog
 - ✅ marks workspace routes as non-indexable with a workspace title
 - ✅ builds a sitemap that lists indexable URLs and omits workspace
 - ✅ builds JSON-LD graph with Organization, WebSite and SoftwareApplication nodes
@@ -2823,8 +2852,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should set isDiffOpen value via setIsDiffOpen action
 - ✅ should toggle showTests property via toggleShowTests action
 - ✅ should toggle upstream and downstream external visibility
+- ✅ promotes dependency focus to include externals when callers are turned on
+- ✅ demotes focus-externals when both callers and targets are turned off
+- ✅ keeps the dependency toggle when a node is selected or cleared
 - ✅ should toggle dependency focus via toggleShowSelectedDependenciesOnly
-- ✅ should set dependency view mode via setDependencyViewMode
+- ✅ should set dependency view mode via setDependencyViewMode and sync external toggles
 - ✅ should toggle showCoupling property via toggleShowCoupling action
 - ✅ should toggle showHotspotHeatmap via toggleShowHotspotHeatmap action
 - ✅ should toggle liteCanvas via toggleLiteCanvas action
@@ -2900,6 +2932,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ previews a valid ChaosSpec and applies it on load
 - ✅ generates export YAML from the active scenario
+
+### useCollabDiskAutosave
+
+#### useCollabDiskAutosave
+
+- ✅ quietly commits pending folder changes after the debounce while a room is active
+- ✅ does not auto-save when not in a live room
+- ✅ does not auto-save sample workspaces
+- ✅ reschedules when a quiet save fails and pending changes remain
+- ✅ marks isCurrent false after Keep disk clears pending changes
 
 ### useCollabRoomSync
 
@@ -3026,7 +3068,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ exposes workspace-wide display toggles including selected-deps focus
 - ✅ marks the summary when counts are scoped to the selected node
-- ✅ disables caller and target toggles when dependency focus is active
+- ✅ keeps caller and target toggles enabled when dependency focus is active
 - ✅ locks caller and target toggles on at C4 context level
 
 ### WorkspaceEntryPanel
@@ -3123,6 +3165,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### createYjsCollabSession
 
+- ✅ does not let a Loading boot placeholder poison an empty room before the host seeds
+- ✅ recovers when the room only has a Loading placeholder and the host has real nodes
 - ✅ hydrates a late joiner from the seeded room
 - ✅ pushes a local node add to the other session
 - ✅ broadcasts named cursors and connected count to the other session
@@ -3139,6 +3183,25 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not seed a comment the room has already deleted
 - ✅ drops a nested comment when an older client deletes the flat row
 - ✅ shows a nested-only comment to a client that still reads the flat map
+
+### yjsCollabSessionHelpers
+
+#### documentIsEmpty
+
+- ✅ treats the boot Loading placeholder as empty even when meta.name is set
+- ✅ treats a named blank diagram as non-empty so intentional empty shares stay seedable
+- ✅ treats a true empty document as empty
+- ✅ treats diagrams with nodes as non-empty
+
+#### schemaIsSeedable
+
+- ✅ refuses to seed the boot Loading placeholder into a room
+- ✅ allows seeding a named blank or a diagram with nodes
+
+#### waitForCollabAdmission
+
+- ✅ resolves early when a remote update arrives before the sync timeout
+- ✅ falls back to the sync timeout when no remote update arrives
 
 ### yjsCommentProjection
 
@@ -4723,6 +4786,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### Feature: Atomic snapshot materialization
 
 - ✅ places latest pointer last so upload can cut over safely
+- ✅ marks snapshot objects immutable and latest short-lived for CDN cache
 
 #### Feature: Parse published catalog manifests
 

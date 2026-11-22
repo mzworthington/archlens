@@ -2,6 +2,55 @@
 
 What shipped in ArchLens, day by day. Hard-to-reverse choices live in [Architecture Decision Records](./ADRs/README.md).
 
+## 2026-11-19
+
+### 🧰 Maintenance & Dependencies
+
+- _(canvas)_ Bump posthog-js to 1.451.2
+
+## 2026-11-17
+
+### 🚀 Features
+
+- _(canvas)_ Default Try the demo to ArchLens ChaosLens (#285)
+- _(canvas)_ Show loading spinner on SEO splash (#296)
+
+### 🐛 Bug Fixes
+
+- _(analysis)_ Nest blueprint paths so ArchLens Cloudflare is not empty (#283)
+- _(ci)_ Compile catalog CLI from workspace so path nesting sticks (#284)
+- _(canvas)_ Land demo ChaosLens on opened catalog entity (#286)
+- _(storage)_ Cache immutable catalog snapshot objects at the edge (#287)
+- _(infra)_ Cache blueprint catalog json/yaml at the edge
+- _(canvas)_ Collapse Explorer after exiting demo ChaosLens in e2e (#289)
+- _(canvas)_ Allow chaoslens query in remote catalog e2e URL
+- _(canvas)_ Hide externals by default; DAG only without coords (#291)
+- _(canvas)_ Show externals when entering ChaosLens (#292)
+- _(canvas)_ Light-mode banners and branded SEO splash (#293)
+- _(canvas)_ Default demo to TraceLens with Resilience off (#294)
+- _(canvas)_ Stop per-node measure loop on large canvas remount
+
+### 📚 Documentation
+
+- _(infra)_ Require Cache Rules scopes on Cloudflare API token
+
+### 🧪 Testing
+
+- _(canvas)_ Drop duplicate comment in BlueprintNode regression test
+
+## 2026-11-16
+
+### 🐛 Bug Fixes
+
+- _(docs)_ Compact mobile chapter nav into section tabs (#278)
+- _(docs)_ Make desktop sidebar scroll within the viewport (#279)
+- _(canvas)_ Stop share rooms losing nodes on join (MZW-171) (#280)
+- _(canvas)_ Keep node clicks from changing dependency focus (#282)
+
+### 📚 Documentation
+
+- _(changelog)_ Publish changelog under docs with root symlink (#277)
+
 ## 2026-11-15
 
 ### 🐛 Bug Fixes
