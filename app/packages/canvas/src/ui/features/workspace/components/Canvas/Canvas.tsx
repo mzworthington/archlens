@@ -1,11 +1,13 @@
 import React, { useMemo, useCallback } from 'react';
 import { ReactFlow, Background, Controls, BackgroundVariant, Panel } from '@xyflow/react';
-import type { NodeTypes, OnInit } from '@xyflow/react';
+import type { EdgeTypes, NodeTypes, OnInit } from '@xyflow/react';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { SELF_LOOP_EDGE_TYPE } from '../../../../../application/store/layout/selfLoopEdge';
 import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
+import { SelfLoopEdge } from './SelfLoopEdge';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
 import { resolveChildDiagramEntry } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
@@ -157,6 +159,12 @@ export const Canvas: React.FC = () => {
     }),
     []
   );
+  const edgeTypes = useMemo(
+    (): EdgeTypes => ({
+      [SELF_LOOP_EDGE_TYPE]: SelfLoopEdge,
+    }),
+    []
+  );
 
   const { parentEntityRef } = useActiveDiagramEntity();
 
@@ -258,6 +266,7 @@ export const Canvas: React.FC = () => {
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         edgesFocusable
         elementsSelectable
         onlyRenderVisibleElements

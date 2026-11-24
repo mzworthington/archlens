@@ -1,4 +1,11 @@
-import type { SystemSchema, SystemNode, SystemDependency, C4Level } from '@archlens/core';
+import type {
+  C4Level,
+  SystemDependency,
+  SystemNode,
+  SystemSchema,
+  ValidationResult,
+} from '@archlens/core';
+import { SELF_LOOP_EDGE_TYPE } from '../../layout/selfLoopEdge';
 import {
   DEPENDENCY_EDGE_STROKE,
   dependencyArrowMarker,
@@ -7,7 +14,6 @@ import {
   relationshipLabelChrome,
 } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
-import type { ValidationResult } from '@archlens/core';
 
 export function attachClosestHandles(
   nextNodes: BlueprintRFNode[],
@@ -17,6 +23,14 @@ export function attachClosestHandles(
     const sourceNode = nextNodes.find(n => n.id === edge.source);
     const targetNode = nextNodes.find(n => n.id === edge.target);
     if (!sourceNode || !targetNode) return edge;
+    if (edge.source === edge.target) {
+      return {
+        ...edge,
+        type: SELF_LOOP_EDGE_TYPE,
+        sourceHandle: 'right-source',
+        targetHandle: 'bottom-target',
+      };
+    }
     const { sourceHandle, targetHandle } = getClosestHandles(sourceNode, targetNode, nextNodes);
     return {
       ...edge,
