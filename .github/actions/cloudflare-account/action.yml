@@ -1,0 +1,18 @@
+name: Read Cloudflare account
+description: Account id committed in infra/cloudflare/hosting.yaml
+outputs:
+  id:
+    description: Cloudflare account id
+    value: ${{ steps.read.outputs.id }}
+runs:
+  using: composite
+  steps:
+    - id: read
+      shell: bash
+      run: |
+        id=$(awk -F': *' '$1 == "accountId" { print $2; exit }' infra/cloudflare/hosting.yaml)
+        if [[ -z "$id" || "$id" == YOUR_* ]]; then
+          echo "::error::Set accountId in infra/cloudflare/hosting.yaml."
+          exit 1
+        fi
+        echo "id=${id}" >> "$GITHUB_OUTPUT"

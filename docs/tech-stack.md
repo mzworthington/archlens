@@ -130,12 +130,10 @@ The editor extension is not in that chain. `publish-vscode-marketplace` stays co
 
 ## Secrets & local bootstrap
 
-| Secret                  | Used for                                     |
-| ----------------------- | -------------------------------------------- |
-| `CLOUDFLARE_API_TOKEN`  | Wrangler deploy + Pulumi Cloudflare provider |
-| `CLOUDFLARE_ACCOUNT_ID` | Wrangler + Pulumi                            |
-| `CLOUDFLARE_ZONE_ID`    | Pulumi (DNS / zone lookup)                   |
-| `PULUMI_ACCESS_TOKEN`   | Pulumi Cloud backend in CI                   |
+| Secret                 | Used for                                     |
+| ---------------------- | -------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN` | Wrangler deploy + Pulumi Cloudflare provider |
+| `PULUMI_ACCESS_TOKEN`  | Pulumi Cloud backend in CI                   |
 
 Local maintainers use **Bitwarden Secrets Manager** (`bws run`) and `gh` to sync these - see [cloudflare-secrets.md](./cloudflare-secrets.md).
 

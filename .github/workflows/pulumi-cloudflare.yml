@@ -4,7 +4,8 @@ name: Pulumi Cloudflare
 # See: https://github.com/mzworthington/edge-dns/blob/main/docs/reusable-cloudflare-ci.md
 #
 # Create GitHub Environment "pulumi-prod" with required reviewers for the apply gate.
-# Secrets: CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID, CLOUDFLARE_API_TOKEN, PULUMI_ACCESS_TOKEN
+# Secrets: CLOUDFLARE_API_TOKEN, PULUMI_ACCESS_TOKEN
+# Account and zone ids: infra/cloudflare/hosting.yaml
 # Vars:    PULUMI_PAGES_PROJECT_NAME, PULUMI_APEX_DOMAIN, PULUMI_WWW_DOMAIN,
 #          PULUMI_CATALOG_BUCKET_NAME, PULUMI_CATALOG_DOMAIN
 # Optional: PULUMI_PAGES_HOSTNAMES (JSON array)

@@ -28,6 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Read Cloudflare account
+        id: cloudflare-account
+        uses: ./.github/actions/cloudflare-account
+
 
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
@@ -37,7 +41,7 @@ jobs:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
           OBJECT_STORAGE_KEY_PREFIX: estates/samples
-          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCOUNT_ID: ${{ steps.cloudflare-account.outputs.id }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |

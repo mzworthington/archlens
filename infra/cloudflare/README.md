@@ -71,7 +71,7 @@ pulumi up
 
 ## Stack config
 
-`Pulumi.prod.yaml` is **gitignored** - it may contain account IDs and an encrypted Cloudflare API token after bootstrap. Committed template: `Pulumi.prod.yaml.example`. CI configures the stack from **GitHub Actions secrets** on each run (`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_API_TOKEN`).
+`Pulumi.prod.yaml` is **gitignored**. The account id and zone id are committed in `hosting.yaml`. CI sets the API token from the `CLOUDFLARE_API_TOKEN` secret on each run.
 
 ## Related files
 
