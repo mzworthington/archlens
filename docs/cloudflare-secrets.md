@@ -17,9 +17,9 @@ pulumi login
 bin/setup-cloudflare-hosting.sh
 ```
 
-The shim downloads [`scripts/setup-cloudflare-hosting.sh`](https://github.com/mzworthington/edge-dns/blob/main/scripts/setup-cloudflare-hosting.sh) from edge-dns (`EDGE_DNS_REF`, default `main`). Defaults: `DOMAIN=archlens.dev`, apex+www, Pages `archlens`, catalog bucket/domain.
+The local script sets `DOMAIN=archlens.dev` and `PULUMI_STACK=prod`, then runs [`setup-cloudflare-hosting`](https://github.com/mzworthington/edge-dns/blob/main/cmd/setup-cloudflare-hosting) from the edge-dns checkout (`cmd` on `PATH`). That command configures Pages hosting only. [`bin/setup-r2-catalog.sh`](../bin/setup-r2-catalog.sh) then mints the catalog publish credentials. Defaults: bucket `archlens-blueprint-catalog`, domain `blueprints.archlens.dev`.
 
-The script will:
+The scripts will:
 
 1. Validate **bws** secrets (resolve account/zone IDs from the Cloudflare API if missing)
 2. Mint a **Pulumi access token** if missing or invalid

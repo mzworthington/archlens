@@ -90,4 +90,4 @@ pulumi up
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
-| `bin/setup-cloudflare-hosting.sh` | Thin shim → edge-dns bootstrap (bws → gh + pulumi config) |
+| `bin/setup-cloudflare-hosting.sh` | Domain defaults, then `setup-cloudflare-hosting` on PATH, then the catalog script |
